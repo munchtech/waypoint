@@ -11,7 +11,7 @@ run(async args=>{
  // Start from Session 1, whatever session the fixture last had open.
  const first=await s.run(`document.querySelector('select[aria-label="Session"]')?.options[0]?.value||''`);if(first){await s.setValue('select[aria-label="Session"]',first);await s.settle(300)}
  check('Foresight is in the sidebar',(await s.clickText('Foresight',{within:'.sidebar'}))==='ok');await s.settle(900);
- check('the bundled update is offered',(await text('.update-offer')).includes('revision 6'));await shot('01-offer');
+ check('the bundled update is offered',(await text('.update-offer')).includes('revision 7'));await shot('01-offer');
  check('review opens',(await s.clickText('Review the update'))==='ok');await s.settle(500);
  const review=await text('.update-review');check('review lists the playbook and wiki changes',/Install the playbook/.test(review)&&/World wiki/.test(review));check('no conflicts on this campaign',!/Skipped: your text has changed/.test(review));await shot('02-review');
  const installLabel=await s.run(`[...document.querySelectorAll('.update-review button')].map(b=>b.textContent).find(t=>/^Install/.test(t))||''`);
@@ -38,7 +38,13 @@ run(async args=>{
  check('the ripple dialog opens',(await text('.modal')).includes('World changes to record'));await shot('11-ripple');
  await s.clickText('Apply without a chronicle entry');await s.settle(500);
  const after=s.state.snapshot.campaigns.find(c=>c.memory?.playbook);check('the change is recorded in world state',after.memory.playbook.state.quill==='bribed'&&after.memory.playbook.log.length===1);
- await s.clickText('Exit live mode');await s.settle(300);await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500);await s.clickText('World state');await s.settle(300);
+ await s.clickText('Exit live mode');await s.settle(300);await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500);
+ // The recorded bribe's "Down the line" note names Session 4, so it should be waiting in that session's brief.
+ const pick=async v=>{await s.clickText('Session desk',{within:'.sidebar'});await s.settle(400);await s.setValue('select[aria-label="Session"]',v);await s.settle(400);await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500)};
+ const fourth=await s.run(`document.querySelector('select[aria-label="Session"]')?.options[3]?.value||''`)||s.state.snapshot.campaigns.find(c=>c.memory?.playbook)?.sessions?.[3]?.id;if(fourth)await pick(fourth);
+ check('a recorded choice comes back in a later brief',/Quill/.test(await text('.coming-back')),(await text('.coming-back')).slice(0,80));await shot('12-coming-back');
+ if(first)await pick(first);
+ await s.clickText('World state');await s.settle(300);
  check('history can undo it',(await text('.state-log')).includes('They bribe Quill'));await s.clickText('Undo',{within:'.state-log'});await s.settle(400);
  check('undo restored the fact',s.state.snapshot.campaigns.find(c=>c.memory?.playbook).memory.playbook.state.quill==='routine');
  const overflow=await s.run('document.documentElement.scrollWidth>document.documentElement.clientWidth+1');check('no horizontal overflow',!overflow);

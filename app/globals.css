@@ -1303,3 +1303,4 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .last-time{margin:12px 0 0;font-size:12.5px;line-height:1.65;color:#455b63}
 .last-time strong{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#285861;margin-right:6px}
 @media print{body.print-brief .coming-back{break-inside:avoid-page}}
+.ending-card.reached{border-color:#c9a86a;box-shadow:0 0 0 2px #f4efdf}
