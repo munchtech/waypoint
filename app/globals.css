@@ -1290,3 +1290,16 @@ body.print-brief .brief-sheet{position:absolute;left:0;top:0;width:100%}
 body.print-brief .no-print{display:none}
 body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 }
+/* 1.35: callbacks from recorded choices, play previews, encounter retuning */
+.coming-back{margin-top:16px;padding:14px 16px;border-radius:12px;background:#eef3f0;border:1px solid #cddcd6}
+.coming-back h3,.coming-back h4{display:flex;align-items:center;gap:7px;margin:0 0 2px;color:#183f44}
+.coming-back ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.coming-back li{display:grid;gap:1px;font-size:13px;line-height:1.65;color:#2f4452}
+.coming-back li small{font-size:11px;color:var(--muted)}
+.coming-back.compact{margin:0 0 14px;padding:10px 14px}
+.play-preview{display:block;margin-top:3px;font-size:12.5px;line-height:1.55;color:#53666e;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.scale-options{font-size:12px;line-height:1.6;color:#455b63;margin:0 0 4px}
+.scale-options strong{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#285861;margin-right:4px}
+.last-time{margin:12px 0 0;font-size:12.5px;line-height:1.65;color:#455b63}
+.last-time strong{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#285861;margin-right:6px}
+@media print{body.print-brief .coming-back{break-inside:avoid-page}}

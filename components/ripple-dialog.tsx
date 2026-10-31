@@ -2,13 +2,13 @@
 import {useState} from 'react';
 import {ArrowRight,Check,GitBranch,Lock,Unlock,Compass} from 'lucide-react';
 import type {Campaign,Session} from '../lib/campaign';
-import {blockers,flagLabel,resolveEffects,ripple,valueLabel,type FlagValue,type Play,type Playbook} from '../lib/playbook';
+import {blockers,flagLabel,resolveEffects,ripple,sessionNumber,valueLabel,type FlagValue,type Play,type Playbook} from '../lib/playbook';
 
 // Shown when the DM marks a prepared play as what happened: confirm its world changes and see what they open or close later.
 export default function RippleDialog({campaign,session,pb,play,onApply,onCancel}:{campaign:Campaign;session:Session;pb:Playbook;play:Play;onApply:(changes:{flag:string;from:FlagValue;to:FlagValue}[],record:boolean)=>void;onCancel:()=>void}){
  const changes=resolveEffects(pb,play.effects),[keep,setKeep]=useState<string[]>(changes.map(c=>c.flag));
  const chosen=changes.filter(c=>keep.includes(c.flag)),index=campaign.sessions.findIndex(s=>s.id===session.id),r=ripple(campaign,pb,chosen,index+1),blocked=blockers(pb,play.when);
- const where=(i:number)=>i<0?'Anytime':'Session '+(i+1)+' · '+campaign.sessions[i].title.replace(/^Sessions? [\dA-Z–\- to]+:\s*/,'');
+ const where=(i:number)=>i<0?'Anytime':'Session '+sessionNumber(campaign.sessions[i].title,i)+' · '+campaign.sessions[i].title.replace(/^Sessions? [\dA-Z–\- to]+:\s*/,'');
  return <><span className="eyebrow">THE PARTY DID THIS</span><h2 id="modal-title">{play.title}</h2>
   {blocked.length>0&&<p className="play-blocked"><Lock size={14}/>Your recorded world state says this wasn’t possible ({blocked.join('; ')}). If it happened anyway, the changes below still apply.</p>}
   <div className="ripple-now"><h4>What changes now</h4><p>{play.consequence}</p></div>
