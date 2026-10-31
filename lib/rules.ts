@@ -1,0 +1,5 @@
+export type RuleEntry={id:string;name:string;kind:string;source:string;edition:string;page:string;summary:string;body:string;warnings:string[]};
+export type RuleReference=Pick<RuleEntry,'id'|'name'|'kind'|'source'|'edition'|'page'|'body'>;
+// Importing 5etools data lives in rules-import.ts so the renderer only carries what it needs to pin a reference.
+export function referenceOf(entry:RuleEntry):RuleReference{const text=[entry.summary,entry.body,...entry.warnings.map(w=>'Note: '+w)].filter(Boolean).join('\n\n');return {id:entry.id,name:entry.name,kind:entry.kind,source:entry.source,edition:entry.edition,page:entry.page,body:text.length>8000?text.slice(0,7900)+'\n\n[Snapshot shortened. Open the library for the full entry.]':text}}
+export function validRuleReferences(value:unknown){return value===undefined||(Array.isArray(value)&&value.length<=6&&value.every(r=>{if(!r||typeof r!=='object'||Array.isArray(r))return false;const record=r as Record<string,unknown>;return ['id','name','kind','source','edition','page','body'].every(k=>{const v=record[k];return typeof v==='string'&&v.length<=(k==='body'?8000:2000)})}))}

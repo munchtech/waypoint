@@ -1,0 +1,34 @@
+{
+  "appId": "local.waypoint.dm",
+  "productName": "Waypoint",
+  "directories": {
+    "app": "desktop/build",
+    "output": "../waypoint-packaged"
+  },
+  "files": [
+    "main.cjs",
+    "preload.cjs",
+    "speech-worker.py",
+    "data/**/*",
+    "renderer/**/*",
+    "package.json"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "portable",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "signAndEditExecutable": false,
+    "icon": "desktop/icons/waypoint.ico"
+  },
+  "portable": {
+    "artifactName": "Waypoint.exe"
+  },
+  "asar": true,
+  "npmRebuild": false,
+  "publish": null
+}
