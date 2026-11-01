@@ -45,6 +45,12 @@ run(async args=>{
  await s.clickText('Session notes');await s.settle(600);check('the session notes have play links',(await s.run(`document.querySelectorAll('.book-text .play-link').length`))>10);
  await s.clickSelector('.book-text .play-link');await s.settle(400);await s.run("document.querySelector('.book-text .play-card')?.scrollIntoView({block:'center'})");await s.settle(300);check('a play link opens its card in place',(await text('.book-text .play-card')).includes('The party did this'));await shot('09d-plan-play');
  await s.clickSelector('.book-text .play-link.open');await s.settle(300);check('clicking it again closes it',!(await s.run(`!!document.querySelector('.book-text .play-card')`)));
+ // The notes bar: a session clock that reads the plan's timeline, quick record on a card, and "Something else happened".
+ check('the notes bar offers Something else happened and the table card',/Something else happened/.test(await text('.notes-bar'))&&/Print table card/.test(await text('.notes-bar')));
+ await s.clickText('Start the clock',{within:'.notes-bar'});await s.settle(300);check('the session clock starts and says where a session usually is',/0:00/.test(await text('.session-clock'))&&/Usually by now/i.test(await text('.session-clock')),(await text('.session-clock')).slice(0,90));await s.run("window.scrollBy(0,600)");await s.settle(300);await shot('09e-notes-bar');
+ const before=s.state.snapshot.campaigns.find(c=>c.memory?.playbook).events.length;await s.clickSelector('.book-text .play-link');await s.settle(300);await s.clickSelector('.book-text .quick-record');await s.settle(600);
+ check('Quick record adds a chronicle line without a dialog',s.state.snapshot.campaigns.find(c=>c.memory?.playbook).events.length===before+1&&!(await s.run(`!!document.querySelector('.modal')`)));
+ await s.clickText('Something else happened',{within:'.notes-bar'});await s.settle(400);check('Something else happened opens the outcome editor',/What actually happened/.test(await text('.modal')));await s.clickText('Close & keep draft');await s.settle(300);
  await s.clickText('Possibilities');await s.settle(300);await s.clickText('Live mode');await s.settle(500);
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');
  await s.clickSelector('.live-lookup .branch-head');await s.settle(300);await s.clickText('The party did this',{within:'.live-lookup'});await s.settle(500);

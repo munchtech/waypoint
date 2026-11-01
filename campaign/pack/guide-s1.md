@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. At the table, read the boxed text aloud and glance at the bullets. You don't need to memorise anything. If the players go somewhere this guide doesn't cover, Foresight's plays for this session almost certainly do.*
+*Run session zero first: its guide is the World wiki page **1.4 Session Zero Script**. Read this once the day before. At the table, read the boxed text aloud and glance at the bullets. You don't need to memorise anything. If the players go somewhere this guide doesn't cover, Foresight's plays for this session almost certainly do.*
 
 **Contents:** [Before you start](#before-you-start-session-1) · [Scene 1: The old dock](#scene-1-the-old-dock) · [Scene 2: Tea at Mother Sallow's](#scene-2-tea-at-mother-sallows) · [Scene 3: The port](#scene-3-the-port-optional) · [Scene 4: Quill comes for the quota](#scene-4-quill-comes-for-the-quota) · [Scene 5: Night on the Old Shore](#scene-5-night-on-the-old-shore) · [Running the fights](#running-the-fights-session-1) · [Pacing](#pacing-session-1) · [If you get stuck](#if-you-get-stuck-session-1) · [End of session](#end-of-session-1)
 

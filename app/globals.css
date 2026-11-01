@@ -1336,3 +1336,19 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .book-text .play-card p{margin:0 0 .6em;white-space:normal}
 .book-text .play-card h4{font:600 15px/1.4 'DM Sans',sans-serif;margin:0 0 .35em}
 .book-text .play-card .response-grid>div{padding-top:.8em}
+/* 1.35.4: the bar pinned above a session plan (record what no play covers, the session clock, print the table card). */
+.notes-bar{position:sticky;top:78px;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 16px;padding:10px 12px;border-radius:12px;background:#f7f4ec;border:1px solid #e3dccb;box-shadow:0 6px 14px -12px #1d3b4580}
+.session-clock{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;color:#2f4452}
+.session-clock strong{font:600 15px/1 'DM Sans',sans-serif;font-variant-numeric:tabular-nums;color:#183f44;min-width:3.2em}
+.session-clock .pace{flex-basis:100%;font-size:12.5px;line-height:1.5;color:#455b63}
+.session-clock .pace small{font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:#285861}
+.session-clock.over strong,.session-clock.over .pace{color:#9a4a1f}
+.play-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.table-card-print{display:none}
+@media print{
+body.print-card *{visibility:hidden}
+body.print-card .table-card-print,body.print-card .table-card-print *{visibility:visible}
+body.print-card .table-card-print{display:block;position:absolute;left:0;top:0;width:100%;font-size:11pt}
+body.print-card .table-card-print .book-text{max-width:none;font-size:11pt;line-height:1.45}
+body.print-card .notes-bar{position:static;box-shadow:none;border:0;background:none}
+}

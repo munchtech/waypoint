@@ -44,6 +44,8 @@ const links=n=>{const texts=guideVersions.map(v=>read('guide-s'+n+(v?'-'+v:'')+'
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
+// Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
+const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return {find:last,replace:last+'\n\n'+read('table-card-s'+n+'.md'),unless:'## Table card',guide:true}};
 
 const pellmoorBody=`- **Read-aloud:**
 > **SAY:** "The Mute Mere is so still that the ships look painted on it. Forty masts stand over the water where a drowned town lies just beneath, rooftops like the backs of sleeping animals. On the Quays, a dozen languages argue over the price of a memory. Gnomes shout. Gulls do not; there are no gulls on the Mere. And at the far end of the waterfront, past the last warehouse, the old reed-roofed village of Pellmoor still leans toward the water as if none of this were happening."
@@ -194,6 +196,8 @@ const pages=[
 ];
 
 const pageEdits=[
+ // Revision 7.4: the session zero script becomes a full guide for a first-time DM (session-zero.md).
+ {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero.md')}]},
  {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',replace:pellmoorBody}]},
  {id:'sb-74c9bfaa3dfbf94e',edits:[{find:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face.`,replace:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face, and now every ship that brought one. The ferry-folk drink here; Stormborn are served politely and not invited back.`}]},
  {id:'sb-bb6db9d171c44c8e',edits:[{find:`- **Wants:** To be left alone. Safe passage. Their dead remembered properly.`,replace:`- **Wants:** To be left alone, which the port has made impossible. Safe passage. Their dead remembered properly. The Pilots' Hall kept free of the Court and the trading houses.`},{find:`- **Methods:** Ferries, net-fishing, careful silence, and keeping the old ledger of names.`,replace:`- **Methods:** Ferries, net-fishing, piloting every foreign ship across the drowned town (the Pilots' Hall), careful silence, and keeping the old ledger of names.`}]},
@@ -261,7 +265,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide,...links(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),card(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),card(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide,...links(3),card(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},
