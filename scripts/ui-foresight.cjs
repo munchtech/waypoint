@@ -51,6 +51,10 @@ run(async args=>{
  const before=s.state.snapshot.campaigns.find(c=>c.memory?.playbook).events.length;await s.clickSelector('.book-text .play-link');await s.settle(300);await s.clickSelector('.book-text .quick-record');await s.settle(600);
  check('Quick record adds a chronicle line without a dialog',s.state.snapshot.campaigns.find(c=>c.memory?.playbook).events.length===before+1&&!(await s.run(`!!document.querySelector('.modal')`)));
  await s.clickText('Something else happened',{within:'.notes-bar'});await s.settle(400);check('Something else happened opens the outcome editor',/What actually happened/.test(await text('.modal')));await s.clickText('Close & keep draft');await s.settle(300);
+ check("the notes bar can jump between the guide's scenes",(await s.run(`document.querySelectorAll('.scene-jump option').length`))>6);
+ await s.clickText('Live mode');await s.settle(600);
+ check("live mode puts the session's table card in the right rail",/Table card/.test(await text('.rail-card'))&&!(await s.run(`!!document.querySelector('.desk-pulse')`)));await s.run('window.scrollTo(0,0)');await s.settle(200);await shot('09f-live-rail');
+ await s.clickText('Exit live mode');await s.settle(400);
  await s.clickText('Possibilities');await s.settle(300);await s.clickText('Live mode');await s.settle(500);
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');
  await s.clickSelector('.live-lookup .branch-head');await s.settle(300);await s.clickText('The party did this',{within:'.live-lookup'});await s.settle(500);

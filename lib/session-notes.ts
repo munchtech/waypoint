@@ -7,3 +7,5 @@ export function tableCard(plan:string){const at=plan.search(/^## Table card/m);i
 export const clockText=(min:number)=>Math.floor(min/60)+':'+String(Math.floor(min%60)).padStart(2,'0');
 // Where the plan's timeline says a session usually is after `min` minutes.
 export function pace(rows:Row[],min:number){if(!rows.length)return null;const now=rows.find(r=>min>=r.from&&min<r.to),last=rows[rows.length-1];if(now){const next=rows[rows.indexOf(now)+1];return {now:now.what,next:next?next.what+' at '+clockText(next.from):'The closing question',over:false}}return min>=last.to?{now:'Past the planned time. Check “Running long” in Pacing for where to cut or stop.',next:'',over:true}:null}
+// The guide's sections, for jumping between scenes: its ### headings and the table card.
+export function guideSections(plan:string){const at=plan.indexOf('## Running this session');if(at<0)return [];return [...plan.slice(at).matchAll(/^(###|##) (.+)$/gm)].map(m=>m[2].trim()).filter(t=>!/^Running this session/.test(t))}
