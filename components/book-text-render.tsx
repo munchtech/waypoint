@@ -11,14 +11,17 @@ const slug = (value:string) => value.toLowerCase().trim().replace(/[^\p{L}\p{N}\
 function plain(tokens:Token[]):string {
  return tokens.map(t=>t.type==='image'?t.content:t.children?plain(t.children):t.content).join('');
 }
-function render(tokens:Token[], prefix:string):ReactNode[] {
+// A link to `play:<id>` names a prepared play. Where the page knows its plays (session notes), the link becomes a button that opens
+// the play's card in place; elsewhere (the book, the wiki) it reads as plain text.
+export type PlayLinks={open:string|null;toggle:(id:string)=>void;render:(id:string)=>ReactNode};
+function render(tokens:Token[], prefix:string, plays?:PlayLinks):ReactNode[] {
  let index=0;
  function walk():ReactNode[] {
   const nodes:ReactNode[]=[];
   while(index<tokens.length){
    const key=index, token=tokens[index++];
    if(token.nesting===-1)break;
-   const children=token.nesting===1?walk():token.children?render(token.children,prefix):[];
+   const children=token.nesting===1?walk():token.children?render(token.children,prefix,plays):[];
    if(token.hidden){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
    if(token.type==='inline'){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
    if(token.type==='text'){nodes.push(token.content.replace(/^\[ \] /,'☐ ').replace(/^\[[xX]\] /,'☑ '));continue;}
@@ -27,6 +30,11 @@ function render(tokens:Token[], prefix:string):ReactNode[] {
    if(token.type==='code_inline'){nodes.push(<code key={key}>{token.content}</code>);continue;}
    if(token.type==='fence'||token.type==='code_block'){nodes.push(<pre key={key}><code>{token.content.replace(/\n$/,'')}</code></pre>);continue;}
    if(token.type==='hr'){nodes.push(<hr key={key}/>);continue;}
+   if(token.type==='link_open'&&String(token.attrGet('href')||'').startsWith('play:')){
+    const id=String(token.attrGet('href')).slice(5),open=plays?.open===id;
+    nodes.push(plays?<Fragment key={key}><button type="button" className={'play-link'+(open?' open':'')} aria-expanded={open} onClick={()=>plays.toggle(id)}>{children}</button>{open&&plays.render(id)}</Fragment>:<Fragment key={key}>{children}</Fragment>);
+    continue;
+   }
    if(token.type==='link_open'||token.type==='image'){
     const href=String(token.attrGet(token.type==='image'?'src':'href')||'');
     const label=token.type==='image'?token.content||'Image':children;
@@ -55,17 +63,17 @@ function render(tokens:Token[], prefix:string):ReactNode[] {
  }
  return walk();
 }
-export default function BookText({text}:{text:string}){
+export default function BookText({text,plays}:{text:string;plays?:PlayLinks}){
  const prefix=useId()+'-';
- const content=useMemo(()=>{
+ const tokens=useMemo(()=>{
   const tokens=markdown.parse(text,{}),counts=new Map<string,number>();
   for(let i=0;i<tokens.length;i++)if(tokens[i].type==='heading_open'){
    const name=slug(plain(tokens[i+1]?.children||[]))||'section',count=counts.get(name)||0;
    counts.set(name,count+1);tokens[i].attrSet('id',prefix+name+(count?'-'+count:''));
   }
-  return render(tokens,prefix);
+  return tokens;
  },[text,prefix]);
- return <div className="book-text">{content}</div>;
+ return <div className="book-text">{render(tokens,prefix,plays)}</div>;
 }
 
 

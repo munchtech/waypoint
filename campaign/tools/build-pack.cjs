@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.1) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.2) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs=require('fs'),path=require('path');
 const P=require(path.join(__dirname,'../paths.cjs'));
@@ -24,8 +24,8 @@ const anytime=plays.filter(p=>!p.sessionId).map(clean);
 const loreSessions=new Map(lore.sessions.map(s=>[s.id,s]));
 // Checks edits as Waypoint places them: in order, on the renamed text; an edit whose replacement is already there counts as placed.
 // The live campaign already has revision 7, so its earlier edits are found by their replacements and the new ones by their anchors.
-const placeable=(text,edits,label)=>{let t=rename(text);for(const e of edits){const f=rename(e.find),r=rename(e.replace);if(r&&t.includes(r))continue;if(t.includes(f))t=t.replace(f,r);else warn(label+': anchor not found: '+e.find.slice(0,70))}};
-const sessions=live.sessions.map(s=>{const out={id:s.id};const l=loreSessions.get(s.id);if(bySession.has(s.id)){out.plays=bySession.get(s.id);const base=baseline.sessions.find(x=>x.id===s.id)||s;const guide=[...new Set([...base.branches,...s.branches].filter(br=>br.likelihood==='Scenario from the guide').map(br=>br.id))];if(guide.length)out.retire=guide}if(l){out.edits=l.edits.map(({find,replace})=>({find,replace}));out.summary=l.summary;placeable(s.plan,l.edits,'session '+s.title)}return out}).filter(s=>s.plays||s.edits);
+const placeable=(text,edits,label)=>{let t=rename(text);for(const e of edits){const f=rename(e.find),r=rename(e.replace);if((r&&t.includes(r))||(e.unless&&t.includes(e.unless)))continue;if(t.includes(f))t=t.replace(f,r);else warn(label+': anchor not found: '+e.find.slice(0,70))}};
+const sessions=live.sessions.map(s=>{const out={id:s.id};const l=loreSessions.get(s.id);if(bySession.has(s.id)){out.plays=bySession.get(s.id);const base=baseline.sessions.find(x=>x.id===s.id)||s;const guide=[...new Set([...base.branches,...s.branches].filter(br=>br.likelihood==='Scenario from the guide').map(br=>br.id))];if(guide.length)out.retire=guide}if(l){out.edits=l.edits.map(({find,replace,unless})=>({find,replace,...(unless?{unless}:{})}));out.summary=l.summary;placeable(s.plan,l.edits,'session '+s.title)}return out}).filter(s=>s.plays||s.edits);
 const pageEdits=lore.pageEdits.map(x=>{const page=live.memory.pages.find(p=>p.id===x.id);if(!page){warn('page edit target missing: '+x.id);return x}const edits=x.edits.map(e=>e.find==='__WHOLE__'?{find:(baseline.memory.pages.find(p=>p.id===x.id)||page).body,replace:e.replace}:e);placeable(page.body,edits,'page '+page.title);return {...x,edits}});
 for(const field of new Set(lore.campaign.edits.map(e=>e.field)))placeable(live[field],lore.campaign.edits.filter(e=>e.field===field),'campaign '+field);
 placeable(live.memory.planner.locked,lore.planner.locked,'planner');
@@ -34,10 +34,11 @@ const statIds=new Set(statblocks.map(s=>s.id));for(const e of encounters)for(con
 const encIds=new Set(encounters.map(e=>e.id));for(const b of briefs)for(const id of b.encounters)if(!encIds.has(id))warn('brief '+b.sessionId+' lists missing encounter '+id);
 const memoryPage=lore.pages.find(p=>p.id==='v6-memory-money');
 const sessionCount=sessions.filter(s=>s.plays).length,playCount=[...bySession.values()].reduce((n,l)=>n+l.length,0);
-const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.1',
- summary:`Revision 7.1 of The Seventh Bell, for Waypoint 1.35.1. It installs over revision 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.2',
+ summary:`Revision 7.2 of The Seventh Bell, for Waypoint 1.35.2. It installs over revision 7.1, revision 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **New in 7.1: a guide for running Sessions 1 to 3.** Each Act I session plan gains a section, **Running this session (new DM guide)**, after the plan and before your IsoForge kit: what to prepare, read-aloud for every scene, what is really going on, how to play each person, the checks and DCs, what to do when the players surprise you, a turn-by-turn guide to every fight, pacing, names, and what to record afterwards. Four new plays fill gaps the guide found, and Act I's numbers now match the 2024 stat blocks.
+- **New in 7.2: click what the players do.** In each Act I guide, the "If they…" choices are buttons. Click one and that play's card opens right there in your session notes, with **The party did this** on it, so you can run the session from the page. The IsoForge map kits (the kit section at the end of each Act I plan, three wiki pages and three saved cards) are retired, each listed for review.
+- **New in 7.1: a guide for running Sessions 1 to 3.** Each Act I session plan gains a section, **Running this session (new DM guide)**, after the plan: what to prepare, read-aloud for every scene, what is really going on, how to play each person, the checks and DCs, what to do when the players surprise you, a turn-by-turn guide to every fight, pacing, names, and what to record afterwards. Four new plays fill gaps the guide found, and Act I's numbers now match the 2024 stat blocks.
 - **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
 - **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
@@ -47,11 +48,11 @@ const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'
 - **Corvane in the Realms,** as in revision 6: the Stormwall and the Seam, Pellmoor Landing as a port, memory as money.
 - **Foresight playbook.** ${playCount} prepared plays across ${sessionCount} chapters and ${anytime.length} anytime plays; ${flags.length} tracked world-state facts; ${briefOut.length} session prep briefs; ${encounters.length} encounters; ${statblocks.length} Corvane stat blocks built on the 2024 Monster Manual; and an ending forecast.
 
-Your notes, IsoForge map kits, chronicle and any world state you have recorded are kept. Replaced wiki text moves to each page's revision history.`,
+Your notes, chronicle and any world state you have recorded are kept. Replaced wiki text moves to each page's revision history.`,
  match:{campaignIds:['the-seventh-bell-corvane-v5'],names:['The Seventh Bell']},
- campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,
+ campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,remove:lore.remove,
  pages:lore.pages.map(page=>({mode:'replace',page})),pageEdits,
- playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.1',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
+ playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.2',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
 // "Tongue" becomes "Heart" in everything the pack carries; the pack also asks Waypoint to rename the DM's own text the same way.
 const {terms,deep}=require(pack('terms.cjs'));Object.assign(result,deep(result,''));result.terms=terms;
 // The player site: prepared player-safe wiki entries and the site's fixed pages (handouts and map, built by tools/build-handouts.cjs).

@@ -25,7 +25,7 @@
 
 **Prepare:**
 - **Tokens or minis:** the four characters; Mother Sallow; Brother Eld; Ila; Quill and one Hushman (if he returns); the Tidewarden and the Cantor (if they go to the bell); three Drowned Singers and two memory-eels (if the stair is guarded); Master Venn, three Coster guards and the ship's mate (only if the Heart was sold).
-- **Maps:** your IsoForge kit (below) has Eld's chapel and Ossa's belfry. For the ferry-stair, draw a stone stair 10 feet wide going down from the old ferry landing into the water and along a drowned street to the belfry. For the *Gilded Heron*, a ship's deck with a gangplank, a hatch and a cabin.
+- **Maps:** sketch each place on paper, a battle mat or in Foundry. Eld's chapel: one long room with nine stools, and a side room with the desk and a narrow bed. Reuse Session 2's belfry. For the ferry-stair, draw a stone stair 10 feet wide going down from the old ferry landing into the water and along a drowned street to the belfry. For the *Gilded Heron*, a ship's deck with a gangplank, a hatch and a cabin.
 - **Props:**
   - *The missing page:* write it yourself on a scrap of paper. A heading, "Children questioned, by report of the chapel, 410 to 412," and six to eight names with dates. Put **Ila Harrow, 410** last, in the same tidy hand.
   - *The Court forms:* two or three copies of the same names on "Court" paper, with a grey thumbprint for a seal.
@@ -54,7 +54,7 @@
 **Mother Sallow.** As before: dry, short, honest, pipe between her teeth. *Wants:* the page back, and Ila safe. *First words:* see the box. *Lines:* "Abel Tarn. Rowed that ferry since before I was born. Funny thing. Nobody remembers him getting old." · "The chapel borrows this ledger for the Tithe. Only the chapel." · "Bring it back. Don't break the man. He breaks easy."
 
 **What they can learn here:**
-- **Who was on the ferry:** Abel Tarn, the eastern ferryman. Free. If they met the hooded ferryman in Session 2, a Study check, Intelligence (Religion) DC 12, or simply the players' own guess, connects them: "The Tidewarden wore him once." Mother Sallow nods slowly: "Then he's rowing the dead now. Good. Somebody should."
+- **[Who was on the ferry:](play:s03-who-was-on-the-ferry)** Abel Tarn, the eastern ferryman. Free. If they met the hooded ferryman in Session 2, a Study check, Intelligence (Religion) DC 12, or simply the players' own guess, connects them: "The Tidewarden wore him once." Mother Sallow nods slowly: "Then he's rowing the dead now. Good. Somebody should."
 - **Who took the page:** Brother Eld, who runs the chapel. Free; Sallow says his name if they ask. If they kept her three-day bargain, she also hands them Eld's chapel key without a word.
 
 **How it ends.** They go to the chapel.
@@ -81,19 +81,19 @@
 - **Sneak in** while he prays. Dexterity (Stealth) DC 13. On a failure, he hears them and comes in from the vestry, frightened, which just moves straight to the confrontation.
 - **Distract him:** Ila or Sallow can call him outside. Any reasonable plan works.
 
-**Searching the desk:** once they're in, they find the page. No roll needed. A **Study** check, Intelligence (Investigation) DC 14, finds it quickly and also turns up the matching **Court forms** and the **patrol entry** about Tam Harrow. On a failure they still find the page, but it takes long enough that Eld walks in on them; give them the forms and the entry once they talk to him.
+- **[Searching the desk:](play:s03-search-eld)** once they're in, they find the page. No roll needed. A **Study** check, Intelligence (Investigation) DC 14, finds it quickly and also turns up the matching **Court forms** and the **patrol entry** about Tam Harrow. On a failure they still find the page, but it takes long enough that Eld walks in on them; give them the forms and the entry once they talk to him.
 
 **What they can learn here:**
 - **The page lists children the chapel reported.** Ila's name is the last one. Essential; always found.
 - **The Court forms** show Eld copied the names for the Hushmen. Useful evidence later (a Dawn Order captain will value them in Session 6).
-- **The patrol entry:** "Pilot T. Harrow stopped on the Mere. Route memory taken. Released." This is a source on how Tam died.
+- **[The patrol entry:](play:s03-tam-solved)** "Pilot T. Harrow stopped on the Mere. Route memory taken. Released." This is a source on how Tam died.
 
 **If they…**
-- **…take the page and confront him privately:** he asks for absolution first. Then he gives them the name of one more child on the list whose family can still be warned, and leaves Pellmoor on the next ferry for the ash fields of Kell's Crossing, to pray among the dead fields.
-- **…expose him in front of the village:** the Old Shore turns on him. He flees to Hallowmere that night in shame. The party will see him again at the Quiet Assembly in Session 4, as a Court chaplain who won't meet their eyes. Mother Sallow says nothing kind and nothing cruel.
-- **…forgive him:** he cries like a man who has held it in for two years. Then he asks what he can do. The Court has invited him to be a chaplain at a Hallowmere masque; he offers to go and be their inside ear. He still writes to the Court, and tells them what he writes.
-- **…threaten or hurt him:** he casts Silence and runs for the water. He's no fighter. If anyone means to kill him, ask once, plainly: "You mean to kill him?" If yes, he dies; the ferry-folk say nothing and the chapel stays shut. The page and forms still point at Quill and Hallowmere.
-- **…use Zone of Truth or Detect Thoughts:** both work. Detect Thoughts shows a man frozen in fear repeating a prayer. Zone of Truth gets a full confession, which he would have given anyway.
+- **[…take the page and confront him privately:](play:s03-take-page-private)** he asks for absolution first. Then he gives them the name of one more child on the list whose family can still be warned, and leaves Pellmoor on the next ferry for the ash fields of Kell's Crossing, to pray among the dead fields.
+- **[…expose him in front of the village:](play:s03-expose-eld)** the Old Shore turns on him. He flees to Hallowmere that night in shame. The party will see him again at the Quiet Assembly in Session 4, as a Court chaplain who won't meet their eyes. Mother Sallow says nothing kind and nothing cruel.
+- **[…forgive him:](play:s03-forgive-eld)** he cries like a man who has held it in for two years. Then he asks what he can do. The Court has invited him to be a chaplain at a Hallowmere masque; he offers to go and be their inside ear. He still writes to the Court, and tells them what he writes.
+- **[…threaten or hurt him:](play:s03-kill-eld)** he casts Silence and runs for the water. He's no fighter. If anyone means to kill him, ask once, plainly: "You mean to kill him?" If yes, he dies; the ferry-folk say nothing and the chapel stays shut. The page and forms still point at Quill and Hallowmere.
+- **[…use Zone of Truth or Detect Thoughts:](play:any-l3-truth-and-minds)** both work. Detect Thoughts shows a man frozen in fear repeating a prayer. Zone of Truth gets a full confession, which he would have given anyway.
 
 **How it ends.** They have the page. Someone has to tell Ila. Go to Scene 3.
 
@@ -116,10 +116,10 @@
 The answer: a Court patrol stopped Tam's boat on the Mere, took his memory of the route to the bell, and left him on the water. Confused, he fell in and drowned. The Choir kept his body safe; they didn't kill him. Let Ila hear it from whoever she trusts most.
 
 **If they…**
-- **…tell her the truth, plainly and kindly:** she trusts them. She argues for returning the Heart to the Mere, "where Dad was taking it," and asks if she can come. Give that character Heroic Inspiration.
+- **[…tell her the truth, plainly and kindly:](play:s03-comfort-ila)** she trusts them. She argues for returning the Heart to the Mere, "where Dad was taking it," and asks if she can come. Give that character Heroic Inspiration.
 - **…say "don't worry about it":** she stops talking to that character for the rest of the act.
-- **…want to hide her:** Brannagh's loft at the Pilots' Hall, with a pilot on the stair, is the safest place on the Mere. The three households (if they filled Quill's quota) also offer one. Ila argues, then accepts it if someone explains why.
-- **…want to take her with them:** Mother Sallow allows it only if an adult promises to bring her home. Ila is fourteen. She travels with the party but is never put in a fight or described in harm; give her a quiet place at the edge of every scene.
+- **[…want to hide her:](play:s03-hide-ila)** Brannagh's loft at the Pilots' Hall, with a pilot on the stair, is the safest place on the Mere. The three households (if they filled Quill's quota) also offer one. Ila argues, then accepts it if someone explains why.
+- **[…want to take her with them:](play:s03-take-ila-along)** Mother Sallow allows it only if an adult promises to bring her home. Ila is fourteen. She travels with the party but is never put in a fight or described in harm; give her a quiet place at the edge of every scene.
 
 **How it ends.** Ila folds the page and gives it back. "What are we going to do with the Heart?" Go to Scene 4 or Scene 5.
 
@@ -127,15 +127,15 @@ The answer: a Court patrol stopped Tam's boat on the Mere, took his memory of th
 
 **Where and why.** Before the party decides, the world pushes. Use one or two of these, depending on what happened in Session 1. Each one is a short scene and a reason to decide soon.
 
-**Quill comes back** (if he was Suspicious or Bribed). He brings a second Hushman, who isn't polite.
+- **[Quill comes back](play:s03-quill-returns)** (if he was Suspicious or Bribed). He brings a second Hushman, who isn't polite.
 > **SAY:** "Two grey coats on the lane. The first one smiles. 'Good afternoon. Just following up.'"
 - He asks the coat question again. If Mother Sallow's name was given in Session 1, he asks for her ledger.
 - He wants a reason to search. Influence, Charisma (Persuasion) DC 16, buys a week. A bribed Quill takes more gold and complains less. Hold Person or Suggestion works, but the Landing House reads the hum of the spell as a confession.
 
-**Master Venn's note** (if he knows about the Heart). A Coster clerk delivers it to the Shuttered Bell.
+- **[Master Venn's note](play:s03-sell-to-venn)** (if he knows about the Heart). A Coster clerk delivers it to the Shuttered Bell.
 > **SAY (the note):** "Friend: my offer stands. Six hundred in gold for the humming relic, and a berth home on the *Gilded Heron*, which sails in three days. Discretion assured. With warmest regard, O. Venn."
 
-**The three households warn them** (if the party filled Quill's quota in Session 1). A ferry-folk woman (pick a name from the list) knocks: "The Hushmen are asking about the Harrow house again. You can hide her with us, or the bundle. Either. Both." Give Heroic Inspiration to a player who thanks her by name.
+- **[The three households warn them](play:s03-households-warn)** (if the party filled Quill's quota in Session 1). A ferry-folk woman (pick a name from the list) knocks: "The Hushmen are asking about the Harrow house again. You can hide her with us, or the bundle. Either. Both." Give Heroic Inspiration to a player who thanks her by name.
 
 **How it ends.** The pressure is clear: decide before the Court does. Go to Scene 5.
 
@@ -151,15 +151,15 @@ The answer: a Court patrol stopped Tam's boat on the Mere, took his memory of th
 - **Brannagh:** "Whatever you do, do it before the Court does. I can get you anywhere on this water. Not past the Hushmen on the road."
 
 **The choices, and what each one does:**
-1. **Return it to the Mere.** They take it down to Ossa's bell. Go to Scene 6. Whether they also ring it is a separate choice with a Toll. The Court still wants it (Session 4).
-2. **Carry it to Hallowmere,** to the Dawn Order or the Bellwrights. Act II begins early. Brannagh can ferry them across the Mere (three days to the capital instead of six) to a landing that skips the first checkpoint. Faerûnian characters need the Chancellor's letter (Scene 7), which reaches them at the first checkpoint by the Court's own rider.
-3. **Keep it in Pellmoor and defend the village.** Act II begins as a siege. Quill issues a deadline; villagers prepare shelter and an escape route. Show the deadline and the retreat routes before anything else happens. The siege itself is Session 4's opening.
-4. **Give it to the Court.** Maudrin is delighted. Show the players the arrest order for Ila before anyone acts on it, and give them a chance to warn her, hide her or take her along. If they do nothing, Hushmen come at dawn (Off-screen; she's held in a clean room in Hallowmere, never harmed).
-5. **Sell it to Master Venn.** He pays 600 gp (Influence, Charisma (Persuasion) DC 15 raises it to 900). It goes aboard the *Gilded Heron*, which sails in three days and crosses the Seam in a fourth. Ila learns within the hour. Tell the table plainly: if it leaves Corvane, Ossa can't be rung until it comes back. Brannagh can delay the ship a day by refusing it a pilot.
+1. **[Return it to the Mere.](play:s03-return-tongue)** They take it down to Ossa's bell. Go to Scene 6. Whether they also ring it is a separate choice with a Toll. The Court still wants it (Session 4).
+2. **[Carry it to Hallowmere,](play:s03-carry-to-hallowmere)** to the Dawn Order or the Bellwrights. Act II begins early. Brannagh can ferry them across the Mere (three days to the capital instead of six) to a landing that skips the first checkpoint. Faerûnian characters need the Chancellor's letter (Scene 7), which reaches them at the first checkpoint by the Court's own rider.
+3. **[Keep it in Pellmoor and defend the village.](play:s03-keep-and-defend)** Act II begins as a siege. Quill issues a deadline; villagers prepare shelter and an escape route. Show the deadline and the retreat routes before anything else happens. The siege itself is Session 4's opening.
+4. **[Give it to the Court.](play:s03-give-to-maudrin)** Maudrin is delighted. Show the players the arrest order for Ila before anyone acts on it, and give them a chance to warn her, hide her or take her along. If they do nothing, Hushmen come at dawn (Off-screen; she's held in a clean room in Hallowmere, never harmed).
+5. **[Sell it to Master Venn.](play:s03-sell-to-venn)** He pays 600 gp (Influence, Charisma (Persuasion) DC 15 raises it to 900). It goes aboard the *Gilded Heron*, which sails in three days and crosses the Seam in a fourth. Ila learns within the hour. Tell the table plainly: if it leaves Corvane, Ossa can't be rung until it comes back. Brannagh can delay the ship a day by refusing it a pilot.
 
 **If the Heart is already gone:**
 - **With the Court** (handed over in Session 1): the choice is how to get it back. Session 4's Assembly is the obvious place. Skip Scene 6.
-- **With Venn:** run [the Gilded Heron](#boarding-the-gilded-heron). Three ways: board her at night, have Brannagh deny her a pilot until Venn deals, or buy it back (1,200 gp or a heartkeep; Influence DC 15 brings it to 900).
+- **[With Venn:](play:s03-recover-from-venn)** run [the Gilded Heron](#boarding-the-gilded-heron). Three ways: board her at night, have Brannagh deny her a pilot until Venn deals, or buy it back (1,200 gp or a heartkeep; Influence DC 15 brings it to 900).
 - **Already at the bell** (they rang Ossa in Session 2): skip to Scene 7, after a quiet scene with Mother Sallow, who remembers her husband now.
 
 **How it ends.** They choose. Write it down. If they're returning it, go to Scene 6. Otherwise go to Scene 7.
@@ -194,8 +194,8 @@ If none of those apply and the Choir is Hunting, see [the ferry-stair guard](#th
 > **SAY (when Ossa rings):** "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. The Drowned fall silent, and one voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain."
 
 **After the ringing:**
-- **Mother Sallow remembers.** On the shore, she suddenly remembers her husband Davin's face, and the night of the Wrongweather. She sits down on the stones and laughs and cries at once. Let it be a big moment.
-- **The release verse.** If anyone learned it from the Cantor (or Mother Sallow reads it from the ledger: an hour's work), singing it now releases the Choir. The singer must sincerely remember someone who has died. The Cantor speaks her own name, "Ondra," and goes quiet. Released spirits may return once, willingly, as allies later.
+- **[Mother Sallow remembers.](play:s03-ring-ossa)** On the shore, she suddenly remembers her husband Davin's face, and the night of the Wrongweather. She sits down on the stones and laughs and cries at once. Let it be a big moment.
+- **[The release verse.](play:s03-sing-release)** If anyone learned it from the Cantor (or Mother Sallow reads it from the ledger: an hour's work), singing it now releases the Choir. The singer must sincerely remember someone who has died. The Cantor speaks her own name, "Ondra," and goes quiet. Released spirits may return once, willingly, as allies later.
 - **The Court notices.** The Hushmen pull their collectors back from the newly quiet Mere for a while. The Court still wants the Heart.
 
 **How it ends.** The party climbs back up the stair into a breeze nobody on the Mere has felt in four hundred years. Go to Scene 7.
@@ -209,8 +209,8 @@ If none of those apply and the Choir is Hunting, see [the ferry-stair guard](#th
 **Hand over the letter prop and read the letter in the plan above aloud.** Then let them react.
 
 **If they…**
-- **…accept:** the letter is a writ. Brannagh offers the Mere crossing. Ten days to the Assembly.
-- **…refuse:** don't force the trip. Act II comes to them instead: a Dawn Order rider, or a Bellwright courier asking for help. The letter still works as a writ if they keep it.
+- **[…accept:](play:s03-accept-invitation)** the letter is a writ. Brannagh offers the Mere crossing. Ten days to the Assembly.
+- **[…refuse:](play:s03-refuse-invitation)** don't force the trip. Act II comes to them instead: a Dawn Order rider, or a Bellwright courier asking for help. The letter still works as a writ if they keep it.
 - **…burn it:** a grey seal hisses in the fire and doesn't melt. Mother Sallow says, "That's Court wax. It remembers." The Court will invite them again.
 
 ### Running the fights (Session 3)
@@ -230,7 +230,7 @@ Most tables won't fight tonight. These are here if they do. Both are written for
 
 *Three Coster guards (Tough), the ship's mate (Bandit Captain, a Zhentarim hand), and Master Venn (Noble). Only if the Heart was sold.*
 - **Setup:** night, the ship at anchor off the Quays. One guard at the gangplank, one at the cabin hatch, one walking the deck. The mate sleeps near the cabin where the Heart is locked in a chest. The Baldurian crew stay out of it.
-- **Sneaking aboard:** each character makes a Dexterity (Stealth) check, DC 15. If they manage it, only one guard and the mate are awake. Invisibility and Misty Step help, but the deck lamps catch a shimmer on the water; the mate has Passive Perception 14.
+- **[Sneaking aboard:](play:s03-recover-from-venn)** each character makes a Dexterity (Stealth) check, DC 15. If they manage it, only one guard and the mate are awake. Invisibility and Misty Step help, but the deck lamps catch a shimmer on the water; the mate has Passive Perception 14.
 - **Each round, if it's a fight:** the guards fight in pairs (Pack Tactics: Advantage when an ally is next to the target). The mate goes straight for whoever holds the Heart. Venn stays behind them and talks.
 - **When it ends:** Venn negotiates the moment a guard is Bloodied (half HP): "Friends! There's no need. Take it. Take it, and leave my ship, and nobody tells the Court anything." He means it.
 - **Scale on the fly:** if the party arrives with Hold Person and Invisibility ready, add two guards. If they're struggling, Brannagh's pilots row up alongside with lanterns and shout, and the guards lose heart.
@@ -271,7 +271,7 @@ Most tables won't fight tonight. These are here if they do. Both are written for
 **The closing question:** "What will you carry to Hallowmere?" Then: "Before we wrap up, let's each say one thing we'll remember from tonight."
 
 **Record in Waypoint:**
-- **Plays that happened** (press **The party did this** on each card): "They search Brother Eld's desk," one Eld play ("They confront Eld privately and take the page," "They expose Eld in front of the village" or "They forgive Eld"), "They tell Ila the truth about her name on the list," "They work out how Tam Harrow died," "They ask who was on the ferry," the Heart choice ("They return the Heart to the Mere," "They ring Ossa," "They carry the Heart to Hallowmere," "They keep the Heart in Pellmoor and defend the village," "They send the Heart to the Chancellor" or "They sell the Heart to Master Venn"), any Ila play (hide her, take her along), and "They accept the Chancellor's invitation" or "They refuse the invitation."
+- **Plays that happened** (press **The party did this** on each card): "[They search Brother Eld's desk](play:s03-search-eld)," one Eld play ("[They confront Eld privately and take the page](play:s03-take-page-private)," "[They expose Eld in front of the village](play:s03-expose-eld)" or "[They forgive Eld](play:s03-forgive-eld)"), "[They tell Ila the truth about her name on the list](play:s03-comfort-ila)," "[They work out how Tam Harrow died](play:s03-tam-solved)," "[They ask who was on the ferry](play:s03-who-was-on-the-ferry)," the Heart choice ("[They return the Heart to the Mere](play:s03-return-tongue)," "[They ring Ossa](play:s03-ring-ossa)," "[They carry the Heart to Hallowmere](play:s03-carry-to-hallowmere)," "[They keep the Heart in Pellmoor and defend the village](play:s03-keep-and-defend)," "[They send the Heart to the Chancellor](play:s03-give-to-maudrin)" or "[They sell the Heart to Master Venn](play:s03-sell-to-venn)"), any Ila play (hide her, take her along), and "[They accept the Chancellor's invitation](play:s03-accept-invitation)" or "[They refuse the invitation](play:s03-refuse-invitation)."
 - **World-state facts to check:** Brother Eld, Ossa's Heart, Ossa's bell, the Drowned Choir, the release verse, Ila Harrow, the writ (Invited, if they accepted), Maudrin's bargain (Refused, if they refused), Master Venn, Pellmoor (Siege, if they chose to defend), and the Court clock.
 - **Memory ledger:** the Ossa Toll (kind "Toll," bell "Ossa"), in the player's own words.
 - **Bargain log:** mark Mother Sallow's three-day bargain kept or broken.

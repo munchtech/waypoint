@@ -18,7 +18,7 @@
 
 **Prepare:**
 - **Tokens or minis:** the four characters; Ila; Mother Sallow; Tobias Quill; four Hushmen (one walks with Quill, three wait at the lane's end); a Hushman Sergeant for the night raid. Optional: Brannagh Wick, Sela Maunt, Master Venn, Sister Aurelie, a Harper with a lute.
-- **Maps:** your IsoForge kit (below) has the ferry dock and Mother Sallow's hut. For the raid, sketch the Harrow house: one room, one door, one shuttered window over the water, net-racks outside.
+- **Maps:** sketch each place on paper, a battle mat or in Foundry. The old dock: a long pier, net-racks, reed roofs behind. Mother Sallow's hut: one round room, a table, a stove. For the raid, sketch the Harrow house: one room, one door, one shuttered window over the water, net-racks outside.
 - **The Heart prop:** something heavy and roughly pear-shaped wrapped in an old cloth: a brass doorknob, a big smooth stone, a candle in a jar. Put your phone inside the cloth on vibrate and call it from the table, or simply hum one low note when Ila holds it. Stop humming when she puts it down. Players remember this.
 - **The response hymn:** two lines you can speak or sing. Use this, or make up your own: *Call:* "Who walks the water?" *Answer:* "We remember you."
 - **Quill's question,** written on a card so you don't forget it: "Where did the child's coat go?"
@@ -52,14 +52,14 @@
 
 **What they can learn here:**
 - **Ila has a bronze bell-Heart and it hums when she holds it.** Free, once someone asks kindly. She shows it to whoever asks respectfully.
-- **Her father, Tam, drowned six weeks ago.** Free if anyone asks why she's alone. She says he went out in his boat at night with no cargo and no ship to pilot, "which no pilot does," and they found him in the reeds.
-- **It belongs to a bell.** A Study check, Intelligence (Religion or History) DC 13: "This is a Heart: the clapper of one of the Seven Bells. One of them hung in the Mere." On a failure, Mother Sallow tells them in Scene 2. Detect Magic shows a faint aura of no school, and the Heart hums back one clean note.
-- **Ila's mother, Nessa, is alive** and lives far north at Kell's Crossing, if anyone asks. Don't make an offer to find her on Ila's behalf.
+- **[Her father, Tam, drowned six weeks ago.](play:s01-ask-ila-father)** Free if anyone asks why she's alone. She says he went out in his boat at night with no cargo and no ship to pilot, "which no pilot does," and they found him in the reeds.
+- **[It belongs to a bell.](play:s01-detect-magic-tongue)** A Study check, Intelligence (Religion or History) DC 13: "This is a Heart: the clapper of one of the Seven Bells. One of them hung in the Mere." On a failure, Mother Sallow tells them in Scene 2. Detect Magic shows a faint aura of no school, and the Heart hums back one clean note.
+- **[Ila's mother, Nessa, is alive](play:s01-ask-ila-mother)** and lives far north at Kell's Crossing, if anyone asks. Don't make an offer to find her on Ila's behalf.
 
 **If they…**
-- **…are kind** (ask her name, ask about the hum, kneel to her height): she unwraps the oilskin. Hum. Read the box below. She trusts this character from now on.
-- **…are rude, brush her off or demand the Heart:** Ila turns away and pockets it. Mother Sallow is suddenly there: "She's a child. You can be a child too, or you can be useful." Sallow gives them one way back: find the eastern-marsh ferry that's been missing a week (that's Session 2).
-- **…try to take it by force or stealth:** first check your session-zero Off-limits list; nothing is ever done to Ila on-screen. A sleight-of-hand attempt is Dexterity (Sleight of Hand) DC 17, and a ferry-folk widow mending nets sees it anyway unless the roll beats 20. If they keep it, the whole Old Shore goes cold on them (no boats, no hymn) until they give it back by hand and apologise. Foresight has this as "They try to take or steal the Heart."
+- **[…are kind](play:s01-kind-to-ila)** (ask her name, ask about the hum, kneel to her height): she unwraps the oilskin. Hum. Read the box below. She trusts this character from now on.
+- **[…are rude, brush her off or demand the Heart:](play:s01-rude-to-ila)** Ila turns away and pockets it. Mother Sallow is suddenly there: "She's a child. You can be a child too, or you can be useful." Sallow gives them one way back: find the eastern-marsh ferry that's been missing a week (that's Session 2).
+- **[…try to take it by force or stealth:](play:s01-take-tongue)** first check your session-zero Off-limits list; nothing is ever done to Ila on-screen. A sleight-of-hand attempt is Dexterity (Sleight of Hand) DC 17, and a ferry-folk widow mending nets sees it anyway unless the roll beats 20. If they keep it, the whole Old Shore goes cold on them (no boats, no hymn) until they give it back by hand and apologise. Foresight has this as "They try to take or steal the Heart."
 - **…ask her to come with them:** "Mother Sallow says I'm not allowed to be brave yet." She walks them to Sallow's hut.
 - **…ignore her completely and head for the Quays:** fine. Run Scene 3, and let Ila find them there: she follows the people "who looked like they heard it."
 
@@ -93,11 +93,11 @@
 > **SAY (her offer):** "Keep it safe for three days. Not from thieves. From the Court. Do that, and I'll tell you what the water knows. And learn this before the dark comes: when they sing, you sing back."
 
 **If they…**
-- **…accept the three days:** she nods once and pours more tea. Record the bargain in Foresight → Party & ledger → Bargain log ("Keep the Heart from the Court for three days"). Session 3 rewards it: she opens the ledger without being asked.
+- **[…accept the three days:](play:s01-sallow-bargain)** she nods once and pours more tea. Record the bargain in Foresight → Party & ledger → Bargain log ("Keep the Heart from the Court for three days"). Session 3 rewards it: she opens the ledger without being asked.
 - **…try to charm her:** it slides off. Her attitude stays Indifferent. Blunt honesty, especially about something they've lost, makes her Friendly.
 - **…offer to take the Heart themselves:** "It's Ila's to give." If Ila trusts them, Ila gives it. That's a real choice; let it happen.
 - **…ask for payment:** "Gold? I've got some, and it buys nothing I need. Find the eastern ferry and I'll pay you for that." (That's Session 2's hook.)
-- **…want to see the Memory Shore:** she walks them there. Read: "Stones smoothed by four centuries of water, each scratched with a name. The water whispers them back." Davin Sallow's stone is near the edge. If you like, one stone has a player character's name on it, dated ten years from now. Mother Sallow only says, "The Mere remembers what hasn't happened yet." Use it as foreshadowing; nothing else has to follow.
+- **[…want to see the Memory Shore:](play:s01-memory-shore)** she walks them there. Read: "Stones smoothed by four centuries of water, each scratched with a name. The water whispers them back." Davin Sallow's stone is near the edge. If you like, one stone has a player character's name on it, dated ten years from now. Mother Sallow only says, "The Mere remembers what hasn't happened yet." Use it as foreshadowing; nothing else has to follow.
 
 **How it ends.** The party leaves with the hymn, a promise, and either the Heart or Ila's trust. Ask: "The afternoon's yours. What do you do?" Most tables go to the port (Scene 3). If they want to stay on the Old Shore, skip to Scene 4.
 
@@ -113,17 +113,17 @@
 - **Reckoner Sela Maunt** (Corvanese, forties) at the Reckoning House. *Voice:* precise, kind, tired. *Mannerism:* taps a tuning fork on the counter when she thinks. *Wants:* honest weights and a quiet life. *First words:* "Buying or selling, love? Selling's the queue on the left." *Lines:* "You can sell the day you learned to swim. Never the swimming." · "That's not a memory. That's a bell. Put it away." If shown the Heart, her fork goes silent mid-note and she refuses to touch it.
 - **Master Orsolo Venn** (Amnian, fifties) two stalls from Sela, in plum velvet with a silent pocket-clock. *Voice:* warm, fluent, calls everyone "friend." *Mannerism:* checks the clock before every offer. *Wants:* the humming Heart, the moment he hears of it. *First words:* "Friend! You have the look of someone holding something interesting." *Lines:* "Six hundred gold and a berth home on the *Gilded Heron*. Think about it. Three days." · "I only ever help people sell what they don't need." If he hears the Heart, he tips off Quill, who comes on the first evening instead of the second.
 - **Pilot-Mistress Brannagh Wick** (ferry-folk, about sixty) at the Pilots' Hall. *Voice:* gruff; calls every ship "she" and every captain "lad." *Mannerism:* counts tides out loud. *Wants:* the Hall free of the Court, and Ila safe. *First words:* "Need a pilot, lad, or just lost?" *Lines:* "Tam Harrow was mine. Best pilot I had." · "Every ship on this water goes where my people take her." She won't say more about Tam yet (that's Session 2), but she'll lend a skiff to anyone Ila trusts.
-- **Sister Aurelie Dawnmantle** (Waterdhavian, thirties) at the Dawn Mission on Strangers' Row. *Voice:* bright, earnest. *Mannerism:* says "when the sun comes back" like a date in a diary. *Wants:* a writ to go to Hallowmere. *First words:* "When the sun comes back, I'd like to be standing somewhere it can see me." She heals anyone who comes in, free.
-- **A Harper with a lute** at the Brass Lantern. She asks, lightly, "What do you make of the Tithe? Asking for a friend who's lost his mother's face." Insight DC 14 notices she's working. Kindness about the Old Shore earns a silver brooch and a cellar address.
-- **The Landing House clerk** stamps foreigners' papers: "Landing due, five gold. Pellmoor and the Mere road only. Anywhere else needs a writ from Hallowmere. They take about a season. Next." A Faerûnian character can't legally go inland. Don't block the story: the Court's letter at the end of Session 3 works as a writ. Foresight has plays for buying a true writ from Quill or a forged one on Strangers' Row.
+- **[Sister Aurelie Dawnmantle](play:s01-dawn-mission)** (Waterdhavian, thirties) at the Dawn Mission on Strangers' Row. *Voice:* bright, earnest. *Mannerism:* says "when the sun comes back" like a date in a diary. *Wants:* a writ to go to Hallowmere. *First words:* "When the sun comes back, I'd like to be standing somewhere it can see me." She heals anyone who comes in, free.
+- **[A Harper with a lute](play:s01-brass-lantern)** at the Brass Lantern. She asks, lightly, "What do you make of the Tithe? Asking for a friend who's lost his mother's face." Insight DC 14 notices she's working. Kindness about the Old Shore earns a silver brooch and a cellar address.
+- **[The Landing House clerk](play:s01-stormborn-writ)** stamps foreigners' papers: "Landing due, five gold. Pellmoor and the Mere road only. Anywhere else needs a writ from Hallowmere. They take about a season. Next." A Faerûnian character can't legally go inland. Don't block the story: the Court's letter at the end of Session 3 works as a writ. Foresight has plays for buying a true writ from Quill or a forged one on Strangers' Row.
 
 **What they can learn here:**
 - **How memory money works,** from Sela. Free. Players can sell a memory for coin if they like; the player always chooses the memory and writes one line about it in the Memory Ledger. You never choose it.
 - **The Heart is valuable and dangerous,** from Sela's silent fork or Venn's offer.
-- **Tam went out the night he died with no cargo.** Brannagh lets that slip if Ila vouches for them; otherwise she says it in Session 2.
+- **[Tam went out the night he died with no cargo.](play:s02-ask-brannagh)** Brannagh lets that slip if Ila vouches for them; otherwise she says it in Session 2.
 
 **If they…**
-- **…try to sell the Heart now:** Sela refuses; Venn offers 600 gp and gives them three days. Don't let the sale happen tonight; he wants a contract, a witness and a pilot. The real choice is in Session 3.
+- **[…try to sell the Heart now:](play:s01-tongue-to-the-quays)** Sela refuses; Venn offers 600 gp and gives them three days. Don't let the sale happen tonight; he wants a contract, a witness and a pilot. The real choice is in Session 3.
 - **…start a fight on the Quays:** foreign captains don't interfere with the Court. Six Hushmen sit in the Landing House. Telegraph them: boots on the boards, a door opening. Give the party a round to walk away.
 - **…split up:** let them. Cut between them every few minutes. Bring everyone back together for Scene 4.
 
@@ -150,13 +150,13 @@
 - **The three households he's hounding** (choose names from the list) want to pay in gold, which is illegal for locals. Paying a local's tax in gold is called **gilding**: common, and a crime.
 
 **If they…**
-- **…hand over the Heart:** Quill takes it in both gloved hands and the hum stops dead. He writes a receipt, records their faces, and leaves. Ila walks to the end of the old dock and sits there till dark. Don't punish the choice; Sessions 3 and 4 have ways back.
-- **…lie to him:** he nods, then asks his one question and waits: "Where did the child's coat go?" (Ila wears her father's coat; the oilskin bundle was in its pocket.) If the lie needs a roll, it's Charisma (Deception) DC 16. If it fails, he says, "Then I'll look myself," and the Hushmen search the Old Shore tonight (Scene 5). He finds the Heart unless it has been moved off the Old Shore: a ship or a Quays warehouse is outside his warrant.
-- **…bribe him:** no roll. He pockets the gold and asks one favour: "A name." If they give Mother Sallow's, he writes it down. If they refuse, he keeps the coin and says, "Then I'll remember you were generous."
-- **…give memories of their own for the quota:** the honest way out. Quill draws each one with a fork in about a minute. The player chooses the memory and its weight. The three households will never forget it. Give **Heroic Inspiration** to each character who gives a memory freely.
-- **…gild the quota with gold:** Sela Maunt can stamp stand-in motes (about 40 gp). Quill must look away: no roll if bribed, otherwise Influence DC 15. Foresight has this play.
-- **…attack him:** see the fight below. Quill steps back so neatly it looks rehearsed: "You've made yourselves a Tithe-case. I do hope you understand what that means."
-- **…use magic on him:** every spell in Corvane hums faintly as it's cast. Hold Person or Suggestion works on a failed Wisdom save, but his next report names the caster. Detect Thoughts shows a tired man adding numbers.
+- **[…hand over the Heart:](play:s01-hand-to-quill)** Quill takes it in both gloved hands and the hum stops dead. He writes a receipt, records their faces, and leaves. Ila walks to the end of the old dock and sits there till dark. Don't punish the choice; Sessions 3 and 4 have ways back.
+- **[…lie to him:](play:s01-lie-to-quill)** he nods, then asks his one question and waits: "Where did the child's coat go?" (Ila wears her father's coat; the oilskin bundle was in its pocket.) If the lie needs a roll, it's Charisma (Deception) DC 16. If it fails, he says, "Then I'll look myself," and the Hushmen search the Old Shore tonight (Scene 5). He finds the Heart unless it has been moved off the Old Shore: a ship or a Quays warehouse is outside his warrant.
+- **[…bribe him:](play:s01-bribe-quill)** no roll. He pockets the gold and asks one favour: "A name." If they give Mother Sallow's, he writes it down. If they refuse, he keeps the coin and says, "Then I'll remember you were generous."
+- **[…give memories of their own for the quota:](play:s01-fill-the-quota)** the honest way out. Quill draws each one with a fork in about a minute. The player chooses the memory and its weight. The three households will never forget it. Give **Heroic Inspiration** to each character who gives a memory freely.
+- **[…gild the quota with gold:](play:s01-gild-the-quota)** Sela Maunt can stamp stand-in motes (about 40 gp). Quill must look away: no roll if bribed, otherwise Influence DC 15. Foresight has this play.
+- **[…attack him:](play:s01-attack-quill)** see the fight below. Quill steps back so neatly it looks rehearsed: "You've made yourselves a Tithe-case. I do hope you understand what that means."
+- **[…use magic on him:](play:any-l3-hold-suggest-charm)** every spell in Corvane hums faintly as it's cast. Hold Person or Suggestion works on a failed Wisdom save, but his next report names the caster. Detect Thoughts shows a tired man adding numbers.
 
 **How it ends.** Quill leaves: satisfied, suspicious, bribed, wounded, or with the Heart. Note which in Foresight (it decides tonight's raid). Go to Scene 5.
 
@@ -164,7 +164,7 @@
 
 **Where and why.** The same night. Either the Hushmen come back for the Heart, or the Drowned Choir sings for the first time. Run the raid only if Quill left **suspicious** or the party made themselves a **Tithe-case**. Otherwise skip straight to the song.
 
-**The raid.** The Harrow house, after midnight. A Sergeant and three Hushmen come quietly by boat to search for the Heart and Tam's papers.
+- **[The raid.](play:s01-defend-the-raid)** The Harrow house, after midnight. A Sergeant and three Hushmen come quietly by boat to search for the Heart and Tam's papers.
 
 > **SAY:** "No knock. Just the door, opening very slowly, and two grey gloves catching the lamplight. Somewhere outside, oars dip in the water without a splash."
 
@@ -232,7 +232,7 @@ Both fights are written for four level-3 characters. Foresight shows the 2024 di
 **The closing question:** "Who was singing?" Then the Session Close Script: "Before we wrap up, let's each say one thing we'll remember from tonight."
 
 **Record in Waypoint:**
-- **Plays that happened:** on each play card in Foresight, press **The party did this**, check the world changes, and choose **Apply and record the outcome**. Typical tonight: "They speak gently to Ila" or "They brush Ila off," "They ask Ila about her father," "They accept Mother Sallow's three-day bargain," "They visit the Mere Memory Shore," one Quill play ("They lie to Quill," "They bribe Quill," "They fill the village's memory quota themselves," "They hand the Heart to Quill" or "They attack Quill"), any port plays they did, and "They defend Ila's house during the night raid" if it ran.
+- **Plays that happened:** on each play card in Foresight, press **The party did this**, check the world changes, and choose **Apply and record the outcome**. Typical tonight: "[They speak gently to Ila](play:s01-kind-to-ila)" or "[They brush Ila off](play:s01-rude-to-ila)," "[They ask Ila about her father](play:s01-ask-ila-father)," "[They accept Mother Sallow's three-day bargain](play:s01-sallow-bargain)," "[They visit the Mere Memory Shore](play:s01-memory-shore)," one Quill play ("[They lie to Quill](play:s01-lie-to-quill)," "[They bribe Quill](play:s01-bribe-quill)," "[They fill the village's memory quota themselves](play:s01-fill-the-quota)," "[They hand the Heart to Quill](play:s01-hand-to-quill)" or "[They attack Quill](play:s01-attack-quill)"), any port plays they did, and "[They defend Ila's house during the night raid](play:s01-defend-the-raid)" if it ran.
 - **World-state facts to check:** Ossa's Heart (still with Ila, or with the party, or the Court), Hushman Tobias Quill (Routine, Suspicious, Tithe-case, Bribed), what the Court knows of the party, Ila Harrow (free, or arrested), and if they went to the port: Master Venn, Sister Aurelie, the Stormborn contact and any writ.
 - **Ledgers:** the Sallow bargain in the Bargain log; any memory given, sold or gilded in the Memory ledger, with the player's own one-line description.
 - **Player wiki, afterwards:** press **Finish** to close the chapter, then **Send to wiki** on Ila Harrow, Ossa's Heart, Mother Sallow, Tobias Quill, Dorra Pell and the Inn of the Shuttered Bell, and Sela Maunt (some may already be on the wiki). Send Sister Aurelie Dawnmantle only if they met her.

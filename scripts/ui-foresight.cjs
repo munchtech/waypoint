@@ -21,7 +21,7 @@ run(async args=>{
  const saved=s.state.snapshot.campaigns.find(c=>c.name.startsWith('The Seventh Bell'));
  check('the saved campaign has the playbook',!!saved?.memory?.playbook,saved?.memory?.playbook?.version);
  check('Session 1 plan now opens at the port',/Pellmoor Landing comes into sight/.test(saved?.sessions?.[0]?.plan||''));
- check('the IsoForge kit is still in the plan',!/## IsoForge/.test(JSON.stringify(s.state.snapshot))||/## IsoForge/.test(saved.sessions[0].plan));
+ check('the IsoForge kit is gone from the plan, and the guide is there',!/IsoForge/i.test(saved.sessions[0].plan)&&saved.sessions[0].plan.includes('## Running this session (new DM guide)'));
  await shot('03-brief');
  await s.run("document.querySelector('main').scrollTop=0;window.scrollTo(0,900)");await s.settle(300);await shot('04-brief-lower');await s.run('window.scrollTo(0,0)');
  check('an encounter shows its 2024 difficulty',/(Low|Moderate|High|Trivial|Beyond High) · \d+ XP/.test(await text('.encounter-card')));
@@ -40,7 +40,12 @@ run(async args=>{
  check('Send to wiki writes the entry into site.html',!!firstEntry&&(s.state.siteHtml||'').includes('<h3>'+firstEntry.replace(/&/g,'&amp;').replace(/'/g,'&#39;')+'</h3>')&&!/Unlocks as you discover\.<\/strong>/.test(s.state.siteHtml||''),firstEntry);
  check('the sent entry is listed as public',/On the wiki now\s*1 entry/.test(await text('.player-site')));await shot('09c-sent');
  await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500);
- await s.clickText('Session desk',{within:'.sidebar'});await s.settle(400);await s.clickText('Live mode');await s.settle(500);
+ await s.clickText('Session desk',{within:'.sidebar'});await s.settle(400);
+ // The guide in the session notes: a play link opens that play's card in place, ready to record.
+ await s.clickText('Session notes');await s.settle(600);check('the session notes have play links',(await s.run(`document.querySelectorAll('.book-text .play-link').length`))>10);
+ await s.clickSelector('.book-text .play-link');await s.settle(400);await s.run("document.querySelector('.book-text .play-card')?.scrollIntoView({block:'center'})");await s.settle(300);check('a play link opens its card in place',(await text('.book-text .play-card')).includes('The party did this'));await shot('09d-plan-play');
+ await s.clickSelector('.book-text .play-link.open');await s.settle(300);check('clicking it again closes it',!(await s.run(`!!document.querySelector('.book-text .play-card')`)));
+ await s.clickText('Possibilities');await s.settle(300);await s.clickText('Live mode');await s.settle(500);
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');
  await s.clickSelector('.live-lookup .branch-head');await s.settle(300);await s.clickText('The party did this',{within:'.live-lookup'});await s.settle(500);
  check('the ripple dialog opens',(await text('.modal')).includes('World changes to record'));await shot('11-ripple');

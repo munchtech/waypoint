@@ -6,7 +6,9 @@ import {playSchema,playbookSchema,type Playbook} from './playbook-schema';
 
 // An update pack brings new content into an existing campaign as a reviewed list of changes.
 // Text edits are find-and-replace, so the DM's own additions to a plan survive; a missing anchor is reported, never forced.
-const edit=z.object({find:z.string().min(1).max(20000),replace:z.string().max(40000)});
+// `unless`: text that, once present, means the edit is already in (a later edit may have reworded part of what it inserted).
+const edit=z.object({find:z.string().min(1).max(20000),replace:z.string().max(40000),unless:z.string().min(1).max(400).optional()});
+type TextEdit={find:string;replace:string;unless?:string};
 const packPage=z.object({id:z.string().max(120),title:z.string().min(1).max(160),kind:z.enum(pageKinds),body:z.string().max(12000),aliases:z.string().max(1000),status:z.enum(factStates),visibility:z.enum(['DM only','Party knows'])});
 const packCard=z.object({id:z.string().max(120),kind:z.string().max(80),title:z.string().max(200),body:z.string().max(12000),readAloud:z.string().max(6000),consequence:z.string().max(6000),source:z.string().max(300)});
 export const updatePackSchema=z.object({kind:z.literal('waypoint-update-pack'),version:z.literal(1),id:z.string().max(120),title:z.string().max(200),summary:z.string().max(4000),match:z.object({campaignIds:z.array(z.string().max(120)).max(20),names:z.array(z.string().max(200)).max(20)}),
@@ -17,7 +19,9 @@ export const updatePackSchema=z.object({kind:z.literal('waypoint-update-pack'),v
  pageEdits:z.array(z.object({id:z.string().max(120),title:z.string().min(1).max(160).optional(),edits:z.array(edit).min(1).max(40)})).max(200).optional(),
  cards:z.array(packCard).max(100).optional(),
  terms:z.object({replace:z.array(z.tuple([z.string().min(1).max(400),z.string().max(400)])).min(1).max(40),keep:z.array(z.string().min(1).max(200)).max(40).optional(),note:z.string().max(400).optional()}).optional(),
- playbook:playbookSchema.omit({state:true,log:true,checks:true}).optional()});
+ playbook:playbookSchema.omit({state:true,log:true,checks:true}).optional(),
+ // Material the pack retires: a section of every session plan (by its heading line, ending at the next heading or at its `until` line), and wiki pages and saved cards by id.
+ remove:z.object({sections:z.array(z.object({heading:z.string().min(2).max(200),until:z.string().min(1).max(400).optional()})).max(20).optional(),pages:z.array(z.string().max(120)).max(100).optional(),cards:z.array(z.string().max(120)).max(100).optional(),note:z.string().max(400).optional()}).optional()});
 export type UpdatePack=z.infer<typeof updatePackSchema>;
 // A renamed term ("Tongue" → "Heart") is applied to the DM's text first, and every edit is matched against the renamed text, so edits
 // written in the new words still find their anchors. Phrases in `keep` (a spell name, an idiom) are left alone. The chronicle is history and is never renamed.
@@ -28,11 +32,15 @@ function renameCampaign(c:Campaign,t?:UpdatePack['terms']):Campaign{if(!t)return
 export type PlannedChange={id:string;group:'Foresight playbook'|'Session plays'|'Session notes'|'World wiki'|'Campaign'|'Saved material';label:string;detail:string;status:'ready'|'applied'|'conflict'};
 
 export const packMatches=(c:Campaign,p:UpdatePack)=>p.match.campaignIds.includes(c.id)||p.match.names.some(n=>c.name.trim().toLowerCase().startsWith(n.toLowerCase()));
-// An edit counts as applied once its replacement is present, so edits that append to their anchor never apply twice.
-const applyEdits=(text:string,edits:{find:string;replace:string}[]=[])=>edits.reduce((t,e)=>!t.includes(e.replace)&&t.includes(e.find)?t.replace(e.find,e.replace):t,text);
-const editStatus=(text:string,e:{find:string;replace:string}):PlannedChange['status']=>e.replace&&text.includes(e.replace)?'applied':text.includes(e.find)?'ready':'conflict';
+// An edit counts as applied once its replacement (or its `unless` text) is present, so edits that append to their anchor never apply twice.
+const done=(text:string,e:TextEdit)=>!!(e.replace&&text.includes(e.replace))||!!(e.unless&&text.includes(e.unless));
+const applyEdits=(text:string,edits:TextEdit[]=[])=>edits.reduce((t,e)=>!done(t,e)&&t.includes(e.find)?t.replace(e.find,e.replace):t,text);
+const editStatus=(text:string,e:TextEdit):PlannedChange['status']=>done(text,e)?'applied':text.includes(e.find)?'ready':'conflict';
 // Edits in one list are checked in order against the text as the earlier ready ones leave it, so a pack can build on its own earlier edits.
-const chain=(text:string,edits:{find:string;replace:string}[])=>{let t=text;return edits.map(e=>{const status=editStatus(t,e);if(status==='ready')t=applyEdits(t,[e]);return status})};
+const chain=(text:string,edits:TextEdit[])=>{let t=text;return edits.map(e=>{const status=editStatus(t,e);if(status==='ready')t=applyEdits(t,[e]);return status})};
+// Cuts a section from its heading line to the next heading of the same or a higher level (or the end), with the blank lines and rule before it.
+export function withoutSection(text:string,heading:string,until?:string){const lines=text.split('\n'),at=lines.findIndex(l=>l.trim()===heading);if(at<0)return text;const level=heading.match(/^#+/)?.[0].length||0;let end=at+1;while(end<lines.length&&!((lines[end].match(/^(#+) /)?.[1].length??99)<=level))end++;if(until){const k=lines.findIndex((l,i)=>i>at&&i<end&&l.includes(until));if(k>=0)end=k+1}let start=at;while(start>0&&(!lines[start-1].trim()||(end===lines.length&&/^(-{3,}|\*{3,})$/.test(lines[start-1].trim()))))start--;const before=lines.slice(0,start),after=lines.slice(end);return after.length?[...before,'',...after].join('\n'):before.join('\n')}
+const hasSection=(text:string,heading:string)=>text.split('\n').some(l=>l.trim()===heading);
 const snippet=(t:string,n=110)=>{const s=t.replace(/\s+/g,' ').replace(/[*_>#]/g,'').trim();return s.length>n?s.slice(0,n-1)+'…':s};
 
 // Imported paths the pack supersedes; one the chronicle points at is kept.
@@ -49,6 +57,10 @@ export function planUpdate(original:Campaign,p:UpdatePack):PlannedChange[]{const
  for(const x of p.pageEdits||[]){const old=m.pages.find(pg=>pg.id===x.id),st=old?chain(old.body,x.edits):[];x.edits.forEach((e,i)=>out.push({id:'pedit:'+x.id+':'+i,group:'World wiki',label:(old?old.title:'Missing page')+(x.title&&i===0?' → '+x.title:''),detail:'Replace “'+snippet(e.find)+'” with “'+snippet(e.replace)+'”',status:st[i]||'conflict'}))}
  if(p.campaign){for(const k of ['premise','tone','arc'] as const)if(p.campaign[k]!==undefined)out.push({id:'campaign:'+k,group:'Campaign',label:'Replace the campaign '+k,detail:snippet(p.campaign[k]!,160),status:c[k]===p.campaign[k]?'applied':'ready'});const text={premise:c.premise,arc:c.arc,party:c.party,boundaries:c.boundaries};(p.campaign.edits||[]).forEach((e,i)=>{const status=editStatus(text[e.field],e);if(status==='ready')text[e.field]=applyEdits(text[e.field],[e]);out.push({id:'cedit:'+i,group:'Campaign',label:'Edit the campaign '+e.field,detail:'Replace “'+snippet(e.find)+'” with “'+snippet(e.replace)+'”',status})})}
  const lst=chain(m.planner.locked,p.planner?.locked||[]);(p.planner?.locked||[]).forEach((e,i)=>out.push({id:'planner:'+i,group:'Campaign',label:'Edit the locked facts for next-session planning',detail:'Replace “'+snippet(e.find)+'” with “'+snippet(e.replace)+'”',status:lst[i]}));
+ const rm=p.remove,why=rm?.note?' '+rm.note:'';
+ for(const {heading:h} of rm?.sections||[])for(const s of c.sessions)if(hasSection(s.plan,h))out.push({id:'rmsec:'+s.id+':'+h,group:'Session notes',label:s.title,detail:'Remove the “'+h.replace(/^#+\s*/,'')+'” section.'+why,status:'ready'});
+ for(const id of rm?.pages||[]){const pg=m.pages.find(x=>x.id===id);if(pg)out.push({id:'rmpage:'+id,group:'World wiki',label:'Remove '+pg.title,detail:'Deletes the page.'+why,status:'ready'})}
+ for(const id of rm?.cards||[]){const card=c.cards.find(x=>x.id===id);if(card)out.push({id:'rmcard:'+id,group:'Saved material',label:'Remove '+card.title,detail:'Deletes the saved card.'+why,status:'ready'})}
  for(const card of p.cards||[])out.push({id:'card:'+card.id,group:'Saved material',label:'Add '+card.title,detail:card.kind,status:c.cards.some(x=>x.id===card.id)?'applied':'ready'});
  return out}
 
@@ -65,7 +77,11 @@ export function applyUpdate(original:Campaign,p:UpdatePack,chosen:Set<string>):C
  let pages=m.pages;for(const x of p.pages||[]){if(!take('page:'+x.page.id))continue;const old=pages.find(pg=>pg.id===x.page.id);const page:WikiPage={related:old?.related,clock:old?.clock,...x.page,sourceId:old?.sourceId||'',quote:old?.quote||'',updated:now,history:old?[{sourceId:old.sourceId,quote:old.quote,body:old.body,status:old.status,visibility:old.visibility,date:old.updated},...old.history]:[]};pages=old?pages.map(pg=>pg.id===page.id?page:pg):[...pages,page]}
  for(const x of p.pageEdits||[]){const old=pages.find(pg=>pg.id===x.id);if(!old)continue;const taken=x.edits.filter((e,i)=>take('pedit:'+x.id+':'+i));if(!taken.length)continue;const page:WikiPage={...old,title:x.title&&take('pedit:'+x.id+':0')?x.title:old.title,body:applyEdits(old.body,taken),updated:now,history:[{sourceId:old.sourceId,quote:old.quote,body:old.body,status:old.status,visibility:old.visibility,date:old.updated},...old.history]};pages=pages.map(pg=>pg.id===page.id?page:pg)}
  let locked=m.planner.locked;(p.planner?.locked||[]).forEach((e,i)=>{if(take('planner:'+i))locked=applyEdits(locked,[e])});
- const next:Campaign={...c,sessions,cards:[...c.cards,...(p.cards||[]).filter(card=>take('card:'+card.id)) as Card[]],memory:{...m,pages,planner:{...m.planner,locked}}};
+ const rm=p.remove,goneCards=new Set((rm?.cards||[]).filter(id=>take('rmcard:'+id))),gonePages=new Set((rm?.pages||[]).filter(id=>take('rmpage:'+id)));
+ const trimmed=sessions.map(s=>{const plan=(rm?.sections||[]).reduce((t,x)=>take('rmsec:'+s.id+':'+x.heading)?withoutSection(t,x.heading,x.until):t,s.plan);return {...s,plan,pinnedCardId:s.pinnedCardId&&goneCards.has(s.pinnedCardId)?undefined:s.pinnedCardId}});
+ if(gonePages.size)pages=pages.filter(pg=>!gonePages.has(pg.id)).map(pg=>pg.related?.some(id=>gonePages.has(id))?{...pg,related:pg.related.filter(id=>!gonePages.has(id))}:pg);
+ const keep=(ids?:string[])=>ids?.filter(id=>!gonePages.has(id));
+ const next:Campaign={...c,sessions:trimmed,cards:[...c.cards.filter(x=>!goneCards.has(x.id)),...(p.cards||[]).filter(card=>take('card:'+card.id)) as Card[]],memory:{...m,pages,pins:keep(m.pins),planner:{...m.planner,locked,threadIds:keep(m.planner.threadIds)}}};
  if(p.campaign){for(const k of ['premise','tone','arc'] as const)if(p.campaign[k]!==undefined&&take('campaign:'+k))next[k]=p.campaign[k]!;(p.campaign.edits||[]).forEach((e,i)=>{if(take('cedit:'+i))next[e.field]=applyEdits(next[e.field],[e])})}
  if(!validateCampaign(next))throw new Error('This update would produce an invalid campaign, so nothing was changed.');
  return next}

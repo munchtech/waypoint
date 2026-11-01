@@ -1,5 +1,5 @@
 // v6 lore for the Seventh Bell update pack: campaign text edits, new wiki pages, page edits and session-plan edits.
-// Every edit is find-and-replace against the v5 text, so the DM's own additions (IsoForge kits) survive.
+// Every edit is find-and-replace against the v5 text, so the DM's own additions survive.
 const S1='sb-ce895de5912506a9',S2='sb-7be12e377d5748b4',S3='sb-4296a01bb560bd61';
 
 const s1Opening={find:`> "The fog lifts off the Mute Mere in long gray ribbons, and the village of Pellmoor comes into sight: reed roofs, leaning docks, nets like the sails of drowned ships. The chapel bell is silent. A girl stands on the ferry-dock, staring at the water with her hands folded tight. She does not look up when you arrive. She says, without turning: *'Are you here for the tongue, or for the bell?'*"`,
@@ -27,10 +27,17 @@ const s1Patrol={find:`**Encounter (optional, Quill's Patrol):** Quill and one Hu
 const s2Sneak={find:`Fight them (Appendix A), or sneak past with a DC 13 Stealth check.`,replace:`Fight them (Appendix A), or sneak past: each character makes a DC 15 Dexterity (Stealth) check, and the party slips by if at least half succeed.`};
 const s2Eels={find:`**Encounter: Memory-Eels (2).** Each hit that does damage steals a memory on a failed DC 12 Wisdom save.`,replace:`**Encounter: Memory-Eels (six, for four level-3 characters).** A bite that deals damage steals a minor memory on a failed DC 10 Wisdom save; it comes back after a long rest.`};
 const s2Singers={find:`The Drowned Choir attacks. **Encounter:** one Drowned Singer.`,replace:`The Drowned Choir attacks. **Encounter:** two Drowned Singers and two memory-eels.`};
-// Revision 7.1: a full guide for a first-time DM, appended after each Act I session's plan and before the DM's own IsoForge kit.
+// Revision 7.1: a full guide for a first-time DM, appended after each Act I session's plan.
 // The guide text lives in guide-s1.md to guide-s3.md. `guide` marks these edits so the book can nest their headings under the session.
 const fs=require('fs'),path=require('path');
-const guide=(n,find)=>({find,replace:find+'\n\n'+fs.readFileSync(path.join(__dirname,'guide-s'+n+'.md'),'utf8').trim(),guide:true});
+// The guide as revision 7.1 installed it stays fixed (guide-sN-7.1.md), so tables that have it are not given a second copy.
+// Revision 7.2 turns the "If they…" lines into play links ([label](play:id)) that open the play's card in the session notes:
+// each run of changed lines between the 7.1 text and guide-sN.md becomes one more edit, applied after the guide.
+const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8').trim();
+// `unless`: once a session has the guide's heading, the guide is in, even after the link edits have reworded some of its lines.
+const guide=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'-7.1.md'),unless:'## Running this session (new DM guide)',guide:true});
+const links=n=>{const old=read('guide-s'+n+'-7.1.md').split('\n'),now=read('guide-s'+n+'.md').split('\n'),out=[];if(old.length!==now.length)throw new Error('guide-s'+n+'.md must keep the 7.1 line count');
+ for(let i=0;i<old.length;i++){if(old[i]===now[i])continue;let j=i;while(j+1<old.length&&old[j+1]!==now[j+1])j++;const find=old.slice(i,j+1).join('\n');if(old.join('\n').split(find).length!==2)throw new Error('guide-s'+n+' line '+(i+1)+' is not unique');out.push({find,replace:now.slice(i,j+1).join('\n'),guide:true});i=j}return out};
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
@@ -251,7 +258,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide,...links(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},
@@ -261,4 +268,7 @@ For four centuries a wall of storm at sea hid Corvane from the rest of the world
  {field:'arc',find:`> "The fog lifts off the Mute Mere in long grey ribbons, and the village of Pellmoor comes into sight: reed roofs, leaning docks, nets like the sails of drowned ships. The chapel bell is silent. A girl stands on the ferry-dock, staring at the water with her hands folded tight. She does not look up when you arrive. She says, without turning: *'Are you here for the tongue, or for the bell?'*"`,replace:s1Opening.replace},
 ]};
 const planner={locked:[{find:`Source canon: Part 3.3 wins conflicts within the manuscript.`,replace:`Source canon: the v6 pages (CORVANE IN THE REALMS, MEMORY AS MONEY, PELLMOOR LANDING) and then Part 3.3 win conflicts within the manuscript. Corvane is part of the Forgotten Realms; the Seam opened in 382 SS (1462 DR); Pellmoor is a busy port; memory is money alongside gold; rules are D&D 2024.`}]};
-module.exports={pages,pageEdits,sessions,campaign,planner,pellmoorBody};
+// Revision 7.2 retires the IsoForge map kits (DM's decision, 2026-11-01: not ready yet): the kit section at the end of each Act I plan,
+// the three "Maps and visual prep" wiki pages and the three IsoForge saved cards. Waypoint lists each removal for review.
+const remove={sections:[{heading:'## IsoForge scene kit',until:'Prepared visual staging only. No events or outcomes are implied.'}],pages:['sb-isoforge-kit-1','sb-isoforge-kit-2','sb-isoforge-kit-3'],cards:['sb-isoforge-session-1','sb-isoforge-session-2','sb-isoforge-session-3'],note:'The IsoForge map kits are retired for now.'};
+module.exports={pages,pageEdits,sessions,campaign,planner,pellmoorBody,remove};

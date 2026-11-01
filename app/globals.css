@@ -1325,3 +1325,14 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .ready-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
 .ready-head h3{margin:0}
 .sent-early{color:#7a3f27!important;font-weight:600}
+/* A play named in a session plan: a button in the text that opens the play's card in place. */
+.book-text .play-link{font:inherit;font-weight:600;color:#24646e;background:#e9f3f1;border:1px solid #bcd9d5;border-radius:6px;padding:0 .4em;margin:0 .1em;cursor:pointer;line-height:1.5;text-align:left}
+.book-text .play-link::before{content:'▸ ';font-size:.8em}
+.book-text .play-link:hover{background:#d8ebe8;color:#153c46}
+.book-text .play-link.open{background:#24646e;border-color:#24646e;color:#fff}
+.book-text .play-link.open::before{content:'▾ '}
+.book-text .play-link:focus-visible{outline:2px solid #347580;outline-offset:2px}
+.book-text .play-card{display:block;margin:.6em 0 1.1em;font-size:15px;line-height:1.6;white-space:normal}
+.book-text .play-card p{margin:0 0 .6em;white-space:normal}
+.book-text .play-card h4{font:600 15px/1.4 'DM Sans',sans-serif;margin:0 0 .35em}
+.book-text .play-card .response-grid>div{padding-top:.8em}

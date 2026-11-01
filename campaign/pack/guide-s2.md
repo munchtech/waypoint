@@ -21,7 +21,7 @@
 
 **Prepare:**
 - **Tokens or minis:** the four characters; Mother Sallow; Ila; Brannagh Wick; a skiff (a long rectangle); the grounded ferry; the dead ferryman; six memory-eels; two Drowned Singers and two more eels for the belfry; the Cantor; the hooded Tidewarden. Optional: Brother Hadrik Voss and one extra Drowned Singer.
-- **Maps:** your IsoForge kit (below) has the Memory Shore, the missing ferry and Ossa's belfry. For the sandbank, a rough oval 30 feet across with the ferry on one end and deep water all round. For the belfry, draw a stone tower top in the middle of the page and write "40 ft down" beside it.
+- **Maps:** sketch each place on paper, a battle mat or in Foundry. The Memory Shore: a curve of name-stones along the water, the Old Shore's lanterns behind. For the sandbank, a rough oval 30 feet across with the ferry on one end and deep water all round. For the belfry, draw a stone tower top in the middle of the page and write "40 ft down" beside it.
 - **Breath cards:** on an index card per character, write how many rounds they can hold their breath: (1 + Constitution modifier) × 10 rounds, minimum 5. A round is six seconds; ten rounds is a minute. Tick it off during a dive.
 - **The Mere Memory table** (d6, in the book's Part 11.4) for anyone who stays up all night.
 - **The hymn** from Session 1: *Call:* "Who walks the water?" *Answer:* "We remember you."
@@ -43,7 +43,7 @@
 > **SAY:** "The cart is grey canvas on a black frame. It rolls very slowly along the causeway, and its wheels make no sound at all. Through a gap in the canvas you see a ferry coat, much too big for the person wearing it."
 
 - **Ila is never in danger on-screen.** She stays inside the closed cart, behind the driver, unharmed. Describe the canvas before anyone casts an area spell, and keep spells off the cart.
-- **Three plans that work:** a false checkpoint that turns the cart onto a drowned causeway (Charisma (Deception) DC 15, and a ferry-folk pilot plays along); an ambush at the ford; or Brannagh's pilots refusing the ford crossing so the cart has to wait while the party talks or sneaks.
+- **[Three plans that work:](play:s02-intercept-ila-cart)** a false checkpoint that turns the cart onto a drowned causeway (Charisma (Deception) DC 15, and a ferry-folk pilot plays along); an ambush at the ford; or Brannagh's pilots refusing the ford crossing so the cart has to wait while the party talks or sneaks.
 - **If it comes to a fight:** see [the Mere road cart fight](#the-mere-road-cart-if-ila-was-taken). The Sergeant yields the cart rather than die.
 - **How it ends:** Ila climbs out of the cart, furious and shaking, and says, "I counted the fence posts. Two hundred and twelve." Then the Night Song tonight, as below.
 
@@ -64,10 +64,10 @@
 - **The Choir doesn't attack the grieving or the singing.** Free, from Mother Sallow.
 - **Something about Tam's last night,** if a character stays on the shore all night (below).
 
-**Staying up all night:** anyone who stays on the shore until dawn makes a DC 12 Wisdom saving throw. On a failure, roll on the Mere Memory table. These are borrowed memories, not losses: the character remembers something that happened to someone else. **Clue option:** if the party is asking about Tam, make one failed save Tam's last night instead: grey gloves reaching over the side of a boat, a blank feeling where a route used to be, and a boat drifting with no cargo. Record it in the Memory ledger as kind "Mere."
+- **[Staying up all night:](play:s02-stay-the-night)** anyone who stays on the shore until dawn makes a DC 12 Wisdom saving throw. On a failure, roll on the Mere Memory table. These are borrowed memories, not losses: the character remembers something that happened to someone else. **Clue option:** if the party is asking about Tam, make one failed save Tam's last night instead: grey gloves reaching over the side of a boat, a blank feeling where a route used to be, and a boat drifting with no cargo. Record it in the Memory ledger as kind "Mere."
 
 **If they…**
-- **…sing:** read "the singing stops, all at once, as if someone had laid a hand on it." Mark which characters sang with a dead person in mind. The Cantor will know.
+- **[…sing:](play:s02-sing-response)** read "the singing stops, all at once, as if someone had laid a hand on it." Mark which characters sang with a dead person in mind. The Cantor will know.
 - **…refuse to sing or mock it:** nothing attacks, but the ferry-folk turn their backs, and Mother Sallow says, "Then don't go on the water tonight." If they stole the Heart in Session 1 and haven't given it back, Sallow won't teach the hymn at all until they make amends: hand it back to Ila, and speak a dead person's name on the shore.
 - **…try to stop the song with magic:** the spell Silence doesn't stop it. The Drowned hear grief, not sound.
 - **…try to wade in toward the voice:** the water is black and cold and goes deep fast. Mother Sallow catches a sleeve: "Not at night. Not without the answer."
@@ -78,8 +78,8 @@
 - *Wants:* to bless the Mere and "lay the dead to rest," by force.
 - *First words:* "The Lord of the Dead does not permit the dead to linger. I will give them peace."
 - *Lines:* "These souls are owed judgment, not this endless keening." · "You would leave them singing in the cold forever?" · (if argued well) "...Judged. And remembered. Yes. The Doomguide says both."
-- **Talking him down:** Influence, Charisma (Persuasion) DC 15. He's Indifferent. A Study check first, Intelligence (Religion) DC 12, about what Kelemvor actually teaches gives Advantage: Kelemvor's dead are owed judgment and remembrance, not erasure. Restraining him also works (the ferry-folk will thank you). Hold Person works too, but he's Hostile when it ends.
-- **If he pours the holy water:** the Choir rises angry and one Drowned Singer climbs out of the shallows for him. Singing the response hymn stops it at once. Mother Sallow steps between Hadrik and the Singer and takes 5 damage if nobody covers her. The Old Shore blames "the Loud Quarter."
+- **[Talking him down:](play:s02-stop-hadrik)** Influence, Charisma (Persuasion) DC 15. He's Indifferent. A Study check first, Intelligence (Religion) DC 12, about what Kelemvor actually teaches gives Advantage: Kelemvor's dead are owed judgment and remembrance, not erasure. Restraining him also works (the ferry-folk will thank you). Hold Person works too, but he's Hostile when it ends.
+- **[If he pours the holy water:](play:s02-hadrik-pours)** the Choir rises angry and one Drowned Singer climbs out of the shallows for him. Singing the response hymn stops it at once. Mother Sallow steps between Hadrik and the Singer and takes 5 damage if nobody covers her. The Old Shore blames "the Loud Quarter."
 
 **How it ends.** The song fades, or stops for an hour, and the ferry-folk go home. Mother Sallow speaks to the party before she goes:
 
@@ -102,11 +102,11 @@
 
 **What they can learn here:**
 - **A skiff and a pilot are theirs for the asking** if Ila vouches for them or they helped the ferry-folk in Session 1 (filled the quota, defended the raid). Otherwise it's Influence, Charisma (Persuasion) DC 15, or 5 gp for a Quays skiff with no pilot.
-- **Tam went out that night with no cargo,** and Brannagh thinks he was heading for the belfry. She tells them with the same conditions as the skiff; on a failed check she tells them anyway after the trip, if they bring her boat back. This is a source for how Tam died.
+- **[Tam went out that night with no cargo,](play:s02-ask-brannagh)** and Brannagh thinks he was heading for the belfry. She tells them with the same conditions as the skiff; on a failed check she tells them anyway after the trip, if they bring her boat back. This is a source for how Tam died.
 - **The sandbank is in the middle of the Mere,** over the drowned town's old square.
 
 **If they…**
-- **…go without a pilot:** the drowned rooftops just under the surface are a maze. A Wisdom (Survival) check, DC 12. On a failure they still get there, but the skiff scrapes a roof, ships water, and wakes the eels early: the eels get a free first round.
+- **[…go without a pilot:](play:s02-row-to-ferry)** the drowned rooftops just under the surface are a maze. A Wisdom (Survival) check, DC 12. On a failure they still get there, but the skiff scrapes a roof, ships water, and wakes the eels early: the eels get a free first round.
 - **…want to swim or wade the whole way:** it's half a mile of cold water. Frigid Water applies. Talk them into a boat, or let them, and count minutes.
 - **…ask Brannagh about the Court:** "The Court can't cross this water without my people. They know it. I know it. We're very polite to each other."
 
@@ -128,10 +128,10 @@
 - **The ferry's hold** has a few memory-pearls in a net bag (see Rewards).
 
 **If they…**
-- **…step off the boat onto the sand or into the shallows:** the eels attack. See [the memory-eels](#memory-eels-at-the-sandbank).
-- **…stay in the skiff and try to slip past:** each character makes a Dexterity (Stealth) check, DC 15. If at least half succeed, the eels never notice them and they reach the ferry quietly. If not, the eels attack, but they ignore anyone sitting still in a boat for the first round.
+- **[…step off the boat onto the sand or into the shallows:](play:s02-fight-eels)** the eels attack. See [the memory-eels](#memory-eels-at-the-sandbank).
+- **[…stay in the skiff and try to slip past:](play:s02-sneak-eels)** each character makes a Dexterity (Stealth) check, DC 15. If at least half succeed, the eels never notice them and they reach the ferry quietly. If not, the eels attack, but they ignore anyone sitting still in a boat for the first round.
 - **…raise the dead ferryman's oar:** the eels flee at once. Anyone who thinks of it deserves Heroic Inspiration.
-- **…want to take the body home:** good instinct. Brannagh's pilot helps load it. The ferry-folk keep a cold-house for the drowned. The Tidewarden will remember this kindness in Session 3.
+- **[…want to take the body home:](play:s02-take-ferryman-home)** good instinct. Brannagh's pilot helps load it. The ferry-folk keep a cold-house for the drowned. The Tidewarden will remember this kindness in Session 3.
 
 **How it ends.** The eels flee or are beaten. If the party treated the body with respect, go to Scene 4. If someone asks "What's under the water here?", the pilot points down: "The bell." Go to Scene 5. Otherwise, row home and go to Scene 6.
 
@@ -164,7 +164,7 @@
 
 **What's really going on.** The woman is the Cantor: Ondra Sallow, a ferry-woman who drowned 260 years ago and leads the Drowned Choir. Mother Sallow is her descendant. The Cantor won't attack anyone who answers her truthfully. She attacks liars and anyone who defaces the bell. She wants to be remembered by name, and released.
 
-**Breath.** Unless the Tidewarden gave them an air pocket, start counting breath. Getting down takes two or three turns, the conversation a few rounds, getting up two turns. That's tight but doable. Say each character's remaining rounds out loud every so often. If anyone runs out, give them a turn's warning before the first Exhaustion level, and remember they lose it all the moment they surface.
+- **[Breath.](play:s02-dive-belfry)** Unless the Tidewarden gave them an air pocket, start counting breath. Getting down takes two or three turns, the conversation a few rounds, getting up two turns. That's tight but doable. Say each character's remaining rounds out loud every so often. If anyone runs out, give them a turn's warning before the first Exhaustion level, and remember they lose it all the moment they surface.
 
 **The Cantor (Ondra Sallow)** (Ghost; she does not fight tonight unless the bell is attacked).
 - *Voice:* she sings everything, in lines that sound like old hymns. Speak slowly, with a little tune.
@@ -175,16 +175,16 @@
 
 **What they can learn here:**
 - **Tam came to find a safe path to her and never arrived.** Free if anyone mentions Tam or Ila. This is another source on how Tam died; with Brannagh's or a Mere Memory, the Court's part is clear.
-- **The Heart belongs in this bell.** Free.
+- **[The Heart belongs in this bell.](play:s02-ask-about-tongue)** Free.
 - **A verse of Ossa's hymn,** if they answer truthfully: Advantage on the next saving throw against a Drowned Singer.
 - **The full release verse,** four lines that let a spirit set down its song, if someone shares a sincere memory of a person who has died. The player can keep the details private and describe only the feeling. If your table is shy, she accepts someone grieving on Ila's behalf.
 
 **If they…**
-- **…answer truthfully:** she sings the name back. The water warms. She teaches the hymn verse.
-- **…share a real memory of someone who died:** she teaches the release verse too. Give that player Heroic Inspiration.
-- **…lie, or refuse her question:** her eyes go dark and the Choir moves. See [the Drowned Singers](#drowned-singers-at-the-belfry). She keeps singing and doesn't join the fight.
+- **[…answer truthfully:](play:s02-truth-to-cantor)** she sings the name back. The water warms. She teaches the hymn verse.
+- **[…share a real memory of someone who died:](play:s02-grieve-to-cantor)** she teaches the release verse too. Give that player Heroic Inspiration.
+- **[…lie, or refuse her question:](play:s02-lie-to-cantor)** her eyes go dark and the Choir moves. See [the Drowned Singers](#drowned-singers-at-the-belfry). She keeps singing and doesn't join the fight.
 - **…swim up to the bell:** she raises a hand and asks their purpose. Returning the Heart earns safe access. Attacking or scraping the bell after that warning makes a Singer intervene.
-- **…brought the Heart and want to ring the bell tonight:** let them; it's a wild and wonderful early choice. Before anyone fits the Heart, **say the Toll and wait for a yes**: "Ossa's Toll is a memory of someone who has died. The Ringer chooses it, and it's gone for good. If you say no, the bell doesn't ring and nothing is taken." Ila may not be the Ringer; she's fourteen and has just lost her father, so if she's here she stands beside an adult who rings it. If they say yes, use the bell-ringing text in Session 3's plan, record the Toll in the Memory ledger, and record "They bring the Heart down and ring Ossa tonight" in Foresight.
+- **[…brought the Heart and want to ring the bell tonight:](play:s02-ring-ossa-early)** let them; it's a wild and wonderful early choice. Before anyone fits the Heart, **say the Toll and wait for a yes**: "Ossa's Toll is a memory of someone who has died. The Ringer chooses it, and it's gone for good. If you say no, the bell doesn't ring and nothing is taken." Ila may not be the Ringer; she's fourteen and has just lost her father, so if she's here she stands beside an adult who rings it. If they say yes, use the bell-ringing text in Session 3's plan, record the Toll in the Memory ledger, and record "They bring the Heart down and ring Ossa tonight" in Foresight.
 - **…use a druid's swimming Wild Shape:** no breath clock for the druid. The Cantor reads an animal shape as a lie unless it says its own name.
 
 **How it ends.** They surface: with the verse, with a fight behind them, or with the bell rung. Row home. Go to Scene 6.
@@ -269,7 +269,7 @@ All of these are written for four level-3 characters. Foresight shows the diffic
 **The closing question:** "Who was on the ferry?" Then: "Before we wrap up, let's each say one thing we'll remember from tonight."
 
 **Record in Waypoint:**
-- **Plays that happened** (press **The party did this** on each card): "They sing the response to the Night Song," "They row out to find the missing ferry," "They fight the memory-eels" or "They slip past the eels," "They dive to the drowned belfry," "They answer the Cantor truthfully" or "They lie to the Cantor," "They share a sincere memory of someone who has died," "They take the dead ferryman home," "They speak with the hooded ferryman," and any Hadrik or cart play.
+- **Plays that happened** (press **The party did this** on each card): "[They sing the response to the Night Song](play:s02-sing-response)," "[They row out to find the missing ferry](play:s02-row-to-ferry)," "[They fight the memory-eels](play:s02-fight-eels)" or "[They slip past the eels](play:s02-sneak-eels)," "[They dive to the drowned belfry](play:s02-dive-belfry)," "[They answer the Cantor truthfully](play:s02-truth-to-cantor)" or "[They lie to the Cantor](play:s02-lie-to-cantor)," "[They share a sincere memory of someone who has died](play:s02-grieve-to-cantor)," "[They take the dead ferryman home](play:s02-take-ferryman-home)," "[They speak with the hooded ferryman](play:s02-hooded-ferryman)," and any Hadrik or cart play.
 - **World-state facts to check:** the Cantor's release verse (Learned, if anyone shared a sincere memory), the Drowned Choir (still Hunting unless Ossa rang), the Choir's clock (up if they lied to the Cantor or Hadrik poured), Ossa's Heart and Ossa's bell (only if they rang it), and Ila Harrow (Free, if they saved her from the cart).
 - **Memory ledger:** eel losses as kind "Eel" (they come back after a long rest), Mere Memories as kind "Mere," and a Toll if Ossa rang.
 - **Player wiki, afterwards:** press **Finish**, then **Send to wiki** on Brannagh Wick, The Night Song, The Cantor and The Ossa Belfry (send the Belfry and the Cantor only if they dove or were told of them).
