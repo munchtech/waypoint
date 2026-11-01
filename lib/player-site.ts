@@ -17,11 +17,13 @@ export const sentEntries=(c:Campaign)=>memoryOf(c).site?.entries||[];
 export function sendEntry(c:Campaign,draft:WikiDraft,sessionId:string):Campaign{const m=memoryOf(c),entry:SentEntry={...draft,title:draft.title.trim().slice(0,200),body:draft.body.trim().slice(0,6000),sentAt:new Date().toISOString(),sessionId};return {...c,memory:{...m,site:{entries:[entry,...sentEntries(c).filter(e=>e.id!==draft.id)].slice(0,600)}}}}
 export function takeDown(c:Campaign,id:string):Campaign{const m=memoryOf(c);return {...c,memory:{...m,site:{entries:sentEntries(c).filter(e=>e.id!==id)}}}}
 
-// Where a prepared entry stands: already public, due (its session has been reached and its world state holds), or not yet.
+// Where a prepared entry stands: already public, due, or not yet. An entry belongs AFTER its session, so it is due only once that
+// session is marked done or the DM has moved on to a later one; entries with no session are session-zero knowledge.
 export type EntryStatus='sent'|'due'|'later'|'waiting';
-export function entryStatus(c:Campaign,e:PlayerEntry,currentIndex:number):EntryStatus{const pb=memoryOf(c).playbook;if(sentEntries(c).some(x=>x.id===e.id))return 'sent';const at=e.revealAt?c.sessions.findIndex(s=>s.id===e.revealAt):-1;if(at>currentIndex)return 'later';if(pb&&e.when?.length&&!e.when.every(w=>holds(w,stateOf(pb))))return 'waiting';return 'due'}
-// Prepared entries the DM can send after this session: suggested for it (or earlier and still unsent), with their world state in place.
-export function dueAfter(c:Campaign,sessionId:string){const pb=memoryOf(c).playbook,i=c.sessions.findIndex(s=>s.id===sessionId);return (pb?.playerWiki||[]).filter(e=>entryStatus(c,e,i)==='due'&&(e.revealAt===sessionId||(!e.revealAt&&i===0)||(!!e.revealAt&&c.sessions.findIndex(s=>s.id===e.revealAt)<i)))}
+const holdsNow=(c:Campaign,e:PlayerEntry)=>{const pb=memoryOf(c).playbook;return !pb||!e.when?.length||e.when.every(w=>holds(w,stateOf(pb)))};
+export function entryStatus(c:Campaign,e:PlayerEntry,currentIndex:number):EntryStatus{if(sentEntries(c).some(x=>x.id===e.id))return 'sent';const at=e.revealAt?c.sessions.findIndex(s=>s.id===e.revealAt):-1;if(at>currentIndex||(at>=0&&at===currentIndex&&!c.sessions[at].done))return 'later';return holdsNow(c,e)?'due':'waiting'}
+// What the prep brief offers to send after this session: entries suggested for it, plus earlier ones still unsent.
+export function dueAfter(c:Campaign,sessionId:string){const pb=memoryOf(c).playbook,i=c.sessions.findIndex(s=>s.id===sessionId),sent=new Set(sentEntries(c).map(e=>e.id));return (pb?.playerWiki||[]).filter(e=>{if(sent.has(e.id)||!holdsNow(c,e))return false;const at=e.revealAt?c.sessions.findIndex(s=>s.id===e.revealAt):-1;return e.revealAt===sessionId||(at>=0&&at<i)})}
 
 const siteCss=`.site-nav{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px))) 1.5rem;padding:.6rem max(16px,env(safe-area-inset-left,0px))}
 .site-nav ul{list-style:none;margin:0 auto;padding:0;max-width:46rem;display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}.site-nav li{margin:0}.site-nav a{text-decoration:none;font-weight:600}
