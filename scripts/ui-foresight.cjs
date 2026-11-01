@@ -28,7 +28,7 @@ run(async args=>{
  await s.clickSelector('.creature-list .text-button');await s.settle(400);check('a Corvane stat block opens',(await text('.stat-view')).includes('2024 base'));await s.run("document.querySelector('.stat-view')?.scrollIntoView({block:'start'})");await shot('05-statblock');await s.run('window.scrollTo(0,0)');
  await s.clickText('If they…');await s.settle(400);await s.setValue('.playbook-explorer input[aria-label="Search plays"]','bribe');await s.settle(400);
  check('search finds the bribe play',(await text('.playbook-explorer')).includes('They bribe Quill'));await s.clickSelector('.playbook-explorer .branch-head');await s.settle(300);await shot('06-play-open');
- await s.clickText('World state');await s.settle(400);check('world state lists the Tongues',/Ossa.s Tongue/.test(await text('.world-state')));await shot('07-world-state');
+ await s.clickText('World state');await s.settle(400);check('world state lists the Hearts',/Ossa.s Heart/.test(await text('.world-state')));await shot('07-world-state');
  await s.clickText('Forecast');await s.settle(400);check('forecast shows the Concord with routes',(await text('.forecast')).includes('The Concord')&&(await text('.forecast')).includes('Tidewarden'));await shot('08-forecast');
  await s.clickText('Party & ledger');await s.settle(300);await s.clickText('Add character');await s.settle(200);await s.setValue('.roster-table input[aria-label="Character name"]','Wren of Waterdeep');await s.settle(300);
  check('roster accepts a character',s.state.snapshot.campaigns.some(c=>(c.memory?.roster||[]).some(r=>r.name==='Wren of Waterdeep')));await shot('09-party-ledger');

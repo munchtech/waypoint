@@ -1,6 +1,7 @@
 import {z} from 'zod';
 import {validateCampaign,type Branch,type Campaign,type Card} from './campaign';
 import {memoryOf,pageKinds,factStates,type WikiPage} from './memory';
+import {count} from './plural';
 import {playSchema,playbookSchema,type Playbook} from './playbook-schema';
 
 // An update pack brings new content into an existing campaign as a reviewed list of changes.
@@ -15,8 +16,15 @@ export const updatePackSchema=z.object({kind:z.literal('waypoint-update-pack'),v
  pages:z.array(z.object({mode:z.enum(['add','replace']),page:packPage,note:z.string().max(400).optional()})).max(200).optional(),
  pageEdits:z.array(z.object({id:z.string().max(120),title:z.string().min(1).max(160).optional(),edits:z.array(edit).min(1).max(40)})).max(200).optional(),
  cards:z.array(packCard).max(100).optional(),
+ terms:z.object({replace:z.array(z.tuple([z.string().min(1).max(400),z.string().max(400)])).min(1).max(40),keep:z.array(z.string().min(1).max(200)).max(40).optional(),note:z.string().max(400).optional()}).optional(),
  playbook:playbookSchema.omit({state:true,log:true,checks:true}).optional()});
 export type UpdatePack=z.infer<typeof updatePackSchema>;
+// A renamed term ("Tongue" → "Heart") is applied to the DM's text first, and every edit is matched against the renamed text, so edits
+// written in the new words still find their anchors. Phrases in `keep` (a spell name, an idiom) are left alone. The chronicle is history and is never renamed.
+export function renameTerms(text:string,t?:UpdatePack['terms']){if(!t||!text)return text;const keep=(t.keep||[]).filter(k=>text.includes(k));let out=text;keep.forEach((k,i)=>{out=out.split(k).join('§§'+i+'§§')});for(const [a,b] of t.replace)out=out.split(a).join(b);keep.forEach((k,i)=>{out=out.split('§§'+i+'§§').join(k)});return out}
+const branchText=['title','why','readAloud','response','consequence','fallback','tells','rules','later'] as const;
+function renameCampaign(c:Campaign,t?:UpdatePack['terms']):Campaign{if(!t)return c;const r=(x:string)=>renameTerms(x,t);const m=memoryOf(c);
+ return {...c,premise:r(c.premise),arc:r(c.arc),party:r(c.party),boundaries:r(c.boundaries),twist:r(c.twist),sessions:c.sessions.map(s=>({...s,title:r(s.title),plan:r(s.plan),summary:r(s.summary),branches:s.branches.map(b=>{const o={...b};for(const k of branchText)if(typeof o[k]==='string')(o as Record<string,unknown>)[k]=r(o[k] as string);return o})})),cards:c.cards.map(x=>({...x,title:r(x.title),body:r(x.body),readAloud:r(x.readAloud),consequence:r(x.consequence)})),memory:{...m,pages:m.pages.map(pg=>({...pg,title:r(pg.title),body:r(pg.body),aliases:r(pg.aliases)})),planner:{...m.planner,locked:r(m.planner.locked)}}}}
 export type PlannedChange={id:string;group:'Foresight playbook'|'Session plays'|'Session notes'|'World wiki'|'Campaign'|'Saved material';label:string;detail:string;status:'ready'|'applied'|'conflict'};
 
 export const packMatches=(c:Campaign,p:UpdatePack)=>p.match.campaignIds.includes(c.id)||p.match.names.some(n=>c.name.trim().toLowerCase().startsWith(n.toLowerCase()));
@@ -29,7 +37,9 @@ const snippet=(t:string,n=110)=>{const s=t.replace(/\s+/g,' ').replace(/[*_>#]/g
 
 // Imported paths the pack supersedes; one the chronicle points at is kept.
 const retired=(c:Campaign,branches:Branch[],ids:string[]=[])=>branches.filter(b=>ids.includes(b.id)&&b.origin!=='playbook'&&!c.events.some(e=>e.branchId===b.id));
-export function planUpdate(c:Campaign,p:UpdatePack):PlannedChange[]{const m=memoryOf(c),out:PlannedChange[]=[];
+export function planUpdate(original:Campaign,p:UpdatePack):PlannedChange[]{const out:PlannedChange[]=[];
+ if(p.terms){const renamed=renameCampaign(original,p.terms),changed=JSON.stringify(renamed)!==JSON.stringify(original);const n=(xs:string[])=>xs.length;const pages=n(memoryOf(original).pages.filter((pg,i)=>JSON.stringify(pg)!==JSON.stringify(memoryOf(renamed).pages[i])).map(pg=>pg.id)),sessions=n(original.sessions.filter((s,i)=>JSON.stringify(s)!==JSON.stringify(renamed.sessions[i])).map(s=>s.id)),cards=n(original.cards.filter((x,i)=>JSON.stringify(x)!==JSON.stringify(renamed.cards[i])).map(x=>x.id));out.push({id:'terms',group:'Campaign',label:'Rename '+p.terms.replace.slice(0,1).map(([a,b])=>'“'+a+'” to “'+b+'”').join('')+' everywhere',detail:(changed?`Changes ${count(sessions,'session')}, ${count(pages,'wiki page')} and ${count(cards,'saved card')}. `:'')+(p.terms.note||'')+' Your chronicle is history and keeps its words. Untick this and edits written in the new words can’t be placed.',status:changed?'ready':'applied'})}
+ const c=renameCampaign(original,p.terms),m=memoryOf(c);
  if(p.playbook){const old=m.playbook;out.push({id:'playbook',group:'Foresight playbook',label:old?'Refresh the playbook ('+old.version+' → '+p.playbook.version+')':'Install the playbook',detail:`${p.playbook.flags.length} world-state facts, ${p.playbook.anytime.length} anytime plays, ${p.playbook.encounters.length} encounters, ${p.playbook.statblocks.length} 2024 stat blocks, ${p.playbook.briefs.length} session briefs, ${p.playbook.endings.length} endings. ${old?'Your current world state and history are kept.':'World state starts at the campaign opening.'}`,status:old&&JSON.stringify({...old,state:undefined,log:undefined,checks:undefined})===JSON.stringify({...p.playbook,state:undefined,log:undefined,checks:undefined})?'applied':'ready'})}
  for(const s of p.sessions||[]){const session=c.sessions.find(x=>x.id===s.id);const name=session?session.title:'Missing session';
   if(s.plays?.length){const current=(session?.branches||[]).filter(b=>b.origin==='playbook'),retiring=retired(c,session?.branches||[],s.retire);out.push({id:'plays:'+s.id,group:'Session plays',label:name,detail:`${s.plays.length} prepared plays.${current.length?' Replaces '+current.length+' earlier playbook plays.':''}${retiring.length?' Retires '+retiring.length+' imported guide scenarios the plays now cover.':''} Your own and AI paths stay.`,status:!session?'conflict':!retiring.length&&JSON.stringify(current)===JSON.stringify(s.plays.map(x=>({...x,origin:'playbook'})))?'applied':'ready'})}
@@ -44,7 +54,7 @@ export function planUpdate(c:Campaign,p:UpdatePack):PlannedChange[]{const m=memo
 
 // Applies only the chosen, ready changes. Existing playbook state, roster, ledger and bargains are never reset;
 // a recorded value the new playbook no longer offers falls back to its opening value, and clocks clamp to their new range.
-export function applyUpdate(c:Campaign,p:UpdatePack,chosen:Set<string>):Campaign{const planned=new Map(planUpdate(c,p).map(x=>[x.id,x]));const take=(id:string)=>chosen.has(id)&&planned.get(id)?.status==='ready';const now=new Date().toISOString();
+export function applyUpdate(original:Campaign,p:UpdatePack,chosen:Set<string>):Campaign{const planned=new Map(planUpdate(original,p).map(x=>[x.id,x]));const c=chosen.has('terms')&&planned.get('terms')?.status==='ready'?renameCampaign(original,p.terms):original;const take=(id:string)=>chosen.has(id)&&planned.get(id)?.status==='ready';const now=new Date().toISOString();
  let m=memoryOf(c);
  if(p.playbook&&take('playbook')){const old=m.playbook;const flags=new Set(p.playbook.flags.map(f=>f.id));const byId=new Map(p.playbook.flags.map(f=>[f.id,f]));const next:Playbook={...p.playbook,state:Object.fromEntries(Object.entries(old?.state||{}).flatMap(([k,v])=>{const f=byId.get(k);if(!flags.has(k)||!f)return [];if(f.options)return f.options.some(o=>o.id===v)?[[k,v]]:[];return [[k,Math.max(0,Math.min(f.max??99,Number(v)||0))]]})),log:old?.log||[],checks:old?.checks};m={...m,playbook:next}}
  const sessions=c.sessions.map(s=>{const u=(p.sessions||[]).find(x=>x.id===s.id);if(!u)return s;let plan=s.plan,branches=s.branches,summary=s.summary;
