@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.5) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.6) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs=require('fs'),path=require('path');
 const P=require(path.join(__dirname,'../paths.cjs'));
@@ -15,7 +15,7 @@ for(const f of files){const d=JSON.parse(fs.readFileSync(pack(f),'utf8'));plays.
 // The table starts at level 3 with four players (DM, 2026-10-31): early chapters use max(3, the v5 milestone).
 const levels=[3,3,3,3,3,4,4,4,4,5,5,5,5,6,6,7,7,7,7,7,7,7,7,8,8,9,9,10,11,11,11,11];
 const problems=[];const warn=m=>problems.push(m);
-const keep=['id','title','style','likelihood','why','readAloud','response','consequence','fallback','tells','rules','later','keywords','when','effects'];
+const keep=['id','title','style','likelihood','why','readAloud','response','consequence','fallback','tells','rules','later','keywords','scene','when','effects'];
 const required=['id','title','style','likelihood','why','readAloud','response','consequence','fallback'];
 // Required Branch fields are always present (possibly empty); optional ones are dropped when empty.
 const clean=p=>{const o={};for(const k of keep)if(required.includes(k))o[k]=p[k]??'';else if(p[k]!==undefined&&p[k]!=='')o[k]=p[k];o.origin='playbook';return o};
@@ -34,14 +34,11 @@ const statIds=new Set(statblocks.map(s=>s.id));for(const e of encounters)for(con
 const encIds=new Set(encounters.map(e=>e.id));for(const b of briefs)for(const id of b.encounters)if(!encIds.has(id))warn('brief '+b.sessionId+' lists missing encounter '+id);
 const memoryPage=lore.pages.find(p=>p.id==='v6-memory-money');
 const sessionCount=sessions.filter(s=>s.plays).length,playCount=[...bySession.values()].reduce((n,l)=>n+l.length,0);
-const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.5',
- summary:`Revision 7.5 of The Seventh Bell, for Waypoint 1.35.5. It installs over revisions 7.4 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.6',
+ summary:`Revision 7.6 of The Seventh Bell, for Waypoint 1.35.7. It installs over revisions 7.5 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **New in 7.5: Tolls that cost.** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last, and they escalate: Heavy for the first two bells, Grievous for the next two, Ruinous after (a sense dulled for a year at the least). Vaer's dawn now lasts a year and Calla's harvest a season. World wiki → 2.7 The Toll has the rules; plays that ring a bell show the current weight.
-- **New in 7.4: session zero and a table card.** The session zero script becomes a full guide (World wiki → 1.4 Session Zero Script), and each Act I guide ends with a one-page table card you can print from the session notes.
-- **New in 7.3: every option is a button.** The 17 "If they…" options in the Act I guides that were plain text now have prepared plays too, so whatever the party does you can open its card, read what to say and do, and record it.
-- **New in 7.2: click what the players do.** In each Act I guide, the "If they…" choices are buttons. Click one and that play's card opens right there in your session notes, with **The party did this** on it, so you can run the session from the page. The IsoForge map kits (the kit section at the end of each Act I plan, three wiki pages and three saved cards) are retired, each listed for review.
-- **New in 7.1: a guide for running Sessions 1 to 3.** Each Act I session plan gains a section, **Running this session (new DM guide)**, after the plan: what to prepare, read-aloud for every scene, what is really going on, how to play each person, the checks and DCs, what to do when the players surprise you, a turn-by-turn guide to every fight, pacing, names, and what to record afterwards. Four new plays fill gaps the guide found, and Act I's numbers now match the 2024 stat blocks.
+- **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll; plays that ring a bell show the current weight.
+- **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a printable table card; every "If they…" option is a button that opens its play; Possibilities lists plays by scene; session zero becomes a full guide (World wiki → 1.4). The IsoForge map kits are retired.
 - **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
 - **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
@@ -55,13 +52,14 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
  match:{campaignIds:['the-seventh-bell-corvane-v5'],names:['The Seventh Bell']},
  campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,remove:lore.remove,
  pages:lore.pages.map(page=>({mode:'replace',page})),pageEdits,
- playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.5',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
+ playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.6',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
 // "Tongue" becomes "Heart" in everything the pack carries; the pack also asks Waypoint to rename the DM's own text the same way.
 const {terms,deep}=require(pack('terms.cjs'));Object.assign(result,deep(result,''));result.terms=terms;
 // The player site: prepared player-safe wiki entries and the site's fixed pages (handouts and map, built by tools/build-handouts.cjs).
 // The pages are added after the rename (they were renamed when built), so the map image's data is never touched.
 const wikiFile=pack('player-wiki.json');result.playbook.playerWiki=deep(fs.existsSync(wikiFile)?JSON.parse(fs.readFileSync(wikiFile,'utf8')).entries:[],'');
 result.playbook.site=JSON.parse(fs.readFileSync(path.join(root,'handouts/site.json'),'utf8'));
+if(result.summary.length>4000)warn('summary is '+result.summary.length+' characters; Waypoint accepts 4000');
 const json=JSON.stringify(result);
 fs.writeFileSync(path.join(P.packs,'seventh-bell-v7.json'),json);
 fs.writeFileSync(path.join(P.outputs,'The-Seventh-Bell-v7.waypoint-pack.json'),JSON.stringify(result,null,1));

@@ -12,8 +12,11 @@ import {entryStatus,publishSite,sendEntry,sentEntries,takeDown,type WikiDraft} f
 
 type Notify={update:(fn:(c:Campaign)=>Campaign)=>void;notify:(m:string)=>void;fail:(m:string)=>void};
 // Sends an entry and rewrites site.html. Players only ever see what was sent, word for word.
+export const asDraft=(e:PlayerEntry):WikiDraft=>({id:e.id,title:e.title,kind:e.kind,body:e.body});
+// Sends several prepared entries at once and rewrites site.html once (the player site's Send all, and the wrap-up's).
+export async function sendManyToWiki(campaign:Campaign,drafts:WikiDraft[],sessionId:string,{update,notify,fail}:Notify){const next=drafts.reduce((c,d)=>sendEntry(c,d,sessionId),campaign);update(()=>next);if(!isDesktop()){notify(count(drafts.length,'entry','entries')+' on the wiki list. Open the desktop app to write site.html.');return}try{const r=await publishSite(next,appFetch);notify(count(drafts.length,'entry','entries')+' sent to the wiki.'+(r.saved?' site.html is updated; upload it when you’re ready.':' site.html wasn’t saved: choose where to keep it in Player handouts.'))}catch(e){fail(e instanceof Error?e.message:'site.html could not be written.')}}
 export async function sendToWiki(campaign:Campaign,draft:WikiDraft,sessionId:string,{update,notify,fail}:Notify){const next=sendEntry(campaign,draft,sessionId);update(()=>next);if(!isDesktop()){notify('“'+draft.title+'” is on the wiki list. Open the desktop app to write site.html.');return}try{const r=await publishSite(next,appFetch);notify(r.saved?'“'+draft.title+'” is on the wiki. site.html is updated; upload it when you’re ready.':'“'+draft.title+'” is on the wiki list. site.html wasn’t saved: choose where to keep it in Player handouts.')}catch(e){fail(e instanceof Error?e.message:'site.html could not be written.')}}
-const asDraft=(e:PlayerEntry):WikiDraft=>({id:e.id,title:e.title,kind:e.kind,body:e.body});
+
 
 // The Player site panel: what is public, what is ready to send, and where site.html is kept.
 export default function PlayerSite({campaign,session,update,notify,fail,seed,onSeedUsed}:Notify&{campaign:Campaign;session:Session;seed?:WikiDraft|null;onSeedUsed?:()=>void}){
@@ -31,7 +34,7 @@ export default function PlayerSite({campaign,session,update,notify,fail,seed,onS
  const when=(e:PlayerEntry)=>(e.revealAt?'After '+sessionTag(campaign,e.revealAt):'Before Session 1')+(e.when?.length&&status(e)==='waiting'?' · once the world state allows':'');
  async function send(d:WikiDraft){setBusy(true);try{await sendToWiki(campaign,d,session.id,{update,notify,fail});setDraft(null)}finally{setBusy(false)}}
  // Sends every ready entry at once (useful at session zero) and writes site.html once.
- async function sendAll(){setBusy(true);try{const next=due.reduce((c,e)=>sendEntry(c,asDraft(e),session.id),campaign);update(()=>next);if(isDesktop()){const r=await publishSite(next,appFetch);notify(count(due.length,'entry','entries')+' sent to the wiki.'+(r.saved?' site.html is updated.':''))}}catch(e){fail(e instanceof Error?e.message:'site.html could not be written.')}finally{setBusy(false)}}
+ async function sendAll(){setBusy(true);try{await sendManyToWiki(campaign,due.map(asDraft),session.id,{update,notify,fail})}finally{setBusy(false)}}
  async function rewrite(choose:boolean){setBusy(true);try{const r=await publishSite(campaign,appFetch,choose);notify(r.saved?'site.html written to '+r.path+'.':'site.html wasn’t saved.')}catch(e){fail(e instanceof Error?e.message:'site.html could not be written.')}finally{setBusy(false)}}
  async function remove(id:string,title:string){const next=takeDown(campaign,id);update(()=>next);if(isDesktop()){try{await publishSite(next,appFetch);notify('“'+title+'” is off the wiki. site.html is updated.')}catch(e){fail(e instanceof Error?e.message:'site.html could not be written.')}}}
  const row=(e:PlayerEntry,ready:boolean)=><li key={e.id}><div><strong>{e.title}</strong><small>{e.kind} · {when(e)}</small><p>{plainPreview(e.body,160)}</p></div>{ready&&<div className="row-actions"><button className="button small primary" disabled={busy} onClick={()=>void send(asDraft(e))}><Send size={13}/>Send to wiki</button><button className="text-button" onClick={()=>setDraft(asDraft(e))}><Pencil size={13}/>Edit first</button></div>}</li>;

@@ -1370,3 +1370,19 @@ body.print-card .notes-bar{position:static;box-shadow:none;border:0;background:n
 .rail-card td:first-child{font-weight:600;color:#183f44}
 .wiki-due{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
 .wiki-due p{margin:0}
+/* 1.35.7: Possibilities grouped by the guide's scenes. */
+.scene-group{margin:0 0 14px}
+.scene-group>summary{display:flex;align-items:baseline;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;padding:10px 4px;margin:0 0 10px;border-bottom:1px solid #e3dccb;font:600 17px/1.3 'Lora',serif;color:#183f44}
+.scene-group>summary::-webkit-details-marker{display:none}
+.scene-group>summary::before{content:'▾';font-size:13px;color:#53666e;margin-right:2px}
+.scene-group:not([open])>summary::before{content:'▸'}
+.scene-group>summary span{flex:1}
+.scene-group>summary small{font:500 12px/1 'DM Sans',sans-serif;color:#53666e}
+.scene-group-label{font:600 17px/1.3 'Lora',serif;color:#183f44;margin:6px 4px 10px;padding-bottom:10px;border-bottom:1px solid #e3dccb}
+/* 1.35.7: in Live mode the moment markers take one row: label, note and the marker buttons. */
+.table-markers.compact{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 14px}
+.table-markers.compact .section-title{flex:0 0 auto;display:flex;align-items:baseline;gap:8px}
+.table-markers.compact .section-title h3{font-size:14px;white-space:nowrap}
+.table-markers.compact>input,.table-markers.compact>textarea{flex:1 1 220px;min-width:180px;padding:7px 10px}
+.table-markers.compact .chips{flex:0 1 auto}
+.table-markers.compact .marker-list,.table-markers.compact>p{flex-basis:100%}

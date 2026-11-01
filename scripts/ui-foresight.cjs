@@ -55,7 +55,7 @@ run(async args=>{
  await s.clickText('Live mode');await s.settle(600);
  check("live mode puts the session's table card in the right rail",/Table card/.test(await text('.rail-card'))&&!(await s.run(`!!document.querySelector('.desk-pulse')`)));await s.run('window.scrollTo(0,0)');await s.settle(200);await shot('09f-live-rail');
  await s.clickText('Exit live mode');await s.settle(400);
- await s.clickText('Possibilities');await s.settle(300);await s.clickText('Live mode');await s.settle(500);
+ await s.clickText('Possibilities');await s.settle(400);check('Possibilities are grouped by the guide scenes',(await s.run('document.querySelectorAll(".scene-group").length'))>=5&&/Scene 1: The old dock/.test(await text('.scene-group')));await shot('09g-possibilities-scenes');await s.clickText('Live mode');await s.settle(500);check('live-mode markers take one row',!!(await s.run('document.querySelector(".table-markers.compact")')));
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');
  await s.clickSelector('.live-lookup .branch-head');await s.settle(300);await s.clickText('The party did this',{within:'.live-lookup'});await s.settle(500);
  check('the ripple dialog opens',(await text('.modal')).includes('World changes to record'));await shot('11-ripple');

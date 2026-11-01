@@ -6,7 +6,7 @@ const value=z.union([z.string().max(80),z.number()]);
 export const condSchema=z.object({flag:text(80),in:z.array(text(80)).max(20).optional(),not:z.array(text(80)).max(20).optional(),min:z.number().optional(),max:z.number().optional()});
 export const effectSchema=z.object({flag:text(80),set:text(80).optional(),add:z.number().optional()});
 // Optional fields a session path (Branch) can carry when it comes from a playbook.
-export const playFields={origin:z.enum(['playbook','ai','dm']).optional(),tells:text().optional(),rules:text().optional(),later:text().optional(),keywords:text(1000).optional(),when:z.array(condSchema).max(12).optional(),effects:z.array(effectSchema).max(12).optional()};
+export const playFields={origin:z.enum(['playbook','ai','dm']).optional(),scene:text(160).optional(),tells:text().optional(),rules:text().optional(),later:text().optional(),keywords:text(1000).optional(),when:z.array(condSchema).max(12).optional(),effects:z.array(effectSchema).max(12).optional()};
 export const playSchema=z.object({id:text(120),title:text(300),style:z.enum(['Roleplay','Exploration','Combat','Mischief']),likelihood:text(120),why:text(),readAloud:text(),response:text(),consequence:text(),fallback:text(),...playFields});
 const flagSchema=z.object({id:text(80),label:text(160),group:text(80),initial:value,options:z.array(z.object({id:text(80),label:text(160)})).max(30).optional(),max:z.number().optional(),help:text(600).optional(),thresholds:z.array(z.object({at:z.number(),text:text(600)})).max(6).optional()});
 const creatureSchema=z.object({name:text(160),statblock:text(80).optional(),base:text(160),cr:text(8),count:z.number().int().min(1).max(40)});
@@ -27,6 +27,6 @@ export const ledgerSchema=z.array(z.object({id:text(80),character:text(120),kind
 export const bargainSchema=z.array(z.object({id:text(80),with:text(160),terms:text(1200),status:z.enum(['Open','Kept','Broken']),sessionId:text(120),date:text(40)})).max(300);
 export type Cond=z.infer<typeof condSchema>;export type Effect=z.infer<typeof effectSchema>;export type Flag=z.infer<typeof flagSchema>;
 export type Encounter=z.infer<typeof encounterSchema>;export type StatBlock=z.infer<typeof statblockSchema>;export type Brief=z.infer<typeof briefSchema>;export type Ending=z.infer<typeof endingSchema>;
-export type Playbook=z.infer<typeof playbookSchema>;export type LogEntry=Playbook['log'][number];export type PlayFields=Partial<{origin:'playbook'|'ai'|'dm';tells:string;rules:string;later:string;keywords:string;when:Cond[];effects:Effect[]}>;
+export type Playbook=z.infer<typeof playbookSchema>;export type LogEntry=Playbook['log'][number];export type PlayFields=Partial<{origin:'playbook'|'ai'|'dm';scene:string;tells:string;rules:string;later:string;keywords:string;when:Cond[];effects:Effect[]}>;
 export type PlayerEntry=z.infer<typeof playerEntrySchema>;export type Site=z.infer<typeof siteSchema>;
 export type RosterMember=z.infer<typeof rosterSchema>[number];export type LedgerEntry=z.infer<typeof ledgerSchema>[number];export type Bargain=z.infer<typeof bargainSchema>[number];

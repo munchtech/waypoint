@@ -22,7 +22,8 @@
       "ila"
      ]
     }
-   ]
+   ],
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-rude-to-ila",
@@ -46,7 +47,8 @@
       "ila"
      ]
     }
-   ]
+   ],
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-ask-ila-father",
@@ -62,7 +64,8 @@
    "consequence": "The party knows Tam died after taking an empty boat out, six weeks ago, right after the Tongue came up.",
    "later": "S2: Brannagh Wick confirms the empty boat and guesses the belfry (s02-ask-brannagh). S3: the patrol entry in Eld's papers explains it (s03-tam-solved).",
    "fallback": "If nobody asks, Mother Sallow says it for her over tea: 'Her father's six weeks drowned. Ask her about him gently, or don't ask at all.'",
-   "keywords": "father, dad, Tam, Tam Harrow, coat, family, parents, drowned, how did he die, alone"
+   "keywords": "father, dad, Tam, Tam Harrow, coat, family, parents, drowned, how did he die, alone",
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-ila-come-along",
@@ -78,7 +81,8 @@
    "consequence": "The party reaches Mother Sallow with Ila beside them, and Ila trusts whoever asked.",
    "later": "S3: whether she travels with the party is their choice there (s03-take-ila-along).",
    "fallback": "If they want her somewhere she can't go, she says 'Ask Mother Sallow,' and Sallow says no.",
-   "keywords": "come with us, bring Ila, take her along, walk her home, follow us, Ila joins"
+   "keywords": "come with us, bring Ila, take her along, walk her home, follow us, Ila joins",
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-ignore-ila",
@@ -94,7 +98,8 @@
    "consequence": "The party meets the port first, and Ila comes to them.",
    "later": "",
    "fallback": "If they ignore her a second time, Mother Sallow comes to fetch them herself: 'She's picked you. Heaven knows why.'",
-   "keywords": "ignore Ila, walk past, go to the quays, market, port first, skip the girl"
+   "keywords": "ignore Ila, walk past, go to the quays, market, port first, skip the girl",
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-take-tongue",
@@ -128,7 +133,8 @@
      "flag": "quill",
      "set": "suspicious"
     }
-   ]
+   ],
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-sallow-bargain",
@@ -144,7 +150,8 @@
    "consequence": "The party has a promise to keep and the response hymn. Record the bargain.",
    "later": "S2: the hymn calms the Night Song for an hour. S3: if they kept the Tongue from the Court for three days, Mother Sallow opens the ledger without being asked (s03-search-eld).",
    "fallback": "If they dither, she hands Ila the tea and says, \"Then I'll keep it, and you can watch me fail.\"",
-   "keywords": "mother sallow, bargain, deal, three days, tea, hymn, response, night song, keep it safe"
+   "keywords": "mother sallow, bargain, deal, three days, tea, hymn, response, night song, keep it safe",
+   "scene": "Scene 2: Tea at Mother Sallow's"
   },
   {
    "id": "s01-charm-sallow",
@@ -160,7 +167,8 @@
    "consequence": "Mother Sallow judges the party by honesty, and says so.",
    "later": "",
    "fallback": "If the table keeps trying, she pours the tea and says, 'Charm's for people who want something. You want something. Out with it.'",
-   "keywords": "charm, flatter, persuade Sallow, compliment, win her over, charm person, smooth talk"
+   "keywords": "charm, flatter, persuade Sallow, compliment, win her over, charm person, smooth talk",
+   "scene": "Scene 2: Tea at Mother Sallow's"
   },
   {
    "id": "s01-keep-heart-for-ila",
@@ -190,7 +198,8 @@
      "flag": "t_ossa",
      "set": "party"
     }
-   ]
+   ],
+   "scene": "Scene 2: Tea at Mother Sallow's"
   },
   {
    "id": "s01-ask-sallow-payment",
@@ -206,7 +215,8 @@
    "consequence": "The party has a paid job: find the eastern ferry.",
    "later": "S2: she pays when they find the ferry (s02-row-to-ferry).",
    "fallback": "If they walk out over money, a ferry-folk widow offers the same job at the Shuttered Bell for the same coin.",
-   "keywords": "payment, pay, reward, money, gold, what does it pay, haggle, fee"
+   "keywords": "payment, pay, reward, money, gold, what does it pay, haggle, fee",
+   "scene": "Scene 2: Tea at Mother Sallow's"
   },
   {
    "id": "s01-memory-shore",
@@ -222,7 +232,8 @@
    "consequence": "The party knows where the Night Song is sung, and that Mother Sallow's family is old on this shore.",
    "later": "S2: the Night Song is sung on this shore, and a character who scratched a name is greeted as one of the grieving (s02-sing-response).",
    "fallback": "If they never go, Ila takes them at dusk in S2 to show them her father's stone.",
-   "keywords": "memory shore, stones, name-stones, names, Davin, grave, my name on a stone, shore, Ondra"
+   "keywords": "memory shore, stones, name-stones, names, Davin, grave, my name on a stone, shore, Ondra",
+   "scene": "Scene 2: Tea at Mother Sallow's"
   },
   {
    "id": "s01-hand-to-quill",
@@ -257,7 +268,8 @@
      "flag": "court_eye",
      "set": "recorded"
     }
-   ]
+   ],
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "id": "s01-lie-to-quill",
@@ -288,7 +300,8 @@
      "flag": "quill",
      "set": "suspicious"
     }
-   ]
+   ],
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "id": "s01-attack-quill",
@@ -318,7 +331,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "id": "s01-bribe-quill",
@@ -340,7 +354,8 @@
      "flag": "quill",
      "set": "bribed"
     }
-   ]
+   ],
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "id": "s01-fill-the-quota",
@@ -362,7 +377,8 @@
      "flag": "quill",
      "set": "routine"
     }
-   ]
+   ],
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "id": "s01-tongue-to-the-quays",
@@ -393,7 +409,8 @@
      "flag": "venn",
      "set": "courting"
     }
-   ]
+   ],
+   "scene": "Scene 3: The port"
   },
   {
    "id": "s01-fight-on-quays",
@@ -409,7 +426,8 @@
    "consequence": "The Quays remember the party, and so does the Landing House if the Hushmen arrive.",
    "later": "",
    "fallback": "If it stalls, Brannagh Wick's pilots pull the party into the Pilots' Hall and shut the door: 'Not on my boards.'",
-   "keywords": "fight, brawl, punch, attack sailor, start a fight, draw weapons, quays, riot"
+   "keywords": "fight, brawl, punch, attack sailor, start a fight, draw weapons, quays, riot",
+   "scene": "Scene 3: The port"
   },
   {
    "id": "s01-split-up",
@@ -425,7 +443,8 @@
    "consequence": "Several port scenes happen at once, and the party compares notes later.",
    "later": "",
    "fallback": "If the groups drift too far apart, Ila runs between them with news: \"Grey gloves on the lane.\"",
-   "keywords": "split up, separate, go alone, divide, meet later, you take the inn"
+   "keywords": "split up, separate, go alone, divide, meet later, you take the inn",
+   "scene": "Scene 3: The port"
   },
   {
    "id": "s01-stormborn-writ",
@@ -449,7 +468,8 @@
       "none"
      ]
     }
-   ]
+   ],
+   "scene": "Scene 3: The port"
   },
   {
    "id": "s01-detect-magic-tongue",
@@ -474,7 +494,8 @@
       "party"
      ]
     }
-   ]
+   ],
+   "scene": "Scene 1: The old dock"
   },
   {
    "id": "s01-defend-the-raid",
@@ -505,7 +526,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 5: Night on the Old Shore"
   },
   {
    "id": "s02-sing-response",
@@ -521,7 +543,8 @@
    "consequence": "One safe hour on or near the water.",
    "later": "S2: the Cantor greets a singer more gently. S3: safe passage to the belfry is easier for anyone who has sung the response.",
    "fallback": "If nobody learned it, Ila sings it, badly, and the Mere listens anyway.",
-   "keywords": "sing, hymn, response, night song, hum, choir, drowned, calm, quiet"
+   "keywords": "sing, hymn, response, night song, hum, choir, drowned, calm, quiet",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-refuse-song",
@@ -537,7 +560,8 @@
    "consequence": "The Old Shore cools toward the party, and the Choir marks them as forgetful for tonight.",
    "later": "S2: at the belfry the Cantor greets them coldly; an honest answer still works (s02-truth-to-cantor).",
    "fallback": "If a player wants back in, Ila hands them her lantern and starts the call again, quietly, just for them.",
-   "keywords": "refuse to sing, mock, laugh, superstition, stay silent, won't sing, ignore the song"
+   "keywords": "refuse to sing, mock, laugh, superstition, stay silent, won't sing, ignore the song",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-magic-on-song",
@@ -553,7 +577,8 @@
    "consequence": "The party learns where the song comes from, and that magic will not stop it.",
    "later": "S2: the direction points to the drowned belfry (s02-dive-belfry).",
    "fallback": "If they keep trying, Mother Sallow says, \"You can't spell your way out of grief, love. Sing.\"",
-   "keywords": "silence, dispel magic, detect magic, turn undead, stop the song, cast a spell, magic"
+   "keywords": "silence, dispel magic, detect magic, turn undead, stop the song, cast a spell, magic",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-wade-to-voice",
@@ -569,7 +594,8 @@
    "consequence": "The character has seen a Drowned Singer up close and carries a borrowed memory.",
    "later": "",
    "fallback": "If they swim further, the Singer sinks out of reach and the cold does the rest: they turn back, shaking, with one level of Exhaustion until they warm up.",
-   "keywords": "wade, walk into the water, swim to the voice, go toward the singing, step into the mere"
+   "keywords": "wade, walk into the water, swim to the voice, go toward the singing, step into the mere",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-stay-the-night",
@@ -585,7 +611,8 @@
    "consequence": "Someone carries a stranger's memory, possibly Tam's.",
    "later": "Tam's memory is one of the four sources (Eld's papers S3, the Cantor S2, Brannagh Wick). Any two establish the Court's responsibility.",
    "fallback": "If nobody fails, Ila wakes them at dawn and says she dreamed of her father again.",
-   "keywords": "night, shore, stay, sleep, camp, memory shore, mere memory, dream, wait"
+   "keywords": "night, shore, stay, sleep, camp, memory shore, mere memory, dream, wait",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-row-to-ferry",
@@ -601,7 +628,8 @@
    "consequence": "The ferry is found. The eels are between the party and the body.",
    "later": "S3: the Tidewarden appears to anyone who treated the body with respect, and offers safe passage to the belfry.",
    "fallback": "If they won't go, the Tidewarden's ferry drifts in to the Old Shore on its own at dawn, its ferryman still holding the oar.",
-   "keywords": "ferry, missing ferry, boat, row, sandbank, skiff, pilot, brannagh, eastern marsh, h-02"
+   "keywords": "ferry, missing ferry, boat, row, sandbank, skiff, pilot, brannagh, eastern marsh, h-02",
+   "scene": "Scene 2: The Pilots' Hall"
   },
   {
    "id": "s02-swim-whole-way",
@@ -617,7 +645,8 @@
    "consequence": "The party arrives cold and tired, and the eels are ready.",
    "later": "",
    "fallback": "If a swimmer is in trouble, the pilot's skiff comes alongside without being asked.",
-   "keywords": "swim, swim across, no boat, wade the whole way, swim to the sandbank"
+   "keywords": "swim, swim across, no boat, wade the whole way, swim to the sandbank",
+   "scene": "Scene 2: The Pilots' Hall"
   },
   {
    "id": "s02-fight-eels",
@@ -633,7 +662,8 @@
    "consequence": "The sandbank is clear. Someone may be missing a small memory until morning.",
    "later": "S2: the missing memory comes back after a long rest. S3: the Tidewarden notes who fought them. No level is given here: the party stays level 3 until S6.",
    "fallback": "If the fight goes badly, the dead ferryman's oar rises and the eels scatter.",
-   "keywords": "eels, memory-eels, fight, attack, bite, water, swim, combat, sandbank"
+   "keywords": "eels, memory-eels, fight, attack, bite, water, swim, combat, sandbank",
+   "scene": "Scene 3: The sandbank"
   },
   {
    "id": "s02-sneak-eels",
@@ -649,7 +679,8 @@
    "consequence": "The ferry and body are reached without a fight.",
    "later": "No eel-thefts to track. The Tidewarden notes their care in S3.",
    "fallback": "If the group fails, give the boat one round of grace before the first bite.",
-   "keywords": "sneak, stealth, quiet, drift, avoid, eels, slip past"
+   "keywords": "sneak, stealth, quiet, drift, avoid, eels, slip past",
+   "scene": "Scene 3: The sandbank"
   },
   {
    "id": "s02-raise-oar",
@@ -665,7 +696,8 @@
    "consequence": "The eel fight ends, and the Tidewarden notices who raised his oar.",
    "later": "S3: the Tidewarden offers peaceful passage to whoever returned his oar (s03-return-tongue).",
    "fallback": "If nobody thinks of it, the pilot mutters, \"My gran said the ferry-oar keeps the eels honest.\"",
-   "keywords": "oar, raise the oar, pick up the oar, dead man's oar, hold up the oar, ferryman's oar"
+   "keywords": "oar, raise the oar, pick up the oar, dead man's oar, hold up the oar, ferryman's oar",
+   "scene": "Scene 3: The sandbank"
   },
   {
    "id": "s02-dive-belfry",
@@ -681,7 +713,8 @@
    "consequence": "The party meets the Cantor.",
    "later": "S2: her question follows. S3: the belfry route is known.",
    "fallback": "If a diver runs out of air, a drowned hand pushes them gently up to the surface.",
-   "keywords": "dive, swim, underwater, belfry, bell, drowned bell, cantor, deep, h-07, breath"
+   "keywords": "dive, swim, underwater, belfry, bell, drowned bell, cantor, deep, h-07, breath",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-swim-to-bell",
@@ -697,7 +730,8 @@
    "consequence": "The party has seen the bell, and the Cantor knows what they came for.",
    "later": "S3: the belfry route is known for returning the Heart (s03-return-tongue).",
    "fallback": "If they hesitate, the Cantor sings, \"Have you brought what was taken?\" and waits.",
-   "keywords": "swim to the bell, touch the bell, look inside the bell, reach the bell, ossa's bell, the bell"
+   "keywords": "swim to the bell, touch the bell, look inside the bell, reach the bell, ossa's bell, the bell",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-wild-shape-dive",
@@ -713,7 +747,8 @@
    "consequence": "The druid scouts freely, and the Cantor is wary until they show their face.",
    "later": "",
    "fallback": "If the druid stays in shape and the table stalls, the Cantor asks the nearest diver, \"Who is your silent friend?\"",
-   "keywords": "wild shape, druid, turn into a fish, beast form, swim form, seal, octopus, shape change"
+   "keywords": "wild shape, druid, turn into a fish, beast form, swim form, seal, octopus, shape change",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-truth-to-cantor",
@@ -729,7 +764,8 @@
    "consequence": "The party has one more source on Tam's death and the verse of Ossa's hymn.",
    "later": "S3: the Choir is calmer toward whoever answered truly. The release verse is in s02-grieve-to-cantor.",
    "fallback": "If no one has a loss to name, the Cantor accepts someone grieving on Ila's behalf.",
-   "keywords": "cantor, ondra, grieving, truth, answer, verse, hymn, release, name, dead"
+   "keywords": "cantor, ondra, grieving, truth, answer, verse, hymn, release, name, dead",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-lie-to-cantor",
@@ -751,7 +787,8 @@
      "flag": "clock_choir",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-ask-about-tongue",
@@ -767,7 +804,8 @@
    "consequence": "The party knows the Tongue belongs to the Mere and that the ferry-folk carry a debt.",
    "later": "S3: Mother Sallow's ledger explains the debt (Tam stole it back from the Court in 392 SS, and the Choir asked for it). She can rebuild the release verse from the ledger (s03-sallow-rebuilds-verse).",
    "fallback": "",
-   "keywords": "tongue, ask, cantor, bell, owe, debt, ferry-folk"
+   "keywords": "tongue, ask, cantor, bell, owe, debt, ferry-folk",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-ring-ossa-early",
@@ -816,7 +854,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "id": "s02-stop-hadrik",
@@ -840,7 +879,8 @@
       "hunting"
      ]
     }
-   ]
+   ],
+   "scene": "Scene 1: The Night Song"
   },
   {
    "id": "s02-ask-brannagh",
@@ -856,7 +896,8 @@
    "consequence": "One more source on Tam's death.",
    "later": "S3: with any second source (Eld's patrol entry, the Cantor, a Mere Memory of Tam) the Court's responsibility is established. Brannagh can also delay any ship from leaving the Mere (s03-delay-heron): no pilot, no departure.",
    "fallback": "",
-   "keywords": "brannagh, pilots hall, pilot, tam, harrow, father, boat, how he died, investigate"
+   "keywords": "brannagh, pilots hall, pilot, tam, harrow, father, boat, how he died, investigate",
+   "scene": "Scene 2: The Pilots' Hall"
   },
   {
    "id": "s02-brannagh-court",
@@ -872,7 +913,8 @@
    "consequence": "The party knows the Pilots' Hall can close the Mere to the Court and to any ship.",
    "later": "S3: Brannagh can deny a ship a pilot (s03-delay-heron) or close the Mere to Court boats in a siege (s03-keep-and-defend).",
    "fallback": "If they push for more, she counts a tide out loud and says, \"That's all you get for free, lad.\"",
-   "keywords": "Brannagh, the Court, Hushmen, pilots, who controls the water, landing house, boats"
+   "keywords": "Brannagh, the Court, Hushmen, pilots, who controls the water, landing house, boats",
+   "scene": "Scene 2: The Pilots' Hall"
   },
   {
    "id": "s03-search-eld",
@@ -888,7 +930,8 @@
    "consequence": "The party holds the missing page, with Ila's name on it.",
    "later": "The patrol entry is a source on Tam's death. S4: if they took the forms, Rook (S6) values them as evidence.",
    "fallback": "If they won't search, Eld brings them the page himself the next morning, unable to sleep.",
-   "keywords": "eld, desk, search, chapel, page, ledger, find, investigate, steal, forms"
+   "keywords": "eld, desk, search, chapel, page, ledger, find, investigate, steal, forms",
+   "scene": "Scene 2: Brother Eld's desk"
   },
   {
    "id": "s03-who-was-on-the-ferry",
@@ -904,7 +947,8 @@
    "consequence": "The party knows the dead ferryman was the Tidewarden's old body, and that the Mere's spirits were once Pellmoor's own people.",
    "later": "",
    "fallback": "If nobody asks, Mother Sallow mentions it while she shows them where the page was torn out.",
-   "keywords": "who was on the ferry, ferryman, dead man, Abel Tarn, Tarn, ledger, ferry roll, tidewarden, body"
+   "keywords": "who was on the ferry, ferryman, dead man, Abel Tarn, Tarn, ledger, ferry roll, tidewarden, body",
+   "scene": "Scene 1: Who was on the ferry"
   },
   {
    "id": "s03-take-page-private",
@@ -934,7 +978,8 @@
      "flag": "eld",
      "set": "gone"
     }
-   ]
+   ],
+   "scene": "Scene 2: Brother Eld's desk"
   },
   {
    "id": "s03-expose-eld",
@@ -964,7 +1009,8 @@
      "flag": "eld",
      "set": "fled"
     }
-   ]
+   ],
+   "scene": "Scene 2: Brother Eld's desk"
   },
   {
    "id": "s03-forgive-eld",
@@ -994,7 +1040,8 @@
      "flag": "eld",
      "set": "forgiven"
     }
-   ]
+   ],
+   "scene": "Scene 2: Brother Eld's desk"
   },
   {
    "id": "s03-comfort-ila",
@@ -1010,7 +1057,8 @@
    "consequence": "Ila's trust is earned or lost here.",
    "later": "S3: she argues for returning the Tongue to the Mere. Taking her along keeps her close and in danger (s03-take-ila-along); hiding her with the Pilots' Hall keeps her safe (s03-hide-ila). If the party does neither and the Tongue goes to the Court, she is arrested (s03-ila-arrested).",
    "fallback": "",
-   "keywords": "ila, comfort, truth, list, name, cry, tell her, father"
+   "keywords": "ila, comfort, truth, list, name, cry, tell her, father",
+   "scene": "Scene 3: Ila's name"
   },
   {
    "id": "s03-dont-worry-ila",
@@ -1026,7 +1074,8 @@
    "consequence": "Ila is closed to that character, and turns to someone else.",
    "later": "S3: someone else can still tell her the truth (s03-comfort-ila).",
    "fallback": "If nobody tells her, she reads the page herself and says, 'Four hundred and ten. That's when Dad started locking the door.'",
-   "keywords": "don't worry, it's nothing, protect her, hide the page, lie to Ila, spare her"
+   "keywords": "don't worry, it's nothing, protect her, hide the page, lie to Ila, spare her",
+   "scene": "Scene 3: Ila's name"
   },
   {
    "id": "s03-tam-solved",
@@ -1042,7 +1091,8 @@
    "consequence": "The Court is responsible for Tam's death, and the party knows it.",
    "later": "S6: Wren's confession (she gave the Court Tam's name) lands hard. Ila's anger shapes her choices for the rest of the campaign.",
    "fallback": "If they have only one source, Mother Sallow supplies the second from the ledger: Tam's name, with a Court mark beside it.",
-   "keywords": "tam, death, murder, how he died, clues, solve, patrol, route, memory taken"
+   "keywords": "tam, death, murder, how he died, clues, solve, patrol, route, memory taken",
+   "scene": "Scene 3: Ila's name"
   },
   {
    "id": "s03-return-tongue",
@@ -1073,7 +1123,8 @@
      "flag": "t_ossa",
      "set": "belfry"
     }
-   ]
+   ],
+   "scene": "Scene 6: Ossa's bell"
   },
   {
    "id": "s03-ring-ossa",
@@ -1123,7 +1174,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 6: Ossa's bell"
   },
   {
    "id": "s03-sing-release",
@@ -1170,7 +1222,8 @@
      "flag": "choir",
      "set": "released"
     }
-   ]
+   ],
+   "scene": "Scene 6: Ossa's bell"
   },
   {
    "id": "s03-carry-to-hallowmere",
@@ -1201,7 +1254,8 @@
      "flag": "t_ossa",
      "set": "party"
     }
-   ]
+   ],
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "id": "s03-keep-and-defend",
@@ -1236,7 +1290,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "id": "s03-give-to-maudrin",
@@ -1271,7 +1326,8 @@
      "flag": "court_eye",
      "set": "recorded"
     }
-   ]
+   ],
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "id": "s03-sell-to-venn",
@@ -1306,7 +1362,8 @@
      "flag": "venn",
      "set": "dealt"
     }
-   ]
+   ],
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "id": "s03-recover-from-venn",
@@ -1340,7 +1397,8 @@
      "flag": "venn",
      "set": "exposed"
     }
-   ]
+   ],
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "id": "s03-accept-invitation",
@@ -1366,7 +1424,8 @@
      "flag": "court_eye",
      "set": "recorded"
     }
-   ]
+   ],
+   "scene": "Scene 7: The letter"
   },
   {
    "id": "s03-refuse-invitation",
@@ -1392,7 +1451,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 7: The letter"
   },
   {
    "id": "s03-burn-letter",
@@ -1418,7 +1478,8 @@
      "flag": "clock_court",
      "add": 1
     }
-   ]
+   ],
+   "scene": "Scene 7: The letter"
   },
   {
    "style": "Combat",
@@ -1459,7 +1520,8 @@
      "set": "recorded"
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 5: Night on the Old Shore"
   },
   {
    "style": "Mischief",
@@ -1485,7 +1547,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "style": "Mischief",
@@ -1519,7 +1582,8 @@
      "set": "recorded"
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 3: The port"
   },
   {
    "style": "Mischief",
@@ -1549,7 +1613,8 @@
      "set": "forged"
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 3: The port"
   },
   {
    "style": "Exploration",
@@ -1579,7 +1644,8 @@
      "set": "met"
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 3: The port"
   },
   {
    "style": "Roleplay",
@@ -1609,7 +1675,8 @@
      "set": "harpers"
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 3: The port"
   },
   {
    "style": "Roleplay",
@@ -1634,7 +1701,8 @@
      ]
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 1: The old dock"
   },
   {
    "style": "Combat",
@@ -1675,7 +1743,8 @@
      "add": 2
     }
    ],
-   "sessionId": "sb-ce895de5912506a9"
+   "sessionId": "sb-ce895de5912506a9",
+   "scene": "Scene 4: Quill comes for the quota"
   },
   {
    "style": "Roleplay",
@@ -1705,7 +1774,8 @@
      "set": "learned"
     }
    ],
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "style": "Combat",
@@ -1735,7 +1805,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "style": "Roleplay",
@@ -1771,7 +1842,8 @@
      "set": "ila"
     }
    ],
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "style": "Combat",
@@ -1809,7 +1881,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "If Ila was taken: the Mere road cart"
   },
   {
    "style": "Combat",
@@ -1831,7 +1904,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 5: Down to the bell"
   },
   {
    "style": "Exploration",
@@ -1847,7 +1921,8 @@
    "response": "Brannagh Wick lends a skiff and a pilot to take the body to the ferry-folk cold-house. This is the Tidewarden's old body: the Choir let it be borne. The Tidewarden's gratitude is quiet; he will offer the air pocket in S3 without being asked. He is not Tam: the ledger names him in S3 as Old Abel Tarn, the eastern ferryman (s03-who-was-on-the-ferry).",
    "consequence": "The ferry-folk see the party honour a dead man.",
    "keywords": "body, ferryman, burial, cold-house, tidewarden, honour the dead",
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 3: The sandbank"
   },
   {
    "id": "s02-hooded-ferryman",
@@ -1863,7 +1938,8 @@
    "consequence": "The party has met the Tidewarden and may hold his offer of safe passage to the bell.",
    "later": "S3: the Tidewarden waits at the ferry-stair and holds the air pocket for anyone he met kindly (s03-return-tongue). S3: he confirms who was on the ferry (s03-who-was-on-the-ferry).",
    "fallback": "If they attack or ignore him, he is gone between one drip of the oar and the next, and waits at the ferry-stair in S3 anyway.",
-   "keywords": "tidewarden, hooded figure, hooded ferryman, oar, ghost, spirit, who are you, passage, air pocket, carry him"
+   "keywords": "tidewarden, hooded figure, hooded ferryman, oar, ghost, spirit, who are you, passage, air pocket, carry him",
+   "scene": "Scene 4: The hooded ferryman"
   },
   {
    "style": "Exploration",
@@ -1879,7 +1955,8 @@
    "response": "The Night Song rises at dusk and passes, and the village's attention is on the water. Quill writes his report. Use the evening to buy gear, learn the hymn, and hear the villagers' rumours (Tam, the missing ferry, the page). A character who sits through the whole night makes the DC 12 Wisdom save (s02-stay-the-night).",
    "consequence": "The party has the hymn and a rumour or two; the missing ferry waits.",
    "keywords": "rest, skip, shop, inn, shuttered bell, night song, dorra pell",
-   "sessionId": "sb-7be12e377d5748b4"
+   "sessionId": "sb-7be12e377d5748b4",
+   "scene": "Scene 1: The Night Song"
   },
   {
    "style": "Roleplay",
@@ -1910,7 +1987,8 @@
      "set": "party"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 3: Ila's name"
   },
   {
    "style": "Roleplay",
@@ -1941,7 +2019,8 @@
      "set": "hidden"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 3: Ila's name"
   },
   {
    "style": "Roleplay",
@@ -1977,7 +2056,8 @@
      "set": "arrested"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 4: Knocks at the door"
   },
   {
    "style": "Roleplay",
@@ -2008,7 +2088,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 4: Knocks at the door"
   },
   {
    "style": "Roleplay",
@@ -2024,7 +2105,8 @@
    "response": "The households warn the party when Hushmen move, offer a hiding place for Ila or the Tongue, and later shelter villagers during a siege. They will not fight; they will lie. They do not ask for anything. Heroic Inspiration for a player who thanks them by name.",
    "consequence": "The Old Shore has a back door.",
    "keywords": "households, quota, warn, villagers owe, sympathisers",
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 4: Knocks at the door"
   },
   {
    "style": "Combat",
@@ -2064,7 +2146,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 2: Brother Eld's desk"
   },
   {
    "style": "Mischief",
@@ -2094,7 +2177,8 @@
      "add": 1
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "style": "Exploration",
@@ -2124,7 +2208,8 @@
      "set": "abroad"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "style": "Roleplay",
@@ -2154,7 +2239,8 @@
      "set": "party"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 5: What to do with the Heart"
   },
   {
    "style": "Roleplay",
@@ -2184,7 +2270,8 @@
      "set": "learned"
     }
    ],
-   "sessionId": "sb-4296a01bb560bd61"
+   "sessionId": "sb-4296a01bb560bd61",
+   "scene": "Scene 6: Ossa's bell"
   }
  ],
  "briefs": [
