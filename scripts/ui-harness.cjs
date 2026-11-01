@@ -121,7 +121,6 @@ const tourStates=[
  {name:'modal-recap',steps:[['click','Import recap'],['wait',350]],close:true},
  {name:'modal-new-campaign',steps:[['click','New campaign'],['wait',350]],close:true},
  {name:'modal-data',steps:[['click','AI & backups'],['wait',450]],close:true},
- {name:'modal-dice',steps:[['click','Table tools'],['wait',450]],close:true},
  {name:'modal-wrap-up',steps:[['nav','Session desk'],['click','Wrap up session'],['wait',350]],close:true},
  {name:'quick-navigation',steps:[['key','K',['control']],['wait',350]],close:true},
 ];

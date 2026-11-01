@@ -11,7 +11,6 @@ const dialogs=[
  {name:'Import recap',pre:[['nav','Chronicle']],open:['click','Import recap']},
  {name:'New campaign',pre:[['nav','Session desk']],open:['click','New campaign']},
  {name:'AI & backups',pre:[['nav','Session desk']],open:['click','AI & backups']},
- {name:'Table tools',pre:[['nav','Session desk']],open:['click','Table tools']},
  {name:'Wrap up session',pre:[['nav','Session desk']],open:['click','Wrap up session']},
  {name:'Quick navigation',pre:[['nav','Session desk']],open:['key','K',['control']],opener:'none'},
 ];

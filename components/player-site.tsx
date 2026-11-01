@@ -18,8 +18,9 @@ const asDraft=(e:PlayerEntry):WikiDraft=>({id:e.id,title:e.title,kind:e.kind,bod
 // The Player site panel: what is public, what is ready to send, and where site.html is kept.
 export default function PlayerSite({campaign,session,update,notify,fail,seed,onSeedUsed}:Notify&{campaign:Campaign;session:Session;seed?:WikiDraft|null;onSeedUsed?:()=>void}){
  const pb=memoryOf(campaign).playbook,sent=sentEntries(campaign),index=campaign.sessions.findIndex(s=>s.id===session.id);
- const [draft,setDraft]=useState<WikiDraft|null>(null),[where,setWhere]=useState(''),[busy,setBusy]=useState(false);
- useEffect(()=>{if(seed){setDraft(seed);onSeedUsed?.()}},[seed,onSeedUsed]);
+ const [draft,setDraft]=useState<WikiDraft|null>(seed||null),[where,setWhere]=useState(''),[busy,setBusy]=useState(false);
+ // A page sent from the DM wiki opens here as the draft; the seed is cleared once it has been taken.
+ useEffect(()=>{if(seed)onSeedUsed?.()},[seed,onSeedUsed]);
  useEffect(()=>{if(!isDesktop())return;let live=true;void appFetch('/api/site/where',{method:'GET'}).then(r=>r.json() as Promise<{path?:string}>).then(d=>{if(live)setWhere(d.path||'')}).catch(()=>{});return()=>{live=false}},[busy]);
  const prepared=pb?.playerWiki||[],status=(e:PlayerEntry)=>entryStatus(campaign,e,index);
  const due=prepared.filter(e=>status(e)==='due'),later=prepared.filter(e=>status(e)==='later'||status(e)==='waiting');
