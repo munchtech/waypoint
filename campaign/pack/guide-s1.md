@@ -60,8 +60,8 @@
 - **[…are kind](play:s01-kind-to-ila)** (ask her name, ask about the hum, kneel to her height): she unwraps the oilskin. Hum. Read the box below. She trusts this character from now on.
 - **[…are rude, brush her off or demand the Heart:](play:s01-rude-to-ila)** Ila turns away and pockets it. Mother Sallow is suddenly there: "She's a child. You can be a child too, or you can be useful." Sallow gives them one way back: find the eastern-marsh ferry that's been missing a week (that's Session 2).
 - **[…try to take it by force or stealth:](play:s01-take-tongue)** first check your session-zero Off-limits list; nothing is ever done to Ila on-screen. A sleight-of-hand attempt is Dexterity (Sleight of Hand) DC 17, and a ferry-folk widow mending nets sees it anyway unless the roll beats 20. If they keep it, the whole Old Shore goes cold on them (no boats, no hymn) until they give it back by hand and apologise. Foresight has this as "They try to take or steal the Heart."
-- **…ask her to come with them:** "Mother Sallow says I'm not allowed to be brave yet." She walks them to Sallow's hut.
-- **…ignore her completely and head for the Quays:** fine. Run Scene 3, and let Ila find them there: she follows the people "who looked like they heard it."
+- **[…ask her to come with them:](play:s01-ila-come-along)** "Mother Sallow says I'm not allowed to be brave yet." She walks them to Sallow's hut.
+- **[…ignore her completely and head for the Quays:](play:s01-ignore-ila)** fine. Run Scene 3, and let Ila find them there: she follows the people "who looked like they heard it."
 
 > **SAY (when Ila shows the Heart):** "She folds back the oilskin. Inside is a lump of dark bronze the size of a fist, shaped like a teardrop, worn smooth. As her fingers close on it, you hear it: a hum, very low, more in your teeth than your ears. Out on the far shore the still water shivers in a ring. Ila says: 'It's warm. Not like a hot pan. Like something alive that's been asleep. Nobody believes me except Mother Sallow, and she only believes me because she's scared.'"
 
@@ -94,9 +94,9 @@
 
 **If they…**
 - **[…accept the three days:](play:s01-sallow-bargain)** she nods once and pours more tea. Record the bargain in Foresight → Party & ledger → Bargain log ("Keep the Heart from the Court for three days"). Session 3 rewards it: she opens the ledger without being asked.
-- **…try to charm her:** it slides off. Her attitude stays Indifferent. Blunt honesty, especially about something they've lost, makes her Friendly.
-- **…offer to take the Heart themselves:** "It's Ila's to give." If Ila trusts them, Ila gives it. That's a real choice; let it happen.
-- **…ask for payment:** "Gold? I've got some, and it buys nothing I need. Find the eastern ferry and I'll pay you for that." (That's Session 2's hook.)
+- **[…try to charm her:](play:s01-charm-sallow)** it slides off. Her attitude stays Indifferent. Blunt honesty, especially about something they've lost, makes her Friendly.
+- **[…offer to take the Heart themselves:](play:s01-keep-heart-for-ila)** "It's Ila's to give." If Ila trusts them, Ila gives it. That's a real choice; let it happen.
+- **[…ask for payment:](play:s01-ask-sallow-payment)** "Gold? I've got some, and it buys nothing I need. Find the eastern ferry and I'll pay you for that." (That's Session 2's hook.)
 - **[…want to see the Memory Shore:](play:s01-memory-shore)** she walks them there. Read: "Stones smoothed by four centuries of water, each scratched with a name. The water whispers them back." Davin Sallow's stone is near the edge. If you like, one stone has a player character's name on it, dated ten years from now. Mother Sallow only says, "The Mere remembers what hasn't happened yet." Use it as foreshadowing; nothing else has to follow.
 
 **How it ends.** The party leaves with the hymn, a promise, and either the Heart or Ila's trust. Ask: "The afternoon's yours. What do you do?" Most tables go to the port (Scene 3). If they want to stay on the Old Shore, skip to Scene 4.
@@ -124,8 +124,8 @@
 
 **If they…**
 - **[…try to sell the Heart now:](play:s01-tongue-to-the-quays)** Sela refuses; Venn offers 600 gp and gives them three days. Don't let the sale happen tonight; he wants a contract, a witness and a pilot. The real choice is in Session 3.
-- **…start a fight on the Quays:** foreign captains don't interfere with the Court. Six Hushmen sit in the Landing House. Telegraph them: boots on the boards, a door opening. Give the party a round to walk away.
-- **…split up:** let them. Cut between them every few minutes. Bring everyone back together for Scene 4.
+- **[…start a fight on the Quays:](play:s01-fight-on-quays)** foreign captains don't interfere with the Court. Six Hushmen sit in the Landing House. Telegraph them: boots on the boards, a door opening. Give the party a round to walk away.
+- **[…split up:](play:s01-split-up)** let them. Cut between them every few minutes. Bring everyone back together for Scene 4.
 
 **How it ends.** The light goes grey. Lamps come on along the Quays. On the Old Shore, someone is walking from house to house with a ledger. Go to Scene 4.
 

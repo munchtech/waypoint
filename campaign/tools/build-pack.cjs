@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.2) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.3) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs=require('fs'),path=require('path');
 const P=require(path.join(__dirname,'../paths.cjs'));
@@ -34,9 +34,10 @@ const statIds=new Set(statblocks.map(s=>s.id));for(const e of encounters)for(con
 const encIds=new Set(encounters.map(e=>e.id));for(const b of briefs)for(const id of b.encounters)if(!encIds.has(id))warn('brief '+b.sessionId+' lists missing encounter '+id);
 const memoryPage=lore.pages.find(p=>p.id==='v6-memory-money');
 const sessionCount=sessions.filter(s=>s.plays).length,playCount=[...bySession.values()].reduce((n,l)=>n+l.length,0);
-const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.2',
- summary:`Revision 7.2 of The Seventh Bell, for Waypoint 1.35.2. It installs over revision 7.1, revision 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.3',
+ summary:`Revision 7.3 of The Seventh Bell, for Waypoint 1.35.3. It installs over revisions 7.2, 7.1 and 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **New in 7.3: every option is a button.** The 17 "If they…" options in the Act I guides that were plain text now have prepared plays too, so whatever the party does you can open its card, read what to say and do, and record it.
 - **New in 7.2: click what the players do.** In each Act I guide, the "If they…" choices are buttons. Click one and that play's card opens right there in your session notes, with **The party did this** on it, so you can run the session from the page. The IsoForge map kits (the kit section at the end of each Act I plan, three wiki pages and three saved cards) are retired, each listed for review.
 - **New in 7.1: a guide for running Sessions 1 to 3.** Each Act I session plan gains a section, **Running this session (new DM guide)**, after the plan: what to prepare, read-aloud for every scene, what is really going on, how to play each person, the checks and DCs, what to do when the players surprise you, a turn-by-turn guide to every fight, pacing, names, and what to record afterwards. Four new plays fill gaps the guide found, and Act I's numbers now match the 2024 stat blocks.
 - **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
@@ -52,7 +53,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
  match:{campaignIds:['the-seventh-bell-corvane-v5'],names:['The Seventh Bell']},
  campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,remove:lore.remove,
  pages:lore.pages.map(page=>({mode:'replace',page})),pageEdits,
- playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.2',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
+ playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.3',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
 // "Tongue" becomes "Heart" in everything the pack carries; the pack also asks Waypoint to rename the DM's own text the same way.
 const {terms,deep}=require(pack('terms.cjs'));Object.assign(result,deep(result,''));result.terms=terms;
 // The player site: prepared player-safe wiki entries and the site's fixed pages (handouts and map, built by tools/build-handouts.cjs).

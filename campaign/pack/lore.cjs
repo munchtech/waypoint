@@ -32,12 +32,15 @@ const s2Singers={find:`The Drowned Choir attacks. **Encounter:** one Drowned Sin
 const fs=require('fs'),path=require('path');
 // The guide as revision 7.1 installed it stays fixed (guide-sN-7.1.md), so tables that have it are not given a second copy.
 // Revision 7.2 turns the "If they…" lines into play links ([label](play:id)) that open the play's card in the session notes:
-// each run of changed lines between the 7.1 text and guide-sN.md becomes one more edit, applied after the guide.
+// each run of changed lines between one revision's text and the next becomes one more edit, applied after the guide.
+// Every revision a table may have installed is kept (guide-sN-7.1.md, guide-sN-7.2.md); guide-sN.md is the current text.
 const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8').trim();
+const guideVersions=['7.1','7.2',''];
 // `unless`: once a session has the guide's heading, the guide is in, even after the link edits have reworded some of its lines.
 const guide=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'-7.1.md'),unless:'## Running this session (new DM guide)',guide:true});
-const links=n=>{const old=read('guide-s'+n+'-7.1.md').split('\n'),now=read('guide-s'+n+'.md').split('\n'),out=[];if(old.length!==now.length)throw new Error('guide-s'+n+'.md must keep the 7.1 line count');
+const diff=(n,old,now)=>{const out=[];if(old.length!==now.length)throw new Error('guide-s'+n+': each revision must keep the 7.1 line count');
  for(let i=0;i<old.length;i++){if(old[i]===now[i])continue;let j=i;while(j+1<old.length&&old[j+1]!==now[j+1])j++;const find=old.slice(i,j+1).join('\n');if(old.join('\n').split(find).length!==2)throw new Error('guide-s'+n+' line '+(i+1)+' is not unique');out.push({find,replace:now.slice(i,j+1).join('\n'),guide:true});i=j}return out};
+const links=n=>{const texts=guideVersions.map(v=>read('guide-s'+n+(v?'-'+v:'')+'.md').split('\n'));return texts.slice(1).flatMap((now,i)=>diff(n,texts[i],now))};
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);

@@ -65,6 +65,38 @@
    "keywords": "father, dad, Tam, Tam Harrow, coat, family, parents, drowned, how did he die, alone"
   },
   {
+   "id": "s01-ila-come-along",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They ask Ila to come with them",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A lonely child with a strange object invites protective players to bring her along.",
+   "tells": "A player says \"come with us\", offers to walk her somewhere, or asks where she lives.",
+   "readAloud": "Ila looks at the Quays, then at the reed roofs. \"Mother Sallow says I'm not allowed to be brave yet.\" She tucks the bundle into her coat. \"I can take you to her, though.\"",
+   "response": "Ila walks them to Mother Sallow's hut and waits at the door. By day she will go anywhere on the Old Shore with someone she trusts; never onto the water at night, and never onto the Quays without Sallow's say-so. She points out who is who on the way: the net-racks, the chapel, the Harrow house with its shutters closed.",
+   "rules": "No check. Ila is fourteen: follow the session-zero Off-limits list, never put her in a fight, and give her a quiet place at the edge of each scene.",
+   "consequence": "The party reaches Mother Sallow with Ila beside them, and Ila trusts whoever asked.",
+   "later": "S3: whether she travels with the party is their choice there (s03-take-ila-along).",
+   "fallback": "If they want her somewhere she can't go, she says 'Ask Mother Sallow,' and Sallow says no.",
+   "keywords": "come with us, bring Ila, take her along, walk her home, follow us, Ila joins"
+  },
+  {
+   "id": "s01-ignore-ila",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They ignore Ila and head for the Quays",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players who arrive by ship often want the port, the market and a drink before anything else.",
+   "tells": "The party walks past the old dock toward the noise, or asks where the inn and the market are.",
+   "readAloud": "Behind you, a girl in a too-big ferry coat watches you go. By the time you reach the Tally, she is standing at the end of the market, counting the stalls, and looking straight at you.",
+   "response": "Fine: run the port (Scene 3). Within the hour Ila follows 'the people who looked like they heard it' and finds them at the Tally. If someone shows Sela Maunt anything near Ila, Sela's fork goes silent and she looks at the child. Then the dock scene happens wherever they are.",
+   "rules": "No check.",
+   "consequence": "The party meets the port first, and Ila comes to them.",
+   "later": "",
+   "fallback": "If they ignore her a second time, Mother Sallow comes to fetch them herself: 'She's picked you. Heaven knows why.'",
+   "keywords": "ignore Ila, walk past, go to the quays, market, port first, skip the girl"
+  },
+  {
    "id": "s01-take-tongue",
    "sessionId": "sb-ce895de5912506a9",
    "title": "They try to take or steal the Tongue from Ila",
@@ -113,6 +145,68 @@
    "later": "S2: the hymn calms the Night Song for an hour. S3: if they kept the Tongue from the Court for three days, Mother Sallow opens the ledger without being asked (s03-search-eld).",
    "fallback": "If they dither, she hands Ila the tea and says, \"Then I'll keep it, and you can watch me fail.\"",
    "keywords": "mother sallow, bargain, deal, three days, tea, hymn, response, night song, keep it safe"
+  },
+  {
+   "id": "s01-charm-sallow",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They try to charm Mother Sallow",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Bards and smooth talkers reach for flattery first, and Sallow is built to resist it.",
+   "tells": "Compliments about her tea or her wisdom, a Persuasion roll to \"win her over\", or Charm Person.",
+   "readAloud": "She takes the pipe out of her mouth and looks at you for a long moment. \"Lovely. Now say what you actually want.\"",
+   "response": "Charm slides off: she stays Indifferent and gets drier. Blunt honesty works at once: tell her plainly what the character wants, or something they have lost, and she becomes Friendly with no roll. If someone casts Charm Person, it works on a failed save, but when it ends she knows, and she is Hostile to the caster until they apologise.",
+   "rules": "Influence: flattery does not move her (her attitude stays Indifferent). An honest answer about a loss makes her Friendly, no roll. Charm Person (2024): Wisdom save; when it ends she knows she was charmed.",
+   "consequence": "Mother Sallow judges the party by honesty, and says so.",
+   "later": "",
+   "fallback": "If the table keeps trying, she pours the tea and says, 'Charm's for people who want something. You want something. Out with it.'",
+   "keywords": "charm, flatter, persuade Sallow, compliment, win her over, charm person, smooth talk"
+  },
+  {
+   "id": "s01-keep-heart-for-ila",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "Ila gives them the Heart to keep",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Players who want to protect Ila often offer to carry the dangerous thing themselves.",
+   "tells": "A player offers to hold it, hide it, or keep it safe for her.",
+   "readAloud": "Ila looks at Mother Sallow. Sallow shrugs. \"It's yours to give.\" Ila holds the bundle out with both hands, and the hum stops the moment it leaves them.",
+   "response": "It is Ila's to give, and she gives it only to someone she trusts (someone who was kind to her on the dock). In their hands it stays silent; it hums only for Ila. She asks one thing: 'Tell me where it is. Always.' If she doesn't trust them, she says no, and this play doesn't happen.",
+   "rules": "No check, but only with Ila's trust. A Bell-Touched character hears a faint hum from it even when Ila is not holding it.",
+   "consequence": "The party carries Ossa's Tongue, and Ila is less of a target.",
+   "later": "S2: whoever carries it can bring it on the dive (s02-ring-ossa-early). S3: the choice of what to do with it is theirs (s03-return-tongue).",
+   "fallback": "If they lose track of it, Ila knows: 'It's quiet. Where is it?'",
+   "keywords": "keep it for her, hold the heart, carry it, take the heart, look after it, give it to us",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s01-ask-sallow-payment",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They ask Mother Sallow for payment",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Mercenary characters ask what the job pays, and Sallow has an answer ready.",
+   "tells": "\"What's in it for us?\", \"What does it pay?\", haggling over the three days.",
+   "readAloud": "\"Gold? I've got some, and it buys nothing I need.\" She taps the pipe on the table. \"Find the eastern ferry and I'll pay you for that.\"",
+   "response": "She won't pay for the three days: that is a favour, and she says so. She will pay for finding the eastern-marsh ferry, missing a week: 15 gp in mixed Faerûnian coin, everything in her tea tin. She does not haggle. A party that refuses the money later earns her respect for good.",
+   "rules": "Influence will not raise the price: she has nothing more to give.",
+   "consequence": "The party has a paid job: find the eastern ferry.",
+   "later": "S2: she pays when they find the ferry (s02-row-to-ferry).",
+   "fallback": "If they walk out over money, a ferry-folk widow offers the same job at the Shuttered Bell for the same coin.",
+   "keywords": "payment, pay, reward, money, gold, what does it pay, haggle, fee"
   },
   {
    "id": "s01-memory-shore",
@@ -302,6 +396,38 @@
    ]
   },
   {
+   "id": "s01-fight-on-quays",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They start a fight on the Quays",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A shove, an insult or a pickpocket can turn into a brawl in a crowded port.",
+   "tells": "A player threatens a sailor, draws a weapon, or chases a thief through the crowd.",
+   "readAloud": "The crowd opens around you like water. Somewhere behind the warehouses, a door bangs, and boots start coming down the boards: unhurried, in step.",
+   "response": "Foreign captains don't interfere with the Court, and nobody helps either side. Telegraph the Landing House's six Hushmen a round early: boots on the boards, a door opening. Give the party one round to walk away. If they keep fighting, four Hushmen arrive (use Quill's patrol), want arrests, not bodies, and stop at the edge of the Old Shore.",
+   "rules": "A brawl with fists is unarmed strikes; a creature dropped by a melee attack can be knocked out instead of killed. Hushmen use Arrest (DC 12 Strength save or Grappled).",
+   "consequence": "The Quays remember the party, and so does the Landing House if the Hushmen arrive.",
+   "later": "",
+   "fallback": "If it stalls, Brannagh Wick's pilots pull the party into the Pilots' Hall and shut the door: 'Not on my boards.'",
+   "keywords": "fight, brawl, punch, attack sailor, start a fight, draw weapons, quays, riot"
+  },
+  {
+   "id": "s01-split-up",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They split up",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players with different interests scatter across the port to do several things at once.",
+   "tells": "\"I'll go to the market, you two take the inn\", or one player heads off alone.",
+   "readAloud": "The crowd on the Quays swallows your friends in a dozen steps. Somewhere in it, a grey coat stops to light a pipe and does not light it.",
+   "response": "Let them. Cut between groups every few minutes and end each cut on a small question ('Sela taps her fork. What do you show her?'). Give each player a spotlight, then bring everyone back together for Quill on the Old Shore. Hushmen prefer a lone target: anyone walking alone after dark is followed home by Quill's guard, and notices on a DC 12 Wisdom (Perception) check.",
+   "rules": "No check to split up. Passive or active Wisdom (Perception) DC 12 to notice being followed after dark.",
+   "consequence": "Several port scenes happen at once, and the party compares notes later.",
+   "later": "",
+   "fallback": "If the groups drift too far apart, Ila runs between them with news: \"Grey gloves on the lane.\"",
+   "keywords": "split up, separate, go alone, divide, meet later, you take the inn"
+  },
+  {
    "id": "s01-stormborn-writ",
    "sessionId": "sb-ce895de5912506a9",
    "title": "A Stormborn character asks to travel inland",
@@ -398,6 +524,54 @@
    "keywords": "sing, hymn, response, night song, hum, choir, drowned, calm, quiet"
   },
   {
+   "id": "s02-refuse-song",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They refuse to sing, or mock the song",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Some characters scoff at village rituals, and some players test whether the threat is real.",
+   "tells": "A player stays silent on purpose, laughs, or says \"It's just a superstition.\"",
+   "readAloud": "Along the shore, one lantern after another turns away from you. Mother Sallow does not look round. \"Then don't go on the water tonight.\"",
+   "response": "Nothing attacks. The ferry-folk turn their backs, and the Drowned treat the silent ones as the forgetful until they sing. If the Heart was stolen in Session 1 and not returned, Sallow won't teach the hymn at all until they make amends (s02-make-amends). Anyone who changes their mind can sing the next verse; no one holds it against them.",
+   "rules": "No check. Without the hymn the Night Song is dangerous on the water: Drowned Singers do not stop for an unsung group.",
+   "consequence": "The Old Shore cools toward the party, and the Choir marks them as forgetful for tonight.",
+   "later": "S2: at the belfry the Cantor greets them coldly; an honest answer still works (s02-truth-to-cantor).",
+   "fallback": "If a player wants back in, Ila hands them her lantern and starts the call again, quietly, just for them.",
+   "keywords": "refuse to sing, mock, laugh, superstition, stay silent, won't sing, ignore the song"
+  },
+  {
+   "id": "s02-magic-on-song",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They try to stop the Night Song with magic",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Casters want to test the song: silence it, dispel it, or study it.",
+   "tells": "A player casts Silence, Dispel Magic, Detect Magic or Turn Undead at the water.",
+   "readAloud": "Your spell hums as it leaves you, the way every spell in Corvane does. The singing goes on, exactly as before, as if it had not noticed.",
+   "response": "Silence does nothing: the Drowned hear grief, not sound. Dispel Magic finds nothing to dispel; the song is the dead, not a spell. Detect Magic shows a faint aura deep under the water, belonging to no school, in the direction of the old belfry. Turn Undead has no target: the singers are too deep. Only the response hymn quiets it.",
+   "rules": "Detect Magic (ritual) shows the aura and its direction. A Study check, Intelligence (Religion or Arcana) DC 13, adds: \"This isn't a curse. It's a congregation.\"",
+   "consequence": "The party learns where the song comes from, and that magic will not stop it.",
+   "later": "S2: the direction points to the drowned belfry (s02-dive-belfry).",
+   "fallback": "If they keep trying, Mother Sallow says, \"You can't spell your way out of grief, love. Sing.\"",
+   "keywords": "silence, dispel magic, detect magic, turn undead, stop the song, cast a spell, magic"
+  },
+  {
+   "id": "s02-wade-to-voice",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They wade toward the singing",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "Curious or brave characters walk toward a voice that calls their name.",
+   "tells": "A player steps into the water, or asks how deep it is out there.",
+   "readAloud": "The water is black and cold, and it goes deep fast. Ten steps out, the bottom simply ends. Something pale turns over, far below your feet, and a voice very close to your ear says your name.",
+   "response": "Mother Sallow catches a sleeve first: \"Not at night. Not without the answer.\" If they go anyway, the bottom drops away twenty feet out. A Drowned Singer rises close enough to see, sings the character's name back, and sinks again: a warning, not an attack. The character wades back with a borrowed memory: make the DC 12 Wisdom save for the Mere Memory table now.",
+   "rules": "Frigid Water if they stay in more than a few minutes. DC 12 Wisdom save or roll on the Mere Memory table (a borrowed memory, recorded as \"Mere\").",
+   "consequence": "The character has seen a Drowned Singer up close and carries a borrowed memory.",
+   "later": "",
+   "fallback": "If they swim further, the Singer sinks out of reach and the cold does the rest: they turn back, shaking, with one level of Exhaustion until they warm up.",
+   "keywords": "wade, walk into the water, swim to the voice, go toward the singing, step into the mere"
+  },
+  {
    "id": "s02-stay-the-night",
    "sessionId": "sb-7be12e377d5748b4",
    "title": "They stay on the Memory Shore all night",
@@ -428,6 +602,22 @@
    "later": "S3: the Tidewarden appears to anyone who treated the body with respect, and offers safe passage to the belfry.",
    "fallback": "If they won't go, the Tidewarden's ferry drifts in to the Old Shore on its own at dawn, its ferryman still holding the oar.",
    "keywords": "ferry, missing ferry, boat, row, sandbank, skiff, pilot, brannagh, eastern marsh, h-02"
+  },
+  {
+   "id": "s02-swim-whole-way",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They swim to the sandbank",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "A party that won't pay for a boat, or doesn't trust the pilots, may try to swim.",
+   "tells": "\"We'll swim\", \"We don't need a boat\", or a strong swimmer volunteering.",
+   "readAloud": "Half a mile of still, cold water, and under it the rooftops of a whole town. From the end of the Quays, Brannagh Wick shouts something rude about your intelligence.",
+   "response": "Half a mile takes about half an hour of swimming. The Frigid Water rule bites after that many minutes as a character's Constitution score; count it out loud. Swimmers wake the eels early: the eels get a free round when the party reaches the sandbank. A Quays skiff costs 5 gp, and Brannagh will still lend one if they swallow their pride.",
+   "rules": "2024 swimming: each foot costs 1 extra foot of movement without a Swim Speed. Frigid Water: after minutes equal to the Constitution score, DC 10 Constitution save each minute or 1 Exhaustion level.",
+   "consequence": "The party arrives cold and tired, and the eels are ready.",
+   "later": "",
+   "fallback": "If a swimmer is in trouble, the pilot's skiff comes alongside without being asked.",
+   "keywords": "swim, swim across, no boat, wade the whole way, swim to the sandbank"
   },
   {
    "id": "s02-fight-eels",
@@ -462,6 +652,22 @@
    "keywords": "sneak, stealth, quiet, drift, avoid, eels, slip past"
   },
   {
+   "id": "s02-raise-oar",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They raise the dead ferryman's oar",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The dripping oar is the strangest thing on the sandbank, and someone always picks it up.",
+   "tells": "A player examines the oar, takes it from the dead man, or holds it up during the fight.",
+   "readAloud": "The oar is colder than the water and heavier than it looks, and it keeps dripping in your hands. All around the sandbank, the pale rings in the water stop, reverse, and are gone.",
+   "response": "The eels flee at once. Moments later the hooded ferryman appears in the ferry's stern (s02-hooded-ferryman), and asks for his oar back, politely. Give it back and he is warm toward the party; keep it and it drips forever, does nothing else, and he waits at the ferry-stair in S3 to ask again.",
+   "rules": "Taking the oar from the dead hands is a Utilize action. Heroic Inspiration to the character who thought of it.",
+   "consequence": "The eel fight ends, and the Tidewarden notices who raised his oar.",
+   "later": "S3: the Tidewarden offers peaceful passage to whoever returned his oar (s03-return-tongue).",
+   "fallback": "If nobody thinks of it, the pilot mutters, \"My gran said the ferry-oar keeps the eels honest.\"",
+   "keywords": "oar, raise the oar, pick up the oar, dead man's oar, hold up the oar, ferryman's oar"
+  },
+  {
    "id": "s02-dive-belfry",
    "sessionId": "sb-7be12e377d5748b4",
    "title": "They dive to the drowned belfry",
@@ -476,6 +682,38 @@
    "later": "S2: her question follows. S3: the belfry route is known.",
    "fallback": "If a diver runs out of air, a drowned hand pushes them gently up to the surface.",
    "keywords": "dive, swim, underwater, belfry, bell, drowned bell, cantor, deep, h-07, breath"
+  },
+  {
+   "id": "s02-swim-to-bell",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They swim up to Ossa's bell",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Divers who reach the belfry want to touch the bell, look inside it, or fit the Heart.",
+   "tells": "A player swims toward the bell, reaches for it, or asks what is inside it.",
+   "readAloud": "The Cantor lifts one hand between you and the bell. The whole Choir stops singing at once, and in the silence you can hear your own heartbeat.",
+   "response": "The Cantor asks their purpose, in a line of hymn. Returning the Heart earns safe access to the bell: she moves aside. Looking is allowed. Touching or scraping the bell after her warning makes a Drowned Singer intervene (run the Drowned Singers), and the way up stays open. Ringing it is a separate choice with a Toll (s02-ring-ossa-early).",
+   "rules": "Breath is still the clock (2024 holding breath). The Cantor never attacks a creature that has truthfully named someone it grieves, unless it attacks her or the bell.",
+   "consequence": "The party has seen the bell, and the Cantor knows what they came for.",
+   "later": "S3: the belfry route is known for returning the Heart (s03-return-tongue).",
+   "fallback": "If they hesitate, the Cantor sings, \"Have you brought what was taken?\" and waits.",
+   "keywords": "swim to the bell, touch the bell, look inside the bell, reach the bell, ossa's bell, the bell"
+  },
+  {
+   "id": "s02-wild-shape-dive",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "A druid dives in a swimming Wild Shape",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A druid with Wild Shape will solve the breath problem the moment they see deep water.",
+   "tells": "A druid player asks what beasts they can become, or says \"I turn into a fish/seal/octopus.\"",
+   "readAloud": "The Cantor turns toward the shape in the water and her bright eyes narrow. \"That is not a face. Who hides inside it?\"",
+   "response": "The druid has no breath clock and swims well. The Cantor reads an animal shape as a lie until the druid changes back or a companion names them to her; after that she treats them like anyone else. A beast shape cannot speak, so it cannot answer her question itself.",
+   "rules": "Wild Shape (2024): a level-3 druid can take a beast form of CR 1/4 or lower with no Fly Speed; a swimming beast breathes water or holds its breath for long dives. Beast forms cannot speak or cast spells.",
+   "consequence": "The druid scouts freely, and the Cantor is wary until they show their face.",
+   "later": "",
+   "fallback": "If the druid stays in shape and the table stalls, the Cantor asks the nearest diver, \"Who is your silent friend?\"",
+   "keywords": "wild shape, druid, turn into a fish, beast form, swim form, seal, octopus, shape change"
   },
   {
    "id": "s02-truth-to-cantor",
@@ -621,6 +859,22 @@
    "keywords": "brannagh, pilots hall, pilot, tam, harrow, father, boat, how he died, investigate"
   },
   {
+   "id": "s02-brannagh-court",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They ask Brannagh about the Court",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Players start mapping who holds power on the Mere, and Brannagh holds a lot of it.",
+   "tells": "Questions about the Hushmen, the Landing House, or whether the pilots work for the Court.",
+   "readAloud": "\"The Court can't cross this water without my people. They know it. I know it. We're very polite to each other.\"",
+   "response": "Brannagh explains: the Landing House's boats are rowed by ferry-folk who report to her; she has refused the Court a pilot twice this year; no ship leaves the Mere without one of hers aboard. She won't fight the Court, but she can close the water to it. If Ila vouches for the party, she adds: 'And if they come for her, they'll find no boat.'",
+   "rules": "No check. Influence DC 15 to learn the two refusals if Ila has not vouched for them.",
+   "consequence": "The party knows the Pilots' Hall can close the Mere to the Court and to any ship.",
+   "later": "S3: Brannagh can deny a ship a pilot (s03-delay-heron) or close the Mere to Court boats in a siege (s03-keep-and-defend).",
+   "fallback": "If they push for more, she counts a tide out loud and says, \"That's all you get for free, lad.\"",
+   "keywords": "Brannagh, the Court, Hushmen, pilots, who controls the water, landing house, boats"
+  },
+  {
    "id": "s03-search-eld",
    "sessionId": "sb-4296a01bb560bd61",
    "title": "They search Brother Eld's desk",
@@ -757,6 +1011,22 @@
    "later": "S3: she argues for returning the Tongue to the Mere. Taking her along keeps her close and in danger (s03-take-ila-along); hiding her with the Pilots' Hall keeps her safe (s03-hide-ila). If the party does neither and the Tongue goes to the Court, she is arrested (s03-ila-arrested).",
    "fallback": "",
    "keywords": "ila, comfort, truth, list, name, cry, tell her, father"
+  },
+  {
+   "id": "s03-dont-worry-ila",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They tell Ila \"don't worry about it\"",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Protective players try to spare a child the hard truth, and Ila hates that more than anything.",
+   "tells": "A player says \"Don't worry\", \"It's nothing\", or hides the page from her.",
+   "readAloud": "Ila looks at you for a long moment. Then she turns to someone else and asks them instead.",
+   "response": "She stops talking to that character for the rest of the act: polite, flat, and finished. She asks someone else the same question, and trusts whoever tells her the truth. The character can win her back only by telling her something true and hard, unprompted.",
+   "rules": "No check. Influence does not repair this; only the truth does.",
+   "consequence": "Ila is closed to that character, and turns to someone else.",
+   "later": "S3: someone else can still tell her the truth (s03-comfort-ila).",
+   "fallback": "If nobody tells her, she reads the page herself and says, 'Four hundred and ten. That's when Dad started locking the door.'",
+   "keywords": "don't worry, it's nothing, protect her, hide the page, lie to Ila, spare her"
   },
   {
    "id": "s03-tam-solved",
@@ -1113,6 +1383,32 @@
    "later": "S4: start with Rook's or Wren's request instead of the Assembly; Maudrin's bargain comes later, by letter. The Court's clock ticks.",
    "fallback": "",
    "keywords": "refuse, burn, decline, ignore, trap, invitation, letter, no",
+   "effects": [
+    {
+     "flag": "maudrin_favor",
+     "set": "refused"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s03-burn-letter",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They burn the Chancellor's letter",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "Some tables answer a polite threat with fire.",
+   "tells": "A player holds the letter over a candle, tears it up, or throws it in the Mere.",
+   "readAloud": "The paper catches and curls, but the grey seal only hisses in the flame. When the fire is out, it is still there in the ash, whole and cool. Mother Sallow says, \"That's Court wax. It remembers.\"",
+   "response": "The paper burns; the seal does not. It still works as a writ if they keep it, and the Court will invite them again. Treat it as a refusal: Captain Rook or Wren Caddock brings the investigation to them instead, and Maudrin's bargain comes later, by letter.",
+   "rules": "No check. The seal resists fire and Thaumaturgy alike; Dispel Magic quiets its hum for a minute, no more.",
+   "consequence": "The party has refused the Court, loudly.",
+   "later": "S4: start with Rook's or Wren's request instead of the Assembly (as s03-refuse-invitation).",
+   "fallback": "If they want the seal gone, it sinks in the Mere and is on the doorstep at dawn.",
+   "keywords": "burn the letter, tear it up, destroy the invitation, throw it away, fire, seal",
    "effects": [
     {
      "flag": "maudrin_favor",

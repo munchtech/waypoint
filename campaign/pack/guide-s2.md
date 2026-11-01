@@ -68,9 +68,9 @@
 
 **If they…**
 - **[…sing:](play:s02-sing-response)** read "the singing stops, all at once, as if someone had laid a hand on it." Mark which characters sang with a dead person in mind. The Cantor will know.
-- **…refuse to sing or mock it:** nothing attacks, but the ferry-folk turn their backs, and Mother Sallow says, "Then don't go on the water tonight." If they stole the Heart in Session 1 and haven't given it back, Sallow won't teach the hymn at all until they make amends: hand it back to Ila, and speak a dead person's name on the shore.
-- **…try to stop the song with magic:** the spell Silence doesn't stop it. The Drowned hear grief, not sound.
-- **…try to wade in toward the voice:** the water is black and cold and goes deep fast. Mother Sallow catches a sleeve: "Not at night. Not without the answer."
+- **[…refuse to sing or mock it:](play:s02-refuse-song)** nothing attacks, but the ferry-folk turn their backs, and Mother Sallow says, "Then don't go on the water tonight." If they stole the Heart in Session 1 and haven't given it back, Sallow won't teach the hymn at all until they make amends: hand it back to Ila, and speak a dead person's name on the shore.
+- **[…try to stop the song with magic:](play:s02-magic-on-song)** the spell Silence doesn't stop it. The Drowned hear grief, not sound.
+- **[…try to wade in toward the voice:](play:s02-wade-to-voice)** the water is black and cold and goes deep fast. Mother Sallow catches a sleeve: "Not at night. Not without the answer."
 
 **Brother Hadrik Voss (optional complication).** Use him if your table likes arguing with allies. Halfway through the song, a grey-robed Faerûnian priest of Kelemvor walks down the shore swinging a smoking censer, a flask of holy water in his other hand.
 - *Voice:* low, certain. Quotes the Doomguide.
@@ -107,8 +107,8 @@
 
 **If they…**
 - **[…go without a pilot:](play:s02-row-to-ferry)** the drowned rooftops just under the surface are a maze. A Wisdom (Survival) check, DC 12. On a failure they still get there, but the skiff scrapes a roof, ships water, and wakes the eels early: the eels get a free first round.
-- **…want to swim or wade the whole way:** it's half a mile of cold water. Frigid Water applies. Talk them into a boat, or let them, and count minutes.
-- **…ask Brannagh about the Court:** "The Court can't cross this water without my people. They know it. I know it. We're very polite to each other."
+- **[…want to swim or wade the whole way:](play:s02-swim-whole-way)** it's half a mile of cold water. Frigid Water applies. Talk them into a boat, or let them, and count minutes.
+- **[…ask Brannagh about the Court:](play:s02-brannagh-court)** "The Court can't cross this water without my people. They know it. I know it. We're very polite to each other."
 
 **How it ends.** They push off.
 
@@ -130,7 +130,7 @@
 **If they…**
 - **[…step off the boat onto the sand or into the shallows:](play:s02-fight-eels)** the eels attack. See [the memory-eels](#memory-eels-at-the-sandbank).
 - **[…stay in the skiff and try to slip past:](play:s02-sneak-eels)** each character makes a Dexterity (Stealth) check, DC 15. If at least half succeed, the eels never notice them and they reach the ferry quietly. If not, the eels attack, but they ignore anyone sitting still in a boat for the first round.
-- **…raise the dead ferryman's oar:** the eels flee at once. Anyone who thinks of it deserves Heroic Inspiration.
+- **[…raise the dead ferryman's oar:](play:s02-raise-oar)** the eels flee at once. Anyone who thinks of it deserves Heroic Inspiration.
 - **[…want to take the body home:](play:s02-take-ferryman-home)** good instinct. Brannagh's pilot helps load it. The ferry-folk keep a cold-house for the drowned. The Tidewarden will remember this kindness in Session 3.
 
 **How it ends.** The eels flee or are beaten. If the party treated the body with respect, go to Scene 4. If someone asks "What's under the water here?", the pilot points down: "The bell." Go to Scene 5. Otherwise, row home and go to Scene 6.
@@ -183,9 +183,9 @@
 - **[…answer truthfully:](play:s02-truth-to-cantor)** she sings the name back. The water warms. She teaches the hymn verse.
 - **[…share a real memory of someone who died:](play:s02-grieve-to-cantor)** she teaches the release verse too. Give that player Heroic Inspiration.
 - **[…lie, or refuse her question:](play:s02-lie-to-cantor)** her eyes go dark and the Choir moves. See [the Drowned Singers](#drowned-singers-at-the-belfry). She keeps singing and doesn't join the fight.
-- **…swim up to the bell:** she raises a hand and asks their purpose. Returning the Heart earns safe access. Attacking or scraping the bell after that warning makes a Singer intervene.
+- **[…swim up to the bell:](play:s02-swim-to-bell)** she raises a hand and asks their purpose. Returning the Heart earns safe access. Attacking or scraping the bell after that warning makes a Singer intervene.
 - **[…brought the Heart and want to ring the bell tonight:](play:s02-ring-ossa-early)** let them; it's a wild and wonderful early choice. Before anyone fits the Heart, **say the Toll and wait for a yes**: "Ossa's Toll is a memory of someone who has died. The Ringer chooses it, and it's gone for good. If you say no, the bell doesn't ring and nothing is taken." Ila may not be the Ringer; she's fourteen and has just lost her father, so if she's here she stands beside an adult who rings it. If they say yes, use the bell-ringing text in Session 3's plan, record the Toll in the Memory ledger, and record "They bring the Heart down and ring Ossa tonight" in Foresight.
-- **…use a druid's swimming Wild Shape:** no breath clock for the druid. The Cantor reads an animal shape as a lie unless it says its own name.
+- **[…use a druid's swimming Wild Shape:](play:s02-wild-shape-dive)** no breath clock for the druid. The Cantor reads an animal shape as a lie until the druid changes back or a friend names them to her (a beast shape cannot speak).
 
 **How it ends.** They surface: with the verse, with a fight behind them, or with the bell rung. Row home. Go to Scene 6.
 

@@ -117,7 +117,7 @@ The answer: a Court patrol stopped Tam's boat on the Mere, took his memory of th
 
 **If they…**
 - **[…tell her the truth, plainly and kindly:](play:s03-comfort-ila)** she trusts them. She argues for returning the Heart to the Mere, "where Dad was taking it," and asks if she can come. Give that character Heroic Inspiration.
-- **…say "don't worry about it":** she stops talking to that character for the rest of the act.
+- **[…say "don't worry about it":](play:s03-dont-worry-ila)** she stops talking to that character for the rest of the act.
 - **[…want to hide her:](play:s03-hide-ila)** Brannagh's loft at the Pilots' Hall, with a pilot on the stair, is the safest place on the Mere. The three households (if they filled Quill's quota) also offer one. Ila argues, then accepts it if someone explains why.
 - **[…want to take her with them:](play:s03-take-ila-along)** Mother Sallow allows it only if an adult promises to bring her home. Ila is fourteen. She travels with the party but is never put in a fight or described in harm; give her a quiet place at the edge of every scene.
 
@@ -211,7 +211,7 @@ If none of those apply and the Choir is Hunting, see [the ferry-stair guard](#th
 **If they…**
 - **[…accept:](play:s03-accept-invitation)** the letter is a writ. Brannagh offers the Mere crossing. Ten days to the Assembly.
 - **[…refuse:](play:s03-refuse-invitation)** don't force the trip. Act II comes to them instead: a Dawn Order rider, or a Bellwright courier asking for help. The letter still works as a writ if they keep it.
-- **…burn it:** a grey seal hisses in the fire and doesn't melt. Mother Sallow says, "That's Court wax. It remembers." The Court will invite them again.
+- **[…burn it:](play:s03-burn-letter)** a grey seal hisses in the fire and doesn't melt. Mother Sallow says, "That's Court wax. It remembers." The Court will invite them again.
 
 ### Running the fights (Session 3)
 
