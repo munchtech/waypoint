@@ -1,4 +1,4 @@
-# Corvane in the Realms — DM Canon, Revision 7
+# Corvane in the Realms — DM Canon, Revision 7.5
 
 *Revision 7 keeps everything in Revision 6 and adds Section 9 (the table, the timeline fixes and the endings). Revision 6 added three things to The Seventh Bell v5: Corvane is part of the Forgotten Realms, Pellmoor is a port that newcomers arrive in, and memory is a working currency alongside gold. Where this sheet and v5 disagree, this sheet wins. The v5 Canon Sheet (Part 3.3) still governs every date and family line it lists.*
 
@@ -203,7 +203,7 @@ Use with v5 Part 11.
 - **Extreme Cold** (Dungeon Master's Guide 2024) replaces v5's Glassreach "1 cold damage per hour": at the end of each hour in Glassreach, a creature makes a DC 10 Constitution save or gains 1 Exhaustion level. Creatures with Resistance or Immunity to Cold damage succeed automatically (2024 rule). *House rule kept from v5:* a warm cloak or other cold-weather gear also means automatic success, so Yara's cloaks matter.
 - **Exhaustion** (2024): each level gives −2 to d20 Tests and −5 feet of Speed; a long rest removes 1 level.
 - **Holding breath** (2024): a creature can hold its breath for 1 + its Constitution modifier minutes (minimum 30 seconds). Out of breath, it gains 1 Exhaustion level at the end of each of its turns, and removes those levels when it can breathe again. The Tidewarden's air pocket and the Mere dive in Act I use this.
-- **Conditions** follow the 2024 definitions (Frightened, Charmed, Incapacitated, Blinded, Deafened, and so on). A Toll of Sense uses Blinded or Deafened as v5 already says.
+- **Conditions** follow the 2024 definitions (Frightened, Charmed, Incapacitated, Blinded, Deafened, and so on). A Sense Toll at Ruinous weight uses Blinded or Deafened (Section 10).
 - **Encounter difficulty** uses the 2024 XP budget per character (Low, Moderate, High). Waypoint calculates it from your party roster; the counts in v5 Appendix A are not balanced for 2024.
 
 ## 9. Revision 7 additions
@@ -228,7 +228,7 @@ These deepen Revision 6; none of them changes it.
 **The endings, as Waypoint tracks them.** Every ending needs someone at the Hush Shrine, at the foot of the Stairs of the Hush. None is open when the campaign starts.
 - **The Concord:** all six regional bells rung, Ysh unstruck, the party holding the Key, a willing Ringer. Reached when the Concord tuning is complete.
 - **The Second Dawn:** the party seals the unstruck Key in the shrine's recess. With no bell rung it is a stalemate, not a dawn, and the DM says so before the table chooses it.
-- **The Hush Unbound:** someone strikes Ysh with the Key. If Maudrin strikes, she pays the six Tolls, and the players still choose Remake or Unmake.
+- **The Hush Unbound:** someone strikes Ysh with the Key. If Maudrin strikes, she pays the six Tolls at Ruinous weight, and the players still choose Remake or Unmake.
 - **The Empty Choir:** the Court holds the unstruck Key, and the players choose to stop resisting. A lost fight never chooses it.
 
 **Motives, made firm (DM truth).**
@@ -243,3 +243,14 @@ These deepen Revision 6; none of them changes it.
 **Maudrin at the end.** Holding the Key at the summit or the shrine, Maudrin uses the Keeper of the Seventh stat block (CR 12, built on the 2024 Archmage, with legendary actions). Before then she is the CR 8 Chancellor.
 
 **After the endings.** The Stormwall thins for good only after the Concord or a Second Dawn that rang Thrane. After the Hush Unbound, the Wall follows Oum's choice: Remake keeps a gentler Wall with a wide Seam; Unmake leaves open sea. After the Empty Choir the Wall stays as Thrane's ringing left it, and the Court keeps the Seam.
+
+## 10. The Tolls (revision 7.5)
+
+*The DM's decision, 2026-11-01: knowing a Toll's exact price isn't fun, and the old Tolls were too light. This section replaces v5 Part 2.7's Toll effects and every "for one day" in the Ring Table; the full rules are the book's Part 2.7 (`pack/toll-rules.md`).*
+
+- **Warn, never price.** Before a ringing the DM warns of the **kind** (the bell's Toll type) and the **weight**, never the exact loss: "Ringing Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid." Refusal still cancels the ringing and takes nothing.
+- **The DM chooses the exact loss, after the bell rings,** from what the table already knows of the character (session-zero answers, backstory, play). Never a new backstory loss, never anything Off-limits. Sight or hearing are taken at Ruinous only if the player agreed at session zero.
+- **Tolls escalate** with the regional bells the party has already rung for the first time: 0–1 **Heavy**, 2–3 **Grievous**, 4–5 **Ruinous**. A repeat ringing pays at the current weight and does not raise it. Striking Ysh costs all six kinds at Ruinous.
+- **Tolls last.** Memory: a defining memory, gone for good / a person who matters / a whole year of life. Sense: dulled for a year / dulled for good / gone for a year then dulled for good. Fear (Mirel now *gives* a fear): a new fear for a year / for good / of something unavoidable, for good. Gift (Calla): the most valued possession / that and a heartkeep / a proficiency, for good. Name and Year (Ysh only) scale the same way.
+- **Blessings:** Vaer's dawn returns every morning for a **year**, then needs ringing again; Calla's harvest lasts a **season**. Ossa, Hieme, Thrane and Mirel's blessings are permanent. Every first ringing is permanent resonance toward the Concord and the Second Dawn.
+- Unchanged: no magic undoes a Toll; children never ring; absent players and the dead never pay; Corin defers an hour, never cancels; the Great Toll stays separate, private and refusable.

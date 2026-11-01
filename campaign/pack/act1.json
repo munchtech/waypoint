@@ -778,8 +778,8 @@
    "why": "If the party has the Tongue and reaches the bell, nothing in the rules stops them.",
    "tells": "The Tongue is in the boat, and a player asks what happens if they fit it.",
    "readAloud": "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. One voice, very old and very clear, speaks a single name.",
-   "response": "Before anyone fits the Tongue, state the Toll and wait for consent: a memory of someone who has died, chosen by the Ringer. If they say no, the bell does not ring. Ila may not be the Ringer: she is fourteen and has just lost her father, so offer the Toll to an adult in the party. If they agree, the Drowned fall silent and stop hunting; Mother Sallow, on the shore, suddenly remembers her husband's face and the night of the Wrongweather. The Court will hear of it by the next evening.",
-   "rules": "The Ringer must be at the bell with the Tongue. Record the Toll (kind: Toll, bell: Ossa).",
+   "response": "Before anyone fits the Tongue, warn the Ringer and wait for a yes: 'Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid.' Never say which: after the bell rings you choose it, from what the table knows of the character, and the player plays the loss (Part 2.7). If they say no, the bell does not ring. Ila may not be the Ringer: she is fourteen and has just lost her father, so offer the Toll to an adult in the party. If they agree, the Drowned fall silent and stop hunting; Mother Sallow, on the shore, suddenly remembers her husband's face and the night of the Wrongweather. The Court will hear of it by the next evening.",
+   "rules": "The Ringer must be at the bell with the Tongue. Record the Toll (kind: Toll, bell: Ossa). Weight: Heavy (this is the party's first bell).",
    "consequence": "Ossa is rung. The Choir rests. Session 3's Tongue decision is already made.",
    "later": "S3: run the ledger and Eld; skip the Tongue choice. S4: Maudrin skips her Tongue bargain and is colder (s04-assembly-after-ossa). Concord: 1 of 6. With the verse, the Cantor can be released now (s03-sing-release).",
    "fallback": "If the Toll gives the table pause, let them surface and decide tomorrow; the bell will wait.",
@@ -1084,8 +1084,8 @@
    "why": "With the Tongue at the bell, the question is only who pays.",
    "tells": "A player asks what ringing would do, or what it costs.",
    "readAloud": "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. The Drowned fall silent, and one voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain.",
-   "response": "State the Toll first and wait for a yes: a memory of someone who has died, chosen by the Ringer. Ila may volunteer; she is fourteen and has just lost her father, so offer the Toll to an adult instead and let her stand beside them. If they decline, the bell does not ring and no Toll is taken. If they ring it, the Choir rests, and Mother Sallow remembers her husband Davin and the night of the Wrongweather. If anyone sings the Cantor's release verse afterward, Ondra speaks her own name and goes quiet.",
-   "rules": "Record the Toll (kind: Toll, bell: Ossa). The deceased person need not be a loved one (v5 2.11). Ila may not be the Ringer.",
+   "response": "Warn the Ringer and wait for a yes: 'Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid.' Never say which: after the bell rings you choose it, from what the table knows of the character, and the player plays the loss (Part 2.7). Ila may volunteer; she is fourteen and has just lost her father, so offer the Toll to an adult instead and let her stand beside them. If they decline, the bell does not ring and no Toll is taken. If they ring it, the Choir rests, and Mother Sallow remembers her husband Davin and the night of the Wrongweather. If anyone sings the Cantor's release verse afterward, Ondra speaks her own name and goes quiet.",
+   "rules": "Record the Toll (kind: Toll, bell: Ossa). Weight: Heavy (Ossa is the party's first or second bell). The deceased person need not be a loved one (v5 2.11). Ila may not be the Ringer.",
    "consequence": "Ossa is rung. The dead of the Mere may rest.",
    "later": "Concord: 1 of 6. S4: no Tongue bargain at the Assembly. The Court withdraws collectors from the newly quiet Mere for a while (Court clock +1). S27: the Choir can sing at the summit if released.",
    "fallback": "If the Ringer is unsure, the Cantor waits. A bell that waited four hundred years can wait a night.",
@@ -2257,13 +2257,13 @@
    "checklist": [
     "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
     "Eld's papers: the missing page, the matching Court forms, and the patrol entry recording Tam's interrogation",
-    "Read the Ossa Toll aloud before any ringing: 'A memory of someone who has died. You choose it. If you say no, the bell does not ring.' Ila may not be the Ringer",
+    "Warn of Ossa's Toll before any ringing: 'Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid. If you say no, nothing rings and nothing is taken.' Ila may not be the Ringer",
     "Venn's offer: 600 gp now; the Gilded Heron sails in three days (s03-heron-sails runs that clock out)",
     "Write the Chancellor's letter as a prop; it doubles as a writ of passage",
     "Check ila: free, hidden, travelling or arrested decides which of the Ila plays show tonight",
     "The party is still level 3 here; level 4 comes after S6",
     "Write the props: the missing page (Ila Harrow last), the Court forms, the patrol entry on Tam, and the Chancellor's letter with a grey seal",
-    "Put Ossa's Toll on a card and read it word for word before any ringing"
+    "Put the Toll warning on a card and read it word for word; decide privately which memory of the dead the Ringer would lose (from session zero's 'what I lost')"
    ],
    "encounters": [
     "enc-s03-gilded-heron",

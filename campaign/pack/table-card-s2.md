@@ -16,7 +16,7 @@
 
 **Fights:** Six memory-eels (AC 13, 13 HP; bite DC 10 Wis or lose a small memory till long rest; Coil DC 12 Str) flee at two left or when the oar is raised. Two Drowned Singers + 2 eels only if they lie to the Cantor (AC 12, 22 HP; Wail DC 11 Wis); the response hymn as an action ends it; they never follow above the surface.
 
-**Toll (if they ring Ossa tonight):** "A memory of someone who has died. The Ringer chooses it. If you say no, the bell does not ring." Ila may not ring it.
+**Toll warning (if they ring Ossa tonight):** "Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid." No means nothing rings. You choose the memory afterwards. Ila may not ring it.
 
 **Timeline:** 0:00 recap · 0:15 Night Song · 0:50 Pilots' Hall · 1:20 sandbank and eels · 2:10 the Tidewarden and the dive · 3:10 the torn ledger. **Stop early** when the eels flee.
 

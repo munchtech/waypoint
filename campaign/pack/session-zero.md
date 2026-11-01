@@ -36,7 +36,7 @@ Make characters together, at the table, so they can connect as they go.
 
 **Three questions for every character.** Ask each player these, one at a time, and write the answers on an index card:
 1. **"How did you arrive at Pellmoor?"** Off a ship through the Seam this morning, down the Mere road, or from a house in Pellmoor you've lived in for years.
-2. **"What is one thing your character has lost?"** A person, a place, a memory, a skill they used to have. This is the most important answer of the night: the Cantor asks about it in Session 2, and the bells' Tolls are built on it.
+2. **"What is one thing your character has lost?"** A person, a place, a memory, a skill they used to have. This is the most important answer of the night: the Cantor asks about it in Session 2, and when a bell takes its Toll, this is where you look first.
 3. **"Who in Pellmoor do you already know?"** Offer: Dorra Pell at the Inn of the Shuttered Bell, Brannagh Wick at the Pilots' Hall, Reckoner Sela Maunt, Mother Sallow, or a ship's captain of their own invention.
 
 **Hooks.** If a player is stuck for a reason to be there, offer one of the book's starting hooks: **H-01** (Ila asks someone she trusts to take the humming Heart away from her), **H-02** (Mother Sallow is paying to find a missing ferry) or **H-03** (Hushman Quill wants help filling his memory quota). Don't explain what's behind them.
@@ -49,7 +49,7 @@ Explain these in plain words, then stop.
 - **Dice and turns** happen in Foundry. Waypoint is the DM's notebook; players never need it.
 - **Heroic Inspiration:** "When you do something brave, kind or memorable, I'll give you Heroic Inspiration. Spend it to reroll any one die and keep the new roll. You can hold one at a time."
 - **Memory is money:** in Pellmoor you can pay with gold or with memories. "You choose the memory and write one line about it. I never choose for you." The *Ringing Land* handout has the rates.
-- **The Toll:** "Ringing a bell always costs the person who rings it something personal. I'll always tell you the price first, and you can always say no."
+- **The Toll:** "Ringing a bell always costs the person who rings it something personal, and it lasts. I'll always warn you first: what kind of thing the bell takes and how heavy it will be. Never exactly what. You can always say no." Then ask each player privately: "If a bell ever took your sight or your hearing, would you want to play that?" Write the answer in their roster notes (World wiki → 2.7 The Toll explains why).
 - **The player site:** "Everything you discover goes on our wiki after each session. It starts mostly locked."
 
 ### Step 5: Put it into Waypoint (15 minutes, or right after)

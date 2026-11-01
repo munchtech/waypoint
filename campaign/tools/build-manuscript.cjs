@@ -8,7 +8,7 @@ const lore=require(path.join(root,'pack/lore.cjs'));
 let text=fs.readFileSync(src,'utf8');const missed=[];
 const apply=(find,replace,label)=>{if(text.includes(replace))return;if(text.includes(find))text=text.replace(find,replace);else missed.push(label+': '+find.slice(0,70))};
 // Whole-section replacements are keyed by the section's heading in the manuscript.
-const sections={'sb-462b2b0d93fd03c2':'### PELLMOOR (Village)','sb-b61bdde01a01cdcf':'## 1.4 Session Zero Script','sb-17dfab311eab22ea':'### SITUATION 17: "We want to leave Corvane or find another world."'};
+const sections={'sb-462b2b0d93fd03c2':'### PELLMOOR (Village)','sb-579437dc048229b6':'## 2.7 The Toll','sb-b61bdde01a01cdcf':'## 1.4 Session Zero Script','sb-17dfab311eab22ea':'### SITUATION 17: "We want to leave Corvane or find another world."'};
 for(const x of lore.pageEdits)for(const e of x.edits){
  if(e.find==='__WHOLE__'){const head=sections[x.id];const i=text.indexOf(head);if(i<0){missed.push('section '+head);continue}const start=i+head.length,end=text.indexOf('\n### ',start)>=0?Math.min(text.indexOf('\n### ',start),text.indexOf('\n## ',start)>=0?text.indexOf('\n## ',start):Infinity):text.length;text=text.slice(0,i)+(x.title?'### '+x.title:head)+'\n'+e.replace+'\n'+text.slice(end);continue}
  apply(e.find,e.replace,x.id)}

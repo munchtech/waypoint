@@ -35,17 +35,31 @@ const fs=require('fs'),path=require('path');
 // each run of changed lines between one revision's text and the next becomes one more edit, applied after the guide.
 // Every revision a table may have installed is kept (guide-sN-7.1.md, guide-sN-7.2.md); guide-sN.md is the current text.
 const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8').trim();
-const guideVersions=['7.1','7.2',''];
+const guideVersions=['7.1','7.2','7.3','7.4',''];
 // `unless`: once a session has the guide's heading, the guide is in, even after the link edits have reworded some of its lines.
 const guide=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'-7.1.md'),unless:'## Running this session (new DM guide)',guide:true});
-const diff=(n,old,now)=>{const out=[];if(old.length!==now.length)throw new Error('guide-s'+n+': each revision must keep the 7.1 line count');
- for(let i=0;i<old.length;i++){if(old[i]===now[i])continue;let j=i;while(j+1<old.length&&old[j+1]!==now[j+1])j++;const find=old.slice(i,j+1).join('\n');if(old.join('\n').split(find).length!==2)throw new Error('guide-s'+n+' line '+(i+1)+' is not unique');out.push({find,replace:now.slice(i,j+1).join('\n'),guide:true});i=j}return out};
-const links=n=>{const texts=guideVersions.map(v=>read('guide-s'+n+(v?'-'+v:'')+'.md').split('\n'));return texts.slice(1).flatMap((now,i)=>diff(n,texts[i],now))};
+const diff=(name,old,now)=>{const out=[];if(old.length!==now.length)throw new Error(name+': each revision must keep the first revision\'s line count');
+ for(let i=0;i<old.length;i++){if(old[i]===now[i])continue;let j=i;while(j+1<old.length&&old[j+1]!==now[j+1])j++;const find=old.slice(i,j+1).join('\n');if(old.join('\n').split(find).length!==2)throw new Error(name+' line '+(i+1)+' is not unique');out.push({find,replace:now.slice(i,j+1).join('\n'),at:i,end:j+1});i=j}return out};
+// Edits that carry a text from its first installed revision to the current one. A line reworded again later would leave an earlier
+// edit with neither its anchor nor its replacement, so each edit also counts as applied once the current wording of its lines is there.
+const chainEdits=(name,texts)=>{const last=texts[texts.length-1];return texts.slice(1).flatMap((now,k)=>diff(name,texts[k],now).map(({at,end,...h})=>{const fin=last.slice(at,end).join('\n');return {...h,...(fin!==h.replace?{unless:fin}:{}),guide:true}}))};
+const versions=(file,list)=>list.map(v=>read(file.replace('.md',v?'-'+v+'.md':'.md')).split('\n'));
+const links=n=>chainEdits('guide-s'+n,versions('guide-s'+n+'.md',guideVersions));
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
+// Revision 7.5: Tolls are warned (kind and weight), never stated exactly, and they last and escalate. Part 2.7 (toll-rules.md) is the rule.
+const tollLine=(find,replace)=>({find:'- **Toll:** '+find,replace:'- **Toll:** '+replace});
+const s3Toll=tollLine('A Memory of someone who has died, chosen by the Ringer (see Part 2.11).','A memory of someone who has died, at the weight in Part 2.7 (heavy: Ossa is the party\'s first or second bell). Warn first: "Ossa will take a memory of the dead from you, and it will be heavy." Never say which; you choose it after it rings.');
+const s9Vaer=tollLine('A Memory of a dawn you loved (Part 2.11).','A memory of a beginning (a dawn they loved), at the weight in Part 2.7. Warn of the kind and the weight; you choose the memory after it rings. The dawn returns every morning for a year.');
+const s9Calla=tollLine('A Gift, something you value, given to someone in need (Part 2.11).','A gift given to someone in need, at the weight in Part 2.7. Warn of the kind and the weight; you name the gift after it rings. The harvest lasts one season.');
+const s14Toll=tollLine('A Memory (Part 2.11).','A memory, at the weight in Part 2.7. Warn of the kind and the weight; you choose the memory after the thaw begins.');
+const s19aToll=tollLine('A Sense, for one day (Part 2.11).','A sense, at the weight in Part 2.7 (dulled for a year at the least). Warn of the kind and the weight; you choose the sense after it rings.');
+const s19bToll=tollLine('A Fear, chosen by the player, lost for one day (Part 2.7).','A fear the bell gives the Ringer, at the weight in Part 2.7. Warn of the kind and the weight; you choose the fear after it rings.');
+const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e06917',S19B='sb-abff956ca382268b';
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
-const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return {find:last,replace:last+'\n\n'+read('table-card-s'+n+'.md'),unless:'## Table card',guide:true}};
+// The card is inserted as 7.4 had it; later rewordings follow as edits (revision 7.5: the Toll warning).
+const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return [{find:last,replace:last+'\n\n'+read('table-card-s'+n+'-7.4.md'),unless:'## Table card',guide:true},...chainEdits('table-card-s'+n,versions('table-card-s'+n+'.md',['7.4','']))]};
 
 const pellmoorBody=`- **Read-aloud:**
 > **SAY:** "The Mute Mere is so still that the ships look painted on it. Forty masts stand over the water where a drowned town lies just beneath, rooftops like the backs of sleeping animals. On the Quays, a dozen languages argue over the price of a memory. Gnomes shout. Gulls do not; there are no gulls on the Mere. And at the far end of the waterfront, past the last warehouse, the old reed-roofed village of Pellmoor still leans toward the water as if none of this were happening."
@@ -175,7 +189,7 @@ const pages=[
 - **Exhaustion:** each level gives −2 to d20 Tests and −5 feet of Speed; a long rest removes 1 level; level 6 is death.
 - **Suffocation:** hold breath for 1 + Constitution modifier minutes (minimum 30 seconds); out of breath, 1 Exhaustion level at the end of each turn, all removed when breathing again.
 - **Frigid Water:** minutes equal to the Constitution score, then a DC 10 Constitution save each minute or 1 Exhaustion level.
-- **Conditions** use the 2024 definitions. A Toll of Sense uses Blinded or Deafened.
+- **Conditions** use the 2024 definitions. A Sense Toll at Ruinous weight uses Blinded or Deafened (Part 2.7).
 - **Encounters:** Waypoint's Foresight computes difficulty from your roster with the 2024 XP budget per character (Low, Moderate, High). Corvane creatures have full 2024 stat blocks built on 2024 Monster Manual creatures; open them from any encounter.
 - **Spells that touch memory** (Modify Memory, Greater Restoration, Remove Curse, Speak with Dead, Zone of Truth and others) have rulings in Foresight's anytime plays. Search "If they…" for the spell's name.`},
  {id:'v6-changes',title:'WHAT CHANGED IN REVISION 6',kind:'Lore',status:'Confirmed',visibility:'DM only',aliases:'v6, revision 6, changes, change log',body:`**World.** Corvane is part of the Forgotten Realms, hidden behind the Stormwall until the Wrongweather opened the Seam in 382 SS (1462 DR). Pellmoor is now Pellmoor Landing, a port of about 4,000. Memory is a working currency alongside gold (MEMORY AS MONEY). New NPCs 26–30. New faction: THE LANDING.
@@ -197,7 +211,26 @@ const pages=[
 
 const pageEdits=[
  // Revision 7.4: the session zero script becomes a full guide for a first-time DM (session-zero.md).
- {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero.md')}]},
+ {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero-7.4.md'),unless:'### Step 5: Put it into Waypoint'},...chainEdits('session-zero',versions('session-zero.md',['7.4','']))]},
+ // Revision 7.5: the Toll rules.
+ {id:'sb-579437dc048229b6',edits:[{find:'__WHOLE__',replace:read('toll-rules.md'),unless:'### The weight rises with every bell'}]},
+ {id:'sb-cda9019c57971a98',edits:[{find:'When in doubt, ask the player what their character is willing to give up.',replace:'Before every ringing, warn the player what kind of thing the bell will take and how heavy it will be, never exactly what, and let them say no (Part 2.7).'}]},
+ {id:'sb-a23a83e518a41ee8',edits:[
+  {find:'| The Long Dusk lifts over Hallowmere for one day. A real dawn. |',replace:'| The Long Dusk lifts over Hallowmere: a real dawn, every morning for a year. |'},
+  {find:'| A Memory of a dawn you loved |',replace:'| A memory of a beginning (weight: Part 2.7) |'},
+  {find:'| A Memory of someone who has died, chosen by the Ringer |',replace:'| A memory of someone who has died (weight: Part 2.7) |'},
+  {find:'| A Gift: something you value, given to someone in need |',replace:'| A gift, given to someone in need (weight: Part 2.7); the harvest lasts one season |'},
+  {find:'| A Memory |',replace:'| A memory (weight: Part 2.7) |'},
+  {find:'| A Sense, for one day |',replace:'| A sense (weight: Part 2.7) |'},
+  {find:'| A Fear |',replace:'| A fear the bell gives (weight: Part 2.7) |'},
+  {find:'| All six Toll types at once |',replace:'| All six kinds at once, each Ruinous |'}]},
+ {id:'sb-36cd885109bb1aa2',edits:[
+  {find:'Repeat ringing requires another Toll and renews the listed effect without stacking it.',replace:'Repeat ringing requires another Toll at the current weight and renews the listed effect without stacking it; only Vaer\'s dawn (a year) and Calla\'s harvest (a season) fade, and only a first ringing raises the weight (Part 2.7).'},
+  {find:'At Ysh, disclose the options and prices before anyone acts:',replace:'At Ysh, explain the options and warn of their prices (the kinds and the weight, Part 2.7) before anyone acts:'},
+  {find:'pays all six Tolls once.',replace:'pays all six Tolls once, each at Ruinous weight.'},
+  {find:'never invent a backstory loss without the player.',replace:'choose the exact loss from what the table knows of the character, and never invent a backstory loss.'},
+  {find:"Losing a Fear changes a feeling, not the player's authority to decide actions or immunity to magical fear.",replace:"A Fear Toll changes a feeling, never the player's authority to decide their character's actions."}]},
+ {id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},
  {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',replace:pellmoorBody}]},
  {id:'sb-74c9bfaa3dfbf94e',edits:[{find:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face.`,replace:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face, and now every ship that brought one. The ferry-folk drink here; Stormborn are served politely and not invited back.`}]},
  {id:'sb-bb6db9d171c44c8e',edits:[{find:`- **Wants:** To be left alone. Safe passage. Their dead remembered properly.`,replace:`- **Wants:** To be left alone, which the port has made impossible. Safe passage. Their dead remembered properly. The Pilots' Hall kept free of the Court and the trading houses.`},{find:`- **Methods:** Ferries, net-fishing, careful silence, and keeping the old ledger of names.`,replace:`- **Methods:** Ferries, net-fishing, piloting every foreign ship across the drowned town (the Pilots' Hall), careful silence, and keeping the old ledger of names.`}]},
@@ -261,11 +294,11 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
  {id:'sb-ec96b0db0ece34c4',edits:[{find:`Record each character's secret on the back of the sheet, visible only to the DM and that player.`,replace:`Record each character's secret on the back of the sheet, visible only to the DM and that player. In Waypoint, record Tolls, Tithes and memory trades in Foresight → Party & ledger → Memory ledger.`}]},
  {id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol]},
  {id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers]},
- {id:S3,edits:[s3Venn,s3Writ]},
+ {id:S3,edits:[s3Venn,s3Writ,s3Toll]},
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),card(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),card(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide,...links(3),card(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

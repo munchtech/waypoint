@@ -224,7 +224,7 @@
    "id": "any-ring-ossa-later",
    "title": "They ring Ossa after Session 3",
    "why": "They recovered the Tongue from the armory, the Court's vault, Venn or the sea, and the bell is waiting.",
-   "response": "State the Toll and wait for a yes: a memory of someone who has died, chosen by the Ringer. If they decline, the bell does not ring and no Toll is taken. Ila may not be the Ringer; offer it to an adult and let her stand beside them. The Tidewarden ferries the Ringer and holds an air pocket. If they ring it, the Choir rests, Mother Sallow remembers Davin, and the Cantor can be released with the verse.",
+   "response": "Warn and wait for a yes: 'Ossa will take a memory of the dead from you, and it will be [weight].' You choose which after it rings (Part 2.7). If they decline, the bell does not ring and no Toll is taken. Ila may not be the Ringer; offer it to an adult and let her stand beside them. The Tidewarden ferries the Ringer and holds an air pocket. If they ring it, the Choir rests, Mother Sallow remembers Davin, and the Cantor can be released with the verse.",
    "consequence": "Ossa is rung. The Choir rests.",
    "keywords": "ring ossa later, toll, belfry, tidewarden, choir rests",
    "when": [

@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. At the table, read the boxed text aloud and glance at the bullets. The rules from the Session 1 and 2 guides still apply. Tonight's big new rule is the Toll, and it has a script: use it word for word.*
+*Read this once the day before. At the table, read the boxed text aloud and glance at the bullets. The rules from the Session 1 and 2 guides still apply. Tonight's big new rule is the Toll: you warn of it, never price it exactly, and the warning has a script. Use it word for word.*
 
 **Contents:** [Before you start](#before-you-start-session-3) · [Scene 1: Who was on the ferry](#scene-1-who-was-on-the-ferry) · [Scene 2: Brother Eld's desk](#scene-2-brother-elds-desk) · [Scene 3: Ila's name](#scene-3-ilas-name) · [Scene 4: Knocks at the door](#scene-4-knocks-at-the-door-optional) · [Scene 5: What to do with the Heart](#scene-5-what-to-do-with-the-heart) · [Scene 6: Ossa's bell](#scene-6-ossas-bell-optional) · [Scene 7: The letter](#scene-7-the-letter) · [Running the fights](#running-the-fights-session-3) · [Pacing](#pacing-session-3) · [If you get stuck](#if-you-get-stuck-session-3) · [End of session](#end-of-session-3)
 
@@ -34,10 +34,10 @@
   - *The Heart prop* from Session 1, and the *Toll card* (below).
 - **The Toll card.** Write this on a card and read it aloud, every time, before any ringing:
 
-> "Ossa's Toll is a memory of someone who has died. The Ringer chooses it. It goes, and it can never be bought back. If you say no, the bell does not ring and nothing is taken. Who will ring it, and will you pay?"
+> "Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid, and it can never be undone or bought back. If you say no, the bell does not ring and nothing is taken. Who will ring it?"
 
 **Rules you'll use tonight, in plain words (D&D 2024):**
-- **The Toll.** Ringing a bell always costs the Ringer something personal: for Ossa, a memory of someone who has died. You say the price before the ringing, and the player says yes or no. No means no ringing, no loss, and no penalty. The player chooses which memory; you never do. It doesn't have to be a loved one. Write it in the Memory ledger as kind "Toll," bell "Ossa." A Toll can never be bought back.
+- **The Toll.** Ringing a bell always costs the Ringer something personal, and it lasts. You **warn** of it before the ringing: the kind (for Ossa, a memory of the dead) and the weight (Ossa is the party's first bell, so heavy). Never say exactly what. No means no ringing, no loss and no penalty. After the bell rings, **you** choose the memory, from what the table knows of the character (their session-zero "what I lost" is the natural place to look), and it is gone for good; the player rewrites one belief or bond it held up. It doesn't have to be a loved one. Write it in the Memory ledger as kind "Toll," bell "Ossa." The full rules are in World wiki → **2.7 The Toll**.
 - **Silence** (Brother Eld can cast it once). A 20-foot sphere where no sound exists. Nobody inside can cast spells that need speech. Eld uses it to run away, never to fight.
 - **Influence, Study, Search, Help, Hide:** as in Session 1. Brother Eld is Friendly to anyone gentle and Indifferent to anyone hard.
 - **Breath, Frigid Water, underwater fighting:** as in Session 2. The Tidewarden's air pocket removes the breath clock.
@@ -188,7 +188,7 @@ If none of those apply and the Choir is Hunting, see [the ferry-stair guard](#th
 
 **The ringing.** If they want to ring Ossa, stop and **read the Toll card aloud**. Wait for a clear yes. Then:
 - **Ila may not be the Ringer.** She's fourteen and has just lost her father. If she volunteers, an adult rings it with her hand on theirs.
-- The player chooses the memory. They can describe it or keep it private. Write it in the Memory ledger as kind "Toll," bell "Ossa."
+- After it rings, you choose the memory of someone who has died and tell the player privately. They play the loss, and share as much or as little of it as they like. Write it in the Memory ledger as kind "Toll," bell "Ossa."
 - If they say no, nothing is taken and the bell doesn't ring. That's a fine outcome. The Heart still goes home; the Drowned are calmer.
 
 > **SAY (when Ossa rings):** "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. The Drowned fall silent, and one voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain."

@@ -76,3 +76,8 @@ export function scaleOptions(e:Encounter,levels:number[]){if(!levels.length)retu
 // Expected level at the start of each chapter, from the v5 milestone list; the roster overrides it.
 export function partyLevels(roster:RosterMember[]|undefined,brief?:Brief){if(roster?.length)return roster.map(r=>r.level);return brief?.level?[brief.level,brief.level,brief.level,brief.level]:[]}
 export const crLabel=(cr:string)=>'CR '+cr;
+// Revision 7.5 Tolls escalate: Heavy while fewer than two regional bells are rung, Grievous for the third and fourth, Ruinous after.
+export const regionalBells=['vaer','ossa','calla','hieme','thrane','mirel'];
+export function tollWeight(pb:Playbook){const rung=regionalBells.filter(b=>stateOf(pb)['bell_'+b]==='rung').length;return {rung,weight:rung<2?'Heavy':rung<4?'Grievous':'Ruinous'}}
+// A play rings a bell when it sets a regional bell to rung.
+export const ringsBell=(play:Play)=>!!play.effects?.some(e=>e.flag.startsWith('bell_')&&e.set==='rung');

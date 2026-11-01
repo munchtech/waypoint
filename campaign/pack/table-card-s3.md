@@ -15,7 +15,7 @@
 
 **The five choices:** return it to the Mere · carry it to Hallowmere · keep it and defend Pellmoor · give it to the Court (show Ila's arrest order first) · sell it to Venn (600 gp; 900 with Persuasion DC 15; ship sails in 3 days).
 
-**Toll card, read word for word:** "Ossa's Toll is a memory of someone who has died. The Ringer chooses it. It goes, and it can never be bought back. If you say no, the bell does not ring and nothing is taken. Who will ring it, and will you pay?" Ila may not be the Ringer.
+**Toll warning, word for word:** "Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid, and it can never be undone or bought back. If you say no, the bell does not ring and nothing is taken. Who will ring it?" You choose the memory after it rings. Ila may not be the Ringer.
 
 **Fights (rare tonight):** ferry-stair guard, only if the Choir is Hunting and they come without the hymn or the Tidewarden: 3 Drowned Singers + 2 eels, stair two wide; the hymn, the Tidewarden or offering the Heart ends it. *Gilded Heron* (only if sold): 3 guards, a Zhentarim mate, Venn; Stealth DC 15 to board; Venn deals when a guard is Bloodied.
 

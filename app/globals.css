@@ -1352,3 +1352,6 @@ body.print-card .table-card-print{display:block;position:absolute;left:0;top:0;w
 body.print-card .table-card-print .book-text{max-width:none;font-size:11pt;line-height:1.45}
 body.print-card .notes-bar{position:static;box-shadow:none;border:0;background:none}
 }
+/* 1.35.5: the Toll weight on a play that rings a bell. */
+.play-toll{margin:10px 0 0;padding:9px 12px;border-radius:10px;background:#f6ece6;border:1px solid #e3cbbd;font-size:13px;line-height:1.6;color:#5a3524}
+.play-toll strong{color:#7a3418;margin-right:4px}

@@ -7,7 +7,7 @@ import {playSchema,playbookSchema,type Playbook} from './playbook-schema';
 // An update pack brings new content into an existing campaign as a reviewed list of changes.
 // Text edits are find-and-replace, so the DM's own additions to a plan survive; a missing anchor is reported, never forced.
 // `unless`: text that, once present, means the edit is already in (a later edit may have reworded part of what it inserted).
-const edit=z.object({find:z.string().min(1).max(20000),replace:z.string().max(40000),unless:z.string().min(1).max(400).optional()});
+const edit=z.object({find:z.string().min(1).max(20000),replace:z.string().max(40000),unless:z.string().min(1).max(20000).optional()});
 type TextEdit={find:string;replace:string;unless?:string};
 const packPage=z.object({id:z.string().max(120),title:z.string().min(1).max(160),kind:z.enum(pageKinds),body:z.string().max(12000),aliases:z.string().max(1000),status:z.enum(factStates),visibility:z.enum(['DM only','Party knows'])});
 const packCard=z.object({id:z.string().max(120),kind:z.string().max(80),title:z.string().max(200),body:z.string().max(12000),readAloud:z.string().max(6000),consequence:z.string().max(6000),source:z.string().max(300)});

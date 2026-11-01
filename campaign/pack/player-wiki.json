@@ -134,7 +134,7 @@
    "kind": "Lore",
    "revealAt": null,
    "when": [],
-   "body": "Ringing a bell restores something that was lost. It also costs the person who rings it something of their own. This is the **Toll**.\n\nYou find a bell's Heart and bring it to its bell. The DM tells you the price before you ring. You choose to pay it, or to walk away, and nothing is taken if you walk away.\n\nThe Tolls are a memory, a year of your life, a sense for a day, a name, a fear for a day, and a gift. A Toll can never be bought back, and Tolls add up."
+   "body": "Ringing a bell restores something that was lost. It also costs the person who rings it something of their own. This is the **Toll**.\n\nYou find a bell's Heart and bring it to its bell. Before you ring, the DM **warns** you: what kind of thing this bell takes, and how heavy it will be. Never exactly what. You choose to ring and pay, or to walk away, and nothing is taken if you walk away.\n\nEach bell takes its own kind of thing: a memory, a sense, a fear, a gift. Tolls last. A Toll can never be bought back, no magic undoes one, and every bell you ring makes the next one cost more.\n\nWhat a bell gives back lasts too. Most blessings are for good; a few fade and must be rung again."
   },
   {
    "id": "pw-memory-money",
@@ -383,7 +383,7 @@
      ]
     }
    ],
-   "body": "Ossa rings from under the water. The sound is deep and slow, and it makes the whole Mere ripple. Every grey face on the shore lifts toward it.\n\nThe Drowned fall silent. One voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain.\n\nThe Ringer paid a Toll of a memory of someone who has died. The Choir rests. The Drowned no longer hunt the village."
+   "body": "Ossa rings from under the water. The sound is deep and slow, and it makes the whole Mere ripple. Every grey face on the shore lifts toward it.\n\nThe Drowned fall silent. One voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain.\n\nThe Ringer paid Ossa's Toll: a memory of the dead. The Choir rests. The Drowned no longer hunt the village."
   },
   {
    "id": "pw-quiet-court-invitation",
@@ -659,7 +659,7 @@
      ]
     }
    ],
-   "body": "Vaer rings in Hallowmere. The sound cracks the grey like a knife through glass. For one heartbeat the cloud tears open, and a line of gold falls across the terraces. Every person in the city looks up.\n\nThe opening widens. For this one day, sunlight reaches every terrace of the capital.\n\nThe Ringer paid the Toll of a memory of a dawn they loved. It is a real dawn, and a short one."
+   "body": "Vaer rings in Hallowmere. The sound cracks the grey like a knife through glass. For one heartbeat the cloud tears open, and a line of gold falls across the terraces. Every person in the city looks up.\n\nThe opening widens. For this one day, sunlight reaches every terrace of the capital.\n\nThe Ringer paid Vaer's Toll: a memory of a beginning. The dawn comes back every morning, for a year."
   },
   {
    "id": "pw-calla-rings",
@@ -674,7 +674,7 @@
      ]
     }
    ],
-   "body": "Calla rings from the Old Granary at Kell's Crossing. The sound is warm and round, and it smells of baking bread. The ash on the fields stirs. Somewhere a child laughs, and a woman begins to cry without knowing why.\n\nFor one season the grain comes up green across the plain.\n\nThe Ringer paid the Toll of a Gift, something of value given freely to someone in need. It is not returned."
+   "body": "Calla rings from the Old Granary at Kell's Crossing. The sound is warm and round, and it smells of baking bread. The ash on the fields stirs. Somewhere a child laughs, and a woman begins to cry without knowing why.\n\nFor one season the grain comes up green across the plain.\n\nThe Ringer paid Calla's Toll: a gift, given to someone in need and never returned. The fields will bear for a season."
   },
   {
    "id": "pw-silence-warrant",
@@ -903,7 +903,7 @@
      ]
     }
    ],
-   "body": "Thrane cracks like a whip. The sky above Brassfall splits open, and for the first time in four centuries a real storm rolls over the mountains. Rain falls like bronze filings. Lightning strikes the peaks in long white bars. The storm-stones blaze, and every metal object you carry hums in answer.\n\nThe Ironhorn celebrate in the rain. The mines become dangerous, but the ore can be recovered.\n\nThe Ringer paid the Toll of a Sense, lost for a day. The Court will hear of it."
+   "body": "Thrane cracks like a whip. The sky above Brassfall splits open, and for the first time in four centuries a real storm rolls over the mountains. Rain falls like bronze filings. Lightning strikes the peaks in long white bars. The storm-stones blaze, and every metal object you carry hums in answer.\n\nThe Ironhorn celebrate in the rain. The mines become dangerous, but the ore can be recovered.\n\nThe Ringer paid Thrane's Toll: a sense. The Court will hear of it."
   },
   {
    "id": "pw-mirel-rings",
@@ -918,7 +918,7 @@
      ]
     }
    ],
-   "body": "Mirel rings in the Sleeping Hall like a lullaby sung by someone who loves you. Every sleeper on the Tor sighs and turns over. The Sleepless dissolve into mist. For a moment the air feels like the first morning of spring, and you feel, impossibly, hopeful.\n\nThe Sleepless stop walking. The Hush's lullaby changes key, and it sounds sad, then grateful. The Cult weeps.\n\nThe Ringer paid the Toll of a Fear, chosen by the Ringer and lost for one day. Hushmen are reported on the road, sent to the Tor to investigate."
+   "body": "Mirel rings in the Sleeping Hall like a lullaby sung by someone who loves you. Every sleeper on the Tor sighs and turns over. The Sleepless dissolve into mist. For a moment the air feels like the first morning of spring, and you feel, impossibly, hopeful.\n\nThe Sleepless stop walking. The Hush's lullaby changes key, and it sounds sad, then grateful. The Cult weeps.\n\nThe Ringer paid Mirel's Toll: a fear the bell gave them. Hushmen are reported on the road, sent to the Tor to investigate."
   },
   {
    "id": "pw-truth-of-the-key",
