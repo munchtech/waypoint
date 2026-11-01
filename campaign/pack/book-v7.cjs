@@ -1,0 +1,13 @@
+// Revision 7 changes to the campaign book: find-and-replace edits on the v6 text, applied after the v6 lore edits by tools/build-manuscript.cjs.
+// Part 13 (the table's levels, the 2024 encounter roster and the endings checklist) is generated from the built pack.
+module.exports={edits:[
+ ['*Recommended party: 3 to 5 players, levels 1 to 11.','*Recommended party: 3 to 5 players, levels 1 to 11. Revision 7 is tuned for four players starting at level 3 (Part 13).'],
+ ['- **Levels 1 to 2 (Act I):** use the low-level safeguards in Appendix A. Do not add Drowned Singers to an eel fight by default.','- **Level 3 (Act I, revision 7):** four level-3 characters. Hushman patrols of four or five; Drowned Singers in pairs; anything underwater plays harder than its XP because breath is the clock. The low-level safeguards in Appendix A are for a level-1 start. Do not add Drowned Singers to an eel fight by default.'],
+ ['Award milestones after meaningful progress: ','Award milestones after meaningful progress (revision 7 starts at level 3, so the first milestone at the table is level 4 after the city investigation): '],
+ ['## ACT I: THE HUMMING TONGUE (Levels 1 to 2, Sessions 1 to 3)','## ACT I: THE HUMMING TONGUE (Level 3, Sessions 1 to 3)'],
+ ['*Default start: H-01 to H-03 in Pellmoor at level 1.','*Default start: H-01 to H-03 in Pellmoor at level 3 (revision 7).'],
+ ['A character who gives a Gift here gains Inspiration once per session.','A character who gives a Gift here gains Heroic Inspiration once per session.'],
+ ['**Encounter: The Glass Sexton (CR 5).** See Appendix A. He fights in Phase 1 (frost-form) until his HP drops to 40 or less. He then shatters into Phase 2 (broken-form) with 30 HP.','**Encounter: The Glass Sexton (CR 7 in the 2024 stat block, Part 13).** He fights in frost-form (95 HP) until it breaks. He then shatters into broken-form with 45 HP; peaceful melting takes 20 Fire or Lightning damage to the ice.'],
+ ['Deadly for levels 7 to 9. If Rook won the duel, Haldric and both Knights are absent, which makes it Hard.','Revision 7 sizes it for four level-9 characters (High; roster in Part 13). If Rook won the duel, Haldric and both Knights are absent and two Hushman Wardens take their place.'],
+ ['- **Maudrin Vesk, Summit (Session 24):** Maudrin alone, retreating at half HP. Medium for levels 10 to 11, with the stairs as the real danger.','- **Maudrin Vesk, Summit (Session 24):** Maudrin with her Wardens. If she carries the Key, use Maudrin, Keeper of the Seventh (CR 12, Part 13). She retreats from the summit when Bloodied; she never retreats from the shrine.'],
+]};

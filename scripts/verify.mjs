@@ -11,7 +11,7 @@ const argv=process.argv.slice(2),flag=name=>argv.includes('--'+name),value=name=
 const electron=path.join(root,'node_modules/electron/dist/electron.exe');
 const logs=path.resolve(value('logs')||path.join(os.tmpdir(),'waypoint-verify-'+new Date().toISOString().replace(/[:.]/g,'-')));
 fs.mkdirSync(logs,{recursive:true});
-const lintIgnores=['dist','.next','desktop/build/**','.sites-runtime/**','.wrangler/**','.vinext/**'].flatMap(p=>['--ignore-pattern',p]);
+const lintIgnores=['dist','.next','desktop/build/**','campaign/**','.sites-runtime/**','.wrangler/**','.vinext/**'].flatMap(p=>['--ignore-pattern',p]);
 const node=(name,args,opts={})=>({name,cmd:process.execPath,args,...opts});
 const ui=(name,script,args=[],opts={})=>({name,cmd:electron,args:[path.join('scripts',script),...args],electron:true,...opts});
 const steps=[

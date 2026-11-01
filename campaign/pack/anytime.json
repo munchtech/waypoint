@@ -1,0 +1,1304 @@
+{
+ "plays": [
+  {
+   "id": "any-kill-maudrin",
+   "title": "They kill the Quiet Chancellor",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "She is the obvious villain, and some tables go straight for the throat (Situation 1).",
+   "tells": "Players ask where Maudrin sleeps, who guards her, or whether a crossbow reaches the palace balcony.",
+   "readAloud": "\"You could try. She's surrounded by Hushmen and Dawn Order knights, and every glove on her hands is silence-stone. Are you sure?\"",
+   "response": "Let them plan; good plans get a real chance. Use the Strike (S23) or summit (S24) forces scaled to where she is. She has allies, a favor she may be owed, and a retreat, but she can die. Foreshadow her successor with a rumour: her cousin Tristan Vesk has been writing quietly to the Court's council.",
+   "rules": "Use the Maudrin Vesk stat block (CR 8) plus her guards; calculate the 2024 budget in Foresight. Her Silence-Stone Gloves impose Disadvantage on one spell attack within 10 feet each round.",
+   "consequence": "She is dead. The Court splinters and Hallowmere's factions fight each other; the party is hunted by both sides. Tristan Vesk takes the chair and the Key.",
+   "later": "S22: Tristan marches in her place (s22-tristan-takes-the-march). S23: the Strike with Tristan (enc-s23-strike-tristan). Anytime: he offers a deal for the Key (any-tristan-chancellor).",
+   "fallback": "If the attempt stalls, Haldric's knights arrive and offer the party a clean surrender instead of a death.",
+   "keywords": "kill, assassinate, murder, maudrin, chancellor, attack her, poison, crossbow",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "hallowmere"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "palace"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    },
+    {
+     "flag": "key",
+     "set": "tristan"
+    },
+    {
+     "flag": "court_eye",
+     "set": "enemy"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "any-ring-every-bell",
+   "title": "They want to ring every bell right now",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Once players learn what the bells do, the obvious plan is all of them, immediately (Situation 2).",
+   "tells": "Players list the bells and ask how fast they can travel.",
+   "readAloud": "\"You can't. The Tongues are scattered across Corvane, and each bell is guarded. What do you want to ring first?\"",
+   "response": "Show them the Forecast tab's Concord list: each bell and where its Tongue is now. Make them earn each Tongue. Each bell rung makes the Court more aggressive: use the Court as that session's faction tick.",
+   "rules": "",
+   "consequence": "The party has a route plan, and the Court takes notice of it.",
+   "later": "Every ringing advances the Court's clock. Thrane's ringing loosens the Stormwall (Act IV).",
+   "fallback": "If they freeze at the size of it, Mother Sallow, Rook or Corin names the nearest Tongue.",
+   "keywords": "ring all bells, every bell, all at once, fast, plan, route",
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-straight-to-seventh",
+   "title": "They go straight for the Seventh Bell",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "Some parties skip to the end the moment they hear of Ysh (Situation 3).",
+   "tells": "Players ask where the Hush Shrine is and how far Vael Tor is.",
+   "readAloud": "\"What do you know about the shrine and where the Key is now? What is your plan for reaching them?\"",
+   "response": "Allow the expedition. Ysh is at the bottom of a hundred steps and needs the Key to ring. Apply the stairs price only to steps actually walked: nineteen free steps, then one memory per twenty, one DC 13 Wisdom save at step 20 (campaign cap five on a failure, two on a success). A workable alternative route avoids that cost (the foundry chute, s25-foundry-chute). The Hush Cult notices them only if they are seen.",
+   "rules": "Stairs: see any-stairs-price.",
+   "consequence": "They learn the shrine is real and that the Key is the only way to ring it.",
+   "later": "Without the Key they can't ring or seal Ysh. A visit spends part of their stairs cost early (record it as Stairs in the ledger).",
+   "fallback": "If they have no plan for the Key, the Hush speaks to them in their own sleeping voice and tells them who holds it.",
+   "keywords": "seventh bell, ysh, hush shrine, vael tor, skip, go straight, ending, stairs"
+  },
+  {
+   "id": "any-steal-key-palace",
+   "title": "They try to steal the Key from Maudrin's palace vault",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Heist-minded parties go for the most important object in the campaign (Situation 4).",
+   "tells": "Players ask Ansel Quay about the vault schedule, or scout the palace.",
+   "readAloud": "\"Before her departure, the Key is in Maudrin's separate palace vault. Once she leaves for the Tor, she carries its case on a chain. Which are you scouting?\"",
+   "response": "Good plans should work. Ansel knows the vault schedule and can get them an audience or the service entrance. The Key vault has two Hushman guards, a mechanical lock, and a case tether that rings a mundane alarm when lifted; looking at it reveals the tether without a roll. A successful plan may bypass the checks.",
+   "rules": "Lock: DC 16 Dexterity (Thieves' Tools). Tether: DC 14 Dexterity (Sleight of Hand); failure alerts the guards but doesn't move the Key. Two Hushmen (CR 1/2).",
+   "consequence": "If they succeed, they hold the Key, and Maudrin knows within a day.",
+   "later": "With the Key: each night it hums louder and a holder begins to dream the lullaby; the Strike (S23) becomes a pursuit, and Concord and Second Dawn become possible. On failure, Maudrin demands a Tongue, evidence or a service they actually have, never the Key she still holds.",
+   "fallback": "If caught, a DC 15 Wisdom (Insight) check shows Maudrin is not bluffing about the price.",
+   "keywords": "steal key, tuning key, vault, palace, heist, ansel, break in",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "palace"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "party"
+    },
+    {
+     "flag": "court_eye",
+     "set": "enemy"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "any-steal-key-chain",
+   "title": "They try to take the Key from Maudrin's chain",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Once she leaves Hallowmere, the Key travels on her chain in a silence-stone case.",
+   "tells": "Players ask how the case is fastened, or plan to grapple her.",
+   "readAloud": "The case at Maudrin's throat is grey and dull and swallows the light. Under it, very faintly, something hums.",
+   "response": "Taking the case needs a character to reach her after she has been struck once. On a failure she keeps it and notices the attempt; she escapes only by normal movement and actions. On a success, Haldric (if present) sees the Key in the party's hands and hesitates, which breaks the Court's line.",
+   "rules": "DC 17 at the summit (Keeper), DC 16 at the Strike (Maudrin): Dexterity (Sleight of Hand) once she has taken damage this encounter. Grapple and disarm by 2024 rules work too. Haldric's hesitation costs him his next turn.",
+   "consequence": "The party holds the Key, or Maudrin knows exactly what they want.",
+   "later": "With the Key: Concord, Second Dawn and the Unbound all open (Forecast). Without it: S24 she seals or threatens a strike at the shrine.",
+   "fallback": "If the attempt fails, a Stilled ally or Ilam Bray can create a second opening.",
+   "keywords": "key, chain, case, take the key, grab, sleight of hand, strike, maudrin",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "any-deal-maudrin",
+   "title": "They make a deal with Maudrin",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "She always offers a bargain before a threat (Situation 5).",
+   "tells": "Players ask what she wants, or offer something.",
+   "readAloud": "\"I'm listening. What do you want, and what are you willing to give?\"",
+   "response": "Her bargains are always real and always incomplete: she keeps her word about the thing bargained for and breaks every other promise. Typical deals: safe passage for a Tongue; a memory restored for another given to the Tithe; a prisoner freed for a secret; a Court pension for silence about the Quiet Night.",
+   "rules": "Record every deal in the Bargain log (Party & ledger).",
+   "consequence": "A deal exists with the main antagonist, with teeth.",
+   "later": "She calls in favors at the worst moment: S23 at the latest (s23-favor-called). A broken deal makes her personal (s23-favor-broken).",
+   "fallback": "",
+   "keywords": "deal, bargain, negotiate, maudrin, offer, trade, favor"
+  },
+  {
+   "id": "any-ring-without-toll",
+   "title": "They try to ring a bell without paying the Toll",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Players hate costs, and will look for a loophole (Situation 6).",
+   "tells": "Players ask whether an animal, an NPC, or magic could pay instead.",
+   "readAloud": "\"The Toll is part of the bell. You can't ring it without giving something up. What do you want to give?\"",
+   "response": "State the bell's fixed Toll type and let the player choose its personal content. If they decline, the bell doesn't ring. Another willing Ringer may pay instead. No unnoticed cost or involuntary loss ever substitutes for an agreed Toll. Corin can defer a Toll for an hour, not cancel it.",
+   "rules": "Tolls by bell: Vaer a memory of a dawn; Ossa a memory of someone dead; Calla a Gift; Hieme a Memory; Thrane a Sense for a day; Mirel a Fear for a day.",
+   "consequence": "The table understands the price is real and always chosen.",
+   "later": "",
+   "fallback": "If no one will pay, the bell waits. The Forecast shows what that costs the Concord.",
+   "keywords": "toll, pay, avoid, loophole, free, cost, ring without paying, someone else pays"
+  },
+  {
+   "id": "any-harm-child",
+   "title": "Someone wants to hurt Ila, Jonah or another child",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "It happens, and it needs a firm table answer (Situation 7).",
+   "tells": "A player threatens a child in character.",
+   "readAloud": "\"They're children. Why would you want to hurt them?\"",
+   "response": "Stop and use your session-zero agreements. If harm to children is a Line, rewind: don't enact it and then punish it in the fiction. Replace threatened-child scenes with agreed alternatives. If a child is in danger in the fiction, an adult steps in: Mother Sallow, Ilam Bray, Bet Ostrow or Brannagh Wick.",
+   "rules": "",
+   "consequence": "The table's boundaries hold.",
+   "later": "",
+   "fallback": "Take a break and talk out of character.",
+   "keywords": "child, kill ila, hurt jonah, children, threaten child, lines and veils"
+  },
+  {
+   "id": "any-side-quests",
+   "title": "They ignore the plot to explore, trade or take side jobs",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "A port full of ships and money invites it (Situation 8).",
+   "tells": "Players ask about work on the Quays, cargoes, or what sells abroad.",
+   "readAloud": "\"That's fine. Corvane is big, and Pellmoor is busy. What do you do first?\"",
+   "response": "Let them. Use v5's side quests (11.6) and the Landing: a pilot's job through the Seam, a Coster cargo with something illegal in it, a Reckoner's forgery problem. The main plot keeps moving: advance one faction clock each session and send news of threatened moves. Absence alone never destroys Pellmoor.",
+   "rules": "",
+   "consequence": "The party earns money and contacts; the world advances without them.",
+   "later": "Clocks near their thresholds show in Foresight's Pressure ahead. Faerûnian contacts made here can become Act IV allies (the Stormborn).",
+   "fallback": "If they drift too long, an NPC brings a direct request: Mother Sallow, Rook, Kessa, Corin or Lysse.",
+   "keywords": "side quest, explore, money, trade, job, merchant, cargo, ignore plot, wander",
+   "effects": [
+    {
+     "flag": "clock_landing",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-join-court",
+   "title": "They join the Quiet Court",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Order, safety and access are tempting (Situation 9).",
+   "tells": "Players ask what the Court pays, or what Hushmen get.",
+   "readAloud": "\"That's an unusual choice. The Court values order above all things. What do you bring to the table?\"",
+   "response": "Let them; it's a strong route. They gain power, safety and access to the Tithe-Ledger. They will be asked to Tithe people, including friends. Each session, ask for one name they record. Ask: \"Will you still believe in Order when it is asked of someone you love?\"",
+   "rules": "",
+   "consequence": "The party works for the Court, with the Court's protection.",
+   "later": "Endings shift: the Empty Choir becomes their victory unless they turn. The Bellwrights and the Choir become enemies. S23: s23-march-with-maudrin. S24: s24-deal-with-maudrin. S26: s26-help-seal. S27: s27-empty-choir.",
+   "fallback": "",
+   "keywords": "join court, quiet court, hushman, become hushmen, serve maudrin, work for the court",
+   "effects": [
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ]
+  },
+  {
+   "id": "any-become-bellwrights",
+   "title": "They become Bellwrights",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The underground bell-makers are sympathetic and hunted (Situation 10).",
+   "tells": "Players ask how bells are made or who teaches Tonework.",
+   "readAloud": "\"The Bellwrights are hunted, and they have few resources. They'll need proof of your skill. Can you make a bell?\"",
+   "response": "Let them learn the Bellwright story talent (v5 2.6). Give them an apprentice: Wren, Ila or Bet. Their test is ringing a small, ordinary bell, with a small, chosen price. In Pellmoor, Lantanese tinkers are eager collaborators and terrible at keeping secrets.",
+   "rules": "Tool proficiency with Smith's Tools or Tinker's Tools helps; use 2024 crafting rules for ordinary bells.",
+   "consequence": "The party has an underground network, and the Court's hatred.",
+   "later": "Corin treats them as kin when they meet (S18A or S20). Wren's betrayals now endanger them directly (S6).",
+   "fallback": "",
+   "keywords": "bellwright, join, bell-making, craft bell, tonework, apprentice"
+  },
+  {
+   "id": "any-negotiate-nonhuman",
+   "title": "They negotiate with the Choir, the Stilled, the Sleepless or the Hush",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Talking to the strange is a Seventh Bell signature (Situation 11).",
+   "tells": "Players address the dead, the frozen or the dream directly.",
+   "readAloud": "\"They're not like the living. They don't negotiate the way you do. What do you want to ask them?\"",
+   "response": "They can bargain, but they ask strange things. The Drowned Choir wants a true memory of the dead. The Stilled want to move. The Sleepless want a dream of their own. The Hush wants rest.",
+   "rules": "Influence works if they can understand you; their attitude is set by what they want, not by charm.",
+   "consequence": "A strange ally, or a strange debt.",
+   "later": "Record the bargain; these debts come due in Act V.",
+   "fallback": "",
+   "keywords": "talk, negotiate, choir, stilled, sleepless, hush, bargain, dead, dream"
+  },
+  {
+   "id": "any-burn-it-down",
+   "title": "They burn the Bone Archive, the Hall of Tithes, or the city",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Rage at the Tithe can boil over (Situation 12).",
+   "tells": "Players ask for oil, or where the jars are stored.",
+   "readAloud": "\"That's a lot of books. And a lot of people. Are you sure?\"",
+   "response": "If they clearly mean it, let them. The city answers with a massive Hushmen sweep and a Dawn Order response. Smashing Tithe jars scatters those memories; it doesn't return them. The Blanks are freed, and some are permanently changed by the fire. The party is hunted across the Ninefold Shore.",
+   "rules": "",
+   "consequence": "Hallowmere burns; the Tithe Clock jumps to 12.",
+   "later": "Acts IV and V become more dangerous and the ending darker. The Court raises the Silence in every street. S28: the jars are gone; only a Remake mends them (s28-jars-destroyed).",
+   "fallback": "",
+   "keywords": "burn, fire, archive, hall of tithes, destroy, arson, smash jars",
+   "effects": [
+    {
+     "flag": "tithe_clock",
+     "add": 12
+    },
+    {
+     "flag": "court_eye",
+     "set": "enemy"
+    },
+    {
+     "flag": "clock_court",
+     "add": 3
+    },
+    {
+     "flag": "jars",
+     "set": "destroyed"
+    }
+   ]
+  },
+  {
+   "id": "any-turn-on-each-other",
+   "title": "The characters turn on each other",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Secrets and Tolls create tension (Situation 13).",
+   "tells": "A player hides a Tongue, or wants to sell another character's secret.",
+   "readAloud": "\"Corvane is full of people who want things from you. Your friends may want something too. Who is hiding something?\"",
+   "response": "Use the secrets: each character's secret is known only to them and the DM. Play betrayal only when the affected players have agreed out of character; otherwise resolve the disagreement without player-versus-player coercion. Never take away a player's character.",
+   "rules": "",
+   "consequence": "The conflict is settled by agreement, at the table or in the fiction.",
+   "later": "",
+   "fallback": "",
+   "keywords": "betray, pvp, each other, steal from party, secret, conflict"
+  },
+  {
+   "id": "any-long-rest",
+   "title": "They rest for a long time in a Court city",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Healing up and shopping take days (Situation 14).",
+   "tells": "Players plan downtime in Hallowmere or another Court city.",
+   "readAloud": "\"You can rest, but the Long Dusk doesn't wait. Every night you rest in a Court city, the Tithe-quota grows, and the Hush gets a little louder.\"",
+   "response": "Let them rest, and tick the Tithe Clock once per night in a Court city. At 6: a Hushmen sweep and checkpoints. At 12: silence-stones in every street. Pellmoor is not a Court city; resting there costs nothing.",
+   "rules": "World state: Tithe Clock +1 per night (use the stepper).",
+   "consequence": "Time passes; the Court tightens.",
+   "later": "Thresholds trigger once per cycle; a week outside Court cities resets the clock but deployed checkpoints stay.",
+   "fallback": "",
+   "keywords": "rest, downtime, long rest, wait, days, shop, heal, hallowmere"
+  },
+  {
+   "id": "any-talk-to-gods",
+   "title": "They try to talk to the bells, the Silence or a god",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Clerics and curious players ask the biggest questions (Situation 15).",
+   "tells": "A cleric casts Commune or Augury, or someone prays at a bell.",
+   "readAloud": "\"The bells can't speak. But the Hush can, and so can the Librarian. And the Dreamer, if you're brave enough to ask.\"",
+   "response": "Use the Librarian (Act II) and the Hush (Act IV). Both answer one question for each true memory or true sacrifice: true but partial. Faerûnian divination works normally, but the gods are guarded about Corvane: Commune answers about Oum come back \"unclear\" unless the question is very precise. If they learn the truth early, let it change their plans.",
+   "rules": "Commune, Augury and Divination work by 2024 rules; Oum is not a god the Faerûnian powers will speak for.",
+   "consequence": "A true, partial answer, paid for with a memory or a sacrifice.",
+   "later": "",
+   "fallback": "",
+   "keywords": "talk to bell, pray, god, commune, augury, divination, oum, dreamer, silence, question"
+  },
+  {
+   "id": "any-toll-for-else",
+   "title": "They want to pay a Toll for something other than a bell",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Once memory is money, players spend it creatively (Situation 16).",
+   "tells": "Players offer a memory to an NPC, a spirit or a door.",
+   "readAloud": "\"The Toll is always personal. It's what you give. What do you want to buy with it?\"",
+   "response": "Let them, with a real cost. A memory can buy protection, a favor, a ritual or a key. In v6 most of this is ordinary memory money (a keep or heartkeep) rather than a bell Toll; record it as Trade or Gift. Make the price visible.",
+   "rules": "Memory money table rules apply (Party & ledger → Memory money).",
+   "consequence": "Something real is bought with something personal, and recorded.",
+   "later": "",
+   "fallback": "",
+   "keywords": "memory as payment, toll for, spend memory, buy with memory, offer a memory"
+  },
+  {
+   "id": "any-leave-corvane",
+   "title": "They want to leave Corvane",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "In v6 there is a whole world beyond the Stormwall, and ships leave every week in season (Situation 17).",
+   "tells": "Players ask about ships home, the Seam, or Faerûnian help.",
+   "readAloud": "\"There is a world beyond the Stormwall, and ships sail to it from Pellmoor every week in season. Six weeks to the Sword Coast. Is that where you want to go?\"",
+   "response": "Let them if they insist. Leaving pauses the plot: advance the Court clock by two and the Ferry clock by one for each month away, and send news of what the Court did. A writ of departure is needed to board legally; Brannagh's pilots can arrange otherwise. They may bring Faerunian help back (Harpers, a Lords' Alliance envoy, a Dawn Mission delegation); it arrives as an Act IV ally (s22-ally-stormborn).",
+   "rules": "",
+   "consequence": "The campaign pauses for weeks of travel.",
+   "later": "Faerûnian allies join the S22 ally roster as the Stormborn. The Court's clocks will have moved.",
+   "fallback": "If they only want to see the edge, use the Edge of the Dream (11.7), now inside the Stormwall.",
+   "keywords": "leave, sail home, faerun, sword coast, ship, seam, stormwall, go home, other world"
+  },
+  {
+   "id": "any-fight-god",
+   "title": "They want to fight a dragon, a god, or something unplanned",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Big-game hunters exist at every table (Situation 18).",
+   "tells": "Players ask where the dragons are.",
+   "readAloud": "\"There's no dragon in Corvane. Sailors swear one tried the Stormwall in 1479 DR and fell burning into the sea. But there's the Dreamer, and it's enormous.\"",
+   "response": "Oum's visible form is a dream-image of sleeping bells and mountains; ordinary attacks pass through it. Say so before they spend big resources. Only a strike of Ysh with the Key opens the Hush; after that, use conversation with Oum.",
+   "rules": "",
+   "consequence": "The party learns Oum cannot be fought, only answered.",
+   "later": "",
+   "fallback": "",
+   "keywords": "dragon, fight god, oum, monster, boss, kill the dreamer"
+  },
+  {
+   "id": "any-absent-player",
+   "title": "A player is absent, leaves, or loses a character",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Every campaign deals with it (Situation 19).",
+   "tells": "",
+   "readAloud": "",
+   "response": "Follow the table's agreed rules. A new character arrives in Pellmoor on the next ship, or in Hallowmere, with a personal hook (v5 7.7). An absent player's character is a loyal companion who doesn't spend their resources, accept bargains or take personal losses, or stays safely off-screen by agreement.",
+   "rules": "No Toll, stairs cost or memory payment is ever taken from an absent player's character.",
+   "consequence": "Every player keeps their character and their choices.",
+   "later": "",
+   "fallback": "",
+   "keywords": "absent, missing player, character death, new character, leave game"
+  },
+  {
+   "id": "any-lost",
+   "title": "The party doesn't know where to go next",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Mysteries stall (Situation 20).",
+   "tells": "Long silence, or \"what are we supposed to do?\"",
+   "readAloud": "\"Let's look at what you know. Who do you trust most, and where do you want to go?\"",
+   "response": "Use the Clue Ladder: a rumour pointing at the next place, then an NPC's direct hint, then a document or person who names it outright. If still stuck, an NPC approaches with a direct request: Mother Sallow, Rook, Kessa, Corin or Lysse. Foresight's Forecast lists the routes still open.",
+   "rules": "",
+   "consequence": "A clear next step, earned through clues rather than handed out.",
+   "later": "",
+   "fallback": "",
+   "keywords": "lost, stuck, confused, what next, where to go, no idea"
+  },
+  {
+   "id": "any-calla-without-hallowmere",
+   "title": "They send Bet's carts for Calla's Tongue",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "They left the capital and the Tongue is still in the vault (Situation 21).",
+   "tells": "Players look at the Forecast and see Calla missing.",
+   "readAloud": "\"The Calla Tongue is in the Court's vault, in Hallowmere. That hasn't changed.\"",
+   "response": "Bet Ostrow knows which carts leave the city unsearched. The Tongue comes out among the grain sacks over four days, at a cost: the Tithe Clock ticks once for the night Bet's people spend in the city. In v6 a Harper on Strangers' Row can forge a writ that gets one person in.",
+   "rules": "",
+   "consequence": "The party holds Calla's Tongue.",
+   "later": "Calla is one of the six for the Concord.",
+   "fallback": "",
+   "keywords": "calla, tongue, vault, hallowmere, go back, return, harvest",
+   "when": [
+    {
+     "flag": "t_calla",
+     "in": [
+      "vault"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_calla",
+     "set": "party"
+    },
+    {
+     "flag": "tithe_clock",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-modify-memory",
+   "title": "They cast Modify Memory to restore or remove a memory",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "In a campaign about memory, the spell will come up once a bard or cleric reaches it.",
+   "tells": "A caster asks whether magic can give Mother Sallow back her husband, or make a Hushman forget them.",
+   "readAloud": "The spell finds the shape of the forgetting, a clean hollow where something was, and there is nothing in it to move.",
+   "response": "Modify Memory works as written on ordinary memories (forgetting the party's faces, changing how a recent conversation went). It cannot restore a Tithed memory (that memory is in a jar in Hallowmere; only opening the jar returns it), a sold keep (it's in someone's vial), or a Toll (the bell took it). It can plant a false memory in a Blank, but not recognition of a real person. Make the limit clear before the slot is spent.",
+   "rules": "Modify Memory (2024): Wisdom save; the target has the Charmed condition while you work; the time window depends on spell level.",
+   "consequence": "Ordinary memories bend; the Tithe, the trade and the Tolls do not.",
+   "later": "Planting false memories in Blanks is exactly what the Court would do. If the party does it, the Choir and the Bellwrights notice.",
+   "fallback": "",
+   "keywords": "modify memory, restore memory, erase memory, spell, bard, cleric, wizard, forget"
+  },
+  {
+   "id": "any-restoration",
+   "title": "They use healing magic on a Blank, a Toll or an eel-bite",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players reach for Greater Restoration, Remove Curse or Heal on memory loss.",
+   "tells": "A cleric offers to cure a Blank, or end a Sense Toll early.",
+   "readAloud": "",
+   "response": "Rulings: Greater Restoration, Heal and Remove Curse don't restore Tithed or traded memories (those are elsewhere, in glass). A Toll can't be ended early by any magic: the bell holds it until it ends. Remove Curse or Greater Restoration does return an eel-stolen memory at once. Lesser Restoration ends Blinded, Deafened, Paralyzed or Poisoned (and a disease); it does not end Frightened. Use Calm Emotions for a fear in the moment, Heroes' Feast against fear for a day. A dream lost to the Hush Cult returns only when the Hush is struck, sealed or tuned.",
+   "rules": "Lesser and Greater Restoration, Remove Curse and Heal work by 2024 rules except as ruled here.",
+   "consequence": "The table learns which losses magic can mend and which only a jar, a vial or the Remake can.",
+   "later": "The cure for a Blank is finding their jars, or the Remake.",
+   "fallback": "",
+   "keywords": "greater restoration, remove curse, heal, cure, blank, toll, eel, restore, lesser restoration"
+  },
+  {
+   "id": "any-speak-with-dead",
+   "title": "They cast Speak with Dead on Tam Harrow",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A level-5 cleric or bard with a drowned father's body nearby will try it.",
+   "tells": "Players ask where Tam is buried.",
+   "readAloud": "Tam's lips move slowly, as if the water were still in them. \"Grey gloves. They took the way. I couldn't find the way home.\"",
+   "response": "Mere-drowned bodies don't decay; the ferry-folk keep Tam in the cold-house until his name is written in the ledger. Speak with Dead works: he answers five questions from what he knew. He remembers grey gloves, a patrol, being asked about a route, and then nothing about the route at all, because it was taken from him. He wanted to return the Tongue to the Choir and keep Ila safe.",
+   "rules": "Speak with Dead (2024): five questions; the corpse knows only what it knew in life. Ask Ila or Mother Sallow first; doing it without asking angers the ferry-folk.",
+   "consequence": "A clear source on Tam's death.",
+   "later": "Counts as one of the sources on Tam's death; any two establish the Court's responsibility.",
+   "fallback": "",
+   "keywords": "speak with dead, tam, corpse, body, cleric, question the dead, father"
+  },
+  {
+   "id": "any-zone-of-truth",
+   "title": "They cast Zone of Truth or Detect Thoughts on someone",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Investigative parties reach for truth magic in a story built on lies.",
+   "tells": "A caster prepares Zone of Truth before the oath-duel or an interrogation.",
+   "readAloud": "",
+   "response": "The firm rulings for levels 3 to 6 are in the early play on truth and minds (the oath-duel's herald fields, Maudrin's dais, Haldric's shield). Later in the campaign the same rules hold: Zone of Truth works as written (Charisma save; a creature may refuse to answer, which is itself telling), and Haldric and Maudrin, who know the spell, simply refuse. Detect Thoughts on a Tithed person finds blank patches where things were taken; on Maudrin with the Key it finds one repeating thought: “keep it as it is.”",
+   "rules": "Zone of Truth: Charisma save; creatures can evade or refuse to answer. Detect Thoughts: Wisdom save to probe deeper.",
+   "consequence": "Truth magic gets answers outside the hearing, and pointed refusals from the people who know the spell.",
+   "later": "",
+   "fallback": "",
+   "keywords": "zone of truth, detect thoughts, lie, truth, read mind, interrogate, spell"
+  },
+  {
+   "id": "any-silence-and-stones",
+   "title": "They use Silence, Dispel Magic or Counterspell against silence-stones",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Casters want to know how their magic interacts with the Court's stones.",
+   "tells": "A caster tries to dispel a checkpoint stone, or casts Silence around a Hushman.",
+   "readAloud": "",
+   "response": "Silence-stones aren't spells. Dispel Magic and Counterspell don't affect them; break one (AC 12, 10 HP) or carry it off. The spell Silence is a different thing: Corvanese find it eerie and holy, and Hushmen are amused. A bell rung inside a Silence spell still rings and still takes its Toll; its tone travels through the world, not the air. Silence does stop a Tongue-Hound's ring.",
+   "rules": "House rule (v5 2.6): a fixed stone suppresses spells in a 10-foot radius; a glove suppresses only its own strike.",
+   "consequence": "Casters know stones must be broken or carried, not dispelled.",
+   "later": "",
+   "fallback": "",
+   "keywords": "silence, silence-stone, dispel magic, counterspell, stone, checkpoint, suppress, antimagic"
+  },
+  {
+   "id": "any-sending-home",
+   "title": "They send a message across the Stormwall",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A Stormborn caster with Sending can reach home.",
+   "tells": "A player asks whether Sending works from Corvane.",
+   "readAloud": "",
+   "response": "It works: Corvane is on the same plane as the Sword Coast. The recipient hears a faint ringing under the words. Help sent in reply takes weeks to arrive by sea; magical travel needs a destination the caster knows, and Corvane has no permanent teleportation circles.",
+   "rules": "Sending (2024): 25 words each way.",
+   "consequence": "Faerûn knows what the party knows.",
+   "later": "A reply can become a Stormborn ally for S22, or a complication if the Lords' Alliance decides the Seam is worth controlling.",
+   "fallback": "",
+   "keywords": "sending, message, home, faerun, contact, harpers, teleport, scroll"
+  },
+  {
+   "id": "any-water-breathing",
+   "title": "They use Water Breathing or similar to reach Old Pellmoor",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Diving magic makes the drowned town an explorable dungeon.",
+   "tells": "A caster prepares Water Breathing before visiting the belfry.",
+   "readAloud": "The drowned streets of Old Pellmoor open in front of you, doors hanging, a chandelier swaying with no current.",
+   "response": "It works (v5 allows diving magic). The Choir notices anyone who lingers; the response hymn keeps them calm. The drowned houses can collapse, and memory-eels nest in chimneys. Treasure: memory-pearls (v5 11.5).",
+   "rules": "Underwater combat (2024): melee attackers without a Swim Speed have Disadvantage unless using a dagger, javelin, shortsword, spear or trident.",
+   "consequence": "Old Pellmoor becomes a place the party can explore.",
+   "later": "",
+   "fallback": "",
+   "keywords": "water breathing, dive, underwater, old pellmoor, drowned town, swim, explore"
+  },
+  {
+   "id": "any-pay-with-memory",
+   "title": "They pay with a memory instead of coin",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "It's the everyday currency of Corvane, and players love trying it.",
+   "tells": "A player asks what a memory is worth, or offers one at a stall.",
+   "readAloud": "The Reckoner touches a cold fork to your temple. For a moment you know exactly what you're about to lose. Then you don't, and you don't mind.",
+   "response": "The player chooses the memory and its weight (mote, keep, heartkeep or knowing) and writes one line in the Memory ledger. Price it from the Reckoning House slate. Motes and keeps change nothing on the sheet. Ask the player what the character no longer remembers, and let that be a small moment.",
+   "rules": "Rates at Pellmoor: mote about 1 sp; keep about 1 gp 2 sp; heartkeep 25–100 gp by appraisal. A Reckoner buying memories for gold takes a 10 percent fee.",
+   "consequence": "The character has paid in the local way.",
+   "later": "Patterns of what a character sells say a lot about them; use the ledger as a spotlight prompt.",
+   "fallback": "",
+   "keywords": "pay with memory, memory money, keep, mote, buy, sell memory, reckoner, price, coin"
+  },
+  {
+   "id": "any-sell-heartkeep",
+   "title": "They sell a heartkeep",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Heartkeeps pay well, and desperate characters sell them.",
+   "tells": "A player asks what a big memory is worth.",
+   "readAloud": "Sela Maunt holds the red-waxed vial up to the light and doesn't say anything for a long moment. \"Are you sure, love? This one's heavy.\"",
+   "response": "Appraise it at 25 to 100 gp or more. Before the sale, the player names the memory and what it held up in the character (a belief, a bond, a fear); after, they rewrite that one thing. Sela will quietly offer to keep it on her Lost Shelf so they can buy it back at cost.",
+   "rules": "No mechanical penalty. The DM may award Heroic Inspiration if the money is used for someone in need.",
+   "consequence": "Real money, and a real change in the character.",
+   "later": "Venn's Coster pays more and ships it abroad, and then it is gone for good. A heartkeep on Sela's shelf can be bought back.",
+   "fallback": "",
+   "keywords": "heartkeep, sell big memory, defining memory, desperate, money, sela, lost shelf"
+  },
+  {
+   "id": "any-buy-back-memory",
+   "title": "They try to buy back a memory",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Someone (a PC, Mother Sallow, Lysse, a Blank) wants something back.",
+   "tells": "A player asks where sold or Tithed memories go.",
+   "readAloud": "",
+   "response": "Traded keeps: find who holds the vial (Sela's Lost Shelf, a collector, a Coster crate) and buy it; the owner opens it and the memory returns whole. Tithed memories: they're jars in the Tithe-Ledger Room in Hallowmere; only theft or a Court bargain gets them. Tolls: never.",
+   "rules": "Finding a sold keep: a Reckoner's records (DC 13 Intelligence (Investigation), or Sela's help) say who bought it.",
+   "consequence": "The party knows where each kind of lost memory went and what getting it back would take.",
+   "later": "Mother Sallow's wedding memory is a Tithe jar in the Hallowmere vault (S5). Lysse's missing memories are filed under other names there.",
+   "fallback": "",
+   "keywords": "buy back, recover memory, get memory back, jar, tithe jar, lost shelf, restore"
+  },
+  {
+   "id": "any-open-a-keep",
+   "title": "They open a stranger's keep",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Curiosity, a clue, or an investigation can be inside a vial.",
+   "tells": "A player asks what is in a keep, or buys one to open.",
+   "readAloud": "For a moment you are someone else, on a different shore, laughing at something you'll never understand. Then the vial is a little greyer.",
+   "response": "They witness the memory as a guest, without becoming its owner. Each stranger's opening fades it; after three it's spent. A Knowing gives them its knowledge for one use. Opening a keep is how investigations in Corvane find evidence: a route, a face, a password.",
+   "rules": "Once, a character who witnesses a Knowing has Advantage on one ability check that knowledge plainly helps.",
+   "consequence": "A stranger’s memory, and possibly a clue, at the cost of fading it.",
+   "later": "",
+   "fallback": "",
+   "keywords": "open keep, witness, stranger's memory, knowing, vial, clue, evidence"
+  },
+  {
+   "id": "any-gild-a-tithe",
+   "title": "They pay a local's Tithe in gold (gilding)",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Faerûnian characters with gold want to spare friends their memories.",
+   "tells": "A player offers to cover someone's Tithe with coin.",
+   "readAloud": "Quill looks at the coins, then at you, then very carefully at nothing at all. \"I didn't see that.\"",
+   "response": "It is illegal and common. A bribed or tired officer looks away; an ambitious one writes it down. Quill accepts gilding once if bribed or befriended; any Hushman Sergeant reports it. Getting caught makes the payer a Tithe-case and the local pays double.",
+   "rules": "Influence (Persuasion or Deception) DC 15 to get an officer to look away; automatic with Quill if he's bribed.",
+   "consequence": "A neighbour keeps their memory; the party owes or is owed.",
+   "later": "Repeated gilding advances the Court clock and raises Pellmoor's quota. The ferry-folk remember who paid.",
+   "fallback": "",
+   "keywords": "gild, gilding, pay tithe in gold, gold for tithe, cover tithe, bribe officer",
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-forge-keep",
+   "title": "They make or pass a forged keep",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "Rogues will try to counterfeit the local money.",
+   "tells": "A player asks how keeps are stamped, or whether you can fake a memory.",
+   "readAloud": "",
+   "response": "A forged keep is a real vial with a false or empty memory and a copied wax stamp. It passes in a busy market and fails in front of a Reckoner, whose fork rings in the wrong note. Forgery is a Court crime; the Landing's merchants take it personally.",
+   "rules": "Making one: DC 15 Dexterity (Forgery Kit). Passing it: Charisma (Deception) against a merchant's Passive Insight; a Reckoner detects it automatically unless bribed.",
+   "consequence": "Easy money, and enemies in the Tally.",
+   "later": "Venn's Coster hires investigators; the Landing clock advances.",
+   "fallback": "",
+   "keywords": "forge, forgery, fake keep, counterfeit, fake memory, scam",
+   "effects": [
+    {
+     "flag": "clock_landing",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-leech",
+   "title": "Someone tries to take a memory without consent",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A player wonders if they could rip a secret out of an NPC.",
+   "tells": "A player asks how drawing works, intending to use it on a prisoner.",
+   "readAloud": "",
+   "response": "Drawing needs a Reckoner's fork, a Mere-glass vial, training and consent; without consent the memory won't seal. Only Court Tithe-collectors and leeches force it, using tools and methods that are the Court's darkest secret. A PC cannot do it on the fly. If the table wants this thread, it is a villain's method, not a player tool.",
+   "rules": "",
+   "consequence": "The table knows forced drawing is the Court’s secret, not a player tool.",
+   "later": "",
+   "fallback": "",
+   "keywords": "leech, steal memory, force, take memory, interrogate, without consent"
+  },
+  {
+   "id": "any-confront-venn",
+   "title": "They confront Master Venn about the memory trade",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Once they know the Coster buys Tithed memories, Venn becomes a target.",
+   "tells": "The party has seen the EXPORT — VENNMARK column, or follows a Coster crate.",
+   "readAloud": "Venn closes his ledger gently, as if it might bruise. \"Friend. Everyone in Corvane sells memories. I only pay better.\"",
+   "response": "Venn denies nothing he can't be forced to. Evidence (the Tithe-Ledger column, a crate manifest, a bribed Quill) makes him bargain: he'll give up a crate bound for Athkatla, or betray Quill, to keep his licence hopes. Exposing him publicly turns the Old Shore against the Coster.",
+   "rules": "Influence: Venn is Indifferent; Hostile once humiliated in public. Evidence grants Advantage.",
+   "consequence": "Venn becomes an enemy or an unwilling source.",
+   "later": "A recovered crate holds Blanks' memories: returning them is a powerful act (Blanks can join the S22 allies, s22-ally-blanks). The Landing clock moves.",
+   "fallback": "",
+   "keywords": "venn, confront, coster, export, memory trade, crates, athkatla, merchant",
+   "when": [
+    {
+     "flag": "venn",
+     "in": [
+      "courting",
+      "dealt",
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "venn",
+     "set": "exposed"
+    },
+    {
+     "flag": "clock_landing",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-harpers",
+   "title": "They seek out the Harpers or other Faerûnian help",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Faerûnian characters know there are people in Pellmoor who distrust the Court.",
+   "tells": "A Stormborn character mentions the Harpers, the Lords' Alliance or the Zhentarim.",
+   "readAloud": "The Harper's lute has one string tuned wrong, on purpose. \"You're asking the right questions. Ask them quieter.\"",
+   "response": "Two Harper agents work Strangers' Row. They distrust the Tithe and sympathise with the Bellwrights. They can forge one writ of passage, carry a message home, or introduce the party to a Bellwright contact. In return they want the truth about the Tithe-Ledger. The Zhentarim offer the same services for money and a cut of the memory trade.",
+   "rules": "",
+   "consequence": "A Faerûnian contact network.",
+   "later": "Harper help can become the Stormborn ally at S22. A Zhentarim debt comes due in Act III.",
+   "fallback": "",
+   "keywords": "harpers, zhentarim, lords alliance, faerunian help, spies, writ forgery, contact"
+  },
+  {
+   "id": "any-kill-maudrin-fails",
+   "title": "The attempt on Maudrin fails",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Plans against her fail more often than they work.",
+   "tells": "The assassination goes wrong.",
+   "readAloud": "The balcony door is already open. “Do come in,” says a voice in the dark.",
+   "response": "The party escapes, is captured, or is allowed to leave. The Court knows their faces. Do not force a merciful Maudrin; play what the dice and the plan give. She never forgives a second attempt.",
+   "rules": "",
+   "consequence": "The Court hunts the party.",
+   "later": "S23: the Strike is harder.",
+   "fallback": "",
+   "keywords": "kill maudrin, fail, assassination",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "court_eye",
+     "set": "enemy"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "any-tristan-chancellor",
+   "title": "They bargain with Chancellor Tristan",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "With Maudrin dead, Tristan holds the Key and wants allies.",
+   "tells": "Players ask what Tristan wants.",
+   "readAloud": "Tristan Vesk folds his hands. “My cousin made a great many enemies. I would like to make fewer.”",
+   "response": "Tristan offers the Key's whereabouts for the Tongues the party holds, or a pension for silence about the Quiet Night. He is cautious and afraid of the Hush. He cannot be forced.",
+   "rules": "",
+   "consequence": "A deal with a new Court head.",
+   "later": "S22: s22-tristan-takes-the-march.",
+   "fallback": "",
+   "keywords": "tristan, chancellor, deal, key",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "dead"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "tristan"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-scrying",
+   "title": "They Scry on Maudrin, the Key or the shrine",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A fifth-level spell for a campaign about secrets.",
+   "tells": "A caster prepares Scrying.",
+   "readAloud": "In the water a figure turns away, and the scene dims as if under a cloth.",
+   "response": "Scrying works but is hampered: Maudrin's gloves and the Key's silence-stone case give her Advantage on the save if she knows she is watched; the Key itself cannot be seen. The shrine can be scried only by someone who has stood at the bottom (it also becomes a Teleport destination, Viewed Once). The Hush notices a scryer and speaks to them.",
+   "rules": "Scrying (5th): Wisdom save modified by familiarity. A silence-stone cloth blocks it entirely.",
+   "consequence": "A view of the column, a face, a place.",
+   "later": "S22: the column (s22-scry-the-column).",
+   "fallback": "",
+   "keywords": "scrying, spy, watch, divination",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-teleport-and-gates",
+   "title": "They Teleport, Dimension Door or Gate",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "High-level casters will try to skip the road.",
+   "tells": "A caster prepares Teleport or Gate.",
+   "readAloud": "The air folds, and for a moment you smell tide and bronze.",
+   "response": "Corvane has no permanent teleportation circles. Teleport works within the Ninefold Shore to places the caster knows; Hallowmere's silence-stones block arrival within 10 feet of a stone. Teleport or Gate across the Stormwall misfires: you arrive at Pellmouth in the Seam, taking 3d10 Lightning damage. Teleport or Dimension Door to the Hush chamber avoids the stairs if you have seen it (s25-teleport-to-the-shrine).",
+   "rules": "Teleport (7th), Dimension Door (4th), Gate (9th).",
+   "consequence": "Travel has rules.",
+   "later": "S25: the stairs.",
+   "fallback": "",
+   "keywords": "teleport, gate, dimension door, travel",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-plane-shift",
+   "title": "They Plane Shift or leave the plane",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "A high-level escape hatch.",
+   "tells": "A caster prepares Plane Shift.",
+   "readAloud": "The tuning fork hums, and the grey world slips away.",
+   "response": "Plane Shift works (Corvane is on the Material Plane); it does not cross to Faerun because that is the same plane. Leaving Corvane's plane strands the party outside the Hush's reach: Tolls, stairs memories and the Great Toll stay with them; bells cannot be rung from another plane. Advance the Court clock by two for each month away. The Court does not follow.",
+   "rules": "Plane Shift (7th), Banishment (4th).",
+   "consequence": "The party leaves and returns later.",
+   "later": "Anytime: the Court's clocks have moved.",
+   "fallback": "",
+   "keywords": "plane shift, astral, leave, escape",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-wish",
+   "title": "They cast Wish",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A ninth-level caster will try.",
+   "tells": "A caster has Wish and a long list.",
+   "readAloud": "The word is out before you finish it. The bells do not answer.",
+   "response": "Wish can duplicate a spell of 8th level or lower (including Resurrection, Heal and Greater Restoration), obey the usual stress rule, and teleport a Tithe jar to its owner. It cannot pay a Toll, ring a bell, strike Ysh, undo Oum, restore a Tithed memory as if it had never been taken, or change an ending flag. The lullaby ignores wishes.",
+   "rules": "Wish (9th). Stress: Strength drops, 33% to lose the spell forever (2024).",
+   "consequence": "A wish is a spell.",
+   "later": "",
+   "fallback": "",
+   "keywords": "wish, limited, jar, toll",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-resurrection",
+   "title": "They cast Revivify, Raise Dead or Resurrection",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Parties die in Act IV and V.",
+   "tells": "A character drops or an NPC dies.",
+   "readAloud": "The dead are listened to in Corvane, and they take a long time to answer.",
+   "response": "Player characters: Revivify (within 1 minute, 300 gp diamond), Raise Dead (within 10 days, 500 gp diamond; -4 penalty to D20 Tests that fades one per Long Rest), Resurrection (within 100 years) work. Sister Aurelie's Dawn Mission can provide Raise Dead. Bell Tolls, stairs memories and lost dreams are not restored. NPCs whose death advances the plot (Tam, Imber, Kessa, Maudrin, Corin) are not restored; offer a Mere Memory instead. A Ringer who became the Seventh's voice cannot be raised.",
+   "rules": "Revivify (3rd), Raise Dead (5th), Resurrection (7th).",
+   "consequence": "The party's dead have a way back.",
+   "later": "See any-pc-dies.",
+   "fallback": "",
+   "keywords": "revivify, raise dead, resurrection, death, revive",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-pc-dies",
+   "title": "A player character dies",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Acts IV and V are dangerous.",
+   "tells": "A character drops to 0 HP and fails death saves.",
+   "readAloud": "Your friend lies still, and the bells ring from a long way off.",
+   "response": "The dead pay no Toll, stairs memory or ledger entry. Allies drag them out. Revivify within 1 minute; Raise Dead via Sister Aurelie's mission or a Tithe-free temple. A new character arrives by the next ship or road (any-absent-player). Nothing is taken from an absent player's character.",
+   "rules": "",
+   "consequence": "A character is dead or revived.",
+   "later": "S23, S24, S26, S27: s23-pc-drops, s26-help-ringer-falls, s27-ringer-dies-at-rite.",
+   "fallback": "",
+   "keywords": "death, die, dead, pc, revive",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-pc-dies-mid-ringing",
+   "title": "The Ringer dies mid-ringing",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A bell can be struck while the Ringer is in danger.",
+   "tells": "The Ringer is at the bell and drops.",
+   "readAloud": "The Tongue falls from their hand and rings once on the stone.",
+   "response": "If the Ringer drops to 0 HP before the bell is struck, the ringing is cancelled and no Toll is paid. If they die after the strike, the Toll stands and the bell is rung; revival does not refund the Toll. At the Concord an interrupted rite transfers nothing. Another willing Ringer may step in and pay.",
+   "rules": "",
+   "consequence": "The ringing is cancelled, or the Toll stands.",
+   "later": "Anytime: another Ringer, a delay, a revival.",
+   "fallback": "",
+   "keywords": "ringer dies, toll, bell, mid-ringing",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-refuse-toll-mid-rite",
+   "title": "They refuse a Toll mid-rite",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A player may change their mind in front of the bell.",
+   "tells": "A player hesitates with the Tongue in their hand.",
+   "readAloud": "The bell waits. It has waited four hundred years.",
+   "response": "A refusal before the bell is struck cancels the ringing: nothing is rung and nothing is lost. After the strike the Toll is owed and cannot be withdrawn. The Great Toll is asked in private and is always refusable.",
+   "rules": "",
+   "consequence": "The ringing is cancelled.",
+   "later": "The Forecast shows what it costs the Concord.",
+   "fallback": "",
+   "keywords": "refuse toll, cancel, bell, mid-rite",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-dream-and-sending",
+   "title": "They cast Dream to reach the Hush",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Dream can reach the singing child.",
+   "tells": "A caster prepares Dream.",
+   "readAloud": "You step into a hall of beds, and a child in the corner is humming.",
+   "response": "Dream reaches the Hush, which speaks in the dreamer's own sleeping voice and answers one question per true memory. The spell costs nothing. It does not reach Oum: the Dreamer is asleep behind the lullaby, and only a struck Ysh opens that conversation.",
+   "rules": "Dream (5th).",
+   "consequence": "A conversation with the Hush.",
+   "later": "S18B: the Hush's answer.",
+   "fallback": "",
+   "keywords": "dream, hush, sending, contact",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-geas-dominate-hold",
+   "title": "They try Geas, Dominate, Hold Monster, Command or Banishment",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Casters will try to control Maudrin.",
+   "tells": "A caster prepares a control spell.",
+   "readAloud": "The spell takes hold of nothing, and Maudrin's gloves hum.",
+   "response": "Maudrin is protected: her Silence-Stone Gloves impose Disadvantage on spell attacks within 10 feet; as the Keeper she is immune to Charmed and Frightened while she holds the Key, has Magic Resistance and Legendary Resistance (3/day). Geas and Dominate fail while she holds the Key; Hold Monster and Banishment require a save she can pass with Legendary Resistance. Command (2024) allows only Approach, Drop, Flee, Grovel or Halt: a Halt buys one round. Cultists and Hushmen are ordinary creatures and can be controlled by these spells.",
+   "rules": "Command (1st, 2024 options), Geas (5th), Dominate Person or Monster, Hold Monster (5th), Banishment (4th).",
+   "consequence": "The party learns Maudrin cannot be spelled into line.",
+   "later": "S24: s24-negotiate.",
+   "fallback": "",
+   "keywords": "geas, dominate, hold, command, banishment, control",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-stairs-price",
+   "title": "The stairs price, in one place",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Players ask how the stairs cost works.",
+   "tells": "A player asks about the price.",
+   "readAloud": "The stairs are warm, as if someone had just stood on them.",
+   "response": "The first nineteen steps are free. Every full twenty steps walked costs one memory. A character makes one DC 13 Wisdom save the first time they reach step 20, once per campaign: on a failure the campaign total is capped at five memories, on a success at two. A character who walked 40 steps at S18B has paid two memories; that counts. The dead pay nothing. Children are never asked. Never make an absent player's character pay.",
+   "rules": "DC 13 Wisdom save at step 20, once per character.",
+   "consequence": "The price is clear before the first step.",
+   "later": "S18B and S25.",
+   "fallback": "",
+   "keywords": "stairs, price, memory, steps, save",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-sleepless-continuity",
+   "title": "The Sleepless after Mirel rings",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players ask whether the Sleepless are gone.",
+   "tells": "A player sees mist on the Tor.",
+   "readAloud": "The mist gathers at the edge of the camp and goes out like breath on glass.",
+   "response": "Once Mirel has rung, every Sleepless within a mile dissolves into mist and no new Sleepless form on the Tor. Sleepless that exist elsewhere stop walking. Until Mirel rings they form from the fear of a sleeper who fails by 5 or more, one a night.",
+   "rules": "",
+   "consequence": "A clear rule.",
+   "later": "S25: the stairs.",
+   "fallback": "",
+   "keywords": "sleepless, mirel, mist, dissolve",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-split-the-party",
+   "title": "The party splits up",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Tables split.",
+   "tells": "Players say \"we will meet you there\".",
+   "readAloud": "The road forks, and the party forks with it.",
+   "response": "Cut between the groups. No group makes a Tongue decision the other's players have not agreed to. Tolls are never paid for an absent player's character. Rejoin them at the next scene that needs them (S21 or S22).",
+   "rules": "",
+   "consequence": "Parallel scenes.",
+   "later": "See s16a-split-the-party.",
+   "fallback": "",
+   "keywords": "split, separate, parallel",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "any-recover-ossa-from-venn",
+   "title": "Ossa's Tongue is still aboard the Gilded Heron",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Venn sailed with it, or has not yet.",
+   "tells": "The Tongue was sold to Venn.",
+   "readAloud": "Brannagh Wick leans on the rail. “Heron is still at the quay. Pilots haven't come.”",
+   "response": "The Pilots' Hall holds the Heron at anchor for a favor: Brannagh's pilots take the Tongue back and send it north by the Mere road. Venn is exposed.",
+   "rules": "",
+   "consequence": "The party holds Ossa's Tongue.",
+   "later": "Ossa is one of the six.",
+   "fallback": "",
+   "keywords": "venn, heron, ossa, pilots",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ferry",
+     "add": 1
+    },
+    {
+     "flag": "venn",
+     "set": "exposed"
+    }
+   ]
+  },
+  {
+   "id": "any-recover-ossa-abroad",
+   "title": "Ossa's Tongue comes back from the Seam",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Heron wrecked, or a voyage was made.",
+   "tells": "The Tongue is gone abroad.",
+   "readAloud": "A ferryman hauls a net aboard and goes very quiet.",
+   "response": "The safety valve: the Heron wrecks in the Stormwall and the Mere returns the Tongue weeks later; or the party voyages to Athkatla (six weeks). Either way it is recovered.",
+   "rules": "",
+   "consequence": "The party holds Ossa's Tongue.",
+   "later": "Ossa is one of the six.",
+   "fallback": "",
+   "keywords": "ossa, abroad, lost, wreck",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "abroad",
+      "lost"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ferry",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-ansel-finds-calla",
+   "title": "Ansel Quay finds Calla's Tongue",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Court moved it, and Ansel knows where.",
+   "tells": "Ansel is an ally.",
+   "readAloud": "Ansel taps a column of the ledger. “Moved to the Almoner's cellar. I did not move it. I can find it.”",
+   "response": "Ansel can fetch the Tongue for a favor. No roll; it takes three days.",
+   "rules": "",
+   "consequence": "The party holds Calla's Tongue.",
+   "later": "Calla is one of the six.",
+   "fallback": "",
+   "keywords": "ansel, calla, court, moved",
+   "when": [
+    {
+     "flag": "t_calla",
+     "in": [
+      "court"
+     ]
+    },
+    {
+     "flag": "ansel",
+     "in": [
+      "alive"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_calla",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "any-ansel-finds-vaer",
+   "title": "Ansel Quay finds Vaer's Tongue",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Court took it.",
+   "tells": "Ansel is an ally.",
+   "readAloud": "Ansel unfolds a map. “The armory. Third door.”",
+   "response": "Ansel can fetch it for a favor.",
+   "rules": "",
+   "consequence": "The party holds Vaer's Tongue.",
+   "later": "Vaer is one of the six.",
+   "fallback": "",
+   "keywords": "ansel, vaer, court",
+   "when": [
+    {
+     "flag": "t_vaer",
+     "in": [
+      "court"
+     ]
+    },
+    {
+     "flag": "ansel",
+     "in": [
+      "alive"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_vaer",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "any-take-frost-tongue",
+   "title": "They take the Frost Tongue from the Sexton's crown",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Sexton was freed or ended.",
+   "tells": "The Sexton's winter-moment is over.",
+   "readAloud": "The Tongue lies in the broken crown, cold as ice.",
+   "response": "The Tongue falls from the crown when the Sexton's shell breaks. The party takes it.",
+   "rules": "",
+   "consequence": "The party holds the Frost Tongue.",
+   "later": "Hieme is one of the six.",
+   "fallback": "",
+   "keywords": "frost tongue, hieme, sexton",
+   "when": [
+    {
+     "flag": "t_hieme",
+     "in": [
+      "sexton"
+     ]
+    },
+    {
+     "flag": "sexton",
+     "in": [
+      "freed",
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_hieme",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "any-sell-storm-stone",
+   "title": "They sell a storm-stone in Pellmoor",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Mirabar dwarves pay well.",
+   "tells": "A player asks what a stone is worth.",
+   "readAloud": "The dwarf turns the stone in his fingers. “Illegal. Beautiful. Eight hundred.”",
+   "response": "A stone sells for 800 gp. The Court arrests sellers; the Coster notices. The Landing clock ticks.",
+   "rules": "",
+   "consequence": "Money, and the Court's eye.",
+   "later": "S28: the Landing.",
+   "fallback": "",
+   "keywords": "storm-stone, sell, pellmoor",
+   "when": [],
+   "effects": [
+    {
+     "flag": "clock_landing",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-calla-wren-route",
+   "title": "Wren's route brings out Calla's Tongue",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Wren Caddock knows a Bellwright way out of the city.",
+   "tells": "Wren is an ally.",
+   "readAloud": "Wren slides a key across the table. “It's in a bell-cart, if you are quick.”",
+   "response": "The Bellwright route brings out the Tongue. Wren is in danger if the Court notices.",
+   "rules": "",
+   "consequence": "The party holds Calla's Tongue.",
+   "later": "Calla is one of the six.",
+   "fallback": "",
+   "keywords": "wren, calla, route, bellwright",
+   "when": [
+    {
+     "flag": "t_calla",
+     "in": [
+      "vault"
+     ]
+    },
+    {
+     "flag": "wren",
+     "in": [
+      "confessed",
+      "ally"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_calla",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-key-back-from-court",
+   "title": "They take the Key back from the Court or Tristan",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Losing the Key in a fight is never the end: only the players choose the Empty Choir. A table that still resists will go after it.",
+   "tells": "The party was beaten, captured or outrun at the Strike, the summit or the stairs, and asks where the Key went.",
+   "readAloud": "The Key travels in a silence-stone case on a Court wagon, four Wardens around it and a clerk who counts the hours aloud.",
+   "response": "Tell them where it is: on its way back to Maudrin’s palace vault in Hallowmere, or to Tristan if Maudrin is gone. Give them one of three ways in: the road convoy (an ambush on the North Road, two Hushman Wardens and a Sergeant), Ansel Quay’s vault schedule, or a bargain with whoever now commands the Court. Allies they gathered for S22 can take one objective each. Whatever they choose, the Key reaches the party if they succeed; if they fail, they escape to try again. This is an escape-or-rescue chapter, not an ending.",
+   "rules": "Stealth or Sleight of Hand DC 16 for the case; Influence DC 18 with Tristan or Maudrin (Intelligence 18).",
+   "consequence": "The Key is back with the party; the Court knows exactly who took it.",
+   "later": "S26: with the Key, every ending except the Empty Choir is open again.",
+   "fallback": "If the table wants to stop instead, that is the Empty Choir: ask them, out of character, before you set it.",
+   "keywords": "take the key back, recover the key, steal the key, convoy, rescue, court has the key, lost the key",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "court",
+      "tristan"
+     ]
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "party"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  }
+ ],
+ "briefs": [],
+ "encounters": []
+}

@@ -1,0 +1,993 @@
+{
+ "entries": [
+  {
+   "id": "pw-corvane-hesk",
+   "title": "Corvane and Hesk",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Corvane is a continent called **Hesk**, far out in the Trackless Sea, past the edge of every Sword Coast chart. It is part of the Forgotten Realms, but for four hundred years nobody on either side knew the other was there. Sword Coast sailors only told stories of \"the Ringing Land\" beyond the storm.\n\nCorvanese call the land and its language Hesk. Inland you will hear almost nothing else. At Pellmoor, Common is the second language.\n\nThe year is **412 SS** (since the Silence), which is 1492 DR. Faerûnians count by Dalereckoning, Corvanese by the Silence. Both are in use on the quays."
+  },
+  {
+   "id": "pw-stormwall-and-seam",
+   "title": "The Stormwall and the Seam",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "A permanent band of storm, thirty to sixty miles deep, circles all of Corvane at sea. Sailors call it the **Stormwall**. For four hundred years no ship crossed it, and nobody on either side knows what made it.\n\nThirty years ago a lane of calm water opened at the mouth of the river Pell. This is the **Seam**, a mile or two wide. It drifts with the seasons, so every ship takes a pilot through. The voyage is about six weeks at sea from the Sword Coast, about a day through the Seam, then two days up the Pell to Pellmoor.\n\nShips sail from spring to early autumn. From inside the wall, the storm sounds like thunder a long way off."
+  },
+  {
+   "id": "pw-pellmoor-landing",
+   "title": "Pellmoor Landing",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Pellmoor Landing is Corvane's only harbour for foreign ships. It stands on the Mute Mere, which is so still that the ships look painted on it. A drowned town lies just under the water, so every ship needs a local pilot to reach the quays.\n\nAbout four thousand people live here year-round. In summer nearly twice that many crowd the waterfront. Forty to sixty ships come each season.\n\nThere are four districts: the Old Shore, the Quays, the Tally and Strangers' Row. The Quiet Court is present through the Landing House and its Hushmen, but Pellmoor is not a Court city. There are no gulls on the Mere, and ferry-folk children do not play near the water."
+  },
+  {
+   "id": "pw-old-shore",
+   "title": "The Old Shore",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "The Old Shore is the original ferry village, a huddle of reed-roofed houses at the edge of the port. It holds the ferry-dock, the net-racks, a small chapel with a silent bell, the Inn of the Shuttered Bell, and the Memory Shore, where names are scratched on stones.\n\nThe ferry-folk keep it theirs. Foreigners are tolerated here, not welcomed. It is quiet and careful and a little mournful, a different town from the noisy Quays.\n\nThe Court's grey-gloved Hushmen walk the Old Shore every week."
+  },
+  {
+   "id": "pw-the-quays",
+   "title": "The Quays",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "The Quays are piers driven into the roofs of the drowned town. They hold warehouses, chandlers and a dry-dock. A dozen languages argue here over the price of a memory.\n\nTwo buildings matter most. The **Pilots' Hall** is where ferry-folk pilots are hired to take every ship across the Mere. The **Landing House** is the Court's customs office. Foreigners pay the 5 gp landing fee and register there. It also issues writs of passage, and it removes the chime from every clock before the clock leaves the quay.\n\nA post of Court Hushmen watches the Quays daily."
+  },
+  {
+   "id": "pw-the-tally",
+   "title": "The Tally",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "The Tally is Pellmoor's market square, where both kinds of money change hands: gold and sealed memories. Most stalls take either.\n\nThe **Reckoning House** stands here. By its door hangs a slate with the day's rate. Reckoners in grey aprons carry tuning forks and work inside. The rate floats from day to day. A keep is worth a little over a gold piece at Pellmoor, and noticeably less in the capital.\n\nIf you want to buy, sell or learn what a memory is worth, this is where you come."
+  },
+  {
+   "id": "pw-strangers-row",
+   "title": "Strangers' Row",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Strangers' Row is the Faerûnian quarter. The ferry-folk call it the Loud Quarter. It has foreign inns (the Brass Lantern is the best known), merchant houses, a temple mission of Lathander, a smithy, and a clockmaker who sells silent clocks.\n\nMusic plays at all hours. Waterdhavian ale is served in exactly one place in Corvane, and it is here.\n\nThe quarter is Stormborn ground. Locals come to trade and stay to stare. Some of the deals struck here are not quite legal, and everyone knows it."
+  },
+  {
+   "id": "pw-mute-mere",
+   "title": "The Mute Mere",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "The Mute Mere is a vast, perfectly still lake at the middle of Corvane. There are no waves, no wind and no sound. A drowned town, Old Pellmoor, lies under it.\n\nThe water remembers the dead. Spend a night on the shore and you may wake with a memory that was never yours. After dark, voices sing from the water. The Drowned Choir lives here.\n\nShips limp onto the Mere to mend after the Stormwall, because it is the only calm water for miles. Without a ferry-folk pilot, the drowned rooftops just under the surface are a maze."
+  },
+  {
+   "id": "pw-hallowmere",
+   "title": "Hallowmere",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Hallowmere is the grey capital, built on terraces on the Ninefold Shore. Its streets are lit by lamps all day, because the sky never fully brightens. The houses are pale stone with shuttered windows.\n\nIt is the seat of the Quiet Court and of the Dawn Order. Visitors give a small \"courtesy memory\" at the gate. The city will not take gold instead.\n\nChurch bells ring here, and they ring false. Open spellcasting draws attention like a drawn sword, and Hushmen call loud magic \"bell-work.\" It is six days on foot from Pellmoor, or three by ferry across the Mere and then road."
+  },
+  {
+   "id": "pw-kells-crossing",
+   "title": "Kell's Crossing",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Kell's Crossing is a fork in the North Road, where the old Pellmoor track comes in. The farmland around it has gone to ash. The fields are black and cracked, and the harvest has failed for four centuries.\n\nThe old harvest-songs are forbidden here. Nobody is allowed to sing them, and the wind carries them anyway.\n\nIt is three days on foot from Pellmoor, three from Hallowmere, and five from Glassreach by the North Road."
+  },
+  {
+   "id": "pw-glassreach",
+   "title": "Glassreach",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Glassreach is a forest in the northwest where winter froze into glass. The trees are glass, and the people caught inside are still waiting for spring. It is bitterly cold. Bring a warm cloak.\n\nGlass branches chime against each other. The frost has not moved in four centuries.\n\nIt is five days on foot from Kell's Crossing, through the Ninefold hills. Nobody goes there without a reason."
+  },
+  {
+   "id": "pw-brassfall",
+   "title": "Brassfall",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Brassfall is a range of eastern mountains veined with bronze. Old lightning is trapped in the stone, but no storm has reached these mountains since the Quiet Night. The sky sometimes crackles before a storm that never comes.\n\nMiners pick their stones very carefully. Some stones carry a charge and will discharge if mishandled.\n\nThe Thrane Road runs to Vael Tor in four days. The Ironhorn foothills lie two days up into the hills, and the way around to Glassreach takes six."
+  },
+  {
+   "id": "pw-vael-tor",
+   "title": "Vael Tor",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "Vael Tor is a lone high hill in the middle of the land. A hall full of sleepers stands on it, and dreams go there to walk.\n\nFrom a distance you hear breathing: too many people, breathing slowly, all at once. At night, faint lights move among the stones that ring the crown of the hill.\n\nIt is three days from Pellmoor through the Mere's eastern marsh, and four days from Brassfall along the Thrane Road."
+  },
+  {
+   "id": "pw-ironhorn-steppe",
+   "title": "The Ironhorn Steppe",
+   "kind": "Place",
+   "revealAt": null,
+   "when": [],
+   "body": "The Ironhorn Steppe is the northern grassland, held by the horse-clans of the Ironhorn Compact. The grass runs in waves to the horizon.\n\nRiders greet strangers with a wager. Expect to be asked what you will bet. They are proud, blunt, and wary of anyone after their bronze.\n\nThe steppe lies two days up from the Brassfall foothills. Paths across the grass are faint and unmarked, and you will want a guide."
+  },
+  {
+   "id": "pw-seven-bells",
+   "title": "The Seven Bells",
+   "kind": "Lore",
+   "revealAt": null,
+   "when": [],
+   "body": "Seven great bells once kept Corvane's world in shape. Each kept one part of life. **Vaer** kept dawn, law and beginnings. **Ossa** kept memory, ancestors and rest. **Hieme** kept winter and endurance. **Calla** kept harvest and generosity. **Thrane** kept storm and courage. **Mirel** kept dreams and hope. **Ysh** kept sleep and peace.\n\nThe days of the week are named for them: Vaerday, Ossday, Hiemeday, Calladay, Thranday, Mirelday and Hushday. Nobody alive has heard one ring.\n\nSix of the bells are known to hang at Hallowmere, Old Pellmoor, Glassreach, Kell's Crossing, Brassfall and Vael Tor. Nobody knows where Ysh, the seventh, hangs."
+  },
+  {
+   "id": "pw-hearts",
+   "title": "Hearts",
+   "kind": "Thing",
+   "revealAt": null,
+   "when": [],
+   "body": "A bell rings only with its **Heart**, the heavy bronze clapper that swings inside it. Some bells still hang without theirs. Without its Heart, a bell cannot be rung.\n\nThe Hearts are scattered across Corvane. Some are hidden, some are guarded, and some are in the hands of people who want very different things from them. You will be looking for them.\n\nEach Heart is named for its bell: Ossa's Heart, Vaer's Heart, and so on. Ringing a bell with its Heart restores something that was lost, and it costs the Ringer a Toll."
+  },
+  {
+   "id": "pw-the-toll",
+   "title": "The Toll",
+   "kind": "Lore",
+   "revealAt": null,
+   "when": [],
+   "body": "Ringing a bell restores something that was lost. It also costs the person who rings it something of their own. This is the **Toll**.\n\nYou find a bell's Heart and bring it to its bell. The DM tells you the price before you ring. You choose to pay it, or to walk away, and nothing is taken if you walk away.\n\nThe Tolls are a memory, a year of your life, a sense for a day, a name, a fear for a day, and a gift. A Toll can never be bought back, and Tolls add up."
+  },
+  {
+   "id": "pw-memory-money",
+   "title": "Memory Money and Reckoners",
+   "kind": "Lore",
+   "revealAt": null,
+   "when": [],
+   "body": "In Corvane a memory can be drawn out of you, sealed in a small glass vial and spent. The vial is called a **keep**. A licensed **Reckoner** draws it with a tuning fork, only with your consent, in about a minute.\n\nKeeps pass from hand to hand still sealed, like banknotes. The sizes are a **mote** (a passing memory), a **keep** (a memory with feeling), and a **heartkeep** (a defining memory). A **knowing** holds knowledge, and whoever sells it forgets it.\n\nIf you open your own keep, the memory returns. If a stranger opens it, they live it as a guest, and it fades. Skills, spells and languages cannot be sold."
+  },
+  {
+   "id": "pw-the-tithe",
+   "title": "The Tithe",
+   "kind": "Lore",
+   "revealAt": null,
+   "when": [],
+   "body": "The Tithe is the Quiet Court's tax, paid in memories. The Court says it protects people in return. A Tithed memory goes into a jar in the Court's vaults.\n\nCorvanese subjects must pay in memory. Foreigners pay in gold. Paying someone's Tithe in gold for them is called **gilding**. It is illegal, and it happens every day.\n\nHushmen collect the Tithe. People who give too much stop recognising their own families. They are called Blanks. The Tithe is the reason gold is both useful and dangerous in Corvane."
+  },
+  {
+   "id": "pw-blanks",
+   "title": "Blanks",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "Blanks are people who have given away so many memories that they no longer know their own families. They are common in Hallowmere. They are the human cost of the Tithe.\n\nThey are not dangerous by nature, only lost. Most are gentle. A few lash out when frightened.\n\nA person can become a Blank slowly, one heavy memory at a time. It is why Pellmoor sellers are careful about which memories they let a Reckoner draw."
+  },
+  {
+   "id": "pw-quiet-court",
+   "title": "The Quiet Court",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The Quiet Court is the government of the Ninefold Shore, ruled from Hallowmere. It is orderly, polite and very good at making people forget. It collects the Tithe, runs the Landing House, and issues writs of passage.\n\nIts officers are **Hushmen**. They wear grey silence-stone gloves that muffle their own blows. They are very quiet. In Pellmoor, a post of Hushmen watches the Quays, and others walk the Old Shore each week.\n\nThe Court believes the bells must never ring again. Its church is the Ninefold Church, which worships the Silence and calls the Faerûnian gods \"the loud gods.\""
+  },
+  {
+   "id": "pw-dawn-order",
+   "title": "The Dawn Order",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The Dawn Order is Hallowmere's own knighthood, sworn to Vaer by old tradition. They keep watch over the city under a sky that never brightens.\n\nThe Court tolerates the Order's oaths. The knights want oaths kept and the dawn back. They are formal, they like paperwork, and they respect a challenge made in public.\n\nIn Hallowmere you will find them on watch at the gates and the terraces, in cloaks the colour of a dawn that has not happened for four hundred years."
+  },
+  {
+   "id": "pw-bellwrights",
+   "title": "The Bellwrights",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The Bellwrights are the makers and tuners of bells. Bell-making has been illegal for centuries. They survive as a secret network, outlawed and hunted for three hundred years.\n\nThey want the bells rung. Nobody in Pellmoor admits to knowing one, and nobody can say how many there are.\n\nA craftsman who makes, repairs or tunes bells and Hearts is breaking the law. The Court's agents hunt them. If you are looking for the people who can ring a bell, they are who you want."
+  },
+  {
+   "id": "pw-drowned-choir",
+   "title": "The Drowned Choir",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The Drowned Choir is the restless dead of the Mute Mere, singing their grief. At night they sing names from under the water. They want to be remembered by name.\n\nThey do not seem to hurt the grieving. Villagers hum back at night to keep them quiet, and ferry-folk children keep away from the water.\n\nThe water of the Mere remembers the dead, and the Choir is how it does so."
+  },
+  {
+   "id": "pw-ironhorn-compact",
+   "title": "The Ironhorn Compact",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The Ironhorn Compact is a confederation of horse-clans on the northern steppe, led by a Thane. They are proud, blunt, and wary of anyone after their bronze.\n\nThey want their bronze and their freedom. They resent the Court's Tithe-taxes on the steppe and fear its march north. They deal in raids, trade and alliances, and strangers meet them in that order.\n\nThey offer trade first. If trade fails they offer a challenge. Alliance comes last, and only to those who earn it."
+  },
+  {
+   "id": "pw-ferry-folk",
+   "title": "The Ferry-folk",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "The ferry-folk are the old families of Pellmoor. For centuries they worked the ferries of the Mere. Now they pilot every foreign ship across the drowned town, and no ship moves without one of them.\n\nThey keep a ledger of every name the water has taken. They want their dead remembered properly and the Pilots' Hall kept free of the Court and the trading houses.\n\nThey are guarded with strangers, but loyal once trust is earned. They keep their debts and their promises."
+  },
+  {
+   "id": "pw-the-landing",
+   "title": "The Landing",
+   "kind": "Group",
+   "revealAt": null,
+   "when": [],
+   "body": "\"The Landing\" is what Pellmoor calls its community of foreign traders and settlers from the Sword Coast. Faerûnians who have stayed for years are **Landers**.\n\nTheir big names include the Vennmark Coster of Athkatla, the Corvane Venture of Waterdeep, Baldurian factors who still toast the *Gull's Wager* every Wrongweather night, Lantanese gnome tinkers, and dwarves from Mirabar who want Brassfall bronze.\n\nThey trade clocks, steel, paper, wine and lenses, and they ship home bottled memories. They want profit, mostly in memories."
+  },
+  {
+   "id": "pw-tonework-and-silence-stones",
+   "title": "Tonework and Silence-stones",
+   "kind": "Lore",
+   "revealAt": null,
+   "when": [],
+   "body": "**Tonework** is what Corvanese call magic. Every spell hums faintly as it is cast. It adds no new costs. Divine magic from the Faerûnian gods works here too.\n\n**Silence-stones** stop magic. The Quiet Court uses grey ones. Spells fail within about ten feet. You see the edge first: the light dims and your ears feel pressure.\n\nA stone can be smashed, carried off, or avoided. Dispelling does not help. Hushmen wear silence-stone gloves that only muffle their own blows.\n\nIn Pellmoor, cast as loudly as you like. Inland, be discreet."
+  },
+  {
+   "id": "pw-quiet-night",
+   "title": "The Quiet Night",
+   "kind": "Event",
+   "revealAt": null,
+   "when": [],
+   "body": "Four hundred and twelve years ago, every bell in Corvane fell silent in a single night. The Corvanese call it the **Quiet Night**. The years are counted from it: 0 SS.\n\nAfter it, the dawn went grey. Winter froze into glass. The dead stopped resting. Harvests failed. Nightmares walked the roads. The Quiet Court rules the capital, and the Tithe is its tax.\n\nNobody in Pellmoor will tell you with confidence why it happened. The Court holds that the bells must never ring again."
+  },
+  {
+   "id": "pw-wrongweather",
+   "title": "The Wrongweather",
+   "kind": "Event",
+   "revealAt": null,
+   "when": [],
+   "body": "In 382 SS (1462 DR) a storm came up the river Pell and onto the Mute Mere. It was the first weather the Mere had seen in nearly four hundred years. People drowned.\n\nThe ferry-folk call it the **Wrongweather**. At dawn a battered ship from Baldur's Gate, the *Gull's Wager*, drifted onto the lake. Its crew were the first Faerûnians in Corvane in four centuries.\n\nWhen the storm passed, a calm channel through the Stormwall remained. That channel is the Seam."
+  },
+  {
+   "id": "pw-landing-charter-and-writs",
+   "title": "The Landing Charter and Writs of Passage",
+   "kind": "Event",
+   "revealAt": null,
+   "when": [],
+   "body": "In 384 SS (1464 DR) the Quiet Court made Pellmoor the only harbour where foreign ships may anchor. This is the **Landing Charter**. Foreigners may trade freely at Pellmoor.\n\nTo travel inland, past the Mere road, a foreigner needs a **writ of passage**. It is a grey paper sealed in grey wax, issued from Hallowmere. Without one you may go no further than the Mere road.\n\nForeigners also pay a 5 gp landing fee and register at the Landing House. Forging a writ is possible and illegal."
+  },
+  {
+   "id": "pw-ila-harrow",
+   "title": "Ila Harrow",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "Ila Harrow is fourteen. She stands on the oldest ferry-dock on the Old Shore, thin and grey-eyed, in her father's ferry coat, several sizes too big. She greets you with a blunt question: \"Are you here for the heart, or for the bell?\"\n\nShe is direct. She counts things when she is nervous. She trusts people who tell her the truth about hard things, and she has no patience for \"don't worry about it.\"\n\nHer father, **Tam Harrow**, was a ferry pilot who drowned six weeks ago. Ila hears the Heart humming, and she says she hears the Drowned. Nobody believes her except Mother Sallow."
+  },
+  {
+   "id": "pw-ossas-heart",
+   "title": "Ossa's Heart",
+   "kind": "Thing",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "Ossa's Heart is a bronze clapper, wrapped in an oilskin that belonged to Ila's father. It is warm, not like a hot pan but like something alive that has been asleep.\n\nIt hums when Ila holds it, and the hum fades when she sets it down. When it hums, the water on the far shore ripples in the shape of a bell.\n\nMother Sallow says it belongs to Ossa, the memory bell under the Mere. The Court will want it. Ila wants to keep it safe."
+  },
+  {
+   "id": "pw-mother-sallow",
+   "title": "Mother Sallow",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "Mother Sallow is the reed-witch and memory-keeper of the Old Shore. She is small and wiry, in her seventies, with hands stained green from reed-dye and a pipe she never lights. She speaks in short sentences and proverbs she half-invents, and she is sarcastic about authority.\n\nShe has kept the ferry ledger for forty years: every name the Mere has taken, every name the Court has Tithed. Her husband, **Davin Sallow**, a net-maker, drowned in the Wrongweather. His name is carved on the Memory Shore, and she cannot recall his face.\n\nShe serves bitter reed tea, offers a three-day bargain to keep the Heart safe, and teaches the response to the Night Song."
+  },
+  {
+   "id": "pw-tobias-quill",
+   "title": "Tobias Quill",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "Tobias Quill is the Quiet Court's Tithe officer at the Landing House. He is pale, with grey gloves, a sharp smile and a silence-stone pendant. He is polite and always has a form.\n\nHe walks over from the Quays to collect the Old Shore's memory quota and to look for \"unlicensed bell-work.\" The quota is short every season, because Pellmoor pays its way in gold and gold cannot pay a Corvanese subject's Tithe.\n\nHe keeps a ledger, and he notes down the faces of the people he meets."
+  },
+  {
+   "id": "pw-dorra-pell-and-the-inn",
+   "title": "Dorra Pell and the Inn of the Shuttered Bell",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "The Inn of the Shuttered Bell is a low room on the Old Shore, with a fire that is never too hot and an ale that tastes faintly of river. The bell above the bar has been wrapped in cloth for longer than anyone remembers.\n\n**Dorra Pell** keeps it. She does not like questions. She remembers every face, and now every ship that brought one. The ferry-folk drink here. Stormborn are served politely and not invited back.\n\nIf you want to know who came ashore last week, ask her. She may tell you."
+  },
+  {
+   "id": "pw-sela-maunt",
+   "title": "Sela Maunt",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [],
+   "body": "Sela Maunt is a Court-licensed Reckoner at the Reckoning House on the Tally. She is Corvanese, in her forties, in a grey apron with three tuning forks in the breast pocket. Her reading lenses came from a Lantanese tinker.\n\nShe is precise, kind and slightly tired. She taps a fork on the counter when she is thinking. She is the person who explains memory money to newcomers, and she is patient with them.\n\nShe buys memories at the posted rate and keeps a tenth as her fee."
+  },
+  {
+   "id": "pw-sister-aurelie",
+   "title": "Sister Aurelie Dawnmantle",
+   "kind": "Person",
+   "revealAt": "sb-ce895de5912506a9",
+   "when": [
+    {
+     "flag": "aurelie",
+     "in": [
+      "met",
+      "ally",
+      "arrested"
+     ]
+    }
+   ],
+   "body": "Sister Aurelie Dawnmantle is a priestess of Lathander from Waterdeep. She runs the Dawn Mission on Strangers' Row. She is in her thirties, bright and earnest, and she says \"when the sun comes back\" as if it were a date in a diary.\n\nHer great wish is a writ of passage to Hallowmere, to bring Lathander's dawn to a city that has none. The Court has refused her, again and again.\n\nShe will heal the hurt and listen to anyone who comes to the mission."
+  },
+  {
+   "id": "pw-brannagh-wick",
+   "title": "Brannagh Wick",
+   "kind": "Person",
+   "revealAt": "sb-7be12e377d5748b4",
+   "when": [],
+   "body": "Brannagh Wick is the Pilot-Mistress of the Pilots' Hall on the Quays. She is about sixty, short, with wind-cracked hands and a coil of sounding-line always over one shoulder. She counts tides out loud. She calls every ship \"she\" and every captain \"lad.\"\n\nNo ship moves on the Mere without one of her pilots, and no pilot means no departure. She wants the Hall to stay independent of the Court and the trading houses. Tam Harrow, Ila's father, was one of her pilots.\n\nShe lends a skiff and a pilot to anyone she trusts to look for a missing boat."
+  },
+  {
+   "id": "pw-the-night-song",
+   "title": "The Night Song",
+   "kind": "Event",
+   "revealAt": "sb-7be12e377d5748b4",
+   "when": [],
+   "body": "After dark the water goes perfectly still. Fog lies on it like a sheet. From somewhere beneath the surface, a woman begins to sing. It is not loud. It is grief in a voice you almost recognise. Every word is a name, and eventually one of them is yours.\n\nEveryone on the Old Shore hears it. Villagers hum back to keep the Drowned quiet. It is a ritual, and the village does it every night.\n\nMother Sallow teaches the response, a simple Ossa-hymn sung back to the water. It quiets the song for an hour. Anyone who stays on the shore all night may wake with a memory that was never theirs."
+  },
+  {
+   "id": "pw-the-cantor",
+   "title": "The Cantor",
+   "kind": "Person",
+   "revealAt": "sb-7be12e377d5748b4",
+   "when": [],
+   "body": "The Cantor leads the Drowned Choir. She is a pale, long-haired figure in a wet ferry coat, with skin the colour of river stone and eyes that are too bright. She speaks only in lines of hymns she improvises.\n\nShe waits by the drowned bell and asks one question first: \"Who are you grieving? Do not lie to me. The dead can tell.\" Truthful answers earn the name sung back and a verse of Ossa's hymn. Lies bring the Choir.\n\nShe does not attack unless the bell is touched. Of Ossa's Heart she says only, \"The heart was taken from us. Ask the ferry-folk what they owe the dead.\""
+  },
+  {
+   "id": "pw-ossa-belfry",
+   "title": "The Ossa Belfry",
+   "kind": "Place",
+   "revealAt": "sb-7be12e377d5748b4",
+   "when": [],
+   "body": "Ossa's bell hangs in the Ossa Belfry, a bell-tower on the bed of the Mute Mere. Its top lies about forty feet down, and it stands like a finger pointing at the sky. Around it lie the streets and doors of Old Pellmoor. A drowned chapel nearby is the Choir's home.\n\nThe water is clear enough to see outlines of doors. Something is always singing.\n\nTo reach it you dive, take the ferry-stair, or find another way. The Choir guards the approach. Returning the bell's Heart earns safe passage."
+  },
+  {
+   "id": "pw-brother-eld",
+   "title": "Brother Eld",
+   "kind": "Person",
+   "revealAt": "sb-4296a01bb560bd61",
+   "when": [],
+   "body": "Brother Eld Marrowby is the Ninefold friar who keeps the chapel on the Old Shore. He is tall and round-shouldered, with ink-stained fingers and a sincere face that looks trained to be sad. He is soft-voiced and quotes scripture constantly.\n\nHe collects the village's Tithes and files the reports. Mother Sallow's ledger lost a page, the register of children the Court has questioned. Eld had it. Ila's name is on it. He says he copied the names onto the Court's forms himself.\n\nHe asks for absolution first. What he does next depends on how you treat him."
+  },
+  {
+   "id": "pw-orsolo-venn",
+   "title": "Master Orsolo Venn",
+   "kind": "Person",
+   "revealAt": "sb-4296a01bb560bd61",
+   "when": [
+    {
+     "flag": "venn",
+     "in": [
+      "courting",
+      "dealt",
+      "exposed"
+     ]
+    }
+   ],
+   "body": "Master Orsolo Venn runs the Vennmark Coster's counting-house on Strangers' Row. He is an Amnian merchant in his fifties, in plum velvet in a grey country, with rings on every finger and a silent Lantanese pocket-clock he keeps checking.\n\nHe is the largest buyer of memories in Pellmoor. He speaks warm Hesk with an Amnian lilt, and calls everyone \"friend.\" He is charming and generous and means it.\n\nHe has taken an interest in the humming Heart. He wants an exclusive export licence from the Court and curiosities from the Ringing Land for his buyers in Athkatla."
+  },
+  {
+   "id": "pw-ossa-rings",
+   "title": "Ossa Rings",
+   "kind": "Event",
+   "revealAt": "sb-4296a01bb560bd61",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Ossa rings from under the water. The sound is deep and slow, and it makes the whole Mere ripple. Every grey face on the shore lifts toward it.\n\nThe Drowned fall silent. One voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain.\n\nThe Ringer paid a Toll of a memory of someone who has died. The Choir rests. The Drowned no longer hunt the village."
+  },
+  {
+   "id": "pw-quiet-court-invitation",
+   "title": "The Chancellor's Invitation",
+   "kind": "Event",
+   "revealAt": "sb-4296a01bb560bd61",
+   "when": [],
+   "body": "A letter arrives from Hallowmere, sealed in grey wax with the Quiet Chancellor's seal. It is addressed to those who carried the Heart of Ossa from Pellmoor, and it invites them to the Quiet Assembly in Hallowmere in ten days.\n\nIt promises: \"You will be safe. You will be remembered. Nothing you carry will be asked of you that you do not wish to give.\" It is signed M. Vesk, Quiet Chancellor, Warden of Silence.\n\nThe grey seal counts as a writ of passage for everyone it names, Stormborn included."
+  },
+  {
+   "id": "pw-hallowmere-gate",
+   "title": "The Gate Office",
+   "kind": "Place",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [],
+   "body": "Hallowmere's gate guards do not look at your face. They look at your hands, and at the silence-stones on their own gloves. The city is quiet the way a held breath is quiet.\n\nEvery visitor registers at the Gate Office and gives a **courtesy memory**: a small, unimportant memory, entered in the Tithe-Ledger. The clerk is a Blank. He cannot remember why he works there, and he suggests your first sweetheart's name or the taste of a favourite meal. He will not take gold instead.\n\nRefusing is possible. It brings the Hushmen. Once your memory is recorded, any Hushman can check your record."
+  },
+  {
+   "id": "pw-quiet-assembly",
+   "title": "The Quiet Assembly",
+   "kind": "Event",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [],
+   "body": "The Quiet Assembly is a masque in the Quiet Court's white palace. Guests wear grey masks. The room is hushed and polite, and nobody raises a voice.\n\nLady Isolde Drave greets the party and asks many questions about the Mere. Chancellor Maudrin Vesk arrives late and speaks to each of you in turn. She says she knows what you have seen and that she understands. \"Everyone in this room has lost something to the Silence. The question is only what we choose to keep.\"\n\nHushmen watch the doors."
+  },
+  {
+   "id": "pw-maudrin-vesk",
+   "title": "Chancellor Maudrin Vesk",
+   "kind": "Person",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [],
+   "body": "Maudrin Vesk is the Quiet Chancellor and Warden of Silence, the ruler of the Quiet Court. She is elegant and white-haired, in dove-grey silk, with silence-stone gloves. Her voice is measured and warm. She never raises it, and she uses people's names constantly.\n\nShe presents herself as someone who has lost things too, and who wants to spare others the same loss. She offers safe passage, comfort and a place at her table. She answers truthfully when she is asked, and what she leaves out is hard to see.\n\nThe Chancellor lives in the white palace, and her Hushmen are never far."
+  },
+  {
+   "id": "pw-maudrins-bargain",
+   "title": "Maudrin's Bargain",
+   "kind": "Event",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "owed",
+      "refused"
+     ]
+    }
+   ],
+   "body": "At the Assembly, Maudrin makes an offer: safe passage, a Court pension, and a Tithe-exemption for one memory of your choosing. In return she asks for the Heart you carried. If it is already elsewhere, she asks where.\n\nIf you accepted, you owe her a favour, and she will remember it. If you refused, her smile does not move. \"Then the Assembly will go on without you. Enjoy the city.\" Hushmen follow you through the rest of your stay.\n\nEither way, your answer is now on record at the palace."
+  },
+  {
+   "id": "pw-lady-isolde-drave",
+   "title": "Lady Isolde Drave",
+   "kind": "Person",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [],
+   "body": "Lady Isolde Drave is a noblewoman of Hallowmere who hosts the Court's social events. She wears silver jewellery and a grey lace mask, and she always carries a glass of something warm. She is flirtatious and cutting, and she tells half-truths beautifully.\n\nShe greets the party at the Assembly and asks many questions about the Mere. She likes clever people and hates being out-talked. She is known for her memory of other people's secrets.\n\nShe moves among the Hushmen as if they were furniture."
+  },
+  {
+   "id": "pw-ser-haldric-mose",
+   "title": "Ser Haldric Mose",
+   "kind": "Person",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [],
+   "body": "Ser Haldric Mose is the senior knight of the Dawn Order, a handsome man in immaculate armour who is always polishing something. He is courteous and smooth, and he likes phrases such as \"for the good of all\" and \"the dawn will come.\"\n\nWhen Maudrin calls for the guests to be seen to, he arrives quickly, with Dawn Order guards. The Order serves in Hallowmere under the Court's eye, and he knows how to speak to both."
+  },
+  {
+   "id": "pw-pellmoor-under-pressure",
+   "title": "Pellmoor Under Pressure",
+   "kind": "Event",
+   "revealAt": "sb-0408eb3a9ef383eb",
+   "when": [
+    {
+     "flag": "pellmoor",
+     "in": [
+      "siege",
+      "changed",
+      "evacuated"
+     ]
+    }
+   ],
+   "body": "While you are away, the Court tightens its grip on Pellmoor. Quill issues a deadline. Villagers prepare shelter and an escape route for the Old Shore.\n\nOrders intercepted by the ferry-folk point to a vault in Hallowmere.\n\nThe Old Shore may not stay as it was. You can go to the vault, or go back and hold the village."
+  },
+  {
+   "id": "pw-bone-archive",
+   "title": "The Bone Archive and Lysse Carrow",
+   "kind": "Place",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [],
+   "body": "The Bone Archive is a cathedral of books in Hallowmere. Shelves rise into the dark like the ribs of a great animal. Every book is bound in bone, and some spines are still warm. Somewhere above, a voice is reading softly to itself.\n\n**Lysse Carrow** keeps it. She is an ink-smudged, nervous scholar with a bone pin in her hair and a satchel of books that are slightly too heavy. She cites sources constantly and trails off when she is frightened. She has read every catalogued book.\n\nShe has hunted for years for Edda Thorne's diary. She believes it lies in the Court's vault, and she asks for help."
+  },
+  {
+   "id": "pw-the-librarian",
+   "title": "The Librarian of the Sealed Book",
+   "kind": "Person",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [],
+   "body": "In the Sealed Stacks of the Bone Archive lies a book with no words. When opened, it shows each reader their own face. The Librarian speaks through it, by pages that appear as you talk.\n\nIt answers one question for each true memory offered. Told the right question, it says Edda Thorne's diary is in the Tithe-Ledger Room under a false label: **MIREL, LOST**.\n\nThe Librarian also holds Mirel's Heart. It will trade the Heart for a dream the giver has never told anyone. It accepts a Gift instead. It wants only to be read."
+  },
+  {
+   "id": "pw-tithe-ledger-room",
+   "title": "The Tithe-Ledger Room",
+   "kind": "Place",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [],
+   "body": "The Tithe-Ledger Room is the Quiet Court's vault in Hallowmere, sealed in silence-stone. Tonework fails inside. Shelves of glass jars hold memories, each labelled with a name. They hum faintly as you pass, like they are trying to remember the tune they used to belong to.\n\nThe Court's master book, the Tithe-Ledger, lies on a reading stand. One shelf is marked **HARVEST, WITHHELD**. A cloth-wrapped bronze heart sits on it, warm to the touch.\n\nTaking anything sets off an alarm, and Hushmen arrive quickly."
+  },
+  {
+   "id": "pw-ansel-quay",
+   "title": "Ansel Quay",
+   "kind": "Person",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [],
+   "body": "Ansel Quay is Maudrin's steward and archivist. He is stooped, with ink on his cuffs and reading spectacles he does not need. He is prim and precise, and he whispers when he is nervous.\n\nHe holds the key to the Tithe-Ledger Room. He wants Maudrin's approval and, one day, enough money to retire to the coast.\n\nHe can be asked for the door. What he wants in return is a gift or a promise of safety."
+  },
+  {
+   "id": "pw-callas-heart",
+   "title": "Calla's Heart",
+   "kind": "Thing",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [],
+   "body": "Calla's Heart is a bronze clapper wrapped in cloth, warm to the touch. It sits in the Tithe-Ledger Room on a shelf marked **HARVEST, WITHHELD**. It belongs to Calla's bell, the harvest bell, at the Old Granary in Kell's Crossing.\n\nLifting it off the shelf sets off the vault's alarm. If it is taken, Hushmen search every cart that leaves Hallowmere for the next two days."
+  },
+  {
+   "id": "pw-edda-thornes-diary",
+   "title": "Edda Thorne's Diary",
+   "kind": "Thing",
+   "revealAt": "sb-879a0d8936c67231",
+   "when": [
+    {
+     "flag": "diary",
+     "in": [
+      "party",
+      "read"
+     ]
+    }
+   ],
+   "body": "Edda Thorne was Warden of the Bellwright Tower. Her diary lay in the Tithe-Ledger Room, wrapped in cloth, under a false label: MIREL, LOST.\n\nThe Quiet Night entry says the Seventh is not a bell but a lullaby with a voice. The \"note beneath the note\" is the sound of something dreaming. Edda records that Imber came to the Tower that night with the Key, meaning to tune the seven bells into one long spring. She warned him. She writes that she fears he has already struck the Seventh.\n\nYou do not yet know what any of that means."
+  },
+  {
+   "id": "pw-captain-dessa-rook",
+   "title": "Captain Dessa Rook",
+   "kind": "Person",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [],
+   "body": "Captain Dessa Rook leads the Hallowmere Dawn Order. She is broad and weathered, in a dawn-coloured cloak faded to grey. She is clipped and military, and says \"we\" when she means \"I.\"\n\nShe is honest, tired, and under orders she dislikes. She says the Court is rotten and that those who could say so have been Tithed. She asks the party for a copy of the Tithe-Ledger, or the original. She offers a Dawn Order escort and a day of protection from Hushmen.\n\nThe Order's armory holds Vaer's Heart. She wants the dawn back, and her knights alive."
+  },
+  {
+   "id": "pw-oath-duel-rook",
+   "title": "The Oath-Duel: Rook Wins",
+   "kind": "Event",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    }
+   ],
+   "body": "On the Dawn Steps, in front of the city, Captain Rook challenges Ser Haldric to an oath-duel. Each swears an oath and answers three questions. The evidence of Haldric's payments from the Court comes out in public, and he cannot answer it.\n\nRook wins. Haldric is stripped of his sword and his knights desert him. The armory, and the Hearts kept in it, pass to the Captain."
+  },
+  {
+   "id": "pw-oath-duel-haldric",
+   "title": "The Oath-Duel: Haldric Wins",
+   "kind": "Event",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "haldric"
+     ]
+    }
+   ],
+   "body": "On the Dawn Steps, in front of the city, Captain Rook challenges Ser Haldric to an oath-duel. Each swears an oath and answers three questions put by the crowd.\n\nHaldric answers every one smoothly. Rook's accusation does not stand. The Dawn Order accepts the Court's say over the city, and Haldric keeps his rank.\n\nRook's face stays still. Court patrols tighten in the days that follow. If you stood with Haldric, he will ask you for names, and he will remember who gave them."
+  },
+  {
+   "id": "pw-oath-duel-failed",
+   "title": "The Oath-Duel: Unresolved",
+   "kind": "Event",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "failed"
+     ]
+    }
+   ],
+   "body": "On the Dawn Steps, Captain Rook challenges Ser Haldric to an oath-duel. She has the accusation but no proof in hand. Haldric denies it and the crowd has nothing to weigh against him.\n\nRook's case fails for now. Haldric keeps his office and his knights. The Court's patrols tighten. Rook admits her own compromises but denies selling the Order's protection.\n\nThe matter is not closed. If proof surfaces, the hearing can be reopened."
+  },
+  {
+   "id": "pw-wren-caddock",
+   "title": "Wren Caddock",
+   "kind": "Person",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [
+    {
+     "flag": "wren",
+     "in": [
+      "confessed",
+      "ally"
+     ]
+    }
+   ],
+   "body": "Wren Caddock is plain, freckled and cheerful, and she is always sewing something. She asks a lot of questions. She is a Bellwright.\n\nShe comes to you in Bet Ostrow's bakery and confesses that for two years she has been giving the Court names. Bellwright names, and one from Pellmoor: a ferryman called Tam Harrow. The Court holds her daughter, Tessa, in the Hall of Tithes.\n\nShe does not ask forgiveness. She asks you to take her daughter out of the city before the Court realises what she has done."
+  },
+  {
+   "id": "pw-bet-ostrow",
+   "title": "Bet Ostrow",
+   "kind": "Person",
+   "revealAt": "sb-173cd869f38cc637",
+   "when": [],
+   "body": "Bet Ostrow is an old baker in Hallowmere, small and round, with flour on her sleeves and very quick hands. She is cheerful, and she gives bread to anyone who looks hungry.\n\nSometimes she stops mid-sentence and cries, and she does not know why. She cries when bread is broken. She freezes at the sound of a small bell.\n\nShe has lost something, and she knows it. She wants to know what it was."
+  },
+  {
+   "id": "pw-blanks-at-the-hall-of-tithes",
+   "title": "The Blanks at the Hall of Tithes",
+   "kind": "Event",
+   "revealAt": "sb-159e9351d101d536",
+   "when": [],
+   "body": "The Hall of Tithes is surrounded. Hundreds of grey-faced people hold old drawings, photographs and wooden toys, and shout names they cannot quite remember. They do not riot. They stand and ask, over and over, \"Who was she? Who was I?\"\n\nThe Hushmen form a line. They arrest anyone who interferes.\n\nThe crowd will follow anyone who promises to help them recover what they have lost."
+  },
+  {
+   "id": "pw-jonah-and-ilam-bray",
+   "title": "Jonah and Ilam Bray",
+   "kind": "Person",
+   "revealAt": "sb-159e9351d101d536",
+   "when": [],
+   "body": "**Jonah Bray** is a nine-year-old Blank in the crowd, thin, with big eyes, holding a wooden bird he cannot explain. He is sweet and very literal, and he repeats what others say. He does not know his parents.\n\n**Ilam Bray** is a Hushman at the edge of the line. He is grey-faced, in silence-stone gloves, halting and apologetic. When he sees the bird he stops. \"That's my carving. I made it for my son. I don't know his name anymore.\"\n\nThey belong together. Neither knows it."
+  },
+  {
+   "id": "pw-jonah-and-ilam-reunited",
+   "title": "Father and Son",
+   "kind": "Event",
+   "revealAt": "sb-159e9351d101d536",
+   "when": [
+    {
+     "flag": "jonah",
+     "in": [
+      "reunited"
+     ]
+    }
+   ],
+   "body": "Jonah and Ilam Bray are together again. Jonah holds the wooden bird. Ilam looks at the boy as if he could never look away.\n\nIlam deserts the Hushmen. He gives the party a key to the service passage of the Tithe-Ledger Room and a roster of the Hushmen's names. He will help again, and he will bring Jonah."
+  },
+  {
+   "id": "pw-the-glass-letter",
+   "title": "The Glass Letter",
+   "kind": "Event",
+   "revealAt": "sb-e6aca23e4a267d72",
+   "when": [],
+   "body": "A courier arrives at your inn with a letter sealed in blue wax. It holds a single sentence in a shaking hand: \"I am still here. Come to Glassreach before the winter takes the last of me. I.V.\"\n\nThe courier is a trapper from Glassreach. He was paid to carry it and will say little else.\n\nBefore you go, Maudrin sends a last message through Lady Isolde: \"When you come back from the north, I will be waiting, and so will the Key. Give my regards to the Glass Sexton. He was once family, and he will not thank you for disturbing him.\""
+  },
+  {
+   "id": "pw-the-tuning-key",
+   "title": "The Key",
+   "kind": "Thing",
+   "revealAt": "sb-e6aca23e4a267d72",
+   "when": [],
+   "body": "Maudrin speaks of \"the Key\" as if it were hers, and as if it were waiting. You have not seen it. You have not been told what it opens.\n\nShe mentions it as a promise and as a warning at once. If you have found Edda Thorne's diary, the word will look familiar.\n\nWhatever it is, the Chancellor speaks of it as something she can rely on."
+  },
+  {
+   "id": "pw-vaer-rings",
+   "title": "Vaer Rings",
+   "kind": "Event",
+   "revealAt": "sb-3b8d18ebd647c28a",
+   "when": [
+    {
+     "flag": "bell_vaer",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Vaer rings in Hallowmere. The sound cracks the grey like a knife through glass. For one heartbeat the cloud tears open, and a line of gold falls across the terraces. Every person in the city looks up.\n\nThe opening widens. For this one day, sunlight reaches every terrace of the capital.\n\nThe Ringer paid the Toll of a memory of a dawn they loved. It is a real dawn, and a short one."
+  },
+  {
+   "id": "pw-calla-rings",
+   "title": "Calla Rings",
+   "kind": "Event",
+   "revealAt": "sb-3b8d18ebd647c28a",
+   "when": [
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Calla rings from the Old Granary at Kell's Crossing. The sound is warm and round, and it smells of baking bread. The ash on the fields stirs. Somewhere a child laughs, and a woman begins to cry without knowing why.\n\nFor one season the grain comes up green across the plain.\n\nThe Ringer paid the Toll of a Gift, something of value given freely to someone in need. It is not returned."
+  },
+  {
+   "id": "pw-silence-warrant",
+   "title": "The Silence Warrant",
+   "kind": "Thing",
+   "revealAt": "sb-3b8d18ebd647c28a",
+   "when": [
+    {
+     "flag": "warrant",
+     "in": [
+      "yes"
+     ]
+    }
+   ],
+   "body": "After Vaer rings, the Quiet Court issues a **Silence Warrant** against the Ringer. Any Hushman in a Court city may arrest the Ringer on sight.\n\nHushmen enforce it in every Court city. In Hallowmere the gate is watched for the Ringer's face.\n\nA warrant is only paper. It can be avoided, disguised, bribed or outrun. It stays in force until the Court withdraws it."
+  },
+  {
+   "id": "pw-yara-thenn",
+   "title": "Yara Thenn",
+   "kind": "Person",
+   "revealAt": "sb-578cbd5020d97b1f",
+   "when": [],
+   "body": "Yara Thenn is a Glassreach scavenger who cuts glass-flowers, each holding a preserved moment. She has a shaved head, fingerless leather gloves and a glass-cutting saw at her hip. She is sardonic and practical, and she talks about money constantly.\n\nHer camp at the forest's edge sells glass-cutting tools, warm cloaks and maps. She trades favours for tools rather than coin. She knows every frozen path in Glassreach, and she gives safe routes to people she has taken to.\n\nShe keeps one glass-flower she will not sell. She is after a map of the Frost Spire."
+  },
+  {
+   "id": "pw-wyn-talla",
+   "title": "Wyn Talla",
+   "kind": "Person",
+   "revealAt": "sb-578cbd5020d97b1f",
+   "when": [],
+   "body": "Wyn Talla is an old woman who lives at the forest's edge. Her family has watched the glass for four hundred years. She calls one woman frozen in the forest \"the sister,\" and she has kept watch over her all her life.\n\nShe paid the trapper who carried the glass letter to Hallowmere. A voice in the glass told her what to write. It called itself I.V., and it promised that the sister would move again.\n\nShe is friendly to anyone who asks about the sister first. She wants to know whether the glass can be broken without breaking the woman inside."
+  },
+  {
+   "id": "pw-the-stilled",
+   "title": "The Stilled",
+   "kind": "Group",
+   "revealAt": "sb-0c7fc8fe12e71ad5",
+   "when": [],
+   "body": "The Stilled are the people of Glassreach caught in winter-moments. They are alive but cannot move while the glass holds them. A deer, a fox and a child stand frozen in a clearing. A few adults wear coats from the Sword Coast, centuries out of fashion.\n\nBreak the glass around a Stilled adult and that adult wakes, slow and hard to hurt, and attacks. Glass-Wolves, which shatter on impact, hunt the paths.\n\nA Stilled child who is freed says one thing: \"The man in the tower was sad. He sang to us so we wouldn't be afraid. Then he stopped singing, and the winter kept going.\" Adults can be woken gently, with time and warmth."
+  },
+  {
+   "id": "pw-the-glass-sexton",
+   "title": "The Glass Sexton",
+   "kind": "Person",
+   "revealAt": "sb-8a9134f39dcce6b4",
+   "when": [],
+   "body": "A voice rises from the glass and echoes through the frozen trees. It is calm and patient, like a man who has spent four centuries giving the same sermon. \"Quiet is the gift of the Silence. Memory is the burden of the living. Give your burdens up.\"\n\nThe voice belongs to the **Glass Sexton**, a figure in ceremonial robes, set in the glass of the Chapel of Winter. The chapel is a cathedral of frozen sound, with pews of ice and a glass pulpit. A Sexton's crown sits on his head, and a bronze heart is set in it. Inside the glass, his face is still human.\n\nListeners fall silent and turn toward him. He asks who rules the Court now, because he has not heard its name in four centuries. The letter was signed I.V."
+  },
+  {
+   "id": "pw-the-frost-heart",
+   "title": "The Frost Heart",
+   "kind": "Thing",
+   "revealAt": "sb-8a9134f39dcce6b4",
+   "when": [],
+   "body": "The Frost Heart is Hieme's Heart, the winter bell's clapper. It is a bronze heart set in the Glass Sexton's crown, in the Chapel of Winter in Glassreach. It is frozen inside the glass with him.\n\nThe Sexton knows it is there. He will give it to those who sit and listen to him patiently, and he warns that Hieme must not be rung without it.\n\nWithout the Frost Heart, the bell on the Frost Spire cannot ring. Taking it by force would break the glass around him."
+  },
+  {
+   "id": "pw-the-sextons-confession",
+   "title": "Imber Vesk's Confession",
+   "kind": "Event",
+   "revealAt": "sb-f40bf272eb1b252f",
+   "when": [],
+   "body": "If you listen, the Sexton tells you his story. His name is **Imber Vesk**, and he was High Sexton of the Ninefold Church. On the Quiet Night he ordered Edda Thorne to tune the bells into one long spring. She refused and warned him in writing. He tuned them anyway, with the Key. The Key sang against the bells, and the bells cracked on the discord.\n\nHe has regretted it for four hundred years. He does not say what the Key truly is. \"The Key was never mine to use. I know that now.\"\n\nThe Key passed to his daughter, Cassia, when he was disgraced, and stayed in the family's reliquary. He asks who holds it now. He warns that the Frost Spire must not be rung without the Heart: \"The winter will come back all at once.\""
+  },
+  {
+   "id": "pw-the-sexton-freed",
+   "title": "The Sexton Freed",
+   "kind": "Event",
+   "revealAt": "sb-f40bf272eb1b252f",
+   "when": [
+    {
+     "flag": "sexton",
+     "in": [
+      "freed"
+     ]
+    }
+   ],
+   "body": "The glass around Imber Vesk melts or breaks, and the winter-moment ends. He is old and frail. He does not attack. He remembers every sermon he ever gave, and his confession continues.\n\nThe Frost Heart is free of his crown and can be taken. Imber asks to be taken out of the winter so he can finish his sermon somewhere else.\n\nHe is weak, and he cannot travel fast. He is grateful, and he talks."
+  },
+  {
+   "id": "pw-the-frost-spire",
+   "title": "The Frost Spire",
+   "kind": "Place",
+   "revealAt": "sb-7b8acacf7aaa51b8",
+   "when": [],
+   "body": "The Frost Spire is a tower of ice that rises from the middle of the glass forest like a frozen fountain. Hieme's bell hangs motionless inside it, locked in frost. It is about two hundred feet high. Every breath you take freezes on the air and falls as a small white star.\n\nThe bell is singing, so softly you only hear it in your teeth.\n\nGlass-Wolves guard the base. Stilled watch from the ice stairs. The climb is slow and steep, and a slip is a long fall. Ringing it needs the Frost Heart."
+  },
+  {
+   "id": "pw-hieme-rings",
+   "title": "Hieme Rings",
+   "kind": "Event",
+   "revealAt": "sb-7b8acacf7aaa51b8",
+   "when": [
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Hieme rings once from the top of the Frost Spire. The sound is high and thin and clear, like a single thread of ice pulled across the sky. The frost on the Spire cracks. The glass trees hum. Everywhere in the forest, something begins to move.\n\nThe winter is going. Not all at once, but slowly, like a tide turning back.\n\nThe Ringer paid the Toll of a memory. Glassreach begins to thaw."
+  },
+  {
+   "id": "pw-the-thaw",
+   "title": "The Thaw",
+   "kind": "Event",
+   "revealAt": "sb-897e70317077e42d",
+   "when": [
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Glassreach is thawing. Glass turns back into bark and leaf, and people step out of their own winters with their arms still raised, asking each other's names.\n\nThe Stilled wake over several weeks. Some are confused, some angry, some grateful. They need food, shelter and a way out. Yara's camp becomes a hall for them. A Stilled child asks for her mother, and somebody has to tell her.\n\nThose who help the waking Stilled earn their trust. The thaw reaches the Glass Sexton last, if he is still in the glass."
+  },
+  {
+   "id": "pw-isolde-at-the-thaw",
+   "title": "Isolde's Demand",
+   "kind": "Event",
+   "revealAt": "sb-897e70317077e42d",
+   "when": [
+    {
+     "flag": "isolde",
+     "in": [
+      "following",
+      "retreated",
+      "captured",
+      "ally"
+     ]
+    }
+   ],
+   "body": "Lady Isolde Drave follows you north. She arrives at the thaw with Hushmen, smiling. \"What a lovely thaw. I'm told you have something of ours. The Frost Heart, let us say.\"\n\nShe offers a trade: give it to the Court and the Court will forget your interference. Refuse, and \"the Court will remember it very precisely.\"\n\nIsolde has silence-stone gloves, two Hushmen, and a very good memory. The Court has now followed you into the glass."
+  },
+  {
+   "id": "pw-the-lightning-shafts",
+   "title": "The Lightning Shafts",
+   "kind": "Place",
+   "revealAt": "sb-65a7d51b78a8d14d",
+   "when": [],
+   "body": "The Lightning Shafts are old lightning-shafts that drop into the earth of Brassfall like the throats of bells. Thrane's bell hangs here. Storm-stones glitter pale blue and humming in the walls.\n\nThe sky above flickers, though there are no clouds. Somewhere below, a stone cracks like a whip. The Old Works lie close by, the abandoned mine where Old Garrow's ghost keeps watch.\n\nA treasure room of storm-stones lies off the shafts. The stones discharge if picked up wrongly, and golems made of them guard the vault. Metal sparks near the stones."
+  },
+  {
+   "id": "pw-old-garrow",
+   "title": "Old Garrow",
+   "kind": "Person",
+   "revealAt": "sb-65a7d51b78a8d14d",
+   "when": [],
+   "body": "Old Garrow is the ghost-foreman of the Old Works in Brassfall. He is gray-bearded, gruff and impatient, and he carries a lamp that burns blue. He calls everyone \"lads and lasses.\" He died in a collapse years ago.\n\nHe asks the party to carry his lamp to his daughter, **Yenna**, in the Ironhorn foothills, near the camp, with a red horse-skull on her tent. Tell her he is sorry about the collapse, and tell her he is proud of her. \"And don't drop it. It's the only thing down here that hums on purpose.\"\n\nThe lamp holds a storm-stone. He likes people who work hard and speak plainly."
+  },
+  {
+   "id": "pw-the-sleeping-hall",
+   "title": "The Sleeping Hall and the Sleepless",
+   "kind": "Place",
+   "revealAt": "sb-4a1554713c1ac7c1",
+   "when": [],
+   "body": "The Sleeping Hall on Vael Tor is a cathedral of beds. Hundreds stand in rows climbing toward a ceiling of gray glass, and every one holds a sleeper who does not stir. Above the central bed hangs a bell the colour of old honey, its Heart missing. The air around it is very still.\n\nAt night the **Sleepless** come out. They take shapes drawn from the fears of the nearest sleeper. Anyone who rests on the Tor risks a nightmare, and a bad one can leave a Sleepless standing nearby in the morning.\n\nThe Hall belongs to Mirel's bell."
+  },
+  {
+   "id": "pw-ironhorn-camp",
+   "title": "The Ironhorn Camp and the Heart-Hall",
+   "kind": "Place",
+   "revealAt": "sb-3b3f7af5135fd7d2",
+   "when": [],
+   "body": "The Ironhorn camp is a ring of white-hide tents with horse-skulls on their poles. Drums beat slow and steady. Riders cross the camp at a gallop, shouting names you do not know. The air smells of smoke, horse-sweat and something sharp like lightning.\n\nAt the centre stands the **Heart-Hall**, a long hall of white hide. A bronze clapper hangs there from a horse-skull and hums. It is Thrane's Heart.\n\nGuests are welcome, and a guest wins a wager or buys dinner. The Thane's Ring is where the clans meet to decide things."
+  },
+  {
+   "id": "pw-thane-oru-kessa",
+   "title": "Thane Oru Kessa",
+   "kind": "Person",
+   "revealAt": "sb-3b3f7af5135fd7d2",
+   "when": [],
+   "body": "Thane Oru Kessa leads the Ironhorn Compact and holds Thrane's Heart. He is huge and bearded, with braids of bronze wire and a weathered, open face. He is blunt and funny and enjoys a wager. He calls everyone \"rider,\" whatever their skill.\n\nHe welcomes the party as guests and sets a steppe contest. Win, and he opens the Heart-Hall. Lose, and \"you'll leave me something to melt.\"\n\nIn private he says he is dying. Thrane's Heart has been eating his hands since he took it from the Brass Road. He hopes the Court's Key can cure lightning-sickness, and he wants to ring Thrane and bring the storms back. He asks an oath that the Heart be returned to his hall afterwards."
+  },
+  {
+   "id": "pw-yenna-garrow",
+   "title": "Yenna Garrow",
+   "kind": "Person",
+   "revealAt": "sb-3b3f7af5135fd7d2",
+   "when": [],
+   "body": "Yenna Garrow is a rider of the Ironhorn Compact, Old Garrow's daughter. She keeps the horses at the foothills camp. She is sun-darkened, with a red horse-skull on her tent and a long bronze braid she has never cut.\n\nShe is quiet and gruff like her father, but quicker to smile. She respects anyone who carries a debt honestly.\n\nIf you bring her the lamp, she weeps and thanks you. If you tell her what her father said, she gives something in return: a horse, a bow, or a bargain with her clan. She wants her father to rest."
+  },
+  {
+   "id": "pw-the-hush-cult",
+   "title": "The Hush Cult",
+   "kind": "Group",
+   "revealAt": "sb-93be53f2a6747fe1",
+   "when": [],
+   "body": "Robed figures sit in a circle around a dying fire on Vael Tor, humming very softly. When they see you, they smile, and the smile is sad and kind and terribly tired. \"Rest, friends. You're so tired. Why not rest here, where the song is kind?\"\n\nThe Hush Cult offers rest, dreamless sleep and an end to the Sleepless, in exchange for one night by the Hush Shrine. They speak in soft, persuasive voices and they want the world kept quiet forever.\n\nThey defend the shrine if attacked. They are not hostile unless pushed."
+  },
+  {
+   "id": "pw-corin-aldeth",
+   "title": "Corin Aldeth",
+   "kind": "Person",
+   "revealAt": "sb-42bb15639f8889ad",
+   "when": [],
+   "body": "Corin Aldeth is a Bellwright. He is thin, with burn-scarred hands and a leather apron, and he listens with one ear turned. He hums under his breath. He is passionate, sharp and occasionally poetic.\n\nHis hidden workshop lies beneath a Brassfall tavern, full of bells in various stages of repair. \"My family has tried to finish a song for three generations, and I think you may be the first people in a century who can help me finish it.\"\n\nHe wants to ring the Seventh Bell, and he shows the party Edda Thorne's Notes. He says the Seventh asks its Ringer for all six Tolls. He is enthusiastic about anyone who has rung one."
+  },
+  {
+   "id": "pw-edda-thornes-notes",
+   "title": "Edda Thorne's Notes",
+   "kind": "Thing",
+   "revealAt": "sb-42bb15639f8889ad",
+   "when": [],
+   "body": "Edda Thorne's Notes are the Bellwrights' copy of the tuning pages from Edda's diary. The diary itself lies in the Court's vault.\n\nCorin shows you the Notes in his workshop. He says they describe a safe way to ring the Seventh Bell. He admits the price is high: the Seventh asks its Ringer for all six Tolls, and everyone else risks the world they know.\n\nHe gives you the Notes if you agree to help him. The pages also tell the story of the Quiet Night in Edda's own words."
+  },
+  {
+   "id": "pw-the-hush-shrine",
+   "title": "The Hush Shrine",
+   "kind": "Place",
+   "revealAt": "sb-f0b728a69d395cb2",
+   "when": [],
+   "body": "Stairs spiral down into the hill under Vael Tor, each step worn smooth by feet that came to listen. Your footsteps are muffled, though the stone is bare. Far below, in darkness, a great bell hangs, its surface blank as a sleeping face.\n\nYou can walk a few steps down and hear the Hush. It speaks in the voice of your own sleeping self: \"Be quiet now. You're so close. I've held everything together for four hundred years, and I'm so tired. If you wake me, the dream will end.\"\n\nCorin Aldeth comes up the stairs. \"Mirel first. Ring her wrong, and the Hush will sing you to sleep before the Court can arrest you. Let me help you do it right.\""
+  },
+  {
+   "id": "pw-thrane-rings",
+   "title": "Thrane Rings",
+   "kind": "Event",
+   "revealAt": "sb-ad6ec717a7e06917",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Thrane cracks like a whip. The sky above Brassfall splits open, and for the first time in four centuries a real storm rolls over the mountains. Rain falls like bronze filings. Lightning strikes the peaks in long white bars. The storm-stones blaze, and every metal object you carry hums in answer.\n\nThe Ironhorn celebrate in the rain. The mines become dangerous, but the ore can be recovered.\n\nThe Ringer paid the Toll of a Sense, lost for a day. The Court will hear of it."
+  },
+  {
+   "id": "pw-mirel-rings",
+   "title": "Mirel Rings",
+   "kind": "Event",
+   "revealAt": "sb-abff956ca382268b",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "body": "Mirel rings in the Sleeping Hall like a lullaby sung by someone who loves you. Every sleeper on the Tor sighs and turns over. The Sleepless dissolve into mist. For a moment the air feels like the first morning of spring, and you feel, impossibly, hopeful.\n\nThe Sleepless stop walking. The Hush's lullaby changes key, and it sounds sad, then grateful. The Cult weeps.\n\nThe Ringer paid the Toll of a Fear, chosen by the Ringer and lost for one day. Hushmen are reported on the road, sent to the Tor to investigate."
+  },
+  {
+   "id": "pw-truth-of-the-key",
+   "title": "What the Key Is",
+   "kind": "Lore",
+   "revealAt": "sb-742e25b3e3af8fbf",
+   "when": [],
+   "body": "Edda Thorne's tuning pages, read at last, tell the story of the Quiet Night in her own words. Imber wanted to tune the seven into one long spring. Edda told him the Seventh is not a bell but the lullaby. The Key is not a tuning tool. It is the heart that sings the Dreamer to sleep.\n\nYou now understand: the Seventh bell keeps **Oum**, the Dreamer, asleep. The Key is the Seventh's Heart, and the only Heart that can ring it. Imber struck the Key against the bells on the Quiet Night, and the discord cracked the lullaby. The bells went silent because the dream was waking.\n\nMaudrin has known this since she took the Key. She kept it from the Court and the Church. Now she is marching, with the Key in a silence-stone case on a chain around her neck."
+  },
+  {
+   "id": "pw-stormwall-loosening",
+   "title": "The Stormwall Loosens",
+   "kind": "Event",
+   "revealAt": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "stormwall",
+     "in": [
+      "loosened"
+     ]
+    }
+   ],
+   "body": "Since the storm broke over Brassfall, news has come up from Pellmoor. Pilots say the Seam has widened. Ships report calmer water at the edge of the Stormwall, and sails that were not there last month.\n\nNobody can say why. The timing is hard to ignore.\n\nMore ships than usual are arriving at Pellmoor."
+  },
+  {
+   "id": "pw-the-strike",
+   "title": "The Strike",
+   "kind": "Event",
+   "revealAt": "sb-007cc9c6ed7fecff",
+   "when": [],
+   "body": "Hushmen on grey horses come over the ridge in a long line. Their gloves catch the light and throw it back as silence. Behind them rides a figure in dove-grey, white-haired, with a face you have seen in your dreams.\n\n\"Good evening,\" Maudrin Vesk says, her voice carrying perfectly over the wind. \"I'm so sorry to interrupt. But I believe you have something that belongs to me.\"\n\nShe wants the Hearts you carry, and the Key if you hold it. She offers a bargain: surrender them and be spared, or fight. Knights ride with her.\n\nBeyond the ridge lies the foot of Vael Tor, where a ring of grey stones glows the colour of a dream you have almost forgotten."
+  },
+  {
+   "id": "pw-the-summit",
+   "title": "The Summit of Vael Tor",
+   "kind": "Place",
+   "revealAt": "sb-dce15a8ce35d16ab",
+   "when": [],
+   "body": "The stones of the Tor stand in a ring. In the centre, Maudrin Vesk waits with her Hushmen in a silent line. Behind her, the ground opens onto a spiral of stairs. The Hush rises from below like a tide, a lullaby so vast and low you feel it in your ribs.\n\n\"I'm glad you came,\" Maudrin says. \"Shall we begin?\"\n\nShe says she is the last person in Corvane who understands what the silence costs: four centuries of Tithes, Blanks, and children who forget their mothers. She asks whether you want to wake what holds it all together."
+  },
+  {
+   "id": "pw-stairs-of-the-hush",
+   "title": "The Stairs of the Hush",
+   "kind": "Place",
+   "revealAt": "sb-8272ccffe0002037",
+   "when": [
+    {
+     "flag": "shrine",
+     "in": [
+      "reached"
+     ]
+    }
+   ],
+   "body": "The stairs go on for a long time. Each step has a memory carved into it, worn smooth by the feet of those who came to listen. Some are your memories. Some are strangers'. You hear a child laughing, a bell tolling, a man telling a joke to someone who isn't there.\n\nEvery twenty steps costs a memory. The price is told at the first step, and anyone may turn back. Everyone who descends pays, allies included. \n\nThe losses take recollections. They do not take skills, abilities or your own choices. At the bottom, a great bell hangs in darkness."
+  },
+  {
+   "id": "pw-ysh-the-seventh-bell",
+   "title": "Ysh, the Seventh Bell",
+   "kind": "Thing",
+   "revealAt": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "shrine",
+     "in": [
+      "reached"
+     ]
+    }
+   ],
+   "body": "Ysh, the Seventh Bell, hangs at the foot of the Stairs of the Hush. It is vast and blank, its surface like the face of a sleeping god. The lullaby is still there, very faint, asking you to be quiet.\n\nOnly the Key can strike it. Whoever rings it pays all six Tolls, Maudrin included. The Key is the Seventh's Heart, and the choice about what to do with it is the last one left in Corvane.\n\nEveryone who comes down the stairs knows what is at stake."
+  }
+ ]
+}

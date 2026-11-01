@@ -1,0 +1,1937 @@
+{
+ "plays": [
+  {
+   "id": "s22-read-notes",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "They read Edda Thorne's account of the Quiet Night",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The diary, the Notes or the Librarian finally tell what the Key is.",
+   "tells": "Players open the diary or the Notes, or ask the Librarian.",
+   "readAloud": "\"He wants to tune the seven into one long spring. I told him the seventh is not a bell. It is the lullaby. The Key is not a tuning tool. It is the tongue that sings Oum to sleep, and he has taken it to make the calendar behave. If he strikes the Seventh with it, the dream will wake or it will crack. I told him so. He did not hear me.\"",
+   "response": "Piece it together with them: the Seventh keeps Oum asleep; the Key is its only Tongue; Imber struck the Key against the bells and the discord cracked the lullaby; Maudrin has known since she took the Key. The sources: Corin's Notes (with the Quiet Night leaf), the diary, or the Librarian, who reads the page aloud for one true memory (not if the party robbed the courier). One line in the Notes says Thrane's weather \"will go to the rim and wait\": a sharp player may connect it to the Stormwall.",
+   "rules": "Study action, Intelligence (History or Arcana) DC 13 to connect the line about Thrane's weather to the Stormwall; no roll needed for the main truth.",
+   "consequence": "The party knows what every ending costs and why.",
+   "later": "S22: Telling Isolde (s22-tell-isolde) and Haldric (s24-haldric-truth) the truth can turn them. S24 to S27: the four endings are now informed choices.",
+   "fallback": "If they miss every source, the Librarian's courier finds them with the page, unless they robbed it; then Corin or Wren brings a copy.",
+   "keywords": "diary, notes, edda, truth, key, quiet night, read, librarian, lullaby, oum"
+  },
+  {
+   "id": "s22-maudrin-moves",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Word comes that Maudrin has marched",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "She leaves Hallowmere within a day of the second ringing.",
+   "tells": "The second Act IV bell has rung.",
+   "readAloud": "The scout is out of breath and still won't sit down. \"She's left the city. Hushmen, Dawn Order knights, wagons. She's wearing it on a chain around her neck. A grey case.\"",
+   "response": "Maudrin carries the Key in a silence-stone case on a chain and marches on Vael Tor with Hushmen and Dawn Order knights (only Haldric's knights if Rook won the duel; Rook's knights stay with Rook). The palace vault is empty: the Key goes with her. The Strike is a day or two away because the Hush frays faster with every bell: she must bring the Key near the Seventh to hold it steady (s22-why-maudrin-marches).",
+   "rules": "",
+   "consequence": "The race to the Tor begins; the Key is on her chain.",
+   "later": "S23: the Strike at the foot of the Tor. The palace vault is empty; going back to Hallowmere for the Key finds only Ansel and the Tithe-Ledger.",
+   "fallback": "",
+   "keywords": "maudrin, march, army, leaves hallowmere, scout, news, key on a chain",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "hallowmere"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "palace"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "marching"
+    },
+    {
+     "flag": "key",
+     "set": "maudrin"
+    }
+   ]
+  },
+  {
+   "id": "s22-key-leaves-vault",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Key leaves the palace vault",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Only when Maudrin was marked as marching but the Key was never recorded as leaving.",
+   "tells": "Maudrin has marched and the Key still shows the palace.",
+   "readAloud": "The palace vault stands open and empty. Ansel Quay is dusting the shelf where the case used to sit.",
+   "response": "Update the world state: the Key is on Maudrin's chain from now on. The palace route is closed; the chain route opens.",
+   "rules": "",
+   "consequence": "The Key travels with Maudrin.",
+   "later": "S23: the chain route (any-steal-key-chain) and the summit (S24).",
+   "fallback": "",
+   "keywords": "key, vault, palace, chain, maudrin, carried",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "palace"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "maudrin"
+    }
+   ]
+  },
+  {
+   "id": "s22-gather-allies",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "They call in their allies",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Everything the party did in Acts I–IV pays off here.",
+   "tells": "Players list who owes them.",
+   "readAloud": "Word goes out along every road you have travelled, and some of the people you helped start walking toward the Tor.",
+   "response": "Ask each player which ally they want to bring and which they trust, then run one ally play per company that agrees: each is +1 on the allies clock and takes an objective (hold the ridge, cut the retreat, break the line), not a creature count. The clock stops at 6. Ally logistics: Hallowmere to the Tor is about four days; Pellmoor is six; the Choir cannot leave the Mere, so its hymn arrives by a Mere-glass vial (Mother Sallow's message); the Stilled walk slowly and arrive at dusk.",
+   "rules": "Ally actions: Rook's knights take one Hushman off the line; Yenna's riders cut the retreat; the Cantor's hymn gives Advantage on saves against Frightened; the Stilled stand as living walls; the Blanks break the line by numbers; the Stormborn's ship guns or Harper sabotage remove one Warden.",
+   "consequence": "The party knows exactly who stands with it.",
+   "later": "S23 and S24: each ally's objective changes the encounter; at 3 allies the party picks which flank to hold; at 6 the Court cannot hold the Tor road and Maudrin must come in person.",
+   "fallback": "",
+   "keywords": "allies, gather, call in, help, army, friends, ironhorn, dawn order, stilled, blanks, choir, harpers"
+  },
+  {
+   "id": "s22-tell-kessa",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "They tell Kessa the Key can't cure him",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Kessa believes the Key will heal his lightning-sickness (H-21), and he deserves the truth.",
+   "tells": "Kessa is alive and asks about the Key.",
+   "readAloud": "Kessa laughs, and then stops laughing, and looks at his blackened hands for a long time. \"Well. Then I'd better die somewhere with weather.\"",
+   "response": "He takes it hard and honestly. If Thrane has rung, he asks to die in the open air during a storm. He keeps his alliance if the party has kept its word. The decision is his and the table's; he is not predestined to die.",
+   "rules": "",
+   "consequence": "Kessa fights for the party, or for a good death, not for a cure.",
+   "later": "S28: Kessa's last storm if the table wants it (s28-kessa-storm).",
+   "fallback": "",
+   "keywords": "kessa, cure, sickness, lightning, key, truth, thane, dying",
+   "when": [
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s22-corin-strike",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Corin offers to pay the Great Toll himself",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Corin's whole family has tried to finish this song for three generations, and the Notes now name the price.",
+   "tells": "Corin is allied and reads the Notes with the party.",
+   "readAloud": "“If the price is a name, then let it be mine. My grandmother died one breath into this song. Let me finish it.”",
+   "response": "Corin, who misread the \"whole name\" for years, now understands the Great Toll and offers to be the Ringer himself. He is wrong to want it for the family's sake, not evil. Let the party argue; his offer does not remove their consent for anyone else. He can defer a Toll for an hour, never cancel it.",
+   "rules": "",
+   "consequence": "A willing Ringer is on the table that is not a PC.",
+   "later": "S26: if the party refuses him, he may still try to reach the bell (s26-corin-cracks-the-lullaby). S27: the Concord with Corin as the Seventh's voice (s27-corin-voice).",
+   "fallback": "",
+   "keywords": "corin, strike, ring the seventh, bellwright, argue, wake oum",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "ally"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s22-ambush",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "They ambush Maudrin's column on the road",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Proactive parties strike first, on ground they choose.",
+   "tells": "Players ask Ansel Quay or a scout for her route.",
+   "readAloud": "From the ridge you can see the column coming: grey horses, grey gloves, and one rider in dove-grey at the centre.",
+   "response": "Ansel knows the routes Maudrin's Hushmen take from the palace to the Tor. A good ambush gives the party Surprise and a chosen battlefield; the vanguard (not Maudrin) is hit first. Run the Strike's lead column there instead, then Maudrin arrives at the Tor.",
+   "rules": "Surprise (2024): surprised creatures have Disadvantage on their Initiative rolls. Group Stealth: DC 14 against the column's Passive Perception.",
+   "consequence": "The Strike happens on the party's terms.",
+   "later": "S23 as normal, with terrain and surprise in the party's favour: Maudrin's remaining column is smaller, and she will not underestimate them again.",
+   "fallback": "",
+   "keywords": "ambush, road, column, attack first, ansel, route, surprise",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s23-favor-called",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Maudrin calls in the Session 4 favor",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "If the party accepted her bargain at the Assembly, she collects now.",
+   "tells": "The Bargain log shows the favor still owed.",
+   "readAloud": "\"One favor, dear, and I am calling it in now. Go, before I change my mind.\"",
+   "response": "She asks them to stand aside. Run the next two plays for the answer: they keep the favor (s23-favor-kept) or break it (s23-favor-broken). If the favor was already repaid or never owed, she says \"You have repaid me. Go,\" and runs the Strike normally.",
+   "rules": "",
+   "consequence": "The favor is called in.",
+   "later": "S23: the answer decides the flag. S24: kept means she reaches the summit unhurt.",
+   "fallback": "",
+   "keywords": "favor, maudrin, bargain, owe, called in, stand aside, go",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "owed"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-fight",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "They fight the Strike",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Most parties won't give up the Tongues.",
+   "tells": "Weapons out on the ridge; the party refuses her offer.",
+   "readAloud": "Hushmen on grey horses come over the ridge in a long line. Their gloves catch the light and throw it back as silence. Behind them rides a figure in dove-grey. \"Good evening,\" Maudrin Vesk says. \"I'm so sorry to interrupt. But I believe you have something that belongs to me.\"",
+   "response": "Run the Strike. She wants the unrung Tongues the party carries (rung Tongues are worthless to her), the Key back if they hold it, and the Ringer. She retreats toward the Tor when Bloodied: \"I'll see you at the Shrine.\" Track her HP and the Key's possession into the next scene. Each ally takes its objective (do not delete creatures).",
+   "rules": "Encounter: the Strike (pick the version for the oath-duel and for Maudrin). Surprise (2024) gives surprised creatures Disadvantage on Initiative.",
+   "consequence": "The Court's army is broken or holds the road.",
+   "later": "S24: Maudrin at the summit, as the Keeper, Bloodied if she was Bloodied here. Level 10 after the Strike.",
+   "fallback": "If the fight turns, the allies' actions (riders, the Stilled, the Choir) are the cavalry.",
+   "keywords": "fight, strike, battle, ridge, maudrin, hushmen, army, combat",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "summit"
+    }
+   ]
+  },
+  {
+   "id": "s23-surrender",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "They surrender to Maudrin",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Outnumbered parties sometimes yield.",
+   "tells": "Players ask her terms.",
+   "readAloud": "\"Thank you. That was wise. Now: the Tongues, please. And your Ringer will come with me to the Quiet Court.\"",
+   "response": "She takes the unrung Tongues, and the Key if the party holds it. She demands the party's Ringer come to be Tithed; the player chooses whether to accept. A saving throw never decides consent. Record each Tongue handed over as Court custody in World state. Refusal leads to negotiation, escape (s23-escape-captivity) or a capture attempt. The Empty Choir needs the group's choice to end its resistance (s23-accept-tithe).",
+   "rules": "",
+   "consequence": "The Court holds the Tongues and the Key.",
+   "later": "S27: s27-empty-choir if they accept. A rescue chapter can reverse it.",
+   "fallback": "Offer an escape: Brannagh's pilots, Yenna's riders, or a Stormborn ship waiting off the coast.",
+   "keywords": "surrender, give up, yield, hand over tongues, captured, terms",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party",
+      "maudrin"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "maudrin"
+    }
+   ]
+  },
+  {
+   "id": "s23-haldric-hesitates",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "The Key in the party's hands breaks the Court's line",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Haldric didn't know the Key was real until he sees it.",
+   "tells": "The party takes the Key mid-fight and Haldric is present.",
+   "readAloud": "Ser Haldric Mose sees the grey case in your hands and stops, sword half raised, like a man who has just heard his own name spoken in a language he never learned.",
+   "response": "Haldric loses his next turn. His knights look to him and hesitate too. The Court's line breaks; Hushmen fall back to Maudrin.",
+   "rules": "Haldric and the Dawn Order Knights lose their next turns.",
+   "consequence": "The Strike turns in the party's favour.",
+   "later": "S24: Haldric may be turned by the truth of his parentage (s24-haldric-truth).",
+   "fallback": "",
+   "keywords": "haldric, hesitate, key, line breaks, knights, court",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "haldric",
+     "in": [
+      "knight"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s23-jonah-hostage",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Maudrin holds Jonah as a hostage",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "If the party left Jonah in Court custody (S7), she brings him to the ridge.",
+   "tells": "Jonah is in custody in World state.",
+   "readAloud": "A Hushman lifts a thin boy onto his saddle. He is holding a wooden bird.",
+   "response": "Freeing Jonah costs one Tongue, or winning the Strike. Jonah (9) is a child: use your session-zero boundaries. He is held off the field by a Hushman with a promise of safety; no violence on-screen; the scene has an exit (the Hushman releases him if the Tongue is handed over). If it is a Line, make him an adult dependent or remove the threat. If Ilam is an ally, he goes for his son without being asked.",
+   "rules": "",
+   "consequence": "A Tongue for a child, or a fight for him.",
+   "later": "S28–30: Jonah remembers his mother's face if she is found.",
+   "fallback": "",
+   "keywords": "jonah, hostage, child, wooden bird, ilam, rescue, trade",
+   "when": [
+    {
+     "flag": "jonah",
+     "in": [
+      "custody"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "jonah",
+     "set": "safe"
+    }
+   ]
+  },
+  {
+   "id": "s23-ilam-holds",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Ilam Bray holds the southern road",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "If Ilam and Jonah were reunited, Ilam has his own reasons to be here.",
+   "tells": "Ilam is an ally in World state.",
+   "readAloud": "Ilam Bray stands in the road with his grey gloves off. Behind him, Jonah holds the wooden bird in both hands and watches his father, and knows him.",
+   "response": "Ilam stays between the boy and the fight and holds the southern road: the Court's reinforcements do not reach the ridge. Jonah is kept far from the fight with a trusted adult and a clear exit; give him one quiet moment of recognition away from the line. Objective: hold the south.",
+   "rules": "Child-peril: Jonah is never harmed on-screen; offer a retreat if the table is uncomfortable.",
+   "consequence": "The Strike is smaller; a family is whole.",
+   "later": "S29: Ilam stays with his son.",
+   "fallback": "",
+   "keywords": "ilam, jonah, road, father, son, ally, hold",
+   "when": [
+    {
+     "flag": "ilam",
+     "in": [
+      "ally"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s22-why-maudrin-marches",
+   "title": "Why Maudrin leaves Hallowmere now",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Players ask why she waited thirty-eight years and goes now.",
+   "tells": "A player asks Isolde, Ansel, a prisoner, or casts Detect Thoughts.",
+   "readAloud": "“She has had it thirty-eight years,” Ansel says, quietly. “She never took it out of the vault. Why would she take it out now?”",
+   "response": "The truth, for the DM: the Court's silence-stones and gloves are tuned to the Key's hum, and a sealed Key would go quiet and end them. She kept it close to the Seventh's tune and far from any recess. Each bell rung shifts the world's key, so the Key's hum from the palace no longer holds the lullaby; she must carry it to the Tor to keep it steady. She wants the unrung Tongues (rung Tongues are worthless to her), the Key, and the Ringer, to Tithe, so no one can pay the Great Toll or strike. She will seal the stairs, not the Key.",
+   "rules": "Insight DC 15 (Isolde or Ansel); Detect Thoughts on Maudrin: \"keep it as it is.\"",
+   "consequence": "The table has a reason for her march.",
+   "later": "S24: she negotiates a seal. S26: her last offer.",
+   "fallback": "",
+   "keywords": "maudrin, why, motive, key, silence stones, march",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s22-maudrin-marches-to-retake",
+   "title": "Maudrin marches to take back the Key",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "If the party holds the Key, she comes for it.",
+   "tells": "The party took the Key from the palace vault.",
+   "readAloud": "The scout is out of breath. “She's left the city. No case on the chain, this time. She's wearing her gloves and nothing else.”",
+   "response": "With the Key gone, Maudrin marches on the Tor by the party's route with every Hushman she can spare. She means to retake the Key and the Ringer. She is angrier and less patient.",
+   "rules": "",
+   "consequence": "The Court marches.",
+   "later": "S23: the Strike, with the party holding the Key. Haldric hesitates if he sees it (s23-haldric-hesitates).",
+   "fallback": "",
+   "keywords": "maudrin, march, retake, key, party holds",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "hallowmere"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "marching"
+    }
+   ]
+  },
+  {
+   "id": "s22-tristan-takes-the-march",
+   "title": "Tristan Vesk marches in her place",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "If Maudrin is dead, her cousin takes the Key.",
+   "tells": "Maudrin was killed before Act IV.",
+   "readAloud": "The man in dove-grey is not a woman, and he is not alone: Wardens, a hundred Hushmen, Dawn Order knights.",
+   "response": "Tristan Vesk, now Chancellor, carries the Key in the same grey case. He is cautious and clever, less frightening and less certain. He wants the Tongues and the Ringer. He knows the Key's truth only from Maudrin's papers.",
+   "rules": "",
+   "consequence": "The Court marches under a new Chancellor.",
+   "later": "S23: the Strike with Tristan (enc-s23-strike-tristan). S24: no Maudrin at the summit; Tristan or Haldric hold the stones.",
+   "fallback": "",
+   "keywords": "tristan, chancellor, march, maudrin dead",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "dead"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "tristan"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-dawn-order",
+   "title": "Rook and the Dawn Order stand with the party",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Rook won the duel, and her knights owe the party.",
+   "tells": "Players list who owes them.",
+   "readAloud": "Captain Dessa Rook arrives at dusk with forty knights, mud to the thigh.",
+   "response": "Rook's knights hold the ridge at the Strike and take one Warden's attention. They also carry any Tongue still in the armory (s22-rook-returns-the-tongues). Rook's company is an ally: +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Dawn Order stands with the party.",
+   "later": "S23: Rook holds the ridge. S28: Rook leads a restored Order.",
+   "fallback": "",
+   "keywords": "rook, dawn order, ally, knights",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    },
+    {
+     "flag": "rook",
+     "in": [
+      "alive"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-ironhorn",
+   "title": "The Ironhorn ride for the party",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The oath was kept; Kessa remembers.",
+   "tells": "The oath is kept and Kessa lives.",
+   "readAloud": "The earth shakes before you see them: Kessa on a brown horse, bronze wire glinting, a thousand riders behind.",
+   "response": "Kessa and Yenna's riders cut the Hushmen's retreat and charge the rear. Objective: cut the retreat. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Ironhorn stand with the party.",
+   "later": "S23: the retreat is cut. S28: Kessa's last storm.",
+   "fallback": "",
+   "keywords": "ironhorn, kessa, ally, riders",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "kept"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-yenna-riders",
+   "title": "Yenna's riders stand with the party",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The lamp reached Yenna, but Kessa is dead or the oath is not kept.",
+   "tells": "Yenna is the party's friend.",
+   "readAloud": "Yenna rides in at the head of fifty riders, her father's lamp tied to her saddle, humming.",
+   "response": "Half the clan, Yenna's, cut the Hushmen's retreat. Fewer riders, same objective. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "Yenna's riders stand with the party.",
+   "later": "S23: the retreat is cut. S28: the lamp is set on her tent.",
+   "fallback": "",
+   "keywords": "yenna, riders, ally, lamp",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "yenna"
+     ]
+    },
+    {
+     "flag": "kessa_oath",
+     "not": [
+      "kept"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-bellwrights",
+   "title": "The Bellwrights bring their hounds",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Corin trusts the party.",
+   "tells": "Corin is an ally.",
+   "readAloud": "Corin comes up the road with a cart of half-finished bells and four Tongue-Hounds that heel to him.",
+   "response": "The hounds screen the party's casters from the Wardens' stones (the hounds' ring is loud; Hushmen have Disadvantage on Stealth near them). Corin can defer one Toll for an hour. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Bellwrights stand with the party.",
+   "later": "S23 and S24: the hounds screen casters.",
+   "fallback": "",
+   "keywords": "corin, bellwrights, hounds, ally",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "ally"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-cantor",
+   "title": "The Cantor's hymn arrives in a vial",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Ossa rang, so the Choir is quiet, and Mother Sallow can send the hymn.",
+   "tells": "Ossa has rung.",
+   "readAloud": "The courier hands you a stoppered vial of Mere-water that hums, faintly, a hymn you almost know.",
+   "response": "The Drowned Choir cannot leave the Mere (three days from the Tor), but Mother Sallow sent the Cantor's response hymn in a Mere-glass vial. Poured at the summit, the hymn gives the party Advantage on saves against Frightened for one scene. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Choir sings with the party.",
+   "later": "S24: the hymn at the summit (Advantage on Wisdom saves against Frightened).",
+   "fallback": "",
+   "keywords": "cantor, choir, hymn, vial, ally",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-stilled",
+   "title": "The Stilled walk to the Tor",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The thaw was kind and they were helped.",
+   "tells": "The Stilled trust the party.",
+   "readAloud": "Down the road come glass figures in a slow line, frost on their shoulders.",
+   "response": "The Stilled arrive at dusk as living walls: they block a flank and the Court's horses will not charge them. Objective: block the flank. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Stilled stand with the party.",
+   "later": "S23: a flank is walled.",
+   "fallback": "",
+   "keywords": "stilled, glass, ally, walls",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "stilled_trust",
+     "in": [
+      "yes"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-blanks",
+   "title": "The Blanks march",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The party helped them in Hallowmere.",
+   "tells": "The Blanks trust the party.",
+   "readAloud": "There are hundreds of them on the road, quiet, in grey coats, and every one of them looks at you as if they were trying to remember your name.",
+   "response": "The Blanks break the Hushmen's line by numbers: they stand in the road, unarmed, and the Hushmen will not strike them. Objective: break the line. +1 on the allies clock. Never put them in lethal danger on-screen.",
+   "rules": "",
+   "consequence": "The Blanks stand with the party.",
+   "later": "S23: the line breaks. S28: their jars (s28-return-jars).",
+   "fallback": "",
+   "keywords": "blanks, ally, march, crowd",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "blanks",
+     "in": [
+      "yes"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-ilam",
+   "title": "Ilam Bray holds the southern road",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Ilam has his own reasons.",
+   "tells": "Ilam is an ally.",
+   "readAloud": "Ilam stands in the road with his gloves off. Behind him, far down the hill, a woman holds his son's hand.",
+   "response": "Ilam holds the southern road: the Court's reinforcements do not reach the ridge. Jonah is kept far from the fight with a trusted adult (child-peril boundaries); the scene has an exit. Objective: hold the south. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "Ilam stands with the party.",
+   "later": "S23: the south is held. S28: Ilam stays with his son.",
+   "fallback": "",
+   "keywords": "ilam, jonah, ally, south road",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "ilam",
+     "in": [
+      "ally"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-stormborn",
+   "title": "The Faerunian friends arrive",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The party earned friends beyond the Stormwall.",
+   "tells": "A Stormborn contact answers a message.",
+   "readAloud": "The rider is not Corvanese. He wears a coat of a cut you have not seen since Pellmoor, and he carries a harp.",
+   "response": "Harper saboteurs shut a Warden's Stone (objective: take one Warden's stone); Sister Aurelie's Dawn Mission brings healers (one party member regains Hit Points or has a condition removed once); a Baldurian crew brings rowing-boats up the Mere to land the Blanks. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "Faerunian friends stand with the party.",
+   "later": "S23: one Warden's stone is disabled, or a healer helps.",
+   "fallback": "",
+   "keywords": "stormborn, harpers, aurelie, dawn mission, crew, ally",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "stormborn",
+     "in": [
+      "harpers",
+      "dawn_mission",
+      "crew"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-cult",
+   "title": "The Hush Cult comes to the Tor",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Cult stopped feeding the Hush.",
+   "tells": "The Cult has ceased.",
+   "readAloud": "The Leader walks out of the dark with twenty robed figures, humming very softly.",
+   "response": "The Cult knows the shrine and quiets the Sleepless for one scene: the Sleepless do not form while they hum. Objective: keep the summit quiet. +1 on the allies clock.",
+   "rules": "",
+   "consequence": "The Cult stands with the party.",
+   "later": "S25: no Sleepless on the stairs while they hum.",
+   "fallback": "",
+   "keywords": "cult, hush, ally, hum",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "ceased"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-corin-comes-round",
+   "title": "Corin comes round",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "He heard the truth about the Key and the Toll.",
+   "tells": "Corin is following them or fought them.",
+   "readAloud": "Corin sits on the road with his back against a milestone. “All this time,” he says, “I thought it was a bell-name.”",
+   "response": "He will help if the party tells him the truth about the Great Toll and does not mock his family. Persuasion DC 15 if they fought him; automatic if they offer the Notes' Quiet Night leaf. He becomes an ally.",
+   "rules": "Influence (Persuasion) DC 15.",
+   "consequence": "Corin is an ally.",
+   "later": "S27: s27-corin-voice becomes possible.",
+   "fallback": "",
+   "keywords": "corin, round, ally, truth",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "refused",
+      "enemy"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "ally"
+    }
+   ]
+  },
+  {
+   "id": "s22-scry-the-column",
+   "title": "They scry on the column",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A seventh-level caster has Scrying.",
+   "tells": "A caster prepares Scrying.",
+   "readAloud": "In the bowl of water a column winds up a road, grey horses, grey gloves, and one rider in dove-grey at the centre.",
+   "response": "Scrying (Wisdom save DC from the caster): Maudrin's gloves give her Advantage on the save only if she knows she is watched. On a success you see her face and escort; the Key is in a silence-stone case and cannot be seen. You learn the column's size.",
+   "rules": "Scrying (5th level): Wisdom save against the target's save.",
+   "consequence": "The party knows the column's size.",
+   "later": "S23: the party has the Strike's numbers.",
+   "fallback": "",
+   "keywords": "scrying, spy, watch, column",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s22-tell-isolde",
+   "title": "They tell Isolde the Key's truth",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Isolde sells secrets, and the biggest secret is for sale.",
+   "tells": "Isolde follows the party or has been turned.",
+   "readAloud": "Isolde Drave sits very still. “So the Court has been keeping the lullaby, not the peace. What a waste.”",
+   "response": "Isolde switches sides if the truth costs her nothing. She can fetch the Frost Tongue if the Court holds it (it is with her).",
+   "rules": "",
+   "consequence": "Isolde turns informant.",
+   "later": "S28: she sells the Court's last secrets or is arrested.",
+   "fallback": "",
+   "keywords": "isolde, tell, truth, informant",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "isolde",
+     "in": [
+      "retreated",
+      "following",
+      "city"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "isolde",
+     "set": "ally"
+    }
+   ]
+  },
+  {
+   "id": "s22-rook-returns-the-tongues",
+   "title": "Rook returns the armory Tongues",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Rook won the duel and holds the armory.",
+   "tells": "Rook arrives with her knights.",
+   "readAloud": "Rook unwraps a bundle of oilcloth. “These were never the Order's to keep.”",
+   "response": "Rook hands over the Tongues held in the armory.",
+   "rules": "",
+   "consequence": "The party holds the Tongue.",
+   "later": "S26: the bell can be rung.",
+   "fallback": "",
+   "keywords": "rook, tongue, armory, return",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    },
+    {
+     "flag": "t_ossa",
+     "in": [
+      "armory"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s22-detour-for-a-missed-bell",
+   "title": "They go back for a missed bell",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "The Concord needs six bells and the Strike is days away.",
+   "tells": "A bell is unrung and the party looks at the map.",
+   "readAloud": "The map shows Pellmoor six days south and the Tor two days north. The scout says Maudrin is coming now.",
+   "response": "A missed bell can still be rung before the finale. The cost: the Strike happens without them at the Tor foot unless they return in time; Maudrin reaches the Tor first. The detour takes 3 to 6 days and +2 on the Court clock.",
+   "rules": "",
+   "consequence": "The bell is rung; Maudrin is ahead.",
+   "later": "S23: the Strike happens at the stones or on the road home.",
+   "fallback": "",
+   "keywords": "detour, missed bell, return, ossa, calla",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [],
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s23-favor-kept",
+   "title": "They stand aside for Maudrin",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "They agreed to a favor, and keep their word.",
+   "tells": "The party says yes.",
+   "readAloud": "Maudrin inclines her head. “Thank you, dear. That is rare.”",
+   "response": "The Strike does not happen. She reaches the Tor ahead of them with her forces intact. Her gratitude is real and does not last.",
+   "rules": "",
+   "consequence": "The favor is repaid.",
+   "later": "S24: she reaches the summit unhurt with all her forces.",
+   "fallback": "",
+   "keywords": "favor, kept, stand aside, repay",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "owed"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin_favor",
+     "set": "repaid"
+    },
+    {
+     "flag": "maudrin",
+     "set": "summit"
+    }
+   ]
+  },
+  {
+   "id": "s23-favor-broken",
+   "title": "They break the favor",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "They refuse to stand aside.",
+   "tells": "Weapons come out.",
+   "readAloud": "“Then I will remember it,” Maudrin says, and the line moves.",
+   "response": "The favor is broken. She offers no more bargains, only threats. Run the Strike.",
+   "rules": "",
+   "consequence": "The favor is broken; the Strike begins.",
+   "later": "S24: she offers no more bargains.",
+   "fallback": "",
+   "keywords": "favor, broken, refuse",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "owed"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin_favor",
+     "set": "broken"
+    }
+   ]
+  },
+  {
+   "id": "s23-march-with-maudrin",
+   "title": "They march with Maudrin",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Some parties join the Court at the last.",
+   "tells": "Players ask to join her column.",
+   "readAloud": "Maudrin looks at you for a long time. “Come, then.”",
+   "response": "The party joins the Court's column. They end their resistance by choice. Maudrin accepts them as guests, and the allies they gathered become enemies of the Court or leave. The Strike never happens; at the Tor they face Corin's line or the Ironhorn if either is present.",
+   "rules": "",
+   "consequence": "The party marches with the Court.",
+   "later": "S24: s24-for-the-court (enc-s24-for-the-court). S26: help seal the stairs.",
+   "fallback": "",
+   "keywords": "join, court, march, side with maudrin",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "resistance",
+     "set": "ended"
+    },
+    {
+     "flag": "maudrin",
+     "set": "summit"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ]
+  },
+  {
+   "id": "s23-accept-tithe",
+   "title": "The Ringer accepts the Tithe",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "A surrendering party may choose to end its resistance.",
+   "tells": "Players accept her terms.",
+   "readAloud": "“Thank you,” she says, gently. “This will not hurt.”",
+   "response": "The Ringer's player chooses to go with her; no saving throw decides consent. Existing ringings stand. The Court secures the Key and the Tongues. The Empty Choir is open.",
+   "rules": "",
+   "consequence": "The Court holds the Key and the Tongues.",
+   "later": "S27: the Empty Choir (s27-empty-choir).",
+   "fallback": "",
+   "keywords": "surrender, tithe, ringer, accept",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere",
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "resistance",
+     "set": "ended"
+    },
+    {
+     "flag": "key",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s23-escape-captivity",
+   "title": "They refuse the Tithe and escape",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players surrender, then change their minds.",
+   "tells": "The Ringer refuses.",
+   "readAloud": "Four Hushmen take your arms. “Please do not make us do this.”",
+   "response": "Refusal leads to negotiation, escape or a capture attempt. Offer: Brannagh's pilots, Yenna's riders, a Stormborn ship. The Court keeps whatever Tongues it took. Resistance stays active.",
+   "rules": "",
+   "consequence": "The party escapes.",
+   "later": "S24: the Court is ahead.",
+   "fallback": "",
+   "keywords": "escape, refuse, captivity, flee",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s23-capture-maudrin",
+   "title": "They capture Maudrin at the Strike",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A strong party can break the column at once.",
+   "tells": "They target Maudrin.",
+   "readAloud": "She sits very carefully on the grass, the way an old woman sits.",
+   "response": "Maudrin is captured and the column surrenders. The Key is in the case. The Court is leaderless; Tristan Vesk moves. S24 is the Court's remnants.",
+   "rules": "Non-lethal: declare it when the melee attack drops her to 0 HP.",
+   "consequence": "Maudrin is a prisoner; the party holds the Key.",
+   "later": "S24: s24-remnant. S28: her fate.",
+   "fallback": "",
+   "keywords": "capture, maudrin, strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "captured"
+    },
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-kill-maudrin",
+   "title": "They kill Maudrin at the Strike",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A well-aimed spell can end it.",
+   "tells": "No one declares mercy.",
+   "readAloud": "The gloves fall open.",
+   "response": "She dies. The Key is on her body. Haldric, if present, takes her down the hill. Tristan Vesk takes up the chair.",
+   "rules": "",
+   "consequence": "Maudrin is dead.",
+   "later": "S24: s24-remnant. S28: Tristan.",
+   "fallback": "",
+   "keywords": "kill, maudrin, strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    },
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-kessa-intercepts",
+   "title": "Kessa intercepts the Strike",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The oath is broken; Kessa has his own reasons.",
+   "tells": "The party kept the Tongue.",
+   "readAloud": "The earth shakes. The Ironhorn come over the north ridge, and Kessa is at the head.",
+   "response": "Kessa fights for the Tongue and for the Court's throat. He may attack the party first. Run enc-s23-kessa-intercept; he yields on Bloodied.",
+   "rules": "",
+   "consequence": "The Ironhorn intervene.",
+   "later": "S24: Kessa survives or not.",
+   "fallback": "",
+   "keywords": "kessa, intercept, ironhorn",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "broken"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-bargain-with-haldric",
+   "title": "They buy Haldric's neutrality",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "A knight sells his sword to the highest offer.",
+   "tells": "Players offer coin.",
+   "readAloud": "Haldric weighs a purse. “Fair price for a lie.”",
+   "response": "Haldric's knights stand down. Remove Haldric and the Dawn Order Knights from the Strike. He remembers who paid.",
+   "rules": "",
+   "consequence": "Haldric is neutral.",
+   "later": "S24: he does not fight at the summit.",
+   "fallback": "",
+   "keywords": "bribe, haldric, neutral",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "haldric",
+     "in": [
+      "knight"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-imber-speaks",
+   "title": "Imber speaks to the knights",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A freed Imber is a living witness.",
+   "tells": "The Sexton is with them.",
+   "readAloud": "The old man steps out onto the grass, frail and upright. “I struck it. I am the one who did it.”",
+   "response": "Imber's testimony shakes the Dawn Order knights; Haldric hesitates. The Sexton is frail: no fight.",
+   "rules": "",
+   "consequence": "The knights hesitate.",
+   "later": "S24: Haldric may be turned.",
+   "fallback": "",
+   "keywords": "imber, witness, testimony",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "sexton",
+     "in": [
+      "freed"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-hushmen-take-mirel",
+   "title": "Hushmen take an unrung Tongue",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A raid on the baggage.",
+   "tells": "The party leaves a Tongue unguarded.",
+   "readAloud": "The mule is gone, and so is the pack.",
+   "response": "A Hushman gang takes Mirel's Tongue. Recover it at the Strike (s23-recover-mirel).",
+   "rules": "",
+   "consequence": "Mirel's Tongue is in the Court's custody.",
+   "later": "S23: recover it.",
+   "fallback": "",
+   "keywords": "steal, mule, mirel, raid",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s23-pc-drops",
+   "title": "A character drops at the Strike",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "High damage hits.",
+   "tells": "A character falls.",
+   "readAloud": "Your friend lies in the grass, and the Hushmen's gloves are still raised.",
+   "response": "Allies drag them out. Revivify within 1 minute; Raise Dead via Sister Aurelie's mission. No Toll or stairs cost on the dead. See any-pc-dies.",
+   "rules": "",
+   "consequence": "A character is out.",
+   "later": "See any-pc-dies.",
+   "fallback": "",
+   "keywords": "death, revive, fall, drop, strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s23-allies-take-objectives",
+   "title": "The allies take their objectives",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Allies change the encounter by objectives, not numbers.",
+   "tells": "Allies are present.",
+   "readAloud": "The ridge fills with friends.",
+   "response": "Each ally takes an objective: hold a flank, cut the retreat, break the line. Do not remove creatures; make the fight winnable.",
+   "rules": "",
+   "consequence": "The allies act.",
+   "later": "S24: the same allies hold the stones.",
+   "fallback": "",
+   "keywords": "allies, objectives, strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "allies",
+     "min": 3
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-coalition-breaks-the-column",
+   "title": "The coalition breaks the column",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Six allies close the Tor road.",
+   "tells": "The allies clock is full.",
+   "readAloud": "Maudrin looks over the ridge, and her gloved hand tightens on the chain.",
+   "response": "At 6 allies the Court cannot hold the Tor road. Maudrin must come in person; no second wave arrives.",
+   "rules": "",
+   "consequence": "The Court's reinforcement does not arrive.",
+   "later": "S24: Maudrin has fewer Hushmen.",
+   "fallback": "",
+   "keywords": "coalition, six allies, strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "allies",
+     "min": 6
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s23-tristan-strike",
+   "title": "They fight Tristan's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Maudrin is dead; her cousin leads.",
+   "tells": "The Court marches under Tristan.",
+   "readAloud": "The man in grey speaks softly. “I regret this.”",
+   "response": "Tristan wants the Tongues and the Ringer; he surrenders if the Key is taken.",
+   "rules": "",
+   "consequence": "The column is broken.",
+   "later": "S24: the remnants.",
+   "fallback": "",
+   "keywords": "tristan, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "dead"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "tristan"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-vaer",
+   "title": "They recover Vaer's Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. Vaer's Tongue was in the Court's hands. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds Vaer's Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, vaer, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_vaer",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_vaer",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-ossa",
+   "title": "They recover Ossa's Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. Ossa's Tongue was in the Court's hands. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds Ossa's Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, ossa, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_ossa",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-calla",
+   "title": "They recover Calla's Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. Calla's Tongue was moved by the Court. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds Calla's Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, calla, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_calla",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_calla",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-hieme",
+   "title": "They recover the Frost Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. The Frost Tongue was with Isolde. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds the Frost Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, hieme, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_hieme",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_hieme",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-thrane",
+   "title": "They recover Thrane's Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. Thrane's Tongue was taken at Brassfall. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds Thrane's Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, thrane, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s23-recover-mirel",
+   "title": "They recover Mirel's Tongue from the Court's column",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court's column carries the Tongues it took; the Strike is the chance to take them back.",
+   "tells": "The Court holds a Tongue and the column has broken.",
+   "readAloud": "Among the baggage on the broken line lies a grey case, and in it a Tongue wrapped in silence-stone cloth.",
+   "response": "After the Strike the column's baggage is open. Mirel's Tongue was taken. The Tongue is in the party's hands; no roll. It is silence-stone wrapped, so it hums only when unwrapped.",
+   "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
+   "consequence": "The party holds Mirel's Tongue again.",
+   "later": "The Forecast shows the bell as reachable again.",
+   "fallback": "",
+   "keywords": "recover, tongue, baggage, mirel, strike, court",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "when": [
+    {
+     "flag": "maudrin",
+     "not": [
+      "hallowmere",
+      "marching"
+     ]
+    },
+    {
+     "flag": "t_mirel",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s22-isolde-returns-frost-tongue",
+   "title": "Isolde brings the Frost Tongue",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "She turned, and the Frost Tongue is the price.",
+   "tells": "Isolde is an informant.",
+   "readAloud": "Isolde hands over a velvet bundle, as if it were a gift to a lover. “You did not hear it from me.”",
+   "response": "She returns the Frost Tongue she took at S15.",
+   "rules": "",
+   "consequence": "The party holds the Frost Tongue.",
+   "later": "The bell can be rung.",
+   "fallback": "",
+   "keywords": "isolde, frost tongue, return",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "when": [
+    {
+     "flag": "isolde",
+     "in": [
+      "ally"
+     ]
+    },
+    {
+     "flag": "t_hieme",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_hieme",
+     "set": "party"
+    }
+   ]
+  }
+ ],
+ "briefs": [
+  {
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "pressure": "Maudrin leaves Hallowmere within a day of the second Act IV ringing, with Hushmen and Dawn Order knights, the Key in a silence-stone case on her chain. She goes now because each bell rung shifts the world's key: the Key's hum from the palace no longer holds the lullaby, and she must carry it to the Tor. If she is dead, Tristan Vesk marches. If the party holds the Key, she marches to retake it. Session 22 begins at dusk.",
+   "endOn": "Who will you bring to the Tor?",
+   "npcs": "Corin Aldeth, the Librarian of the Sealed Book, Thane Oru Kessa, Yenna Garrow, Captain Dessa Rook, Ilam Bray, Ansel Quay, Isolde Drave, Tristan Vesk",
+   "checklist": [
+    "Check World state for which allies are available (Rook's duel, Kessa, Ossa rung, Glassreach trust, Blanks, Ilam, Stormborn contacts, the Cult)",
+    "Have Edda's Quiet Night page ready to read aloud",
+    "Run one ally play per company: +1 on the allies clock and an objective",
+    "Check the Forecast: which bells are still silent, and whether the Concord is still possible",
+    "Tongues still held by the Court get recovered at the Strike"
+   ],
+   "encounters": [
+    "enc-s22-ambush"
+   ],
+   "rules": [
+    "Study",
+    "Surprise",
+    "Scrying",
+    "Influence"
+   ]
+  },
+  {
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "pressure": "Maudrin's column reaches the foot of Vael Tor at dusk. She offers surrender first, calls in any favor she is owed, and brings a hostage if she has one. If she is dead, Tristan is here instead. Your allies take objectives.",
+   "endOn": "The light at the top of the Tor is the colour of a dream you have almost forgotten. Who goes up first?",
+   "npcs": "Chancellor Maudrin Vesk, Ser Haldric Mose, Hushman Wardens, Ilam and Jonah Bray, Yenna Garrow, Kessa, Tristan Vesk",
+   "checklist": [
+    "Pick the Strike version: Rook won the duel (no Haldric) or not; Maudrin dead means Tristan",
+    "Check the Bargain log for Maudrin's Session 4 favor",
+    "Note Maudrin's HP; it carries into Session 24",
+    "Child-peril: Jonah is never harmed on-screen",
+    "Recover Court-held Tongues from the baggage",
+    "Level up to 10 after the Strike"
+   ],
+   "encounters": [
+    "enc-s23-strike",
+    "enc-s23-strike-rook",
+    "enc-s23-strike-tristan",
+    "enc-s23-kessa-intercept"
+   ],
+   "rules": [
+    "Grappled",
+    "Silence",
+    "Counterspell",
+    "Frightened",
+    "Surprise"
+   ]
+  }
+ ],
+ "encounters": [
+  {
+   "id": "enc-s22-ambush",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The column's vanguard",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 4
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 2
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "The Wardens hold the road, the knights charge, and the Hushmen flank; the party has Surprise if the ambush is good.",
+   "exit": "They withdraw if three Wardens fall or the party holds the Key.",
+   "scale": "Written for four level-9 characters. Remove a Warden and the knights for a lighter fight."
+  },
+  {
+   "id": "enc-s23-strike",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "The Strike (Haldric still commands)",
+   "creatures": [
+    {
+     "name": "Chancellor Maudrin Vesk",
+     "statblock": "sb_maudrin",
+     "base": "Mage",
+     "cr": "8",
+     "count": 1
+    },
+    {
+     "name": "Ser Haldric Mose",
+     "statblock": "sb_haldric",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 3
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 2
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "Knights and Wardens hold the line; Hushmen flank on horseback; Maudrin casts Silence on the party's casters and shoots Hush Bolts from behind the line. Haldric duels the strongest fighter. Allies take objectives; do not delete creatures.",
+   "exit": "Maudrin retreats toward the Tor when Bloodied. Surrender is offered before and during. The Key in the party's hands breaks the line (Haldric hesitates).",
+   "scale": "Written for four level-9 characters. For a lighter fight remove a Warden and a Sergeant; for a harder one add a Warden. A captured Maudrin ends the line.",
+   "when": [
+    {
+     "flag": "duel",
+     "not": [
+      "rook"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "not": [
+      "dead"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s23-strike-rook",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "The Strike (Rook won the duel)",
+   "creatures": [
+    {
+     "name": "Chancellor Maudrin Vesk",
+     "statblock": "sb_maudrin",
+     "base": "Mage",
+     "cr": "8",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 4
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "Without knights, the Wardens expose their stones around Maudrin and the Hushmen pin casters. Rook's knights hold the ridge.",
+   "exit": "Maudrin retreats when Bloodied; her Hushmen surrender if she is captured or the Key is taken.",
+   "scale": "Written for four level-9 characters. For a lighter fight remove a Warden and two Sergeants; for a harder one add a Warden.",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "not": [
+      "dead"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s23-strike-tristan",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "The Strike (Tristan's column)",
+   "creatures": [
+    {
+     "name": "Tristan Vesk",
+     "statblock": "sb_court_agent",
+     "base": "Spy",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Ser Haldric Mose",
+     "statblock": "sb_haldric",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 6
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 10
+    }
+   ],
+   "tactics": "Tristan hangs back and sends Wardens forward; he surrenders when the Key is taken.",
+   "exit": "The column breaks if Tristan yields or the Key is taken.",
+   "scale": "Written for four level-9 characters. For a lighter fight remove two Wardens and the knights.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "dead"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s23-kessa-intercept",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Kessa intercepts",
+   "creatures": [
+    {
+     "name": "Thane Oru Kessa",
+     "statblock": "sb_kessa",
+     "base": "Gladiator",
+     "cr": "7",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Champion",
+     "statblock": "sb_ironhorn_champion",
+     "base": "Gladiator",
+     "cr": "5",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Rider",
+     "statblock": "sb_ironhorn_rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 5
+    },
+    {
+     "name": "Warhorse",
+     "base": "Warhorse",
+     "cr": "1/2",
+     "count": 5
+    }
+   ],
+   "tactics": "Kessa charges the carrier of the Tongue; the Champion duels; the riders encircle.",
+   "exit": "Kessa yields when Bloodied; he asks only for the Tongue back.",
+   "scale": "Written for four level-9 characters. Drop three riders for a lighter fight.",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "broken"
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2090 @@
+{
+ "plays": [
+  {
+   "id": "s01-kind-to-ila",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They speak gently to Ila",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Ila is fourteen, alone on the old dock, and asks the first question; most tables answer kindly.",
+   "tells": "A player crouches to her level, offers food or a coat, or answers her question honestly.",
+   "readAloud": "\"It's warm. Not like a hot pan. Like something alive that's been asleep. When it hums, the water on the far shore ripples in the shape of a bell. I've seen it. Nobody believes me except Mother Sallow, and she only believes me because she's scared.\"",
+   "response": "Ila unwraps the oilskin for whoever asked respectfully. The Tongue hums while she holds it and fades when she sets it down. She answers one plain question per kindness, then asks: \"Did you hear it too?\" Mother Sallow is watching from the net-racks and walks over once Ila smiles.",
+   "rules": "No check: Ila is willing (2024 Influence). A Bell-Touched character recognises the hum at once.",
+   "consequence": "Ila trusts this person. She will show them the Tongue again and tell them when the Hushmen come.",
+   "later": "S2: Ila sings the response beside whoever was kind to her. S3: Ila insists on a say in what happens to the Tongue, and her trust decides whether she will travel (s03-take-ila-along). S28: she remembers who was kind first.",
+   "fallback": "If the table freezes, Ila counts the masts on the Quays out loud and asks which ship they came on.",
+   "keywords": "ila, girl, dock, kind, gentle, talk, tongue, hum, show, child",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s01-rude-to-ila",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They brush Ila off or demand the Tongue",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Some characters arrive on business and treat the strange child as a nuisance.",
+   "tells": "Players talk over her, laugh at the question, or ask what she's hiding.",
+   "readAloud": "Mother Sallow's voice cuts across the dock like a dropped oar. \"She's a child. You can be a child too, or you can be useful.\"",
+   "response": "Ila turns away and pockets the bundle. Mother Sallow plants herself between them and gives the party one chance: find the eastern-marsh ferry that has been missing a week, and she'll believe they mean well. She never raises her voice twice.",
+   "rules": "Mother Sallow starts Indifferent (2024 Influence). Charm moves her nowhere; blunt honesty makes her Friendly.",
+   "consequence": "Ila will not show the Tongue today. The missing ferry (H-02) becomes the party's way back in.",
+   "later": "S2: Sallow's help costs more: she asks them to speak a dead person's name on the Memory Shore before she teaches the hymn (s02-sing-response). S3: Ila argues against handing them the Tongue.",
+   "fallback": "If nobody takes the ferry job, a ferry-folk widow begs them at the Shuttered Bell instead.",
+   "keywords": "rude, ignore, demand, push, threaten, mother sallow, sallow, ferry job",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s01-take-tongue",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They try to take or steal the Tongue from Ila",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A rogue sees a humming relic and a child holding it.",
+   "tells": "A player asks where Ila sleeps, how she carries it, or rolls Sleight of Hand.",
+   "readAloud": "Ila's hand closes on empty oilskin. She doesn't scream at first. She just looks at you, and then the whole Old Shore goes quiet, the way water goes quiet before something surfaces.",
+   "response": "Check the session-zero Off-limits list first; nothing is done to Ila, who is fourteen. A lifted bundle is noticed because a ferry-folk witness is always watching the dock: Brannagh Wick sends a runner to the Pilots' Hall and Mother Sallow demands it back. If the party keeps it, the Old Shore goes cold: no skiff, no pilot, no hymn from anyone, until amends are made. That is a social closing, not a wall: the Quays still hire boats, and s02-make-amends is the way back.",
+   "rules": "Dexterity (Sleight of Hand) DC 17 against Ila's Passive Perception 15 (+5 near water); a Rogue's Fast Hands or Cunning Action can try it as a bonus action, and a ferry-folk witness spots it unless the roll beats 20. Invisibility or Pass without Trace give Advantage but the Tongue still hums when it leaves her hand.",
+   "consequence": "The party holds the Tongue and has lost the ferry-folk. Quill hears of it by evening.",
+   "later": "S2: until they make amends, the Cantor treats them as the forgetful and the Night Song is dangerous (s02-make-amends reopens the Shore). S3: Mother Sallow still names Eld, but coldly, and says so. S4: the Gate Clerk raises Persuasion DCs by 2 (quill is Suspicious).",
+   "fallback": "If they return it within the day with an honest apology, Mother Sallow lets it be known they did, and nothing is lost.",
+   "keywords": "steal, take, grab, snatch, pickpocket, sleight of hand, rob, ila",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    },
+    {
+     "flag": "quill",
+     "set": "suspicious"
+    }
+   ]
+  },
+  {
+   "id": "s01-sallow-bargain",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They accept Mother Sallow's three-day bargain",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Sallow offers what the party wants (answers) for something easy to promise (keep the Tongue safe).",
+   "tells": "Players ask what she knows about the Drowned, the bell, or Ila's father.",
+   "readAloud": "\"Keep it safe for three days. Not from thieves. From the Court. Do that, and I'll tell you what the water knows. And learn this, before the dark comes: when they sing, you sing back.\"",
+   "response": "Over bitter reed tea she explains that the Mere holds the dead and the Tongue belongs to Ossa, the Bone Bell. She cannot say why she has no memory of her husband's face. She teaches the response to the Night Song: a two-line call and answer. Ask each player, \"What do you want from Mother Sallow?\" She answers honestly but not fully; she knows the Drowned are her ancestors.",
+   "rules": "Learning the hymn takes a few minutes and no check. Singing it later quiets the Drowned for one hour (v5 2.11).",
+   "consequence": "The party has a promise to keep and the response hymn. Record the bargain.",
+   "later": "S2: the hymn calms the Night Song for an hour. S3: if they kept the Tongue from the Court for three days, Mother Sallow opens the ledger without being asked (s03-search-eld).",
+   "fallback": "If they dither, she hands Ila the tea and says, \"Then I'll keep it, and you can watch me fail.\"",
+   "keywords": "mother sallow, bargain, deal, three days, tea, hymn, response, night song, keep it safe"
+  },
+  {
+   "id": "s01-hand-to-quill",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They hand the Tongue to Quill",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Quill is polite, official, and offers an easy way out of trouble.",
+   "tells": "Players ask whether giving it up would protect Ila, or what the Court pays.",
+   "readAloud": "Quill takes the bundle in both gloved hands, and the hum stops dead, as if someone had put a palm on a bell. \"Thank you. The Court remembers its friends.\" He writes in his ledger without looking down.",
+   "response": "Quill gives a grey-wax receipt and a Tithe-exemption chit for one mote, records every face, and leaves for the Landing House that night. Ila does not cry. She walks to the end of the old dock and sits there until dark.",
+   "rules": "",
+   "consequence": "The Court holds Ossa's Tongue and knows the party's faces.",
+   "later": "S3: returning it to the Mere now means recovering it first. S4: Maudrin already holds it; ask for it back with s04-ask-ossa-back or take Ila's exemption instead. Concord: Ossa needs the Tongue back (the Tidewarden ferries the Ringer once the party holds it again).",
+   "fallback": "If a player regrets it at once, Quill is still on the Quays for an hour, haggling with a Coster clerk.",
+   "keywords": "quill, give, hand over, surrender, court, tongue, receipt, comply",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "court"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ]
+  },
+  {
+   "id": "s01-lie-to-quill",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They lie to Quill",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "Most parties protect the child and bluff the official.",
+   "tells": "A player says they know nothing about any humming, or offers a cover story.",
+   "readAloud": "Quill nods along, then asks one quiet question and waits. \"Where did the child's coat go?\"",
+   "response": "Quill is not a fool. He asks exactly one specific question and lets the silence work. If the party can't answer, he says, \"Then I'll look myself,\" and searches the Old Shore that night with his guard. He finds the Tongue unless it has been moved; a hiding place on the Quays or aboard a foreign ship is outside his warrant.",
+   "rules": "Charisma (Deception) DC 16, or contested against Quill's Insight +5 if the player prefers a roll-off. Quill asks the coat question with Advantage if anyone has lied to him before. Hold Person on Quill is a Wisdom save and works, but his next report names the caster (every spell hums); Suggestion works the same way (see any-l3-hold-suggest-charm). On a success he leaves suspicious but without cause to search.",
+   "consequence": "Quill is suspicious. A search happens tonight unless the lie holds.",
+   "later": "If he finds it: as handing it over, and S4's Gate Clerk raises Persuasion DCs by 2 (s04-refuse-courtesy-memory reads quill). If the lie holds: S3 Quill returns with a second Hushman (s03-quill-returns).",
+   "fallback": "If the scene stalls, Quill's guard spots Ila's oversized ferry coat on a peg.",
+   "keywords": "lie, bluff, deceive, cover story, deny, quill, hide, coat",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "suspicious"
+    }
+   ]
+  },
+  {
+   "id": "s01-attack-quill",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They attack Quill",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "A Hushman threatening a child is an easy villain for a level-3 party that can now do something about it.",
+   "tells": "Hands on weapons; a player asks how many Hushmen are in Pellmoor.",
+   "readAloud": "Quill steps back so neatly it looks rehearsed. His gloves come up grey and silent. \"You've made yourselves a Tithe-case. I do hope you understand what that means.\"",
+   "response": "Run Quill's patrol. Quill wants an arrest, not a killing; his guard fights while Quill retreats toward the Landing House shouting for witnesses. Foreign captains on the Quays will not interfere with the Court. Ila's house becomes the first place the Hushmen search.",
+   "rules": "Encounter: Quill's patrol. Silence-glove strikes make no sound and can't be sensed by Tonework. Hold Person on Quill or the Sergeant ends the fight quickly: let it, and note the caster is named in the report.",
+   "consequence": "The party is a Tithe-case. The Landing House's six Hushmen now watch the Old Shore.",
+   "later": "Tonight: the Hushmen raid Ila's house (run it). S3: Quill's report reaches Hallowmere, but the Chancellor's invitation still comes; the Court prefers to buy before it threatens. S4: the Gate Clerk already has their names (s04-refuse-courtesy-memory, +2 DC).",
+   "fallback": "If a PC drops, Quill has them bound, not killed, and offers them back for the Tongue.",
+   "keywords": "attack, fight, kill, hit, quill, hushman, guard, violence, combat",
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "tithecase"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s01-bribe-quill",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They bribe Quill",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Quill is short on quota and visibly open to an arrangement.",
+   "tells": "A player jingles coin, asks what his quota is, or offers a 'gift'.",
+   "readAloud": "Quill looks at the gold the way a man looks at a fine meal he isn't allowed to eat. \"Gold I can't put on a shelf, friend. But I'll take it. And one more thing. A name.\"",
+   "response": "Quill pockets gold for himself, but his quota needs memories. He asks for one favor: a name of someone 'not keeping the Court's quiet.' If they give Mother Sallow's, he writes it down. If they refuse, he keeps the coin and says, \"Then I'll remember you were generous.\"",
+   "rules": "No check for the bribe. A Charisma (Persuasion) Influence check, DC 15, talks him out of the name if they offer something else useful.",
+   "consequence": "Quill is bribed. He leaves the Tongue alone for now.",
+   "later": "If they named Mother Sallow: Hushmen are at her door in S3 (s03-quill-returns) and her ledger is at risk. If they refused: in S4 Quill's letter vouches for them (Gate Clerk DCs drop by 2 at s04-refuse-courtesy-memory).",
+   "fallback": "If they won't name anyone, Quill suggests the quota itself: 'Three memories, freely given. I'm not particular whose.'",
+   "keywords": "bribe, pay, gold, coin, buy off, deal, quill, money",
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "bribed"
+    }
+   ]
+  },
+  {
+   "id": "s01-fill-the-quota",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They fill the village's memory quota themselves",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "H-03 makes the quota a problem. Memory is the honest answer; gilding (s01-gild-the-quota) is the illegal one.",
+   "tells": "Players ask why villagers won't pay, or offer to cover the shortfall.",
+   "readAloud": "\"Three memories,\" Quill says, already uncapping a keep-glass. \"The Court is not particular whose. That's rather the point of the Court.\"",
+   "response": "The honest way to meet a Corvanese quota is memories, and nothing stops the party giving some of their own on the villagers' behalf. Quill draws each one with a tuning fork in about a minute. The three villagers he was hounding are Bellwright sympathisers, and they will not forget this.",
+   "rules": "Each giver names the memory and its weight (mote, keep or heartkeep) in the Memory Ledger. The DM may award Heroic Inspiration for a memory given freely to someone who needs it.",
+   "consequence": "Pellmoor's quota is met. Quill leaves satisfied. Three households owe the party.",
+   "later": "S3: those households warn the party when Hushmen move and can hide Ila (s03-households-warn). S4 (siege): they shelter villagers. S6: Wren's Bellwrights already know who paid, so Wren's confession needs no Insight.",
+   "fallback": "If the party offers gold instead, Reckoner Sela Maunt quietly explains why that is gilding, what it risks, and how it is done (s01-gild-the-quota).",
+   "keywords": "quota, tithe, pay the quota, give memories, gilding, villagers, h-03, sacrifice, keep, mote",
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "routine"
+    }
+   ]
+  },
+  {
+   "id": "s01-tongue-to-the-quays",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They take the Tongue to the Quays to learn what it's worth",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A port full of Reckoners and foreign buyers invites appraisal.",
+   "tells": "Players ask who in Pellmoor would know about relics, or head for the Reckoning House.",
+   "readAloud": "Sela Maunt doesn't touch it. She taps one tuning fork on the counter and the fork goes silent mid-note. \"That's not a memory, love. That's a bell. Put it away before someone who isn't me sees it.\"",
+   "response": "Sela refuses to appraise it and warns them to hide it. Too late: Master Orsolo Venn, two stalls over, heard the fork die. He introduces himself warmly, offers 600 gp and a berth home on the Coster ship Gilded Heron, and gives them three days to think.",
+   "rules": "",
+   "consequence": "Venn knows the Tongue exists and wants it. He pays Quill, so Quill will hear by evening.",
+   "later": "S1: Quill arrives on the first evening instead of the second. S3: Venn's offer becomes a real option (sell it abroad); his polite note arrives at the Shuttered Bell.",
+   "fallback": "If they avoid Venn, he sends a polite note to the Shuttered Bell with his offer in writing.",
+   "keywords": "appraise, sell, worth, value, reckoner, reckoning house, sela, venn, merchant, quays, buyer",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "venn",
+     "set": "courting"
+    }
+   ]
+  },
+  {
+   "id": "s01-stormborn-writ",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "A Stormborn character asks to travel inland",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Faerûnian characters arrive under the Landing Charter and will soon want to leave Pellmoor.",
+   "tells": "A player from the Sword Coast asks about Hallowmere, roads, or the rest of Corvane.",
+   "readAloud": "The Landing House clerk stamps your papers without reading them. \"Landing due, five gold. Pellmoor and the Mere road only. Anywhere else needs a writ from Hallowmere. They take about a season. Next.\"",
+   "response": "Explain the Landing Charter plainly: foreigners trade freely here but need a Court writ of passage to go inland. Quill can 'expedite' one for a heartkeep and means it (s01-expedite-writ). A forger on Strangers' Row sells a counterfeit (s01-forged-writ). Brannagh Wick knows ferry routes that skirt the Mere road checkpoints. Don't block the plot: the Chancellor's letter at the end of Session 3 counts as a writ.",
+   "rules": "",
+   "consequence": "The party understands the Court controls movement, and that a writ is worth something.",
+   "later": "S3: the Chancellor's invitation sets the writ to 'invited'. S4: the Hallowmere gate reads the writ (s04-stormborn-at-gate). A forged writ works until someone checks the grey wax (DC 17 Intelligence (Investigation) for a Hushman).",
+   "fallback": "If a player feels trapped, Dorra Pell mentions that 'writs have a way of arriving for interesting people.'",
+   "keywords": "writ, passage, papers, landing house, travel, inland, hallowmere, faerunian, stormborn, charter, customs",
+   "when": [
+    {
+     "flag": "writ",
+     "in": [
+      "none"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s01-detect-magic-tongue",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They cast Detect Magic or Identify on the Tongue",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Casters reach for Detect Magic or Identify the moment something hums.",
+   "tells": "A wizard, cleric or bard asks to cast a ritual on it.",
+   "readAloud": "The spell doesn't find an aura so much as an answer. The Tongue hums back at you, one clean note, the way a glass rings when you speak near it.",
+   "response": "Detect Magic shows a faint aura that belongs to no school. Identify (or a minute's Study) reveals: 'Ossa's Tongue. It belongs to a bell under water.' Nothing about Tolls, and nothing about the Key. A Bell-Touched character recognises it without magic.",
+   "rules": "Detect Magic (ritual) or Identify. Study action, Intelligence (Arcana or Religion) DC 14, for the same answer without a spell. Locate Object on the Tongue gives a direction by its hum (see any-l3-locate-and-scry).",
+   "consequence": "The party knows what it is and where it belongs.",
+   "later": "S2: they may think to bring it on the dive. S3: returning it to the Mere becomes an informed choice.",
+   "fallback": "If no one has the spell, Mother Sallow simply tells them.",
+   "keywords": "detect magic, identify, arcana, study, what is it, magic, aura, spell, ritual",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s01-defend-the-raid",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They defend Ila's house during the night raid",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "v5 ends Session 1 with a Hushmen raid on the Harrow house if Quill suspects anything.",
+   "tells": "The party keeps watch at the Harrow house, or asks where Ila sleeps tonight.",
+   "readAloud": "No knock. Just the door, opening very quietly, and two grey gloves catching the lamplight.",
+   "response": "Four Hushmen under a Sergeant (the night raid). They want the Tongue and the child's father's papers, and they withdraw when one drops or the alarm rouses the Old Shore. Ila can be hidden: under the net-racks, or with Brannagh at the Pilots' Hall. Ila is a child: check session-zero Off-limits; she is never harmed on-screen, and if she is taken it is Off-screen and handled by s01-raid-takes-ila.",
+   "rules": "Encounter: the night raid. Hiding Ila: Dexterity (Stealth) DC 14 with the Hide action's rules; the ferry-folk help (Help action) without being asked. A Rogue can Hide as a bonus action (Cunning Action).",
+   "consequence": "The Court's first move has failed or succeeded in front of the whole Old Shore.",
+   "later": "If the raid fails: S3 Quill brings reinforcements and the ferry-folk start to trust the party. If Ila is hidden at the Pilots' Hall, set ila to Hidden by playing s03-hide-ila.",
+   "fallback": "If the party is elsewhere, Ila hides on her own and finds them before dawn, shaking and furious.",
+   "keywords": "raid, night, defend, protect, hushmen, harrow house, ila, guard, ambush",
+   "when": [
+    {
+     "flag": "quill",
+     "in": [
+      "suspicious",
+      "tithecase"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s02-sing-response",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They sing the response to the Night Song",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Mother Sallow taught it for exactly this, and the whole village does it.",
+   "tells": "Players ask what the villagers are humming, or if anyone remembers Sallow's hymn.",
+   "readAloud": "Up and down the shore, people hum back at the water, the way you'd hum to a child who won't sleep. When you join them, the voice under the Mere hesitates, and for a while the names stop.",
+   "response": "The Night Song quiets for one hour. The Drowned do not attack the grieving or the singing. A character who sings with a dead person in mind feels the water listen; mark them, because the Cantor will ask about it.",
+   "rules": "No check. A sincere attempt works; a Charisma (Performance) roll is flavour only and cannot fail. Silence the spell does not end it: the Drowned hear grief, not sound. If the party has not made amends for stealing the Tongue (s02-make-amends), Mother Sallow will not teach it.",
+   "consequence": "One safe hour on or near the water.",
+   "later": "S2: the Cantor greets a singer more gently. S3: safe passage to the belfry is easier for anyone who has sung the response.",
+   "fallback": "If nobody learned it, Ila sings it, badly, and the Mere listens anyway.",
+   "keywords": "sing, hymn, response, night song, hum, choir, drowned, calm, quiet"
+  },
+  {
+   "id": "s02-stay-the-night",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They stay on the Memory Shore all night",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Curious characters want to hear the whole song.",
+   "tells": "A player asks what happens if they don't go inside.",
+   "readAloud": "Somewhere before dawn the cold stops mattering. You are standing on a ferry in fog, and your hands are someone else's hands.",
+   "response": "Each character who stays the full night makes the save. On a failure, roll on the Mere Memory table (v5 Part 11.4). If the party is investigating Tam, replace the roll for one character with Tam's last night: grey gloves, an emptied gaze, a boat drifting with no cargo.",
+   "rules": "DC 12 Wisdom saving throw. Mere Memories are borrowed impressions, not losses; record them as 'Mere' in the ledger.",
+   "consequence": "Someone carries a stranger's memory, possibly Tam's.",
+   "later": "Tam's memory is one of the four sources (Eld's papers S3, the Cantor S2, Brannagh Wick). Any two establish the Court's responsibility.",
+   "fallback": "If nobody fails, Ila wakes them at dawn and says she dreamed of her father again.",
+   "keywords": "night, shore, stay, sleep, camp, memory shore, mere memory, dream, wait"
+  },
+  {
+   "id": "s02-row-to-ferry",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They row out to find the missing ferry",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Mother Sallow asks them to; it is the session's clear objective.",
+   "tells": "Players ask for a boat, a pilot, or directions to the eastern-marsh route.",
+   "readAloud": "Below the skiff, rooftops slide past like the backs of sleeping animals. A drowned weathervane points the way you came. Ahead, a ferry sits crooked on a sandbank, and someone is sitting in it.",
+   "response": "Brannagh Wick lends a skiff and a pilot if asked; without one, the drowned town is a maze of roofs just under the surface. On the sandbank: the ferry, and its dead ferryman, face peaceful, a dripping oar in his hands. That is the Tidewarden's old body; don't name it yet. Memory-eels circle.",
+   "rules": "Without a pilot: Wisdom (Survival) DC 14 to read the drowned streets. On a failure the skiff scrapes a roof, ships water, and wakes the eels early.",
+   "consequence": "The ferry is found. The eels are between the party and the body.",
+   "later": "S3: the Tidewarden appears to anyone who treated the body with respect, and offers safe passage to the belfry.",
+   "fallback": "If they won't go, the Tidewarden's ferry drifts in to the Old Shore on its own at dawn, its ferryman still holding the oar.",
+   "keywords": "ferry, missing ferry, boat, row, sandbank, skiff, pilot, brannagh, eastern marsh, h-02"
+  },
+  {
+   "id": "s02-fight-eels",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They fight the memory-eels",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The eels guard the sandbank and bite anyone who wades.",
+   "tells": "Weapons out at the waterline; someone jumps in.",
+   "readAloud": "The water around the sandbank thickens into grey ropes, and the ropes have mouths.",
+   "response": "Run the eel encounter. A bite that deals damage can take a memory; the player chooses which minor memory goes, and it comes back after their next long rest. The eels flee when reduced to two. Don't add the Drowned Singers to this fight; let the party breathe on the sandbank first.",
+   "rules": "Encounter: memory-eels. Bite: DC 13 Wisdom save or lose a minor memory until the next long rest (record as 'Eel'). Swimming in the cold Mere: 2024 Frigid Water (minutes equal to Constitution score, then DC 10 Constitution save each minute or 1 Exhaustion level). A Druid can Wild Shape into a swimming beast and ignore the breath clock but not the bite.",
+   "consequence": "The sandbank is clear. Someone may be missing a small memory until morning.",
+   "later": "S2: the missing memory comes back after a long rest. S3: the Tidewarden notes who fought them. No level is given here: the party stays level 3 until S6.",
+   "fallback": "If the fight goes badly, the dead ferryman's oar rises and the eels scatter.",
+   "keywords": "eels, memory-eels, fight, attack, bite, water, swim, combat, sandbank"
+  },
+  {
+   "id": "s02-sneak-eels",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They slip past the eels",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Cautious parties avoid a fight in deep water.",
+   "tells": "Players ask about the eels' behaviour, or ship their oars and drift.",
+   "readAloud": "You drift with the oars up. The grey shapes rise, taste the air above the water, and sink again.",
+   "response": "Each character in the boat attempts the check. If at least half succeed, the eels never notice and the party reaches the ferry quietly. If not, the eels attack from below with the party in the boat (they can't reach anyone who stays seated for the first round).",
+   "rules": "Dexterity (Stealth) DC 15 for each character; succeed as a group if at least half succeed. Pass without Trace gives +10.",
+   "consequence": "The ferry and body are reached without a fight.",
+   "later": "No eel-thefts to track. The Tidewarden notes their care in S3.",
+   "fallback": "If the group fails, give the boat one round of grace before the first bite.",
+   "keywords": "sneak, stealth, quiet, drift, avoid, eels, slip past"
+  },
+  {
+   "id": "s02-dive-belfry",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They dive to the drowned belfry",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The bell is visible on calm nights and someone always wants to see it up close (H-07).",
+   "tells": "A player asks how deep it is, or ties a rope to the skiff.",
+   "readAloud": "In the deep water, Old Pellmoor's bell-tower stands like a finger pointing at the sky. Pale figures wait among the arches. One of them turns, and her eyes are too bright.",
+   "response": "The belfry's top is about forty feet down. The Cantor does not attack unless the party touches the bell. If the Tidewarden has met them kindly, he offers an air pocket around the divers for the length of one conversation. Otherwise, breath and cold are the clock.",
+   "rules": "2024 Suffocation: hold breath for 1 + Constitution modifier minutes (minimum 30 seconds); out of breath, 1 Exhaustion level at the end of each turn, removed when breathing again. Frigid Water applies to long dives. A Druid in a swimming Wild Shape has no breath clock, but the Cantor reads an animal shape as a lie unless it is named. Water Breathing (3rd level) arrives with level 5; before then the Tidewarden's air pocket is the only breath-free route.",
+   "consequence": "The party meets the Cantor.",
+   "later": "S2: her question follows. S3: the belfry route is known.",
+   "fallback": "If a diver runs out of air, a drowned hand pushes them gently up to the surface.",
+   "keywords": "dive, swim, underwater, belfry, bell, drowned bell, cantor, deep, h-07, breath"
+  },
+  {
+   "id": "s02-truth-to-cantor",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They answer the Cantor truthfully",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "\"Tell me, who are you grieving?\" is hard to dodge, and players love a true answer.",
+   "tells": "A player names a real loss from their backstory.",
+   "readAloud": "\"You have come down to the bell. Good. Tell me, who are you grieving? Do not lie to me. The dead can tell.\"",
+   "response": "The Cantor sings the name back to them, and the water warms. She teaches a verse of Ossa's hymn. Ask her about Ila's father and she says he came to find a safe path to her and never arrived. The full release verse needs a sincere memory of a dead person (s02-grieve-to-cantor); a true answer about anything else earns the hymn verse only.",
+   "rules": "The verse grants Advantage on the next saving throw against a Drowned Singer.",
+   "consequence": "The party has one more source on Tam's death and the verse of Ossa's hymn.",
+   "later": "S3: the Choir is calmer toward whoever answered truly. The release verse is in s02-grieve-to-cantor.",
+   "fallback": "If no one has a loss to name, the Cantor accepts someone grieving on Ila's behalf.",
+   "keywords": "cantor, ondra, grieving, truth, answer, verse, hymn, release, name, dead"
+  },
+  {
+   "id": "s02-lie-to-cantor",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They lie to the Cantor, or refuse her question",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Guarded characters won't share grief with a ghost.",
+   "tells": "A player deflects, jokes, or gives a name they don't mean.",
+   "readAloud": "The Cantor's eyes go dark. The singing stops, and in the silence something long and pale lets go of an arch and comes toward you.",
+   "response": "Two Drowned Singers attack. The Cantor keeps singing from the water and does not join the fight at this level; her Dirge of Names is pressure, not damage. The Singers stop pursuit at the surface and treat the response hymn as a ceasefire. Give the divers a clear way up.",
+   "rules": "Encounter: two Drowned Singers, underwater. Melee attackers without a Swim Speed have Disadvantage underwater unless using a dagger, javelin, shortsword, spear or trident. Turn Undead on a Singer works (see s02-turn-the-singers).",
+   "consequence": "The Choir marks them as the forgetful.",
+   "later": "S3: the ferry-stair route to the belfry is guarded; they'll need the Tidewarden or the hymn. The Cantor will still bargain if they come back honest.",
+   "fallback": "If the fight goes badly, the Tidewarden's oar breaks the surface and the Singer withdraws.",
+   "keywords": "lie, refuse, cantor, attack, drowned singer, fight, flee, underwater combat",
+   "effects": [
+    {
+     "flag": "clock_choir",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s02-ask-about-tongue",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They ask the Cantor about the Tongue",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Tongue is the reason anyone is here.",
+   "tells": "A player mentions the humming bundle, or brought it with them.",
+   "readAloud": "\"The tongue was taken from us. Ask the ferry-folk what they owe the dead.\"",
+   "response": "That is all she says about it. If they brought the Tongue down with them, she goes very still and asks whether they mean to return it. Returning it earns safe access to the bell.",
+   "rules": "",
+   "consequence": "The party knows the Tongue belongs to the Mere and that the ferry-folk carry a debt.",
+   "later": "S3: Mother Sallow's ledger explains the debt (Tam stole it back from the Court in 392 SS, and the Choir asked for it). She can rebuild the release verse from the ledger (s03-sallow-rebuilds-verse).",
+   "fallback": "",
+   "keywords": "tongue, ask, cantor, bell, owe, debt, ferry-folk"
+  },
+  {
+   "id": "s02-ring-ossa-early",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They bring the Tongue down and ring Ossa tonight",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "If the party has the Tongue and reaches the bell, nothing in the rules stops them.",
+   "tells": "The Tongue is in the boat, and a player asks what happens if they fit it.",
+   "readAloud": "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. One voice, very old and very clear, speaks a single name.",
+   "response": "Before anyone fits the Tongue, state the Toll and wait for consent: a memory of someone who has died, chosen by the Ringer. If they say no, the bell does not ring. Ila may not be the Ringer: she is fourteen and has just lost her father, so offer the Toll to an adult in the party. If they agree, the Drowned fall silent and stop hunting; Mother Sallow, on the shore, suddenly remembers her husband's face and the night of the Wrongweather. The Court will hear of it by the next evening.",
+   "rules": "The Ringer must be at the bell with the Tongue. Record the Toll (kind: Toll, bell: Ossa).",
+   "consequence": "Ossa is rung. The Choir rests. Session 3's Tongue decision is already made.",
+   "later": "S3: run the ledger and Eld; skip the Tongue choice. S4: Maudrin skips her Tongue bargain and is colder (s04-assembly-after-ossa). Concord: 1 of 6. With the verse, the Cantor can be released now (s03-sing-release).",
+   "fallback": "If the Toll gives the table pause, let them surface and decide tomorrow; the bell will wait.",
+   "keywords": "ring, ossa, bell, toll, early, fit tongue, ring the bell, now",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_ossa",
+     "set": "rung"
+    },
+    {
+     "flag": "t_ossa",
+     "set": "belfry"
+    },
+    {
+     "flag": "choir",
+     "set": "resting"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s02-stop-hadrik",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They deal with Brother Hadrik's blessing of the Mere",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A Kelemvorite on Strangers' Row has decided the restless dead are an abomination, and he means to act tonight.",
+   "tells": "Players notice a grey-robed foreigner with a censer and a vial of holy water heading for the Memory Shore.",
+   "readAloud": "\"The dead are owed rest, not songs,\" Brother Hadrik says, uncorking the vial. \"Kelemvor's judgment is mercy. Stand aside, or kneel.\"",
+   "response": "If Hadrik pours holy water into the Mere during the Night Song and calls on his god, the Choir rises angry and a Drowned Singer comes ashore for him (s02-hadrik-pours). Talk him down by arguing his own dogma: Kelemvor's dead are meant to be judged and remembered, not erased. Or restrain him; the ferry-folk will thank you, the Court will not care.",
+   "rules": "Influence, Charisma (Persuasion) DC 15; he's Indifferent. A successful DC 14 Intelligence (Religion) Study check about Kelemvor's teachings first grants Advantage. Hold Person or Zone of Truth also stop him; the former makes him Hostile when it ends.",
+   "consequence": "Hadrik is talked down or held, and the Night Song stays quiet.",
+   "later": "S3: he blesses the Ringer before Ossa rings and can be an ally in Pellmoor later. S3: his forced blessing (s02-hadrik-pours) is the version where the belfry gets a fourth Singer.",
+   "fallback": "If the party ignores him, play s02-hadrik-pours.",
+   "keywords": "hadrik, kelemvor, priest, holy water, bless, exorcise, turn undead, foreigner, censer",
+   "when": [
+    {
+     "flag": "choir",
+     "in": [
+      "hunting"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s02-ask-brannagh",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They ask the Pilots' Hall about Tam Harrow",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Tam was a pilot; his colleagues know things the family doesn't.",
+   "tells": "Players ask who Tam worked with, or where he took his boat.",
+   "readAloud": "Brannagh Wick coils her sounding-line slowly, twice, before she answers. \"Tam took her out the night he died. No cargo. No ship to bring in. No pilot does that, lad. Not unless he's going somewhere he can't write down.\"",
+   "response": "Brannagh told the Landing House nothing. She thinks Tam was going to the drowned belfry, and she's right. She'll say so if Ila vouches for the party or if they've helped the ferry-folk.",
+   "rules": "Influence, Charisma (Persuasion) DC 15; automatic success if Ila vouches for them or they filled the quota.",
+   "consequence": "One more source on Tam's death.",
+   "later": "S3: with any second source (Eld's patrol entry, the Cantor, a Mere Memory of Tam) the Court's responsibility is established. Brannagh can also delay any ship from leaving the Mere (s03-delay-heron): no pilot, no departure.",
+   "fallback": "",
+   "keywords": "brannagh, pilots hall, pilot, tam, harrow, father, boat, how he died, investigate"
+  },
+  {
+   "id": "s03-search-eld",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They search Brother Eld's desk",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Mother Sallow names him, and the page has to be somewhere.",
+   "tells": "Players ask when the chapel is empty, or how to get Eld out of it.",
+   "readAloud": "The desk is very neat. Too neat. The drawer that sticks has been oiled.",
+   "response": "Once they have access, the page is found without a roll. If the three-day bargain with Mother Sallow held, she brings Eld's chapel key and says nothing. A good search also turns up the matching Court forms and a recent patrol entry recording Tam Harrow's interrogation. Failure only costs time and brings Eld in from the vestry, frightened.",
+   "rules": "Study action, Intelligence (Investigation) DC 16 finds it quickly, with the forms and the patrol entry. The essential clue is never lost to a failed check. Locate Object on 'the page' needs a sample; Detect Thoughts on Eld shows a man frozen in fear (see any-l3-truth-and-minds).",
+   "consequence": "The party holds the missing page, with Ila's name on it.",
+   "later": "The patrol entry is a source on Tam's death. S4: if they took the forms, Rook (S6) values them as evidence.",
+   "fallback": "If they won't search, Eld brings them the page himself the next morning, unable to sleep.",
+   "keywords": "eld, desk, search, chapel, page, ledger, find, investigate, steal, forms"
+  },
+  {
+   "id": "s03-take-page-private",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They confront Eld privately and take the page",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "A quiet confrontation protects the children and lets Eld save face.",
+   "tells": "Players wait until Eld is alone.",
+   "readAloud": "\"The page is in my desk, Mother. The Court asked me to keep it. I didn't read it, because I didn't want to. But I know what it says. I copied the names onto the Court's forms myself.\"",
+   "response": "Eld asks for absolution before anything else. He gives them the name of one child on the list whose family can still be warned, and then he leaves Pellmoor on the next ferry for the ash fields of Kell's Crossing, to pray among the dead fields.",
+   "rules": "",
+   "consequence": "Eld is gone. One family is warned in time.",
+   "later": "S4: Eld is not at the Assembly; use an unnamed Court chaplain. S9: he can be found at Kell's Crossing, in the ash, if the party goes there (s09-ring-calla).",
+   "fallback": "",
+   "keywords": "confront, eld, private, page, absolution, forgive, leave",
+   "when": [
+    {
+     "flag": "eld",
+     "in": [
+      "chapel"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "eld",
+     "set": "gone"
+    }
+   ]
+  },
+  {
+   "id": "s03-expose-eld",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They expose Eld in front of the village",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The page names children. Some parties want justice in public.",
+   "tells": "Players gather the Old Shore, or read names aloud at the chapel door.",
+   "readAloud": "Nobody shouts. That is the worst of it. The ferry-folk just look at him, one family at a time, until he can't stand it.",
+   "response": "The village turns on him. Eld flees to Hallowmere that night in shame and becomes a Court chaplain. Mother Sallow says nothing kind and nothing cruel.",
+   "rules": "",
+   "consequence": "Eld is in Hallowmere, humiliated and useful to the Court.",
+   "later": "S4: Eld is at the Assembly as a Court chaplain and will not meet their eyes. The Court learns what the party knows about the page.",
+   "fallback": "",
+   "keywords": "expose, public, accuse, shame, eld, village, crowd, justice",
+   "when": [
+    {
+     "flag": "eld",
+     "in": [
+      "chapel"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "eld",
+     "set": "fled"
+    }
+   ]
+  },
+  {
+   "id": "s03-forgive-eld",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They forgive Eld",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Eld is pliant, sorry, and offers help; mercy is a real option.",
+   "tells": "A cleric or a kind character responds to his request for absolution.",
+   "readAloud": "Eld cries like a man who has been holding it in for two years. When he stops, he asks what he can do, and he means it.",
+   "response": "Eld cries like a man who has been holding it in for two years. When he stops, he asks what he can do. The Court wants a chaplain at the Hallowmere masque and has written to him; he will go and be the party's inside ear. He still writes to the Court, and tells the party what he writes. His loyalty depends on how they protect him and the children. Foreshadow any renewed Court pressure before he wavers.",
+   "rules": "",
+   "consequence": "The party has a source inside the Church, and Eld travels to Hallowmere.",
+   "later": "S4: Eld meets their eyes at the Assembly and slips them a note about Haldric's armory (s04-eld-at-assembly). S6: he can testify at the oath-duel if protected.",
+   "fallback": "",
+   "keywords": "forgive, absolve, mercy, eld, informant, redemption, spare",
+   "when": [
+    {
+     "flag": "eld",
+     "in": [
+      "chapel"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "eld",
+     "set": "forgiven"
+    }
+   ]
+  },
+  {
+   "id": "s03-comfort-ila",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They tell Ila the truth about her name on the list",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Ila recognises her own name and begins to cry; someone will speak to her.",
+   "tells": "A player turns to Ila instead of Eld.",
+   "readAloud": "Ila reads her own name twice. Then she says, very quietly, \"That's why he was scared. Not of the water. Of them.\"",
+   "response": "Ila trusts people who tell her the truth about hard things. If they explain what the list means, she asks to decide the Tongue's fate with them, and asks whether she can come. If they say \"don't worry about it,\" she stops talking to that character.",
+   "rules": "",
+   "consequence": "Ila's trust is earned or lost here.",
+   "later": "S3: she argues for returning the Tongue to the Mere. Taking her along keeps her close and in danger (s03-take-ila-along); hiding her with the Pilots' Hall keeps her safe (s03-hide-ila). If the party does neither and the Tongue goes to the Court, she is arrested (s03-ila-arrested).",
+   "fallback": "",
+   "keywords": "ila, comfort, truth, list, name, cry, tell her, father"
+  },
+  {
+   "id": "s03-tam-solved",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They work out how Tam Harrow died",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "By now the party likely holds two of the four sources.",
+   "tells": "Players line up the patrol entry, the Cantor's words, Brannagh's story, or a Mere Memory.",
+   "readAloud": "It isn't a mystery anymore. It's a ferry with no cargo, a patrol in grey gloves, and a man who couldn't remember the way home.",
+   "response": "Confirm it when any two sources agree: a Court patrol took Tam's memory of the route to the belfry and left him on the water; he fell in and drowned; the Choir kept his body, but did not kill him. Let Ila hear it from whoever she trusts most.",
+   "rules": "",
+   "consequence": "The Court is responsible for Tam's death, and the party knows it.",
+   "later": "S6: Wren's confession (she gave the Court Tam's name) lands hard. Ila's anger shapes her choices for the rest of the campaign.",
+   "fallback": "If they have only one source, Mother Sallow supplies the second from the ledger: Tam's name, with a Court mark beside it.",
+   "keywords": "tam, death, murder, how he died, clues, solve, patrol, route, memory taken"
+  },
+  {
+   "id": "s03-return-tongue",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They return the Tongue to the Mere",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Ila, Mother Sallow and the Cantor all point this way.",
+   "tells": "Players ask how to reach the drowned belfry safely.",
+   "readAloud": "The Tidewarden is waiting at the end of the old dock, oar dripping. He doesn't ask where you're going.",
+   "response": "The ferry-stair is safest, and the Choir guards it. The Tidewarden holds a pocket of breathable air around anyone who accepts peaceful passage; Mother Sallow's hymn earns that passage without any memory price. Diving magic or a sound alternative plan also works. Ila is fourteen: she may come to the stair, but she stays in the ferry with an adult and never goes down with the divers, so check session-zero Off-limits. At the belfry, the Cantor asks whether they mean to ring it.",
+   "rules": "If not using the Tidewarden: 2024 Suffocation and Frigid Water apply.",
+   "consequence": "The Tongue is home. The Choir is quieter while it stays there.",
+   "later": "Ringing is a separate choice with a Toll (next play). The Court still wants the Tongue (S4).",
+   "fallback": "If they hesitate at the water's edge, Ila holds out her hands for the bundle, and the Tidewarden's ferry waits for whoever carries it.",
+   "keywords": "return, give back, mere, belfry, tidewarden, choir, cantor, put back",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "belfry"
+    }
+   ]
+  },
+  {
+   "id": "s03-ring-ossa",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They ring Ossa",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "With the Tongue at the bell, the question is only who pays.",
+   "tells": "A player asks what ringing would do, or what it costs.",
+   "readAloud": "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. The Drowned fall silent, and one voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain.",
+   "response": "State the Toll first and wait for a yes: a memory of someone who has died, chosen by the Ringer. Ila may volunteer; she is fourteen and has just lost her father, so offer the Toll to an adult instead and let her stand beside them. If they decline, the bell does not ring and no Toll is taken. If they ring it, the Choir rests, and Mother Sallow remembers her husband Davin and the night of the Wrongweather. If anyone sings the Cantor's release verse afterward, Ondra speaks her own name and goes quiet.",
+   "rules": "Record the Toll (kind: Toll, bell: Ossa). The deceased person need not be a loved one (v5 2.11). Ila may not be the Ringer.",
+   "consequence": "Ossa is rung. The dead of the Mere may rest.",
+   "later": "Concord: 1 of 6. S4: no Tongue bargain at the Assembly. The Court withdraws collectors from the newly quiet Mere for a while (Court clock +1). S27: the Choir can sing at the summit if released.",
+   "fallback": "If the Ringer is unsure, the Cantor waits. A bell that waited four hundred years can wait a night.",
+   "keywords": "ring, ossa, toll, bell, ring the bell, memory of the dead, ringer",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party",
+      "belfry"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_ossa",
+     "set": "rung"
+    },
+    {
+     "flag": "t_ossa",
+     "set": "belfry"
+    },
+    {
+     "flag": "choir",
+     "set": "resting"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s03-sing-release",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They sing the Cantor's release verse after Ossa rings",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "If they learned the verse in Session 2, this is the moment it was for.",
+   "tells": "A player asks whether the Choir can be freed now.",
+   "readAloud": "The verse is short. When it ends, the Cantor sings her own name, Ondra Sallow, in a voice nobody has heard for two hundred and sixty years. Then she goes quiet, and so does everyone else under the water.",
+   "response": "The singer must sincerely commemorate a dead person. Ondra and the remaining Choir are released. Released spirits may return once, willingly, as allies; they are never compelled back.",
+   "rules": "",
+   "consequence": "The Drowned Choir is released.",
+   "later": "S22/S27: the Cantor may return once as an ally. S28: Mother Sallow sings the last verse with Ila.",
+   "fallback": "If nobody learned the verse, Mother Sallow can rebuild it from the restored ledger (s03-sallow-rebuilds-verse); the Cantor will wait.",
+   "keywords": "release, verse, sing, cantor, ondra, free the choir, choir, rest",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "verse",
+     "in": [
+      "learned"
+     ]
+    },
+    {
+     "flag": "choir",
+     "in": [
+      "resting",
+      "hunting"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "verse",
+     "set": "sung"
+    },
+    {
+     "flag": "choir",
+     "set": "released"
+    }
+   ]
+  },
+  {
+   "id": "s03-carry-to-hallowmere",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They carry the Tongue to Hallowmere",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Some parties want allies (the Dawn Order, the Bellwrights) before deciding.",
+   "tells": "Players ask who in the capital opposes the Court.",
+   "readAloud": "The bundle hums all the way to the edge of the Mere road, and then, as the reeds give way to grey hedges, it goes quiet, as if it knows where it's going.",
+   "response": "Act II begins early. Brannagh can ferry them across the Mere (three days to the capital instead of six) and knows a landing that skips the first checkpoint. Faerûnians need the Chancellor's invitation or a writ: the grey-sealed letter reaches them at the first checkpoint by the Court's own rider, and they can accept it there (s03-accept-invitation). Ila's place in this trip is s03-take-ila-along or s03-hide-ila.",
+   "rules": "",
+   "consequence": "The party is on the road to Hallowmere with Ossa's Tongue.",
+   "later": "S4: the Gate Clerk already has their names (+2 to Persuasion DCs). Maudrin's bargain targets the Tongue they carry. Concord: Ossa still needs a return to the Mere (the Tidewarden ferries the Ringer once they hold it again).",
+   "fallback": "",
+   "keywords": "hallowmere, capital, carry, take it, dawn order, bellwrights, travel, leave pellmoor, road",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s03-keep-and-defend",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They keep the Tongue in Pellmoor and defend the village",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "A protective party won't let the Court take anything from the Old Shore.",
+   "tells": "Players ask about defences, the Landing House's strength, or who would fight.",
+   "readAloud": "Quill comes back with every Hushman the Landing House has, and a written deadline nailed to the chapel door. Behind him, forty foreign masts stand very still on the water and do nothing at all.",
+   "response": "Act II begins as a siege. Quill issues a deadline; villagers prepare shelter and an evacuation route; the party negotiates, resists a patrol, or leads an escape. The foreign ships stay neutral, but Brannagh can close the Mere to Court boats: no pilot, no crossing. Intercepted orders point to the Hallowmere vault.",
+   "rules": "Use the siege patrol (enc-s04-siege-patrol) scaled for four level-3 characters. Show retreat routes and the deadline before any fighting.",
+   "consequence": "Pellmoor is under Court pressure and will be changed by it.",
+   "later": "S4: a short siege outline replaces the gate scene; the intercepted orders lead to Hallowmere. The Old Shore's trust is earned for the rest of the campaign. Faerûnian traders note which side the party took.",
+   "fallback": "If the siege drags, the Pilots' Hall offers to smuggle the Tongue out by night.",
+   "keywords": "keep, defend, protect, siege, stay, fight the court, village, pellmoor, barricade",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "pellmoor",
+     "set": "siege"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s03-give-to-maudrin",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They send the Tongue to the Chancellor",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "Greedy or desperate parties take the Court's reward.",
+   "tells": "Players ask what the Court would pay, or want to end the danger quickly.",
+   "readAloud": "The order comes back with the receipt, sealed in the same grey wax: the arrest of one Ila Harrow, listener, for questioning.",
+   "response": "Show the arrest order to the players before anyone acts on it. Give them a chance to warn, hide, or escort Ila (s03-take-ila-along, s03-hide-ila). Check session-zero Off-limits: Ila is arrested Off-screen, held in a room with a lamp and a bowl of soup, never harmed. If the party does nothing, the Hushmen come at dawn (s03-ila-arrested).",
+   "rules": "",
+   "consequence": "The Court holds the Tongue and wants Ila.",
+   "later": "S4: Maudrin is delighted and offers Ila's Tithe-exemption instead of a bargain (s04-exemption-releases-ila if she was taken, s04-exemption-for-ila if not). If Ila is taken, she is held in the Hall of Tithes (rescue alongside Tessa in S6). Concord: Ossa needs the Tongue recovered (s04-ask-ossa-back).",
+   "fallback": "",
+   "keywords": "give, maudrin, court, chancellor, sell to the court, reward, surrender",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "court"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ]
+  },
+  {
+   "id": "s03-sell-to-venn",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They sell the Tongue to Master Venn",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A Faerûnian buyer offers real gold and a way out of Corvane's problems.",
+   "tells": "Players ask what Venn would pay, or whether selling abroad keeps it from the Court.",
+   "readAloud": "Venn counts the gold onto the table himself, coin by coin, smiling. \"The Gilded Heron sails in three days. Your relic will be admired in Athkatla by people who have never heard of a Toll. Isn't that a kindness?\"",
+   "response": "Venn pays 600 gp (Influence, Persuasion, DC 15 raises it to 900; his buyer pays 5,000). The Tongue goes aboard the Gilded Heron, which needs a pilot to leave the Mere and a day to cross the Seam. Ila learns within the hour. Brannagh Wick can delay the ship one day by refusing a pilot.",
+   "rules": "Record the sale. The Heron leaves in 3 days; Brannagh can add 1; the Seam crossing takes 1 more.",
+   "consequence": "The Tongue is on a foreign ship. The clock is three days, maybe four (s03-delay-heron adds one).",
+   "later": "If it clears the Seam (s03-heron-sails): Ossa can't be rung and Concord is impossible until it is recovered. The safety valve is any-heron-wrecks. S4: the Court is furious with Venn, and with the party. S28: Ila never forgives it.",
+   "fallback": "If the players regret it, Venn will sell it back for 1,200 gp or a heartkeep, and enjoy the profit.",
+   "keywords": "sell, venn, merchant, gold, coster, gilded heron, ship, abroad, athkatla, profit, buyer",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "venn"
+    },
+    {
+     "flag": "venn",
+     "set": "dealt"
+    }
+   ]
+  },
+  {
+   "id": "s03-recover-from-venn",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They board the Gilded Heron and take the Tongue back",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "If the Tongue was sold, regret (or Ila) arrives quickly.",
+   "tells": "Players ask where the Heron is anchored, or who pilots her out.",
+   "readAloud": "The Gilded Heron rides at anchor beyond the last pier, lamps lit, a drowned church spire just under her keel.",
+   "response": "Three ways: board her at night past two Coster guards and a mate; persuade Brannagh to deny her a pilot until Venn deals (s03-delay-heron); or buy it back (s03-buy-back-from-venn). Venn prefers money to trouble and folds once a guard drops or the Pilots' Hall turns against him. Invisibility, Misty Step and Pass without Trace make boarding easier but the Heron's lamps pick up a shimmer on the water; the mate has Passive Perception 14.",
+   "rules": "Boarding: Dexterity (Stealth) DC 15 per character, or the encounter. Venn is Indifferent; he becomes Hostile only if humiliated in public.",
+   "consequence": "The Tongue is recovered, or it sails.",
+   "later": "Recovered by force or theft: Venn holds a grudge and pays Quill to watch the party (S4 Court knows them). If they sail before it is done: s03-heron-sails.",
+   "fallback": "If they fail, the Heron's first mate, a Baldurian who toasts the Gull's Wager, offers to 'lose' it overboard for 100 gp.",
+   "keywords": "recover, steal back, board, ship, gilded heron, venn, buy back, pilot, retrieve",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    },
+    {
+     "flag": "venn",
+     "set": "exposed"
+    }
+   ]
+  },
+  {
+   "id": "s03-accept-invitation",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They accept the Chancellor's invitation",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The letter arrives whatever they chose, and it promises safety and answers.",
+   "tells": "Players read the letter twice, or ask whether it's a trap.",
+   "readAloud": "\"To those who carried the Tongue of Ossa from Pellmoor: the Quiet Court extends its gratitude and its invitation. The Chancellor would be honoured by your presence at the Quiet Assembly in Hallowmere, in ten days. You will be safe. You will be remembered. Nothing you carry will be asked of you that you do not wish to give. M. Vesk, Quiet Chancellor, Warden of Silence.\"",
+   "response": "The grey seal makes the letter a writ of passage for everyone named in it, Stormborn included. Brannagh offers the Mere crossing. The party is still level 3; level 4 comes after the Hallowmere investigation in S6.",
+   "rules": "",
+   "consequence": "The party is expected at the Quiet Assembly.",
+   "later": "S4: the gate accepts the letter as a writ. Maudrin has read Quill's report and knows their faces.",
+   "fallback": "",
+   "keywords": "invitation, letter, assembly, accept, go, hallowmere, writ, chancellor",
+   "effects": [
+    {
+     "flag": "writ",
+     "set": "invited"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ]
+  },
+  {
+   "id": "s03-refuse-invitation",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They refuse the invitation",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A letter from the people who killed Tam is easy to burn.",
+   "tells": "Players call it a trap, or burn it.",
+   "readAloud": "The letter curls in the fire. The grey wax doesn't melt. It sits in the ashes, perfectly round, until someone picks it up.",
+   "response": "Don't force the trip. Captain Rook or Wren Caddock brings the investigation to them instead (a Dawn Order rider, or a Bellwright courier asking for help). The wax seal still works as a writ if they keep it.",
+   "rules": "",
+   "consequence": "The Court takes note of the refusal.",
+   "later": "S4: start with Rook's or Wren's request instead of the Assembly; Maudrin's bargain comes later, by letter. The Court's clock ticks.",
+   "fallback": "",
+   "keywords": "refuse, burn, decline, ignore, trap, invitation, letter, no",
+   "effects": [
+    {
+     "flag": "maudrin_favor",
+     "set": "refused"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "tells": "Nobody guards the Harrow house, or the raid scene ends with the Hushmen holding the door.",
+   "rules": "No check. Give the party the cart's route and hour (telegraphed): the Mere road, second checkpoint, an hour past dawn.",
+   "later": "S2: a rescue on the Mere road (s02-intercept-ila-cart). S4: if she reaches Hallowmere, she is held in the Hall of Tithes and Maudrin offers her release as a bargain (s04-exemption-releases-ila). S6: rescue her alongside Tessa (s06-rescue-tessa-with-ila).",
+   "fallback": "If the party stalls, Brannagh Wick sends a runner with the cart's route and hour.",
+   "id": "s01-raid-takes-ila",
+   "title": "The raid takes Ila",
+   "why": "The party is elsewhere or loses the doorway, and the Hushmen leave with the child.",
+   "readAloud": "By dawn the door of the Harrow house hangs open and the oilskin is gone from its peg. Dorra Pell says only, 'Grey wax on the step. They took her for questioning.'",
+   "response": "Check session-zero Off-limits before this scene: Ila is taken Off-screen, held in a lamp-lit room at the Landing House with Dorra Pell's soup, and never harmed or described in danger. The Court cart leaves for Hallowmere at the next dawn. The party has one day to act: the Mere road cart (s02-intercept-ila-cart), a bribe through Quill, or Brannagh's pilots.",
+   "consequence": "Ila is under Court arrest. The Old Shore is angry at the Hushmen.",
+   "keywords": "ila taken, arrested, raid, child taken, kidnapped, hushmen take ila",
+   "when": [
+    {
+     "flag": "quill",
+     "in": [
+      "suspicious",
+      "tithecase"
+     ]
+    },
+    {
+     "flag": "ila",
+     "in": [
+      "free"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ila",
+     "set": "arrested"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "tells": "A player offers Quill coin for the three villagers, or asks Sela Maunt how locals really pay.",
+   "rules": "Influence (Persuasion or Deception) DC 15 on Quill (Indifferent, Intelligence 11, so DC 15). Failure: Quill writes the party down and the households pay double next quarter. Gilding twice raises the Court clock.",
+   "later": "S3: the three households owe the party and warn them (s03-households-warn). S4: Quill's letter vouches for them at the gate (DCs drop by 2). Repeat gilding is in any-gild-a-tithe.",
+   "fallback": "If Quill refuses, Sela offers to take the gold as a deposit and stamp the motes in a week, when the Landing House changes shift.",
+   "id": "s01-gild-the-quota",
+   "title": "They gild the village's quota with gold",
+   "why": "Gold is the party's strongest resource, and the canon's way out of the quota is gilding: illegal and common.",
+   "readAloud": "Sela Maunt does not look up. 'I can stamp a grey-wax mote for a silver piece and not ask whose it was. Quill can look at the stamp and not ask either. That is gilding. If anyone writes it down, it is a crime.'",
+   "response": "Sela will stamp stand-in motes for the three households (about 40 gp in all, which includes her 10 percent). Quill must look away: automatic if he is bribed, otherwise Influence DC 15. He accepts it once. A Sergeant who sees it writes it down.",
+   "consequence": "The quota is met without memories, and Quill is in the party's pocket. The Court clock rises by one.",
+   "keywords": "gild, gilding, gold for tithe, pay quota gold, sela stamp, bribe quill gold",
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "bribed"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "tells": "A Stormborn player asks how fast a writ can be had.",
+   "rules": "Influence DC 15 to lower the price to a keep. No check for the writ itself. The writ gets past the Hallowmere gate without the grey-wax check.",
+   "later": "S4: the gate reads the true writ (s04-stormborn-at-gate) and the Gate Clerk is polite.",
+   "fallback": "If the price is too steep, the Chancellor's letter arrives anyway at the end of S3.",
+   "id": "s01-expedite-writ",
+   "title": "They buy a true writ from Quill",
+   "why": "A Faerûnian wants to leave Pellmoor before the Chancellor's letter arrives.",
+   "readAloud": "Quill folds the grey paper in thirds. 'Expedited. It will say your name, your ship, and the date I wrote it. The Court remembers all three.'",
+   "response": "One heartkeep, or 50 gp, buys a true writ in two days. It names the bearer, so the Court has the name. Quill is polite and will not bring it up again unless the party asks about the Tongue.",
+   "consequence": "The bearer holds a true writ and the Court holds the bearer's name.",
+   "keywords": "writ, passage, quill expedite, papers, travel permit",
+   "when": [
+    {
+     "flag": "writ",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "writ",
+     "set": "writ"
+    },
+    {
+     "flag": "court_eye",
+     "set": "recorded"
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "tells": "A player asks the Brass Lantern's bartender who 'sorts out paper', or wants no name on record.",
+   "rules": "Intelligence (Investigation) DC 17 for a Hushman to spot it. Thieves' Tools or a Forgery Kit proficiency lets a PC improve it to DC 18.",
+   "later": "S4: a failed forgery is arrest for landing past the Charter (s04-stormborn-at-gate). S9: a forged writ is stopped at the north gate unless they leave under Rook's escort or a smuggling route.",
+   "fallback": "If the party has no gold, the forger will take a keep.",
+   "id": "s01-forged-writ",
+   "title": "They buy a forged writ on Strangers' Row",
+   "why": "The Row has a back room for every kind of paper.",
+   "readAloud": "The forger's room smells of hot wax. 'Grey is hard,' she says. 'The seal is easy. The ash in the wax is the part Hushmen know.'",
+   "response": "A forged writ costs 40 gp and a day. It carries no real name. It passes a Blank clerk but not a Sergeant who checks the grey wax. The forger asks for a small favour later, never named.",
+   "consequence": "A character carries a forged writ.",
+   "keywords": "forged writ, forge, counterfeit, papers, zhentarim, forger, fake writ",
+   "when": [
+    {
+     "flag": "writ",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "writ",
+     "set": "forged"
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A cleric or paladin asks where the Faerûnian temples are, or a PC is hurt.",
+   "rules": "No check. A Lathander cleric or paladin is Friendly at once. Healing Word and Lesser Restoration are available to the party at the Mission (ends Blinded, Deafened, Paralyzed or Poisoned only).",
+   "later": "S4: bringing her into Hallowmere is the party's call (s04-bring-aurelie). S9: if Vaer rings, she goes to the terraces to sing (s09-aurelie-on-the-terraces). S22: a free Aurelie is the core of the Stormborn ally.",
+   "fallback": "If nobody goes, a Mission acolyte brings the same letter to the Shuttered Bell.",
+   "id": "s01-dawn-mission",
+   "title": "They visit the Dawn Mission on Strangers' Row",
+   "why": "The Row is a short walk away, and a healer's house is where hurt or devout characters go.",
+   "readAloud": "The Mission is a narrow house with a gilt sunburst over a door that has been painted yellow four times. A woman in a dawn-coloured mantle looks up from a washing-bowl. 'When the sun comes back,' she says, 'I would like to be standing somewhere it can see me.'",
+   "response": "Sister Aurelie Dawnmantle (Priest) tends anyone who comes in and asks for nothing. She wants a writ for Hallowmere; the Court has refused her four times. Tell her about Vaer's bell and her eyes light; she asks, carefully, whether it can be rung. She is bright and a little reckless. She gives the party a letter of introduction ('the Mission's first friend in Hallowmere').",
+   "consequence": "Aurelie is met. She is the seed of the Stormborn ally.",
+   "keywords": "aurelie, dawn mission, lathander, strangers row, morninglord, healer, priest, temple",
+   "when": [
+    {
+     "flag": "aurelie",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "aurelie",
+     "set": "met"
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "The party drinks on Strangers' Row, or a player asks what outsiders think of the Court.",
+   "rules": "Insight DC 14 to see the lute-player is working. Influence DC 15 to learn her aim without giving more than a rumour. A Bard recognises the Harper pin at once.",
+   "later": "S9: a detour to Pellmoor can reach the Harpers (s09-detour-pellmoor). S22: exposing the memory trade to the Harpers makes them the Stormborn ally.",
+   "fallback": "If nobody bites, the Harper leaves the brooch on a bar-towel with a cellar address.",
+   "id": "s01-brass-lantern",
+   "title": "A Harper at the Brass Lantern asks about the Tithe",
+   "why": "The Brass Lantern is where Faerûnians drink, and a lute-player is working the room.",
+   "readAloud": "A woman with a lute plays something that is not quite a drinking song. Between verses she asks, very lightly, 'And what do you make of the Tithe? Asking for a friend who has lost his mother's face.'",
+   "response": "She is a Harper and will not say so. If the party answers honestly and is kind about the Old Shore, she gives them a coin-sized silver brooch and a rendezvous: a cellar under the clockmaker's shop. The Harpers sympathise with the Bellwrights and distrust the Tithe. Zhentarim hands at the next table watch everything.",
+   "consequence": "A Harper contact knows the party's names kindly.",
+   "keywords": "harper, brass lantern, lute, strangers row, stormborn, ally, tavern",
+   "when": [
+    {
+     "flag": "stormborn",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "stormborn",
+     "set": "harpers"
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A player asks who else lives in the Harrow house.",
+   "rules": "No check.",
+   "later": "S9: Nessa Harrow lives at Kell's Crossing and comes out when Calla rings (s09-ring-calla). S28: Ila can meet her, if anyone tells her.",
+   "fallback": "If nobody asks, Dorra Pell mentions Nessa to the next stranger who sits at the bar.",
+   "id": "s01-ask-ila-mother",
+   "title": "They ask Ila about her mother",
+   "why": "Ila talks about her father; a player notices there is no mother in the house.",
+   "readAloud": "'Mum went north when I was little,' Ila says, still looking at the water. 'Kell's Crossing, Dad said, where the fields are ash. He said she sold the day I was born and then couldn't remember why she was crying.'",
+   "response": "Ila has never met her. She has only her father's story and a name, Nessa. She does not ask the party to find her. If anyone offers, she goes quiet and says 'Maybe.' Do not make the offer for her.",
+   "consequence": "The party knows Ila's mother is alive and in the ash fields.",
+   "keywords": "ila mother, nessa, harrow, kells crossing, family",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "ila",
+      "party"
+     ]
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "tells": "A player says 'finish him' over a downed Quill, or waits for him alone on the Quays.",
+   "rules": "Quill is a Hushman (Tough). Hold Person, then a coup de grace on a Paralyzed creature, is murder in front of witnesses: the ferry-folk saw. No check.",
+   "later": "S3: Hallowmere sends a Sergeant (s03-quill-returns no longer applies; the Court escalates). S4: the Gate Clerk has their names, and Maudrin starts the bargain colder. S28: Ila remembers whether anyone killed for her.",
+   "fallback": "If the player wavers, Quill begs for the Tithe-exemption chit in his pocket, which is a bribe, not a plea.",
+   "id": "s01-kill-quill",
+   "title": "They kill Quill",
+   "why": "A Hushman who threatens a child is an easy target, and the party can now hit hard enough to do it.",
+   "readAloud": "Quill's gloves open and his keep-glass rolls across the boards without a sound. Along the Quays, no one says anything, and the nearest foreign captain turns his back.",
+   "response": "Ask once: 'You mean to kill him?' A downed Quill can be bound instead (2024: a creature at 0 HP can be knocked out). If he dies, the Landing House's six Hushmen close the Old Shore within the hour, and a Sergeant from Hallowmere arrives in three days with a Tithe warrant for the killers. Pellmoor's Hushmen are afraid of the Old Shore, not the other way round. Say plainly that no one resurrects him.",
+   "consequence": "Quill is dead. The party are named murderers in the Court's records.",
+   "keywords": "kill quill, murder, execute, hushman dead, assassinate",
+   "when": [
+    {
+     "flag": "quill",
+     "in": [
+      "suspicious",
+      "tithecase",
+      "routine",
+      "bribed"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "dead"
+    },
+    {
+     "flag": "court_eye",
+     "set": "enemy"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ],
+   "sessionId": "sb-ce895de5912506a9"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A player names a lost parent, friend or companion, with a detail only the character would know.",
+   "rules": "No check. The verse grants Advantage on the next saving throw against a Drowned Singer.",
+   "later": "S3: after Ossa rings, singing the verse releases Ondra and the remaining Choir (s03-sing-release). If never learned: s03-sallow-rebuilds-verse.",
+   "fallback": "If nobody offers, Ila names her father for the party.",
+   "id": "s02-grieve-to-cantor",
+   "title": "They share a sincere memory of someone who has died",
+   "why": "The Cantor asks whom they grieve, and a player has someone real to name.",
+   "readAloud": "The Cantor goes still. 'That one is real,' she says. 'Hold it a moment longer. I will give you what I can.'",
+   "response": "If the memory is sincere, she teaches the full release verse: four lines that let a spirit set down its song. Sharing the memory does not erase it. The player may keep the detail private and describe only the feeling. If the table is shy, the Cantor accepts someone grieving on Ila's behalf.",
+   "consequence": "The party knows the release verse.",
+   "keywords": "cantor, grief, dead, release verse, ondra, sincere, memory of the dead",
+   "when": [
+    {
+     "flag": "verse",
+     "in": [
+      "unknown"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "verse",
+     "set": "learned"
+    }
+   ],
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Possible",
+   "tells": "The party ignores Hadrik, or his Persuasion check fails.",
+   "rules": "One Drowned Singer on land; the response hymn is a ceasefire. Mother Sallow takes 5 (1d10) damage if she is not covered.",
+   "later": "S3: the belfry stair is guarded by an extra Singer (enc-s03-belfry-guard).",
+   "fallback": "If it goes badly, the Tidewarden's oar breaks the surface and the Singer withdraws.",
+   "id": "s02-hadrik-pours",
+   "title": "Hadrik pours holy water into the Mere",
+   "why": "Nobody stops him, or the attempt fails, and the Night Song breaks.",
+   "readAloud": "The holy water goes in without a sound. A moment later the whole shore feels it, like a plate dropped in a quiet house.",
+   "response": "The Choir rises angry and a Drowned Singer comes ashore for Hadrik. The party can save him (Singers stop when the response hymn is sung) or let the ferry-folk drag him back. Mother Sallow steps between them and gets hurt if no one moves. The Old Shore blames the Loud Quarter.",
+   "consequence": "The Choir hunts harder. The Old Shore resents the Loud Quarter.",
+   "keywords": "hadrik pours, holy water, kelemvor, choir angry",
+   "when": [
+    {
+     "flag": "choir",
+     "in": [
+      "hunting"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_choir",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "A player asks how to put it right, or asks Dorra Pell why nobody will meet their eye.",
+   "rules": "No check. The hymn is taught once amends are made. Without it the Night Song is dangerous: the Drowned treat unsung travellers as the forgetful.",
+   "later": "S2: the hymn calms the Night Song for an hour. S3: Sallow opens the ledger as before.",
+   "fallback": "If nobody offers, Ila walks over and holds out her hands for the bundle, and that is enough.",
+   "id": "s02-make-amends",
+   "title": "They make amends for taking the Tongue",
+   "why": "The party took the Tongue in S1 and the Old Shore has gone cold; most tables want it back.",
+   "readAloud": "Mother Sallow is mending a net when you set the bundle on the dock. She does not look up. 'Say a name,' she says. 'Someone who is gone. Out loud, to the water. Then we will see.'",
+   "response": "Amends are two acts: give the Tongue back to Ila by hand, and speak a dead person's name on the Memory Shore. Ila takes it without a word, then sings the response hymn beside whoever apologised. Brannagh reopens the Pilots' Hall within the hour. If the party wants to keep the Tongue, they cannot have the Old Shore's help but may still hire a Quays skiff (5 gp) and face the Night Song without the hymn.",
+   "consequence": "The Shore reopens. Ila holds the Tongue again.",
+   "keywords": "amends, apology, return tongue, give back, sorry, reconcile, ferry-folk",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "quill",
+     "in": [
+      "suspicious"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "ila"
+    }
+   ],
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Likely",
+   "tells": "The party asks Brannagh Wick for the road, or begins to plan an ambush.",
+   "rules": "Encounter: the Mere road cart (Sergeant and three Hushmen). Deception DC 15 for the false checkpoint. Area spells stay clear of the cart: describe the canvas before anyone casts.",
+   "later": "S3: Quill brings reinforcements (s03-quill-returns). S4: the Gate Clerk knows the party.",
+   "fallback": "If the ambush fails, the Sergeant stops at the next ferry and Brannagh's pilots take the cart by agreement for a keep.",
+   "id": "s02-intercept-ila-cart",
+   "title": "They stop the Court cart on the Mere road",
+   "why": "The raid took Ila and the cart's route and hour are known.",
+   "readAloud": "The cart is a covered ferry-wagon with a grey stripe on its tail-board. The driver wears gloves. Behind the canvas, someone is humming the response hymn very quietly.",
+   "response": "Four Hushmen and a Sergeant escort a covered cart. Check session-zero Off-limits: Ila stays inside, in a closed cart behind a ferry-folk driver, unharmed and not described in danger. Three plans work: a pilot's false checkpoint that turns the cart onto a drowned causeway (Deception DC 15), an ambush at the ford, or Brannagh's pilots refusing the crossing so the cart must wait. The Sergeant yields the cart rather than die.",
+   "consequence": "Ila is free again. The Court has a reason to be angry.",
+   "keywords": "rescue ila, cart, mere road, ambush, free ila, intercept",
+   "when": [
+    {
+     "flag": "ila",
+     "in": [
+      "arrested"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ila",
+     "set": "free"
+    },
+    {
+     "flag": "quill",
+     "set": "tithecase"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Possible",
+   "tells": "A cleric asks if the Singers count as undead, or a paladin readies a smite.",
+   "rules": "Turn Undead (2024): Wisdom save against your spell save DC; failed targets are Frightened and flee for 1 minute. The Cantor is immune to Frightened and Charmed (statblock). Radiant damage helps.",
+   "later": "S3: the belfry guard remembers who turned it. The release verse is the gentler answer.",
+   "fallback": "If the save succeeds on a Singer, it comes back in a minute, angrier.",
+   "id": "s02-turn-the-singers",
+   "title": "A cleric or paladin turns the Drowned Singers",
+   "why": "The Singers are undead and a level-3 cleric or paladin has Turn Undead.",
+   "readAloud": "The holy symbol flares, and the Singer's wail cracks off key. It lets go of the arch and drifts backward with its hands over its ears.",
+   "response": "Turn Undead (Wisdom save) works on a Drowned Singer, which flees for a minute. It does not work on the Cantor, who is a Ghost singing from the grave with her own will; she is not forced and treats the attempt as an insult. Divine Smite on a Singer is as written. Kelemvor's clergy do the same thing with less reverence, so Hadrik will approve.",
+   "consequence": "The Singers are driven off, but not released. The Choir marks the party.",
+   "keywords": "turn undead, smite, cleric, paladin, singers, undead, holy",
+   "effects": [
+    {
+     "flag": "clock_choir",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A player asks what happens to the body, or lifts the oar.",
+   "rules": "No check. A Wisdom (Survival) DC 14 to carry it through the drowned streets if there is no pilot.",
+   "later": "S3: the Tidewarden appears to the party at the ferry-stair and offers peaceful passage (s03-return-tongue).",
+   "fallback": "If nobody moves, the ferry drifts in to the Old Shore at dawn with the ferryman still holding the oar.",
+   "id": "s02-take-ferryman-home",
+   "title": "They take the dead ferryman home",
+   "why": "A body on a sandbank is a debt, and ferry-folk have a cold-house for exactly this.",
+   "readAloud": "The ferryman's face is peaceful. His hands are cold and light. When you lift him, the oar stays in his fingers, and the Mere is very still.",
+   "response": "Brannagh Wick lends a skiff and a pilot to take the body to the ferry-folk cold-house. This is the Tidewarden's old body: the Choir let it be borne. The Tidewarden's gratitude is quiet; he will offer the air pocket in S3 without being asked. Whether this is Tam or someone else is Sallow's to say; the Choir returned Tam, not this man.",
+   "consequence": "The ferry-folk see the party honour a dead man.",
+   "keywords": "body, ferryman, burial, cold-house, tidewarden, honour the dead",
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A player asks if the village sings together, or says they will take the night off.",
+   "rules": "No check. Short rest in the inn; a long rest is safe in the Old Shore. Every spell hums: casting inside the Bell draws looks.",
+   "later": "S3: the missing ferry drifts in by itself at dawn.",
+   "fallback": "If it gets slow, Brannagh Wick comes in at last call and says the ferry has been gone eight days.",
+   "id": "s02-rest-and-song",
+   "title": "They skip the Mere and attend the Night Song at the Shuttered Bell",
+   "why": "Cautious tables rest, shop and listen before they go out on the water.",
+   "readAloud": "In the Shuttered Bell, no one speaks. The whole room hums back at the water, the way you'd hum to a child who won't sleep. Dorra Pell puts a mug in front of you without asking what you want.",
+   "response": "The Night Song rises at dusk and passes, and the village's attention is on the water. Quill writes his report. Use the evening to buy gear, learn the hymn, and hear the villagers' rumours (Tam, the missing ferry, the page). A character who sits through the whole night makes the DC 12 Wisdom save (s02-stay-the-night).",
+   "consequence": "The party has the hymn and a rumour or two; the missing ferry waits.",
+   "keywords": "rest, skip, shop, inn, shuttered bell, night song, dorra pell",
+   "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A player says 'you're coming with us', or asks Mother Sallow's leave.",
+   "rules": "No check. Brannagh gives a pilot-letter for the Mere crossing.",
+   "later": "S4: Maudrin notices her at the masque and offers her exemption as a bargain. S6: Ila can reach the Hall of Tithes, which Wren's plan uses. S28: Ila grew up in the party's shadow.",
+   "fallback": "If the party hesitates, Sallow says 'She is safest with people who are looked for.'",
+   "id": "s03-take-ila-along",
+   "title": "They take Ila with them",
+   "why": "Ila asked whether she could come, and the party does not want her alone with Hushmen at the door.",
+   "readAloud": "'I'll carry my own bag,' Ila says. 'And I'll tell you when the water's wrong. That's all I'm good for, so far.'",
+   "response": "Mother Sallow allows it only if an adult promises to bring her home. Ila is fourteen: she travels with the party and is never put in combat or described in harm; check session-zero Off-limits and give her a quiet place at every scene's edge. She keeps the Harrow house key and sings the response hymn at the Gate when asked.",
+   "consequence": "Ila is in the party's care, which makes her a lever for the Court.",
+   "keywords": "take ila, bring ila, travel, companion, child, escort ila",
+   "when": [
+    {
+     "flag": "ila",
+     "in": [
+      "free",
+      "hidden"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ila",
+     "set": "party"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "A player asks Brannagh Wick where a child could sleep out of sight.",
+   "rules": "No check. The households that owe the party (s01-fill-the-quota) also offer a hiding place.",
+   "later": "S4: Maudrin's bargain is for the Tongue, not Ila. S6: if the party told Maudrin where she was (s04-tell-where-ila), Hushmen go to the Pilots' Hall within two days. S28: Ila is hidden but angry.",
+   "fallback": "If nobody has a plan, Brannagh does it anyway.",
+   "id": "s03-hide-ila",
+   "title": "They hide Ila at the Pilots' Hall",
+   "why": "The Court wants her; the Pilots' Hall is the safest roof in Pellmoor.",
+   "readAloud": "Brannagh looks at Ila over the sounding-line on her shoulder. 'Pilots' Hall has a loft nobody climbs. She'll have a hammock, a bell to ring if the gloves come, and a pilot on the stair.'",
+   "response": "Brannagh keeps Ila in the loft with a pilot on the stair, and the ferry-folk close ranks. Ila stays hidden until the party returns or the Court escalates. She argues, but accepts it if the party explains why; if they say 'don't worry', she stops speaking to that character.",
+   "consequence": "Ila is safe, and the Court's cart finds only an empty house.",
+   "keywords": "hide ila, pilots hall, safe house, protect ila, loft",
+   "when": [
+    {
+     "flag": "ila",
+     "in": [
+      "free",
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ila",
+     "set": "hidden"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A party that sold the Tongue to Quill or the Chancellor leaves Ila in her father's house.",
+   "rules": "No check.",
+   "later": "S4: Maudrin offers Ila's release for a favour (s04-exemption-releases-ila). S6: rescue alongside Tessa (s06-rescue-tessa-with-ila).",
+   "fallback": "If the party reacts in time, Brannagh's pilots delay the cart one day.",
+   "id": "s03-ila-arrested",
+   "title": "Hushmen come for Ila at dawn",
+   "why": "The Tongue went to the Court and nobody sheltered her.",
+   "readAloud": "Grey wax on the Harrow door. Dorra Pell says it flatly: 'They came at first light. She went with her coat on and her head up.'",
+   "response": "Off-screen. Check session-zero Off-limits. Ila is taken by a Hushman Sergeant and two escorts and carried to Hallowmere, where she waits in the Hall of Tithes, a clean room with a bed. A courier from Brannagh's pilots can reach the cart before it leaves the Mere (s02-intercept-ila-cart applies on the road). Maudrin's offer will use her.",
+   "consequence": "Ila is under Court arrest.",
+   "keywords": "ila arrested, dawn, hushmen, taken, child arrested",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "court"
+     ]
+    },
+    {
+     "flag": "ila",
+     "in": [
+      "free"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ila",
+     "set": "arrested"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "The party has lied to Quill or named a villager to him in S1.",
+   "rules": "Influence DC 16 on Quill (Intelligence 11, Insight +5). If bribed, he takes more gold and complains less.",
+   "later": "S4: the Gate Clerk raises Persuasion DCs by 2 if Quill is Suspicious (s04-refuse-courtesy-memory).",
+   "fallback": "If the party fights him, run s01-attack-quill.",
+   "id": "s03-quill-returns",
+   "title": "Quill returns with a second Hushman",
+   "why": "The lie held, or the party named Mother Sallow to him; either way Quill's report is out.",
+   "readAloud": "Quill stands in the chapel door with a second Hushman behind him. 'Good morning,' he says. 'I was reviewing my notes and found a gap in my notes, and I thought you'd want to help me fill it.'",
+   "response": "He asks the coat question again, and if Mother Sallow's name was given, he asks for her ledger. He is polite; the second Hushman is not. He wants a reason to search. Persuasion DC 16 on Quill buys a week. Hold Person or Suggestion on Quill works but the Landing House reads the hum as a confession.",
+   "consequence": "The Court's pressure rises one notch.",
+   "keywords": "quill returns, second hushman, search, ledger, mother sallow",
+   "when": [
+    {
+     "flag": "quill",
+     "in": [
+      "suspicious",
+      "bribed"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "Hushmen move in the village, or the party asks who can be trusted.",
+   "rules": "No check. A hiding place gives Advantage on Stealth checks to hide a person or bundle on the Old Shore.",
+   "later": "S4 (siege): they shelter villagers. S6: Wren already trusts the party.",
+   "fallback": "If nobody asks, the households send a child with a loaf.",
+   "id": "s03-households-warn",
+   "title": "The three households warn the party",
+   "why": "The party filled the quota, so three Bellwright-sympathising households owe them.",
+   "readAloud": "A boy slips a folded net-tag under your door: a thread tied in three knots. Downstairs, the woman whose quota you filled says only, 'Not tonight. They're at the chapel.'",
+   "response": "The households warn the party when Hushmen move, offer a hiding place for Ila or the Tongue, and later shelter villagers during a siege. They will not fight; they will lie. They do not ask for anything. Heroic Inspiration for a player who thanks them by name.",
+   "consequence": "The Old Shore has a back door.",
+   "keywords": "households, quota, warn, villagers owe, sympathisers",
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "tells": "A player lifts a blade in the chapel, or waits for Eld on the Mere road.",
+   "rules": "Eld is a Priest Acolyte (CR 1/4) and can cast Silence once per day. A downed Eld can be knocked out instead of killed.",
+   "later": "S4: use an unnamed chaplain at the Assembly. S28: Mother Sallow knows who did it.",
+   "fallback": "If the player wavers, Eld offers the Tongue's page and a name of a child to warn.",
+   "id": "s03-kill-eld",
+   "title": "They kill Brother Eld",
+   "why": "Eld wrote down the names of children for the Court.",
+   "readAloud": "Eld does not run. 'I knew it would be someone,' he says. 'I'd like to ask only that you tell Mother Sallow I tried to keep the page.'",
+   "response": "Ask once: 'You mean to kill him?' A downed Eld can be bound. If he dies, the ferry-folk say nothing and the chapel stays shut. Say plainly that the only living witness to the Court's patrol entries is gone; the page and the forms still point at Quill and Hallowmere. No resurrection.",
+   "consequence": "Eld is dead. The Church notes it.",
+   "keywords": "kill eld, murder, chaplain, execute",
+   "when": [
+    {
+     "flag": "eld",
+     "in": [
+      "chapel",
+      "fled",
+      "forgiven"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "eld",
+     "set": "dead"
+    },
+    {
+     "flag": "clock_church",
+     "add": 1
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "tells": "A player asks whether the Heron can be stopped without a fight.",
+   "rules": "Influence DC 15 on Brannagh (Friendly if Ila vouches). Each day of delay adds one to clock_ferry. At 6 the Hall suspends a crossing.",
+   "later": "S3: s03-heron-sails runs the clock out if the Tongue is not recovered. Venn remembers.",
+   "fallback": "If Brannagh refuses, a Baldurian mate offers to 'lose' the Tongue overboard for 100 gp.",
+   "id": "s03-delay-heron",
+   "title": "Brannagh denies the Heron a pilot",
+   "why": "The Heron needs a pilot to leave the Mere, and Brannagh runs the Pilots' Hall.",
+   "readAloud": "Brannagh counts the tide out loud and shakes her head. 'No pilot leaves this hall for the Heron today. She'll sit till Venn's patience runs out.'",
+   "response": "Brannagh can delay the ship one day by refusing a pilot; a second day costs the Pilots' Hall a favour and Venn a fine. The delay buys the party time to board or buy back the Tongue. It also tells Venn exactly who is against him.",
+   "consequence": "The Heron's sailing is delayed by one day.",
+   "keywords": "delay ship, pilot, pilots hall, brannagh, heron",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_ferry",
+     "add": 1
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "The party has not recovered the Tongue by the end of the third or fourth day.",
+   "rules": "No check. Three days after the sale, four if Brannagh delayed once.",
+   "later": "S4: Maudrin hears of it from Quill's replacement (s04-tell-where). S28: Ila never forgives the sale. Any time: any-heron-wrecks, or any-ossa-written-off if the table moves on.",
+   "fallback": "If the table is stunned, the Tidewarden says only: 'The Mere remembers what is taken from it.'",
+   "id": "s03-heron-sails",
+   "title": "The Gilded Heron sails with the Tongue",
+   "why": "Three or four days pass and the Tongue is still aboard.",
+   "readAloud": "The Heron slips her lines at the turn of the tide, a Pilots' Hall skiff ahead of her, and the last you see of her is a plum-coloured sail going into a wall of grey weather.",
+   "response": "Brannagh counts the days honestly. The Heron crosses the Seam in a day. The Tongue is beyond Corvane. Ossa cannot be rung until it returns. Tell the table plainly what this closes (the Concord) and what stays open (the Second Dawn). Offer the safety valve if the table wants it: the Heron wrecks in the Wall and the Mere returns the Tongue weeks later (any-heron-wrecks).",
+   "consequence": "Ossa's Tongue is gone through the Seam.",
+   "keywords": "heron sails, ship leaves, tongue gone, seam, abroad",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "abroad"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "A player asks what Venn wants for it, or counts out gold.",
+   "rules": "Influence DC 15 for the discount.",
+   "later": "S4: the Court hears of the sale from Quill but Venn is not exposed.",
+   "fallback": "If the party cannot pay, Brannagh offers to guarantee a loan.",
+   "id": "s03-buy-back-from-venn",
+   "title": "They buy the Tongue back from Venn",
+   "why": "They sold it in haste, or Ila found out.",
+   "readAloud": "Venn spreads his ringed hands. 'Twelve hundred, friend, or a heartkeep. You see I am a reasonable man. I paid six, I lose nothing, and I was so looking forward to Athkatla.'",
+   "response": "Venn sells it back for 1,200 gp or a heartkeep and enjoys the profit. He remains Friendly; the party now owes him nothing and he thinks well of them. Persuasion DC 15 brings it to 900 gp. A heartkeep is a defining memory, chosen by the player.",
+   "consequence": "The Tongue returns without a fight; Venn is a smiling creditor.",
+   "keywords": "buy back, venn, pay, heartkeep, 1200 gp, tongue",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "party"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A player asks whether the Choir can be freed without the Cantor's help.",
+   "rules": "No check.",
+   "later": "S3: the verse is sung after Ossa rings (s03-sing-release).",
+   "fallback": "If the ledger is damaged, Ila hums the tune and Sallow supplies the words.",
+   "id": "s03-sallow-rebuilds-verse",
+   "title": "Mother Sallow rebuilds the release verse",
+   "why": "They missed the Cantor's verse, but Sallow's ledger can rebuild it.",
+   "readAloud": "Mother Sallow reads from the restored ledger in a low voice. 'It was a funeral verse, once. They sang it in my grandmother's time. I lost it with the rest.'",
+   "response": "Sallow reads the verse from the ledger and teaches it. It takes an hour. The verse is the same as the Cantor's: four lines and a sincere commemoration.",
+   "consequence": "The party knows the release verse.",
+   "keywords": "verse, ledger, rebuild, mother sallow, choir release",
+   "when": [
+    {
+     "flag": "verse",
+     "in": [
+      "unknown"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "verse",
+     "set": "learned"
+    }
+   ],
+   "sessionId": "sb-4296a01bb560bd61"
+  }
+ ],
+ "briefs": [
+  {
+   "sessionId": "sb-ce895de5912506a9",
+   "pressure": "The Coster ship Gilded Heron docks this morning and the Quays are loud with cargo. Tobias Quill's memory quota is short because Pellmoor pays its way in gold now; he reaches the Old Shore on the second evening with one guard (the first evening if Venn tips him off). Ila has not slept properly in six weeks. Strangers' Row, the Loud Quarter, is a short walk from the Quays: the Dawn Mission, the Brass Lantern and a forger's back room are all there. If the party does nothing, Quill finds the Tongue by the third day.",
+   "endOn": "Who was singing?",
+   "npcs": "Ila Harrow, Mother Sallow, Hushman Tobias Quill, Dorra Pell, Pilot-Mistress Brannagh Wick, Reckoner Sela Maunt, Master Orsolo Venn, Sister Aurelie Dawnmantle, a Harper with a lute",
+   "checklist": [
+    "Decide how each character arrives: by ship through the Seam, by the Mere road, or already living in Pellmoor. Ask each player whether the character grew up under the Court (it matters at S5)",
+    "Have the Reckoning House slate ready: 1 keep = 1 gp 2 sp, motes 1 sp, heartkeeps by appraisal",
+    "Know Quill's one question: 'Where did the child's coat go?'",
+    "Prepare Mother Sallow's response hymn as a two-line call and answer you can sing or speak",
+    "Ask each player for one thing their character has lost; note it for the Toll and memory ledger",
+    "Written for four level-3 characters, who have subclasses and 2nd-level spells: have the any-l3 rulings plays open (Hold Person, Suggestion, Detect Thoughts, Locate Object, Misty Step)",
+    "Strangers' Row is where Aurelie, the Harpers and a forger are introduced: set aurelie, stormborn and writ from those plays"
+   ],
+   "encounters": [
+    "enc-s01-quill-patrol",
+    "enc-s01-night-raid"
+   ],
+   "rules": [
+    "Influence",
+    "Study",
+    "Hide",
+    "Heroic Inspiration",
+    "Detect Magic",
+    "Hold Person",
+    "Suggestion"
+   ]
+  },
+  {
+   "sessionId": "sb-7be12e377d5748b4",
+   "pressure": "The Night Song rises at dusk and the Old Shore hums back. The eastern-marsh ferry has been missing a week. Brother Hadrik Voss, a Kelemvorite from Strangers' Row, plans to 'lay the dead to rest' on the Memory Shore tonight. Quill writes his report to Hallowmere.",
+   "endOn": "Who was on the ferry?",
+   "npcs": "Mother Sallow, the Cantor (Ondra Sallow), the Tidewarden, Pilot-Mistress Brannagh Wick, Brother Hadrik Voss, Ila Harrow",
+   "checklist": [
+    "Mere Memory table (v5 Part 11.4) at hand; decide whether one failed save becomes Tam's last night (a clue)",
+    "2024 Suffocation and Frigid Water if anyone dives; the belfry top is about 40 feet down",
+    "Eel thefts: the player picks the lost minor memory; it returns after a long rest",
+    "Decide how the Cantor reacts to a true answer, and whether she teaches the release verse (only for a sincere memory of a dead person)",
+    "Check ila: if the raid took her, the Mere road cart is the rescue (s02-intercept-ila-cart)",
+    "S1 to S5 are level 3; the party reaches level 4 after the Hallowmere investigation (S6). Do not hand out levels in the Mere"
+   ],
+   "encounters": [
+    "enc-s02-memory-eels",
+    "enc-s02-drowned-singer"
+   ],
+   "rules": [
+    "Suffocation",
+    "Frigid Water",
+    "Frightened",
+    "Help"
+   ]
+  },
+  {
+   "sessionId": "sb-4296a01bb560bd61",
+   "pressure": "Brother Eld knows the page is missing and is frightened. Quill's report has reached Hallowmere. Master Venn sends a polite note offering to buy 'a humming relic'. The Chancellor's letter arrives at the end of the session whatever the party does.",
+   "endOn": "What will you carry to Hallowmere?",
+   "npcs": "Mother Sallow, Brother Eld, Ila Harrow, Master Orsolo Venn, Pilot-Mistress Brannagh Wick, the Cantor, the Tidewarden",
+   "checklist": [
+    "Eld's papers: the missing page, the matching Court forms, and the patrol entry recording Tam's interrogation",
+    "Read the Ossa Toll aloud before any ringing: 'A memory of someone who has died. You choose it. If you say no, the bell does not ring.' Ila may not be the Ringer",
+    "Venn's offer: 600 gp now; the Gilded Heron sails in three days (s03-heron-sails runs that clock out)",
+    "Write the Chancellor's letter as a prop; it doubles as a writ of passage",
+    "Check ila: free, hidden, travelling or arrested decides which of the Ila plays show tonight",
+    "The party is still level 3 here; level 4 comes after S6"
+   ],
+   "encounters": [
+    "enc-s03-gilded-heron",
+    "enc-s03-belfry-guard"
+   ],
+   "rules": [
+    "Study",
+    "Influence",
+    "Suffocation"
+   ]
+  }
+ ],
+ "encounters": [
+  {
+   "id": "enc-s01-quill-patrol",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "Quill's patrol",
+   "creatures": [
+    {
+     "name": "Hushman Tobias Quill",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "Two Hushmen hold the doorway with Pack Tactics while two flank through the net-racks and Quill backs toward witnesses. They target whoever holds the Tongue and use Arrest, not killing blows.",
+   "exit": "Quill retreats toward the Landing House when his guard is Bloodied or a ferry-folk crowd gathers. He wants an arrest, never a death; a downed PC is bound, not killed.",
+   "scale": "Written for four level-3 characters. Three PCs: drop two Hushmen. Five PCs or a party that opens with area spells or Hold Person on Quill: add a Hushman Sergeant who arrives in round two. The Landing House post (six Hushmen) comes only if the party chases Quill onto the Quays; telegraph boots on the boards a round early."
+  },
+  {
+   "id": "enc-s01-night-raid",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "The night raid on the Harrow house",
+   "creatures": [
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 3
+    }
+   ],
+   "tactics": "They search for the Tongue first and fight only if blocked. The sergeant watches the door and uses Command; two search; one waits by the boat.",
+   "exit": "They withdraw when one drops or the Old Shore wakes (two rounds of noise). They never pursue onto the water.",
+   "scale": "Written for four level-3 characters. Three PCs: no sergeant. Five PCs: add Quill outside, who flees at the first blow."
+  },
+  {
+   "id": "enc-s02-memory-eels",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "Memory-eels at the sandbank",
+   "creatures": [
+    {
+     "name": "Memory-Eel",
+     "statblock": "sb_memory_eel",
+     "base": "Constrictor Snake",
+     "cr": "1/4",
+     "count": 6
+    }
+   ],
+   "tactics": "They strike from below at anyone wading or swimming, and try to drag one character under. They ignore people sitting in boats for the first round.",
+   "exit": "They flee when reduced to two, or when the dead ferryman's oar is raised. Sneaking past (DC 15 Stealth, half the group) avoids the fight.",
+   "scale": "Written for four level-3 characters. The eels are the bait; the cold water and the drag-under are the pressure. Three PCs: four eels. Five PCs: eight. Don't chain this straight into the Drowned Singers: give a short rest on the sandbank."
+  },
+  {
+   "id": "enc-s02-drowned-singer",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "Drowned Singers at the belfry",
+   "creatures": [
+    {
+     "name": "Drowned Singer",
+     "statblock": "sb_drowned_singer",
+     "base": "Ghoul",
+     "cr": "1",
+     "count": 2
+    },
+    {
+     "name": "Memory-Eel",
+     "statblock": "sb_memory_eel",
+     "base": "Constrictor Snake",
+     "cr": "1/4",
+     "count": 2
+    }
+   ],
+   "tactics": "One Singer wails to frighten swimmers; the other grapples and pulls a diver down while the eels harry anyone left at the surface. The Cantor sings but does not join.",
+   "exit": "It stops pursuit at the surface and treats Mother Sallow's response hymn as a ceasefire. Divers can always swim up.",
+   "scale": "Written for four level-3 characters, but underwater: breath is the real clock, so it plays harder than its XP. Three PCs: one Singer. Five PCs: add a third Singer. Show their approach a round early. Paralysis stays removed from the Singer: a Paralyzed diver would drown."
+  },
+  {
+   "id": "enc-s03-belfry-guard",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "The ferry-stair guard",
+   "creatures": [
+    {
+     "name": "Drowned Singer",
+     "statblock": "sb_drowned_singer",
+     "base": "Ghoul",
+     "cr": "1",
+     "count": 3
+    },
+    {
+     "name": "Memory-Eel",
+     "statblock": "sb_memory_eel",
+     "base": "Constrictor Snake",
+     "cr": "1/4",
+     "count": 2
+    }
+   ],
+   "when": [
+    {
+     "flag": "choir",
+     "in": [
+      "hunting"
+     ]
+    }
+   ],
+   "tactics": "Guards the ferry-stair against anyone the Choir marked as forgetful, or anyone who comes without the hymn or the Tidewarden.",
+   "exit": "Singing the response hymn, returning the Tongue, or the Tidewarden's company ends it at once.",
+   "scale": "Written for four level-3 characters (Moderate in practice on the stair, where only two can stand abreast). Brother Hadrik's forced blessing adds a fourth Singer. Three PCs: two Singers."
+  },
+  {
+   "id": "enc-s03-gilded-heron",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "Boarding the Gilded Heron",
+   "creatures": [
+    {
+     "name": "Coster guard",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 3
+    },
+    {
+     "name": "Heron's mate (Zhentarim)",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Master Orsolo Venn",
+     "base": "Noble",
+     "cr": "1/8",
+     "count": 1
+    }
+   ],
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "venn"
+     ]
+    }
+   ],
+   "tactics": "The guards use Pack Tactics on deck; the mate, a Zhentarim hand Venn pays not to ask questions, goes for whoever holds the Tongue. The Baldurian crew stay out of it. Venn stays behind them and talks.",
+   "exit": "Venn negotiates the moment a guard is Bloodied: the Tongue for safe passage off his ship and no complaint to the Court.",
+   "scale": "Written for four level-3 characters. Add two guards if the party arrives with Hold Person and Invisibility ready. If the party sneaks aboard (DC 15 Stealth each), only one guard and the mate are on watch."
+  },
+  {
+   "id": "enc-s02-mere-road-cart",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "The Mere road cart",
+   "creatures": [
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Escort Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 3
+    }
+   ],
+   "tactics": "They keep the cart between themselves and the party, grapple anyone who reaches the tailboard, and shout for the next checkpoint. They do not drive the cart on while it is under attack.",
+   "exit": "The Sergeant yields the cart when two Hushmen drop or the ferry-folk driver unhitches. A downed PC is bound and left at the ford.",
+   "scale": "Written for four level-3 characters (Low). Three PCs: drop one Hushman. Five PCs: add a Hushman. Ila stays in the cart."
+  }
+ ]
+}

@@ -1,0 +1,288 @@
+{
+ "plays": [
+  {
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "tells": "A caster asks whether Quill, Cole, Venn, Eld or a Hushman can be held, charmed or put to sleep.",
+   "rules": "Hold Person: Wisdom save each turn, ends on success. Suggestion: Wisdom save, up to 8 hours, reasonable request only. Charm Person: Wisdom save, advantage if fighting, target knows afterward. Sleep: HP pool. Blanks and the Drowned are not valid targets for Charm.",
+   "later": "The target's next report puts the caster on the Court's list (court_eye). Repeated use makes the Gate Clerk and the Landing House expect it.",
+   "fallback": "If the save succeeds, the NPC shouts, and the encounter begins.",
+   "readAloud": "",
+   "id": "any-l3-hold-suggest-charm",
+   "title": "They use Hold Person, Suggestion, Charm Person or Sleep on an NPC",
+   "why": "Four characters with subclasses and 2nd-level spells can solve a scene in one action.",
+   "response": "They work as written, with a Corvane cost. Every spell hums within 30 feet, so any Hushman nearby hears the cast, and a held or charmed NPC knows afterward that something was done to them and who stood near. Hold Person and Sleep need a Humanoid and a failed save; a Hushman's silence-stone glove does not protect the wearer. Suggestion cannot make an NPC reveal a secret that would harm them seriously (the DM may judge the request unreasonable), and it cannot undo a Tithe or a memory. Charm Person makes the target Friendly, not obedient. The NPC's next report names the caster: raise clock_court by 1 if a Court officer is the target.",
+   "consequence": "The scene is solved fast and the Court has a name.",
+   "keywords": "hold person, suggestion, charm person, sleep, command, enchant, control npc, quill, venn"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "A caster prepares Zone of Truth before a hearing, or names Detect Thoughts at a table with Maudrin, Venn or Isolde.",
+   "rules": "Zone of Truth (2nd): Charisma save, 10-minute zone. Detect Thoughts (2nd): Wisdom save to probe, concentration. Calm Emotions (2nd): Charisma save, suppresses Charmed or Frightened. Silence-stone fields stop all three.",
+   "later": "S4: read-maudrin. S6: spells-on-the-steps. S13: the Sexton says he has told no lie since 32 SS.",
+   "fallback": "If the table argues, rule it by the stones: a field stops the spell, no field means it works.",
+   "readAloud": "",
+   "id": "any-l3-truth-and-minds",
+   "title": "They cast Detect Thoughts, Zone of Truth or Calm Emotions on someone",
+   "why": "The campaign is built on secrets; a level-3 to 6 party has the spells to ask.",
+   "response": "The firm rulings: the spell hums, so the target usually hears it. At the oath-duel (S6) the knights stand in herald fields (10-foot silence-stone), so both spells fail there and casting at them costs the caster's side a question. At Maudrin's dais (S4) the plinth stones kill Zone of Truth; Detect Thoughts on her surface mind gives 'Four of them. Ossa's. Not yet.' and a probe saves at +4. Haldric's shield negates the first spell targeting only him each day. Elsewhere Zone of Truth works as written (Charisma save; creatures may refuse to answer, which is itself telling). Detect Thoughts on a Tithed person finds blank patches; on a Blank it finds only a looping 'who was I?'. Calm Emotions suppresses Charmed or Frightened (including the Sermon in a fight) but does not undo a Toll, a Tithe or a Blank.",
+   "consequence": "Truth magic is a tool with edges, not a skeleton key.",
+   "keywords": "zone of truth, detect thoughts, calm emotions, read mind, interrogate, lie, truth magic"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A player asks whether a Tongue can be tracked, or sends an owl to watch a ship.",
+   "rules": "Locate Object: 1,000-foot range, concentration, blocked by lead; here also by silence-stone. Detect Magic: ritual. Find Familiar: ritual, 1 hour.",
+   "later": "Hallowmere: the vault (S5) and the armory (S9) are lined and show nothing. The Heron (S3) is findable until she clears the Seam.",
+   "fallback": "If the spell fails, the hum fades and Bell-Touched characters still feel a direction.",
+   "readAloud": "",
+   "id": "any-l3-locate-and-scry",
+   "title": "They use Locate Object, Find Familiar, Clairvoyance or Detect Magic to find a Tongue",
+   "why": "Five Tongues are scattered across Corvane, and a caster wants to know where.",
+   "response": "Locate Object (2nd level) on a Tongue the caster has seen works: the hum gives a direction within 1,000 feet. It fails if the Tongue is in a silence-stone box, the Tithe-Ledger Room or the Hallowmere vault; a lined box simply shows nothing. Locate Object on 'the page', 'the diary' or 'the Key' works only if the caster has seen it. Find Familiar (ritual) can watch the Heron, Quill's office or a Hushman's door; Detect Magic shows the faint aura of a Tongue, and a Bell-Touched character senses it without magic. Clairvoyance (3rd, level 5+) fails inside silence-stone and in any Court city under a raised Silence. Scrying on the Sexton fails: Hieme's silence blocks it.",
+   "consequence": "They can find a Tongue or watch a place, but the Court's stones block the hard places.",
+   "keywords": "locate object, find familiar, clairvoyance, scry, track tongue, detect magic, divination"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "tells": "A caster asks whether a blink, a shimmer or a lockpick spell works at the vault, the armory or the Heron.",
+   "rules": "Silence-stone field: Part 2.6 house rule. Pass without Trace: +10 Stealth, concentration. Misty Step: 30 feet, bonus action, blocked into a field.",
+   "later": "S5: the vault. S9: the armory and the chain-room. S3: boarding the Heron.",
+   "fallback": "If the player's plan needs a spell the field blocks, the Hushman passing every ten minutes gives them a mundane way through.",
+   "readAloud": "",
+   "id": "any-l3-movement-and-stealth",
+   "title": "They use Misty Step, Invisibility, Pass without Trace, Spider Climb or Knock",
+   "why": "Heist scenes meet 2nd-level spells at level 3, and the silence-stone rule needs a clear answer.",
+   "response": "They work as written outside a silence-stone field. Inside a field (the Tithe-Ledger vault, a dais, a herald's rod) no spell can be cast or produce an effect: Knock fails, Invisibility and Pass without Trace are suppressed, Disguise Self drops, and Misty Step cast from outside lands at the edge of the field, not inside. Pass without Trace gives +10 to Stealth for the group; the spell still hums when it is cast, so anyone within 30 feet hears the cast. Invisibility ends when the target attacks or casts. Spider Climb skips the chain-room climb (S9) but not the chains. On a ship (the Heron) a shimmer on the water gives the mate Passive Perception 14 a chance.",
+   "consequence": "Mobility spells open the plan but not the stone.",
+   "keywords": "misty step, invisibility, pass without trace, spider climb, knock, silence-stone, heist"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A rogue asks about Fast Hands, a druid asks about a swimming Wild Shape, a cleric about Turn Undead.",
+   "rules": "Turn Undead: Wisdom save vs your spell save DC, Frightened for 1 minute. Wild Shape: swimming beasts ignore Suffocation but not eel bites. Portent: replace a roll before it is made.",
+   "later": "Features that touch bells or Tolls follow the bell: nothing a class does rings a bell without its Tongue and Toll.",
+   "fallback": "If a feature seems to break a scene, tell the player what the scene's real obstacle is and let them solve that.",
+   "readAloud": "",
+   "id": "any-l3-class-features",
+   "title": "They use a level-3 class feature in a Corvane scene",
+   "why": "Subclasses mean Cunning Action, Wild Shape, Turn Undead, Smite, Portent, Cutting Words and Subtle Spell all arrive at once.",
+   "response": "Cunning Action and Fast Hands work in S1's theft and raid; a ferry-folk witness makes it risky. A druid's swimming Wild Shape removes the breath clock in the Mere (S2) but the Cantor reads an animal shape as a lie unless it is named. Turn Undead and Divine Smite work on the Drowned Singers; the Cantor is immune to Frightened and Charmed and is offended. Wizard Portent and Bard Cutting Words work on Stealth and Influence rolls. Sorcerer Subtle Spell hides the verbal and somatic components, so the Tonework hum is still heard within 30 feet, and Hushmen can still hear a cast. Warlock Devil's Sight sees through the Mere's dark but not through silence-stone. A Monk's Stunning Strike works on Hushmen but not on Stilled (Gargoyle) or Singers.",
+   "consequence": "Class features speed the plan but do not skip the telegraph.",
+   "keywords": "cunning action, wild shape, turn undead, divine smite, portent, cutting words, subtle spell, class feature"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "tells": "A level-5 caster asks what Dispel Magic or Counterspell can do against the Court's tools.",
+   "rules": "Dispel Magic (3rd): ability check DC 10 + spell level for a higher-level spell. Counterspell: reaction, 60 feet. Tongues: 1 hour. Sending: 25 words. Speak with Dead: 10 days, five questions. Water Breathing: ritual, 24 hours.",
+   "later": "S10 onward: Tongues unlocks the Stilled; S11: Speak with Dead on a shattered Stilled; S13: the Sexton's Sermon cannot be countered.",
+   "fallback": "If a player is disappointed, offer the narrower thing the spell does well.",
+   "readAloud": "",
+   "id": "any-l3-third-level-spells",
+   "title": "Level 5 to 6: Dispel Magic, Counterspell, Tongues, Sending, Speak with Dead, Water Breathing",
+   "why": "Third-level slots arrive at level 5 (S10). Before then these are NPC-only; after, they touch bells, silence and memory.",
+   "response": "Dispel Magic ends a spell effect on a creature or object, but not a Toll, a Tithe, a Blank's state, a winter-moment (Hieme's silence), a bell's ringing, or Oum. It cannot target a silence-stone because a stone is not a spell. Counterspell stops an NPC's spell (Maudrin, Aurelie, Brother Eld's Silence) but not a bell, the Sexton's Sermon or a Hushman's glove. Tongues lets the caster understand and speak any language: it makes the old Stilled dialect and Hesk accessible but cannot read bell-script. Sending reaches anyone inside Corvane who is not in a silence-stone field; across the Stormwall it fails (the weather is in the way) unless the Seam is wide. Speak with Dead works on any corpse with a mouth for 10 days: five questions, and the corpse knows only what it knew in life (see any-speak-with-dead). Water Breathing lets a party reach the Ossa Belfry without the Tidewarden's pocket and works on the Mere's drowned streets; the Cantor treats it as a courtesy.",
+   "consequence": "The party has tools for NPC casters and for the Mere, but the world's big magic stays out of their hands.",
+   "keywords": "dispel magic, counterspell, tongues, sending, speak with dead, water breathing, third level, fireball"
+  },
+  {
+   "style": "Combat",
+   "likelihood": "Possible",
+   "tells": "A player says 'finish him', ambushes a named NPC alone, or waits at their door.",
+   "rules": "No check. Record the death. Court officers: clock_court +1 to +2; the Dawn Order: clock_dawn +2; ferry-folk: clock_ferry +1.",
+   "later": "The NPC's later promises lapse. Their allies hold a grudge; their enemies are surprised. S28 and the endings read the death honestly.",
+   "fallback": "If the table regrets it at once, it still stands: a gentle reminder that the story goes on.",
+   "readAloud": "",
+   "id": "any-kill-a-named-npc",
+   "title": "They kill a named NPC",
+   "why": "A table that has been hunted by Hushmen for ten sessions will eventually go for someone with a name.",
+   "response": "Ask once: 'You mean to kill them?' A creature at 0 HP can be knocked out instead (2024), and a Hold Person'd target is a murder, not a fight. If they do it, the NPC is dead; no resurrection. Record the flag if one exists (quill, eld, haldric, ilam, rook, ansel, corin, kessa, sexton, maudrin) and note the rest in the Bargain Log (Brannagh, Sela, Venn, Sallow, Lysse, Bet, Aurelie, Hadrik, Wren, Isolde, Edrin). Then show the ripple: a Court officer's death raises the Court clock and names the killers; a ferry-folk or Bellwright ally's death costs trust and a door. Never a child. If a death would end a thread the story needs (Rook dead, no Vaer loan), let another door open: Haldric, Aurelie, a theft, or the Bellwrights.",
+   "consequence": "The NPC is gone and the table sees the cost.",
+   "keywords": "kill npc, murder, assassinate, execute, kill quill, kill rook, kill venn, named character"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "tells": "A player says 'I'll go and' while the others plan something else.",
+   "rules": "No check. Each group gets its own encounter budget; do not stack difficulty on one half.",
+   "later": "Splits matter at S4 (masque vs barracks), S5 (vault vs Archive), S12 (Hobb vs the Sexton), S16A onward (Branches A and B).",
+   "fallback": "If a split drags, call a cut and bring one group to the other.",
+   "readAloud": "",
+   "id": "any-split-party-early",
+   "title": "They split the party",
+   "why": "Four players, four plans: a rogue at the vault and a cleric at the Mission is how every table plays.",
+   "response": "Cut between the groups in short scenes (about five minutes each) and let a timer run: Quill reaches the Old Shore on the second evening; the Tithe Clock ticks per night; Hushmen pass every ten minutes. Give each half a clear danger and a clear exit. Keep players who are not in the current scene engaged by asking them to play the NPCs. Regroup at a natural meeting point (a bakery, a chapel, a camp). Tolls, Tithes and bells need the consenting character present; an absent player's character is never charged (any-absent-player).",
+   "consequence": "Parallel scenes shorten the session and raise tension.",
+   "keywords": "split party, divide, separate, two groups, scout, stealth team"
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "tells": "A player asks when they level, or what level they should be.",
+   "rules": "No check.",
+   "later": "Act IV: levels 7 and up. Act V: levels 10 to 11.",
+   "fallback": "",
+   "readAloud": "",
+   "id": "any-level-schedule-early",
+   "title": "When the party levels up",
+   "why": "The table is four players starting at level 3, so Act I is no longer a level 1 climb.",
+   "response": "Milestone levels follow the session schedule: sessions 1 to 5 are level 3 (Pellmoor and Hallowmere's first week); level 4 after S6 (the oath-duel); level 5 at S10 (Glassreach); level 6 at S14 (the Frost Spire); level 7 at S16A. Do not hand levels out in the Mere. 3rd-level spells arrive at level 5, which is why Fireball, Speak with Dead and Tongues appear in Glassreach. If a table is ahead or behind, adjust encounters with Waypoint's difficulty readout, not the story.",
+   "consequence": "The party's tools match the scene.",
+   "keywords": "level up, milestone, experience, level schedule, when do we level"
+  },
+  {
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "tells": "A player asks about a Baldurian ship, the Pilots' Hall loft, a Quays warehouse or a silence-stone-lined box.",
+   "rules": "Stealth DC 15 to carry it unseen; Locate Object fails on a lined box.",
+   "later": "S1: Quill's search finds nothing and he is suspicious. S3: the hiding place is the party's, not the Court's.",
+   "fallback": "If the hiding place is bad, Quill's guard finds it and the scene becomes a raid.",
+   "readAloud": "",
+   "id": "any-hide-a-tongue",
+   "title": "They hide a Tongue somewhere Quill's warrant does not reach",
+   "why": "A party that knows Quill will search the Old Shore hides the Tongue elsewhere.",
+   "response": "Quill's warrant covers the Old Shore. A foreign ship, the Pilots' Hall loft, the Dawn Mission or a Quays warehouse is outside it. A Tongue in a silence-stone-lined box does not hum, but the box itself is contraband; a lead-lined sailor's chest hides the hum from Locate Object. The ferry-folk keep it without being asked if Ila vouches. A ship's captain wants a fee, and Venn's friends notice.",
+   "consequence": "The Tongue is hidden and the party has bought time.",
+   "keywords": "hide tongue, stash, lined box, pilots hall, baldurian ship, conceal"
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "tells": "The Heron has sailed with Ossa's Tongue and the table is stuck, or a player asks whether it can come back.",
+   "rules": "No check. Weeks pass: advance clock_court and clock_landing by 1.",
+   "later": "Any time: ring Ossa (any-ring-ossa-later). Venn is ruined and furious when the party returns.",
+   "fallback": "If the table prefers a harder road, play any-ossa-written-off.",
+   "readAloud": "On a still morning, a Pilots' Hall skiff comes in with a plum-coloured sail across its bows. Brannagh Wick stands in the bow, holding a wet oilskin bundle. 'The Mere remembers what is taken from it,' she says.",
+   "id": "any-heron-wrecks",
+   "title": "The Gilded Heron wrecks in the Wall and the Mere returns the Tongue",
+   "why": "The sale was the campaign's hardest consequence. This is the canon's safety valve, if the table wants it.",
+   "response": "The Heron wrecks in the Wall; the Tongue washes back up the Pell and into the Mere weeks later. The Mere places it at the foot of the Ossa Belfry: the Tidewarden finds it. Tell the table honestly that this is a gift, not a reward, and that Venn is ruined and furious. Mother Sallow takes the bundle to the shore. Ila holds it first.",
+   "consequence": "Ossa's Tongue is at the belfry. The Concord is open again.",
+   "keywords": "heron wreck, tongue returns, safety valve, stormwall, washed back, recover ossa",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "abroad",
+      "lost"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "belfry"
+    },
+    {
+     "flag": "clock_landing",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "tells": "A player says 'it's gone' or 'let it go'.",
+   "rules": "No check. Voyage: about six weeks each way, advancing every faction clock by two for each month away.",
+   "later": "S28: Ila never forgives it. Any time: any-heron-wrecks returns the Tongue if the table changes its mind.",
+   "fallback": "The safety valve is always available (any-heron-wrecks).",
+   "readAloud": "'Then the Mere is quiet,' says the Tidewarden, 'and will stay quiet.' He turns his oar and does not look at you.",
+   "id": "any-ossa-written-off",
+   "title": "They write off Ossa's Tongue",
+   "why": "A table that refuses the safety valve, or has decided the Concord is closed.",
+   "response": "Ossa's Tongue is lost beyond the Seam. The Concord requires all six bells and is closed unless a later voyage brings it back (Situation 17: leaving Corvane for six weeks). The Second Dawn stays open with fewer domains. Ila grieves. The Choir stays hunting; the ferry-folk blame the party quietly.",
+   "consequence": "Ossa's Tongue is gone; the Concord is closed for now.",
+   "keywords": "give up ossa, lost tongue, concord closed, write off",
+   "when": [
+    {
+     "flag": "t_ossa",
+     "in": [
+      "abroad"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_ossa",
+     "set": "lost"
+    }
+   ]
+  },
+  {
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "tells": "A player says 'we have it back, let's ring it', or asks the Tidewarden for passage.",
+   "rules": "Record the Toll (Toll, Ossa). Ringer at the bell with the Tongue.",
+   "later": "Concord: 1 of 6. S27: the released Choir can sing at the summit.",
+   "fallback": "If the Ringer hesitates, the Cantor waits a night.",
+   "readAloud": "The Tidewarden's ferry waits at the end of the old dock, oar dripping. The water is very still.",
+   "id": "any-ring-ossa-later",
+   "title": "They ring Ossa after Session 3",
+   "why": "They recovered the Tongue from the armory, the Court's vault, Venn or the sea, and the bell is waiting.",
+   "response": "State the Toll and wait for a yes: a memory of someone who has died, chosen by the Ringer. If they decline, the bell does not ring and no Toll is taken. Ila may not be the Ringer; offer it to an adult and let her stand beside them. The Tidewarden ferries the Ringer and holds an air pocket. If they ring it, the Choir rests, Mother Sallow remembers Davin, and the Cantor can be released with the verse.",
+   "consequence": "Ossa is rung. The Choir rests.",
+   "keywords": "ring ossa later, toll, belfry, tidewarden, choir rests",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "t_ossa",
+     "in": [
+      "party",
+      "belfry"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_ossa",
+     "set": "rung"
+    },
+    {
+     "flag": "t_ossa",
+     "set": "belfry"
+    },
+    {
+     "flag": "choir",
+     "set": "resting"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-rook-falls",
+   "title": "Captain Rook dies",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Rook stands in the open at the oath-duel, the gate and the Strike; a table that fights the Dawn Order, or loses a protector, can lose her.",
+   "tells": "A fight breaks out around Rook, or the party sends her somewhere dangerous alone.",
+   "readAloud": "",
+   "response": "Play it only if it happened at the table: no NPC dies off-screen to suit the plot. The Dawn Order goes to Haldric if he is still a knight, and Vaer's Tongue stays wherever it was. Her knights hold the party responsible if the party caused it, and mourn with them if not. If Rook had loaned Vaer's Tongue, Haldric demands it back.",
+   "rules": "",
+   "consequence": "The Dawn Order loses its honest captain; Haldric commands it.",
+   "later": "S22: the Dawn Order will not stand with the party unless Haldric has turned. S23: if Haldric commands, Dawn Order Knights are at the Strike.",
+   "fallback": "If the table is upset, give them her last words: a name, and the place of a hidden key.",
+   "keywords": "rook, captain, dies, killed, dawn order, death",
+   "effects": [
+    {
+     "flag": "rook",
+     "set": "dead"
+    }
+   ]
+  }
+ ],
+ "briefs": [],
+ "encounters": []
+}

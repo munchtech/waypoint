@@ -1,0 +1,3090 @@
+{
+ "plays": [
+  {
+   "id": "s24-fight-maudrin",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They fight Maudrin at the summit",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "She still holds the Key and stands between the party and the stairs.",
+   "tells": "Weapons out at the stone ring; casters ready Counterspell.",
+   "readAloud": "\"I'm glad you came,\" Maudrin says. \"Shall we begin?\" Behind her the Hush rises out of the stairway like a tide, so low you feel it in your ribs.",
+   "response": "Run the summit with Maudrin as the Keeper (sb_maudrin_keeper). She fights to slow the party and walks down the stairs when Bloodied, with Silence Step covering her; she means to seal the stairs and keep the Key. If she was Bloodied at the Strike she starts Bloodied here. Before she can act at the bell, establish her threat aloud: if they are about to take the Key, she will strike rather than lose control. Allies take their objectives (hold the stones, screen the stairs); the Cantor's vial gives Advantage on Wisdom saves against Frightened.",
+   "rules": "Encounter: the summit. Her Legendary Resistance is real; Counterspell on her Counterspell works by the usual rules. Grapple and disarm work by 2024 rules; knocking the case from her hand is DC 17 Strength (Athletics) or Dexterity (Sleight of Hand) as a Utilize action.",
+   "consequence": "Maudrin is beaten back down the stairs, or captured, or the party holds the Key.",
+   "later": "S25: the stairs; the Court's sealers wait. S26: if she reaches the bell with the Key she is there with whatever HP she had left.",
+   "fallback": "If the fight turns against the party, an ally's one dramatic action (the Stilled, Yenna's riders, the Cantor's hymn) opens a way past.",
+   "keywords": "fight, maudrin, summit, battle, attack, final battle, tor",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "marching",
+      "summit",
+      "hallowmere"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "summit"
+    }
+   ]
+  },
+  {
+   "id": "s24-take-the-key",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They take the Key from Maudrin at the summit",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "A good grapple or a nimble rogue ends the race to the bell before it starts.",
+   "tells": "A player positions next to her and asks about the chain.",
+   "readAloud": "The case comes away in your hand, heavier than it looks, humming through the silence-stone like a heart through a wall.",
+   "response": "Once she has been hit this fight, a character who reaches her can take the case. On a success Maudrin stops fighting: she has nothing left to bargain with and knows it. On a failure she notices and keeps it; she escapes only by ordinary movement.",
+   "rules": "DC 17 Dexterity (Sleight of Hand), or win a grapple and use a Utilize action to take it. Legendary Resistance does not apply to ability checks.",
+   "consequence": "The party holds the Key at the top of the stairs.",
+   "later": "S26 runs the party-holds-the-Key version. Forecast: Concord, Second Dawn and the Unbound all depend only on the party.",
+   "fallback": "",
+   "keywords": "take the key, steal, grab, case, chain, sleight of hand, summit",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s24-negotiate",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They talk with Maudrin instead of fighting",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "If the party already holds the Key, she negotiates; even if not, she always offers words first.",
+   "tells": "Someone lowers a weapon and asks her why.",
+   "readAloud": "\"I'm not your enemy. I'm the last person in Corvane who understands what the silence costs. Four centuries of Tithes. Blanks. Children who forget their mothers. And you want to wake the thing that holds it all together? You're mad, or you're brave. I've never been able to tell the difference.\"",
+   "response": "Let her make her case honestly: she has kept the lullaby steady for thirty-eight years by keeping the truth from everyone. She will agree to a seal if she thinks the party won't strike. Her Final Offer (H-26): everything they want, all of it already Tithed and in her vault. She can be persuaded to surrender, or to come down the stairs as a witness; her voice-for-the-Seventh offer (s24-maudrin-as-voice) is the only way she ever pays the Great Toll.",
+   "rules": "Influence (Persuasion): DC 20 (her Intelligence as the Keeper), DC 18 if she is the Strike's Maudrin; automatic if the party holds the Key and offers a seal. Insight DC 15: she believes every word.",
+   "consequence": "A truce at the summit, on terms.",
+   "later": "S26: she may stand beside the bell weeping rather than fighting. S27: she can argue for her vision with Oum but never decides for the table.",
+   "fallback": "If talk breaks down, she retreats down the stairs rather than fight a party that holds the Key.",
+   "keywords": "talk, negotiate, maudrin, persuade, surrender, final offer, parley",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit",
+      "marching"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s24-capture-maudrin",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They capture Maudrin",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Some parties want her alive to answer for the Tithe.",
+   "tells": "Players announce non-lethal blows or ask about manacles and silence-stone.",
+   "readAloud": "She sits down on the cold stone very carefully, like an old woman at the end of a long day, and holds out her wrists.",
+   "response": "A creature reduced to 0 HP by a melee attack can be knocked out instead of killed (2024). Bound, she talks: the diary, the Key, the lullaby. Her Hushmen surrender if she orders it. Haldric, if present and told she is his mother, takes her into custody himself. The Key is in the case at her chest; the party takes it.",
+   "rules": "Non-lethal: declare when the melee attack drops her to 0 HP.",
+   "consequence": "Maudrin is a prisoner; the Court is leaderless.",
+   "later": "S28: her fate is the party's to decide: trial, exile, or Tithe by her own office (s28-maudrin-trial, s28-maudrin-exile). Tristan Vesk moves to fill her chair (s28-tristan-chair).",
+   "fallback": "",
+   "keywords": "capture, knock out, non-lethal, prisoner, arrest maudrin, spare",
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "captured"
+    },
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ],
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit",
+      "marching"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s24-kill-maudrin",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They kill Maudrin",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Thirty-eight years of Tithes makes her an easy villain to finish.",
+   "tells": "No one declares mercy; someone asks whether she's still breathing.",
+   "readAloud": "The silence-stone gloves fall open. For the first time since you met her, Maudrin Vesk makes a sound: one breath out, very long, like someone setting down something heavy.",
+   "response": "She dies. The Key is on her body (the party takes it). Her Hushmen scatter or surrender. If Haldric is present and knew she was his mother, he chooses what to do with her body; his fate follows play.",
+   "rules": "",
+   "consequence": "The Chancellor is dead; the Key is free.",
+   "later": "S28: Tristan Vesk becomes Chancellor and wants the Key (s28-tristan-chair). Haldric finds the letters in her case (s24-letters-in-the-case).",
+   "fallback": "",
+   "keywords": "kill maudrin, death, execute, finish her, dead",
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    },
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ],
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit",
+      "marching"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s24-haldric-truth",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "They tell Haldric he is Maudrin's son",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "If they found proof (her diary, Isolde's secrets, Ansel's files), this is the moment.",
+   "tells": "Players have evidence (the letters in the case, Ansel's copied files, or Isolde's secrets) and Haldric is on the field.",
+   "readAloud": "Haldric stops polishing his sword. He looks at Maudrin, and she does not deny it, and that is worse than anything she could have said.",
+   "response": "Haldric half-suspected it. Faced with proof and her silence, he lowers his sword and steps out of the Court's line. He won't fight her, and he won't fight for her. If he fights for her, his knights fight too; this play ends that.",
+   "rules": "Evidence makes it automatic; without it, Influence (Persuasion) DC 18 (his Intelligence is 12; use the higher of 15 and his Intelligence, with Disadvantage because it is his mother).",
+   "consequence": "Haldric and any knights loyal to him leave the fight.",
+   "later": "S28: Haldric chooses his own fate (s28-haldric-rook).",
+   "fallback": "",
+   "keywords": "haldric, son, mother, maudrin, truth, reveal, parentage",
+   "when": [
+    {
+     "flag": "haldric",
+     "in": [
+      "knight",
+      "disgraced"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "haldric",
+     "set": "turned"
+    }
+   ]
+  },
+  {
+   "id": "s25-descend",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "They descend the stairs of the Hush",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The bell is at the bottom of a hundred steps.",
+   "tells": "Players ask who goes down and who stays.",
+   "readAloud": "The stairs go on for a long time. Each step has a memory carved into it, worn smooth by the feet of those who came to listen. Some are your memories. Some are strangers'. You hear a child laughing, a bell tolling, a man telling a joke to someone who isn't there.",
+   "response": "Disclose the full price at the first step: the first nineteen steps cost nothing; every full twenty costs one memory; each descender makes one DC 13 Wisdom save the first time they reach step 20, once per character for the whole campaign (earlier visits count). On a failure their total across the whole campaign is capped at five memories, on a success at two. A character who paid part of it at the S18B visit pays only what remains. Players may turn back. Each names their losses briefly, or keeps a private list and shares one. Losses are recollections, never class features, player knowledge or control of the character. Never make an absent player's character pay.",
+   "rules": "DC 13 Wisdom saving throw at step 20. Record each loss as Stairs in the Memory ledger. The dead pay nothing.",
+   "consequence": "The descenders reach Ysh, lighter.",
+   "later": "S26: who stands at the bell is who paid the stairs. These losses are not Tolls and are not refunded by any ending. Allies who paid carry it in their epilogue (s28-stairs-payers).",
+   "fallback": "If the price stops the table cold, offer the foundry chute.",
+   "keywords": "stairs, descend, hush, memories, cost, walk down, hundred steps"
+  },
+  {
+   "id": "s25-foundry-chute",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "They find another way down",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "v5 says a route that genuinely avoids the stairs avoids their price.",
+   "tells": "Players ask about the old foundry where the bells were cast, or prepare flight or Dimension Door.",
+   "readAloud": "At the top of the Tor, under the ring of stones, the old casting-pit drops straight down into the dark. Warm air rises out of it, smelling of bronze.",
+   "response": "The bells were cast at the summit and lowered to their halls; the casting chute still drops to the Hush chamber. It's a hard climb in the dark but costs no memories. Corin or the Notes can point it out. Flight or teleportation that reaches the chamber also works. Don't add a replacement punishment. Allies who cannot climb wait above.",
+   "rules": "Three DC 15 Strength (Athletics) checks to climb; a failure is a slip: 2024 Falling, 1d6 Bludgeoning per 10 feet fallen (decide the distance before rolling, usually 20 feet). A slip never stops the descent.",
+   "consequence": "The party reaches the bell with every memory intact.",
+   "later": "S26 as normal. The chute is known after this: S27 uses the same route to get an injured Ringer out.",
+   "fallback": "",
+   "keywords": "another way, avoid stairs, foundry, chute, climb, fly, dimension door, shortcut",
+   "effects": [
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s25-allies-refuse",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "Allies refuse to go down",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Some NPCs will not pay with their memories, and some will, which is the beat.",
+   "tells": "Players turn to Ilam, Rook, Yenna or Corin at the top step.",
+   "readAloud": "Ilam Bray looks down the stairs for a long moment, then at Jonah. \"I've only just got him back,\" he says. \"I can't lose him again.\"",
+   "response": "Let the allies choose in character. Those who stay hold the summit. Those who go pay the stairs like anyone else. Never make an absent player's character pay. Children (Jonah, Ila, Bet) are never asked to descend by an NPC and never go; they wait above with a trusted adult, and a player may not send them down. Ila is in Pellmoor unless the table brought her.",
+   "rules": "",
+   "consequence": "The party knows who is with them all the way down.",
+   "later": "S28: an ally who paid the stairs carries it in their epilogue (s28-stairs-payers).",
+   "fallback": "",
+   "keywords": "allies, refuse, stay behind, ila, ilam, rook, yenna, go down, companions"
+  },
+  {
+   "id": "s26-stop-the-strike",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "They stop Maudrin striking Ysh",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "If she holds the Key at the bell, the whole world hangs on one action.",
+   "tells": "Maudrin raises the Key; players shout, move, or reach for a spell.",
+   "readAloud": "Maudrin stands beside the bell with the Key raised. \"Let me seal it, and the world continues. Take another step, and I will choose what follows.\" Her hand is shaking.",
+   "response": "Ask what the characters do before she acts; if combat begins, roll initiative and use the Keeper with her Wardens. Striking needs her action while adjacent to Ysh with the Key out of its case. Grappling, disarming, bargaining and blocking her route can all prevent it. She prefers to seal the stairs and hold the Key. Only a completed strike opens the Unbound; killing her afterward can't undo the sound.",
+   "rules": "Initiative; her strike is her action on her turn. Grapple (2024 Unarmed Strike option) or disarm (DC 17). Counterspell can't stop it: the strike is not a spell. Plane Shift, Banishment and Hold Monster: she has Legendary Resistance and Magic Resistance; see any-geas-dominate-hold.",
+   "consequence": "She strikes, seals, surrenders, or loses the Key.",
+   "later": "She strikes (s26-maudrin-strikes), seals (s26-maudrin-leaves-with-key), yields (s26-grapple-the-key) or dies (s26-kill-maudrin-at-bell).",
+   "fallback": "If the table freezes, have her hesitate one heartbeat and say a name: Cassia's, or her grandmother Ilse's.",
+   "keywords": "strike, stop her, maudrin, bell, ysh, grapple, disarm, prevent, block",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s26-maudrin-strikes",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "Maudrin strikes the Seventh",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "If no one stops her action, she chooses what follows.",
+   "tells": "She is adjacent to Ysh with the Key uncased on her turn.",
+   "readAloud": "The Hush cracks. The lullaby falls silent, and the world goes quiet in a way you have never heard before: not the silence of the bells, but the silence of a held breath about to be released.",
+   "response": "She pays all six Tolls (Memory, Year, Sense, Name, Fear, Gift) and the Hush cracks. Oum opens an eye. The players, not Maudrin and not the DM, choose Remake or Unmake through their conversation with Oum (S27).",
+   "rules": "",
+   "consequence": "Ysh is struck. Oum wakes.",
+   "later": "S27: the Unbound (s27-oum-answers, s27-oum-remake, s27-oum-unmake). Dreams return (s27-dreams-return).",
+   "fallback": "",
+   "keywords": "strike, maudrin strikes, bell rings, oum wakes, unbound",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "struck"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s26-the-choice",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "The party stands at the bell with the Key",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Everything ends here, and the party decides.",
+   "tells": "The party holds the Key at the bottom of the stairs.",
+   "readAloud": "The bell is vast and blank, its surface like the face of a sleeping god. You stand before it with the Key in your hands. The lullaby is still there, very faint, asking you to be quiet. Your choice is the only one left in the world.",
+   "response": "The figure from the Session 11 winter-moment stands at the bell's foot: the character, older, holding the Key, smiling. Ask that player what they feel; don't explain. Then disclose every option and its price before anyone acts (the Forecast tab lists which are open): Concord, Unbound, Second Dawn. Take a table break before an irreversible choice. Maudrin, weeping behind them, offers no resistance.",
+   "rules": "Concord: seat the Key without striking, a willing Ringer accepts the Great Toll (ask in private). Unbound: strike, the striker pays all six Tolls. Second Dawn: one uninterrupted minute to seal the Key in its recess, no Toll.",
+   "consequence": "The campaign's ending is chosen.",
+   "later": "S27 resolves the chosen path. S28 epilogues follow the ring ledger.",
+   "fallback": "If the table can't agree, they may postpone: leave with the Key, unsealed, and keep adventuring.",
+   "keywords": "choice, key, bell, ysh, ending, decide, seventh, final choice",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s27-concord",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "They perform the Concord",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Every regional bell rang; the Key is theirs; one person is willing.",
+   "tells": "All six bells show as rung in the Forecast, and a player asks what the Great Toll means.",
+   "readAloud": "You hear the six bells, each in its own voice: the dawn bell's clean light, the memory-bell's deep sorrow, the frost-bell's thin ice, the harvest's warm round sound, the storm's crack, the dream's soft lullaby. Together they form a chord that has not existed for four centuries. The chord rises and wraps around the Hush.",
+   "response": "Ask the Ringer's player in private, before the rite: the Great Toll is their name, forgotten by everyone who knew them, and they become the Seventh's new voice, retiring from ordinary adventuring. They may refuse; then no Toll is taken and the Concord doesn't happen (s27-refuse-toll). If they accept, they seat the Key unstruck and choose their final words. Read: \"The Dreamer hears it, sighs, and begins to dream more gently.\" A willing NPC may be the voice instead (s27-corin-voice, s27-maudrin-voice).",
+   "rules": "No ordinary Toll is paid at the rite; the six were paid when the bells rang. The Great Toll is never imposed.",
+   "consequence": "The world is restored, imperfectly. Dawns, harvests, storms, thaw, quiet dreams, and the dead remembered. The Ringer is the Seventh's voice.",
+   "later": "S28: every domain restored; the Stormwall thins to ordinary weather over a few years and Corvane joins the world (s28-new-world). Dreams return (s27-dreams-return). If someone sings the Cantor's verse, the Choir is released.",
+   "fallback": "If the Ringer declines, offer the Second Dawn, or a postponement.",
+   "keywords": "concord, great toll, ringer, seat the key, chord, restore the world, best ending",
+   "when": [
+    {
+     "flag": "bell_vaer",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "concord"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "stormwall",
+     "set": "thinning"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-unbound",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "They strike the Seventh",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Corin's way, or desperation, or a wish to end the long unravelling for good.",
+   "tells": "A player asks what happens if they ring it, and means it.",
+   "readAloud": "The Hush cracks. Oum opens an eye, and the dream begins to unravel.",
+   "response": "The striker pays all six Tolls, disclosed first and refusable: refusing before the strike cancels it. Then the players talk with Oum, who asks direct questions and never lies: \"Who is ringing my lullaby? Is the dream finished? Is it time to wake?\" Pause for a table discussion (s27-oum-answers).",
+   "rules": "Record all six Tolls for the striker (Memory, Year, Sense, Name, Fear, Gift).",
+   "consequence": "Oum wakes. The world is remade from its best memories, or unmade into light.",
+   "later": "Remake or Unmake follows (s27-oum-remake, s27-oum-unmake). Dreams return.",
+   "fallback": "",
+   "keywords": "strike, ring the seventh, unbound, oum, wake, remake, unmake, ring ysh",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "struck"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-second-dawn",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "They seal the Key",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "It costs no Toll and keeps every bell they rang.",
+   "tells": "Players ask what sealing does and whether it keeps the bells they rang.",
+   "readAloud": "You seal the Key into the Hush, unstruck, and the lullaby steadies. Above ground, the bells you rang are still ringing in the world. They are not enough to save everything, but they are enough to begin.",
+   "response": "One uninterrupted minute at the shrine's sealing recess: ten rounds, an action each round by one character. It stabilises only the domains whose bells were rung: name each one from the ring ledger. Unrung domains keep their afflictions. With no bell rung it is a stalemate: say so before they choose it. If the Sleepless gather (Mirel unrung), run enc-s27-seal-minute. Releasing the Cantor still needs the verse.",
+   "rules": "Protect the minute: if a fight is still on, it's an action each round for 10 rounds by one character.",
+   "consequence": "Partial restoration. Oum sleeps on.",
+   "later": "S28 epilogues name only what was earned. Dreams return (s27-dreams-return).",
+   "fallback": "",
+   "keywords": "seal, second dawn, recess, lock the key, stabilise, no toll",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "sealed"
+    },
+    {
+     "flag": "key",
+     "set": "sealed"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-empty-choir",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "The Court seals the shrine",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "If the party is beaten or surrenders and Maudrin keeps the Key.",
+   "tells": "The party is captured or retreating, and the Key is in Court hands.",
+   "readAloud": "The Hush falls quiet again, not because you saved it, but because the Hushmen have sealed the stairs. The places you changed still bear your mark. Elsewhere, the collectors return to their rounds.",
+   "response": "This ending happens only if the group chooses to end its resistance. Otherwise play captivity, escape or the rescue chapter. Existing ringings still matter: the thaw, the storms and the quiet Sleepless persist; temporary blessings expire. The Court controls further ringing. Dreams stay lost.",
+   "rules": "",
+   "consequence": "The Court rules on. The Tithe continues.",
+   "later": "S28: the Court rules (s28-court-rules). Survivors may resist in a later campaign.",
+   "fallback": "Offer a rescue: the Stilled, the Choir, or a Stormborn crew comes for them.",
+   "keywords": "lose, defeat, surrender, empty choir, court wins, captured, sealed by court",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin",
+      "court"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "court"
+    },
+    {
+     "flag": "resistance",
+     "set": "ended"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-refuse-toll",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "The chosen Ringer refuses the Great Toll",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Giving up your name and your character is a lot to ask, and refusing must stay a real option.",
+   "tells": "A long pause after you explain the Great Toll in private.",
+   "readAloud": "The bell waits. It has waited four hundred years; it can wait for you to be sure.",
+   "response": "Honour it completely: no Toll is taken and the Concord does not happen. The party may seal the Key, ask another willing character, postpone, or choose another course. A refused Toll cancels the ringing: nothing is rung, nothing is lost.",
+   "rules": "",
+   "consequence": "The Concord waits for someone willing, or doesn't happen.",
+   "later": "S27: the Second Dawn, a postponement, or a willing NPC (s27-corin-voice, s27-maudrin-voice).",
+   "fallback": "",
+   "keywords": "refuse, great toll, no, decline, ringer, sacrifice, won't"
+  },
+  {
+   "id": "s27-release-choir",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "They sing the Cantor's verse at the end",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "If Ossa rang and the verse was learned, the finale is a natural time to free the Choir.",
+   "tells": "Someone remembers the verse from Session 2.",
+   "readAloud": "Far away, under a lake so still it holds the sky, a woman sings her own name, and stops singing.",
+   "response": "A sincere commemoration of a dead person, after Ossa rang, releases Ondra and the remaining Choir. If the verse was never learned, Mother Sallow can rebuild it from the restored ledger.",
+   "rules": "",
+   "consequence": "The Drowned Choir is released.",
+   "later": "S28: Mother Sallow sings the last verse with Ila on the ferry-dock.",
+   "fallback": "",
+   "keywords": "verse, cantor, choir, release, sing, ondra, drowned",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "choir",
+     "in": [
+      "resting",
+      "hunting"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "verse",
+     "set": "sung"
+    },
+    {
+     "flag": "choir",
+     "set": "released"
+    }
+   ]
+  },
+  {
+   "id": "s28-ledger",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "They return to Pellmoor",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The story began on a dock with a girl and a humming bundle.",
+   "tells": "Players ask what became of Ila and Mother Sallow.",
+   "readAloud": "The Mere is so still the ships look painted on it, as always. On the oldest dock, a young woman in a ferry coat that finally fits her is counting the masts.",
+   "response": "Two NPC scenes and a closing question. Ila (if not Tithed; the ila flag tells you) keeps the ledger and may become the ferry-folk's Ringer; Mother Sallow reads Davin's name aloud at last if Ossa rang; Brother Eld confesses, leaves, or is gone (check the eld flag). Ansel retires to the coast; Tobias Quill is Tithed by his own office, or is a friend. Then the Landing: Brannagh, Sela, Venn. Close on: \"Who keeps the ledger now?\"",
+   "rules": "",
+   "consequence": "Act I's threads close.",
+   "later": "",
+   "fallback": "",
+   "keywords": "pellmoor, return, ila, mother sallow, epilogue, ledger, home",
+   "when": [
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s28-new-world",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "They see the Stormwall open",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "If Thrane rang and the ending stabilised it, Corvane is no longer hidden.",
+   "tells": "Players ask what happens to the ships and the trade now.",
+   "readAloud": "From the Pellmouth you can see it: where the wall of storm stood for four hundred years there is only weather now, grey and ordinary, and beyond it a sail, and another, and another.",
+   "response": "Over a few years the Stormwall thins to ordinary sea. The Landing Charter can't hold; ships go wherever they like. Ask each player what their character makes of a Corvane joined to the world: a Stormborn going home, a Bellfolk seeing the sea for the first time, a Lander staying for good.",
+   "rules": "",
+   "consequence": "Corvane joins the Forgotten Realms in earnest.",
+   "later": "A hook for a next campaign: the Realms come to Corvane, and not all of them are friendly.",
+   "fallback": "",
+   "keywords": "stormwall, open, sea, ships, faerun, world, future, trade",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "concord",
+      "sealed"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "stormwall",
+     "set": "thinning"
+    }
+   ]
+  },
+  {
+   "id": "s28-who-rules",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "They decide who rules the Ninefold Shore",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "With Maudrin gone or beaten, the Court, the Dawn Order and the Ironhorn all move.",
+   "tells": "Players ask what happens in Hallowmere.",
+   "readAloud": "Hallowmere’s terraces are full of people looking up, waiting to be told who speaks for them now.",
+   "response": "Rook (if she won the duel and lives) leads a restored Dawn Order; Tristan Vesk wants the Chancellor's chair; Kessa, if alive, wants the Tithe-taxes ended on the steppe. The party's allies and promises decide who gets the party's backing. Close on: \"Who will rule the Ninefold Shore?\"",
+   "rules": "",
+   "consequence": "The Ninefold Shore has new rulers, chosen with the party’s weight behind someone.",
+   "later": "",
+   "fallback": "",
+   "keywords": "rule, court, chancellor, tristan, rook, kessa, hallowmere, future, government",
+   "when": [
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    },
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s28-return-jars",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "They return the Tithed memories",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "With the Court broken, the vault of jars can finally be opened by their owners.",
+   "tells": "Players ask about the Blanks, Lysse, Bet or Mother Sallow's wedding day.",
+   "readAloud": "Bet Ostrow opens a small labelled jar in the grey vault, and smells bread, and finally knows why she has cried at that smell for seventy years.",
+   "response": "Owners who open their own jars get their memories back whole. Jonah remembers his mother's face if she is found; Lysse recovers what was filed under other names; Mother Sallow gets her wedding day back. Jars shipped abroad by the Coster are a thread for another day. A jar smashed or burned in Act III cannot be returned (s28-jars-destroyed).",
+   "rules": "",
+   "consequence": "The Tithe is undone, one jar at a time.",
+   "later": "",
+   "fallback": "",
+   "keywords": "jars, tithe, return memories, blanks, vault, restore, bet, lysse, jonah",
+   "when": [
+    {
+     "flag": "jars",
+     "in": [
+      "intact"
+     ]
+    },
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "concord",
+      "sealed",
+      "struck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "jars",
+     "set": "returned"
+    }
+   ]
+  },
+  {
+   "id": "s24-letters-in-the-case",
+   "title": "They find Maudrin's letters in the Key's case",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The case has a lining, and someone has been writing letters.",
+   "tells": "The party holds the Key's case and opens it.",
+   "readAloud": "Under the Key, folded into the grey lining, lie forty years of letters, none sealed, all addressed to Haldric Mose.",
+   "response": "The letters tell, in Maudrin's careful hand, that Haldric is her son and that she watched him grow from across a hall. They are the evidence for s24-haldric-truth and the letters Haldric finds in the Aftermath. The letters also record that she never opened the Key's recess because the Court's stones are tuned to it.",
+   "rules": "",
+   "consequence": "The party has proof of Haldric's parentage and a clue to her motive.",
+   "later": "S24: s24-haldric-truth. S28: s28-haldric-rook.",
+   "fallback": "",
+   "keywords": "letters, case, haldric, lining, proof",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-give-maudrin-the-key",
+   "title": "They give Maudrin the Key",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Some parties trust her to seal it.",
+   "tells": "Players ask what happens if she seals.",
+   "readAloud": "The case is heavy in your hands. Maudrin watches it as one watches a child on a ledge.",
+   "response": "She takes it, gently. She will not strike. She goes down to the stairs with her Hushmen; the party is welcome to follow. The decision about what she does with it is not yet taken: it goes to s26.",
+   "rules": "",
+   "consequence": "Maudrin holds the Key by the party's choice.",
+   "later": "S26: s26-stop-the-strike, s26-walk-away, or help her seal (s26-help-seal).",
+   "fallback": "",
+   "keywords": "give key, hand over, trust, maudrin, seal",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "maudrin"
+    }
+   ]
+  },
+  {
+   "id": "s24-deal-with-maudrin",
+   "title": "They make a deal with Maudrin at the summit",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Her Final Offer is tempting: everything already Tithed, returned to them.",
+   "tells": "Players ask what she will give.",
+   "readAloud": "“Everything on the list,” Maudrin says. “Every jar, every name. I will sign it. And you will walk down the hill and let me seal the stairs.”",
+   "response": "If the group chooses this, it ends its resistance: the Court secures the Key and seals the stairs. She keeps her word about the bargain and about nothing else. This is the Empty Choir route. Do not let the dice or a clock decide it; ask the table.",
+   "rules": "",
+   "consequence": "The Court holds the Key; the resistance ends.",
+   "later": "S27: the Empty Choir (s27-empty-choir).",
+   "fallback": "",
+   "keywords": "deal, final offer, maudrin, surrender, empty choir",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "resistance",
+     "set": "ended"
+    },
+    {
+     "flag": "key",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s24-maudrin-as-voice",
+   "title": "Maudrin offers to be the Seventh's voice",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "She has nothing left but her penance.",
+   "tells": "Maudrin is beaten or has been listened to.",
+   "readAloud": "“If it must be a name,” she says, “then I have more than most to give.”",
+   "response": "Only if she offers freely and the party agrees. She pays the Great Toll in the Concord; the party must have all six bells rung and the Key. No agreement, no Concord. She is not a PC and may be refused.",
+   "rules": "",
+   "consequence": "The Concord has a willing Ringer.",
+   "later": "S27: s27-maudrin-voice.",
+   "fallback": "",
+   "keywords": "maudrin, penance, voice, great toll",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit",
+      "captured"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-kill-haldric",
+   "title": "They kill Haldric",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Haldric stands with the Court at the summit.",
+   "tells": "The party presses Haldric.",
+   "readAloud": "Haldric falls on one knee. “I did not know,” he says, which is not an answer to anything.",
+   "response": "Haldric dies. His knights surrender or flee. Maudrin, if present, sees it.",
+   "rules": "",
+   "consequence": "Haldric is dead.",
+   "later": "S28: no Haldric; Rook or the Order choose a captain.",
+   "fallback": "",
+   "keywords": "kill haldric, knight, death",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "haldric",
+     "in": [
+      "knight",
+      "disgraced"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "haldric",
+     "set": "dead"
+    }
+   ]
+  },
+  {
+   "id": "s24-corin-arrives-hostile",
+   "title": "Enemy Corin reaches the summit",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "He wants the Key for the Concord and does not trust the party.",
+   "tells": "Corin is an enemy and the party holds the Key.",
+   "readAloud": "Corin comes over the stones with two Tongue-Hounds at heel, hammer ringing. “Give me the Key. You will not do it right.”",
+   "response": "A three-sided fight: Corin wants the Key, Maudrin wants it too. Corin stops if someone tells him the Concord cost is his own name (he understands). Run enc-s24-summit-corin.",
+   "rules": "",
+   "consequence": "Corin is in the fight.",
+   "later": "S26: Corin may race the party to the bell (s26-corin-cracks-the-lullaby).",
+   "fallback": "",
+   "keywords": "corin, enemy, summit, hounds",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "enemy"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-kill-corin",
+   "title": "They kill Corin at the summit",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A hostile Corin can be struck down.",
+   "tells": "The party presses a Bloodied Corin.",
+   "readAloud": "The hammer rings on the stone, once, and goes still.",
+   "response": "Corin dies. The Notes pass to the party; the Bellwrights turn cold; the hounds go still.",
+   "rules": "",
+   "consequence": "Corin is dead.",
+   "later": "S28: no Corin in the epilogue; his workshop is shuttered.",
+   "fallback": "",
+   "keywords": "kill corin, death, summit",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "enemy"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "dead"
+    },
+    {
+     "flag": "notes",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 3
+    }
+   ]
+  },
+  {
+   "id": "s24-allies-hold-the-stones",
+   "title": "The allies hold the stones",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The same allies who came to the Strike stand at the summit.",
+   "tells": "Allies are present.",
+   "readAloud": "Behind you the stones of the Tor fill with friends.",
+   "response": "Each ally holds a stone of the ring: the Cantor's vial gives Advantage on Wisdom saves against Frightened; the Cult keeps the summit quiet; the Stilled block the stairs against Hushmen. At 3 allies the party picks the flank; at 6 Maudrin has no reserve. Do not delete creatures.",
+   "rules": "",
+   "consequence": "The allies act.",
+   "later": "S25: allies who go down the stairs pay.",
+   "fallback": "",
+   "keywords": "allies, stones, summit, hold",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "allies",
+     "min": 3
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-for-the-court",
+   "title": "They hold the summit for the Court",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "They joined Maudrin's column.",
+   "tells": "The party marched with Maudrin.",
+   "readAloud": "Maudrin stands behind you, small and grey. “Let them come.”",
+   "response": "Corin's Bellwrights and any Ironhorn hold the stones against the Court. The party fights beside Maudrin. After the fight she seals the stairs. Run enc-s24-for-the-court.",
+   "rules": "",
+   "consequence": "The Court holds the summit.",
+   "later": "S26: help Maudrin seal (s26-help-seal). S27: the Empty Choir.",
+   "fallback": "",
+   "keywords": "for the court, side, join, summit",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "resistance",
+     "in": [
+      "ended"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-remnant",
+   "title": "The Court remnant holds the stones",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Maudrin is gone, but her Wardens are not.",
+   "tells": "Maudrin was captured or killed.",
+   "readAloud": "Tristan Vesk stands at the stones with the Wardens in a silent line. “She was wrong, and she is not here, and I am.”",
+   "response": "The Court remnant under Tristan holds the stairs. They surrender if Tristan yields or the Key is shown. Run enc-s24-remnant.",
+   "rules": "",
+   "consequence": "The Court's remnant is broken or yields.",
+   "later": "S25: the stairs. S28: Tristan's chair.",
+   "fallback": "",
+   "keywords": "remnant, tristan, wardens, summit",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "captured",
+      "dead"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s24-maudrin-flees-down",
+   "title": "Maudrin goes down the stairs",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Bloodied, she heads for the bell.",
+   "tells": "She is Bloodied.",
+   "readAloud": "She turns and goes down, one hand on the wall, and the Hush rises to meet her.",
+   "response": "She walks, does not run. The party can pursue. Her Hushmen seal the stairs behind her (enc-s25-sealers).",
+   "rules": "",
+   "consequence": "She is ahead of the party.",
+   "later": "S25: the stairs. S26: she is at the bell.",
+   "fallback": "",
+   "keywords": "flee, retreat, stairs, maudrin",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s25-reach-the-bottom",
+   "title": "They reach the bottom of the stairs",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The descent ends at the great bell.",
+   "tells": "The party has paid the stairs.",
+   "readAloud": "The last step is wider than the others, and at the bottom a bell the size of a house hangs in the dark.",
+   "response": "The shrine is reached. The Hush speaks to each in their own voice. The party can now ring or seal Ysh if they hold the Key; Maudrin may be waiting.",
+   "rules": "",
+   "consequence": "The shrine is reached.",
+   "later": "S26: the Seventh Bell.",
+   "fallback": "",
+   "keywords": "bottom, shrine, bell, arrive",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [
+    {
+     "flag": "shrine",
+     "in": [
+      "unreached"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s25-teleport-to-the-shrine",
+   "title": "They Teleport or Dimension Door to the Hush chamber",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "High-level casters skip the stairs.",
+   "tells": "A caster prepares Teleport.",
+   "readAloud": "One blink and the cold of the shrine is on your face.",
+   "response": "It works only if they have seen the chamber (Scrying, Dream, or a character who stood at the bottom: Viewed Once); Dimension Door needs a visualised spot; otherwise it fails. The party avoids the stairs price. The Hush speaks to the arriving party.",
+   "rules": "Teleport (7th): Viewed Once = Off Target risk; Dimension Door (4th): a visualised spot.",
+   "consequence": "The party reaches the shrine.",
+   "later": "S26: as normal.",
+   "fallback": "",
+   "keywords": "teleport, dimension door, shrine, skip, stairs",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [],
+   "effects": [
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s25-sealers-on-the-stairs",
+   "title": "The Court's sealers hold the stairs",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Maudrin sealed the stairs behind her.",
+   "tells": "She went down first.",
+   "readAloud": "The stairs end in a wall of grey gloves and silence-stone.",
+   "response": "A Court company with Wardens seals the stairs: they want the party to turn back. Run enc-s25-sealers. They surrender if Maudrin is captured or the Key is shown.",
+   "rules": "",
+   "consequence": "The sealers are broken or the party turns back.",
+   "later": "S26: the bell.",
+   "fallback": "",
+   "keywords": "sealers, stairs, wardens, court",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s25-sleepless-on-the-stairs",
+   "title": "The Sleepless gather on the stairs",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Mirel was never rung.",
+   "tells": "The Sleepless stir.",
+   "readAloud": "On every step stands someone's fear, patient as a statue.",
+   "response": "Run enc-s25-sleepless. They dissolve if Mirel rings (there is no bell here) or if the Cult hums.",
+   "rules": "",
+   "consequence": "The Sleepless are dealt with or avoided.",
+   "later": "S27: they gather again during the sealing minute.",
+   "fallback": "",
+   "keywords": "sleepless, stairs, mirel unrung",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s25-turn-back",
+   "title": "They turn back at the price",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The price stops some tables cold.",
+   "tells": "Players hesitate at the first step.",
+   "readAloud": "The first step is warm, as if someone had just stood on it.",
+   "response": "No penalty: they may turn back. Offer the foundry chute. Nobody is made to pay.",
+   "rules": "",
+   "consequence": "The party chooses another way.",
+   "later": "S26: the chute or a delay.",
+   "fallback": "",
+   "keywords": "turn back, refuse, stairs, hesitate",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s25-read-the-steps",
+   "title": "They read the memories on the steps",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "Each step carries a memory.",
+   "tells": "Players study the carvings.",
+   "readAloud": "On the forty-first step is the face of a woman you have never met, laughing at a joke.",
+   "response": "Study, Intelligence (Investigation) DC 13: one carving is a Tithed or sold memory; Jonah's mother's face is carved on one, a clue for the Aftermath. The party may witness, not take.",
+   "rules": "Study, Intelligence (Investigation) DC 13.",
+   "consequence": "A glimpse of a lost memory.",
+   "later": "S28: Jonah's mother (s28-return-jars).",
+   "fallback": "",
+   "keywords": "steps, carvings, memory, read",
+   "sessionId": "sb-8272ccffe0002037",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s26-grapple-the-key",
+   "title": "They take the Key from Maudrin at the bell",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "A grapple or a disarm ends the race before it starts.",
+   "tells": "A player moves next to her and asks about the case.",
+   "readAloud": "The Key comes away from her glove with a sound like a drawn breath. She does not reach for it.",
+   "response": "She strikes with her action while adjacent to Ysh with the Key uncased; interrupt her before then. Grappling her, knocking the Key from her hand (DC 17 Strength (Athletics) or Dexterity (Sleight of Hand) as a Utilize action), bargaining or blocking her route all work. On success the party holds the Key and Maudrin stops fighting.",
+   "rules": "DC 17 as above. Counterspell can't stop the strike: it is not a spell. Initiative; her strike is her action on her turn.",
+   "consequence": "The party holds the Key at the bell.",
+   "later": "S26 continues with the party's choice (s26-the-choice).",
+   "fallback": "",
+   "keywords": "take key, grapple, disarm, bell, maudrin",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s26-parley-at-the-bell",
+   "title": "They talk with Maudrin at the bell",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "She talks before she fights.",
+   "tells": "Someone lowers a weapon.",
+   "readAloud": "“I will seal it,” she says, “and no one will wake it. Don't make me choose what comes after.”",
+   "response": "Let her make her case: the Court's stones are tuned to the Key, and sealing the stairs, not the Key, is her plan. She will agree to a seal and a witness. If the table freezes, she hesitates one heartbeat and says a name: Cassia, or her grandmother Ilse.",
+   "rules": "Influence (Persuasion) DC 20 (her Intelligence 20); she offers terms for the Court's survival.",
+   "consequence": "A truce at the bell, on terms.",
+   "later": "S27: whatever the table decides.",
+   "fallback": "",
+   "keywords": "parley, talk, maudrin, bell, terms",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin",
+      "party"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s26-kill-maudrin-at-bell",
+   "title": "They kill Maudrin at the bell",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "The last threat to the Seventh is her.",
+   "tells": "Weapons come out at the bell.",
+   "readAloud": "The Key falls out of her hand and rings once on the stone.",
+   "response": "She dies. If she had not struck, the Key falls and the party takes it; killing her after a strike cannot undo the sound. Her Hushmen yield.",
+   "rules": "",
+   "consequence": "Maudrin is dead and the Key is free.",
+   "later": "S27: the party's choice. S28: Tristan Vesk.",
+   "fallback": "",
+   "keywords": "kill maudrin, bell, death",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "dead"
+    },
+    {
+     "flag": "key",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s26-walk-away",
+   "title": "They walk away from the bell",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Some tables decide the cost is too high.",
+   "tells": "Players lower their weapons and step back.",
+   "readAloud": "Maudrin watches you go up the stairs. “Thank you,” she says. She means it.",
+   "response": "If the group chooses to end its resistance, Maudrin seals the stairs; the Court holds the Key. This is the Empty Choir. Do not push it. If the table prefers to keep fighting, play escape or rescue.",
+   "rules": "",
+   "consequence": "The Court secures the Key and the stairs.",
+   "later": "S27: the Empty Choir (s27-empty-choir).",
+   "fallback": "",
+   "keywords": "walk away, retreat, surrender, empty choir",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "resistance",
+     "set": "ended"
+    },
+    {
+     "flag": "key",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s26-help-seal",
+   "title": "They help Maudrin seal the stairs",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "The party sided with the Court.",
+   "tells": "Players follow Maudrin down.",
+   "readAloud": "You stand with her at the bell while the Hushmen close the stairs behind you.",
+   "response": "The party helps seal the shrine. The Key stays in Court custody and the stairs close. This is the Court's victory.",
+   "rules": "",
+   "consequence": "The Court seals the shrine with the party's help.",
+   "later": "S27: the Empty Choir.",
+   "fallback": "",
+   "keywords": "help seal, side with maudrin, court, stairs",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin",
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "ended"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s26-maudrin-leaves-with-key",
+   "title": "Maudrin leaves the shrine with the Key",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "She seals and goes.",
+   "tells": "Maudrin turns away from the bell.",
+   "readAloud": "The Key goes back in its case. “Not today,” she says to the bell.",
+   "response": "She walks back up the stairs with the Key and her Hushmen. The party can follow or let her go. The Court holds the Key; the group's resistance is not ended.",
+   "rules": "",
+   "consequence": "The Court holds the Key; resistance continues.",
+   "later": "S27: a rescue or theft chapter (s27-rescue-chapter).",
+   "fallback": "",
+   "keywords": "leave, retreat, key, court, maudrin",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "key",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s26-winter-figure-empty-hands",
+   "title": "The winter-moment figure waits with empty hands",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The figure from S11 stands at the bell's foot.",
+   "tells": "Maudrin holds the Key.",
+   "readAloud": "At the foot of the bell stands one of you, older, with open hands and no Key, waiting.",
+   "response": "Ask that player what they feel; don't explain. The promised figure holds the Key and smiles only if the party holds it (s26-the-choice); otherwise the hands are empty.",
+   "rules": "",
+   "consequence": "A vision, an invitation.",
+   "later": "S27: the future depends on the Key.",
+   "fallback": "",
+   "keywords": "winter moment, figure, vision, empty hands",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "maudrin"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s26-corin-races-to-the-bell",
+   "title": "Corin races for the bell",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "He wants the Concord, and he has no patience.",
+   "tells": "Corin is an enemy or follows them.",
+   "readAloud": "Footsteps behind you, running, and a hammer ringing against the wall.",
+   "response": "Corin has the Notes but not the Key. He tries to take it from whoever holds it. If he reaches the bell with the Key before all six rang, he seats it early and the lullaby cracks (s26-corin-cracks-the-lullaby). Stop him.",
+   "rules": "",
+   "consequence": "A race.",
+   "later": "S26: s26-corin-cracks-the-lullaby, or he yields.",
+   "fallback": "",
+   "keywords": "corin, race, key, bell",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "refused",
+      "enemy"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s26-corin-cracks-the-lullaby",
+   "title": "Corin seats the Key too soon",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "No one stopped him.",
+   "tells": "Corin reaches the bell with the Key.",
+   "readAloud": "He does not strike it. He seats the Key as the Notes describe, and the chord is not whole, and the bell cracks.",
+   "response": "The incomplete tuning cracks the lullaby: Ysh is struck. Oum wakes. Corin pays what he can. The players choose Remake or Unmake at S27.",
+   "rules": "",
+   "consequence": "Ysh is struck; Oum wakes.",
+   "later": "S27: the Unbound (s27-oum-answers).",
+   "fallback": "",
+   "keywords": "corin, early, crack, wake, ysh",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "refused",
+      "enemy"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party",
+      "maudrin"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "struck"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    }
+   ]
+  },
+  {
+   "id": "s26-help-ringer-falls",
+   "title": "A character falls at the bell",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The finale is dangerous.",
+   "tells": "A character drops.",
+   "readAloud": "Your friend is on the stone, and Maudrin's hand has stopped.",
+   "response": "See any-pc-dies: Revivify within 1 minute works; no Toll or stairs cost on the dead; an interrupted rite transfers nothing.",
+   "rules": "",
+   "consequence": "A character is out.",
+   "later": "S27: a replacement Ringer may step in.",
+   "fallback": "",
+   "keywords": "dead, fall, ringer, revive",
+   "sessionId": "sb-2fce596a41a06436",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s27-oum-answers",
+   "title": "They answer Oum",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Oum asks direct questions and the players answer.",
+   "tells": "Ysh is struck.",
+   "readAloud": "“Who is ringing my lullaby? I have been dreaming a very long time. Is the dream finished? Is it time to wake?”",
+   "response": "Pause for a table discussion. Oum answers truthfully and never lies. Maudrin, if present, may argue for her vision but does not decide for the table. Unmake needs everyone's agreement; otherwise Remake, with each player naming one thing that survives.",
+   "rules": "",
+   "consequence": "The table has the choice.",
+   "later": "S27: s27-oum-remake or s27-oum-unmake.",
+   "fallback": "",
+   "keywords": "oum, answer, dream, wake, question",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "ysh",
+     "in": [
+      "struck"
+     ]
+    },
+    {
+     "flag": "oum",
+     "in": [
+      "asleep"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s27-oum-remake",
+   "title": "They choose Remake",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Oum rebuilds the world from its best memories.",
+   "tells": "The table cannot agree or prefers life.",
+   "readAloud": "The bells ring once more, and each of you names something that will not be lost.",
+   "response": "Each player names one thing that survives. Some of the old world is lost, but the new one is better. Dreams return.",
+   "rules": "",
+   "consequence": "The world is remade.",
+   "later": "S28: rebuild scenes around what the players preserved (s28-remake-rebuild).",
+   "fallback": "",
+   "keywords": "remake, rebuild, survive, oum",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "ysh",
+     "in": [
+      "struck"
+     ]
+    },
+    {
+     "flag": "oum",
+     "in": [
+      "asleep"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "oum",
+     "set": "remake"
+    }
+   ]
+  },
+  {
+   "id": "s27-oum-unmake",
+   "title": "They choose Unmake",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Everyone agrees to let the dream end.",
+   "tells": "Every player says yes, out loud.",
+   "readAloud": "The light is soft, and everyone you loved is standing in it.",
+   "response": "Unmake needs every player to agree; if any hesitates, it is Remake. The party is given a last night to say goodbye.",
+   "rules": "",
+   "consequence": "The dream ends.",
+   "later": "S28: one last night of farewells (s28-last-night). No years-later scenes.",
+   "fallback": "",
+   "keywords": "unmake, end, light, farewell, oum",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "ysh",
+     "in": [
+      "struck"
+     ]
+    },
+    {
+     "flag": "oum",
+     "in": [
+      "asleep"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "oum",
+     "set": "unmake"
+    }
+   ]
+  },
+  {
+   "id": "s27-dreams-return",
+   "title": "Dreams return",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Hush is struck, sealed or tuned.",
+   "tells": "The party slept by the shrine.",
+   "readAloud": "That night, for the first time in weeks, you dream.",
+   "response": "Dreams return to every sleeper who lost one at S17B. Under the Empty Choir they stay lost.",
+   "rules": "",
+   "consequence": "Dreams return.",
+   "later": "S28.",
+   "fallback": "",
+   "keywords": "dreams, return, hush, cult",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "dreams",
+     "in": [
+      "lost"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "concord",
+      "sealed",
+      "struck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "dreams",
+     "set": "returned"
+    }
+   ]
+  },
+  {
+   "id": "s27-corin-voice",
+   "title": "Corin becomes the Seventh's voice",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "He offered, and the party agreed.",
+   "tells": "All six bells rang and Corin is an ally.",
+   "readAloud": "“Three generations,” Corin says. “It's an old song.” He touches the Key.",
+   "response": "Ask the table, not the dice. Corin pays the Great Toll himself; nobody remembers his name. The Concord is completed. No PC retires.",
+   "rules": "",
+   "consequence": "The Concord with Corin as voice.",
+   "later": "S28: nobody remembers Corin, but the workshop rings (s28-corin-epilogue).",
+   "fallback": "",
+   "keywords": "corin, voice, great toll, concord",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "bell_vaer",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    },
+    {
+     "flag": "corin",
+     "in": [
+      "ally"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "concord"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "corin",
+     "set": "voice"
+    },
+    {
+     "flag": "stormwall",
+     "set": "thinning"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-maudrin-voice",
+   "title": "Maudrin becomes the Seventh's voice",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "She offered penance and the party agreed.",
+   "tells": "All six bells rang; Maudrin is at the bell and not hostile.",
+   "readAloud": "“I kept it as it was,” she says. “Let me keep it as it should be.”",
+   "response": "Only if she offers freely and the party agrees. She pays the Great Toll; nobody remembers her name. The Concord is completed. No PC retires.",
+   "rules": "",
+   "consequence": "The Concord with Maudrin as voice.",
+   "later": "S28: the Court has no head (s28-tristan-chair).",
+   "fallback": "",
+   "keywords": "maudrin, voice, penance, concord",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "bell_vaer",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit",
+      "captured"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "ysh",
+     "set": "concord"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "maudrin",
+     "set": "voice"
+    },
+    {
+     "flag": "stormwall",
+     "set": "thinning"
+    },
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s27-ringer-dies-at-rite",
+   "title": "The Ringer dies before the rite is complete",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "The finale is dangerous.",
+   "tells": "The Ringer drops at the bell.",
+   "readAloud": "The Key falls from your friend's hand, still humming.",
+   "response": "An interrupted rite transfers nothing: no Toll is paid. Revivify within a minute brings them back; another willing Ringer may step in. The dead do not pay.",
+   "rules": "",
+   "consequence": "Nothing transfers; the rite can start again.",
+   "later": "See any-pc-dies.",
+   "fallback": "",
+   "keywords": "ringer dies, rite, interrupt",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s27-refuse-a-toll-mid-rite",
+   "title": "The striker refuses mid-rite",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "A player may stop.",
+   "tells": "A player stops at the bell.",
+   "readAloud": "The Key hangs in the air. You do not move.",
+   "response": "Refusing before the strike cancels it: nothing is rung. After the strike the Toll is owed. The group may seal, postpone, or choose another path.",
+   "rules": "",
+   "consequence": "The ringing is cancelled.",
+   "later": "S27: the Second Dawn or postponement.",
+   "fallback": "",
+   "keywords": "refuse, toll, mid-rite, cancel",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s27-postpone",
+   "title": "They postpone the choice",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The table is not ready.",
+   "tells": "Players want a break.",
+   "readAloud": "The bell waits. It has waited four hundred years.",
+   "response": "They leave with the Key, unsealed, and keep adventuring. The Hush grows louder; no new clocks, no punishment.",
+   "rules": "",
+   "consequence": "The decision waits.",
+   "later": "S27: they can return.",
+   "fallback": "",
+   "keywords": "postpone, wait, leave, break",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s27-rescue-chapter",
+   "title": "A rescue or theft chapter",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "The Court holds the Key but the resistance is not ended.",
+   "tells": "Key is Court custody.",
+   "readAloud": "The Court's sealed stairs are a vault of grey stone. Somewhere inside is the Key.",
+   "response": "Run a one-session heist or rescue (Ansel, the Stilled, the Choir, a Stormborn crew). When it succeeds, set the Key to With the party. Until then it stays with the Court.",
+   "rules": "",
+   "consequence": "A new chapter.",
+   "later": "When it succeeds: the Concord, the Second Dawn and the Unbound reopen.",
+   "fallback": "",
+   "keywords": "rescue, heist, theft, key, court",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "when": [
+    {
+     "flag": "key",
+     "in": [
+      "court"
+     ]
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-last-night",
+   "title": "The last night",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "In the Unmake, farewells go here.",
+   "tells": "The dream is unmade.",
+   "readAloud": "The light is soft on the water, and everyone you loved is standing in it.",
+   "response": "Play the farewells: each player says goodbye to one person. No years-later scenes. The last line belongs to the table.",
+   "rules": "",
+   "consequence": "The last night.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "last night, unmake, farewell",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "oum",
+     "in": [
+      "unmake"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-remake-rebuild",
+   "title": "Rebuild around what survived",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "In the Remake, each player named something.",
+   "tells": "The dream is remade.",
+   "readAloud": "A city of grey stone grows gold at the edges.",
+   "response": "Build scenes around what each player preserved. Give each one scene.",
+   "rules": "",
+   "consequence": "A new world.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "remake, rebuild, preserved",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "oum",
+     "in": [
+      "remake"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-court-rules",
+   "title": "The Court rules on",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Empty Choir.",
+   "tells": "The Court holds the Key.",
+   "readAloud": "Dawn never fully comes to Hallowmere.",
+   "response": "Ila keeps the ledger in secret. The Tithe continues. Survivors may resist in a later campaign.",
+   "rules": "",
+   "consequence": "The Court rules.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "court, rules, empty choir",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "resistance",
+     "in": [
+      "ended"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "court"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-landing-fleets",
+   "title": "The fleets reach Pellmoor",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Thrane rang, the sea opened.",
+   "tells": "Thrane has rung.",
+   "readAloud": "Where a wall of storm stood there are sails.",
+   "response": "The Landing: Brannagh, Sela, Venn; three fleets in a month; the Charter strains. Close with the Pilots' Hall.",
+   "rules": "",
+   "consequence": "The Landing changes.",
+   "later": "A hook for the next campaign.",
+   "fallback": "",
+   "keywords": "landing, fleets, pellmoor, thrane",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-jars-destroyed",
+   "title": "The smashed jars",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The jars were burned.",
+   "tells": "Hallowmere burned.",
+   "readAloud": "A grey vault of broken glass.",
+   "response": "The memories scattered; only a Remake can mend them.",
+   "rules": "",
+   "consequence": "The jars are gone.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "jars, destroyed, burned",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "jars",
+     "in": [
+      "destroyed"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-maudrin-trial",
+   "title": "Maudrin is tried",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The party decides her fate.",
+   "tells": "She is captured.",
+   "readAloud": "She sits in the Dawn Order's hall in plain grey.",
+   "response": "Trial, exile, or Tithe by her own office. The table decides.",
+   "rules": "",
+   "consequence": "A decision.",
+   "later": "s28-maudrin-exile.",
+   "fallback": "",
+   "keywords": "maudrin, trial",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "captured"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-maudrin-exile",
+   "title": "Maudrin goes into exile",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "She is sent away.",
+   "tells": "She is captured.",
+   "readAloud": "A ship at the Pellmouth.",
+   "response": "She sails.",
+   "rules": "",
+   "consequence": "Maudrin is exiled.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "exile, maudrin",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "captured"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "maudrin",
+     "set": "exiled"
+    }
+   ]
+  },
+  {
+   "id": "s28-tristan-chair",
+   "title": "Tristan takes the chair",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "With Maudrin gone, the Chancellor's chair is empty.",
+   "tells": "Maudrin is gone.",
+   "readAloud": "Tristan Vesk sits in the chair a little too carefully.",
+   "response": "He bargains with whoever holds the Key.",
+   "rules": "",
+   "consequence": "Tristan rules.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "tristan, chancellor",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "captured",
+      "dead",
+      "exiled",
+      "voice"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-kessa-storm",
+   "title": "Kessa's last storm",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Kessa wants to die in weather.",
+   "tells": "Kessa lives.",
+   "readAloud": "He rides out into the rain.",
+   "response": "If the table wants it, Kessa dies in the open air in a storm, his clans around him.",
+   "rules": "",
+   "consequence": "Kessa dies.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "kessa, storm",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    },
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "kessa",
+     "set": "dead"
+    }
+   ]
+  },
+  {
+   "id": "s28-yenna-lamp",
+   "title": "The lamp on her tent",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The lamp reached Yenna.",
+   "tells": "Yenna has the lamp.",
+   "readAloud": "The lamp hangs on a pole outside her tent, and she laughs.",
+   "response": "Garrow's laugh is heard once more.",
+   "rules": "",
+   "consequence": "Garrow's laugh.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "yenna, lamp, garrow",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "yenna"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-corin-epilogue",
+   "title": "Corin's epilogue",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Corin finds peace, or not.",
+   "tells": "Corin lives.",
+   "readAloud": "The workshop is quiet.",
+   "response": "Corin finds peace.",
+   "rules": "",
+   "consequence": "Corin is at rest.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "corin",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "ally",
+      "refused"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-ilam-jonah",
+   "title": "Ilam and Jonah",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The family is whole.",
+   "tells": "Ilam is an ally.",
+   "readAloud": "Jonah holds a wooden bird.",
+   "response": "Ilam stays with his son. Jonah remembers his mother's face if she is found.",
+   "rules": "",
+   "consequence": "A family.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "ilam, jonah",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "ilam",
+     "in": [
+      "ally"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-haldric-rook",
+   "title": "Haldric and Rook",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Dawn Order chooses.",
+   "tells": "Haldric lives.",
+   "readAloud": "The Order's hall is full.",
+   "response": "Haldric reads Maudrin's letters; Rook leads a restored Order, or is exiled if she lost.",
+   "rules": "",
+   "consequence": "The Order has a captain.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "haldric, rook, order",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "haldric",
+     "in": [
+      "knight",
+      "disgraced",
+      "turned"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-ila-nessa",
+   "title": "Ila meets her mother",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Calla rang, Nessa remembers.",
+   "tells": "Calla has rung.",
+   "readAloud": "A woman at the ferry-dock stops, mid-step.",
+   "response": "Ila meets her mother, Nessa.",
+   "rules": "",
+   "consequence": "A reunion.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "ila, nessa, mother",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "oum",
+     "not": [
+      "unmake"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-stairs-payers",
+   "title": "Those who paid the stairs",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Allies who went down carry it.",
+   "tells": "Allies paid.",
+   "readAloud": "Ilam says nothing about a morning he cannot remember.",
+   "response": "Each ally who paid the stairs names one thing they cannot quite remember.",
+   "rules": "",
+   "consequence": "The stairs remembered.",
+   "later": "The end.",
+   "fallback": "",
+   "keywords": "stairs, ally, paid",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "when": [],
+   "effects": []
+  }
+ ],
+ "briefs": [
+  {
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "pressure": "Maudrin waits at the summit with her Hushmen in a silent line; the Hush rises from the stairway like a tide. If she holds the Key she is the Keeper; if the party holds it she negotiates. If she is dead or captured, Tristan holds the stones. If the party delays, she goes down to seal the stairs herself. Allies who came (Session 22) are in position and each has an objective.",
+   "endOn": "Who goes down the stairs?",
+   "npcs": "Chancellor Maudrin Vesk, Ser Haldric Mose, Corin Aldeth, Captain Dessa Rook, Yenna Garrow, Ilam Bray, Tristan Vesk",
+   "checklist": [
+    "Check the Forecast: which bells are rung, and who holds the Key",
+    "Note Maudrin's actual HP carried from the Strike (use the same fraction)",
+    "Decide each ally's objective before play",
+    "State Maudrin's threat to strike aloud before she can act at the bell",
+    "Pick the summit version: Haldric, Corin hostile, or the remnant",
+    "Level up to 11 after the summit is resolved"
+   ],
+   "encounters": [
+    "enc-s24-summit",
+    "enc-s24-summit-haldric",
+    "enc-s24-summit-corin",
+    "enc-s24-remnant",
+    "enc-s24-for-the-court"
+   ],
+   "rules": [
+    "Grappled",
+    "Counterspell",
+    "Silence",
+    "Frightened",
+    "Utilize"
+   ]
+  },
+  {
+   "sessionId": "sb-8272ccffe0002037",
+   "pressure": "The Hush is cracking: every hour the lullaby falters. If Mirel was never rung, the Sleepless stir on the hillside above; if it was, the hillside is quiet and the Hush itself sings. The stairs take memories from everyone who walks them, once per lifetime. The Court's sealers wait on the landings if Maudrin went down first.",
+   "endOn": "What did the stairs take from you?",
+   "npcs": "The Hush, Corin Aldeth, Ilam Bray, Maudrin Vesk (if she fled down), Court sealers",
+   "checklist": [
+    "Read the stairs' price aloud at the first step: the first nineteen steps free, one memory per twenty, one DC 13 Wisdom save at step 20 (cap five on a failure, two on a success), once per character, ever",
+    "Check the ledger for anyone who already paid part of the stairs",
+    "Have the foundry chute ready as the no-cost alternative",
+    "Never make an absent player's character pay; children are never asked to descend",
+    "Written for four level-11 characters"
+   ],
+   "encounters": [
+    "enc-s25-sealers",
+    "enc-s25-sleepless"
+   ],
+   "rules": [
+    "Falling",
+    "Exhaustion",
+    "Frightened"
+   ]
+  },
+  {
+   "sessionId": "sb-2fce596a41a06436",
+   "pressure": "If Maudrin holds the Key, she is at the bell with whatever HP she had left, and her hand is shaking. If the party holds it, the lullaby asks them to be quiet, and the figure from the winter-moment is waiting. Corin may be racing for the bell.",
+   "endOn": "What will you ring, and what will it cost you?",
+   "npcs": "Chancellor Maudrin Vesk, the Hush, the figure from the winter-moment, Corin Aldeth, Haldric",
+   "checklist": [
+    "Open the Forecast and read which endings are open, with their prices",
+    "Have the Session 11 note: what the player felt seeing their older self",
+    "Plan a table break before any irreversible choice",
+    "Talk to the likely Ringer in private about the Great Toll before the session if the Concord is open",
+    "Pick the bell version: Haldric, no Haldric, or Corin hostile"
+   ],
+   "encounters": [
+    "enc-s26-bell",
+    "enc-s26-bell-no-haldric",
+    "enc-s26-bell-corin"
+   ],
+   "rules": [
+    "Grappled",
+    "Counterspell",
+    "Initiative",
+    "Utilize"
+   ]
+  },
+  {
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "pressure": "Nothing moves until the party chooses. Above, allies wait. Oum is dreaming, or waking. If Mirel was never rung, the Sleepless may gather during a seal.",
+   "endOn": "What will survive?",
+   "npcs": "Oum, the Cantor, Maudrin Vesk, Corin Aldeth, the Ringer",
+   "checklist": [
+    "Ask the Ringer in private before the Great Toll; refusal must cost nothing",
+    "For the Unbound: Unmake needs everyone's agreement; otherwise Remake with each player naming one thing preserved",
+    "Use the ring ledger for what each ending restores; nothing unearned",
+    "Set the state: ysh, key, oum, resistance",
+    "Dreams return in every ending but the Empty Choir"
+   ],
+   "encounters": [
+    "enc-s27-seal-minute"
+   ],
+   "rules": [
+    "Counterspell",
+    "Heroic Inspiration"
+   ]
+  },
+  {
+   "sessionId": "sb-5c4fc37d597122e9",
+   "pressure": "The world reacts to the ending: the Court falls or holds, the Seam widens or stays narrow, and every NPC still alive wants one last word. In the Unmake there is only the last night.",
+   "endOn": "What will you ring next?",
+   "npcs": "Ila Harrow, Mother Sallow, Brother Eld, Captain Dessa Rook, Thane Oru Kessa, Yenna Garrow, Lysse Carrow, Bet Ostrow, Brannagh Wick, Master Orsolo Venn, Tristan Vesk",
+   "checklist": [
+    "Check each NPC's state in World state before narrating their epilogue",
+    "In the Unmake, put farewells in the last night and skip years-later scenes",
+    "Two NPC scenes and a closing question per session",
+    "Ask each player for their character's last words"
+   ],
+   "encounters": [],
+   "rules": [
+    "Heroic Inspiration"
+   ]
+  }
+ ],
+ "encounters": [
+  {
+   "id": "enc-s24-summit",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Maudrin's last stand at the summit",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 3
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "The Wardens expose their stones to shut down casters near Maudrin; the Hushmen screen the stairway; Maudrin uses Silence on the strongest caster, then Hush Bolts, and walks down the stairs once Bloodied. Legendary actions: Silence Step, Toll of Quiet.",
+   "exit": "She retreats when Bloodied; her Hushmen surrender if she orders it, or if the party holds the Key. Allies take objectives.",
+   "scale": "Written for four level-10 characters. Remove a Warden for a lighter fight, add one for a harder one.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    },
+    {
+     "flag": "haldric",
+     "not": [
+      "knight"
+     ]
+    },
+    {
+     "flag": "corin",
+     "not": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s24-summit-haldric",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Maudrin's last stand (with Haldric)",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 2
+    },
+    {
+     "name": "Ser Haldric Mose",
+     "statblock": "sb_haldric",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "Haldric duels the strongest fighter while the knights hold the stairway; the Wardens' stones shut down casters. He hesitates if he sees the Key in the party's hands.",
+   "exit": "Haldric yields to the truth of his parentage (s24-haldric-truth); the Hushmen surrender when Maudrin does.",
+   "scale": "Written for four level-10 characters. Drop the knights for a lighter fight.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    },
+    {
+     "flag": "haldric",
+     "in": [
+      "knight"
+     ]
+    },
+    {
+     "flag": "corin",
+     "not": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s24-summit-corin",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "A three-sided fight at the summit (Corin hostile)",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    },
+    {
+     "name": "Corin Aldeth",
+     "statblock": "sb_corin",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    },
+    {
+     "name": "Tongue-Hound",
+     "statblock": "sb_tongue_hound",
+     "base": "Hell Hound",
+     "cr": "3",
+     "count": 2
+    }
+   ],
+   "tactics": "Corin and Maudrin are enemies of each other as well as the party; Corin wants the Key and the hounds go for the case.",
+   "exit": "Corin stops if told the cost of the Concord is his own name.",
+   "scale": "Written for four level-10 characters. Remove the hounds for a lighter fight.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    },
+    {
+     "flag": "corin",
+     "in": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s24-remnant",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "The Court remnant at the stones",
+   "creatures": [
+    {
+     "name": "Tristan Vesk",
+     "statblock": "sb_court_agent",
+     "base": "Spy",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Ser Haldric Mose",
+     "statblock": "sb_haldric",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 7
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 4
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "Tristan hangs back; Wardens hold the stairs; knights charge.",
+   "exit": "They yield if Tristan yields or the Key is shown.",
+   "scale": "Written for four level-10 characters. Remove three Wardens for a lighter fight.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "captured",
+      "dead"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s24-for-the-court",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Corin's line at the stones",
+   "creatures": [
+    {
+     "name": "Corin Aldeth",
+     "statblock": "sb_corin",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    },
+    {
+     "name": "Tongue-Hound",
+     "statblock": "sb_tongue_hound",
+     "base": "Hell Hound",
+     "cr": "3",
+     "count": 5
+    },
+    {
+     "name": "Ironhorn Champion",
+     "statblock": "sb_ironhorn_champion",
+     "base": "Gladiator",
+     "cr": "5",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Rider",
+     "statblock": "sb_ironhorn_rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 4
+    }
+   ],
+   "tactics": "Corin's line and any Ironhorn hold the stones; the hounds go for the Wardens' cases.",
+   "exit": "Corin yields on Bloodied.",
+   "scale": "Written for four level-10 characters. Remove the Ironhorn for a lighter fight.",
+   "when": [
+    {
+     "flag": "resistance",
+     "in": [
+      "ended"
+     ]
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s25-sealers",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "The Court's sealers",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 6
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 4
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 12
+    }
+   ],
+   "tactics": "They block the stairs with Wardens' stones and a wall of knights; they do not pursue past the first landing.",
+   "exit": "They yield if Maudrin is captured or the Key is shown.",
+   "scale": "Written for four level-11 characters. Remove two Wardens for a lighter fight.",
+   "when": [
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s25-sleepless",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "The Sleepless on the stairs",
+   "creatures": [
+    {
+     "name": "Sleepless",
+     "statblock": "sb_sleepless",
+     "base": "Wraith",
+     "cr": "5",
+     "count": 7
+    }
+   ],
+   "tactics": "They stand on the steps; they gaze and touch when approached.",
+   "exit": "They dissolve at dawn or when the Cult hums.",
+   "scale": "Written for four level-11 characters. Five for a lighter fight.",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s26-bell",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "The Seventh Bell (Haldric present)",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 5
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 6
+    },
+    {
+     "name": "Ser Haldric Mose",
+     "statblock": "sb_haldric",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    }
+   ],
+   "tactics": "Maudrin works toward the recess; Wardens screen her; Haldric duels. She talks before she fights.",
+   "exit": "Bargain, grapple, disarm or block her; she yields when the Key leaves her hand. She never retreats from the shrine.",
+   "scale": "Written for four level-11 characters. Remove two Wardens for a lighter fight.",
+   "when": [
+    {
+     "flag": "haldric",
+     "in": [
+      "knight"
+     ]
+    },
+    {
+     "flag": "corin",
+     "not": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s26-bell-no-haldric",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "The Seventh Bell (Haldric turned or absent)",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 5
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 4
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "As the main scene without Haldric.",
+   "exit": "As the main scene.",
+   "scale": "Written for four level-11 characters. Remove two Wardens for a lighter fight.",
+   "when": [
+    {
+     "flag": "haldric",
+     "not": [
+      "knight"
+     ]
+    },
+    {
+     "flag": "corin",
+     "not": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s26-bell-corin",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "The Seventh Bell (Corin hostile)",
+   "creatures": [
+    {
+     "name": "Maudrin Vesk, Keeper of the Seventh",
+     "statblock": "sb_maudrin_keeper",
+     "base": "Archmage",
+     "cr": "12",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 4
+    },
+    {
+     "name": "Corin Aldeth",
+     "statblock": "sb_corin",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    },
+    {
+     "name": "Tongue-Hound",
+     "statblock": "sb_tongue_hound",
+     "base": "Hell Hound",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 2
+    }
+   ],
+   "tactics": "Corin races Maudrin to the bell. Interrupt either.",
+   "exit": "Corin stops if told the cost is his own name.",
+   "scale": "Written for four level-11 characters. Remove the hounds for a lighter fight.",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "enemy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s27-seal-minute",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "The Sleepless gather during the sealing minute",
+   "creatures": [
+    {
+     "name": "Sleepless",
+     "statblock": "sb_sleepless",
+     "base": "Wraith",
+     "cr": "5",
+     "count": 7
+    }
+   ],
+   "tactics": "They form from the fears of whoever holds the seal and surround them.",
+   "exit": "They dissolve when the seal completes, or if the Cult hums.",
+   "scale": "Written for four level-11 characters. Five for a lighter fight.",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ]
+  }
+ ]
+}

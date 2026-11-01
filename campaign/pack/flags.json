@@ -1,0 +1,1366 @@
+[
+ {
+  "id": "bell_vaer",
+  "group": "Bells",
+  "label": "Vaer, the dawn bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "Vaer's Belfry, Hallowmere. Toll: a memory of a dawn you loved. Ringing issues a Silence Warrant."
+ },
+ {
+  "id": "bell_ossa",
+  "group": "Bells",
+  "label": "Ossa, the memory bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "Ossa Belfry, Old Pellmoor, under the Mere. Toll: a memory of someone who has died."
+ },
+ {
+  "id": "bell_calla",
+  "group": "Bells",
+  "label": "Calla, the harvest bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "The Old Granary, Kell's Crossing. Toll: a Gift."
+ },
+ {
+  "id": "bell_hieme",
+  "group": "Bells",
+  "label": "Hieme, the winter bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "The Frost Spire, Glassreach. Toll: a Memory."
+ },
+ {
+  "id": "bell_thrane",
+  "group": "Bells",
+  "label": "Thrane, the storm bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "The Lightning Shafts, Brassfall. Toll: a Sense for one day. Ringing loosens the Stormwall."
+ },
+ {
+  "id": "bell_mirel",
+  "group": "Bells",
+  "label": "Mirel, the dream bell",
+  "initial": "unrung",
+  "options": [
+   {
+    "id": "unrung",
+    "label": "Silent"
+   },
+   {
+    "id": "rung",
+    "label": "Rung"
+   }
+  ],
+  "help": "The Sleeping Hall, Vael Tor. Toll: a Fear for one day."
+ },
+ {
+  "id": "ysh",
+  "group": "Bells",
+  "label": "Ysh, the Seventh",
+  "initial": "unstruck",
+  "options": [
+   {
+    "id": "unstruck",
+    "label": "Unstruck"
+   },
+   {
+    "id": "struck",
+    "label": "Struck — Oum wakes"
+   },
+   {
+    "id": "sealed",
+    "label": "Key sealed in the Hush"
+   },
+   {
+    "id": "concord",
+    "label": "Concord tuning complete"
+   }
+  ],
+  "help": "The Hush Shrine under Vael Tor. Every ending begins here."
+ },
+ {
+  "id": "shrine",
+  "group": "Bells",
+  "label": "The Hush Shrine",
+  "initial": "unreached",
+  "options": [
+   {
+    "id": "unreached",
+    "label": "Not reached"
+   },
+   {
+    "id": "reached",
+    "label": "Reached by the party"
+   }
+  ],
+  "help": "Set when the party comes down the Stairs of the Hush (S25). Every ending needs someone at the shrine."
+ },
+ {
+  "id": "oum",
+  "group": "Bells",
+  "label": "Oum, the sleeper under Ysh",
+  "initial": "asleep",
+  "options": [
+   {
+    "id": "asleep",
+    "label": "Asleep"
+   },
+   {
+    "id": "remake",
+    "label": "Woken: the world remade"
+   },
+   {
+    "id": "unmake",
+    "label": "Woken: the world unmade"
+   }
+  ],
+  "help": "Only the Hush Unbound wakes Oum. Unmake needs every player to agree; otherwise Remake."
+ },
+ {
+  "id": "t_ossa",
+  "group": "Tongues and the Key",
+  "label": "Ossa's Tongue",
+  "initial": "ila",
+  "options": [
+   {
+    "id": "ila",
+    "label": "With Ila"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "belfry",
+    "label": "At the Ossa Belfry"
+   },
+   {
+    "id": "armory",
+    "label": "Dawn Order armory"
+   },
+   {
+    "id": "court",
+    "label": "Maudrin / Court vault"
+   },
+   {
+    "id": "venn",
+    "label": "Sold to Master Venn (still on the Mere)"
+   },
+   {
+    "id": "abroad",
+    "label": "Gone through the Seam"
+   },
+   {
+    "id": "lost",
+    "label": "Lost"
+   }
+  ]
+ },
+ {
+  "id": "t_vaer",
+  "group": "Tongues and the Key",
+  "label": "Vaer's Tongue",
+  "initial": "armory",
+  "options": [
+   {
+    "id": "armory",
+    "label": "Dawn Order armory (Haldric)"
+   },
+   {
+    "id": "rook",
+    "label": "With Captain Rook"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "bell",
+    "label": "Left in Vaer's bell"
+   },
+   {
+    "id": "court",
+    "label": "Court custody"
+   }
+  ]
+ },
+ {
+  "id": "t_calla",
+  "group": "Tongues and the Key",
+  "label": "Calla's Tongue",
+  "initial": "vault",
+  "options": [
+   {
+    "id": "vault",
+    "label": "Tithe-Ledger Room"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "bell",
+    "label": "Left at the Old Granary"
+   },
+   {
+    "id": "court",
+    "label": "Court custody (moved)"
+   }
+  ]
+ },
+ {
+  "id": "t_mirel",
+  "group": "Tongues and the Key",
+  "label": "Mirel's Tongue",
+  "initial": "librarian",
+  "options": [
+   {
+    "id": "librarian",
+    "label": "With the Librarian"
+   },
+   {
+    "id": "courier",
+    "label": "With the Librarian's courier at Vael Tor"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "bell",
+    "label": "Left at the Sleeping Hall"
+   },
+   {
+    "id": "court",
+    "label": "Court custody"
+   }
+  ]
+ },
+ {
+  "id": "t_hieme",
+  "group": "Tongues and the Key",
+  "label": "The Frost Tongue",
+  "initial": "sexton",
+  "options": [
+   {
+    "id": "sexton",
+    "label": "In the Sexton's crown"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "bell",
+    "label": "Left at the Frost Spire"
+   },
+   {
+    "id": "court",
+    "label": "Court custody (Isolde)"
+   }
+  ]
+ },
+ {
+  "id": "t_thrane",
+  "group": "Tongues and the Key",
+  "label": "Thrane's Tongue",
+  "initial": "kessa",
+  "options": [
+   {
+    "id": "kessa",
+    "label": "Kessa's Tongue-Hall"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "bell",
+    "label": "Left at the Lightning Shafts"
+   },
+   {
+    "id": "court",
+    "label": "Court custody"
+   }
+  ]
+ },
+ {
+  "id": "key",
+  "group": "Tongues and the Key",
+  "label": "The Tuning Key",
+  "initial": "palace",
+  "options": [
+   {
+    "id": "palace",
+    "label": "Maudrin's palace vault"
+   },
+   {
+    "id": "maudrin",
+    "label": "Carried by Maudrin"
+   },
+   {
+    "id": "party",
+    "label": "With the party"
+   },
+   {
+    "id": "court",
+    "label": "Secured by the Court"
+   },
+   {
+    "id": "sealed",
+    "label": "Sealed in the Hush"
+   },
+   {
+    "id": "spent",
+    "label": "Used in the final rite"
+   },
+   {
+    "id": "tristan",
+    "label": "Held by Tristan Vesk"
+   }
+  ]
+ },
+ {
+  "id": "ila",
+  "group": "People",
+  "label": "Ila Harrow",
+  "initial": "free",
+  "options": [
+   {
+    "id": "free",
+    "label": "Free in Pellmoor"
+   },
+   {
+    "id": "party",
+    "label": "Travelling with the party"
+   },
+   {
+    "id": "hidden",
+    "label": "Hidden and safe"
+   },
+   {
+    "id": "arrested",
+    "label": "Arrested by the Court"
+   },
+   {
+    "id": "tithed",
+    "label": "Tithed (a Blank)"
+   }
+  ]
+ },
+ {
+  "id": "eld",
+  "group": "People",
+  "label": "Brother Eld",
+  "initial": "chapel",
+  "options": [
+   {
+    "id": "chapel",
+    "label": "At his chapel"
+   },
+   {
+    "id": "forgiven",
+    "label": "Forgiven, now an informant"
+   },
+   {
+    "id": "fled",
+    "label": "Exposed, fled to Hallowmere"
+   },
+   {
+    "id": "gone",
+    "label": "Left Pellmoor"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "quill",
+  "group": "People",
+  "label": "Hushman Tobias Quill",
+  "initial": "routine",
+  "options": [
+   {
+    "id": "routine",
+    "label": "Routine visit"
+   },
+   {
+    "id": "suspicious",
+    "label": "Suspicious"
+   },
+   {
+    "id": "tithecase",
+    "label": "Party is a Tithe-case"
+   },
+   {
+    "id": "bribed",
+    "label": "Bribed"
+   },
+   {
+    "id": "ally",
+    "label": "Turned ally"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "court_eye",
+  "group": "People",
+  "label": "What the Court knows of the party",
+  "initial": "unknown",
+  "options": [
+   {
+    "id": "unknown",
+    "label": "Nothing"
+   },
+   {
+    "id": "recorded",
+    "label": "Faces recorded"
+   },
+   {
+    "id": "enemy",
+    "label": "Named enemies"
+   }
+  ]
+ },
+ {
+  "id": "maudrin_favor",
+  "group": "People",
+  "label": "Maudrin's bargain",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "No bargain yet"
+   },
+   {
+    "id": "owed",
+    "label": "Party owes her a favor"
+   },
+   {
+    "id": "refused",
+    "label": "Refused her bargain"
+   },
+   {
+    "id": "repaid",
+    "label": "Favor repaid"
+   },
+   {
+    "id": "broken",
+    "label": "Favor broken"
+   }
+  ]
+ },
+ {
+  "id": "duel",
+  "group": "People",
+  "label": "The oath-duel",
+  "initial": "pending",
+  "options": [
+   {
+    "id": "pending",
+    "label": "Not yet held"
+   },
+   {
+    "id": "rook",
+    "label": "Rook won"
+   },
+   {
+    "id": "haldric",
+    "label": "Haldric won"
+   },
+   {
+    "id": "failed",
+    "label": "Rook's case failed for now"
+   }
+  ]
+ },
+ {
+  "id": "haldric",
+  "group": "People",
+  "label": "Ser Haldric Mose",
+  "initial": "knight",
+  "options": [
+   {
+    "id": "knight",
+    "label": "Senior knight"
+   },
+   {
+    "id": "disgraced",
+    "label": "Disgraced, knights deserted"
+   },
+   {
+    "id": "turned",
+    "label": "Turned against Maudrin"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "jonah",
+  "group": "People",
+  "label": "Jonah Bray",
+  "initial": "unmet",
+  "options": [
+   {
+    "id": "unmet",
+    "label": "Not met"
+   },
+   {
+    "id": "reunited",
+    "label": "Reunited with Ilam"
+   },
+   {
+    "id": "custody",
+    "label": "In Court custody"
+   },
+   {
+    "id": "safe",
+    "label": "Safe elsewhere"
+   }
+  ]
+ },
+ {
+  "id": "ilam",
+  "group": "People",
+  "label": "Ilam Bray",
+  "initial": "hushman",
+  "options": [
+   {
+    "id": "hushman",
+    "label": "Still a Hushman"
+   },
+   {
+    "id": "ally",
+    "label": "Deserted, an ally"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "tessa",
+  "group": "People",
+  "label": "Tessa Caddock (Wren's daughter)",
+  "initial": "held",
+  "options": [
+   {
+    "id": "held",
+    "label": "Held in the Hall of Tithes"
+   },
+   {
+    "id": "rescued",
+    "label": "Rescued"
+   },
+   {
+    "id": "unused",
+    "label": "Not used at this table"
+   }
+  ]
+ },
+ {
+  "id": "wren",
+  "group": "People",
+  "label": "Wren Caddock",
+  "initial": "spy",
+  "options": [
+   {
+    "id": "spy",
+    "label": "Court spy among the Bellwrights"
+   },
+   {
+    "id": "confessed",
+    "label": "Confessed to the party"
+   },
+   {
+    "id": "ally",
+    "label": "Out, an ally"
+   },
+   {
+    "id": "exposed",
+    "label": "Exposed to the Court"
+   }
+  ]
+ },
+ {
+  "id": "diary",
+  "group": "People",
+  "label": "Edda Thorne's diary",
+  "initial": "vault",
+  "options": [
+   {
+    "id": "vault",
+    "label": "In the Tithe-Ledger Room"
+   },
+   {
+    "id": "party",
+    "label": "Party has it"
+   },
+   {
+    "id": "read",
+    "label": "Read and left behind"
+   },
+   {
+    "id": "court",
+    "label": "Court moved it"
+   }
+  ]
+ },
+ {
+  "id": "notes",
+  "group": "People",
+  "label": "Edda Thorne's Notes",
+  "initial": "bellwrights",
+  "options": [
+   {
+    "id": "bellwrights",
+    "label": "With Corin and the Bellwrights"
+   },
+   {
+    "id": "party",
+    "label": "Party has them"
+   }
+  ]
+ },
+ {
+  "id": "sexton",
+  "group": "People",
+  "label": "The Glass Sexton (Imber Vesk)",
+  "initial": "frozen",
+  "options": [
+   {
+    "id": "frozen",
+    "label": "Frozen in the glass"
+   },
+   {
+    "id": "freed",
+    "label": "Freed, frail"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   },
+   {
+    "id": "court",
+    "label": "Taken by the Court"
+   }
+  ]
+ },
+ {
+  "id": "isolde",
+  "group": "People",
+  "label": "Lady Isolde Drave",
+  "initial": "city",
+  "options": [
+   {
+    "id": "city",
+    "label": "In Hallowmere"
+   },
+   {
+    "id": "following",
+    "label": "Following the party north"
+   },
+   {
+    "id": "retreated",
+    "label": "Retreated to the Court"
+   },
+   {
+    "id": "captured",
+    "label": "Captured"
+   },
+   {
+    "id": "ally",
+    "label": "Turned informant"
+   }
+  ]
+ },
+ {
+  "id": "kessa",
+  "group": "People",
+  "label": "Thane Oru Kessa",
+  "initial": "alive",
+  "options": [
+   {
+    "id": "alive",
+    "label": "Alive, dying"
+   },
+   {
+    "id": "eased",
+    "label": "Sickness eased"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "kessa_oath",
+  "group": "People",
+  "label": "Oath to Kessa",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "No oath"
+   },
+   {
+    "id": "sworn",
+    "label": "Sworn to return Thrane's Tongue"
+   },
+   {
+    "id": "kept",
+    "label": "Kept"
+   },
+   {
+    "id": "broken",
+    "label": "Broken"
+   }
+  ]
+ },
+ {
+  "id": "corin",
+  "group": "People",
+  "label": "Corin Aldeth",
+  "initial": "unmet",
+  "options": [
+   {
+    "id": "unmet",
+    "label": "Not met"
+   },
+   {
+    "id": "ally",
+    "label": "Allied"
+   },
+   {
+    "id": "refused",
+    "label": "Refused, following"
+   },
+   {
+    "id": "enemy",
+    "label": "Against the party"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   },
+   {
+    "id": "voice",
+    "label": "The Seventh's voice"
+   }
+  ]
+ },
+ {
+  "id": "maudrin",
+  "group": "People",
+  "label": "Chancellor Maudrin Vesk",
+  "initial": "hallowmere",
+  "options": [
+   {
+    "id": "hallowmere",
+    "label": "In Hallowmere"
+   },
+   {
+    "id": "marching",
+    "label": "Marching on the Tor"
+   },
+   {
+    "id": "summit",
+    "label": "At the summit or stairs"
+   },
+   {
+    "id": "captured",
+    "label": "Captured"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   },
+   {
+    "id": "exiled",
+    "label": "Exiled"
+   },
+   {
+    "id": "voice",
+    "label": "The Seventh's voice"
+   }
+  ]
+ },
+ {
+  "id": "choir",
+  "group": "People",
+  "label": "The Drowned Choir",
+  "initial": "hunting",
+  "options": [
+   {
+    "id": "hunting",
+    "label": "Hunting the forgetful"
+   },
+   {
+    "id": "resting",
+    "label": "Resting (Ossa rung)"
+   },
+   {
+    "id": "released",
+    "label": "Released"
+   }
+  ]
+ },
+ {
+  "id": "verse",
+  "group": "People",
+  "label": "The Cantor's release verse",
+  "initial": "unknown",
+  "options": [
+   {
+    "id": "unknown",
+    "label": "Not learned"
+   },
+   {
+    "id": "learned",
+    "label": "Learned"
+   },
+   {
+    "id": "sung",
+    "label": "Sung"
+   }
+  ]
+ },
+ {
+  "id": "stilled_trust",
+  "group": "People",
+  "label": "The Stilled",
+  "initial": "no",
+  "options": [
+   {
+    "id": "no",
+    "label": "No bond"
+   },
+   {
+    "id": "wary",
+    "label": "Wary: they were harmed"
+   },
+   {
+    "id": "yes",
+    "label": "Trust earned (they'll walk)"
+   }
+  ]
+ },
+ {
+  "id": "blanks",
+  "group": "People",
+  "label": "The Blanks",
+  "initial": "no",
+  "options": [
+   {
+    "id": "no",
+    "label": "Not helped"
+   },
+   {
+    "id": "yes",
+    "label": "Helped (they'll march)"
+   },
+   {
+    "id": "turned",
+    "label": "Turned against the party"
+   }
+  ]
+ },
+ {
+  "id": "warrant",
+  "group": "People",
+  "label": "Silence Warrant",
+  "initial": "no",
+  "options": [
+   {
+    "id": "no",
+    "label": "None"
+   },
+   {
+    "id": "yes",
+    "label": "Issued against the Ringer"
+   }
+  ]
+ },
+ {
+  "id": "act4",
+  "group": "People",
+  "label": "Act IV route",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "Not chosen"
+   },
+   {
+    "id": "A",
+    "label": "Brassfall first"
+   },
+   {
+    "id": "B",
+    "label": "Vael Tor first"
+   }
+  ]
+ },
+ {
+  "id": "resistance",
+  "group": "People",
+  "label": "The party against the Court",
+  "initial": "active",
+  "options": [
+   {
+    "id": "active",
+    "label": "Still resisting"
+   },
+   {
+    "id": "ended",
+    "label": "Resistance ended"
+   }
+  ],
+  "help": "Only the table ends it, by choice (a surrender, a deal with Maudrin, a decision to walk away). A lost fight is escape or capture, never this."
+ },
+ {
+  "id": "venn",
+  "group": "Pellmoor and the Seam",
+  "label": "Master Orsolo Venn",
+  "initial": "unmet",
+  "options": [
+   {
+    "id": "unmet",
+    "label": "Not met"
+   },
+   {
+    "id": "courting",
+    "label": "Made the party an offer"
+   },
+   {
+    "id": "dealt",
+    "label": "Did business with the party"
+   },
+   {
+    "id": "exposed",
+    "label": "Exposed, now hostile"
+   }
+  ]
+ },
+ {
+  "id": "writ",
+  "group": "Pellmoor and the Seam",
+  "label": "Writ of passage",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "None"
+   },
+   {
+    "id": "invited",
+    "label": "Court invitation (counts as a writ)"
+   },
+   {
+    "id": "forged",
+    "label": "Forged writ"
+   },
+   {
+    "id": "writ",
+    "label": "True writ"
+   }
+  ],
+  "help": "Foreigners need one to travel inland past the Mere road."
+ },
+ {
+  "id": "stormborn",
+  "group": "Pellmoor and the Seam",
+  "label": "Stormborn friends",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "None yet"
+   },
+   {
+    "id": "harpers",
+    "label": "The Harpers"
+   },
+   {
+    "id": "dawn_mission",
+    "label": "Sister Aurelie’s Dawn Mission"
+   },
+   {
+    "id": "crew",
+    "label": "A Baldurian crew who owe the party"
+   }
+  ],
+  "help": "The Faerûnian ally the party has earned for Act IV (S22). Record the strongest one."
+ },
+ {
+  "id": "aurelie",
+  "group": "Pellmoor and the Seam",
+  "label": "Sister Aurelie Dawnmantle",
+  "initial": "unmet",
+  "options": [
+   {
+    "id": "unmet",
+    "label": "Not met"
+   },
+   {
+    "id": "met",
+    "label": "Met on Strangers’ Row"
+   },
+   {
+    "id": "ally",
+    "label": "Devoted ally (knows about Vaer)"
+   },
+   {
+    "id": "arrested",
+    "label": "Arrested in Hallowmere"
+   }
+  ]
+ },
+ {
+  "id": "pellmoor",
+  "group": "Pellmoor and the Seam",
+  "label": "Pellmoor Landing",
+  "initial": "whole",
+  "options": [
+   {
+    "id": "whole",
+    "label": "Unharmed"
+   },
+   {
+    "id": "siege",
+    "label": "Under Court pressure"
+   },
+   {
+    "id": "changed",
+    "label": "Changed by the siege"
+   },
+   {
+    "id": "evacuated",
+    "label": "Old Shore evacuated"
+   }
+  ]
+ },
+ {
+  "id": "stormwall",
+  "group": "Pellmoor and the Seam",
+  "label": "The Stormwall",
+  "initial": "holding",
+  "options": [
+   {
+    "id": "holding",
+    "label": "Holding; the Seam is narrow"
+   },
+   {
+    "id": "loosened",
+    "label": "Loosened; the Seam is wide"
+   },
+   {
+    "id": "thinning",
+    "label": "Thinning for good"
+   }
+  ]
+ },
+ {
+  "id": "tithe_clock",
+  "group": "Clocks",
+  "label": "Tithe Clock",
+  "initial": 0,
+  "max": 12,
+  "help": "One tick per night the party spends in a Court city. Resets after a week away; deployed checkpoints and stones stay.",
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Hushmen sweep the city; checkpoints on every road."
+   },
+   {
+    "at": 12,
+    "text": "The Court raises the Silence: silence-stones in every street (Part 2.6 suppression zones)."
+   }
+  ]
+ },
+ {
+  "id": "clock_court",
+  "group": "Clocks",
+  "label": "Quiet Court",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: a named checkpoint, a raised district quota, or a Tithe raid on someone the party protects."
+   }
+  ]
+ },
+ {
+  "id": "clock_church",
+  "group": "Clocks",
+  "label": "Ninefold Church",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: a district's quota rises; a charity-house closes its doors to the party's friends."
+   }
+  ]
+ },
+ {
+  "id": "clock_bellwrights",
+  "group": "Clocks",
+  "label": "Bellwrights",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: a workshop opens or is evacuated; a rhyme spreads among children."
+   }
+  ]
+ },
+ {
+  "id": "clock_choir",
+  "group": "Clocks",
+  "label": "Drowned Choir",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: the Choir demands commemoration at a named shore, or drags down someone who sang the wrong names."
+   }
+  ]
+ },
+ {
+  "id": "clock_dawn",
+  "group": "Clocks",
+  "label": "Dawn Order",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: Rook calls a public hearing, or the Order splits."
+   }
+  ]
+ },
+ {
+  "id": "clock_ironhorn",
+  "group": "Clocks",
+  "label": "Ironhorn Compact",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: the Compact closes the Brass Road or raids a Court bronze store."
+   }
+  ]
+ },
+ {
+  "id": "clock_hush",
+  "group": "Clocks",
+  "label": "Hush Cult",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: the Cult recruits a named sleeper; the lullaby cracks louder."
+   }
+  ]
+ },
+ {
+  "id": "clock_ferry",
+  "group": "Clocks",
+  "label": "Ferry-folk and Pilots",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: the Pilots' Hall suspends a crossing, or refuses a ship the Court wants out."
+   }
+  ]
+ },
+ {
+  "id": "clock_landing",
+  "group": "Clocks",
+  "label": "The Landing (foreign traders)",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move: the Vennmark Coster wins an export licence, a new fleet arrives, or a Zhentarim memory-smuggling ring is exposed."
+   }
+  ]
+ },
+ {
+  "id": "clock_stilled",
+  "group": "Clocks",
+  "label": "The Stilled",
+  "initial": 0,
+  "max": 6,
+  "thresholds": [
+   {
+    "at": 6,
+    "text": "Major move (after the thaw): the Stilled send an emissary."
+   }
+  ]
+ },
+ {
+  "id": "allies",
+  "group": "Clocks",
+  "label": "Allies for the Strike",
+  "initial": 0,
+  "max": 6,
+  "help": "One tick for each faction or company that has agreed to stand with the party at the Strike or the summit (S22). Each ally takes an objective, not a creature count.",
+  "thresholds": [
+   {
+    "at": 3,
+    "text": "Enough allies to hold one flank of the Strike: the party chooses which objective they take."
+   },
+   {
+    "at": 6,
+    "text": "A true coalition: the Court cannot hold the Tor road and Maudrin must come in person."
+   }
+  ]
+ },
+ {
+  "id": "rook",
+  "group": "People",
+  "label": "Captain Dessa Rook",
+  "initial": "alive",
+  "options": [
+   {
+    "id": "alive",
+    "label": "Alive"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "ansel",
+  "group": "People",
+  "label": "Ansel Quay (vault steward)",
+  "initial": "alive",
+  "options": [
+   {
+    "id": "alive",
+    "label": "Alive"
+   },
+   {
+    "id": "dead",
+    "label": "Dead"
+   }
+  ]
+ },
+ {
+  "id": "lamp",
+  "group": "People",
+  "label": "Old Garrow's lamp",
+  "initial": "none",
+  "options": [
+   {"id": "none", "label": "Not yet taken"},
+   {"id": "carried", "label": "The party carries it"},
+   {"id": "yenna", "label": "Given to Yenna"},
+   {"id": "kessa", "label": "Kessa holds it"},
+   {"id": "refused", "label": "Garrow's request refused"}
+  ]
+ },
+ {
+  "id": "cult",
+  "group": "People",
+  "label": "The Hush Cult",
+  "initial": "feeding",
+  "options": [
+   {"id": "feeding", "label": "Feeding dreams to the Hush"},
+   {"id": "ceased", "label": "Stopped feeding the Hush"}
+  ]
+ },
+ {
+  "id": "dreams",
+  "group": "People",
+  "label": "The party's dreams",
+  "initial": "kept",
+  "options": [
+   {"id": "kept", "label": "Kept"},
+   {"id": "lost", "label": "Taken by the Hush"},
+   {"id": "returned", "label": "Returned"}
+  ],
+  "help": "Only characters who chose to sleep by the Hush Shrine (S17B) lose a dream. It returns when the Hush is struck, sealed or tuned."
+ },
+ {
+  "id": "jars",
+  "group": "Pellmoor and the Seam",
+  "label": "The Tithe jars",
+  "initial": "intact",
+  "options": [
+   {"id": "intact", "label": "Intact in Hallowmere"},
+   {"id": "destroyed", "label": "Smashed or burned"},
+   {"id": "returned", "label": "Returned to their owners"}
+  ]
+ }
+]

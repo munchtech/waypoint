@@ -1,0 +1,2928 @@
+{
+ "plays": [
+  {
+   "id": "s16a-brassfall-first",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They go to Brassfall first",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Thrane's storms, Kessa's alliance and the lamp of a dead foreman pull east.",
+   "tells": "Players choose the Thrane Road at the end of Act III.",
+   "readAloud": "The mountains are veined with bronze. Old lightning-shafts drop into the earth like the throats of bells. The sky flickers above you, though there are no clouds.",
+   "response": "Branch A runs in full (16A–19A); Vael Tor is compressed later into Sessions 20–21. Both bells matter for the Concord.",
+   "rules": "",
+   "consequence": "The party is on Branch A.",
+   "later": "S20–21: Vael Tor in compressed form. The Forecast tracks both bells.",
+   "fallback": "",
+   "keywords": "brassfall, east, thrane, branch a, go first, mountains",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "act4",
+     "set": "A"
+    }
+   ]
+  },
+  {
+   "id": "s16a-carry-lamp",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They carry Old Garrow's lamp",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "A gruff, funny ghost asks a plain favor (H-20).",
+   "tells": "Players accept the lamp or ask about Yenna.",
+   "readAloud": "\"Right, lads and lasses, you look like you can carry a lamp. My girl's in the Ironhorn foothills, near the camp, with a red horse-skull on her tent. Yenna's her name. Tell her I'm sorry about the collapse. And don't drop it. It's the only thing down here that hums on purpose.\"",
+   "response": "The lamp holds the storm-stone that tethers Garrow. Carrying it lets his ghost rest near his daughter. In exchange he leads them safely through the Old Works, past the unstable shaft and, if they ask, past the Storm-stone Golems. Tell the table plainly that the lamp holds a stone, and stones attract the Thane (H-20).",
+   "rules": "The lamp is a storm-stone: metal near it sparks. Old Garrow uses the 2024 Specter (CR 1) but rarely fights.",
+   "consequence": "A safe path through the mine, and a reason to meet Yenna.",
+   "later": "S17A: Yenna takes the lamp, or Kessa demands the storm-stone for his Tongue-Hall (see the lamp plays there). S28: Garrow's laugh is heard once more if the lamp reached Yenna.",
+   "fallback": "",
+   "keywords": "garrow, lamp, ghost, yenna, carry, favor, old works, h-20",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lamp",
+     "set": "carried"
+    }
+   ]
+  },
+  {
+   "id": "s16a-refuse-lamp",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They refuse Garrow's request",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Some parties won't carry a ghost's tether into an armed camp.",
+   "tells": "Players decline or ignore him.",
+   "readAloud": "Garrow's lamp dims. \"Suit yourselves. Mind the third shaft, then. It's cracked. I'd know.\"",
+   "response": "He withdraws, disappointed, but warns them which shaft is unstable. Declining never triggers the collapse; only entering the visibly cracked passage risks it.",
+   "rules": "Entering the cracked shaft: DC 13 Dexterity save, 3d6 Bludgeoning on a failure, half on a success.",
+   "consequence": "No guide through the mine, and no lamp for the golems to recognise.",
+   "later": "S17A: Yenna meets them without her father's message and is cooler; the party earns her trust by other means. S16A: the golems do not stand aside for them, so the vault is a fight or a skipped room.",
+   "fallback": "",
+   "keywords": "refuse, garrow, no, decline, lamp, ghost",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lamp",
+     "set": "refused"
+    }
+   ]
+  },
+  {
+   "id": "s16a-storm-vault",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They loot the storm-stone vault",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "A room of glittering storm-stones is irresistible, and guarded.",
+   "tells": "Players ask what storm-stones are worth, or pick one up.",
+   "readAloud": "A treasure room of storm-stones, pale blue and humming. Every metal thing you carry sings back at them.",
+   "response": "Picking one up safely takes care; a fumbled stone discharges. Each stone lifted wakes one more Storm-stone Golem (up to three). Storm-stones are illegal to export and smuggled anyway; Mirabar dwarves in Pellmoor pay well, and the Court arrests sellers.",
+   "rules": "Pick up a stone: DC 13 Dexterity check; failure 3d8 Lightning. Encounter: the golems. Prising a golem's shard out (Utilize action, DC 15 Strength (Athletics), once it is Bloodied) deactivates that golem. Wooden weapons do not trigger their Storm-Stone Heart.",
+   "consequence": "Storm-stones in hand and golems to deal with, or a clean retreat.",
+   "later": "Anytime: a stone sold in Pellmoor is any-sell-storm-stone (Landing clock). S17A: Kessa wants stones for his Tongue-Hall and notices who carries them.",
+   "fallback": "If the golems are too much, back out of the room: they do not leave the vault. With Garrow's lamp in hand they stand aside (next play). Without the lamp, a Bloodied golem's shard can be prised out.",
+   "keywords": "storm-stone, vault, treasure, golem, loot, lightning, mine"
+  },
+  {
+   "id": "s16a-stormwall-clue",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They notice the storm-stones hum toward the sea",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "A v6 clue: the dead lightning wants to go where Thrane's storms went.",
+   "tells": "A Stormborn sailor or an Arcana-trained character studies the stones.",
+   "readAloud": "Every storm-stone in the vault hums a little louder when you turn it west, toward the sea, the way a compass needle hums toward north.",
+   "response": "A Stormborn character recognises the sound: the same thunder they sailed through in the Stormwall. Let them guess. Garrow says the stones \"always leaned west, since before my time.\" Corin, later, says the storms \"went to the rim and wait.\"",
+   "rules": "Study action, Intelligence (Arcana or Nature) DC 15, or automatic for a character who crossed the Seam.",
+   "consequence": "The party suspects ringing Thrane will affect the Stormwall.",
+   "later": "S19A or S21: ringing Thrane loosens the Stormwall. S28: new fleets crowd Pellmoor and the Landing Charter strains (s28-landing-fleets).",
+   "fallback": "",
+   "keywords": "stormwall, storm-stone, west, sea, thunder, clue, seam, sailor"
+  },
+  {
+   "id": "s16b-vael-tor-first",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They go to Vael Tor first",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Mirel's Tongue may already be in hand, and the Tor is central.",
+   "tells": "Players choose the marsh road toward the Tor.",
+   "readAloud": "The hill rises alone above the plain, ringed with grey stones. At night, faint lights move among the stones like fireflies. When you close your eyes, you dream of a room full of beds.",
+   "response": "Branch B runs in full (16B–19B); Brassfall is compressed later into Sessions 20–21.",
+   "rules": "",
+   "consequence": "The party is on Branch B.",
+   "later": "S20–21: Brassfall compressed. The Forecast tracks both bells.",
+   "fallback": "",
+   "keywords": "vael tor, mirel, branch b, go first, tor, dreams, sleeping hall",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "act4",
+     "set": "B"
+    }
+   ]
+  },
+  {
+   "id": "s16b-rest-on-tor",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They take a long rest on Vael Tor",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Travellers have to sleep, and the Tor punishes it.",
+   "tells": "Players make camp among the grey stones.",
+   "readAloud": "You dream of a child singing in a language you almost know. When you wake, something is standing at the edge of the firelight wearing the shape of the thing you fear most.",
+   "response": "Warn them before they choose to sleep there. Each sleeper makes the save. Any failure brings a nightmare. At most one Sleepless forms per night, from the fear of the sleeper who failed by the most (5 or more); a character who keeps watch and does not sleep makes no save. Camp inside the Hush Cult's circle (S17B) and no Sleepless forms, at a price.",
+   "rules": "DC 13 Wisdom save per sleeper per long rest on the Tor. Failure: Disadvantage on the first Insight check the next day. Failure by 5 or more: one Sleepless (CR 5) forms, once per night. Calm Emotions on the camp, or Protection from Evil and Good on a sleeper, gives Advantage on the saves.",
+   "consequence": "Rest, at a price.",
+   "later": "H-22: sleepers share the singing child's dream (s16b-stop-the-song). Every Sleepless dissolves into mist once Mirel rings; no new ones form on the Tor afterwards (S19B or S21).",
+   "fallback": "",
+   "keywords": "rest, sleep, camp, long rest, tor, nightmare, dream"
+  },
+  {
+   "id": "s16b-fight-sleepless",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They fight the Sleepless",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Nightmares walk the Tor at night.",
+   "tells": "A Sleepless forms, or two come out of the stones.",
+   "readAloud": "It has your mother's face. Then it has your own face, older. Then it has no face at all.",
+   "response": "Run the encounter. Each Sleepless takes the shape of the nearest sleeper's fear. They dissolve into mist if Mirel rings within a mile, and at dawn. The Gaze's Frightened ends on its own at the end of the target's next turn; Lesser Restoration does not end it (use Calm Emotions or Heroes' Feast for lingering dread).",
+   "rules": "Encounter: Sleepless. Terrifying Gaze: DC 13 Wisdom or Frightened until the end of the target's next turn. Nightmare Touch lowers Hit Point maximum until a Long Rest.",
+   "consequence": "The night is survived; the Tor knows the party is here.",
+   "later": "Every Sleepless stops walking once Mirel rings (S19B or S21).",
+   "fallback": "If the fight goes badly, the Hush Cult's circle (S17B) is a retreat: the Sleepless withdraw from it.",
+   "keywords": "sleepless, fight, nightmare, fear, combat, monster"
+  },
+  {
+   "id": "s16b-courier-bargain",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They bargain with the Librarian's courier for Mirel's Tongue",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "If they didn't take Mirel's Tongue in Hallowmere, the offer comes to them.",
+   "tells": "The party lacks Mirel's Tongue and reaches the Sleeping Hall.",
+   "readAloud": "A figure in archivist's grey stands by the central bed, holding a bone-bound book that has no words. \"The Librarian sends its regards. A dream you have never told anyone, and the Tongue is yours.\"",
+   "response": "The price is a dream the giver has never told anyone, lost to them (the giver names it; it is a Trade in the ledger). The courier also accepts a Gift. A character never has to sell; another may pay instead. If every offer is refused, use s16b-refuse-courier.",
+   "rules": "Record the dream as a Trade (heartkeep weight) or the Gift in the ledger.",
+   "consequence": "The party holds Mirel's Tongue.",
+   "later": "S19B or S21: Mirel can be rung. Concord: one step closer.",
+   "fallback": "",
+   "keywords": "courier, librarian, mirel, tongue, dream, bargain, gift",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "librarian",
+      "courier"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s16b-ring-mirel-now",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They ring Mirel as soon as they reach the bell",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "If they already hold the Tongue, nothing makes them wait.",
+   "tells": "They hold Mirel's Tongue on arrival.",
+   "readAloud": "The bell sings like a lullaby sung by someone who loves you. Every sleeper on the Tor sighs and turns over. The Sleepless dissolve into mist.",
+   "response": "State the Toll first: a Fear, chosen by the Ringer, lost for one day. Losing a fear changes a feeling, not their authority over their character or immunity to magical fear. Move later conversations around the ringing.",
+   "rules": "Record the Toll (Fear, bell Mirel).",
+   "consequence": "Mirel is rung. The Sleepless stop walking. The Hush's lullaby changes key.",
+   "later": "The Court sends Hushmen to the Tor. Concord: one step closer.",
+   "fallback": "",
+   "keywords": "ring mirel, ring now, bell, toll, fear, dream bell",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_mirel",
+     "set": "rung"
+    },
+    {
+     "flag": "t_mirel",
+     "set": "bell"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    },
+    {
+     "flag": "clock_hush",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s17a-lamp-to-yenna",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "They bring the lamp to Yenna Garrow",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Garrow asked, and Yenna is easy to find: the red horse-skull on her tent.",
+   "tells": "The party carried the lamp from the Old Works.",
+   "readAloud": "Yenna takes the lamp in both hands, and for a moment the blue flame steadies, and somewhere very far away an old man laughs.",
+   "response": "She weeps and thanks them. If they tell her what the ghost said, she gives a horse, a bow, or a bargain with her clan. She can smuggle Thrane's Tongue out for a favor (s17a-yenna-smuggles) if Kessa refuses them. Garrow's laugh, very far away, is the last thing the lamp does.",
+   "rules": "Yenna uses the Ironhorn Rider block (CR 3).",
+   "consequence": "A friend inside the Ironhorn camp, and the lamp is where it belongs.",
+   "later": "S22: Yenna's riders are an ally (s22-ally-ironhorn), cutting the Hushmen's retreat at the Strike. S28: Yenna sets the lamp on her tent.",
+   "fallback": "",
+   "keywords": "yenna, lamp, garrow, daughter, red horse-skull, ironhorn, gift",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "none",
+      "carried"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lamp",
+     "set": "yenna"
+    }
+   ]
+  },
+  {
+   "id": "s17a-contest",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "They take Kessa's steppe contest",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Kessa's guests win a wager or buy their dinner.",
+   "tells": "Players accept the wager.",
+   "readAloud": "\"Welcome, rider. You've carried a dead man's lamp into my camp. That makes you my guests, and my guests win a wager or buy their dinner. Win, and you speak to my council. Lose, and you'll leave me something to melt.\"",
+   "response": "A skill challenge: three successes before three failures. Agree a specific, nonessential stake before anyone rolls. Rotate the spotlight; a repeated skill needs a new described approach. Continue until three of either, whatever the party size. Win: Kessa opens the Tongue-Hall and keeps his word. Lose: the staked item is melted and the Hall stays closed; the Champion fights only if the party tries to take the Tongue by force.",
+   "rules": "DC 14 Strength (Athletics), Wisdom (Animal Handling) or Charisma (Performance); Help action allowed. Heroic Inspiration may reroll.",
+   "consequence": "Win: Kessa keeps his word and opens his Tongue-Hall. Lose: the staked item is melted for bronze and the Hall stays closed.",
+   "later": "Win: his private offer follows (s17a-accept-kessa). Lose: theft (s17a-take-thrane), Yenna (s17a-yenna-smuggles) or a duel (s17a-duel-kessa) remain.",
+   "fallback": "",
+   "keywords": "contest, wager, kessa, challenge, skill challenge, race, steppe, bet"
+  },
+  {
+   "id": "s17a-accept-kessa",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "They accept Kessa's bargain",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "He offers his Tongue for a ringing, and wants Maudrin's head and a cure.",
+   "tells": "Kessa speaks in private about his hands.",
+   "readAloud": "\"I'm dying, rider. Thrane's Tongue has been eating my hands since I took it from the Brass Road. Help me with one, and I'll help you with the rest. That's a fair bargain, isn't it?\"",
+   "response": "Kessa lends Thrane's Tongue for the ringing and asks for an oath that they will return it to the Tongue-Hall afterwards. He cannot ring it himself: the Ringer is Lightning-Marked at the Shafts, and a man whose hands the Tongue already blackens would not survive the first strike; his council will not follow a deaf or blind Thane in the Court's shadow either. He believes the Key can cure him because Isolde Drave sold Tithed memories to the Ironhorn, and one of them spoke of it. It cannot, and someone will have to tell him (s22-tell-kessa).",
+   "rules": "Record the oath in the Bargain log.",
+   "consequence": "The party carries Thrane's Tongue under oath.",
+   "later": "S19A or S21: ring Thrane. Then return the Tongue (oath kept) or keep it (oath broken: the Ironhorn will not ride for the party at S22).",
+   "fallback": "",
+   "keywords": "kessa, bargain, accept, oath, thrane tongue, alliance, loan",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "kessa"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "kessa_oath",
+     "set": "sworn"
+    }
+   ]
+  },
+  {
+   "id": "s17a-take-thrane",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "They steal or smuggle Thrane's Tongue",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "If Kessa refuses them or they refuse his terms.",
+   "tells": "Players case the Tongue-Hall or ask Yenna for help.",
+   "readAloud": "The Tongue-Hall is a long tent of white hide. At its centre a bronze clapper hangs from a horse-skull, and it hums.",
+   "response": "Two routes: theft past the riders, or Yenna smuggles it out for a favor. Either way Kessa learns of it by morning. If caught, his Champion fights; Kessa offers a challenge rather than an execution. Kessa knows who took it.",
+   "rules": "Theft: DC 15 Dexterity (Stealth) per character. Yenna: DC 14 Dexterity (Stealth) for her, Advantage if the party distracts the camp.",
+   "consequence": "The party holds Thrane's Tongue and has an angry Thane.",
+   "later": "S22: the Ironhorn will not ally unless the party makes amends. S23: Kessa may bring the horses to the Strike for his own reasons (s23-kessa-intercepts).",
+   "fallback": "",
+   "keywords": "steal, smuggle, thrane, tongue-hall, yenna, theft, take",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "kessa"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s17b-accept-rest",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "They accept the Hush Cult's rest",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Exhausted parties on a nightmare hill find the offer kind.",
+   "tells": "Players are tired, hurt, or tormented by the Sleepless, and the Leader has named the price.",
+   "readAloud": "\"Rest, friends. You're so tired. Why not rest here, where the song is kind?\"",
+   "response": "The Leader states the price in the offer: one night by the Hush Shrine, and the Hush takes a dream from each sleeper, who then cannot dream until the Hush is struck, sealed or tuned. Anyone may refuse; characters of absent players are away and lose nothing. A character who does not sleep (Trance, keeping watch) loses nothing and the Cult is courteous. The Hush stirs.",
+   "rules": "Record each lost dream as Other in the ledger. Not a Toll: only a struck, sealed or tuned Seventh returns it.",
+   "consequence": "A full rest, and a hollow where dreams were. The Hush stirs.",
+   "later": "S27: the Concord, the Second Dawn and the Unbound all return dreams (s27-dreams-return); the Empty Choir does not. The Cult's secret: feeding dreams to the Hush is why it is failing.",
+   "fallback": "",
+   "keywords": "rest, sleep, cult, shrine, dreams, accept, hush cult",
+   "effects": [
+    {
+     "flag": "clock_hush",
+     "add": 1
+    },
+    {
+     "flag": "dreams",
+     "set": "lost"
+    }
+   ],
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s17b-refuse-cult",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "They refuse the Cult and fight",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The Cult defends the shrine from anyone who would disturb it.",
+   "tells": "Players threaten the circle or push toward the shrine.",
+   "readAloud": "The humming stops. Every robed figure turns at once, and their smiles do not change.",
+   "response": "Run the encounter. The Cult fights to protect the shrine, not to kill; they offer rest even mid-fight. Cultists use Command only as 2024 allows (Halt, Grovel, Approach, Drop, Flee), never \"Rest\". The Leader drains dreams only from Charmed or Incapacitated targets.",
+   "rules": "Encounter: four Hush Cultists and a Cult Leader.",
+   "consequence": "The way to the shrine stairs is open.",
+   "later": "S18B: the stairs are unguarded. S22: the Cult is not an ally.",
+   "fallback": "",
+   "keywords": "fight, cult, refuse, attack, hush cult, shrine",
+   "effects": [
+    {
+     "flag": "clock_hush",
+     "add": 1
+    }
+   ],
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s17b-talk-cult",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "They tell the Cult its rest is killing the Hush",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "The Cult is right about the danger and wrong about the cure; the truth can turn them.",
+   "tells": "The party has evidence that fed dreams weaken the lullaby.",
+   "readAloud": "The Cult Leader listens with her eyes closed. When she opens them, she looks very young and very tired. \"Then what have we been doing?\"",
+   "response": "With evidence (the Notes, the Librarian, Detect Thoughts on the Leader, or the Hush's own words) the Cult stops feeding the Hush and some members follow the party. Without it they are polite and unconvinced (s17b-cult-unconvinced).",
+   "rules": "Influence (Persuasion) DC 16 against the Leader; Advantage with evidence.",
+   "consequence": "The Cult stops feeding the Hush; the lullaby steadies a little.",
+   "later": "S22: the Cult is an unusual ally (s22-ally-cult): they know the shrine and quiet the Sleepless for one scene. S19B: they weep when Mirel rings.",
+   "fallback": "",
+   "keywords": "cult, truth, persuade, dreams, hush failing, convince, talk",
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "cult",
+     "set": "ceased"
+    }
+   ]
+  },
+  {
+   "id": "s18a-meet-corin",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "They agree to help Corin",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Corin has the Notes, a workshop and three generations of purpose.",
+   "tells": "Players listen to his plan with interest.",
+   "readAloud": "\"Ah, you've been to Brassfall. Good. My name is Corin Aldeth. My family has tried to finish a song for three generations, and I think you may be the first people in a century who can help me finish it.\"",
+   "response": "He shows them Edda Thorne's Notes, with the Quiet Night leaf, and the rite his family calls the Concord: six rung bells hold the lullaby while the Key is seated, never struck. He is honest that the Notes name a price: the Ringer's \"whole name\". For three generations his family read it as a bell-name, a title. Today he says: \"I think it means yours. I am sorry.\" He asks for help and gives them the Notes. The Great Toll is always asked in private and always refusable.",
+   "rules": "",
+   "consequence": "The party has the Notes and a Bellwright ally.",
+   "later": "S22: the Notes tell the Key's truth (s22-read-notes), and Corin offers to pay the Great Toll himself (s22-corin-strike). S27: the Concord with Corin as the Seventh's voice is possible (s27-corin-voice).",
+   "fallback": "",
+   "keywords": "corin, bellwright, help, notes, agree, workshop, plan",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "ally"
+    },
+    {
+     "flag": "notes",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s18a-refuse-corin",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "They refuse Corin",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Waking a god is a lot to sign up for.",
+   "tells": "Players balk at the Seventh.",
+   "readAloud": "Corin looks disappointed rather than angry. Somewhere under the workshop, something bronze begins to pace.",
+   "response": "He lets them go and sends a Tongue-Hound to follow them. If they argue, he explains his logic for hours, passionately and without cruelty. He still wants the Concord; without the party he will try to reach the shrine and seat the Key himself.",
+   "rules": "",
+   "consequence": "A bronze hound on their trail.",
+   "later": "S22: Corin can still be argued round (s22-corin-comes-round). S26: if he reaches the bell with the Key before all six rang, he seats it early and the lullaby cracks (s26-corin-cracks-the-lullaby). The Notes can be copied (s18a-copy-notes).",
+   "fallback": "",
+   "keywords": "refuse, corin, no, decline, hound, follow",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "refused"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s18a-fight-corin",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "They fight Corin's hounds",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "If talks break down, or the party tries to take the Notes by force.",
+   "tells": "Weapons drawn in the workshop.",
+   "readAloud": "The hounds ring when they bite. The whole workshop rings with them.",
+   "response": "Run the Bellwright ambush. Corin joins only if forced, and stops the moment someone says they have rung a bell. If the party kills him, use s18a-kill-corin; if they spare him, he stays an enemy who still wants the Concord.",
+   "rules": "Encounter: Tongue-Hounds and Corin. Non-lethal: declare it when a melee attack drops a hound or Corin to 0 HP.",
+   "consequence": "Corin becomes an enemy, and the Notes may be taken by force.",
+   "later": "S24: an enemy Corin reaches the summit with Tongue-Hounds (enc-s24-summit-corin); a spared one may come round (s22-corin-comes-round).",
+   "fallback": "",
+   "keywords": "fight, corin, hounds, tongue-hound, workshop, ambush",
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "enemy"
+    }
+   ]
+  },
+  {
+   "id": "s18b-few-steps",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "title": "They walk a few steps down to the Hush",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Curiosity pulls everyone toward the sleeping bell.",
+   "tells": "Players go to the top of the shrine stairs.",
+   "readAloud": "\"Be quiet now. You're so close. I've held everything together for four hundred years, and I'm so tired. If you wake me, the dream will end. Do you want that?\"",
+   "response": "They can hear the Hush, but cannot ring Ysh without the Key. The Hush speaks in the listener's own sleeping voice. State the price before the first step: the first nineteen steps cost nothing; every full twenty steps walked costs one memory, up to the campaign cap. A character makes one DC 13 Wisdom save the first time they reach step 20: on a failure their total stairs price across the whole campaign is capped at five memories, on a success at two. Count steps for each character.",
+   "rules": "Record any stairs memories as Stairs in the ledger; they count toward the S25 maximum. The save is made once per character, ever.",
+   "consequence": "They know what waits below.",
+   "later": "S25: the full descent costs only what remains of the cap.",
+   "fallback": "",
+   "keywords": "stairs, hush, shrine, visit, listen, steps, voice"
+  },
+  {
+   "id": "s18b-corin-arrives",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "title": "Corin comes up the shrine stairs",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "On Branch B, Corin meets the party at the Tor.",
+   "tells": "The party hasn't met Corin yet.",
+   "readAloud": "\"Mirel first. Mirel is the lullaby's mother. Ring her, and the Seventh's voice will carry. Ring her wrong, and the Hush will sing you to sleep before the Court can arrest you.\"",
+   "response": "Run Corin's offer here (once per campaign): the Notes, his plan, his honesty about the Toll. He wants Mirel rung first because it quiets the Tor; he wants the Concord, not a strike. Offer the three plays that follow.",
+   "rules": "",
+   "consequence": "The party meets Corin.",
+   "later": "S21: accept, refuse or fight him (next plays).",
+   "fallback": "",
+   "keywords": "corin, arrives, mirel first, notes, bellwright, tor",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s19a-ring-thrane",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "They ring Thrane",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "They have the Tongue and stand at the Lightning Shafts.",
+   "tells": "Players ask the Toll.",
+   "readAloud": "The bell cracks like a whip. The sky above Brassfall splits open, and for the first time in four centuries a real storm rolls over the mountains. Rain falls like bronze filings. The storm-stones blaze, and every metal object you carry hums in answer.",
+   "response": "State the Toll first: a Sense, chosen by the Ringer, gone for one day (sight means Blinded, hearing Deafened). The Ringer is Lightning-Marked until the next dawn. Storms return; the Ironhorn celebrate; Kessa's sickness eases for a season.",
+   "rules": "Lightning-Marked: once, when the Ringer takes Lightning damage before dawn, they can use their Reaction to deal 1d6 Lightning to a creature within 10 feet. The Sense Toll can't be ended early by magic.",
+   "consequence": "Thrane is rung. Storms return to Brassfall.",
+   "later": "S19A: the Court sends a strike force for the Tongue (s19a-strike-force). S28: within a month new fleets crowd Pellmoor and the Landing Charter starts to fail (s28-landing-fleets). Concord: one step closer.",
+   "fallback": "",
+   "keywords": "ring thrane, storm, bell, toll, sense, lightning shafts, brassfall",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_thrane",
+     "set": "rung"
+    },
+    {
+     "flag": "stormwall",
+     "set": "loosened"
+    },
+    {
+     "flag": "kessa",
+     "set": "eased"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    },
+    {
+     "flag": "clock_landing",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s19a-return-tongue",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "They return Thrane's Tongue to Kessa",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "They swore an oath.",
+   "tells": "The ringing is done and the oath is in the Bargain log.",
+   "readAloud": "Kessa hangs the Tongue back on its horse-skull and doesn't look at his hands. \"You kept your word, rider. The Ironhorn remember that.\"",
+   "response": "The oath is kept. The Ironhorn ride for the party at the Tor.",
+   "rules": "Mark the oath Kept in the Bargain log.",
+   "consequence": "An ally for the end.",
+   "later": "S22: Yenna's riders and the Ironhorn stand with the party (s22-ally-ironhorn). S23: Kessa rides if the Strike goes badly.",
+   "fallback": "",
+   "keywords": "return, tongue, kessa, oath, keep word, ironhorn",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "kessa_oath",
+     "set": "kept"
+    },
+    {
+     "flag": "t_thrane",
+     "set": "kessa"
+    }
+   ]
+  },
+  {
+   "id": "s19a-keep-tongue",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "They keep Thrane's Tongue despite the oath",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A party fearing the Court may want every Tongue it can carry.",
+   "tells": "Players argue the Court would take it from the Ironhorn anyway.",
+   "readAloud": "Kessa watches you ride out with his Tongue and says nothing at all, which is worse than shouting.",
+   "response": "The oath is broken. Kessa does not chase them; he spreads the word. The Ironhorn do not ride for them, and Yenna is torn. Kessa's reasons are his own: he can still come to the Strike for the Court's throat (s23-kessa-intercepts).",
+   "rules": "Mark the oath Broken in the Bargain log.",
+   "consequence": "The party has the Tongue and has lost the steppe.",
+   "later": "S22: no Ironhorn ally unless they make amends (return the Tongue to the Hall, or a duel). S23: Kessa intercepts the Strike.",
+   "fallback": "",
+   "keywords": "keep tongue, break oath, betray kessa, steal",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "kessa_oath",
+     "set": "broken"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s19a-strike-force",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "They face the Court's strike force",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court sends Hushmen and knights to take Thrane's Tongue after the storm.",
+   "tells": "Riders on the Brass Road two days after the ringing.",
+   "readAloud": "Under the first rain in four hundred years, a line of grey riders comes up the Brass Road, and their gloves are dry.",
+   "response": "Run the strike force. They want the Tongue, not a massacre; the Ironhorn fight beside the party if the oath was kept. If Rook won the duel the knights are hers and do not come; use the Hushmen-only version.",
+   "rules": "Encounter: the strike force.",
+   "consequence": "The Tongue stays out of Court hands, or doesn't.",
+   "later": "If the Court takes the Tongue (s19a-hand-over-tongue), recover it at the Strike (s23-recover-thrane).",
+   "fallback": "",
+   "keywords": "strike force, court, hushmen, knights, attack, brass road, defend",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s19b-ring-mirel",
+   "sessionId": "sb-abff956ca382268b",
+   "title": "They ring Mirel",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "They have the Tongue and stand in the Sleeping Hall.",
+   "tells": "Players ask the Toll.",
+   "readAloud": "The bell sings like a lullaby sung by someone who loves you. Every sleeper on the Tor sighs and turns over. The Sleepless dissolve into mist. For a moment the air feels like the first morning of spring, and you feel, impossibly, hopeful.",
+   "response": "State the Toll first: a Fear, chosen by the Ringer, gone for one day. It changes a feeling, not the player's authority or immunity to magical fear.",
+   "rules": "Record the Toll (Fear, bell Mirel).",
+   "consequence": "Mirel is rung. The Sleepless stop walking. The Hush's lullaby changes key: sad, then grateful.",
+   "later": "S19B: the Court sends Hushmen to the Tor (s19b-hushmen-arrive). Concord: one step closer. S25: the Sleepless do not stir on the hillside.",
+   "fallback": "",
+   "keywords": "ring mirel, dream bell, sleeping hall, toll, fear, ring",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_mirel",
+     "set": "rung"
+    },
+    {
+     "flag": "t_mirel",
+     "set": "bell"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s19b-refuse",
+   "sessionId": "sb-abff956ca382268b",
+   "title": "They decide not to ring Mirel",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "The Hush begged them to be quiet, and some parties listen.",
+   "tells": "Players hesitate at the bell after hearing the Hush.",
+   "readAloud": "The bell hangs above the central bed, its Tongue in your hand, and you lower your arm.",
+   "response": "Record it. Mirel stays silent and the Sleepless keep walking. Explain plainly what this does to the Concord (the Forecast shows it). The bell can still be rung later.",
+   "rules": "",
+   "consequence": "Mirel stays silent for now.",
+   "later": "S21: Mirel can be rung later. Concord needs Mirel before the final rite. The Sleepless keep walking and stairs are watched.",
+   "fallback": "",
+   "keywords": "refuse, don't ring, mirel, wait, silence, listen to the hush",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s20-brassfall-second",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "They arrive at Brassfall second",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Branch B came first; Brassfall is compressed.",
+   "tells": "Act IV route is Vael Tor first.",
+   "readAloud": "The mountains are veined with bronze, and the sky flickers without clouds. At the mouth of the Old Works, a blue lamp is waiting.",
+   "response": "In one session: Garrow's request, Yenna's introduction and Kessa's council. Resolve the contest, the loan bargain, or the theft or smuggling route before the party leaves with Thrane's Tongue. Use the compressed plays below. Make the Corin scene here only if corin is still unmet.",
+   "rules": "Use the S16A and S17A plays at a brisker pace; skip optional fights.",
+   "consequence": "The party leaves Brassfall with Thrane's Tongue, or with a clear reason why not.",
+   "later": "S21: ring Thrane at the Lightning Shafts, then return or keep the Tongue.",
+   "fallback": "",
+   "keywords": "brassfall, second, compressed, arrive, kessa, garrow, thrane",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s20-vael-tor-second",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "They arrive at Vael Tor second",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Branch A came first; the Tor is compressed.",
+   "tells": "Act IV route is Brassfall first.",
+   "readAloud": "The hill rises alone above the plain. From the summit, a sound like someone breathing in their sleep drifts down toward you.",
+   "response": "In one session: the Sleeping Hall, and the courier's bargain if Mirel's Tongue is missing. The Cult's offer is optional. Make the Corin scene here only if corin is still unmet. No new Sleepless form on the Tor if Mirel was rung.",
+   "rules": "Use the S16B plays at a brisker pace.",
+   "consequence": "The party reaches Mirel's bell with or without the Tongue.",
+   "later": "S21: ring Mirel.",
+   "fallback": "",
+   "keywords": "vael tor, second, compressed, arrive, mirel, sleeping hall",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s21-ring-thrane-second",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "title": "They ring Thrane as their second bell",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The compressed Brassfall branch ends at the Lightning Shafts.",
+   "tells": "They hold Thrane's Tongue at the Shafts.",
+   "readAloud": "The bell cracks like a whip. For the first time in four centuries a real storm rolls over the mountains.",
+   "response": "As Session 19A's ringing: state the Sense Toll first; the Ringer is Lightning-Marked until dawn. Then a scout reports Maudrin is preparing to leave Hallowmere; she leaves within a day.",
+   "rules": "Record the Toll (Sense, bell Thrane).",
+   "consequence": "Thrane is rung; Maudrin moves.",
+   "later": "S22 begins at dusk with the Court moving. S28: new fleets crowd Pellmoor (s28-landing-fleets). Concord: one step closer.",
+   "fallback": "",
+   "keywords": "ring thrane, second bell, storm, toll, sense",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_thrane",
+     "set": "rung"
+    },
+    {
+     "flag": "stormwall",
+     "set": "loosened"
+    },
+    {
+     "flag": "kessa",
+     "set": "eased"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    },
+    {
+     "flag": "clock_landing",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s21-ring-mirel-second",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "title": "They ring Mirel as their second bell",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The compressed Vael Tor branch ends in the Sleeping Hall.",
+   "tells": "They hold Mirel's Tongue in the Hall.",
+   "readAloud": "The bell sings like a lullaby sung by someone who loves you, and the Sleepless dissolve into mist.",
+   "response": "As Session 19B's ringing: state the Fear Toll first. Then a scout reports Maudrin is preparing to leave Hallowmere; she leaves within a day.",
+   "rules": "Record the Toll (Fear, bell Mirel).",
+   "consequence": "Mirel is rung; Maudrin moves.",
+   "later": "S22 begins at dusk.",
+   "fallback": "",
+   "keywords": "ring mirel, second bell, dream, toll, fear",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A"
+     ]
+    },
+    {
+     "flag": "t_mirel",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_mirel",
+     "set": "rung"
+    },
+    {
+     "flag": "t_mirel",
+     "set": "bell"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s21-refuse-second",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "title": "They refuse the second ringing",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "A party unconvinced by the Concord may stop at one Act IV bell.",
+   "tells": "Players hesitate at the second bell.",
+   "readAloud": "The second bell waits, silent, as you turn away from it.",
+   "response": "A refused ringing does not stop the campaign. Record it and explain its effect on the Concord (the Forecast shows it). Maudrin still moves, because the first ringing frightened her; s22-detour-for-a-missed-bell is the cost of coming back for it.",
+   "rules": "",
+   "consequence": "Only one Act IV bell is rung; the Concord waits on the other.",
+   "later": "S22: the Second Dawn stays open; the Concord needs that bell before the final rite.",
+   "fallback": "",
+   "keywords": "refuse, second bell, don't ring, wait"
+  },
+  {
+   "id": "s16a-examine-lamp",
+   "title": "They examine the lamp before agreeing",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Careful players inspect a ghost's gift.",
+   "tells": "A player asks what is in the lamp or tries to identify it.",
+   "readAloud": "The blue flame does not flicker when you breathe on it. At its heart, pale and humming, sits a stone no bigger than a thumb.",
+   "response": "A Study action (Intelligence (Arcana) DC 15) shows a storm-stone inside, its dead lightning tied to Garrow. It sparks near metal. Detect Magic shows a tether of abjuration and necromancy. Dispel Magic on it frees Garrow's ghost at once, and he gives no help in the Old Works.",
+   "rules": "Study, Intelligence (Arcana) DC 15. Dispel Magic ends the tether.",
+   "consequence": "The party knows what it is agreeing to carry.",
+   "later": "S17A: Kessa wants exactly this stone.",
+   "fallback": "",
+   "keywords": "lamp, arcana, identify, detect magic, storm-stone",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s16a-golem-stands-aside",
+   "title": "The golems stand aside for the lamp",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Garrow's lamp is the golems' kin-stone.",
+   "tells": "The party carries the lamp into the vault.",
+   "readAloud": "The great bronze shapes turn their heads toward the blue flame, and then, one by one, they step back from the door.",
+   "response": "With the lamp, the golems attack no one who lifts a stone carefully (the DC 13 Dexterity check still applies); they attack only if the lamp is set down or a stone is thrown. Garrow chuckles. A stone is still a stone: selling one is a crime in Pellmoor.",
+   "rules": "Lifting a stone: DC 13 Dexterity check, 3d8 Lightning on a failure.",
+   "consequence": "The vault is open without a fight.",
+   "later": "Anytime: selling a stone is any-sell-storm-stone.",
+   "fallback": "",
+   "keywords": "golem, vault, avoid, lamp, parley",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "carried"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s16a-split-the-party",
+   "title": "The party splits between Brassfall and the Tor",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "Some tables send two characters down each road.",
+   "tells": "Players say \"half of us go to the Tor\".",
+   "readAloud": "Two roads leave the crossing. One climbs toward the bronze mountains; one drops toward the marsh and the grey hill.",
+   "response": "Pick the branch the majority walks and run it as written; the other group's scenes are short cuts, one decision each, and the groups rejoin at the S21 report. Each group gets one Tongue decision. Neither group takes a Toll the other player has not consented to. The act4 flag follows the main group.",
+   "rules": "",
+   "consequence": "Both branches advance, thinly.",
+   "later": "S21: the groups rejoin when Maudrin's march is reported.",
+   "fallback": "If it will not stay playable, ask the table to pick one branch and give the other group's character a letter instead.",
+   "keywords": "split, separate, two groups, parallel",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s16a-ironhorn-patrol",
+   "title": "An Ironhorn patrol challenges them on the Brass Road",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Kessa's riders watch every road into Brassfall.",
+   "tells": "The party travels in the open, or with a lamp that sparks.",
+   "readAloud": "Four riders on hairy ponies cross the road ahead of you, bronze wire braided in their hair. “State your business. And your hands, rider. Show me your hands.”",
+   "response": "They are curious, not hostile: they want to know whether the party works for the Court. A truthful answer about the lamp gets an escort to the camp; a lie about the Court gets a shadow. The riders count how many Tongues the party carries. They do not know about Kessa's sickness; they know he does not sleep.",
+   "rules": "Influence (Persuasion or Animal Handling) against attitude Indifferent; DC 15.",
+   "consequence": "The party arrives at the camp as guests, or watched.",
+   "later": "S17A: Kessa has heard of them before they meet.",
+   "fallback": "",
+   "keywords": "riders, ironhorn, patrol, road, scouts",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s16b-wake-a-sleeper",
+   "title": "They try to wake a sleeper in the Hall",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Hundreds of sleepers on beds invite a rescue.",
+   "tells": "A healer or caster stands over a bed.",
+   "readAloud": "The sleeper's chest rises and falls. Her eyes move beneath their lids as if reading. She does not wake.",
+   "response": "Noise, pain and Lesser Restoration do nothing; the Hush holds them. Greater Restoration or Dispel Magic wakes one sleeper for a minute: she speaks in a voice that is not hers, names someone she is dreaming of, and sleeps again. The names belong to real Tithed or sold memories. Nothing is lost to the caster.",
+   "rules": "Dispel Magic (DC 15 check) or Greater Restoration wakes one sleeper for 1 minute.",
+   "consequence": "A name, and the knowledge that waking is temporary.",
+   "later": "S28: some of the names come back to their owners (s28-return-jars).",
+   "fallback": "",
+   "keywords": "wake, sleeper, hall, restoration, rescue",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s16b-refuse-courier",
+   "title": "They refuse every offer from the courier",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Selling a dream is a hard thing to ask.",
+   "tells": "Players balk at the courier's price.",
+   "readAloud": "The courier tilts its head, closes the wordless book, and says nothing. It does not leave.",
+   "response": "Mirel stays unrung for now. The courier waits at the Hall, polite and patient; the Librarian's offer stays open. No penalty beyond time. The Tongue can be taken later (s20-courier-bargain-quick) or stolen.",
+   "rules": "",
+   "consequence": "Mirel's Tongue waits with the courier.",
+   "later": "S20 or S21: the courier's offer, or another way.",
+   "fallback": "The courier hints that a Gift would also do.",
+   "keywords": "refuse, courier, decline, wait, no deal",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "librarian"
+     ]
+    },
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "courier"
+    }
+   ]
+  },
+  {
+   "id": "s16b-take-from-courier",
+   "title": "They take the Tongue from the courier by force or trick",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "A thin archivist holding a bell Tongue looks like an easy mark.",
+   "tells": "Players ask how strong the courier is.",
+   "readAloud": "The courier does not run. “The Librarian will remember this,” it says, and opens its hand.",
+   "response": "The courier is an archivist-shade (Commoner) and does not resist. They get the Tongue. The Librarian remembers: S22's fallback (the Librarian reads the Quiet Night page for a memory) is closed, and the Sealed Stacks answer no one from this party.",
+   "rules": "",
+   "consequence": "The party holds Mirel's Tongue, and the Librarian is an enemy.",
+   "later": "S22: only the Notes or the diary can tell the Key's truth; the Librarian will not read it.",
+   "fallback": "If the table dislikes robbing a bookkeeper, the courier lets them pay a Gift afterwards.",
+   "keywords": "steal, rob, courier, tongue, force",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "when": [
+    {
+     "flag": "t_mirel",
+     "in": [
+      "librarian",
+      "courier"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s16b-stop-the-song",
+   "title": "They stop humming when the child asks",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "H-22: in the shared dream the singing child asks them to stop the song.",
+   "tells": "Sleepers share the dream, and someone hums back.",
+   "readAloud": "The child on the stairs has no face. “Please. When you sing along, I cannot hear myself. Can you stop?”",
+   "response": "If the party stops humming, the lullaby falters for a night: the Sleepless cannot form, and the Hush Cult's circle grows quiet and frightened. They have bought one safe night at the Hush's cost. Nothing is lost. If they refuse, nothing happens, and the child cries.",
+   "rules": "",
+   "consequence": "The Hush is weaker tonight.",
+   "later": "S17B: the Cult is alarmed. S27: Oum remembers who stopped the song.",
+   "fallback": "The child asks again in the morning.",
+   "keywords": "child, song, hum, dream, stop",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "when": [],
+   "effects": [
+    {
+     "flag": "clock_hush",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s17a-give-kessa-the-lamp",
+   "title": "They give Kessa the storm-stone",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "H-20: once the lamp is in camp, the Thane sees the storm-stone and wants it for his Tongue-Hall.",
+   "tells": "Kessa asks about the lamp, or the party shows it.",
+   "readAloud": "Kessa's black fingers hover over the lamp. “That hums like a Tongue. My Hall needs a stone like that. Name your price.”",
+   "response": "If they give it, Garrow's tether burns away into the Tongue-Hall and his ghost goes quiet with a last joke; Yenna weeps but understands. Kessa opens the Hall at once (no contest) and offers a gentler bargain. If they refuse, Kessa respects it, and the lamp goes to Yenna (s17a-lamp-to-yenna).",
+   "rules": "",
+   "consequence": "Kessa is generous; Yenna is grieved.",
+   "later": "S22: Yenna is not an ally unless the party makes amends (her father's tether was sold). S28: no lamp on her tent.",
+   "fallback": "Yenna says quietly that she would rather he were free.",
+   "keywords": "lamp, kessa, storm-stone, hall, give",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "none",
+      "carried"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lamp",
+     "set": "kessa"
+    }
+   ]
+  },
+  {
+   "id": "s17a-meet-yenna-without-lamp",
+   "title": "They meet Yenna without her father's lamp",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "H-20 refused: Yenna has no message from her father.",
+   "tells": "The lamp was refused or left behind.",
+   "readAloud": "Yenna looks at your empty hands and then at your faces. “Garrow sent you?” she asks. “Then where is he?”",
+   "response": "She is hurt and cool. They can earn her by describing the Old Works truthfully, or by going back for the lamp (a day each way). She then helps a little: a horse. She does not smuggle the Tongue unless the lamp reaches her.",
+   "rules": "Influence (Persuasion) DC 15, Advantage if they repeat Garrow's jokes.",
+   "consequence": "A cooler Yenna, and a reason to fetch the lamp.",
+   "later": "S22: Yenna is an ally only if the lamp reached her or the party earned her another way.",
+   "fallback": "Garrow's ghost appears at the camp's edge and nudges her.",
+   "keywords": "yenna, no lamp, refused, cold",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "when": [
+    {
+     "flag": "lamp",
+     "in": [
+      "refused"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s17a-duel-kessa",
+   "title": "They challenge Kessa to a duel",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "A war-chief respects a fair fight, and a party may prefer the sword to the contest.",
+   "tells": "Players mention honor or show their weapons.",
+   "readAloud": "Kessa laughs and strips off his shirt: his chest is laced with black lightning scars. “First blood or the last? Name it, rider.”",
+   "response": "Run the duel as first blood: it ends when Kessa is Bloodied (Champion at his side, riders as spectators). Kessa honors a yield. If the party kills him, use s17a-kill-kessa. If he yields, the Tongue-Hall opens. His Lightning-Sick trait hurts him too.",
+   "rules": "Encounter: Kessa, Champion and rider. Non-lethal: declare it when the melee attack drops the target to 0 HP.",
+   "consequence": "A won duel opens the Hall; a lost one costs a stake.",
+   "later": "S19A: Kessa remembers whether the party fought fair.",
+   "fallback": "Kessa stops it the moment a fair wager is offered.",
+   "keywords": "duel, fight, kessa, first blood, challenge",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s17a-kill-kessa",
+   "title": "They kill Kessa",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "Fights end badly; Kessa will not yield if cornered.",
+   "tells": "Weapons are drawn after the duel breaks down.",
+   "readAloud": "The Thane sits down in the dust with his axe across his knees. “Tell Yenna it was weather,” he says.",
+   "response": "Kessa dies by the party's hand. The Ironhorn do not forget: Yenna splits the clan, and half the riders ride for the Court's Tristan. The Tongue-Hall opens; the party can take Thrane's Tongue. The oath, if sworn, is void.",
+   "rules": "",
+   "consequence": "Kessa is dead; the Ironhorn are divided.",
+   "later": "S19A: Thrane's Tongue is in the party's hands; no Kessa to ease. S22: no Ironhorn ally. S28: no storm death for Kessa.",
+   "fallback": "Yenna can stop the fight at 0 HP if the party yields first.",
+   "keywords": "kill, kessa, death, murder, thane",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "when": [],
+   "effects": [
+    {
+     "flag": "kessa",
+     "set": "dead"
+    },
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 3
+    }
+   ]
+  },
+  {
+   "id": "s17a-yenna-smuggles",
+   "title": "Yenna smuggles the Tongue out",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "She owes the party for her father's lamp.",
+   "tells": "Players ask Yenna for a favor.",
+   "readAloud": "Yenna lowers her voice. “Tonight, when the third drum stops. Don't be where he looks.”",
+   "response": "She takes the risk herself: no skill check for the party, only a plan. The Tongue is out of the Hall by morning. Kessa learns who did it and does not forgive Yenna quickly. The party owes her a favor.",
+   "rules": "Group Stealth DC 14 for the distraction; the Tongue moves either way.",
+   "consequence": "The party holds Thrane's Tongue, and Yenna is in trouble.",
+   "later": "S22: Yenna's riders stand with the party; Kessa does not. S19A: no oath was sworn.",
+   "fallback": "If it goes wrong, Yenna takes the blame and the Thane offers a duel.",
+   "keywords": "yenna, smuggle, favor, tongue, steal",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "kessa"
+     ]
+    },
+    {
+     "flag": "lamp",
+     "in": [
+      "yenna"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s17b-cult-unconvinced",
+   "title": "The Cult is not convinced",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Without evidence, a kind smile does not budge.",
+   "tells": "Persuasion fails or the party has no proof.",
+   "readAloud": "“That's kind of you to say,” says the Leader, and she means it. “But we have been so tired for so long.”",
+   "response": "The Cult remains polite. They offer rest again and do not stop feeding the Hush. The way to the stairs stays open if the party leaves them alone.",
+   "rules": "",
+   "consequence": "No change; the Cult keeps feeding.",
+   "later": "Anytime: with evidence they listen later.",
+   "fallback": "",
+   "keywords": "cult, unconvinced, refuse, persuade, fail",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s17b-sneak-past-cult",
+   "title": "They slip past the circle to the stairs",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "The Cult is tired and kind, not watchful.",
+   "tells": "A rogue studies the circle.",
+   "readAloud": "The humming never stops. Nobody turns their head as you slip past the edge of the firelight.",
+   "response": "Group Stealth against the Cult's Passive Perception 12. Success: the party reaches the stairs unseen. Failure: the Cult notices and offers rest; they do not attack unless provoked.",
+   "rules": "Group Dexterity (Stealth) DC 13.",
+   "consequence": "Access to the stairs without an encounter.",
+   "later": "S18B: the stairs are open.",
+   "fallback": "",
+   "keywords": "stealth, sneak, cult, stairs, hide",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s17b-detect-the-cult",
+   "title": "They read the Cult with Zone of Truth or Detect Thoughts",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Cult's kindness looks too good to be true.",
+   "tells": "A caster prepares truth magic.",
+   "readAloud": "The Leader answers every question with the same soft sincerity, and under each answer lies another: a dream, a name, a bed.",
+   "response": "Zone of Truth: the Cult believes every word; none is lying. Detect Thoughts on the Leader surfaces two things: she is dying slowly, and she feeds the Hush her own dreams first. This is the evidence for s17b-talk-cult.",
+   "rules": "Zone of Truth (Charisma save); Detect Thoughts (Wisdom save to probe).",
+   "consequence": "Evidence for the talk-cult play.",
+   "later": "S17B: Persuasion against the Leader has Advantage.",
+   "fallback": "",
+   "keywords": "zone of truth, detect thoughts, cult, truth, evidence",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s18a-argue-with-corin",
+   "title": "They argue with Corin about the price",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "A name is a great deal to ask, and players test it.",
+   "tells": "Players ask what \"the whole name\" means.",
+   "readAloud": "“You think I do not know how it sounds? My grandmother rang a bell once. She forgot her sister's face for a week and called that the price. She was wrong. It was only the first line.”",
+   "response": "Corin is passionate and honest: he does not know if the Notes mean the Ringer's name in the world's memory or on the page. He asks no one to decide tonight. He explains the Deferred Toll he can offer (an hour, never cancel). Let the table argue; at the end they accept (s18a-meet-corin), refuse (s18a-refuse-corin) or fight.",
+   "rules": "Insight DC 12: he believes every word. Influence (Persuasion) DC 15 to move him from the Concord only with a better route.",
+   "consequence": "The party understands the price before choosing.",
+   "later": "S22: the Great Toll is asked of one volunteer in private (s27-concord).",
+   "fallback": "",
+   "keywords": "corin, argue, price, name, toll, great toll",
+   "sessionId": "sb-42bb15639f8889ad",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s18a-copy-notes",
+   "title": "They copy or steal Edda's Notes",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "A refusing party may still want the pages.",
+   "tells": "Players study the Notes on the table, or case the workshop.",
+   "readAloud": "The pages are brittle and tight with a student's hand. The Quiet Night leaf is pinned to the back.",
+   "response": "DC 15 Dexterity (Sleight of Hand) to take them, or a day with Forgery Kit to copy. On a failure Corin catches them: he lets them read the Quiet Night leaf at the table, but keeps the Notes. Either way the party learns the Key's truth at S22.",
+   "rules": "Dexterity (Sleight of Hand) DC 15; or Forgery Kit DC 13 for a full day.",
+   "consequence": "The party holds the Notes, or has read the leaf.",
+   "later": "S22: the truth of the Key (s22-read-notes). Corin remembers a theft.",
+   "fallback": "If the roll fails, the leaf is still read.",
+   "keywords": "notes, steal, copy, edda, quiet night",
+   "sessionId": "sb-42bb15639f8889ad",
+   "when": [
+    {
+     "flag": "notes",
+     "in": [
+      "bellwrights"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "notes",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s18a-kill-corin",
+   "title": "They kill Corin",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A fight in the workshop can end in a death.",
+   "tells": "The party presses a Bloodied Corin.",
+   "readAloud": "The tuning hammer rings once on the stone floor, a clean note, and nobody picks it up.",
+   "response": "Corin dies. The Notes pass to the party. The Tongue-Hounds go still and cold; the Bellwrights turn against the party and the workshop goes dark. Wren, if she is an ally, says nothing for days.",
+   "rules": "",
+   "consequence": "Corin is dead; the Bellwrights are hostile.",
+   "later": "S22: no Bellwright ally. S27: no Corin voice. S28: the Bellwrights are not at the epilogue.",
+   "fallback": "If the table has second thoughts, a Bloodied Corin yields before the last blow.",
+   "keywords": "kill, corin, workshop, death, bellwrights",
+   "sessionId": "sb-42bb15639f8889ad",
+   "when": [],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "dead"
+    },
+    {
+     "flag": "notes",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 3
+    }
+   ]
+  },
+  {
+   "id": "s18a-explore-workshop",
+   "title": "They study Corin's workshop",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Unfinished bells and a lathe shaped like a Key.",
+   "tells": "Players ask what the half-made bells are for.",
+   "readAloud": "On the central bench lies a plaster casting of something long and narrow, hollow where a hand would grip.",
+   "response": "Study, Intelligence (Arcana or Investigation) DC 14: the casting is the shape of the Tuning Key as the Notes describe it, and the lathe is for a copy Corin never dared finish. A copy is not the Key; the Seventh answers only the real one. Corin will let a Smith's Tools proficient character make a small ordinary bell (any-become-bellwrights).",
+   "rules": "Study, Intelligence (Arcana or Investigation) DC 14.",
+   "consequence": "A clue about the Key's shape, and the Bellwright craft.",
+   "later": "S22: the Key is a tongue, not a tool (s22-read-notes).",
+   "fallback": "",
+   "keywords": "workshop, casting, lathe, key, bellwright, study",
+   "sessionId": "sb-42bb15639f8889ad",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s18b-corin-accept",
+   "title": "They agree to help Corin on the stairs",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "On Branch B, Corin offers the Notes at the Tor.",
+   "tells": "Players listen to his plan with interest.",
+   "readAloud": "“Mirel first,” Corin says again, and unrolls a map of the Tor across a step. “Then the others. Let me show you the song.”",
+   "response": "As s18a-meet-corin: the Notes, the Quiet Night leaf, the Concord rite, the honest warning about the price. He gives them the Notes.",
+   "rules": "",
+   "consequence": "The party has the Notes and a Bellwright ally.",
+   "later": "S22: s22-read-notes. S27: s27-corin-voice.",
+   "fallback": "",
+   "keywords": "corin, accept, help, notes, tor",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "ally"
+    },
+    {
+     "flag": "notes",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s18b-corin-refuse",
+   "title": "They refuse Corin on the stairs",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A party may not want to bring a stranger to the Hush.",
+   "tells": "Players balk at the Concord.",
+   "readAloud": "Corin looks down the stairs, and then at you. “Then I will go down alone one day. Better with you.”",
+   "response": "As s18a-refuse-corin. He leaves, hurt but not hostile. A Tongue-Hound shadows them.",
+   "rules": "",
+   "consequence": "Corin leaves; a hound follows.",
+   "later": "As s18a-refuse-corin: s26-corin-cracks-the-lullaby if he reaches the bell early.",
+   "fallback": "",
+   "keywords": "corin, refuse, decline, hound",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "refused"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s18b-corin-fight",
+   "title": "They fight Corin on the stairs",
+   "style": "Combat",
+   "likelihood": "Wildcard",
+   "why": "A fight at the stairs risks the Hush listening.",
+   "tells": "Weapons drawn at the top step.",
+   "readAloud": "His hammer rings on the stone, and down the stairs something stirs at the sound.",
+   "response": "Run as s18a-fight-corin, but every loud blow wakes the Hush a little: each round of fighting the Hush's voice grows (Wisdom save DC 13 or Frightened until the end of the next turn). Corin stops when someone says they have rung a bell.",
+   "rules": "Encounter: Corin, 2 Tongue-Hounds. DC 13 Wisdom save per round in the stairwell.",
+   "consequence": "Corin is an enemy.",
+   "later": "S24: enemy Corin at the summit (enc-s24-summit-corin).",
+   "fallback": "",
+   "keywords": "corin, fight, stairs, enemy",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "enemy"
+    }
+   ]
+  },
+  {
+   "id": "s18b-ask-the-hush",
+   "title": "They ask the Hush a question",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Hush speaks, so players answer.",
+   "tells": "Players speak aloud on the stairs.",
+   "readAloud": "The voice is your own, half asleep. “One question. Give me a true memory of someone you loved, and I will give you a true answer.”",
+   "response": "The Hush answers one question per true memory offered (Trade, ledger). True but partial: it will say that someone took its voice four hundred years ago, that it is tired, and that the one who keeps the Key is afraid, not cruel. It will not lie.",
+   "rules": "Any Tongue-less character may offer a memory; the Hush never takes without consent.",
+   "consequence": "A true, partial answer.",
+   "later": "S22: the answer prepares the Key's truth.",
+   "fallback": "",
+   "keywords": "hush, question, ask, memory, stairs, answer",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s18b-pass-the-cult",
+   "title": "They pass the Hush Cult at the stairs",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Cult keeps vigil at the top of the stairs.",
+   "tells": "Players want to go down and see robed figures.",
+   "readAloud": "Six robed figures sit around the top step. They look up, smiling, and one pats the stone beside her.",
+   "response": "If cult is ceased, they step aside and warn the party about the price. If feeding, they plead and then sit across the stairs; DC 14 Persuasion or Stealth lets the party by without a fight. Never attack the sleeping.",
+   "rules": "Influence (Persuasion) DC 14 or group Stealth DC 14.",
+   "consequence": "The way down is open.",
+   "later": "S25: the Cult is no obstacle, or has to be dealt with.",
+   "fallback": "",
+   "keywords": "cult, stairs, pass, vigil",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [],
+   "effects": []
+  },
+  {
+   "id": "s18b-descend-early",
+   "title": "They walk all the way down early",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "Some parties go straight to the bottom before they have the Key.",
+   "tells": "Players ask how deep it goes and want to see Ysh.",
+   "readAloud": "The last step is wider than the others, and at the bottom a bell the size of a house hangs in the dark, blank as a sleeping face.",
+   "response": "They pay the stairs price (one save, five or two memories, once per character, ever). They reach the shrine and see Ysh, but cannot ring it without the Key. The Hush speaks to them in their own voices. They can climb back up. A group that has reached the shrine can later Teleport to it, since they have seen it (any-teleport-and-gates).",
+   "rules": "DC 13 Wisdom save at step 20, once per character; record Stairs in the ledger.",
+   "consequence": "They have been to the bottom, lighter.",
+   "later": "S25: the stairs cost only what remains of the cap (nothing, if they paid in full). S26: they have seen the bell.",
+   "fallback": "",
+   "keywords": "descend, bottom, shrine, stairs, early",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "when": [],
+   "effects": [
+    {
+     "flag": "shrine",
+     "set": "reached"
+    }
+   ]
+  },
+  {
+   "id": "s19a-ring-thrane-kessa-dead",
+   "title": "They ring Thrane (Kessa is dead)",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The party rings Thrane over Kessa's grave.",
+   "tells": "They hold the Tongue at the Lightning Shafts.",
+   "readAloud": "The bell cracks like a whip. The sky above Brassfall splits open, and a real storm rolls over the mountains. Rain falls like bronze filings.",
+   "response": "As s19a-ring-thrane: state the Sense Toll first; the Ringer is Lightning-Marked until dawn. The Ironhorn do not celebrate: Yenna stands in the rain with her hands open and says nothing.",
+   "rules": "Lightning-Marked: once, when the Ringer takes Lightning damage before dawn, they can use their Reaction to deal 1d6 Lightning to a creature within 10 feet. The Sense Toll cannot be ended early by magic.",
+   "consequence": "Thrane is rung. Storms return.",
+   "later": "S19A: the Court sends a strike force. S28: new fleets crowd Pellmoor.",
+   "fallback": "",
+   "keywords": "ring thrane, kessa dead, storm",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "in": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_thrane",
+     "set": "rung"
+    },
+    {
+     "flag": "stormwall",
+     "set": "loosened"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    },
+    {
+     "flag": "clock_landing",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s19a-refuse-thrane-toll",
+   "title": "Nobody will pay the Sense",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Losing a sense for a day is a real cost.",
+   "tells": "Players hesitate at the Shafts.",
+   "readAloud": "The bell hangs in the dark, and your hands stay at your sides.",
+   "response": "Another willing Ringer may pay in anyone's place. If no one does, Thrane stays silent: Kessa's sickness worsens, the Ironhorn grow restless (+1), and the Tongue stays with the party. The bell can be rung later.",
+   "rules": "",
+   "consequence": "Thrane is silent; the Ironhorn are restless.",
+   "later": "S22: Kessa's illness has progressed; the Concord waits.",
+   "fallback": "The Forecast shows the cost.",
+   "keywords": "refuse, toll, thrane, sense, nobody",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "when": [
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_ironhorn",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s19a-hand-over-tongue",
+   "title": "They hand Thrane's Tongue to the strike force",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Outnumbered parties sometimes yield a Tongue to keep their lives.",
+   "tells": "Players ask for terms.",
+   "readAloud": "The Warden holds out a gloved hand. “Thank you. It will be safe.”",
+   "response": "The Court takes the Tongue; the riders do not follow. The party is spared. Kessa's oath, if sworn, is hard to keep. The Tongue goes to the Court's custody.",
+   "rules": "",
+   "consequence": "The Court holds Thrane's Tongue.",
+   "later": "S23: recover it at the Strike (s23-recover-thrane).",
+   "fallback": "",
+   "keywords": "surrender, hand over, tongue, court, thrane",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "court"
+    }
+   ]
+  },
+  {
+   "id": "s19a-ironhorn-ride-in",
+   "title": "The Ironhorn ride in",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The oath was kept, and the Thane remembers.",
+   "tells": "The oath is kept and the strike force is on the road.",
+   "readAloud": "The drums stop. Over the ridge come horses, a hundred of them, and Yenna at the head with her father's lamp.",
+   "response": "The riders cut the Hushmen's retreat and take the Warden's attention; remove two Hushmen and one Warden from the line, or let the Ironhorn take the objective of holding the road while the party fights the Wardens.",
+   "rules": "",
+   "consequence": "The strike force breaks.",
+   "later": "S22: Kessa's riders are an ally (s22-ally-ironhorn).",
+   "fallback": "",
+   "keywords": "ironhorn, ride, cavalry, allies",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "when": [
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "kept"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s19a-news-from-pellmoor",
+   "title": "News comes up from Pellmoor",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The ferry-folk's couriers reach Brassfall within days.",
+   "tells": "A courier from Brannagh Wick finds the party.",
+   "readAloud": "The courier is mud to the knees. “The sea opened. Three ships came in on the tide, none flying a Corvane flag.”",
+   "response": "Pellmoor sees the first new sails. Brannagh asks for guidance. The Pilots' Hall (the ferry clock) hears the party's name. The Landing Charter has not broken yet, but it will.",
+   "rules": "",
+   "consequence": "The party knows what the Stormwall has done.",
+   "later": "S28: the fleets (s28-landing-fleets).",
+   "fallback": "",
+   "keywords": "pellmoor, news, ships, fleets, courier",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "when": [],
+   "effects": [
+    {
+     "flag": "clock_ferry",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s19b-hushmen-arrive",
+   "title": "Court Hushmen reach the Tor",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The ringing is heard in Hallowmere.",
+   "tells": "Mirel has rung, and the party stays on the hill.",
+   "readAloud": "Grey riders come out of the marsh at a walk. Their gloves are dry.",
+   "response": "They have come to investigate and take whoever rang. The Warden's stone shuts down casters; Sergeants demand surrender. Run the encounter; they retreat when the Warden falls or the Cult's circle is crossed.",
+   "rules": "Encounter: the Hushmen. Warden's Stone: a 10-foot Emanation where spells cannot be cast.",
+   "consequence": "The Court's patrol is broken or the party leaves.",
+   "later": "S21: the Court knows exactly who rang.",
+   "fallback": "",
+   "keywords": "hushmen, court, patrol, tor",
+   "sessionId": "sb-abff956ca382268b",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s19b-cult-after-mirel",
+   "title": "The Cult weeps when Mirel rings",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The lullaby's key changes under their feet.",
+   "tells": "The party returns to the circle.",
+   "readAloud": "The Leader is on her knees. “It sounded like someone loved it. We had forgotten.”",
+   "response": "If cult is ceased the Cult grieves and thanks them; if feeding they stop humming for the first time in years, and the Leader begins to doubt. A sincere appeal now needs no roll (s17b-talk-cult).",
+   "rules": "",
+   "consequence": "The Cult is shaken.",
+   "later": "S22: the Cult may ally.",
+   "fallback": "",
+   "keywords": "cult, mirel, weeping, doubt",
+   "sessionId": "sb-abff956ca382268b",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s19b-corin-defers-toll",
+   "title": "Corin defers the Fear Toll",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Corin offers the Deferred Toll to a nervous Ringer.",
+   "tells": "Corin is an ally at the Hall.",
+   "readAloud": "Corin lays a hand on your shoulder. “An hour,” he says. “Ring first. Be afraid after.”",
+   "response": "Deferred Toll: the Ringer's Fear is lost one hour late; it is never cancelled. The Toll must still be consented to; the delay changes nothing. Ruling: the Toll counts as paid once the bell sounds.",
+   "rules": "Corin's Deferred Toll (1/day).",
+   "consequence": "The Toll is deferred, not removed.",
+   "later": "",
+   "fallback": "",
+   "keywords": "corin, defer, toll, mirel",
+   "sessionId": "sb-abff956ca382268b",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "ally"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s20-lamp-delivered-quick",
+   "title": "Garrow, Yenna and the lamp in one scene",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Compression: the lamp reaches Yenna at once.",
+   "tells": "Branch B party arrives at the Old Works.",
+   "readAloud": "Garrow's lamp is waiting at the mouth of the works, and over the next hill a red horse-skull.",
+   "response": "Garrow asks, the party agrees, and the lamp reaches Yenna before dusk. She gives a horse, a bow or a clan bargain. She may smuggle the Tongue later.",
+   "rules": "",
+   "consequence": "Yenna is a friend.",
+   "later": "S22: Yenna's riders can ally.",
+   "fallback": "",
+   "keywords": "lamp, garrow, yenna, compressed",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "lamp",
+     "in": [
+      "none",
+      "carried"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lamp",
+     "set": "yenna"
+    }
+   ]
+  },
+  {
+   "id": "s20-accept-kessa-quick",
+   "title": "They accept Kessa's loan quickly",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "One private conversation does the work of the contest.",
+   "tells": "The party speaks with Kessa.",
+   "readAloud": "“I'm dying, rider. Ring it, and return it after.”",
+   "response": "As s17a-accept-kessa in one scene; he cannot ring it himself (the Shafts' Lightning-Mark would finish him).",
+   "rules": "",
+   "consequence": "The party carries the Tongue under oath.",
+   "later": "S21: ring Thrane, then return or keep.",
+   "fallback": "",
+   "keywords": "kessa, accept, loan, oath, quick",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "kessa"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "kessa_oath",
+     "set": "sworn"
+    }
+   ]
+  },
+  {
+   "id": "s20-take-thrane-quick",
+   "title": "They steal or smuggle Thrane's Tongue in one night",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Refused or impatient, they take it.",
+   "tells": "The party cases the Tongue-Hall.",
+   "readAloud": "Drums at midnight. A rider yawns, sees nothing, looks away.",
+   "response": "As s17a-take-thrane: a night, one plan. Kessa learns by morning.",
+   "rules": "",
+   "consequence": "The party holds the Tongue.",
+   "later": "S21: ring it. S22: the Ironhorn are cool.",
+   "fallback": "",
+   "keywords": "steal, tongue, hall, quick",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "kessa"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_thrane",
+     "set": "party"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s20-courier-bargain-quick",
+   "title": "They buy Mirel's Tongue from the courier",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The compressed Tor branch ends with the Tongue in hand.",
+   "tells": "The party reaches the Sleeping Hall without Mirel's Tongue.",
+   "readAloud": "“A dream you have never told, and the Tongue is yours.”",
+   "response": "As s16b-courier-bargain, in one scene. If every offer is refused, Mirel stays with the courier.",
+   "rules": "",
+   "consequence": "The party holds Mirel's Tongue.",
+   "later": "S21: ring Mirel.",
+   "fallback": "",
+   "keywords": "courier, mirel, bargain, quick",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A"
+     ]
+    },
+    {
+     "flag": "t_mirel",
+     "in": [
+      "librarian",
+      "courier"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "t_mirel",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "s20-corin-accept-here",
+   "title": "They accept Corin's help (compressed branch)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Corin's offer is made once, wherever they meet him.",
+   "tells": "The party has not met Corin.",
+   "readAloud": "“Ah, you have been to the mountains. Good.”",
+   "response": "As s18a-meet-corin: the Notes, the Concord, the honest warning about the name.",
+   "rules": "",
+   "consequence": "The party has the Notes.",
+   "later": "S22: s22-read-notes.",
+   "fallback": "",
+   "keywords": "corin, accept, compressed",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "ally"
+    },
+    {
+     "flag": "notes",
+     "set": "party"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s20-corin-refuse-here",
+   "title": "They refuse Corin (compressed branch)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Waking a god is a lot to sign up for.",
+   "tells": "The party has not met Corin.",
+   "readAloud": "Corin looks disappointed rather than angry.",
+   "response": "As s18a-refuse-corin.",
+   "rules": "",
+   "consequence": "A hound on their trail.",
+   "later": "S22: s22-corin-comes-round.",
+   "fallback": "",
+   "keywords": "corin, refuse, compressed",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "unmet"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "corin",
+     "set": "refused"
+    },
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s21-ring-thrane-second-kessa-dead",
+   "title": "They ring Thrane as their second bell (Kessa is dead)",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The compressed Brassfall branch ends at the Shafts.",
+   "tells": "They hold Thrane's Tongue at the Shafts.",
+   "readAloud": "The bell cracks like a whip, and a real storm rolls over the mountains.",
+   "response": "As s19a-ring-thrane-kessa-dead. Then a scout reports Maudrin is preparing to leave Hallowmere; she leaves within a day.",
+   "rules": "",
+   "consequence": "Thrane is rung; Maudrin moves.",
+   "later": "S22 begins at dusk.",
+   "fallback": "",
+   "keywords": "thrane, second, ring, kessa dead",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "in": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "bell_thrane",
+     "set": "rung"
+    },
+    {
+     "flag": "stormwall",
+     "set": "loosened"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    },
+    {
+     "flag": "clock_landing",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s21-return-tongue",
+   "title": "They return Thrane's Tongue to Kessa",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "They swore an oath on the second branch.",
+   "tells": "Thrane has rung and the oath is in the log.",
+   "readAloud": "Kessa hangs the Tongue back on its skull. “You kept your word.”",
+   "response": "The oath is kept. The Ironhorn ride for the party at the Strike.",
+   "rules": "",
+   "consequence": "The Ironhorn are an ally.",
+   "later": "S22: s22-ally-ironhorn.",
+   "fallback": "",
+   "keywords": "return, oath, kessa, tongue",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "kessa_oath",
+     "set": "kept"
+    },
+    {
+     "flag": "t_thrane",
+     "set": "kessa"
+    }
+   ]
+  },
+  {
+   "id": "s21-keep-tongue",
+   "title": "They keep Thrane's Tongue despite the oath",
+   "style": "Mischief",
+   "likelihood": "Wildcard",
+   "why": "Fear of the Court tempts them.",
+   "tells": "Players argue the Court would take it from the Ironhorn.",
+   "readAloud": "Kessa watches you ride out with his Tongue and says nothing.",
+   "response": "The oath is broken. The Ironhorn do not ride for the party.",
+   "rules": "",
+   "consequence": "The party has lost the steppe.",
+   "later": "S23: Kessa intercepts the Strike (s23-kessa-intercepts).",
+   "fallback": "",
+   "keywords": "keep, break oath, kessa, tongue",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "kessa_oath",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "t_thrane",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "kessa_oath",
+     "set": "broken"
+    },
+    {
+     "flag": "clock_ironhorn",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s21-court-patrol-arrives",
+   "title": "A Court patrol arrives as the bell sounds",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The ringing is heard across the Ninefold Shore.",
+   "tells": "The bell has just rung.",
+   "readAloud": "Grey riders appear on the ridge, a long line, gloves like mirrors.",
+   "response": "A large patrol of Wardens, Sergeants and knights, sent to hold the road. They offer surrender before and during. Run the encounter, or let a Compact ally or Cult circle break the line.",
+   "rules": "Encounter: the Court patrol.",
+   "consequence": "The patrol is broken or the party retreats.",
+   "later": "S22: the road to the Tor is watched.",
+   "fallback": "",
+   "keywords": "patrol, court, riders, road",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "when": [],
+   "effects": []
+  }
+ ],
+ "briefs": [
+  {
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "pressure": "Old Garrow's ghost waits at the Old Works with his blue lamp. The storm-stones are restless; one cracks like a whip every few minutes. Ironhorn patrols watch the Brass Road. If Kessa has heard of a lamp in the Works, he will want it.",
+   "endOn": "Who will you carry the lamp to?",
+   "npcs": "Old Garrow, Yenna Garrow, Ironhorn riders, Thane Oru Kessa",
+   "checklist": [
+    "Mark the Act IV route in World state (Brassfall first)",
+    "Know which shaft is cracked (Garrow warns of the third)",
+    "Storm-stone handling: DC 13 Dexterity or 3d8 Lightning",
+    "Written for four level-7 characters",
+    "Lamp state: set lamp when they decide"
+   ],
+   "encounters": [
+    "enc-s16a-golem"
+   ],
+   "rules": [
+    "Study",
+    "Falling",
+    "Utilize"
+   ]
+  },
+  {
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "pressure": "The Sleepless walk at night. The Librarian's courier waits in the Sleeping Hall if Mirel's Tongue is still missing. The Hush Cult watches newcomers from its circle. If Mirel has already rung, the Tor is quiet and no Sleepless form.",
+   "endOn": "Whose fear walked out of the dark?",
+   "npcs": "The Librarian's courier, the Hush Cult, the Sleepless",
+   "checklist": [
+    "Mark the Act IV route in World state (Vael Tor first)",
+    "Warn before any long rest on the Tor: DC 13 Wisdom",
+    "Check who holds Mirel's Tongue and set t_mirel",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s16b-sleepless"
+   ],
+   "rules": [
+    "Frightened",
+    "Exhaustion",
+    "Study"
+   ]
+  },
+  {
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "pressure": "Drums in the Ironhorn camp. Kessa wants a wager from every guest and a weapon against the Court; his hands are blackening. Yenna watches the horses by the red horse-skull tent. If the lamp is in camp, Kessa has noticed the storm-stone.",
+   "endOn": "What did you promise the Thane?",
+   "npcs": "Thane Oru Kessa, Yenna Garrow, an Ironhorn Champion",
+   "checklist": [
+    "Agree the contest stake before rolling",
+    "Three successes before three failures; rotate the spotlight",
+    "Record any oath in the Bargain log",
+    "Kessa cannot ring Thrane himself; know why",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s17a-champion",
+    "enc-s17a-kessa-duel"
+   ],
+   "rules": [
+    "Help",
+    "Heroic Inspiration",
+    "Influence"
+   ]
+  },
+  {
+   "sessionId": "sb-93be53f2a6747fe1",
+   "pressure": "The Hush Cult offers rest to everyone on the hill, and the Sleepless keep away from its circle. The lullaby is louder near the shrine. If the party already rang Mirel, the Cult weeps instead of watching.",
+   "endOn": "What did the Hush take from you?",
+   "npcs": "Hush Cult Leader, Hush Cultists, the Hush",
+   "checklist": [
+    "State the price of sleeping by the shrine in the Cult's offer: no dreams until the Hush is struck, sealed or tuned",
+    "Absent players' characters are away: nothing is taken",
+    "Ledger: record lost dreams as Other; set dreams",
+    "Know the Cult's secret: they feed the Hush, and it is failing",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s17b-cult"
+   ],
+   "rules": [
+    "Charmed",
+    "Incapacitated",
+    "Influence",
+    "Command"
+   ]
+  },
+  {
+   "sessionId": "sb-42bb15639f8889ad",
+   "pressure": "Corin's hidden workshop under a Brassfall tavern rings with half-finished bells. A Tongue-Hound sleeps by the forge. He has waited three generations for people like the party. If the party killed Kessa, the Bellwrights have heard.",
+   "endOn": "Will you help him finish the song?",
+   "npcs": "Corin Aldeth, Tongue-Hounds",
+   "checklist": [
+    "Have Edda Thorne's Notes ready as a prop",
+    "Corin's offer happens once per campaign",
+    "Corin wants the Concord and misreads the cost: \"the whole name\" is the Ringer's own",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s18a-hounds"
+   ],
+   "rules": [
+    "Counterspell",
+    "Study"
+   ]
+  },
+  {
+   "sessionId": "sb-f0b728a69d395cb2",
+   "pressure": "The shrine stairs breathe. The Hush speaks to anyone who stands at the top in their own sleeping voice. Corin climbs up from below if the party has not met him. The first nineteen steps are free; every full twenty cost a memory, up to the campaign cap.",
+   "endOn": "What did the Hush ask of you?",
+   "npcs": "The Hush, Corin Aldeth, the Hush Cult",
+   "checklist": [
+    "Count steps walked: one memory per twenty; save once at step 20 (cap 5 on a failure, 2 on a success)",
+    "Run Corin's offer only if corin is unmet",
+    "Write down any Stairs memories in the ledger"
+   ],
+   "encounters": [],
+   "rules": [
+    "Frightened",
+    "Influence"
+   ]
+  },
+  {
+   "sessionId": "sb-ad6ec717a7e06917",
+   "pressure": "Once Thrane rings, the Court's strike force rides up the Brass Road within two days, and the sea beyond Corvane begins to open. If the oath was kept, the Ironhorn watch the road with the party. If Kessa is dead, the clan is split.",
+   "endOn": "Did you keep your word to the Thane?",
+   "npcs": "Thane Oru Kessa, Yenna Garrow, the Court's strike force",
+   "checklist": [
+    "Read the Thrane Toll aloud before ringing: a Sense for one day",
+    "Lightning-Marked until the next dawn",
+    "Update World state: storms return, the Stormwall loosens; kessa is eased only if alive",
+    "Pick the strike-force version for the duel result",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s19a-strike-force",
+    "enc-s19a-strike-force-rook"
+   ],
+   "rules": [
+    "Blinded",
+    "Deafened",
+    "Help"
+   ]
+  },
+  {
+   "sessionId": "sb-abff956ca382268b",
+   "pressure": "Once Mirel rings, the Court sends Hushmen to the Tor to investigate. The Hush's lullaby changes key, and the Sleepless stop walking.",
+   "endOn": "What did it feel like to hope?",
+   "npcs": "The Hush, Corin Aldeth, Court Hushmen, the Hush Cult",
+   "checklist": [
+    "Read the Mirel Toll aloud before ringing: a Fear for one day",
+    "Update World state: no new Sleepless on the Tor",
+    "Written for four level-7 characters"
+   ],
+   "encounters": [
+    "enc-s19b-hushmen"
+   ],
+   "rules": [
+    "Frightened",
+    "Calm Emotions"
+   ]
+  },
+  {
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "pressure": "The second branch, compressed: arrival, the one essential bargain, and the Tongue. The Court has heard about the first ringing and is moving. If Corin is still unmet he finds the party here.",
+   "endOn": "What did the second Tongue cost you?",
+   "npcs": "Kessa and Yenna, or the Librarian's courier; Corin if not yet met",
+   "checklist": [
+    "Combine scenes, not prerequisites: keep one acquisition decision with a real cost",
+    "Skip optional fights and travel",
+    "Run Corin's offer here only if corin is unmet",
+    "Written for four level-8 characters"
+   ],
+   "encounters": [
+    "enc-s20-brassfall",
+    "enc-s20-tor"
+   ],
+   "rules": [
+    "Influence",
+    "Help"
+   ]
+  },
+  {
+   "sessionId": "sb-24c29d78b60ca13f",
+   "pressure": "After the second ringing a scout reports Maudrin is preparing to leave Hallowmere; she leaves within a day unless earlier actions changed her plans. A Court patrol is on the road.",
+   "endOn": "Maudrin is coming. Where will you meet her?",
+   "npcs": "A scout, Kessa or the Librarian's courier",
+   "checklist": [
+    "Read the second bell's Toll before ringing",
+    "A refusal is recorded; the Forecast shows its effect",
+    "Kessa's oath: kept or broken if Thrane is the second bell",
+    "Written for four level-8 characters"
+   ],
+   "encounters": [
+    "enc-s21-court-patrol"
+   ],
+   "rules": [
+    "Blinded",
+    "Deafened",
+    "Frightened"
+   ]
+  }
+ ],
+ "encounters": [
+  {
+   "id": "enc-s16a-golem",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "The storm-stone vault's guardians",
+   "creatures": [
+    {
+     "name": "Storm-stone Golem",
+     "statblock": "sb_storm_golem",
+     "base": "Flesh Golem",
+     "cr": "5",
+     "count": 3
+    }
+   ],
+   "tactics": "One golem is awake at the door; each stone lifted wakes another, up to three. They attack whoever touches a stone and favour anyone in metal.",
+   "exit": "Back out of the vault: they do not leave it. Prise a Bloodied golem's shard (DC 15 Strength (Athletics)) to switch it off, or carry Garrow's lamp past them: they recognise the storm-stone's kin and stand aside.",
+   "scale": "Written for four level-7 characters. Two golems for a lighter fight; stones discharging each round (DC 13 Dexterity, 2d8 Lightning) as a hazard for a harder one."
+  },
+  {
+   "id": "enc-s16b-sleepless",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "The Sleepless at the stones",
+   "creatures": [
+    {
+     "name": "Sleepless",
+     "statblock": "sb_sleepless",
+     "base": "Wraith",
+     "cr": "5",
+     "count": 3
+    }
+   ],
+   "tactics": "Each takes the shape of a sleeper's fear and goes for that sleeper; they gaze, then touch.",
+   "exit": "They dissolve at dawn, if Mirel rings, or if the party retreats into the Hush Cult's circle.",
+   "scale": "Written for four level-7 characters. Two Sleepless for a lighter fight; four for a harder one."
+  },
+  {
+   "id": "enc-s17a-champion",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "Kessa's champion and riders",
+   "creatures": [
+    {
+     "name": "Ironhorn Champion",
+     "statblock": "sb_ironhorn_champion",
+     "base": "Gladiator",
+     "cr": "5",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Rider",
+     "statblock": "sb_ironhorn_rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 5
+    },
+    {
+     "name": "Warhorse",
+     "base": "Warhorse",
+     "cr": "1/2",
+     "count": 5
+    }
+   ],
+   "tactics": "Only if the party tries to take the Tongue by force. The Champion challenges the strongest fighter to single combat; riders keep the others out and ride them down.",
+   "exit": "Kessa stops it the moment someone proposes a fair wager instead.",
+   "scale": "Written for four level-7 characters. Drop three riders and their horses for a duel plus an escort."
+  },
+  {
+   "id": "enc-s17a-kessa-duel",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "Kessa's duel",
+   "creatures": [
+    {
+     "name": "Thane Oru Kessa",
+     "statblock": "sb_kessa",
+     "base": "Gladiator",
+     "cr": "7",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Champion",
+     "statblock": "sb_ironhorn_champion",
+     "base": "Gladiator",
+     "cr": "5",
+     "count": 1
+    },
+    {
+     "name": "Ironhorn Rider",
+     "statblock": "sb_ironhorn_rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 1
+    }
+   ],
+   "tactics": "Kessa fights first and uses Thrane's Tongue when Bloodied; the Champion watches the strongest fighter; the rider keeps the ring.",
+   "exit": "First blood: when Kessa is Bloodied he may yield, and a fair yield ends it. Kessa honors his word.",
+   "scale": "Written for four level-7 characters. Without the Champion it is a lighter duel; add a second rider for a harder one."
+  },
+  {
+   "id": "enc-s17b-cult",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "The Hush Cult defends the shrine",
+   "creatures": [
+    {
+     "name": "Hush Cultist",
+     "statblock": "sb_hush_cultist",
+     "base": "Cultist Fanatic",
+     "cr": "2",
+     "count": 8
+    },
+    {
+     "name": "Hush Cult Leader",
+     "statblock": "sb_hush_leader",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    }
+   ],
+   "tactics": "Cultists cast Command (Halt) and Sleep to take the front line out; the Leader drains dreams only from Charmed or Incapacitated targets. They never use \"Rest\" as a Command: 2024 Command allows only Approach, Drop, Flee, Grovel and Halt.",
+   "exit": "They stop if the party withdraws from the shrine, or if the Leader is convinced the rest is killing the Hush (Persuasion DC 16).",
+   "scale": "Written for four level-7 characters. Remove four cultists for a lighter fight."
+  },
+  {
+   "id": "enc-s18a-hounds",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "The Bellwright ambush",
+   "creatures": [
+    {
+     "name": "Tongue-Hound",
+     "statblock": "sb_tongue_hound",
+     "base": "Hell Hound",
+     "cr": "3",
+     "count": 5
+    },
+    {
+     "name": "Corin Aldeth",
+     "statblock": "sb_corin",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    }
+   ],
+   "tactics": "The hounds bite and ring, making hiding impossible, and herd intruders toward the forge. Corin joins only if forced and stops the moment someone says they have rung a bell.",
+   "exit": "Corin calls them off the moment anyone says they have rung a bell, or when he joins and is Bloodied.",
+   "scale": "Written for four level-7 characters. Without Corin it is a lighter fight; three hounds with Corin is lighter still."
+  },
+  {
+   "id": "enc-s19a-strike-force",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "The Court's strike force on the Brass Road (Haldric's knights)",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 2
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 6
+    }
+   ],
+   "tactics": "They demand the Tongue, then try to seize whoever carries it; the Wardens' stones shut down casters.",
+   "exit": "They withdraw if the Ironhorn ride in, or if their Wardens fall.",
+   "scale": "Written for four level-7 characters. If the Ironhorn are allies, give them an objective (hold the road, take the flank) rather than deleting creatures.",
+   "when": [
+    {
+     "flag": "duel",
+     "not": [
+      "rook"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s19a-strike-force-rook",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "The Court's strike force on the Brass Road (Rook won)",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 3
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "Without knights, three Wardens expose their stones and Hushmen pin casters.",
+   "exit": "They withdraw if the Ironhorn ride in, or if two Wardens fall.",
+   "scale": "Written for four level-7 characters. Give any ally an objective rather than deleting creatures.",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s19b-hushmen",
+   "sessionId": "sb-abff956ca382268b",
+   "title": "Court Hushmen reach the Tor",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 3
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 6
+    }
+   ],
+   "tactics": "They arrest the Ringer and take the Tongue; the Wardens expose their stones when casters act.",
+   "exit": "They withdraw if the Warden falls or if the party crosses the Cult's circle.",
+   "scale": "Written for four level-7 characters. Fewer Sergeants for a lighter fight."
+  },
+  {
+   "id": "enc-s20-brassfall",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "Kessa's guard at the Tongue-Hall",
+   "creatures": [
+    {
+     "name": "Ironhorn Champion",
+     "statblock": "sb_ironhorn_champion",
+     "base": "Gladiator",
+     "cr": "5",
+     "count": 2
+    },
+    {
+     "name": "Ironhorn Rider",
+     "statblock": "sb_ironhorn_rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 5
+    },
+    {
+     "name": "Warhorse",
+     "base": "Warhorse",
+     "cr": "1/2",
+     "count": 5
+    }
+   ],
+   "tactics": "Only if the party tries to take the Tongue by force; the Champions pick duelists and the riders encircle.",
+   "exit": "Kessa stops it for a fair wager or a yielded blade.",
+   "scale": "Written for four level-8 characters. Drop one Champion for a lighter fight.",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s20-tor",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "The Sleepless of the Tor",
+   "creatures": [
+    {
+     "name": "Sleepless",
+     "statblock": "sb_sleepless",
+     "base": "Wraith",
+     "cr": "5",
+     "count": 4
+    }
+   ],
+   "tactics": "They form from the fears of sleepers or newly woken characters and focus them one at a time.",
+   "exit": "They dissolve at dawn, if Mirel rings, or in the Cult's circle.",
+   "scale": "Written for four level-8 characters. Three for a lighter fight; five for a harder one.",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "enc-s21-court-patrol",
+   "sessionId": "sb-24c29d78b60ca13f",
+   "title": "A Court patrol arrives",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 4
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 2
+    },
+    {
+     "name": "Dawn Order Knight",
+     "base": "Knight",
+     "cr": "3",
+     "count": 2
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 8
+    }
+   ],
+   "tactics": "The Wardens hold the road, the knights charge, and the Hushmen flank. They want the Ringer and the Tongue.",
+   "exit": "They withdraw if three Wardens fall, or if the party surrenders a Tongue.",
+   "scale": "Written for four level-8 characters. Remove a Warden and the knights for a lighter fight."
+  }
+ ]
+}

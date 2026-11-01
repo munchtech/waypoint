@@ -1,0 +1,62 @@
+// Assembles the Seventh Bell update pack (revision 7) from the authored files and checks every edit anchor against the live campaign.
+// node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
+const fs=require('fs'),path=require('path');
+const P=require(path.join(__dirname,'../paths.cjs'));
+const root=path.join(__dirname,'..'),pack=p=>path.join(root,'pack',p);
+const live=JSON.parse(fs.readFileSync(P.snapshot,'utf8')).campaigns.find(c=>c.id==='the-seventh-bell-corvane-v5');
+const flags=JSON.parse(fs.readFileSync(pack('flags.json'),'utf8'));
+const lore=require(pack('lore.cjs')),statblocks=require(pack('statblocks.cjs')),endings=require(pack('endings.cjs'));
+const files=fs.readdirSync(path.join(root,'pack')).filter(f=>/^(act.*|anytime.*)\.json$/.test(f)).sort();
+const plays=[],briefs=[],encounters=[];
+for(const f of files){const d=JSON.parse(fs.readFileSync(pack(f),'utf8'));plays.push(...(d.plays||[]));briefs.push(...(d.briefs||[]));encounters.push(...(d.encounters||[]))}
+// Expected party level at the start of each chapter (v5 milestones), in session order.
+// The table starts at level 3 with four players (DM, 2026-10-31): early chapters use max(3, the v5 milestone).
+const levels=[3,3,3,3,3,4,4,4,4,5,5,5,5,6,6,7,7,7,7,7,7,7,7,8,8,9,9,10,11,11,11,11];
+const problems=[];const warn=m=>problems.push(m);
+const keep=['id','title','style','likelihood','why','readAloud','response','consequence','fallback','tells','rules','later','keywords','when','effects'];
+const required=['id','title','style','likelihood','why','readAloud','response','consequence','fallback'];
+// Required Branch fields are always present (possibly empty); optional ones are dropped when empty.
+const clean=p=>{const o={};for(const k of keep)if(required.includes(k))o[k]=p[k]??'';else if(p[k]!==undefined&&p[k]!=='')o[k]=p[k];o.origin='playbook';return o};
+const bySession=new Map();for(const p of plays.filter(p=>p.sessionId)){if(!live.sessions.some(s=>s.id===p.sessionId))warn('play '+p.id+' has unknown session');if(!bySession.has(p.sessionId))bySession.set(p.sessionId,[]);bySession.get(p.sessionId).push(clean(p))}
+const anytime=plays.filter(p=>!p.sessionId).map(clean);
+const loreSessions=new Map(lore.sessions.map(s=>[s.id,s]));
+const sessions=live.sessions.map(s=>{const out={id:s.id};const l=loreSessions.get(s.id);if(bySession.has(s.id)){out.plays=bySession.get(s.id);const guide=s.branches.filter(br=>br.likelihood==='Scenario from the guide').map(br=>br.id);if(guide.length)out.retire=guide}if(l){out.edits=l.edits;out.summary=l.summary;for(const e of l.edits)if(!s.plan.includes(e.find))warn('session '+s.title+': anchor not found: '+e.find.slice(0,70))}return out}).filter(s=>s.plays||s.edits);
+const pageEdits=lore.pageEdits.map(x=>{const page=live.memory.pages.find(p=>p.id===x.id);if(!page){warn('page edit target missing: '+x.id);return x}const edits=x.edits.map(e=>e.find==='__WHOLE__'?{find:page.body,replace:e.replace}:e);for(const e of edits)if(!page.body.includes(e.find))warn('page '+page.title+': anchor not found: '+e.find.slice(0,70));return {...x,edits}});
+for(const e of lore.campaign.edits)if(!live[e.field].includes(e.find))warn('campaign '+e.field+': anchor not found: '+e.find.slice(0,70));
+for(const e of lore.planner.locked)if(!live.memory.planner.locked.includes(e.find))warn('planner: anchor not found');
+const briefOut=briefs.map(b=>({...b,level:levels[live.sessions.findIndex(s=>s.id===b.sessionId)]||undefined}));
+const statIds=new Set(statblocks.map(s=>s.id));for(const e of encounters)for(const c of e.creatures)if(c.statblock&&!statIds.has(c.statblock))warn('encounter '+e.id+' uses unknown statblock '+c.statblock);
+const encIds=new Set(encounters.map(e=>e.id));for(const b of briefs)for(const id of b.encounters)if(!encIds.has(id))warn('brief '+b.sessionId+' lists missing encounter '+id);
+const memoryPage=lore.pages.find(p=>p.id==='v6-memory-money');
+const sessionCount=sessions.filter(s=>s.plays).length,playCount=[...bySession.values()].reduce((n,l)=>n+l.length,0);
+const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7',
+ summary:`Revision 7 of The Seventh Bell, for Waypoint 1.35. It installs over the original campaign or over revision 6, and keeps any world state you have recorded.
+
+- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
+- **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
+- **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
+- **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them, so Waypoint can bring them back in your prep brief.
+- **Fixes from a full audit:** timeline slips (the Stilled have been frozen since 2 SS), state that the fiction hadn't earned, 2024 rulings for the spells a level-3 to 11 party actually has, and stat block arithmetic.
+- **A player site.** The handouts, the painted map and a player wiki, written as one site.html you upload. Prepared player-safe wiki entries wait in Waypoint until you press **Send to wiki**; the wiki reads "Unlocks as you discover" until then.
+- **Corvane in the Realms,** as in revision 6: the Stormwall and the Seam, Pellmoor Landing as a port, memory as money.
+- **Foresight playbook.** ${playCount} prepared plays across ${sessionCount} chapters and ${anytime.length} anytime plays; ${flags.length} tracked world-state facts; ${briefOut.length} session prep briefs; ${encounters.length} encounters; ${statblocks.length} Corvane stat blocks built on the 2024 Monster Manual; and an ending forecast.
+
+Your notes, IsoForge map kits, chronicle and any world state you have recorded are kept. Replaced wiki text moves to each page's revision history.`,
+ match:{campaignIds:['the-seventh-bell-corvane-v5'],names:['The Seventh Bell']},
+ campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,
+ pages:lore.pages.map(page=>({mode:'replace',page})),pageEdits,
+ playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.0',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
+// "Tongue" becomes "Heart" in everything the pack carries; the pack also asks Waypoint to rename the DM's own text the same way.
+const {terms,deep}=require(pack('terms.cjs'));Object.assign(result,deep(result,''));result.terms=terms;
+// The player site: prepared player-safe wiki entries and the site's fixed pages (handouts and map, built by tools/build-handouts.cjs).
+// The pages are added after the rename (they were renamed when built), so the map image's data is never touched.
+const wikiFile=pack('player-wiki.json');result.playbook.playerWiki=deep(fs.existsSync(wikiFile)?JSON.parse(fs.readFileSync(wikiFile,'utf8')).entries:[],'');
+result.playbook.site=JSON.parse(fs.readFileSync(path.join(root,'handouts/site.json'),'utf8'));
+const json=JSON.stringify(result);
+fs.writeFileSync(path.join(P.packs,'seventh-bell-v7.json'),json);
+fs.writeFileSync(path.join(P.outputs,'The-Seventh-Bell-v7.waypoint-pack.json'),JSON.stringify(result,null,1));
+console.log(`plays ${playCount} in ${sessionCount} sessions, anytime ${anytime.length}, briefs ${briefOut.length}, encounters ${encounters.length}, statblocks ${statblocks.length}, pages +${lore.pages.length}, page edits ${pageEdits.reduce((n,x)=>n+x.edits.length,0)}, size ${(json.length/1024).toFixed(0)} KB`);
+const missingBriefs=live.sessions.filter(s=>!briefs.some(b=>b.sessionId===s.id)).map(s=>s.title);
+if(missingBriefs.length)console.log('sessions without a brief yet: '+missingBriefs.length);
+for(const p of problems)console.log('PROBLEM',p);
+process.exit(problems.length?1:0);
