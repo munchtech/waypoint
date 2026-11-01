@@ -35,6 +35,10 @@ run(async args=>{
  // The player site panel: nothing is public until the DM sends it.
  await s.clickText('Player handouts',{within:'.sidebar'});await s.settle(600);const site=await text('.player-site');
  check('the player site panel shows what is public and what is ready',/Player site/.test(site)&&/On the wiki now/.test(site)&&/Nothing public yet/.test(site));await shot('09b-player-site');
+ const firstEntry=await s.run(`document.querySelector('.player-site .wiki-list li strong')?.textContent||''`);
+ await s.clickSelector('.player-site .wiki-list .button.primary');await s.settle(700);
+ check('Send to wiki writes the entry into site.html',!!firstEntry&&(s.state.siteHtml||'').includes('<h3>'+firstEntry.replace(/&/g,'&amp;').replace(/'/g,'&#39;')+'</h3>')&&!/Unlocks as you discover\.<\/strong>/.test(s.state.siteHtml||''),firstEntry);
+ check('the sent entry is listed as public',/On the wiki now\s*1 entry/.test(await text('.player-site')));await shot('09c-sent');
  await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500);
  await s.clickText('Session desk',{within:'.sidebar'});await s.settle(400);await s.clickText('Live mode');await s.settle(500);
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');

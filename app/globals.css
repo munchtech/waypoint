@@ -1322,3 +1322,5 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .wiki-later summary{cursor:pointer;font-weight:600;color:#235c62}
 .player-site .heading-actions{flex-direction:column;align-items:flex-end;gap:6px}
 .player-site .heading-actions .text-button{white-space:nowrap}
+.ready-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
+.ready-head h3{margin:0}

@@ -44,6 +44,9 @@ function installHandler(){
   if(r.path==='/api/restore-points'){const campaigns=(state.snapshot?.campaigns||[]).map(c=>({name:c.name,sessions:c.sessions.length}));return {status:200,body:{points:[{id:2,created:Date.now()-60000,reason:'autosave',campaigns,bytes:4000},{id:1,created:Date.now()-24*3600000,reason:'opened',campaigns,bytes:4000}]}}}
   if(r.path==='/api/restore-points/read')return state.snapshot&&!state.restoreFail?{status:200,body:state.snapshot}:{status:400,body:{error:'That restore point is no longer available.'}};
   if(r.path==='/api/restore-points/export')return {status:200,body:{saved:false}};
+  // The player site: keep the written page in memory so a test can read what players would see.
+  if(r.path==='/api/site/write'){state.siteHtml=JSON.parse(r.body).html;return {status:200,body:{saved:true,path:'C:\\test\\site.html'}}}
+  if(r.path==='/api/site/where')return {status:200,body:{path:state.siteHtml?'C:\\test\\site.html':''}};
   if(r.path.startsWith('/api/local-engine'))return {status:200,body:{state:'stopped',owned:false}};
   if(r.path==='/api/generate')return {status:200,body:{ready:false,provider:'comfyui',model:'test'}};
   if(r.path==='/api/rules/search'||r.path==='/api/rules/entry'){
