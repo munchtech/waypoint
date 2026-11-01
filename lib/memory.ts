@@ -1,6 +1,6 @@
 import {z} from 'zod';
 import type {Campaign} from './campaign';
-import {bargainSchema,ledgerSchema,playbookSchema,rosterSchema} from './playbook-schema';
+import {bargainSchema,ledgerSchema,playbookSchema,rosterSchema,wikiKinds} from './playbook-schema';
 
 export const pageKinds=['NPC','Character','Location','Faction','Quest','Item','Lore','Ruling'] as const;
 export const factStates=['Confirmed','Rumor','Planned','Unresolved'] as const;
@@ -16,7 +16,9 @@ export const markerKinds=['Important moment','New NPC','Promise','Ruling','Follo
 export type MarkerKind=typeof markerKinds[number];
 const tableMarker=z.object({id:z.string(),sessionId:z.string(),kind:z.enum(markerKinds),text:z.string(),created:z.string()});
 export type TableMarker=z.infer<typeof tableMarker>;
-export const memorySchema=z.object({playbook:playbookSchema.optional(),roster:rosterSchema.optional(),ledger:ledgerSchema.optional(),bargains:bargainSchema.optional(),pins:z.array(z.string()).optional(),handouts:z.array(handoutSchema).optional(),table:tableSchema.optional(),markers:z.array(tableMarker).optional(),pages:z.array(wikiPage),notes:z.array(note),planner:z.object({threadIds:z.array(z.string()).optional(),levers:z.array(z.string()).optional(),duration:z.string(),focus:z.string(),spotlight:z.string(),locked:z.string()})});
+// What the DM has sent to the player wiki: the exact text that is public, newest first.
+const sentEntry=z.object({id:z.string().max(120),title:z.string().min(1).max(200),kind:z.enum(wikiKinds),body:z.string().min(1).max(6000),sentAt:z.string().max(40),sessionId:z.string().max(120)});
+export const memorySchema=z.object({playbook:playbookSchema.optional(),site:z.object({entries:z.array(sentEntry).max(600)}).optional(),roster:rosterSchema.optional(),ledger:ledgerSchema.optional(),bargains:bargainSchema.optional(),pins:z.array(z.string()).optional(),handouts:z.array(handoutSchema).optional(),table:tableSchema.optional(),markers:z.array(tableMarker).optional(),pages:z.array(wikiPage),notes:z.array(note),planner:z.object({threadIds:z.array(z.string()).optional(),levers:z.array(z.string()).optional(),duration:z.string(),focus:z.string(),spotlight:z.string(),locked:z.string()})});
 export type Memory=z.infer<typeof memorySchema>;
 export type WikiPage=z.infer<typeof wikiPage>;
 // An unsaved wiki draft. Call it from an event handler: it reads the clock and generates an id.

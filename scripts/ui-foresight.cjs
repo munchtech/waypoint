@@ -32,6 +32,10 @@ run(async args=>{
  await s.clickText('Forecast');await s.settle(400);check('forecast shows the Concord with routes',(await text('.forecast')).includes('The Concord')&&(await text('.forecast')).includes('Tidewarden'));await shot('08-forecast');
  await s.clickText('Party & ledger');await s.settle(300);await s.clickText('Add character');await s.settle(200);await s.setValue('.roster-table input[aria-label="Character name"]','Wren of Waterdeep');await s.settle(300);
  check('roster accepts a character',s.state.snapshot.campaigns.some(c=>(c.memory?.roster||[]).some(r=>r.name==='Wren of Waterdeep')));await shot('09-party-ledger');
+ // The player site panel: nothing is public until the DM sends it.
+ await s.clickText('Player handouts',{within:'.sidebar'});await s.settle(600);const site=await text('.player-site');
+ check('the player site panel shows what is public and what is ready',/Player site/.test(site)&&/On the wiki now/.test(site)&&/Nothing public yet/.test(site));await shot('09b-player-site');
+ await s.clickText('Foresight',{within:'.sidebar'});await s.settle(500);
  await s.clickText('Session desk',{within:'.sidebar'});await s.settle(400);await s.clickText('Live mode');await s.settle(500);
  await s.setValue('.live-lookup input','bribe quill');await s.settle(400);check('live lookup answers',(await text('.live-lookup')).includes('They bribe Quill'));await shot('10-live-lookup');
  await s.clickSelector('.live-lookup .branch-head');await s.settle(300);await s.clickText('The party did this',{within:'.live-lookup'});await s.settle(500);

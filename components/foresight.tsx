@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useState} from 'react';
-import {Compass,Printer,Copy,Pin,Search,Users,ScrollText,Swords,Undo2,Plus,Trash2,Check,Lock,AlertTriangle,BookOpen,Download,Upload,Sparkles,Minus,CornerDownRight} from 'lucide-react';
+import {Compass,Printer,Copy,Pin,Search,Users,ScrollText,Swords,Undo2,Plus,Trash2,Check,Lock,AlertTriangle,BookOpen,Download,Upload,Sparkles,Minus,CornerDownRight,Globe,Send} from 'lucide-react';
 import PlayCard from './play-card';
 import BookText from './book-text';
 import RuleBody from './rule-body';
@@ -12,6 +12,8 @@ import {memoryOf,type Memory} from '../lib/memory';
 import type {Campaign,Session} from '../lib/campaign';
 import {applyUpdate,planUpdate,packMatches,updatePackSchema,type UpdatePack} from '../lib/update-pack';
 import {bundledPacks} from '../lib/packs';
+import {dueAfter} from '../lib/player-site';
+import {sendToWiki} from './player-site';
 import {clockAlerts,dependents,difficulty,echoes,encounterXP,flagLabel,forecast,isPossible,ledgerKinds,partyBudget,partyLevels,rankPlays,scaleOptions,searchPlays,sessionTag,setFlag,stateOf,undoEntry,valueLabel,type Encounter,type Play,type Playbook,type StatBlock} from '../lib/playbook';
 
 type Tab='Prep brief'|'If they…'|'World state'|'Forecast'|'Party & ledger';
@@ -60,6 +62,7 @@ export default function Foresight({campaign,session,update,onPlayed,onNavigate,o
  const relevant=[...new Set(session.branches.flatMap(b=>[...(b.when||[]),...(b.effects||[])].map(c=>c.flag)))].filter(f=>pb.flags.some(x=>x.id===f));
  const alerts=clockAlerts(pb),checks=pb.checks?.[session.id]||[],recorded=new Set(campaign.events.map(e=>e.branchId)),coming=echoes(campaign,pb).filter(e=>e.sessionId===session.id);
  // What the last session changed in the world, so the brief starts from where the table left off.
+ const wikiDue=dueAfter(campaign,session.id);
  const prev=index>0?campaign.sessions[index-1]:undefined,lastTime=prev?pb.log.filter(l=>!l.undone&&l.sessionId===prev.id).flatMap(l=>l.changes).reverse():[];
  const toggleCheck=(n:number)=>mutatePb(p=>({...p,checks:{...p.checks,[session.id]:checks.includes(n)?checks.filter(x=>x!==n):[...checks,n]}}));
  const npcs=(brief?.npcs||'').split(',').map(n=>n.trim()).filter(Boolean).map(name=>{const key=name.toLowerCase().replace(/\(.*?\)/g,'').replace(/^(hushman|pilot-mistress|reckoner|master|brother|sister|captain|ser|lady|thane|chancellor)\s+/,'').trim();const page=m.pages.find(p=>p.kind==='NPC'||p.kind==='Character'?(p.title+' '+p.aliases).toLowerCase().includes(key):false);return {name,page}});
@@ -85,6 +88,7 @@ export default function Foresight({campaign,session,update,onPlayed,onNavigate,o
     {!likely.length&&<div className="empty"><Compass/><h3>No plays for this session yet.</h3><p>Prepare paths on the Session desk, or install an update pack.</p></div>}
     {blockedCount>0&&<p className="tiny muted">{count(blockedCount,'play')} for this session {blockedCount===1?'is':'are'} not possible with the current world state. <button className="text-button" onClick={()=>{setTab('If they…');setScope('This session');setShowBlocked(true)}}>Show {blockedCount===1?'it':'them'}</button></p>}</section>
    {encounters.length>0&&<section className="paper"><div className="section-title"><div><h3>Encounters</h3><p>{levels.length?'Difficulty uses the 2024 XP budget for '+(m.roster?.length?'your roster':'the expected party: four characters at level '+levels[0])+'.':'Add your party in Party & ledger to calculate 2024 difficulty.'}</p></div></div>{encounters.map(e=><EncounterCard key={e.id} enc={e} pb={pb} levels={levels}/>)}</section>}
+   {wikiDue.length>0&&<section className="paper"><div className="section-title"><div><h3><Globe size={16}/>For the player wiki</h3><p>Player-safe entries for what the party meets in this session. Send them afterwards; each one rewrites your site.html.</p></div><button className="text-button no-print" onClick={()=>onNavigate('Player handouts')}>All entries</button></div><ul className="wiki-list">{wikiDue.map(e=><li key={e.id}><div><strong>{e.title}</strong><small>{e.kind}</small><p>{plainPreview(e.body,140)}</p></div><div className="row-actions no-print"><button className="button small" onClick={()=>void sendToWiki(campaign,{id:e.id,title:e.title,kind:e.kind,body:e.body},session.id,{update,notify,fail})}><Send size={13}/>Send to wiki</button></div></li>)}</ul></section>}
    {brief&&<div className="content-grid brief-grid"><section className="paper"><h3>People in play</h3><ul className="npc-list">{npcs.map(n=><li key={n.name}><strong>{n.name}</strong>{n.page?<span>{plainPreview(n.page.body,170)}</span>:<span className="muted">No wiki page yet.</span>}</li>)}</ul><button className="text-button no-print" onClick={()=>onNavigate('World wiki')}><BookOpen size={13}/>Open the world wiki</button></section>
     <section className="paper"><h3>Before you sit down</h3><ul className="prep-checks">{[...general.map((t,i)=>({t,i})),...brief.checklist.map((t,i)=>({t,i:100+i}))].map(({t,i})=><li key={i}><label className="check-label"><input type="checkbox" checked={checks.includes(i)} onChange={()=>toggleCheck(i)}/>{t}</label></li>)}</ul>
      {brief.rules.length>0&&<><h4>Rules at hand (2024)</h4><p className="rule-chips">{brief.rules.map(r=><span key={r} className="pill neutral">{r}</span>)}</p>{isDesktop()&&<button className="button small no-print" onClick={()=>void pinRules()}><Pin size={13}/>Pin these to the session</button>}</>}

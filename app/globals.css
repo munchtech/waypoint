@@ -1306,3 +1306,19 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .ending-card.reached{border-color:#c9a86a;box-shadow:0 0 0 2px #f4efdf}
 .app-opening{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--bg);color:#5c6972;font-size:13px}
 .app-opening-mark{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#e9f0ed;color:#235c62}
+/* 1.35: the player site panel and Send to wiki */
+.player-site h2{display:flex;align-items:center;gap:8px}
+.player-site h3 small{font-weight:500;font-size:12px;margin-left:6px}
+.wiki-list{list-style:none;margin:8px 0 0;padding:0}
+.wiki-list li{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;padding:12px 0;border-top:1px solid #e6e4dc}
+.wiki-list li>div:first-child{display:grid;gap:2px;font-size:13px;line-height:1.6;min-width:0}
+.wiki-list small{color:var(--muted)}
+.wiki-list p{color:#455b63}
+.row-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.wiki-draft{margin:14px 0 18px;padding:14px 16px;border:1px solid #cddcd6;border-radius:12px;background:#f7faf8}
+.wiki-draft h3{margin:0 0 2px}
+.wiki-draft textarea{width:100%}
+.wiki-later{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.wiki-later summary{cursor:pointer;font-weight:600;color:#235c62}
+.player-site .heading-actions{flex-direction:column;align-items:flex-end;gap:6px}
+.player-site .heading-actions .text-button{white-space:nowrap}

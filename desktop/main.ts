@@ -56,6 +56,11 @@ async function route(req:{path:string;method:string;body?:string}){if(!req||type
    return {status:200,body:rules().importData(packs)};
   }finally{rulesImporting=false}
  }
+ // The player site: one site.html the DM uploads. Waypoint asks where to keep it once, remembers the path, and rewrites it on every send.
+ if(req.path==='/api/site/write'&&req.method==='POST'){const {html,choose}=JSON.parse(req.body||'{}') as {html?:unknown;choose?:unknown};if(typeof html!=='string'||!html.startsWith('<!doctype html>')||html.length>20000000)return {status:400,body:{error:'The site page could not be built.'}};const file=path.join(dataDir,'site.json');let target='';try{target=(JSON.parse(fs.readFileSync(file,'utf8')) as {path?:string}).path||''}catch{}
+  if(choose||!target||!fs.existsSync(path.dirname(target))){const result=await dialog.showSaveDialog({title:'Where should Waypoint keep your player site?',defaultPath:target||path.join(app.getPath('documents'),'site.html'),filters:[{name:'Web page',extensions:['html']}]});if(result.canceled||!result.filePath)return {status:200,body:{saved:false}};target=result.filePath;fs.writeFileSync(file,JSON.stringify({path:target}))}
+  fs.writeFileSync(target,html);return {status:200,body:{saved:true,path:target}}}
+ if(req.path==='/api/site/where'&&req.method==='GET'){try{const target=(JSON.parse(fs.readFileSync(path.join(dataDir,'site.json'),'utf8')) as {path?:string}).path||'';return {status:200,body:{path:target}}}catch{return {status:200,body:{path:''}}}}
  if(req.path==='/api/open-data'&&req.method==='POST'){await shell.openPath(dataDir);return {status:200,body:{ok:true}}}
  if(req.path.startsWith('/api/recordings/')&&req.method==='POST'){if(!library)throw new Error('Recording library unavailable');return {status:200,body:await library.route(req.path.slice('/api/recordings/'.length),JSON.parse(req.body||'{}'))}}
  if(req.path==='/api/export-previous'&&req.method==='POST'){const previous=store?.previous();if(!previous)throw new Error('No previous save is available yet.');const result=await dialog.showSaveDialog({title:'Export previous campaign save',defaultPath:'waypoint-previous-save.json',filters:[{name:'Campaign backup',extensions:['json']}]});if(!result.canceled&&result.filePath)fs.writeFileSync(result.filePath,JSON.stringify(previous,null,2));return {status:200,body:{saved:!result.canceled}}}
