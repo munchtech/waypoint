@@ -1,0 +1,300 @@
+{
+ "note": "Hover definitions for the player site wiki. Player-safe: only what the handouts already say. 'match' lists the exact words that get the definition (case-sensitive, whole words); 'entry' is the wiki entry it links to when that entry is public.",
+ "terms": [
+  {
+   "term": "Reckoner",
+   "match": [
+    "Reckoners",
+    "Reckoner"
+   ],
+   "text": "A Court-licensed memory assayer: the only person allowed to draw a memory out of someone, with a tuning fork, and only with their consent.",
+   "entry": "pw-memory-money"
+  },
+  {
+   "term": "Reckoning House",
+   "match": [
+    "Reckoning House"
+   ],
+   "text": "The office on the Tally where Reckoners buy and sell memories. The day's rate is posted on a slate by the door.",
+   "entry": "pw-the-tally"
+  },
+  {
+   "term": "heartkeep",
+   "match": [
+    "heartkeeps",
+    "heartkeep"
+   ],
+   "text": "The most valuable sealed memory: a defining one, like a parent's face or a wedding day. Worth 25 to 100 gold pieces.",
+   "entry": "pw-memory-money"
+  },
+  {
+   "term": "mote",
+   "match": [
+    "motes",
+    "mote"
+   ],
+   "text": "The smallest sealed memory: a passing moment. Worth about a silver piece in Pellmoor.",
+   "entry": "pw-memory-money"
+  },
+  {
+   "term": "Tithe",
+   "match": [
+    "Tithe-taxes",
+    "Tithed",
+    "Tithe"
+   ],
+   "text": "The Quiet Court's tax, paid in memories. A Tithed memory goes into a jar in the Court's vaults.",
+   "entry": "pw-the-tithe"
+  },
+  {
+   "term": "gilding",
+   "match": [
+    "gilding"
+   ],
+   "text": "Paying a Corvanese person's Tithe in gold for them. Illegal, and it happens every day.",
+   "entry": "pw-the-tithe"
+  },
+  {
+   "term": "Blank",
+   "match": [
+    "Blanks",
+    "Blank"
+   ],
+   "text": "Someone who has given away so many memories they no longer know their own family.",
+   "entry": "pw-blanks"
+  },
+  {
+   "term": "Toll",
+   "match": [
+    "Tolls",
+    "Toll"
+   ],
+   "text": "What ringing a bell costs the person who rings it: a memory, a year, a sense, a name, a fear or a gift. You always hear the price first.",
+   "entry": "pw-the-toll"
+  },
+  {
+   "term": "Heart",
+   "match": [
+    "Hearts",
+    "Heart"
+   ],
+   "text": "The bronze clapper that makes a bell ring. A bell without its Heart is silent.",
+   "entry": "pw-hearts"
+  },
+  {
+   "term": "Hushman",
+   "match": [
+    "Hushmen",
+    "Hushman"
+   ],
+   "text": "An officer of the Quiet Court. Grey silence-stone gloves that muffle their own blows. Very quiet.",
+   "entry": "pw-quiet-court"
+  },
+  {
+   "term": "Quiet Court",
+   "match": [
+    "Quiet Court"
+   ],
+   "text": "The government, ruled from Hallowmere. It believes the bells must never ring again.",
+   "entry": "pw-quiet-court"
+  },
+  {
+   "term": "Ninefold Church",
+   "match": [
+    "Ninefold Church"
+   ],
+   "text": "Corvane's own church. It worships the Silence and calls the Faerûnian gods \"the loud gods.\"",
+   "entry": "pw-quiet-court"
+  },
+  {
+   "term": "silence-stone",
+   "match": [
+    "silence-stones",
+    "silence-stone",
+    "Silence-stones"
+   ],
+   "text": "A grey stone the Court uses to stop magic. Spells fail within about ten feet. It can be smashed or carried off; dispelling won't help.",
+   "entry": "pw-tonework-and-silence-stones"
+  },
+  {
+   "term": "Tonework",
+   "match": [
+    "Tonework"
+   ],
+   "text": "What Corvanese call magic. Every spell hums faintly as it is cast.",
+   "entry": "pw-tonework-and-silence-stones"
+  },
+  {
+   "term": "bell-work",
+   "match": [
+    "bell-work"
+   ],
+   "text": "What Hushmen call loud magic inland. It draws their attention.",
+   "entry": "pw-tonework-and-silence-stones"
+  },
+  {
+   "term": "Dawn Order",
+   "match": [
+    "Dawn Order"
+   ],
+   "text": "Hallowmere's own knights, sworn to Vaer by old tradition. They keep watch under a sky that never brightens.",
+   "entry": "pw-dawn-order"
+  },
+  {
+   "term": "Bellwrights",
+   "match": [
+    "Bellwrights",
+    "Bellwright"
+   ],
+   "text": "A secret network of bell-makers and tuners, outlawed and hunted for three hundred years. They want the bells rung.",
+   "entry": "pw-bellwrights"
+  },
+  {
+   "term": "Drowned Choir",
+   "match": [
+    "Drowned Choir"
+   ],
+   "text": "The restless dead of the Mute Mere, singing their grief. They want to be remembered by name.",
+   "entry": "pw-drowned-choir"
+  },
+  {
+   "term": "Ferry-folk",
+   "match": [
+    "ferry-folk",
+    "Ferry-folk"
+   ],
+   "text": "The old families of Pellmoor. They pilot every foreign ship across the drowned town.",
+   "entry": "pw-ferry-folk"
+  },
+  {
+   "term": "Ironhorn Compact",
+   "match": [
+    "Ironhorn Compact"
+   ],
+   "text": "The horse-clans of the northern steppe. Proud, blunt, and wary of anyone after their bronze.",
+   "entry": "pw-ironhorn-compact"
+  },
+  {
+   "term": "the Landing",
+   "match": [
+    "Landers",
+    "Lander"
+   ],
+   "text": "A Faerûnian who has settled in Pellmoor for years.",
+   "entry": "pw-the-landing"
+  },
+  {
+   "term": "Stormborn",
+   "match": [
+    "Stormborn"
+   ],
+   "text": "The polite word for a Faerûnian newcomer. The rude one is \"Loudfolk.\"",
+   "entry": "pw-the-landing"
+  },
+  {
+   "term": "Loudfolk",
+   "match": [
+    "Loudfolk"
+   ],
+   "text": "The rude word for Faerûnians. The polite one is \"Stormborn.\"",
+   "entry": "pw-the-landing"
+  },
+  {
+   "term": "Bellfolk",
+   "match": [
+    "Bellfolk"
+   ],
+   "text": "What Faerûnians call people born in Corvane.",
+   "entry": "pw-corvane-hesk"
+  },
+  {
+   "term": "Hesk",
+   "match": [
+    "Hesk"
+   ],
+   "text": "The land's own name for itself, and its language.",
+   "entry": "pw-corvane-hesk"
+  },
+  {
+   "term": "SS",
+   "match": [
+    "SS"
+   ],
+   "text": "Years \"since the Silence.\" 412 SS is 1492 DR.",
+   "entry": "pw-quiet-night"
+  },
+  {
+   "term": "Quiet Night",
+   "match": [
+    "Quiet Night"
+   ],
+   "text": "The night, 412 years ago, when every bell in Corvane fell silent at once.",
+   "entry": "pw-quiet-night"
+  },
+  {
+   "term": "Wrongweather",
+   "match": [
+    "Wrongweather"
+   ],
+   "text": "The one-night storm in 382 SS that came up the river onto the Mere, drowned people, and left the Seam open behind it.",
+   "entry": "pw-wrongweather"
+  },
+  {
+   "term": "Stormwall",
+   "match": [
+    "Stormwall"
+   ],
+   "text": "The permanent band of storm, thirty to sixty miles deep, that circles Corvane at sea.",
+   "entry": "pw-stormwall-and-seam"
+  },
+  {
+   "term": "Seam",
+   "match": [
+    "Seam"
+   ],
+   "text": "The one calm lane through the Stormwall, at the mouth of the river Pell. Every ship takes a pilot.",
+   "entry": "pw-stormwall-and-seam"
+  },
+  {
+   "term": "writ of passage",
+   "match": [
+    "writs of passage",
+    "writ of passage"
+   ],
+   "text": "The Court paper a foreigner needs to travel inland past the Mere road.",
+   "entry": "pw-landing-charter-and-writs"
+  },
+  {
+   "term": "Landing House",
+   "match": [
+    "Landing House"
+   ],
+   "text": "The Court's customs office on the Quays: the landing fee, registration and writs of passage.",
+   "entry": "pw-the-quays"
+  },
+  {
+   "term": "Pilots' Hall",
+   "match": [
+    "Pilots' Hall"
+   ],
+   "text": "Where ferry-folk pilots are hired. No ship crosses the drowned town without one.",
+   "entry": "pw-the-quays"
+  },
+  {
+   "term": "Memory Shore",
+   "match": [
+    "Memory Shore"
+   ],
+   "text": "A stretch of the Old Shore where the names of the drowned are scratched on stones.",
+   "entry": "pw-old-shore"
+  },
+  {
+   "term": "Mute Mere",
+   "match": [
+    "Mute Mere"
+   ],
+   "text": "The vast, perfectly still lake with a drowned town beneath it. Its water remembers the dead.",
+   "entry": "pw-mute-mere"
+  }
+ ]
+}

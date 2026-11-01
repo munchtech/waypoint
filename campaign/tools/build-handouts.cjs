@@ -27,7 +27,8 @@ console.log('handouts built');
 // ids prefixed per page so anchors never collide, and the map image carried as data.
 const siteSet=here=>`<nav class="set" aria-label="The four handouts"><p class="label">The four handouts</p><ol>${set.map(([id,t,,what])=>{const sid={about:'start-here',bell:'the-seventh-bell',land:'the-ringing-land',map:'map'}[id];return id===here?`<li class="here"><b>${t}</b> (this page). ${what}</li>`:`<li><a href="#${sid}">${t}</a>. ${what}</li>`}).join('')}</ol></nav>`;
 const sitePage=(id,title,summary,file,here)=>({id,title,summary,body:rename(read(file).replace('<!--SET-->',siteSet(here)).replace('MAPSRC','IMG:corvane-map').replace(/ id="([a-z0-9-]+)"/g,` id="${id}-$1"`).replace(/ href="#([a-z0-9-]+)"/g,(m,a)=>['start-here','the-seventh-bell','the-ringing-land','map','wiki','home'].includes(a)?m:` href="#${id}-${a}"`).trim())});
-const site={title:'The Seventh Bell',css,pages:[
+const glossary=JSON.parse(fs.readFileSync(path.join(dir,'glossary.json'),'utf8')).terms;
+const site={title:'The Seventh Bell',css,glossary,pages:[
  sitePage('start-here','What’s It About?','Start here: the short pitch, session zero and your character.','start-here.body.html','about'),
  sitePage('the-seventh-bell','The Seventh Bell','How the campaign works: the bells, their Hearts, the Toll, magic and who’s who.','seventh-bell.body.html','bell'),
  sitePage('the-ringing-land','The Ringing Land','The world: Pellmoor Landing, the ships, and memory as money.','ringing-land.body.html','land'),

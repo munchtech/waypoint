@@ -1324,3 +1324,4 @@ body.print-brief .paper{box-shadow:none;break-inside:avoid-page}
 .player-site .heading-actions .text-button{white-space:nowrap}
 .ready-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}
 .ready-head h3{margin:0}
+.sent-early{color:#7a3f27!important;font-weight:600}
