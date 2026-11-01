@@ -1,9 +1,11 @@
-// Assembles the Seventh Bell update pack (revision 7) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.1) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs=require('fs'),path=require('path');
 const P=require(path.join(__dirname,'../paths.cjs'));
 const root=path.join(__dirname,'..'),pack=p=>path.join(root,'pack',p);
-const live=JSON.parse(fs.readFileSync(P.snapshot,'utf8')).campaigns.find(c=>c.id==='the-seventh-bell-corvane-v5');
+const campaignIn=file=>JSON.parse(fs.readFileSync(file,'utf8')).campaigns.find(c=>c.id==='the-seventh-bell-corvane-v5');
+const live=campaignIn(P.snapshot),baseline=campaignIn(P.baseline);
+const {rename}=require(pack('terms.cjs'));
 const flags=JSON.parse(fs.readFileSync(pack('flags.json'),'utf8'));
 const lore=require(pack('lore.cjs')),statblocks=require(pack('statblocks.cjs')),endings=require(pack('endings.cjs'));
 const files=fs.readdirSync(path.join(root,'pack')).filter(f=>/^(act.*|anytime.*)\.json$/.test(f)).sort();
@@ -20,18 +22,22 @@ const clean=p=>{const o={};for(const k of keep)if(required.includes(k))o[k]=p[k]
 const bySession=new Map();for(const p of plays.filter(p=>p.sessionId)){if(!live.sessions.some(s=>s.id===p.sessionId))warn('play '+p.id+' has unknown session');if(!bySession.has(p.sessionId))bySession.set(p.sessionId,[]);bySession.get(p.sessionId).push(clean(p))}
 const anytime=plays.filter(p=>!p.sessionId).map(clean);
 const loreSessions=new Map(lore.sessions.map(s=>[s.id,s]));
-const sessions=live.sessions.map(s=>{const out={id:s.id};const l=loreSessions.get(s.id);if(bySession.has(s.id)){out.plays=bySession.get(s.id);const guide=s.branches.filter(br=>br.likelihood==='Scenario from the guide').map(br=>br.id);if(guide.length)out.retire=guide}if(l){out.edits=l.edits;out.summary=l.summary;for(const e of l.edits)if(!s.plan.includes(e.find))warn('session '+s.title+': anchor not found: '+e.find.slice(0,70))}return out}).filter(s=>s.plays||s.edits);
-const pageEdits=lore.pageEdits.map(x=>{const page=live.memory.pages.find(p=>p.id===x.id);if(!page){warn('page edit target missing: '+x.id);return x}const edits=x.edits.map(e=>e.find==='__WHOLE__'?{find:page.body,replace:e.replace}:e);for(const e of edits)if(!page.body.includes(e.find))warn('page '+page.title+': anchor not found: '+e.find.slice(0,70));return {...x,edits}});
-for(const e of lore.campaign.edits)if(!live[e.field].includes(e.find))warn('campaign '+e.field+': anchor not found: '+e.find.slice(0,70));
-for(const e of lore.planner.locked)if(!live.memory.planner.locked.includes(e.find))warn('planner: anchor not found');
+// Checks edits as Waypoint places them: in order, on the renamed text; an edit whose replacement is already there counts as placed.
+// The live campaign already has revision 7, so its earlier edits are found by their replacements and the new ones by their anchors.
+const placeable=(text,edits,label)=>{let t=rename(text);for(const e of edits){const f=rename(e.find),r=rename(e.replace);if(r&&t.includes(r))continue;if(t.includes(f))t=t.replace(f,r);else warn(label+': anchor not found: '+e.find.slice(0,70))}};
+const sessions=live.sessions.map(s=>{const out={id:s.id};const l=loreSessions.get(s.id);if(bySession.has(s.id)){out.plays=bySession.get(s.id);const base=baseline.sessions.find(x=>x.id===s.id)||s;const guide=[...new Set([...base.branches,...s.branches].filter(br=>br.likelihood==='Scenario from the guide').map(br=>br.id))];if(guide.length)out.retire=guide}if(l){out.edits=l.edits.map(({find,replace})=>({find,replace}));out.summary=l.summary;placeable(s.plan,l.edits,'session '+s.title)}return out}).filter(s=>s.plays||s.edits);
+const pageEdits=lore.pageEdits.map(x=>{const page=live.memory.pages.find(p=>p.id===x.id);if(!page){warn('page edit target missing: '+x.id);return x}const edits=x.edits.map(e=>e.find==='__WHOLE__'?{find:(baseline.memory.pages.find(p=>p.id===x.id)||page).body,replace:e.replace}:e);placeable(page.body,edits,'page '+page.title);return {...x,edits}});
+for(const field of new Set(lore.campaign.edits.map(e=>e.field)))placeable(live[field],lore.campaign.edits.filter(e=>e.field===field),'campaign '+field);
+placeable(live.memory.planner.locked,lore.planner.locked,'planner');
 const briefOut=briefs.map(b=>({...b,level:levels[live.sessions.findIndex(s=>s.id===b.sessionId)]||undefined}));
 const statIds=new Set(statblocks.map(s=>s.id));for(const e of encounters)for(const c of e.creatures)if(c.statblock&&!statIds.has(c.statblock))warn('encounter '+e.id+' uses unknown statblock '+c.statblock);
 const encIds=new Set(encounters.map(e=>e.id));for(const b of briefs)for(const id of b.encounters)if(!encIds.has(id))warn('brief '+b.sessionId+' lists missing encounter '+id);
 const memoryPage=lore.pages.find(p=>p.id==='v6-memory-money');
 const sessionCount=sessions.filter(s=>s.plays).length,playCount=[...bySession.values()].reduce((n,l)=>n+l.length,0);
-const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7',
- summary:`Revision 7 of The Seventh Bell, for Waypoint 1.35. It installs over the original campaign or over revision 6, and keeps any world state you have recorded.
+const result={kind:'waypoint-update-pack',version:1,id:'seventh-bell-v7',title:'The Seventh Bell · revision 7.1',
+ summary:`Revision 7.1 of The Seventh Bell, for Waypoint 1.35.1. It installs over revision 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **New in 7.1: a guide for running Sessions 1 to 3.** Each Act I session plan gains a section, **Running this session (new DM guide)**, after the plan and before your IsoForge kit: what to prepare, read-aloud for every scene, what is really going on, how to play each person, the checks and DCs, what to do when the players surprise you, a turn-by-turn guide to every fight, pacing, names, and what to record afterwards. Four new plays fill gaps the guide found, and Act I's numbers now match the 2024 stat blocks.
 - **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
 - **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
@@ -45,7 +51,7 @@ Your notes, IsoForge map kits, chronicle and any world state you have recorded a
  match:{campaignIds:['the-seventh-bell-corvane-v5'],names:['The Seventh Bell']},
  campaign:{edits:lore.campaign.edits},planner:lore.planner,sessions,
  pages:lore.pages.map(page=>({mode:'replace',page})),pageEdits,
- playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.0',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
+ playbook:{id:'seventh-bell',title:'The Seventh Bell playbook',version:'7.1',flags,anytime,encounters,statblocks,briefs:briefOut,endings,references:[{title:'Memory money: rates and table rules',body:memoryPage.body}]}};
 // "Tongue" becomes "Heart" in everything the pack carries; the pack also asks Waypoint to rename the DM's own text the same way.
 const {terms,deep}=require(pack('terms.cjs'));Object.assign(result,deep(result,''));result.terms=terms;
 // The player site: prepared player-safe wiki entries and the site's fixed pages (handouts and map, built by tools/build-handouts.cjs).

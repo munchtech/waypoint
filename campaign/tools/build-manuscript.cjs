@@ -12,7 +12,8 @@ const sections={'sb-462b2b0d93fd03c2':'### PELLMOOR (Village)','sb-17dfab311eab2
 for(const x of lore.pageEdits)for(const e of x.edits){
  if(e.find==='__WHOLE__'){const head=sections[x.id];const i=text.indexOf(head);if(i<0){missed.push('section '+head);continue}const start=i+head.length,end=text.indexOf('\n### ',start)>=0?Math.min(text.indexOf('\n### ',start),text.indexOf('\n## ',start)>=0?text.indexOf('\n## ',start):Infinity):text.length;text=text.slice(0,i)+(x.title?'### '+x.title:head)+'\n'+e.replace+'\n'+text.slice(end);continue}
  apply(e.find,e.replace,x.id)}
-for(const s of lore.sessions)for(const e of s.edits)apply(e.find,e.replace,s.id);
+// A session guide's headings start at ## in Waypoint; in the book they sit two levels lower, under the session's ### heading.
+for(const s of lore.sessions)for(const e of s.edits)apply(e.find,e.guide?e.replace.replace(/^(#{2,4}) /gm,'##$1 '):e.replace,s.id);
 apply('*Revision 5. Core setting, characters, and five-act structure are unchanged from the original manuscript.','*Revision 7. Tuned for four players starting at level 3, with 2024 encounters, a full Act IV–V playbook and reachable endings (see Part 13). Revision 6: Corvane is part of the Forgotten Realms, Pellmoor is a port, memory works as money, and the rules are D&D 2024 (see Part 12). Revision 5: core setting, characters, and five-act structure are unchanged from the original manuscript.','header');
 // Revision 7 book edits run after the v6 ones, so they may anchor on v6 text.
 for(const [find,replace] of require(path.join(root,'pack/book-v7.cjs')).edits)apply(find,replace,'v7');

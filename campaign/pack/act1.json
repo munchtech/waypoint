@@ -49,6 +49,22 @@
    ]
   },
   {
+   "id": "s01-ask-ila-father",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They ask Ila about her father",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Ila is alone on the dock in a man's coat; most tables ask where her family is within a minute.",
+   "tells": "A player asks whose coat it is, where her parents are, or why she is on the dock alone.",
+   "readAloud": "\"Dad went out six weeks ago. No cargo, no ship to pilot. No pilot does that. They found him in the reeds.\" She counts the masts again. \"He gave me this first. Like he knew.\"",
+   "response": "Ila tells what she knows and nothing she doesn't: Tam's net brought up the Tongue, it hummed in the house, and a few nights later he left it with her and took his boat out empty. She doesn't know where he went. She wears his coat because it still smells of tar and him. If anyone promises to find out what happened, she says, 'Don't promise. Just do it.'",
+   "rules": "No check. This is the first Tam clue, and nothing in it is behind a roll.",
+   "consequence": "The party knows Tam died after taking an empty boat out, six weeks ago, right after the Tongue came up.",
+   "later": "S2: Brannagh Wick confirms the empty boat and guesses the belfry (s02-ask-brannagh). S3: the patrol entry in Eld's papers explains it (s03-tam-solved).",
+   "fallback": "If nobody asks, Mother Sallow says it for her over tea: 'Her father's six weeks drowned. Ask her about him gently, or don't ask at all.'",
+   "keywords": "father, dad, Tam, Tam Harrow, coat, family, parents, drowned, how did he die, alone"
+  },
+  {
    "id": "s01-take-tongue",
    "sessionId": "sb-ce895de5912506a9",
    "title": "They try to take or steal the Tongue from Ila",
@@ -97,6 +113,22 @@
    "later": "S2: the hymn calms the Night Song for an hour. S3: if they kept the Tongue from the Court for three days, Mother Sallow opens the ledger without being asked (s03-search-eld).",
    "fallback": "If they dither, she hands Ila the tea and says, \"Then I'll keep it, and you can watch me fail.\"",
    "keywords": "mother sallow, bargain, deal, three days, tea, hymn, response, night song, keep it safe"
+  },
+  {
+   "id": "s01-memory-shore",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "They visit the Mere Memory Shore",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Mother Sallow mentions her husband's stone, and curious tables want to see the shore of names before the singing starts.",
+   "tells": "Players ask about Davin, the name-stones, or where the singing comes from.",
+   "readAloud": "The shore is littered with stones smoothed by four centuries of water. On each, someone has scratched a name. The water whispers the names back to you.",
+   "response": "Mother Sallow walks them there and shows Davin Sallow's stone, then Ondra Sallow's, the oldest, without explaining it. For foreshadowing, one stone can bear a player character's name dated ten years ahead (H-09); Sallow says only, 'The Mere remembers what hasn't happened yet,' and nothing else need follow. Anyone who scratches a dead person's name on a fresh stone is known to the Choir as one of the grieving.",
+   "rules": "Search, Wisdom (Perception) DC 12, spots the newest stone: TAM HARROW, scratched in a child's hand. No check to read Davin's or Ondra's.",
+   "consequence": "The party knows where the Night Song is sung, and that Mother Sallow's family is old on this shore.",
+   "later": "S2: the Night Song is sung on this shore, and a character who scratched a name is greeted as one of the grieving (s02-sing-response).",
+   "fallback": "If they never go, Ila takes them at dusk in S2 to show them her father's stone.",
+   "keywords": "memory shore, stones, name-stones, names, Davin, grave, my name on a stone, shore, Ondra"
   },
   {
    "id": "s01-hand-to-quill",
@@ -173,7 +205,7 @@
    "why": "A Hushman threatening a child is an easy villain for a level-3 party that can now do something about it.",
    "tells": "Hands on weapons; a player asks how many Hushmen are in Pellmoor.",
    "readAloud": "Quill steps back so neatly it looks rehearsed. His gloves come up grey and silent. \"You've made yourselves a Tithe-case. I do hope you understand what that means.\"",
-   "response": "Run Quill's patrol. Quill wants an arrest, not a killing; his guard fights while Quill retreats toward the Landing House shouting for witnesses. Foreign captains on the Quays will not interfere with the Court. Ila's house becomes the first place the Hushmen search.",
+   "response": "Run Quill's patrol. Quill wants an arrest, not a killing; his guard fights, the three Hushmen waiting with the keep-cart at the end of the lane arrive in round two, and Quill retreats toward the Landing House shouting for witnesses. Foreign captains on the Quays will not interfere with the Court. Ila's house becomes the first place the Hushmen search.",
    "rules": "Encounter: Quill's patrol. Silence-glove strikes make no sound and can't be sensed by Tonework. Hold Person on Quill or the Sergeant ends the fight quickly: let it, and note the caster is named in the report.",
    "consequence": "The party is a Tithe-case. The Landing House's six Hushmen now watch the Old Shore.",
    "later": "Tonight: the Hushmen raid Ila's house (run it). S3: Quill's report reaches Hallowmere, but the Chancellor's invitation still comes; the Court prefers to buy before it threatens. S4: the Gate Clerk already has their names (s04-refuse-courtesy-memory, +2 DC).",
@@ -327,7 +359,7 @@
    "why": "v5 ends Session 1 with a Hushmen raid on the Harrow house if Quill suspects anything.",
    "tells": "The party keeps watch at the Harrow house, or asks where Ila sleeps tonight.",
    "readAloud": "No knock. Just the door, opening very quietly, and two grey gloves catching the lamplight.",
-   "response": "Four Hushmen under a Sergeant (the night raid). They want the Tongue and the child's father's papers, and they withdraw when one drops or the alarm rouses the Old Shore. Ila can be hidden: under the net-racks, or with Brannagh at the Pilots' Hall. Ila is a child: check session-zero Off-limits; she is never harmed on-screen, and if she is taken it is Off-screen and handled by s01-raid-takes-ila.",
+   "response": "Three Hushmen under a Sergeant (the night raid): one waits in the boat under the window, two search, the Sergeant holds the door. They want the Tongue and the child's father's papers, and they withdraw when one drops or the alarm rouses the Old Shore. Ila can be hidden: under the net-racks, or with Brannagh at the Pilots' Hall. Ila is a child: check session-zero Off-limits; she is never harmed on-screen, and if she is taken it is Off-screen and handled by s01-raid-takes-ila.",
    "rules": "Encounter: the night raid. Hiding Ila: Dexterity (Stealth) DC 14 with the Hide action's rules; the ferry-folk help (Help action) without being asked. A Rogue can Hide as a bonus action (Cunning Action).",
    "consequence": "The Court's first move has failed or succeeded in front of the whole Old Shore.",
    "later": "If the raid fails: S3 Quill brings reinforcements and the ferry-folk start to trust the party. If Ila is hidden at the Pilots' Hall, set ila to Hidden by playing s03-hide-ila.",
@@ -391,7 +423,7 @@
    "tells": "Players ask for a boat, a pilot, or directions to the eastern-marsh route.",
    "readAloud": "Below the skiff, rooftops slide past like the backs of sleeping animals. A drowned weathervane points the way you came. Ahead, a ferry sits crooked on a sandbank, and someone is sitting in it.",
    "response": "Brannagh Wick lends a skiff and a pilot if asked; without one, the drowned town is a maze of roofs just under the surface. On the sandbank: the ferry, and its dead ferryman, face peaceful, a dripping oar in his hands. That is the Tidewarden's old body; don't name it yet. Memory-eels circle.",
-   "rules": "Without a pilot: Wisdom (Survival) DC 14 to read the drowned streets. On a failure the skiff scrapes a roof, ships water, and wakes the eels early.",
+   "rules": "Without a pilot: Wisdom (Survival) DC 12 to read the drowned streets. On a failure the skiff scrapes a roof, ships water, and wakes the eels early.",
    "consequence": "The ferry is found. The eels are between the party and the body.",
    "later": "S3: the Tidewarden appears to anyone who treated the body with respect, and offers safe passage to the belfry.",
    "fallback": "If they won't go, the Tidewarden's ferry drifts in to the Old Shore on its own at dawn, its ferryman still holding the oar.",
@@ -407,7 +439,7 @@
    "tells": "Weapons out at the waterline; someone jumps in.",
    "readAloud": "The water around the sandbank thickens into grey ropes, and the ropes have mouths.",
    "response": "Run the eel encounter. A bite that deals damage can take a memory; the player chooses which minor memory goes, and it comes back after their next long rest. The eels flee when reduced to two. Don't add the Drowned Singers to this fight; let the party breathe on the sandbank first.",
-   "rules": "Encounter: memory-eels. Bite: DC 13 Wisdom save or lose a minor memory until the next long rest (record as 'Eel'). Swimming in the cold Mere: 2024 Frigid Water (minutes equal to Constitution score, then DC 10 Constitution save each minute or 1 Exhaustion level). A Druid can Wild Shape into a swimming beast and ignore the breath clock but not the bite.",
+   "rules": "Encounter: memory-eels. Bite: DC 10 Wisdom save (the stat block) or lose a minor memory until the next long rest (record as 'Eel'). Swimming in the cold Mere: 2024 Frigid Water (minutes equal to Constitution score, then DC 10 Constitution save each minute or 1 Exhaustion level). A Druid can Wild Shape into a swimming beast and ignore the breath clock but not the bite.",
    "consequence": "The sandbank is clear. Someone may be missing a small memory until morning.",
    "later": "S2: the missing memory comes back after a long rest. S3: the Tidewarden notes who fought them. No level is given here: the party stays level 3 until S6.",
    "fallback": "If the fight goes badly, the dead ferryman's oar rises and the eels scatter.",
@@ -558,7 +590,7 @@
    "tells": "Players notice a grey-robed foreigner with a censer and a vial of holy water heading for the Memory Shore.",
    "readAloud": "\"The dead are owed rest, not songs,\" Brother Hadrik says, uncorking the vial. \"Kelemvor's judgment is mercy. Stand aside, or kneel.\"",
    "response": "If Hadrik pours holy water into the Mere during the Night Song and calls on his god, the Choir rises angry and a Drowned Singer comes ashore for him (s02-hadrik-pours). Talk him down by arguing his own dogma: Kelemvor's dead are meant to be judged and remembered, not erased. Or restrain him; the ferry-folk will thank you, the Court will not care.",
-   "rules": "Influence, Charisma (Persuasion) DC 15; he's Indifferent. A successful DC 14 Intelligence (Religion) Study check about Kelemvor's teachings first grants Advantage. Hold Person or Zone of Truth also stop him; the former makes him Hostile when it ends.",
+   "rules": "Influence, Charisma (Persuasion) DC 15; he's Indifferent. A successful DC 12 Intelligence (Religion) Study check about Kelemvor's teachings first grants Advantage. Hold Person or Zone of Truth also stop him; the former makes him Hostile when it ends.",
    "consequence": "Hadrik is talked down or held, and the Night Song stays quiet.",
    "later": "S3: he blesses the Ringer before Ossa rings and can be an ally in Pellmoor later. S3: his forced blessing (s02-hadrik-pours) is the version where the belfry gets a fourth Singer.",
    "fallback": "If the party ignores him, play s02-hadrik-pours.",
@@ -598,11 +630,27 @@
    "tells": "Players ask when the chapel is empty, or how to get Eld out of it.",
    "readAloud": "The desk is very neat. Too neat. The drawer that sticks has been oiled.",
    "response": "Once they have access, the page is found without a roll. If the three-day bargain with Mother Sallow held, she brings Eld's chapel key and says nothing. A good search also turns up the matching Court forms and a recent patrol entry recording Tam Harrow's interrogation. Failure only costs time and brings Eld in from the vestry, frightened.",
-   "rules": "Study action, Intelligence (Investigation) DC 16 finds it quickly, with the forms and the patrol entry. The essential clue is never lost to a failed check. Locate Object on 'the page' needs a sample; Detect Thoughts on Eld shows a man frozen in fear (see any-l3-truth-and-minds).",
+   "rules": "Study action, Intelligence (Investigation) DC 14 finds it quickly, with the forms and the patrol entry. The essential clue is never lost to a failed check. Locate Object on 'the page' needs a sample; Detect Thoughts on Eld shows a man frozen in fear (see any-l3-truth-and-minds).",
    "consequence": "The party holds the missing page, with Ila's name on it.",
    "later": "The patrol entry is a source on Tam's death. S4: if they took the forms, Rook (S6) values them as evidence.",
    "fallback": "If they won't search, Eld brings them the page himself the next morning, unable to sleep.",
    "keywords": "eld, desk, search, chapel, page, ledger, find, investigate, steal, forms"
+  },
+  {
+   "id": "s03-who-was-on-the-ferry",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "They ask who was on the ferry",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Session 2 ended on the question, so the players will ask it first.",
+   "tells": "Players ask Mother Sallow about the dead ferryman, or ask the Tidewarden who he was.",
+   "readAloud": "Mother Sallow turns the ledger to the ferry roll and taps one line with her pipe. \"Abel Tarn. Rowed the eastern ferry since before I was born. Funny thing. Nobody remembers him getting old.\"",
+   "response": "The ledger names the eastern ferryman as Old Abel Tarn. If the party met the hooded ferryman, they can put it together, and Sallow nods: 'Then he's rowing the dead now. Good. Somebody should.' The Tidewarden confirms it if asked. Tarn's body goes to the ferry-folk cold-house and is sung for that night.",
+   "rules": "No check for the name. A Study check, Intelligence (Religion) DC 12, or the players simply guessing, connects him to the Tidewarden; if nobody does, the Tidewarden says it himself at the ferry-stair.",
+   "consequence": "The party knows the dead ferryman was the Tidewarden's old body, and that the Mere's spirits were once Pellmoor's own people.",
+   "later": "",
+   "fallback": "If nobody asks, Mother Sallow mentions it while she shows them where the page was torn out.",
+   "keywords": "who was on the ferry, ferryman, dead man, Abel Tarn, Tarn, ledger, ferry roll, tidewarden, body"
   },
   {
    "id": "s03-take-page-private",
@@ -1440,7 +1488,7 @@
    "title": "They stop the Court cart on the Mere road",
    "why": "The raid took Ila and the cart's route and hour are known.",
    "readAloud": "The cart is a covered ferry-wagon with a grey stripe on its tail-board. The driver wears gloves. Behind the canvas, someone is humming the response hymn very quietly.",
-   "response": "Four Hushmen and a Sergeant escort a covered cart. Check session-zero Off-limits: Ila stays inside, in a closed cart behind a ferry-folk driver, unharmed and not described in danger. Three plans work: a pilot's false checkpoint that turns the cart onto a drowned causeway (Deception DC 15), an ambush at the ford, or Brannagh's pilots refusing the crossing so the cart must wait. The Sergeant yields the cart rather than die.",
+   "response": "Three Hushmen and a Sergeant escort a covered cart. Check session-zero Off-limits: Ila stays inside, in a closed cart behind a ferry-folk driver, unharmed and not described in danger. Three plans work: a pilot's false checkpoint that turns the cart onto a drowned causeway (Deception DC 15), an ambush at the ford, or Brannagh's pilots refusing the crossing so the cart must wait. The Sergeant yields the cart rather than die.",
    "consequence": "Ila is free again. The Court has a reason to be angry.",
    "keywords": "rescue ila, cart, mere road, ambush, free ila, intercept",
    "when": [
@@ -1493,17 +1541,33 @@
    "style": "Exploration",
    "likelihood": "Possible",
    "tells": "A player asks what happens to the body, or lifts the oar.",
-   "rules": "No check. A Wisdom (Survival) DC 14 to carry it through the drowned streets if there is no pilot.",
+   "rules": "No check. A Wisdom (Survival) DC 12 to carry it through the drowned streets if there is no pilot.",
    "later": "S3: the Tidewarden appears to the party at the ferry-stair and offers peaceful passage (s03-return-tongue).",
    "fallback": "If nobody moves, the ferry drifts in to the Old Shore at dawn with the ferryman still holding the oar.",
    "id": "s02-take-ferryman-home",
    "title": "They take the dead ferryman home",
    "why": "A body on a sandbank is a debt, and ferry-folk have a cold-house for exactly this.",
    "readAloud": "The ferryman's face is peaceful. His hands are cold and light. When you lift him, the oar stays in his fingers, and the Mere is very still.",
-   "response": "Brannagh Wick lends a skiff and a pilot to take the body to the ferry-folk cold-house. This is the Tidewarden's old body: the Choir let it be borne. The Tidewarden's gratitude is quiet; he will offer the air pocket in S3 without being asked. Whether this is Tam or someone else is Sallow's to say; the Choir returned Tam, not this man.",
+   "response": "Brannagh Wick lends a skiff and a pilot to take the body to the ferry-folk cold-house. This is the Tidewarden's old body: the Choir let it be borne. The Tidewarden's gratitude is quiet; he will offer the air pocket in S3 without being asked. He is not Tam: the ledger names him in S3 as Old Abel Tarn, the eastern ferryman (s03-who-was-on-the-ferry).",
    "consequence": "The ferry-folk see the party honour a dead man.",
    "keywords": "body, ferryman, burial, cold-house, tidewarden, honour the dead",
    "sessionId": "sb-7be12e377d5748b4"
+  },
+  {
+   "id": "s02-hooded-ferryman",
+   "sessionId": "sb-7be12e377d5748b4",
+   "title": "They speak with the hooded ferryman",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "After the eels, a hooded figure holding the dead man's dripping oar is the strangest thing on the Mere, and players talk to strange things.",
+   "tells": "They treat the dead ferryman with respect, ask who he was, or keep watching the dripping oar.",
+   "readAloud": "There's someone standing in the ferry's stern who wasn't there a moment ago: hooded, tall, holding the same long oar as the dead man. \"You found him. Will you carry him home? I would, but I carry others now.\"",
+   "response": "This is the Tidewarden (H-10). He never lies and answers one question truly, in a riddle: about Tam, 'He came looking for a road to the bell, and someone took the road out of his head'; about the body, 'He was me. I set him down when I took up the oar.' Then he asks one question back: 'Will the Tongue come home?' Any honest answer will do. For a mote freely given, he offers passage to the belfry inside a pocket of air, now or in S3.",
+   "rules": "No check. A mote paid to him is chosen by the player and recorded in the Memory ledger as a trade. He uses the Specter stat block but does not fight; attacked, he is simply gone.",
+   "consequence": "The party has met the Tidewarden and may hold his offer of safe passage to the bell.",
+   "later": "S3: the Tidewarden waits at the ferry-stair and holds the air pocket for anyone he met kindly (s03-return-tongue). S3: he confirms who was on the ferry (s03-who-was-on-the-ferry).",
+   "fallback": "If they attack or ignore him, he is gone between one drip of the oar and the next, and waits at the ferry-stair in S3 anyway.",
+   "keywords": "tidewarden, hooded figure, hooded ferryman, oar, ghost, spirit, who are you, passage, air pocket, carry him"
   },
   {
    "style": "Exploration",
@@ -1834,13 +1898,15 @@
    "endOn": "Who was singing?",
    "npcs": "Ila Harrow, Mother Sallow, Hushman Tobias Quill, Dorra Pell, Pilot-Mistress Brannagh Wick, Reckoner Sela Maunt, Master Orsolo Venn, Sister Aurelie Dawnmantle, a Harper with a lute",
    "checklist": [
+    "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
     "Decide how each character arrives: by ship through the Seam, by the Mere road, or already living in Pellmoor. Ask each player whether the character grew up under the Court (it matters at S5)",
     "Have the Reckoning House slate ready: 1 keep = 1 gp 2 sp, motes 1 sp, heartkeeps by appraisal",
     "Know Quill's one question: 'Where did the child's coat go?'",
     "Prepare Mother Sallow's response hymn as a two-line call and answer you can sing or speak",
     "Ask each player for one thing their character has lost; note it for the Toll and memory ledger",
     "Written for four level-3 characters, who have subclasses and 2nd-level spells: have the any-l3 rulings plays open (Hold Person, Suggestion, Detect Thoughts, Locate Object, Misty Step)",
-    "Strangers' Row is where Aurelie, the Harpers and a forger are introduced: set aurelie, stormborn and writ from those plays"
+    "Strangers' Row is where Aurelie, the Harpers and a forger are introduced: set aurelie, stormborn and writ from those plays",
+    "Make the Heart prop: something heavy wrapped in old cloth, with a phone on vibrate inside it (or hum one low note while Ila holds it)"
    ],
    "encounters": [
     "enc-s01-quill-patrol",
@@ -1853,7 +1919,10 @@
     "Heroic Inspiration",
     "Detect Magic",
     "Hold Person",
-    "Suggestion"
+    "Suggestion",
+    "Search",
+    "Help",
+    "Grappled"
    ]
   },
   {
@@ -1862,12 +1931,14 @@
    "endOn": "Who was on the ferry?",
    "npcs": "Mother Sallow, the Cantor (Ondra Sallow), the Tidewarden, Pilot-Mistress Brannagh Wick, Brother Hadrik Voss, Ila Harrow",
    "checklist": [
+    "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
     "Mere Memory table (v5 Part 11.4) at hand; decide whether one failed save becomes Tam's last night (a clue)",
     "2024 Suffocation and Frigid Water if anyone dives; the belfry top is about 40 feet down",
     "Eel thefts: the player picks the lost minor memory; it returns after a long rest",
     "Decide how the Cantor reacts to a true answer, and whether she teaches the release verse (only for a sincere memory of a dead person)",
     "Check ila: if the raid took her, the Mere road cart is the rescue (s02-intercept-ila-cart)",
-    "S1 to S5 are level 3; the party reaches level 4 after the Hallowmere investigation (S6). Do not hand out levels in the Mere"
+    "S1 to S5 are level 3; the party reaches level 4 after the Hallowmere investigation (S6). Do not hand out levels in the Mere",
+    "Write each character's breath on a card in rounds: (1 + Constitution modifier) x 10, minimum 5"
    ],
    "encounters": [
     "enc-s02-memory-eels",
@@ -1877,7 +1948,9 @@
     "Suffocation",
     "Frigid Water",
     "Frightened",
-    "Help"
+    "Help",
+    "Exhaustion",
+    "Grappled"
    ]
   },
   {
@@ -1886,12 +1959,15 @@
    "endOn": "What will you carry to Hallowmere?",
    "npcs": "Mother Sallow, Brother Eld, Ila Harrow, Master Orsolo Venn, Pilot-Mistress Brannagh Wick, the Cantor, the Tidewarden",
    "checklist": [
+    "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
     "Eld's papers: the missing page, the matching Court forms, and the patrol entry recording Tam's interrogation",
     "Read the Ossa Toll aloud before any ringing: 'A memory of someone who has died. You choose it. If you say no, the bell does not ring.' Ila may not be the Ringer",
     "Venn's offer: 600 gp now; the Gilded Heron sails in three days (s03-heron-sails runs that clock out)",
     "Write the Chancellor's letter as a prop; it doubles as a writ of passage",
     "Check ila: free, hidden, travelling or arrested decides which of the Ila plays show tonight",
-    "The party is still level 3 here; level 4 comes after S6"
+    "The party is still level 3 here; level 4 comes after S6",
+    "Write the props: the missing page (Ila Harrow last), the Court forms, the patrol entry on Tam, and the Chancellor's letter with a grey seal",
+    "Put Ossa's Toll on a card and read it word for word before any ringing"
    ],
    "encounters": [
     "enc-s03-gilded-heron",
@@ -1900,7 +1976,11 @@
    "rules": [
     "Study",
     "Influence",
-    "Suffocation"
+    "Suffocation",
+    "Silence",
+    "Help",
+    "Hide",
+    "Heroic Inspiration"
    ]
   }
  ],
@@ -1925,7 +2005,7 @@
      "count": 4
     }
    ],
-   "tactics": "Two Hushmen hold the doorway with Pack Tactics while two flank through the net-racks and Quill backs toward witnesses. They target whoever holds the Tongue and use Arrest, not killing blows.",
+   "tactics": "Quill walks the Old Shore with one Hushman; the other three wait with the keep-cart at the end of the lane and arrive at the start of round two (show their lantern coming). Two Hushmen hold the doorway with Pack Tactics while two flank through the net-racks and Quill backs toward witnesses. They target whoever holds the Tongue and use Arrest, not killing blows.",
    "exit": "Quill retreats toward the Landing House when his guard is Bloodied or a ferry-folk crowd gathers. He wants an arrest, never a death; a downed PC is bound, not killed.",
    "scale": "Written for four level-3 characters. Three PCs: drop two Hushmen. Five PCs or a party that opens with area spells or Hold Person on Quill: add a Hushman Sergeant who arrives in round two. The Landing House post (six Hushmen) comes only if the party chases Quill onto the Quays; telegraph boots on the boards a round early."
   },

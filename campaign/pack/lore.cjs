@@ -22,6 +22,18 @@ const s3Venn={find:`If the arrest succeeds, a rescue in Hallowmere becomes an Ac
 const s3Writ={find:`Warden of Silence."`,replace:`Warden of Silence."
 
 **DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`};
+// Revision 7.1: Act I numbers made to match the 2024 encounters and stat blocks Foresight shows.
+const s1Patrol={find:`**Encounter (optional, Quill's Patrol):** Quill and one Hushman. See Appendix A.`,replace:`**Encounter (optional, Quill's Patrol):** Quill and four Hushmen: one walks with him, three wait with the keep-cart at the end of the lane and come at the first shout. See Foresight's encounter and the guide below.`};
+const s2Sneak={find:`Fight them (Appendix A), or sneak past with a DC 13 Stealth check.`,replace:`Fight them (Appendix A), or sneak past: each character makes a DC 15 Dexterity (Stealth) check, and the party slips by if at least half succeed.`};
+const s2Eels={find:`**Encounter: Memory-Eels (2).** Each hit that does damage steals a memory on a failed DC 12 Wisdom save.`,replace:`**Encounter: Memory-Eels (six, for four level-3 characters).** A bite that deals damage steals a minor memory on a failed DC 10 Wisdom save; it comes back after a long rest.`};
+const s2Singers={find:`The Drowned Choir attacks. **Encounter:** one Drowned Singer.`,replace:`The Drowned Choir attacks. **Encounter:** two Drowned Singers and two memory-eels.`};
+// Revision 7.1: a full guide for a first-time DM, appended after each Act I session's plan and before the DM's own IsoForge kit.
+// The guide text lives in guide-s1.md to guide-s3.md. `guide` marks these edits so the book can nest their headings under the session.
+const fs=require('fs'),path=require('path');
+const guide=(n,find)=>({find,replace:find+'\n\n'+fs.readFileSync(path.join(__dirname,'guide-s'+n+'.md'),'utf8').trim(),guide:true});
+const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
+const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
+const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
 
 const pellmoorBody=`- **Read-aloud:**
 > **SAY:** "The Mute Mere is so still that the ships look painted on it. Forty masts stand over the water where a drowned town lies just beneath, rooftops like the backs of sleeping animals. On the Quays, a dozen languages argue over the price of a memory. Gnomes shout. Gulls do not; there are no gulls on the Mere. And at the far end of the waterfront, past the last warehouse, the old reed-roofed village of Pellmoor still leans toward the water as if none of this were happening."
@@ -233,12 +245,13 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 5. A ferry-folk pilot drinking alone refuses foreign coin and pays in motes.
 6. A Harper with a lute asks the party, very casually, what they know about the Tithe.`}]},
  {id:'sb-ec96b0db0ece34c4',edits:[{find:`Record each character's secret on the back of the sheet, visible only to the DM and that player.`,replace:`Record each character's secret on the back of the sheet, visible only to the DM and that player. In Waypoint, record Tolls, Tithes and memory trades in Foresight → Party & ledger → Memory ledger.`}]},
- {id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port]},
- {id:S2,edits:[s2Ferry,s2Dive,s2Hadrik]},
+ {id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol]},
+ {id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers]},
  {id:S3,edits:[s3Venn,s3Writ]},
 ];
 
-const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+// The guides go last in each list: they anchor on text the earlier edits leave behind.
+const sessions=[{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Guide],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

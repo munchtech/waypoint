@@ -1,6 +1,7 @@
 // Revision 7 changes to the campaign book: find-and-replace edits on the v6 text, applied after the v6 lore edits by tools/build-manuscript.cjs.
 // Part 13 (the table's levels, the 2024 encounter roster and the endings checklist) is generated from the built pack.
 module.exports={edits:[
+ ['*Revision 7. Tuned for four players starting at level 3,','*Revision 7.1 adds a guide for a first-time DM to each of Sessions 1 to 3 (Part 8, "Running this session"). Revision 7. Tuned for four players starting at level 3,'],
  ['*Recommended party: 3 to 5 players, levels 1 to 11.','*Recommended party: 3 to 5 players, levels 1 to 11. Revision 7 is tuned for four players starting at level 3 (Part 13).'],
  ['- **Levels 1 to 2 (Act I):** use the low-level safeguards in Appendix A. Do not add Drowned Singers to an eel fight by default.','- **Level 3 (Act I, revision 7):** four level-3 characters. Hushman patrols of four or five; Drowned Singers in pairs; anything underwater plays harder than its XP because breath is the clock. The low-level safeguards in Appendix A are for a level-1 start. Do not add Drowned Singers to an eel fight by default.'],
  ['Award milestones after meaningful progress: ','Award milestones after meaningful progress (revision 7 starts at level 3, so the first milestone at the table is level 4 after the city investigation): '],
