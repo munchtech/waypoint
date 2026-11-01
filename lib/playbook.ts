@@ -13,7 +13,7 @@ export function stateOf(pb:Playbook):WorldState{const s:WorldState={};for(const 
 export const flagLabel=(pb:Playbook,id:string)=>pb.flags.find(f=>f.id===id)?.label||id;
 export function valueLabel(pb:Playbook,id:string,value:FlagValue|undefined){const f=pb.flags.find(x=>x.id===id);if(!f||value===undefined)return String(value??'');if(f.options)return f.options.find(o=>o.id===value)?.label||String(value);return String(value)+(f.max!==undefined?' / '+f.max:'')}
 export function holds(c:Cond,s:WorldState){const v=s[c.flag];if(c.in&&!c.in.includes(String(v)))return false;if(c.not&&c.not.includes(String(v)))return false;if(c.min!==undefined&&!(Number(v)>=c.min))return false;if(c.max!==undefined&&!(Number(v)<=c.max))return false;return true}
-// Why a condition fails, phrased from the current state: "Ossa's Tongue is Court custody".
+// Why a condition fails, phrased from the current state: "Ossa's Heart is Court custody".
 export function blockers(pb:Playbook,when:Cond[]|undefined,s=stateOf(pb)){return (when||[]).filter(c=>!holds(c,s)).map(c=>flagLabel(pb,c.flag)+' is '+valueLabel(pb,c.flag,s[c.flag]))}
 export const isPossible=(pb:Playbook|undefined,play:{when?:Cond[]},s?:WorldState)=>!pb||!play.when?.length||play.when.every(c=>holds(c,s||stateOf(pb)));
 // Effects resolved against the current state; clock additions clamp to the flag's range. Unchanged values are dropped.

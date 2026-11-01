@@ -5,7 +5,7 @@ import {plainPreview} from '../lib/plain-text';
 import {blockers,resolveEffects,valueLabel,flagLabel,type Play,type Playbook} from '../lib/playbook';
 const icons={Roleplay:MessageCircle,Exploration:Compass,Combat:Swords,Mischief:Dices};
 
-// The changes a play would make, phrased against the current state ("Ossa's Tongue → Court custody").
+// The changes a play would make, phrased against the current state ("Ossa's Heart → Court custody").
 export function EffectChips({pb,play}:{pb?:Playbook;play:Play}){if(!pb||!play.effects?.length)return null;const changes=resolveEffects(pb,play.effects);if(!changes.length)return <p className="tiny muted">Its world changes are already true.</p>;return <ul className="effect-chips" aria-label="World changes if this happens">{changes.map(c=><li key={c.flag}><span>{flagLabel(pb,c.flag)}</span><ArrowRight size={11} aria-hidden="true"/><strong>{valueLabel(pb,c.flag,c.to)}</strong></li>)}</ul>}
 
 // One prepared play: what to say, what to do, the 2024 rules involved, and what it changes now and later.
