@@ -55,3 +55,6 @@ next-env.d.ts
 /campaign/handouts/site.json
 /campaign/handouts/map-preview.html
 /campaign/handouts/map.dc.html
+
+# Build logs
+*.tmp
