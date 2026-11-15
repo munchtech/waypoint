@@ -36,7 +36,7 @@ const steps=[
  ui('announce','ui-announce.cjs'),
  ui('player','ui-player.cjs'),
  ui('restore points','ui-restore.cjs'),
- ui('foresight','ui-foresight.cjs',['--fixture',path.resolve(root,'../../outputs/The-Seventh-Bell-v5.waypoint.json'),'--out',path.join(logs,'foresight')]),
+ ui('foresight','ui-foresight.cjs',['--fixture',path.join(root,'scripts/fixtures/seventh-bell-v5.waypoint.json'),'--out',path.join(logs,'foresight')]),
  // The tour runs on The Seventh Bell: the demo campaign has no wiki pages, so two reader states cannot be reached there.
  ...(flag('tour')?[ui('tour seventh bell','ui-tour.cjs',['--fixture','seventh-bell','--out',path.join(logs,'tour-seventh-bell')],{timeout:600000})]:[]),
 ];

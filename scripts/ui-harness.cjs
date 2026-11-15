@@ -31,8 +31,7 @@ async function loadRulesStore(){
 }
 function fixtureSnapshot(name){
  if(!name||name==='demo')return null;
- const candidates=[path.resolve(root,'../../outputs/The-Seventh-Bell.waypoint.json'),path.resolve(root,'../foresight/db/current-snapshot.json')];
- const file=name==='seventh-bell'?(candidates.find(file=>fs.existsSync(file))||candidates[0]):path.resolve(name);
+ const file=name==='seventh-bell'?path.join(root,'scripts/fixtures/seventh-bell-v5.waypoint.json'):path.resolve(name);
  return JSON.parse(fs.readFileSync(file,'utf8'));
 }
 let handlerInstalled=false;

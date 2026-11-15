@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),asse
 for(const stream of [process.stdout,process.stderr])stream.on('error',e=>{if(e.code!=='EPIPE')throw e});
 app.setPath('userData',fs.mkdtempSync(path.join(os.tmpdir(),'seventh-bell-ui-')));
 let openedURL='';
-let snapshot=JSON.parse(fs.readFileSync('../../outputs/The-Seventh-Bell.waypoint.json','utf8')),starts=0;
+let snapshot=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures','seventh-bell-v3.waypoint.json'),'utf8')),starts=0;
 const fixturePages=snapshot.campaigns[0].memory.pages;fixturePages.find(p=>p.title.includes('1.4 Session Zero')).related=[fixturePages[0].id];
 ipcMain.handle('waypoint:request',(_e,r)=>{
  if(r.path==='/api/campaigns'){if(r.method==='POST')snapshot=JSON.parse(r.body);return {status:200,body:snapshot}}
