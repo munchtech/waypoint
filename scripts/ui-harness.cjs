@@ -4,6 +4,7 @@
 // Build first with `node scripts/build-desktop.mjs`; the tools load desktop/build/renderer.
 const {app,BrowserWindow,ipcMain}=require('electron');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+const {destinations}=require('./ui-nav.cjs');
 const root=path.resolve(__dirname,'..');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 // A closed output pipe must never raise Electron's error dialog; the tools can outlive the shell that started them.
@@ -95,7 +96,6 @@ async function openSession({build=path.join(root,'desktop/build'),width=1420,hei
 async function doStep(s,step){
  const [kind,arg,extra]=step;
  if(kind==='nav'){
-  const destinations={'Session desk':['Session','Current session'],'Foresight':['Session','Playbook'],'Next session':['Session','Plan next session'],'Campaign hub':['Campaign','Read & explore'],'World wiki':['Campaign','Wiki editor'],'Campaign':['Campaign','Outline & sessions'],'Party & preferences':['Campaign','Party & preferences'],'Session journal':['Journal','Notes & recordings'],'Discoveries':['Journal','Review discoveries'],'Chronicle':['Journal','Confirmed history'],'Rules library':['Library','Rules'],'Saved material':['Library','Saved ideas'],'Player site':['Players','Player site'],'Player handouts':['Players','Handouts & display']};
   const route=destinations[arg];if(!route)return 'MISSING-ROUTE:'+arg;
   const first=await s.clickText(route[0],{within:'.sidebar'});if(first!=='ok')return first;
   await s.settle(100);return s.clickText(route[1],{within:'.workspace-tabs'});

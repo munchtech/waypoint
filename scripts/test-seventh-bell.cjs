@@ -17,15 +17,18 @@ app.whenReady().then(async()=>{
  win.webContents.setWindowOpenHandler(({url})=>{openedURL=url;return {action:'deny'}});
  const run=s=>win.webContents.executeJavaScript(s);
  const wait=async s=>{for(let i=0;i<80;i++){try{if(await run(s))return}catch(e){if(!/Script failed to execute/.test(String(e)))throw e};await new Promise(r=>setTimeout(r,100))}throw Error('Timed out: '+s)};
+ const go=require('./ui-nav.cjs').navigator(run,wait);
  try{
   await win.loadFile(path.resolve('desktop/build/renderer/index.html'));
   await win.webContents.insertCSS('*{transition:none!important;animation:none!important}');
   await wait("document.querySelector('.session-hero h2')?.textContent.includes('Arrival at Pellmoor')");
   assert.equal(await run("document.querySelector('select[aria-label=\"Choose campaign\"]').value"),'the-seventh-bell-corvane-v3');
   for(const view of ['World wiki','Campaign hub','Next session','Session desk']){
-   await run(`[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith(${JSON.stringify(view)})).click()`);
-   await wait(`document.querySelector('.breadcrumb span')?.textContent===${JSON.stringify(view)}`);
+   await go(view);
    if(view==='Campaign hub'){
+    // The reader opens on every kind of entry; the wiki category has its own page count and reading order.
+    await wait("document.querySelectorAll('.reader-contents button').length>179");
+    await run("(()=>{const e=document.querySelector('select[aria-label=\"Reader category\"]');e.value='Wiki';e.dispatchEvent(new Event('change',{bubbles:true}))})()");
     await wait("document.querySelectorAll('.reader-contents button').length===179");
     await run("[...document.querySelectorAll('.reader-contents button')].find(b=>b.textContent.includes('1.4 Session Zero')).click()");
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.4 Session Zero')");
@@ -61,11 +64,11 @@ app.whenReady().then(async()=>{
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.4')");
     await run("[...document.querySelectorAll('.reader-actions button')].find(b=>b.textContent==='Back to previous page').click()");
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.5')");
-    await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('World wiki')).click()");
+    await go('World wiki');
     await wait("!!document.querySelector('.wiki-cards')");
-    await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('Campaign hub')).click()");
+    await go('Campaign hub');
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.5')");
-    await run("(()=>{const e=document.querySelector('input[aria-label=\"Search campaign reader\"]');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'zzzz-no-page');e.dispatchEvent(new Event('input',{bubbles:true}))})()");
+    await run("(()=>{const e=document.querySelector('input[aria-label=\"Search campaign reader\"]');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'zzzzqqqq');e.dispatchEvent(new Event('input',{bubbles:true}))})()");
     await wait("document.querySelector('.reader-page').textContent.includes('No pages match')");
     await run("document.querySelector('button[aria-label=\"Clear reader search\"]').click()");
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.5')");
@@ -73,6 +76,9 @@ app.whenReady().then(async()=>{
     const input=async (selector,value)=>run("(()=>{const e=document.querySelector("+JSON.stringify(selector)+");Object.getOwnPropertyDescriptor("+(selector.includes('textarea')?'HTMLTextAreaElement':'HTMLInputElement')+".prototype,'value').set.call(e,"+JSON.stringify(value)+");e.dispatchEvent(new Event('input',{bubbles:true}))})()");
     await run("document.querySelector('select[aria-label=\"Reader order\"]').value='title';document.querySelector('select[aria-label=\"Reader order\"]').dispatchEvent(new Event('change',{bubbles:true}))");
     await input('input[aria-label="Search campaign reader"]','1.4 Session Zero');
+    // Search ranks by matching words and keeps the open page while it still matches, so the page is chosen from the results.
+    await wait("[...document.querySelectorAll('.reader-contents button')].some(b=>b.textContent.includes('1.4 Session Zero'))");
+    await run("[...document.querySelectorAll('.reader-contents button')].find(b=>b.textContent.includes('1.4 Session Zero')).click()");
     await wait("document.querySelector('.reader-page>h2')?.textContent.includes('1.4 Session Zero')");
     const relatedTitle=await run("document.querySelector('.reader-related button')?.textContent");
     assert(relatedTitle,'Fixture should have a related page');
@@ -90,9 +96,9 @@ app.whenReady().then(async()=>{
     await run("[...document.querySelectorAll('.reader-actions button')].find(b=>b.textContent==='Edit page text').click()");
     const beforeDraft=await run("document.querySelector('.reader-editor textarea').value");
     await input('.reader-editor textarea',beforeDraft+'\nRecovered draft fixture');
-    await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('World wiki')).click()");
+    await go('World wiki');
     await wait("!document.querySelector('.reader-editor')");
-    await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('Campaign hub')).click()");
+    await go('Campaign hub');
     await wait("document.querySelector('.reader-editor textarea')?.value.endsWith('Recovered draft fixture')");
     // Recovery is a draft only; campaign data is unchanged until Save.
     assert.equal(snapshot.campaigns[0].memory.pages.find(p=>p.title.includes('1.4 Session Zero')).body,beforeDraft);

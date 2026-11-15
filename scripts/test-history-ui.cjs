@@ -17,17 +17,20 @@ app.whenReady().then(async()=>{
  // Resolves once the reloaded document has finished loading, so a poll cannot be answered by the page that is being replaced.
  const reload=async()=>{const loaded=new Promise(r=>win.webContents.once('did-finish-load',r));win.webContents.reload();await loaded};
  const select=async(label,value)=>run(`(()=>{const e=document.querySelector('select[aria-label="${label}"]');e.value=${JSON.stringify(value)};e.dispatchEvent(new Event('change',{bubbles:true}))})()`);
+ const go=require('./ui-nav.cjs').navigator(run,wait),deskReady="!!document.querySelector('.session-hero h2')";
  const search=async value=>run(`(()=>{const e=document.querySelector('input[aria-label="Search recorded events"]');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,${JSON.stringify(value)});e.dispatchEvent(new Event('input',{bubbles:true}))})()`);
  try{
  await win.loadFile(path.resolve('desktop/build/renderer/index.html'));
- await wait("!!document.querySelector('.desk-pulse')");
+ await wait(deskReady);
  while(!snapshot)await new Promise(r=>setTimeout(r,100));
  const c=snapshot.campaigns[0],first=c.sessions[0].id;
  c.sessions.push({...c.sessions[0],id:'harbor-session',title:'The Harbor Bargain'});
  c.events=[{id:'history-a',sessionId:first,text:'The captain accepted the offer.',style:'Roleplay',enjoyment:'Loved it',date:new Date().toISOString()},{id:'history-b',sessionId:'harbor-session',text:'The party found a hidden quay.',style:'Exploration',enjoyment:'Neutral',date:new Date().toISOString()}];
  snapshot.campaigns.push({...structuredClone(c),id:'other-campaign',name:'Other campaign',events:[]});
- await reload();await wait("document.querySelector('.desk-pulse button:nth-child(2) strong')?.textContent==='1'");
- await run("document.querySelector('.desk-pulse button:nth-child(2)').click()");
+ // The desk counts this session's recorded choices; the full history is under Journal, where the session filter narrows it.
+ await reload();await wait("document.querySelector('.choice-follow-through strong')?.textContent.startsWith('1 choice')");
+ await go('Chronicle');await wait("document.querySelectorAll('.chronicle .timeline-item').length===2");
+ await select('Filter history by session',first);
  await wait("document.querySelectorAll('.chronicle .timeline-item').length===1");
  assert.equal(await run("document.querySelector('select[aria-label=\"Filter history by session\"]').value"),first);
  await select('Filter history by session','');

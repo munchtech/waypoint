@@ -25,9 +25,12 @@ app.whenReady().then(async()=>{
  const wait=async expression=>{for(let i=0;i<80;i++){try{if(await run(expression))return}catch(e){if(!/Script failed to execute/.test(String(e)))throw e};await new Promise(r=>setTimeout(r,100))}throw new Error('Timed out: '+expression)};
  // Resolves once the reloaded document has finished loading, so a poll cannot be answered by the page that is being replaced.
  const reload=async()=>{const loaded=new Promise(r=>win.webContents.once('did-finish-load',r));win.webContents.reload();await loaded};
+ const go=require('./ui-nav.cjs').navigator(run,wait),deskTabs="[...document.querySelectorAll('.desk-main>.tabs button')]";
+ // The desk's panels sit under its tabs: the idea panel and the coach under Quick help, the prepared paths under Possibilities.
+ const tab=async name=>{await wait("!!document.querySelector('.desk-main>.tabs')");await run(`${deskTabs}.find(b=>b.textContent.startsWith(${JSON.stringify(name)})).click()`);await wait(`${deskTabs}.some(b=>b.getAttribute('aria-pressed')==='true'&&b.textContent.startsWith(${JSON.stringify(name)}))`)};
  try{
  await win.loadFile(path.resolve('desktop/build/renderer/index.html'));
- await wait("document.querySelector('.engine-start')!==null");assert.equal(starts,0,'Mount must not launch AI');
+ await tab('Quick help');await wait("document.querySelector('.engine-start')!==null");assert.equal(starts,0,'Mount must not launch AI');
  await run("(()=>{const e=document.querySelector('#quick-prompt');Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(e,'A wandering mapmaker');e.dispatchEvent(new Event('input',{bubbles:true}))})()");
  assert(await run("document.querySelector('.improv-panel .button.primary').disabled"));
  await run("document.querySelector('.engine-start').click()");await wait("document.querySelector('.inspiration-engine').textContent.includes('Starting local AI')");assert.equal(starts,1);
@@ -37,11 +40,11 @@ app.whenReady().then(async()=>{
  ready=false;state='stopped';await wait("document.querySelector('.engine-start')!==null");
  assert(await run("document.querySelector('.improv-panel .button.primary').disabled"));
  fail=true;await run("document.querySelector('.engine-start').click()");await wait("document.querySelector('.engine-error')?.textContent.includes('choose a ComfyUI folder')");
- await run("[...document.querySelectorAll('button')].find(b=>b.textContent.includes('Prepare paths')).click()");
+ await tab('Possibilities');await run("[...document.querySelectorAll('button')].find(b=>b.textContent.includes('Prepare paths')).click()");
  await wait("document.querySelector('.local-settings')!==null");assert.equal(posts,0,'Offline generation must open settings without submitting');
  assert.equal(starts,2,'Generation must not start a server');
  await run("document.querySelector('.modal-close').click()");await wait("!document.querySelector('.modal')");
- await run("[...document.querySelectorAll('.coach-situations button')].find(b=>b.textContent==='The roll fails').click()");
+ await tab('Quick help');await run("[...document.querySelectorAll('.coach-situations button')].find(b=>b.textContent==='The roll fails').click()");
  await wait("document.querySelector('.coach-tip').textContent.includes('time, exposure')");
  await run("document.querySelector('.table-coach>.text-button').click()");
  await wait("document.querySelector('#quick-prompt').value.includes('A meaningful player check has failed')");
@@ -56,12 +59,12 @@ app.whenReady().then(async()=>{
  await wait("document.querySelector('#quick-prompt').value==='A wandering mapmaker'");
  snapshot.campaigns[0].sessions.push({...snapshot.campaigns[0].sessions[0],id:'draft-other',title:'Another session'});
  snapshot.campaigns[0].cards.push({id:'saved-fixture',kind:'NPC',title:'Mapmaker fixture',body:'SAY NOW: Welcome. ASK: What brings you here? IF THEY FAIL: Offer another route.',readAloud:'Welcome',consequence:'A possible ally',source:'Fixture'});
- await reload();await wait("document.querySelector('.recent-material-item')!==null");
+ await reload();await wait("document.querySelector('.recent-material-item')!==null");await tab('Quick help');
  assert.equal(await run("document.querySelector('#quick-prompt').value"),'A wandering mapmaker','Prompt survives reload');
- await run("(()=>{const e=document.querySelector('select[aria-label=Session]');e.value='draft-other';e.dispatchEvent(new Event('change',{bubbles:true}))})()");
+ await run("(()=>{const e=document.querySelector('select[aria-label=\"Current session\"]');e.value='draft-other';e.dispatchEvent(new Event('change',{bubbles:true}))})()");
  await wait("document.querySelector('#quick-prompt').value===''");
  await run("(()=>{const e=document.querySelector('#quick-prompt');Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(e,'Second session prompt');e.dispatchEvent(new Event('input',{bubbles:true}))})()");
- await run("(()=>{const e=document.querySelector('select[aria-label=Session]');e.selectedIndex=0;e.dispatchEvent(new Event('change',{bubbles:true}))})()");
+ await run("(()=>{const e=document.querySelector('select[aria-label=\"Current session\"]');e.selectedIndex=0;e.dispatchEvent(new Event('change',{bubbles:true}))})()");
  await wait("document.querySelector('#quick-prompt').value==='A wandering mapmaker'");
  await run("document.querySelector('.recent-material-item').click()");await wait("document.querySelector('#modal-title')?.textContent==='Mapmaker fixture'");
  assert.equal(posts,0,'Recent material opens without generation');
@@ -69,9 +72,9 @@ app.whenReady().then(async()=>{
  await run("document.querySelector('.pin-material').click()");await wait("document.querySelector('.desk-reference')!==null&&!document.querySelector('.modal')");
  assert.equal(snapshot.campaigns[0].sessions[0].pinnedCardId,'saved-fixture');
  await reload();await wait("document.querySelector('.desk-reference')?.textContent.includes('Mapmaker fixture')");
- await run("(()=>{const e=document.querySelector('select[aria-label=Session]');e.value='draft-other';e.dispatchEvent(new Event('change',{bubbles:true}))})()");
+ await run("(()=>{const e=document.querySelector('select[aria-label=\"Current session\"]');e.value='draft-other';e.dispatchEvent(new Event('change',{bubbles:true}))})()");
  await wait("!document.querySelector('.desk-reference')");
- await run("(()=>{const e=document.querySelector('select[aria-label=Session]');e.selectedIndex=0;e.dispatchEvent(new Event('change',{bubbles:true}))})()");
+ await run("(()=>{const e=document.querySelector('select[aria-label=\"Current session\"]');e.selectedIndex=0;e.dispatchEvent(new Event('change',{bubbles:true}))})()");
  await wait("document.querySelector('.desk-reference')!==null");
  await run("document.querySelector('.unpin-material').click()");await wait("!document.querySelector('.desk-reference')");
  assert(snapshot.campaigns[0].cards.some(c=>c.id==='saved-fixture'),'Unpin must preserve library content');
@@ -82,7 +85,7 @@ app.whenReady().then(async()=>{
  await run("document.querySelector('.modal-close').click()");await wait("!document.querySelector('.modal')");
 
  snapshot.campaigns[0].events.push({id:'wrap-event',sessionId:snapshot.campaigns[0].sessions[0].id,text:'The party bargained with Voss.',style:'Roleplay',enjoyment:'Neutral',date:new Date().toISOString()});
- await reload();await wait("document.querySelector('.desk-pulse button:nth-child(2) strong')?.textContent==='1'");
+ await reload();await tab('Possibilities');await wait("document.querySelector('.choice-follow-through strong')?.textContent.startsWith('1 choice')");
  await run("document.querySelector('.wrap-session').click()");await wait("document.querySelector('.session-wrap-up')!==null");
  await run("(()=>{const e=document.querySelector('.wrap-events select');e.value='Loved it';e.dispatchEvent(new Event('change',{bubbles:true}));})()");
  await wait("document.querySelector('.wrap-summary span:nth-child(2) strong').textContent==='1'");
@@ -93,29 +96,30 @@ app.whenReady().then(async()=>{
  assert.equal(snapshot.campaigns[0].sessions[0].debrief.openQuestions,'Who hired the courier?');
  console.log('Wrap-up passed: enjoyment correction, persistent notes, session completion, planner carry-forward and no automatic AI or invented events.');
 
- await run("document.querySelector('.branch-bottom .button').click()");await wait("document.querySelector('#modal-title')?.textContent==='What actually happened?'");
+ await tab('Possibilities');await run("document.querySelector('.branch-bottom .button:not(.quick-record)').click()");await wait("document.querySelector('#modal-title')?.textContent==='What actually happened?'");
  assert.equal(await run("document.querySelector('.modal textarea').value"),'Talk their way past the captain.','Predicted consequence must not become prefilled history');
  await run("document.querySelector('.modal-close').click()");await wait("!document.querySelector('.modal')");
  assert(await run("document.querySelector('.choice-follow-through')!==null"));
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent==='Chronicle').click()");
+ await go('Chronicle');
  await wait("document.querySelector('input[aria-label=\"Search recorded events\"]')!==null");
  await run("(()=>{const e=document.querySelector('input[aria-label=\"Search recorded events\"]');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'unmatched-history');e.dispatchEvent(new Event('input',{bubbles:true}))})()");await wait("document.querySelector('.history-empty')!==null");
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent==='Saved material').click()");await wait("document.querySelector('.material-library')!==null");
+ await go('Saved material');await wait("document.querySelector('.material-library')!==null");
  assert.equal(await run("document.querySelector('input[aria-label=\"Search saved material\"]').value"),'','Searches must be independent');
  await run("(()=>{const e=document.querySelector('input[aria-label=\"Search saved material\"]');Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,'unmatched-material');e.dispatchEvent(new Event('input',{bubbles:true}))})()");await wait("document.querySelector('.library-empty')!==null");
  await run("document.querySelector('.library-empty button').click()");await wait("document.querySelector('.material-card')!==null");
  await run("[...document.querySelectorAll('.library-filters button')].find(b=>b.textContent.startsWith('NPC')).click()");await wait("document.querySelector('.library-filters button[aria-pressed=true]').textContent.startsWith('NPC')");
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('Session desk')).click()");await wait("document.querySelector('#quick-prompt')!==null");
+ await go('Session desk');await tab('Quick help');await wait("document.querySelector('#quick-prompt')!==null");
 
  await run("[...document.querySelectorAll('.topbar button')].find(b=>b.textContent==='Live mode').click()");await wait("document.querySelector('.app.live')!==null");
  assert.equal(await run("getComputedStyle(document.querySelector('.page-heading')).display"),'none');
- assert(await run("document.querySelector('.branches').compareDocumentPosition(document.querySelector('.table-coach')) & Node.DOCUMENT_POSITION_FOLLOWING"));
+ // Live mode keeps the desk's tabs and adds the one-row moment markers above the open tab.
+ assert(await run("!!document.querySelector('.table-markers.compact')&&!!document.querySelector('.desk-main>.tabs')&&!!document.querySelector('.table-coach')"));
  for(const width of [900,1420]){win.setSize(width,940);await new Promise(r=>setTimeout(r,150));assert(await run("document.documentElement.scrollWidth<=document.documentElement.clientWidth+2"),'Live layout overflow');}
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent==='Saved material').click()");await wait("document.querySelector('.material-library')!==null");
+ await go('Saved material');await wait("document.querySelector('.material-library')!==null");
  assert.notEqual(await run("getComputedStyle(document.querySelector('.page-heading')).display"),'none','Live mode must not hide headings on other screens');
  await run("[...document.querySelectorAll('.topbar button')].find(b=>b.textContent==='Exit live mode').click()");await wait("document.querySelector('#quick-prompt')!==null");
  const startsBeforeRules=starts,postsBeforeRules=posts;
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent==='Rules library').click()");await wait("document.querySelector('.rule-result')!==null");
+ await go('Rules library');await wait("document.querySelector('.rule-result')!==null");
  const rulesLayout=await run("(()=>{const bar=document.querySelector('.rules-toolbar').getBoundingClientRect(),list=document.querySelector('.rules-list').getBoundingClientRect(),pane=document.querySelector('.rules-results').getBoundingClientRect(),detail=document.querySelector('.rule-detail').getBoundingClientRect(),layout=document.querySelector('.rules-layout').getBoundingClientRect();return {barHeight:bar.height,listTop:list.top,sideBySide:Math.abs(pane.top-detail.top)<2&&detail.left>pane.right-1,bottom:layout.bottom,viewport:innerHeight}})()");
  assert(rulesLayout.barHeight<76,'Rules filters should sit in one row, got '+rulesLayout.barHeight);assert(rulesLayout.listTop<460,'Rules list should start near the top, got '+rulesLayout.listTop);assert(rulesLayout.sideBySide,'Rules list and detail should be two panes');assert(rulesLayout.bottom<=rulesLayout.viewport+1,'Rules panes should fit the window');
  assert(await run("!!document.querySelector('select[aria-label=\"Filter rules by type\"] option[value=All]')"));
@@ -132,10 +136,10 @@ app.whenReady().then(async()=>{
  await wait("document.querySelector('.rule-result')&&!document.querySelector('.rule-result').disabled");await run("document.querySelector('.rule-result').click()");await wait("document.querySelector('.rule-detail .rule-actions')!==null");
  for(const width of [900,1420]){win.setSize(width,940);await new Promise(r=>setTimeout(r,150));assert(await run("document.documentElement.scrollWidth<=document.documentElement.clientWidth+2"),'Rules library must fit the desktop window');}
  await run("document.querySelector('.rule-actions .primary').click()");await wait("document.querySelector('.rule-actions .primary').disabled");
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent.startsWith('Session desk')).click()");await wait("document.querySelector('.session-rule')!==null");
+ await go('Session desk');await wait("document.querySelector('.session-rule')!==null");
  assert(await run("document.querySelector('.session-rule').textContent.includes('Test Beacon')"));
  await reload();await wait("document.querySelector('.session-rule')!==null");
- await run("[...document.querySelectorAll('.sidebar .navitem')].find(b=>b.textContent==='Rules library').click()");await wait("document.querySelector('.rule-result')!==null");
+ await go('Rules library');await wait("document.querySelector('.rule-result')!==null");
  await run("document.querySelector('.rule-result').click()");await wait("document.querySelector('.rule-actions')!==null");
  await run("[...document.querySelectorAll('.rule-actions button')].find(b=>b.textContent==='Use in a prompt').click()");await wait("document.querySelector('#quick-prompt')?.value.includes('Reference: TEST (2014)')");
  assert.equal(starts,startsBeforeRules,'Rules must not start AI');assert.equal(posts,postsBeforeRules,'Using a reference must not generate automatically');
