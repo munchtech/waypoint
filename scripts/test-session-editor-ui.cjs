@@ -8,9 +8,7 @@ app.setPath('userData',dataDir);
 let snapshot=resume?JSON.parse(fs.readFileSync(path.join(dataDir,'fixture.json'),'utf8')):null,starts=0;
 ipcMain.handle('waypoint:request',(_e,r)=>{
  if(r.path==='/api/campaigns'){if(r.method==='POST')snapshot=JSON.parse(r.body);return {status:200,body:snapshot}}
- if(r.path==='/api/local-engine/start')starts++;
- if(r.path==='/api/generate')return {status:200,body:{ready:false}};
- if(r.path.startsWith('/api/local-engine'))return {status:200,body:{state:'stopped',owned:false}};
+ if(r.path==='/api/generate'){if(r.method==='POST')starts++;return {status:200,body:{ready:false,provider:'anthropic',model:'claude-opus-5-5'}}}
  return {status:200,body:{recordings:[]}};
 });
 app.whenReady().then(async()=>{
@@ -76,7 +74,7 @@ app.whenReady().then(async()=>{
  snapshot.active=snapshot.campaigns[0].id;snapshot.sessionId=first;
  fs.writeFileSync(path.join(dataDir,'fixture.json'),JSON.stringify(snapshot));win.webContents.session.flushStorageData();
  console.log('RESTART_FIXTURE='+dataDir);
- console.log('Session editor UI passed: Escape, backdrop, navigation, reload recovery, plan conflict, Ctrl+S, formatted notes, preview, explicit discard, outcome recovery and feedback, campaign isolation, unconfirmed drafts, no AI startup.');app.exit(0);
+ console.log('Session editor UI passed: Escape, backdrop, navigation, reload recovery, plan conflict, Ctrl+S, formatted notes, preview, explicit discard, outcome recovery and feedback, campaign isolation, unconfirmed drafts, no generation.');app.exit(0);
  }catch(e){console.error(e);app.exit(1)}
 });
 

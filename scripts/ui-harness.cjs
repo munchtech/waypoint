@@ -48,8 +48,9 @@ function installHandler(){
   // The player site: keep the written page in memory so a test can read what players would see.
   if(r.path==='/api/site/write'){state.siteHtml=JSON.parse(r.body).html;return {status:200,body:{saved:true,path:'C:\\test\\site.html'}}}
   if(r.path==='/api/site/where')return {status:200,body:{path:state.siteHtml?'C:\\test\\site.html':''}};
-  if(r.path.startsWith('/api/local-engine'))return {status:200,body:{state:'stopped',owned:false}};
-  if(r.path==='/api/generate')return {status:200,body:{ready:false,provider:'comfyui',model:'test'}};
+  // No Anthropic key is saved in the visual tools, so the AI panels show their "add a key" state and nothing can generate.
+  if(r.path==='/api/generate')return {status:200,body:{ready:false,provider:'anthropic',model:'claude-opus-5-5'}};
+  if(r.path==='/api/ai-settings')return {status:200,body:{provider:'anthropic',model:'claude-opus-5-5',models:[{id:'claude-opus-5-5',label:'Claude Opus 5.5',note:'The most capable of the three. The default.'},{id:'claude-sonnet-5-5',label:'Claude Sonnet 5.5',note:'Faster, at about half the cost of Opus.'},{id:'claude-haiku-5-5',label:'Claude Haiku 5.5',note:'The fastest and by far the cheapest, with plainer writing.'}],hasKey:false,canStoreKey:true}};
   if(r.path==='/api/rules/search'||r.path==='/api/rules/entry'){
    const store=await loadRulesStore();
    if(!store)return {status:200,body:r.path.endsWith('search')?{entries:[],total:0,offset:0,facets:{kinds:[],sources:[],editions:[]}}:{}};

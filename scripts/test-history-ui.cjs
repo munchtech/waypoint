@@ -5,9 +5,7 @@ app.setPath('userData',fs.mkdtempSync(path.join(os.tmpdir(),'waypoint-history-ui
 let snapshot=null,starts=0;
 ipcMain.handle('waypoint:request',(_e,r)=>{
  if(r.path==='/api/campaigns'){if(r.method==='POST')snapshot=JSON.parse(r.body);return {status:200,body:snapshot}}
- if(r.path==='/api/local-engine/start')starts++;
- if(r.path==='/api/generate')return {status:200,body:{ready:false}};
- if(r.path.startsWith('/api/local-engine'))return {status:200,body:{state:'stopped',owned:false}};
+ if(r.path==='/api/generate'){if(r.method==='POST')starts++;return {status:200,body:{ready:false,provider:'anthropic',model:'claude-opus-5-5'}}}
  return {status:200,body:{recordings:[]}};
 });
 app.whenReady().then(async()=>{
@@ -61,6 +59,6 @@ app.whenReady().then(async()=>{
  await wait("document.querySelector('select[aria-label=\"Filter history by session\"]').value===''");
  assert(await run("document.querySelector('.chronicle').textContent.includes('No confirmed events yet')"));
  assert.equal(snapshot.campaigns[0].events.length,2);assert.equal(snapshot.campaigns[1].events.length,0);assert.equal(starts,0);
- console.log('History UI passed: session counter, combined filters, trimmed title search, empty states, linked-session round trip, campaign isolation, responsive layout, unchanged events and no AI startup.');app.exit(0);
+ console.log('History UI passed: session counter, combined filters, trimmed title search, empty states, linked-session round trip, campaign isolation, responsive layout, unchanged events and no generation.');app.exit(0);
  }catch(e){console.error(e);app.exit(1)}
 });

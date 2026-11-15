@@ -363,8 +363,8 @@ main:focus{outline:none}
 .save-status{display:none}
 }
 .manual-start{display:flex;margin:13px auto 0;font-size:11px}
-.local-settings{border-bottom:1px solid var(--line);padding:8px 0 24px;margin-bottom:20px}
-.local-settings>p{font-size:12px;color:#627057;margin:12px 0 17px}
+.ai-settings{border-bottom:1px solid var(--line);padding:8px 0 24px;margin-bottom:20px}
+.ai-settings>p{font-size:12px;color:#627057;margin:12px 0 17px}
 .connection-ok{color:#47753b!important;border:1px solid #c6d8b8;background:#edf5e5;color:#46623b;padding:12px;border-radius:8px;font-size:12px}
 /* Restore points in AI & backups */
 .restore-points{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
@@ -629,9 +629,9 @@ main{padding:24px 17px}
 .segmented button{padding:9px 5px}
 .material-card h3{font:500 23px/1.35 'Lora',serif}
 .paper h2{font-size:27px}
-.local-settings>.info-box{display:flex;flex-direction:column;gap:9px}
-.local-settings>.info-box p{margin:0}
-.modal .local-settings h3{display:flex;align-items:center;gap:8px}
+.ai-settings>.info-box{display:flex;flex-direction:column;gap:9px}
+.ai-settings>.info-box p{margin:0}
+.modal .ai-settings h3{display:flex;align-items:center;gap:8px}
 @media(max-width:1200px){
 .desk-pulse button{gap:10px}
 .improv-panel{padding:20px}
@@ -732,7 +732,7 @@ main .paper>.section-title h3,.memory-thread h3{line-height:1.45}
 .modal .info-box{font-size:12px;line-height:1.75;background:#edf2eb;color:#405c61}
 .modal-actions .button{min-height:42px}
 .modal input:disabled,.modal select:disabled{background:#eceee3;color:#676f5c}
-.local-settings>.section-title{flex-wrap:wrap}
+.ai-settings>.section-title{flex-wrap:wrap}
 .session-toolbar .text-button{line-height:1.5}
 .timeline-item .event-footer{flex-wrap:wrap;row-gap:10px}
 .material-card{overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:24px;min-height:250px;transition:border-color .16s,box-shadow .16s,transform .16s;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}

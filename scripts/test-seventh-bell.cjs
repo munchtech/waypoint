@@ -7,9 +7,7 @@ let snapshot=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures','seventh-
 const fixturePages=snapshot.campaigns[0].memory.pages;fixturePages.find(p=>p.title.includes('1.4 Session Zero')).related=[fixturePages[0].id];
 ipcMain.handle('waypoint:request',(_e,r)=>{
  if(r.path==='/api/campaigns'){if(r.method==='POST')snapshot=JSON.parse(r.body);return {status:200,body:snapshot}}
- if(r.path==='/api/local-engine/start')starts++;
- if(r.path==='/api/generate')return {status:200,body:{ready:false,provider:'comfyui',model:'test'}};
- if(r.path.startsWith('/api/local-engine'))return {status:200,body:{state:'stopped',owned:false}};
+ if(r.path==='/api/generate'){if(r.method==='POST')starts++;return {status:200,body:{ready:false,provider:'anthropic',model:'claude-opus-5-5'}}}
  return {status:200,body:{recordings:[]}};
 });
 app.whenReady().then(async()=>{
@@ -123,7 +121,7 @@ app.whenReady().then(async()=>{
   await run("[...document.querySelectorAll('button')].find(b=>b.textContent==='Session notes').click()");
   await wait("!!document.querySelector('.desk-main .book-text')");
   for(const width of [900,1420]){win.setSize(width,940);await run("document.querySelector('.desk-main .book-text').scrollIntoView({block:'start'})");await new Promise(r=>setTimeout(r,350));assert(await run('document.documentElement.scrollWidth<=document.documentElement.clientWidth+2'));fs.writeFileSync('.sites-runtime/seventh-notes-'+width+'.png',(await win.webContents.capturePage()).toPNG())}
-  console.log('Seventh Bell UI passed: selected campaign, opening session, wiki/hub/planner navigation, no overflow, no invented events, all lore DM-only, no AI startup.');
+  console.log('Seventh Bell UI passed: selected campaign, opening session, wiki/hub/planner navigation, no overflow, no invented events, all lore DM-only, no generation.');
   fs.writeFileSync('.sites-runtime/seventh-result.json',JSON.stringify({passed:true,starts,pages:snapshot.campaigns[0].memory.pages.length}));app.exit(0);
  }catch(e){fs.writeFileSync('.sites-runtime/seventh-result.json',JSON.stringify({passed:false,error:String(e)}));console.error(e);app.exit(1)}
 });

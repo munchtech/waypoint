@@ -20,7 +20,7 @@ const steps=[
  node('build',['scripts/build-desktop.mjs'],{build:true,timeout:300000}),
  node('memory tests',['.sites-runtime/memory-tests/test-memory.mjs']),
  node('rules tests',['.sites-runtime/rules-tests/test-rules.mjs']),
- node('local engine tests',['scripts/test-local-engine.mjs']),
+ node('claude engine tests',['scripts/test-cloud-engine.mjs']),
  node('book text tests',['.sites-runtime/book-tests/test-book-text.mjs']),
  node('playbook tests',['.sites-runtime/playbook-tests/test-playbook.mjs']),
  ui('ai ui','test-ai-ui.cjs'),

@@ -13,7 +13,7 @@ fs.copyFileSync('desktop/preload.cjs',path.join(out,'preload.cjs'));
 fs.cpSync('desktop/data',path.join(out,'data'),{recursive:true});
 await build({configFile:false,root:path.join(root,'desktop/renderer'),base:'./',publicDir:path.join(root,'public'),plugins:[react()],build:{outDir:path.join(out,'renderer'),emptyOutDir:true,target:'chrome130'}});
 fs.writeFileSync(path.join(out,'package.json'),JSON.stringify({name:'waypoint',productName:'Waypoint',version,description:'A local companion for your D&D campaign',author:'Waypoint',license:'UNLICENSED',main:'main.cjs'},null,2));
-await build({configFile:false,root,publicDir:false,build:{outDir:path.join(root,'.sites-runtime/desktop-tests'),emptyOutDir:true,lib:{entry:path.join(root,'desktop/local-engine.ts'),formats:['es'],fileName:()=> 'local-engine.mjs'},target:'node22',minify:false}});
+await build({configFile:false,root,publicDir:false,build:{outDir:path.join(root,'.sites-runtime/desktop-tests'),emptyOutDir:true,lib:{entry:path.join(root,'desktop/cloud-engine.ts'),formats:['es'],fileName:()=> 'cloud-engine.mjs'},rolldownOptions:{external:[...builtinModules,...builtinModules.map(m=>'node:'+m)]},target:'node22',minify:false}});
 console.log('Desktop app and isolated test module built.');
 
 await build({configFile:false,root,publicDir:false,build:{outDir:path.join(root,'.sites-runtime/memory-tests'),emptyOutDir:true,lib:{entry:path.join(root,'scripts/test-memory.ts'),formats:['es'],fileName:()=> 'test-memory.mjs'},rolldownOptions:{external:[...builtinModules,...builtinModules.map(m=>'node:'+m)]},target:'node22',minify:false}});

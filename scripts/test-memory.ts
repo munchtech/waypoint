@@ -1,10 +1,6 @@
 import {responseSections} from '../lib/response-sections';
 import {plainPreview} from '../lib/plain-text';
 import {partySignals} from '../lib/party-signals';
-import {spawn as spawnFixture} from 'node:child_process';
-import {ManagedEngine,terminateOwnedProcess} from '../desktop/managed-engine';
-import {EventEmitter} from 'node:events';
-import type {ChildProcess} from 'node:child_process';
 import {importTranscript,timestamp,transcriptText} from '../lib/transcript-import';
 import {SaveQueue} from '../lib/save-queue';
 import {recordingSchema} from '../lib/recording-metadata';
@@ -128,37 +124,6 @@ const longImport=importTranscript(importRecording,{segments:Array.from({length:1
 assert(longImport.length>1);assert(longImport.every(n=>n.text.length<=28000));assert.equal(longImport.map(n=>n.text).join(''),transcriptText({revision:0,segments:Array.from({length:10},(_,i)=>({start:i,end:i+1,text:'a'.repeat(10000)}))}));
 assert.equal(timestamp(25*3600+61),'25:01:01');
 console.log('Transcript import regressions passed: legacy deduplication, corrected revisions, speaker labels, empty speech, lossless splitting and long-duration timestamps.');
-
-const engineConfig={provider:'comfyui' as const,baseURL:'http://127.0.0.1:8188',model:'test',comfyInstall:'test',autoStart:true};
-let launches=0,terminations=0;let finishInspect!:()=>void;
-const fakeChild=new EventEmitter() as ChildProcess;
-const managed=new ManagedEngine({occupied:async()=>false,spawn:()=>{launches++;return fakeChild},inspect:()=>new Promise<void>(r=>{finishInspect=r}),terminate:async()=>{terminations++},wait:async()=>{}});
-assert.equal(managed.status().state,'stopped');assert.equal(launches,0);
-await managed.start(engineConfig);assert.equal(launches,1);assert.equal(managed.status().state,'starting');
-await managed.start(engineConfig);assert.equal(launches,1);
-assert.throws(()=>managed.assertSettings({...engineConfig,baseURL:'http://127.0.0.1:8190'}));
-await Promise.all([managed.stop(),managed.stop()]);finishInspect();await Promise.resolve();assert.equal(terminations,1);assert.equal(managed.status().state,'stopped');assert.equal(managed.status().owned,false);
-const external=new ManagedEngine({occupied:async()=>true,spawn:()=>{throw new Error('Must not spawn')},inspect:async()=>{},terminate:async()=>{throw new Error('Must not stop external server')},wait:async()=>{}});
-await external.start(engineConfig);assert.equal(external.status().state,'external');await external.stop();
-let finishPort!:(value:boolean)=>void;
-const cancelled=new ManagedEngine({occupied:()=>new Promise<boolean>(r=>{finishPort=r}),spawn:()=>{throw new Error('Cancelled startup spawned a server')},inspect:async()=>{},terminate:async()=>{},wait:async()=>{}});
-const pendingStart=cancelled.start(engineConfig);await cancelled.stop();finishPort(false);await pendingStart;assert.equal(cancelled.status().state,'stopped');
-const readyChild=new EventEmitter() as ChildProcess;
-const readyEngine=new ManagedEngine({occupied:async()=>false,spawn:()=>readyChild,inspect:async()=>{},terminate:async()=>{},wait:async()=>{}});
-await readyEngine.start(engineConfig);await Promise.resolve();assert.equal(readyEngine.status().state,'running');readyChild.emit('exit',1);assert.equal(readyEngine.status().state,'failed');assert.equal(readyEngine.status().owned,false);
-console.log('Managed AI lifecycle passed: explicit start, duplicate-click protection, cancelled startup, stop during readiness checks, shared stop, external-server isolation, settings lock and process exit.');
-
-const processFixture=spawnFixture(process.execPath,['-e','setInterval(()=>{},1000)'],{windowsHide:true,stdio:'ignore'});
-await new Promise<void>((resolve,reject)=>{processFixture.once('spawn',resolve);processFixture.once('error',reject)});
-const exited=new Promise<void>(resolve=>processFixture.once('exit',()=>resolve()));
-await terminateOwnedProcess(processFixture);await exited;
-assert(processFixture.exitCode!==null||processFixture.signalCode!==null);
-console.log('Real owned-process shutdown passed using an isolated Node fixture.');
-
-const failedChild=new EventEmitter() as ChildProcess;
-const failedStop=new ManagedEngine({occupied:async()=>false,spawn:()=>failedChild,inspect:async()=>{},terminate:async()=>{throw new Error('fixture stop failure')},wait:async()=>{}});
-await failedStop.start(engineConfig);await assert.rejects(failedStop.stop());assert.equal(failedStop.status().owned,true);assert.equal(failedStop.status().state,'failed');await failedStop.start(engineConfig);assert.equal(failedStop.status().state,'failed');
-console.log('Failed shutdown preserves ownership and blocks duplicate launch.');
 
 {
  const fixture=structuredClone(demo);
