@@ -21,6 +21,9 @@ const goblins=store.search({query:'goblin',kind:'Creature'});assert(goblins.tota
 for(const kind of ['Background','Species','Feature','Trap','Hazard','Rule','Sense','Skill','Language','Object','Table','Vehicle','Weapon mastery','Class','Subclass','Class feature','Subclass feature'])assert(store.search({kind}).total>0,'Missing expanded category: '+kind);
 const features=normalizeRules({classFeature:[{name:'Training',source:'TEST',className:'Fighter',level:1,entries:['A']},{name:'Training',source:'TEST',className:'Wizard',level:1,entries:['B']},{name:'Training',source:'TEST',className:'Fighter',level:2,entries:['C']}]});assert.equal(new Set(features.entries.map(e=>e.id)).size,3,'Class features must not collide across classes and levels');
 const fire=store.search({query:'fireball',kind:'Spell',edition:'2014'});assert(fire.total>0);const fireEntry=store.get(fire.entries[0].id);assert(fireEntry.body.includes('Casting time'));assert.equal(fireEntry.edition,'2014');
+assert.equal(store.search({query:'fireball'}).entries[0].name,'Fireball','An exact rule name must lead body mentions across all categories');
+assert.equal(store.search({query:'  FIREBALL  '}).entries[0].name,'Fireball');
+const secondPage=store.search({query:'fire',offset:50});assert(secondPage.entries.every(entry=>!store.search({query:'fire'}).entries.some(first=>first.id===entry.id)),'Ranked pages must not overlap');
 assert.equal(store.importData([pack]).written,1);assert.equal(store.search({query:'Test Beacon',source:'TEST'}).total,1);
 assert.equal(store.search({query:'%'}).entries.every(e=>store.get(e.id).body.includes('%')||e.name.includes('%')),true);
 const total=store.search({}).total;store.importData([pack]);assert.equal(store.search({}).total,total,'Reimport must deduplicate');

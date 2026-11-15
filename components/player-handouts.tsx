@@ -5,8 +5,8 @@ import type {Campaign} from '../lib/campaign';
 import {memoryOf,handoutSchema,type Handout} from '../lib/memory';
 import {composePlayerHandout} from '../lib/campaign-search';
 import {appFetch,isDesktop} from '../lib/transport';
-export default function PlayerHandouts({campaign,update}:{campaign:Campaign;update:(fn:(c:Campaign)=>Campaign)=>void}){
- const m=memoryOf(campaign),[draft,setDraft]=useState<Handout|null>(null),[selected,setSelected]=useState<string[]>([]),[reviewed,setReviewed]=useState(false),[message,setMessage]=useState(''),[busy,setBusy]=useState(false);
+export default function PlayerHandouts({campaign,update,initialId}:{initialId?:string;campaign:Campaign;update:(fn:(c:Campaign)=>Campaign)=>void}){
+ const m=memoryOf(campaign),[draft,setDraft]=useState<Handout|null>(()=>{const h=memoryOf(campaign).handouts?.find(h=>h.id===initialId);return h?structuredClone(h):null}),[selected,setSelected]=useState<string[]>([]),[reviewed,setReviewed]=useState(false),[message,setMessage]=useState(''),[busy,setBusy]=useState(false);
  const eligible=m.pages.filter(p=>p.visibility==='Party knows'&&p.status!=='Planned');
  function edit(value:Handout){setDraft(value);setReviewed(false);setMessage('')}
  function blank(){edit({id:crypto.randomUUID(),title:'Previously, on our adventure…',body:'',sourcePageIds:[],updated:new Date().toISOString()})}

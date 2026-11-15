@@ -75,7 +75,8 @@ ipcMain.handle('waypoint:request',async(event,req)=>{trusted(event);try{return a
 ipcMain.handle('waypoint:cancel',event=>{trusted(event);controller?.abort()});
 const locked=app.requestSingleInstanceLock();if(!locked)app.quit();else{app.on('second-instance',()=>{win?.restore();win?.focus()});app.whenReady().then(()=>{
  try{store=new CampaignStore(dataDir)}catch(e){storeError=e instanceof Error?e.message:'Campaign migration failed'}
- const speechRoot=path.join(process.env.PORTABLE_EXECUTABLE_DIR||path.resolve(__dirname,'..','..','..','..','outputs'),'Waypoint-Speech');
+ const externalAssets=process.env.PORTABLE_EXECUTABLE_DIR||(app.isPackaged?path.dirname(app.getPath('exe')):path.resolve(__dirname,'..','..','..','..','outputs'));
+ const speechRoot=path.join(externalAssets,'Waypoint-Speech');
  const speechScript=path.join(dataDir,'speech-worker.py');fs.writeFileSync(speechScript,fs.readFileSync(path.join(__dirname,'speech-worker.py')));
  library=new RecordingLibrary(dataDir,speechRoot,speechScript);
  protocol.handle('waypoint-audio',request=>{

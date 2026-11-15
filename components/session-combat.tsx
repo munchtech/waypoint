@@ -1,0 +1,21 @@
+'use client';
+import {useState} from 'react';
+import {BookOpen,Swords} from 'lucide-react';
+import type {Campaign,Session} from '../lib/campaign';
+import {memoryOf} from '../lib/memory';
+import {partyLevels} from '../lib/playbook';
+import {sessionEncounters} from '../lib/combat';
+import type {SearchHit} from '../lib/campaign-search';
+import EncounterCard from './encounter-card';
+import CreatureStats from './creature-stats';
+import RuleBody from './rule-body';
+
+export default function SessionCombat({campaign,session,target,onBrowse}:{campaign:Campaign;session:Session;target:SearchHit|null;onBrowse:(name?:string)=>void}){
+ const memory=memoryOf(campaign),pb=memory.playbook,encounters=sessionEncounters(pb,session.id);
+ const [selected,setSelected]=useState(target?.kind==='Encounter'?target.id:encounters[0]?.id||'');
+ const encounter=encounters.find(encounter=>encounter.id===selected)||encounters[0];
+ const block=target?.kind==='Creature'?pb?.statblocks.find(block=>block.id===target.id):undefined;
+ const brief=pb?.briefs.find(brief=>brief.sessionId===session.id),levels=partyLevels(memory.roster,brief);
+ const pinned=(session.ruleReferences||[]).filter(reference=>reference.kind==='Creature');
+ return <section className="session-combat"><div className="section-title"><div><h3><Swords size={18}/>Combat reference</h3><p>Encounter participants, stat blocks, attacks, abilities, and tactics.</p></div><button className="button" onClick={()=>onBrowse()}><BookOpen size={14}/>Find a creature</button></div>{block&&<section className="paper combat-target"><h3>{block.name}</h3><CreatureStats creature={{name:block.name,statblock:block.id,base:block.base,cr:block.cr,count:1}} pb={pb} onBrowse={onBrowse}/></section>}{encounters.length>0&&<><div className="encounter-picker" aria-label="Session encounters">{encounters.map(item=><button key={item.id} className={item===encounter?'selected':''} aria-pressed={item===encounter} onClick={()=>setSelected(item.id)}><strong>{item.title}</strong><small>{item.creatures.reduce((sum,creature)=>sum+creature.count,0)} participants · {item.creatures.length} profiles</small></button>)}</div>{encounter&&pb&&<EncounterCard key={encounter.id} enc={encounter} pb={pb} levels={levels} defaultOpen onBrowse={onBrowse}/>}</>}{pinned.length>0&&<section className="paper"><h3>Pinned creature references</h3>{pinned.map(reference=><details key={reference.id} open><summary>{reference.name} · {reference.edition}</summary><RuleBody body={reference.body}/><button className="text-button" onClick={()=>onBrowse(reference.name)}>Open full library entry</button></details>)}</section>}{!encounters.length&&!block&&<div className="paper empty"><Swords size={28}/><h3>No encounter roster for this session</h3><p>Creature references pinned from the rules library appear here. Prepared campaign encounters appear when their playbook is installed.</p><button className="button" onClick={()=>onBrowse()}>Browse creature stat blocks</button></div>}</section>;
+}

@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import {renderToStaticMarkup} from 'react-dom/server';
 import BookText from '../components/book-text-render';
 import {safeWebLink} from '../lib/safe-web-link';
+import {CampaignLinks} from '../components/campaign-links';
+import {mentionIndex,splitMentions} from '../lib/wiki-mentions';
+import {relevance} from '../lib/campaign-search';
+import type {WikiPage} from '../lib/memory';
 const source=`# Route
 
 [Jump](#route) and [reference][guide]. **Bold with *emphasis* and [web](https://example.com/path_(one))**.
@@ -49,5 +53,19 @@ assert.equal(safeWebLink('http://localhost:3000/'),'http://localhost:3000/');
 const duplicate=renderToStaticMarkup(<BookText text={'# Route\n\n# Route\n\n[second](#route-1)'}/>);
 assert.match(duplicate,/id="[^"]+-route-1"/);
 console.log('Markdown passed: nested mixed lists, multi-paragraph items, nested quotes/emphasis, reference and balanced links, tables, unique heading anchors, escaped HTML, no image requests, unsafe URL rejection.');
+const page:WikiPage={id:'observatory',title:'Silver Observatory',aliases:'Moonwatch',kind:'Location',body:'A moon lens.',status:'Confirmed',visibility:'DM only',sourceId:'',quote:'',updated:'2026-11-09',history:[]};
+const mentions=splitMentions('The Silver Observatory overlooks Moonwatch. Moonwatchers see it.',mentionIndex([page]),new Set());
+assert.equal(mentions.filter(part=>part.pageId).length,1,'Each page should be linked once per document');
+assert.equal(mentions.map(part=>part.text).join(''),'The Silver Observatory overlooks Moonwatch. Moonwatchers see it.');
+assert(!splitMentions('Moonwatchers',mentionIndex([page]),new Set()).some(part=>part.pageId));
+assert(!splitMentions('Moonwatch',mentionIndex([page,{...page,id:'other',title:'Another place'}]),new Set()).some(part=>part.pageId),'Ambiguous aliases must remain plain text');
+assert(!splitMentions('Silver Observatory',mentionIndex([page],page.id),new Set()).some(part=>part.pageId),'A page should not link to itself');
+assert(!splitMentions('Keep these changes for 2024.',mentionIndex([{...page,aliases:'keep, changes, 2024'}]),new Set()).some(part=>part.pageId),'Generic words and years must not become alias links');
+const linked=renderToStaticMarkup(<CampaignLinks.Provider value={{pages:[page],onOpen:()=>{}}}><BookText text={'# Silver Observatory\n\nVisit Silver Observatory, then Moonwatch. [Moonwatch](https://example.com). `Moonwatch`'}/></CampaignLinks.Provider>);
+assert.equal((linked.match(/class="wiki-mention"/g)||[]).length,1);
+assert(!/<a[^>]*>[\s\S]*?<button/.test(linked),'Existing links must not contain nested reference buttons');
+assert(relevance('Silver Observatory','silvr observatry')>0,'A small typing error should still find a campaign page');
+assert.equal(relevance('Harbor captain','zzzzzzzz'),0);
+console.log('Context links passed: original text, word boundaries, repeated mentions, ambiguous aliases, self links, existing links and code. Search typo matching passed.');
 
 

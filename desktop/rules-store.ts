@@ -36,7 +36,13 @@ export class RulesStore{
   for(const token of String(input.query||'').toLowerCase().slice(0,200).split(/\s+/).filter(Boolean).slice(0,10)){clauses.push("search LIKE ? ESCAPE '\\'");params.push('%'+token.replace(/[\\%_]/g,'\\$&')+'%')}
   for(const key of ['kind','source','edition'] as const)if(input[key]&&input[key]!=='All'){clauses.push(key+'=?');params.push(String(input[key]).slice(0,key==='source'?500:120))}
   const where=clauses.length?' WHERE '+clauses.join(' AND '):'';const offset=Math.max(0,Math.min(100000,Math.floor(Number(input.offset)||0)));
-  const rows=this.db.prepare('SELECT content FROM entries'+where+' ORDER BY name COLLATE NOCASE,source LIMIT 50 OFFSET ?').all(...params,offset) as {content:string}[];
+  const query=String(input.query||'').toLowerCase().trim().slice(0,200);
+  const nameTokens=query.split(/\s+/).filter(Boolean).slice(0,10);
+  const escape=(value:string)=>value.replace(/[\\%_]/g,'\\$&');
+  const nameScore=nameTokens.map(()=>"CASE WHEN name LIKE ? ESCAPE '\\' THEN 1 ELSE 0 END").join(' + ');
+  const order=query?"CASE WHEN lower(name)=? THEN 0 WHEN name LIKE ? ESCAPE '\\' THEN 1 ELSE 2 END, ("+nameScore+") DESC, name COLLATE NOCASE,source":'name COLLATE NOCASE,source';
+  const orderParams=query?[query,escape(query)+'%',...nameTokens.map(token=>'%'+escape(token)+'%')]:[];
+  const rows=this.db.prepare('SELECT content FROM entries'+where+' ORDER BY '+order+' LIMIT 50 OFFSET ?').all(...params,...orderParams,offset) as {content:string}[];
   return {entries:rows.map(r=>{const e=JSON.parse(r.content) as RuleEntry;return {...e,body:''}}),total:(this.db.prepare('SELECT count(*) AS n FROM entries'+where).get(...params) as {n:number}).n,offset,facets:{kinds:this.db.prepare('SELECT DISTINCT kind AS value FROM entries ORDER BY kind').all(),sources:this.db.prepare('SELECT DISTINCT source AS value FROM entries ORDER BY source').all(),editions:this.db.prepare('SELECT DISTINCT edition AS value FROM entries ORDER BY edition').all()}};
  }
  get(id:string){const row=this.db.prepare('SELECT content FROM entries WHERE id=?').get(id) as {content:string}|undefined;if(!row)throw new Error('Reference not found. Refresh the library.');return JSON.parse(row.content) as RuleEntry}

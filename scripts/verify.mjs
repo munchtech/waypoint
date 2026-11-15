@@ -24,6 +24,7 @@ const steps=[
  node('book text tests',['.sites-runtime/book-tests/test-book-text.mjs']),
  node('playbook tests',['.sites-runtime/playbook-tests/test-playbook.mjs']),
  ui('ai ui','test-ai-ui.cjs'),
+ ui('workspaces','test-workspaces.cjs',['--out',path.join(logs,'workspace-shots')]),
  ui('seventh bell','test-seventh-bell.cjs'),
  ui('session editor ui','test-session-editor-ui.cjs'),
  ui('history ui','test-history-ui.cjs',['--disable-gpu']),

@@ -31,7 +31,8 @@ async function loadRulesStore(){
 }
 function fixtureSnapshot(name){
  if(!name||name==='demo')return null;
- const file=name==='seventh-bell'?path.resolve(root,'../../outputs/The-Seventh-Bell.waypoint.json'):path.resolve(name);
+ const candidates=[path.resolve(root,'../../outputs/The-Seventh-Bell.waypoint.json'),path.resolve(root,'../foresight/db/current-snapshot.json')];
+ const file=name==='seventh-bell'?(candidates.find(file=>fs.existsSync(file))||candidates[0]):path.resolve(name);
  return JSON.parse(fs.readFileSync(file,'utf8'));
 }
 let handlerInstalled=false;
@@ -94,7 +95,12 @@ async function openSession({build=path.join(root,'desktop/build'),width=1420,hei
 // One step is [kind, argument, extra]. Failures are returned, never thrown, so a tour reports every missing control.
 async function doStep(s,step){
  const [kind,arg,extra]=step;
- if(kind==='nav')return s.clickText(arg,{within:'.sidebar'});
+ if(kind==='nav'){
+  const destinations={'Session desk':['Session','Current session'],'Foresight':['Session','Playbook'],'Next session':['Session','Plan next session'],'Campaign hub':['Campaign','Read & explore'],'World wiki':['Campaign','Wiki editor'],'Campaign':['Campaign','Outline & sessions'],'Party & preferences':['Campaign','Party & preferences'],'Session journal':['Journal','Notes & recordings'],'Discoveries':['Journal','Review discoveries'],'Chronicle':['Journal','Confirmed history'],'Rules library':['Library','Rules'],'Saved material':['Library','Saved ideas'],'Player site':['Players','Player site'],'Player handouts':['Players','Handouts & display']};
+  const route=destinations[arg];if(!route)return 'MISSING-ROUTE:'+arg;
+  const first=await s.clickText(route[0],{within:'.sidebar'});if(first!=='ok')return first;
+  await s.settle(100);return s.clickText(route[1],{within:'.workspace-tabs'});
+ }
  if(kind==='click')return s.clickText(arg,extra);
  if(kind==='sel')return s.clickSelector(arg,extra||0);
  if(kind==='key'){const mods=(extra||[]);await s.key(arg,mods);return 'ok'}
@@ -104,7 +110,7 @@ async function doStep(s,step){
  if(kind==='scroll')return s.run(`(()=>{const m=document.querySelector(${JSON.stringify(arg||'main')});if(!m)return 'MISSING';m.scrollTop=${Number(extra)||0};window.scrollTo(0,0);return 'ok'})()`);
  return 'UNKNOWN-STEP:'+kind;
 }
-const views=['Session desk','Foresight','Next session','Saved material','Rules library','Campaign hub','Campaign','World wiki','Party & preferences','Session journal','Chronicle','Player handouts'];
+const views=['Discoveries','Player site','Session desk','Foresight','Next session','Saved material','Rules library','Campaign hub','Campaign','World wiki','Party & preferences','Session journal','Chronicle','Player handouts'];
 // Ordered tour. Each state continues from the previous one, so every modal ends with Escape.
 const slug=text=>text.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const tourStates=[
@@ -112,6 +118,7 @@ const tourStates=[
  {name:'desk-path-open',steps:[['nav','Session desk'],['sel','.branch-head'],['wait',250]]},
  {name:'desk-session-notes',steps:[['click','Session notes'],['wait',250]]},
  {name:'desk-at-the-table',steps:[['click','At the table'],['wait',250]]},
+ {name:'desk-combat',steps:[['click','Combat'],['wait',350]]},
  {name:'desk-live-mode',steps:[['click','Possibilities'],['click','Live mode'],['wait',300]]},
  {name:'desk-live-table-tab',steps:[['click','At the table'],['wait',250],['click','Exit live mode'],['click','Possibilities'],['wait',250]]},
  {name:'rules-entry-open',steps:[['nav','Rules library'],['wait',500],['sel','.rule-result'],['wait',500]]},

@@ -1,5 +1,6 @@
 import {createElement, Fragment, useId, useMemo, type ReactNode} from 'react';
 import MarkdownIt from 'markdown-it';
+import {useMentionRenderer} from './campaign-links';
 type Token = ReturnType<typeof markdown.parse>[number];
 import {safeWebLink} from '../lib/safe-web-link';
 
@@ -14,17 +15,17 @@ function plain(tokens:Token[]):string {
 // A link to `play:<id>` names a prepared play. Where the page knows its plays (session notes), the link becomes a button that opens
 // the play's card in place; elsewhere (the book, the wiki) it reads as plain text.
 export type PlayLinks={open:string|null;toggle:(id:string)=>void;render:(id:string)=>ReactNode};
-function render(tokens:Token[], prefix:string, plays?:PlayLinks):ReactNode[] {
+function render(tokens:Token[], prefix:string, mention:ReturnType<typeof useMentionRenderer>, seen:Set<string>, plays?:PlayLinks, skipMentions=false):ReactNode[] {
  let index=0;
- function walk():ReactNode[] {
+ function walk(skip=false):ReactNode[] {
   const nodes:ReactNode[]=[];
   while(index<tokens.length){
    const key=index, token=tokens[index++];
    if(token.nesting===-1)break;
-   const children=token.nesting===1?walk():token.children?render(token.children,prefix,plays):[];
+   const children=token.nesting===1?walk(skip||token.type==='link_open'||token.type==='heading_open'):token.children?render(token.children,prefix,mention,seen,plays,skip):[];
    if(token.hidden){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
    if(token.type==='inline'){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
-   if(token.type==='text'){nodes.push(token.content.replace(/^\[ \] /,'☐ ').replace(/^\[[xX]\] /,'☑ '));continue;}
+   if(token.type==='text'){const value=token.content.replace(/^\[ \] /,'☐ ').replace(/^\[[xX]\] /,'☑ ');nodes.push(skip?value:mention(value,seen));continue;}
    if(token.type==='softbreak'){nodes.push(' ');continue;}
    if(token.type==='hardbreak'){nodes.push(<br key={key}/>);continue;}
    if(token.type==='code_inline'){nodes.push(<code key={key}>{token.content}</code>);continue;}
@@ -61,10 +62,11 @@ function render(tokens:Token[], prefix:string, plays?:PlayLinks):ReactNode[] {
   }
   return nodes;
  }
- return walk();
+ return walk(skipMentions);
 }
-export default function BookText({text,plays}:{text:string;plays?:PlayLinks}){
+export default function BookText({text,plays,excludePageId}:{text:string;plays?:PlayLinks;excludePageId?:string}){
  const prefix=useId()+'-';
+ const mention=useMentionRenderer(excludePageId);
  const tokens=useMemo(()=>{
   const tokens=markdown.parse(text,{}),counts=new Map<string,number>();
   for(let i=0;i<tokens.length;i++)if(tokens[i].type==='heading_open'){
@@ -73,7 +75,7 @@ export default function BookText({text,plays}:{text:string;plays?:PlayLinks}){
   }
   return tokens;
  },[text,prefix]);
- return <div className="book-text">{render(tokens,prefix,plays)}</div>;
+ return <div className="book-text">{render(tokens,prefix,mention,new Set(),plays)}</div>;
 }
 
 
