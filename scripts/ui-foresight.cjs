@@ -95,6 +95,44 @@ run(async (args) => {
   // "All plays" leads to the session's Possibilities, where every prepared play can be searched.
   await s.clickText('All plays');
   await s.settle(500);
+  // Now: choosing the scene the table is in narrows Session 1's paths to it; the other scenes stay closed.
+  const cards = () => s.run("document.querySelectorAll('.session-paths [data-play-id]').length");
+  const allCards = await cards();
+  const sceneSelect = 'select[aria-label="Current scene"]';
+  const secondScene = await s.run(
+    `document.querySelector(${JSON.stringify(sceneSelect)})?.options[2]?.value||''`,
+  );
+  check('the session’s scenes are offered', !!secondScene);
+  await s.setValue(sceneSelect, secondScene);
+  await s.settle(300);
+  const sceneCards = await cards();
+  check(
+    'Now shows only the current scene',
+    sceneCards > 0 && sceneCards < allCards,
+    sceneCards + ' of ' + allCards,
+  );
+  await s.clickSelector('button[aria-label="Next scene"]');
+  await s.settle(200);
+  check(
+    'next scene moves on',
+    (await s.run(`document.querySelector(${JSON.stringify(sceneSelect)}).value`)) !== secondScene,
+  );
+  await shot('05b-now-scene');
+  await s.setValue(sceneSelect, '');
+  await s.settle(200);
+  // Every session's paths: only the current session's group is drawn until another is opened.
+  await s.setValue('select[aria-label="Which plays"]', 'All sessions');
+  await s.settle(400);
+  const groups = await s.run(
+    "[...document.querySelectorAll('.session-paths details.scene-group')].map(d=>d.open)",
+  );
+  check(
+    'all sessions are grouped, one open',
+    groups.length > 20 && groups.filter(Boolean).length === 1 && (await cards()) === allCards,
+    groups.length + ' groups, ' + (await cards()) + ' cards drawn',
+  );
+  await s.setValue('select[aria-label="Which plays"]', 'This session');
+  await s.settle(300);
   await s.setValue('.session-paths input[aria-label="Search prepared paths"]', 'bribe');
   await s.settle(400);
   check('search finds the bribe play', (await text('.session-paths')).includes('They bribe Quill'));
