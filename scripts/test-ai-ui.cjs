@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron');
 // A detached Windows launcher may close its console pipe before tests finish.
 // Ignore only that transport error; assertions and other stream errors still fail.
 for (const stream of [process.stdout, process.stderr])
@@ -123,6 +123,7 @@ ipcMain.handle('waypoint:request', async (event, r) => {
   return { status: 200, body: r.path === '/api/campaigns' && r.method === 'GET' ? null : {} };
 });
 app.whenReady().then(async () => {
+  nativeTheme.themeSource = 'light';
   const win = new BrowserWindow({
     show: false,
     width: 1420,

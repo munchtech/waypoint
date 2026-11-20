@@ -1,5 +1,5 @@
 // Layout and accessibility audit for every screen and the main dialogs.
-//   node_modules/electron/dist/electron.exe scripts/ui-audit.cjs [--width 1420] [--height 940] [--fixture demo|seventh-bell] [--json out.json]
+//   node_modules/electron/dist/electron.exe scripts/ui-audit.cjs [--width 1420] [--height 940] [--fixture demo|seventh-bell] [--theme light|dark] [--json out.json]
 // Checks per state: WCAG AA contrast of visible text against its effective background (text on gradients is skipped
 // and counted), buttons without an accessible name, form fields without a label, text under 11px, and horizontal overflow.
 const fs = require('node:fs');
@@ -38,6 +38,7 @@ run(async (args) => {
     width,
     height,
     fixture: args.fixture || 'demo',
+    theme: args.theme || 'light',
     build: args.build ? require('node:path').resolve(args.build) : undefined,
   });
   const report = {};
@@ -65,7 +66,7 @@ run(async (args) => {
   });
   if (args.json) fs.writeFileSync(args.json, JSON.stringify(report, null, 1));
   console.log(
-    `Audit at ${width}x${height}: ${problems} findings across ${Object.keys(report).length} states.`,
+    `Audit at ${width}x${height}${args.theme === 'dark' ? ' (dark)' : ''}: ${problems} findings across ${Object.keys(report).length} states.`,
   );
   s.close();
   if (problems) process.exitCode = 1;

@@ -86,7 +86,13 @@ export async function runSmokeTest(win: BrowserWindow) {
     })) as { status: number; body: { hits?: unknown[] } };
     if (found.status !== 200 || !Array.isArray(found.body.hits))
       throw new Error('Campaign search unavailable');
-    Object.assign(result, { packs: true, campaignSearch: true });
+    const appearance = (await route({ path: '/api/appearance', method: 'GET' })) as {
+      status: number;
+      body: { theme?: string };
+    };
+    if (appearance.status !== 200 || !appearance.body.theme)
+      throw new Error('Theme setting unavailable');
+    Object.assign(result, { packs: true, campaignSearch: true, theme: appearance.body.theme });
     const transcriptFile = path.join(dataDir, 'recordings', result.id + '.transcript.json');
     fs.writeFileSync(
       transcriptFile,

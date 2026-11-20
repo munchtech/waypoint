@@ -2,7 +2,7 @@
 // Run the tools with the Electron binary, not node:
 //   node_modules/electron/dist/electron.exe scripts/ui-tour.cjs --out <dir>
 // Build first with `node scripts/build-desktop.mjs`; the tools load desktop/build/renderer.
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron');
 const fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os');
@@ -119,6 +119,10 @@ function installHandler() {
         body: { hits: await campaignSearch(state, JSON.parse(r.body || '{}')) },
       };
     if (r.path.startsWith('/api/packs')) return packRoute(r);
+    if (r.path === '/api/appearance') {
+      if (r.method === 'POST') nativeTheme.themeSource = JSON.parse(r.body || '{}').theme;
+      return { status: 200, body: { theme: nativeTheme.themeSource } };
+    }
     // Two restore points that hold the current save, so the AI & backups panel has rows to show and restore.
     if (r.path === '/api/restore-points') {
       const campaigns = (state.snapshot?.campaigns || []).map((c) => ({
@@ -209,8 +213,11 @@ async function openSession({
   height = 940,
   fixture = 'demo',
   reduceMotion = true,
+  theme = 'light',
 } = {}) {
   installHandler();
+  // Suites run in the light theme whatever Windows uses, unless they ask for dark.
+  nativeTheme.themeSource = theme;
   const win = new BrowserWindow({
     show: false,
     width,

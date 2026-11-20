@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron');
 const fs = require('node:fs'),
   path = require('node:path'),
   os = require('node:os'),
@@ -22,6 +22,7 @@ ipcMain.handle('waypoint:request', (_e, r) => {
   return { status: 200, body: { recordings: [] } };
 });
 app.whenReady().then(async () => {
+  nativeTheme.themeSource = 'light';
   const win = new BrowserWindow({
     show: false,
     width: 1420,

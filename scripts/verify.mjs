@@ -73,6 +73,7 @@ const steps = [
     '--fixture',
     'seventh-bell',
   ]),
+  ui('audit dark 1420', 'ui-audit.cjs', ['--fixture', 'seventh-bell', '--theme', 'dark']),
   ui('focus', 'ui-focus.cjs'),
   ui('announce', 'ui-announce.cjs'),
   ui('player', 'ui-player.cjs'),

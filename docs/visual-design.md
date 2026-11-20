@@ -13,6 +13,12 @@ Implemented in app/globals.css, the single stylesheet (the earlier folio, finish
 
 Verified: TypeScript; desktop interaction regression including 900/1420 widths; isolated Seventh Bell navigation and screenshots; selected navigation computed styles; packaged smoke including PDF extraction. Existing campaign data unchanged.
 
+## Dark theme
+
+Every colour in app/globals.css is written as `light-dark(light, dark)`, so the stylesheet holds both themes in place. The dark values were derived by role: surfaces become midnight slate with paper one step above the page, text and accents are lightened, lines become slate, and shadows become black. Keep the pair when adding or changing a colour, and check the dark value with `scripts/ui-audit.cjs --theme dark`.
+
+The theme follows Windows unless the DM picks Light or Dark (sidebar → Theme, or quick navigation → Switch theme). The main process saves the choice in `appearance.json` and sets Electron's `nativeTheme`, which drives `prefers-color-scheme` and the window frame; the renderer also sets `data-theme` on the root element. Print stays light. The player display and the player site keep their own light styles.
+
 ## Stylesheet and checks
 
 - One stylesheet: app/globals.css. Rules stay in order only where two rules of equal specificity set the same property; edit an existing declaration in place instead of appending an override block. Tailwind supplies only its reset and theme tokens (utility generation is off).

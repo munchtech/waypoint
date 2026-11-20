@@ -164,30 +164,23 @@ export default function CampaignHub({
                 role="img"
                 aria-label={`Connections to ${focus.title}`}
               >
-                <circle
-                  cx="250"
-                  cy="170"
-                  r="118"
-                  fill="none"
-                  stroke="#e3e9dc"
-                  strokeDasharray="3 7"
-                />
+                <circle className="ring" cx="250" cy="170" r="118" strokeDasharray="3 7" />
                 {related.map((p, i) => {
                   const a = (2 * Math.PI * i) / related.length;
                   const x = 250 + 175 * Math.cos(a),
                     y = 170 + 125 * Math.sin(a);
                   return (
                     <g key={p.id}>
-                      <line x1="250" y1="170" x2={x} y2={y} stroke="#b9c8a7" />
-                      <circle cx={x} cy={y} r="9" fill="#749764" />
+                      <line className="link" x1="250" y1="170" x2={x} y2={y} />
+                      <circle className="node" cx={x} cy={y} r="9" />
                       <text x={x} y={y + 25} textAnchor="middle">
                         {p.title.slice(0, 20)}
                       </text>
                     </g>
                   );
                 })}
-                <circle cx="250" cy="170" r="42" fill="#315a45" />
-                <text x="250" y="174" textAnchor="middle" fill="#fff">
+                <circle className="hub" cx="250" cy="170" r="42" />
+                <text className="hub-label" x="250" y="174" textAnchor="middle">
                   {focus.title.slice(0, 17)}
                 </text>
               </svg>

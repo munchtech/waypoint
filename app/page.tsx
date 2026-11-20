@@ -19,6 +19,7 @@ import {
   X,
   CheckCircle2,
   MessageCircleQuestion,
+  SunMoon,
 } from 'lucide-react';
 import { useDesk, DeskContext } from './use-desk';
 import { SessionDeskView } from './views/session-desk';
@@ -36,10 +37,12 @@ import {
   HandoutsView,
 } from './views/workspace-views';
 import { DialogBody } from './desk-dialogs';
+import { useTheme, themeLabel } from '../components/use-theme';
 
 // The shell: the sidebar, top bar, section tabs and dialog frame around the current view.
 function HomeScreen() {
   const desk = useDesk();
+  const theme = useTheme();
   const {
     setView,
     backStack,
@@ -166,6 +169,11 @@ function HomeScreen() {
                   run: () => setModal('data'),
                 },
                 {
+                  label: 'Switch theme',
+                  detail: themeLabel[theme.theme] + ' (follows Windows, light, dark)',
+                  run: theme.next,
+                },
+                {
                   label: 'Record an outcome',
                   detail: 'Capture what the players actually did',
                   run: () => record(),
@@ -254,6 +262,14 @@ function HomeScreen() {
               </div>
               <button className="navitem" onClick={() => setModal('data')}>
                 <Settings2 size={17} /> AI & backups
+              </button>
+              <button
+                className="navitem"
+                aria-label={themeLabel[theme.theme] + '. Switch theme'}
+                title="Switch between following Windows, light and dark"
+                onClick={theme.next}
+              >
+                <SunMoon size={17} /> {themeLabel[theme.theme]}
               </button>
               <div className="dm-avatar">
                 <span>DM</span>

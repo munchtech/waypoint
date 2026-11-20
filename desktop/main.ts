@@ -3,6 +3,7 @@
 import { dataDir, smoke, state, closeRules } from './runtime';
 import { route } from './routes';
 import { cancelGeneration } from './routes/ai';
+import { applySavedTheme } from './routes/appearance';
 import { runSmokeTest } from './smoke-test';
 import { safeWebLink } from '../lib/safe-web-link';
 import { audioRange } from '../lib/transcript';
@@ -17,6 +18,7 @@ import {
   shell,
   desktopCapturer,
   dialog,
+  nativeTheme,
   protocol,
 } from 'electron';
 import path from 'node:path';
@@ -67,6 +69,7 @@ else {
     state.win?.focus();
   });
   app.whenReady().then(() => {
+    applySavedTheme();
     try {
       state.store = new CampaignStore(dataDir);
     } catch (e) {
@@ -133,7 +136,7 @@ else {
       minHeight: 650,
       title: 'Waypoint',
       icon: path.join(__dirname, 'renderer', 'waypoint-icon.png'),
-      backgroundColor: '#f7f8f5',
+      backgroundColor: nativeTheme.shouldUseDarkColors ? '#111920' : '#f1eee7',
       show: !smoke,
       autoHideMenuBar: true,
       webPreferences: {
