@@ -358,82 +358,84 @@ function HomeScreen() {
               tabIndex={-1}
               className={view === 'Rules library' ? 'fill-height' : undefined}
             >
-              <div className="page-heading">
-                <div>
-                  <h1>{area.label}</h1>
-                </div>
-                {view === 'Session desk' ? (
-                  <button
-                    className="button primary"
-                    onClick={() => {
-                      setPlanTitle(session.title);
-                      setDraft(session.plan);
-                      setModal('plan');
-                    }}
-                  >
-                    <Feather size={15} /> Edit session plan
-                  </button>
-                ) : view === 'Chronicle' ? (
-                  <div className="heading-actions">
-                    <button
-                      className="button"
-                      onClick={() => {
-                        setError('');
-                        setModal('recap');
-                      }}
-                    >
-                      <ScrollText size={15} /> Import recap
-                    </button>
-                    <button className="button primary" onClick={() => record()}>
-                      <Plus size={16} /> Record an event
-                    </button>
+              <div className="workspace-header">
+                <div className="page-heading">
+                  <div>
+                    <h1>{area.label}</h1>
                   </div>
-                ) : null}
-              </div>
-              <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
-                {area.views.map((item) => (
-                  <button
-                    key={item.view}
-                    className={view === item.view ? 'selected' : ''}
-                    aria-current={view === item.view ? 'page' : undefined}
-                    onClick={() => setView(item.view)}
-                  >
-                    {item.label}
-                    {item.view === 'Discoveries' && reviewCount > 0 && (
-                      <span className="nav-count">{reviewCount}</span>
-                    )}
-                  </button>
-                ))}
-              </nav>
-              <div className="workspace-context">
-                {[
-                  'Session desk',
-                  'Foresight',
-                  'Next session',
-                  'Rules library',
-                  'Player site',
-                  'Party & preferences',
-                ].includes(view) && (
-                  <label>
-                    Session
-                    <select
-                      aria-label="Current session"
-                      disabled={!!busy || recordingActive}
-                      value={session.id}
-                      onChange={(e) => {
-                        setSessionId(e.target.value);
-                        setExpanded(null);
+                  {view === 'Session desk' ? (
+                    <button
+                      className="button primary"
+                      onClick={() => {
+                        setPlanTitle(session.title);
+                        setDraft(session.plan);
+                        setModal('plan');
                       }}
                     >
-                      {campaign.sessions.map((s, i) => (
-                        <option key={s.id} value={s.id}>
-                          {i + 1} · {s.title}
-                          {s.done ? ' ✓' : ''}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                )}
+                      <Feather size={15} /> Edit session plan
+                    </button>
+                  ) : view === 'Chronicle' ? (
+                    <div className="heading-actions">
+                      <button
+                        className="button"
+                        onClick={() => {
+                          setError('');
+                          setModal('recap');
+                        }}
+                      >
+                        <ScrollText size={15} /> Import recap
+                      </button>
+                      <button className="button primary" onClick={() => record()}>
+                        <Plus size={16} /> Record an event
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+                <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
+                  {area.views.map((item) => (
+                    <button
+                      key={item.view}
+                      className={view === item.view ? 'selected' : ''}
+                      aria-current={view === item.view ? 'page' : undefined}
+                      onClick={() => setView(item.view)}
+                    >
+                      {item.label}
+                      {item.view === 'Discoveries' && reviewCount > 0 && (
+                        <span className="nav-count">{reviewCount}</span>
+                      )}
+                    </button>
+                  ))}
+                </nav>
+                <div className="workspace-context">
+                  {[
+                    'Session desk',
+                    'Foresight',
+                    'Next session',
+                    'Rules library',
+                    'Player site',
+                    'Party & preferences',
+                  ].includes(view) && (
+                    <label>
+                      Session
+                      <select
+                        aria-label="Current session"
+                        disabled={!!busy || recordingActive}
+                        value={session.id}
+                        onChange={(e) => {
+                          setSessionId(e.target.value);
+                          setExpanded(null);
+                        }}
+                      >
+                        {campaign.sessions.map((s, i) => (
+                          <option key={s.id} value={s.id}>
+                            {i + 1} · {s.title}
+                            {s.done ? ' ✓' : ''}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  )}
+                </div>
               </div>
               {error && (
                 <div className="alert" role="alert">

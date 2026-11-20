@@ -104,7 +104,27 @@ export function SessionDeskView() {
                 <span>{session.done ? 'Completed' : 'On your horizon'}</span>
               </div>
               <h2>{session.title}</h2>
-              <p>{session.summary}</p>
+              <p title={session.summary}>{session.summary}</p>
+            </div>
+            <div className="session-toolbar">
+              <div className="session-end-actions">
+                <button className="text-button" onClick={() => record()}>
+                  <Plus size={14} />
+                  Record outcome
+                </button>
+                {session.done && (
+                  <button
+                    className="text-button"
+                    onClick={() => updateSession((s) => ({ ...s, done: false }))}
+                  >
+                    Mark unfinished
+                  </button>
+                )}
+                <button className="text-button wrap-session" onClick={() => setModal('wrap')}>
+                  <CheckCircle2 size={15} />
+                  {session.done ? 'Review session' : 'Wrap up session'}
+                </button>
+              </div>
             </div>
             <svg className="folio-compass" viewBox="0 0 260 260" aria-hidden="true">
               <circle cx="130" cy="130" r="110" fill="none" stroke="currentColor" />
@@ -145,26 +165,6 @@ export function SessionDeskView() {
             </div>
           </div>
 
-          <div className="session-toolbar">
-            <div className="session-end-actions">
-              <button className="text-button" onClick={() => record()}>
-                <Plus size={14} />
-                Record outcome
-              </button>
-              {session.done && (
-                <button
-                  className="text-button"
-                  onClick={() => updateSession((s) => ({ ...s, done: false }))}
-                >
-                  Mark unfinished
-                </button>
-              )}
-              <button className="text-button wrap-session" onClick={() => setModal('wrap')}>
-                <CheckCircle2 size={15} />
-                {session.done ? 'Review session' : 'Wrap up session'}
-              </button>
-            </div>
-          </div>
           <div className="tabs">
             {['Session notes', 'Possibilities', 'Combat', 'At the table', 'Quick help'].map((t) => (
               <button

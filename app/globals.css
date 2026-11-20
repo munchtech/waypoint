@@ -3991,27 +3991,6 @@ main .paper > .section-title h3,
   height: 21px;
   padding: 6px;
 }
-.live .session-hero {
-  min-height: 150px;
-}
-.live .hero-content {
-  padding: 22px 28px;
-}
-.live .hero-content h2 {
-  font-size: 29px;
-}
-.live .hero-content > p {
-  font-size: 12px;
-  line-height: 1.6;
-  max-width: 560px;
-  margin-bottom: 0;
-}
-.live .hero-label {
-  margin-bottom: 10px;
-}
-.live .session-toolbar {
-  margin: 15px 0;
-}
 .live .tabs {
   margin-bottom: 18px;
 }
@@ -4031,12 +4010,6 @@ main .paper > .section-title h3,
 .live .inspiration-engine {
   padding: 11px;
 }
-.live .folio-compass {
-  width: 180px;
-  height: 180px;
-  right: 0;
-  top: -15px;
-}
 .live .desk-reference {
   padding: 18px;
 }
@@ -4050,9 +4023,6 @@ main .paper > .section-title h3,
   }
   .session-end-actions {
     justify-content: flex-start;
-  }
-  .live .hero-content h2 {
-    font-size: 26px;
   }
 }
 .sidebar .navitem:not(.active):hover {
@@ -7079,15 +7049,6 @@ input:focus {
 .page-heading h1 {
   font-size: 34px;
 }
-.session-hero {
-  min-height: 180px;
-}
-.hero-content {
-  padding: 24px 28px;
-}
-.hero-content h2 {
-  font-size: 28px;
-}
 .hero-footer {
   margin-top: 14px;
 }
@@ -7271,12 +7232,6 @@ input:focus {
 }
 .recorder-panel[open] > summary {
   margin-bottom: 20px;
-}
-.session-hero .hero-content {
-  max-width: 95%;
-}
-.session-hero {
-  min-height: 160px;
 }
 
 .workspace-context:empty {
@@ -7614,5 +7569,115 @@ input:focus {
 @media (max-width: 1100px) {
   .ask-trigger > span {
     display: none;
+  }
+}
+
+/* Compact header: the page title, its section tabs, the session picker and the page's actions share one row. */
+.workspace-header {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  border-bottom: 1px solid light-dark(#d6d9d0, #3b454e);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.workspace-header > .page-heading {
+  display: contents;
+}
+.workspace-header > .page-heading > div:first-child {
+  order: 0;
+}
+.workspace-header h1 {
+  font-size: clamp(26px, 2.2vw, 33px);
+  letter-spacing: -1px;
+}
+.workspace-header > .workspace-tabs {
+  order: 1;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.workspace-header > .workspace-context {
+  order: 2;
+  margin: 0 0 0 auto;
+}
+.workspace-header > .workspace-context select {
+  max-width: 340px;
+}
+.workspace-header > .page-heading > :not(:first-child) {
+  order: 3;
+  margin: 0;
+}
+/* Without a session picker, the page's actions keep to the right. */
+.workspace-header > .workspace-context:empty + * {
+  margin-left: auto;
+}
+.workspace-header:not(:has(.workspace-context:not(:empty))) > .page-heading > :not(:first-child) {
+  margin-left: auto;
+}
+
+/* Compact Session desk: the session banner is one slim band that carries the session's own actions. */
+.desk-main > .session-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  column-gap: 12px;
+  min-height: 0;
+}
+.desk-main > .session-hero .hero-content {
+  flex: 1 1 380px;
+  max-width: none;
+  padding: 18px 8px 18px 26px;
+}
+.desk-main > .session-hero .hero-label {
+  margin-bottom: 7px;
+}
+.desk-main > .session-hero h2 {
+  font-size: clamp(22px, 1.9vw, 27px);
+}
+.desk-main > .session-hero .hero-content > p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  max-width: 640px;
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.desk-main > .session-hero > .session-toolbar {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0 18px 14px 26px;
+}
+.session-hero .session-toolbar .text-button {
+  color: light-dark(#e3ecef, #e3ecef);
+}
+.session-hero .session-toolbar .text-button:hover {
+  background: light-dark(#ffffff17, #ffffff17);
+}
+.desk-main > .session-hero .folio-compass {
+  width: 210px;
+  height: 210px;
+  top: -34px;
+  right: -36px;
+}
+.desk-main > .tabs {
+  margin: 14px 0 20px;
+}
+/* From 901 to 1100 pixels the rail is a narrow column beside the desk, so its cards stack. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .desk-grid > aside {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 1100px) {
+  .desk-main > .tabs button {
+    flex: 1 1 auto;
+    padding: 8px 10px;
   }
 }
