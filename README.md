@@ -19,7 +19,7 @@ The Seventh Bell campaign ships with the app as an update pack (`lib/packs/seven
 | Path | What it holds |
 |---|---|
 | `app/page.tsx`, `app/globals.css` | The UI shell and the single stylesheet. |
-| `components/` | Views and dialogs. `components/ui/` is scaffold from the original starter and is mostly unused. |
+| `components/` | Views and dialogs. |
 | `lib/` | Domain logic: the campaign schema, playbook, wiki memory, update packs, rules, search. |
 | `desktop/` | The Electron main process (`main.ts`), the SQLite stores, the Claude engine (`cloud-engine.ts`), recordings, the renderer entry and `electron-builder.json`. |
 | `campaign/` | The Seventh Bell sources and build tools. See `campaign/README.md`. |
@@ -82,10 +82,6 @@ Everything is stored in `%APPDATA%\Waypoint`:
 | `recordings/` | Session audio and transcripts. |
 | `ai.json`, `ai-key.bin` | The chosen Claude model, and the encrypted Anthropic API key. |
 | `site.json` | The player site's location. |
-
-## Legacy web scaffold
-
-Waypoint began as a web app. The Next, Vinext and Cloudflare pieces (`app/api/`, `db/`, `drizzle/`, `examples/`, the Wrangler config, and the `dev`, `build` and `start` npm scripts) are left over from that version and are not part of the desktop build. The desktop app does not read `.env.local`.
 
 ## Licences
 

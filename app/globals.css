@@ -1,9 +1,8 @@
-/* Waypoint stylesheet: the single source of truth for the desktop app (also imported by the Next layout).
+/* Waypoint stylesheet: the single source of truth for the desktop app.
  * Rules sit in the order of their first appearance. Where two rules of EQUAL specificity set the same property
  * on elements that can coincide, source order decides, so those rules stay in order. Edit the existing declaration
  * in place; do not append a new override block for a selector that already has a rule.
- * Tailwind supplies only its preflight reset and theme tokens (source(none) disables utility generation).
- * If you add a shadcn component from components/ui, add an @source line for it so its utilities are generated. */
+ * Tailwind supplies only its preflight reset and theme tokens (source(none) disables utility generation). */
 @import 'tailwindcss' source(none);
 /* Fonts */
 @font-face {

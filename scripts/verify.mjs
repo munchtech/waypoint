@@ -28,8 +28,6 @@ const lintIgnores = [
   'desktop/build/**',
   'campaign/**',
   '.sites-runtime/**',
-  '.wrangler/**',
-  '.vinext/**',
 ].flatMap((p) => ['--ignore-pattern', p]);
 const node = (name, args, opts = {}) => ({ name, cmd: process.execPath, args, ...opts });
 const ui = (name, script, args = [], opts = {}) => ({
