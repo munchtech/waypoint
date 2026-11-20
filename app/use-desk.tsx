@@ -617,6 +617,17 @@ export function useDesk() {
     rememberItem(campaign.id, hit);
     navigate('Campaign hub', hit);
   }
+  // A search match in another campaign: switch to that campaign and open the match in its hub.
+  function openElsewhere(campaignId: string, kind: SearchHit['kind'], id: string) {
+    const target = campaigns.find((c) => c.id === campaignId),
+      hit = target && searchCampaign(target, '', kind).find((h) => h.id === id);
+    if (!target || !hit || busy || recordingActive) return;
+    setActive(target.id);
+    setSessionId(hit.sessionId || '');
+    setExpanded(null);
+    rememberItem(target.id, hit);
+    navigate('Campaign hub', hit);
+  }
   function openWorkspace(hit: SearchHit) {
     rememberItem(campaign.id, hit);
     if (hit.kind === 'Material') {
@@ -857,6 +868,7 @@ export function useDesk() {
     goTo,
     toggleReference,
     openHit,
+    openElsewhere,
     openWorkspace,
     nav,
     areas,

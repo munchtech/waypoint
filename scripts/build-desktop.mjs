@@ -197,6 +197,28 @@ await build({
   },
 });
 
+// The campaign store, so the UI harness answers campaign search from the real full-text index.
+await build({
+  configFile: false,
+  root,
+  publicDir: false,
+  build: {
+    outDir: path.join(root, '.sites-runtime/ui-harness'),
+    emptyOutDir: false,
+    lib: {
+      entry: {
+        'campaign-store': path.join(root, 'desktop/campaign-store.ts'),
+        packs: path.join(root, 'desktop/packs.ts'),
+      },
+      formats: ['es'],
+      fileName: (_format, name) => name + '.mjs',
+    },
+    rolldownOptions: { external: [...builtinModules, ...builtinModules.map((m) => 'node:' + m)] },
+    target: 'node22',
+    minify: false,
+  },
+});
+
 await build({
   configFile: false,
   root,

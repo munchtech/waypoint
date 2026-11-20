@@ -2,10 +2,11 @@
 import type { LocalRequest, LocalResponse } from '../runtime';
 import { aiRoute } from './ai';
 import { campaignsRoute } from './campaigns';
+import { packsRoute } from './packs';
 import { playersRoute } from './players';
 import { rulesRoute } from './rules';
 
-const routes = [playersRoute, aiRoute, rulesRoute, campaignsRoute];
+const routes = [playersRoute, aiRoute, rulesRoute, campaignsRoute, packsRoute];
 
 export async function route(req: LocalRequest): Promise<LocalResponse> {
   if (

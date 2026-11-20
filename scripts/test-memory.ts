@@ -35,6 +35,7 @@ import {
   RESTORE_DAYS,
 } from '../desktop/campaign-store';
 import { DatabaseSync } from 'node:sqlite';
+import zlib from 'node:zlib';
 
 const note = '[00:02:10] Voss claimed the king is dead. The party promised to investigate.';
 const cards = [
@@ -407,8 +408,7 @@ recoveryStore.close();
   const db = new DatabaseSync(path.join(dir, 'waypoint.sqlite'));
   assert.equal(
     (db.prepare('PRAGMA user_version').get() as { user_version: number }).user_version,
-    1,
-    'Older builds can still open the database',
+    2,
   );
   db.close();
   const day = 24 * 3600 * 1000,
@@ -435,7 +435,112 @@ recoveryStore.close();
   );
   assert(!drop.some((id) => id >= 1000), 'The recent points are kept');
   console.log(
-    'Restore points passed: kept on open and after a quiet interval, hold the pre-edit state, deduplicated, compressed, pruned to recent plus daily, schema version unchanged.',
+    'Restore points passed: kept on open and after a quiet interval, hold the pre-edit state, deduplicated, compressed, pruned to recent plus daily.',
+  );
+}
+{
+  // Rows: a version 1 database (one JSON snapshot and the one before it) upgrades to rows, keeping both saves and the
+  // restore points, after a copy of the old file is kept beside it.
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'waypoint-rows-'));
+  const file = path.join(dir, 'waypoint.sqlite');
+  const ferry = {
+    ...demo,
+    id: 'ferry',
+    name: 'The Ferryman',
+    events: [
+      {
+        id: 'e1',
+        sessionId: demo.sessions[0].id,
+        text: 'The party paid the Ferryman in tarnished coin.',
+        style: 'Roleplay' as const,
+        enjoyment: 'Loved it' as const,
+        date: '2026-10-01',
+      },
+      {
+        id: 'e2',
+        sessionId: demo.sessions[0].id,
+        text: 'Voss swore an oath at the café.',
+        style: 'Roleplay' as const,
+        enjoyment: 'Neutral' as const,
+        date: '2026-10-02',
+      },
+    ],
+    memory: { ...memory, pages: [...memory.pages] },
+  };
+  const before = { version: 2, campaigns: [demo], active: demo.id, sessionId: '' },
+    current = { ...before, campaigns: [demo, ferry], active: 'ferry' };
+  const old = new DatabaseSync(file);
+  old.exec(
+    'CREATE TABLE snapshots (id INTEGER PRIMARY KEY CHECK(id IN (1,2)), content TEXT NOT NULL); CREATE TABLE restore_points (id INTEGER PRIMARY KEY AUTOINCREMENT, created INTEGER NOT NULL, reason TEXT NOT NULL, summary TEXT NOT NULL, content BLOB NOT NULL); PRAGMA user_version=1;',
+  );
+  old
+    .prepare('INSERT INTO snapshots VALUES(1,?),(2,?)')
+    .run(JSON.stringify(current), JSON.stringify(before));
+  old
+    .prepare('INSERT INTO restore_points(created,reason,summary,content) VALUES(?,?,?,?)')
+    .run(1, 'update', '[]', zlib.gzipSync(JSON.stringify(before)));
+  old.close();
+  let store = new CampaignStore(dir);
+  assert.equal(
+    JSON.stringify(store.read()),
+    JSON.stringify(current),
+    'Rebuilt exactly, key order included',
+  );
+  assert.deepEqual(store.previous(), before, 'The previous save survives the upgrade');
+  const points = store.restorePoints();
+  assert.equal(points.length, 2, 'The old point is kept and the opened state added');
+  assert.deepEqual(store.restorePoint(points[1].id), before);
+  assert(
+    fs.existsSync(path.join(dir, 'waypoint-before-v2.sqlite')),
+    'A copy of the old file is kept',
+  );
+  const copy = new DatabaseSync(path.join(dir, 'waypoint-before-v2.sqlite'));
+  assert.equal(
+    (copy.prepare('PRAGMA user_version').get() as { user_version: number }).user_version,
+    1,
+  );
+  copy.close();
+  // Incremental saves: one changed event writes one row, an added page writes the page and its campaign's list.
+  const edited = structuredClone(current);
+  edited.campaigns[1].events[0].text = 'The party paid the Ferryman in bone.';
+  store.save(edited);
+  assert.equal(store.lastWrite, 1);
+  edited.campaigns[1].memory!.pages.push({
+    ...memory.pages[0],
+    id: 'new-page',
+    title: 'Bone coin',
+  });
+  store.save(edited);
+  assert.equal(store.lastWrite, 2);
+  store.save(edited);
+  assert.equal(store.lastWrite, 0, 'An identical save writes nothing');
+  edited.active = demo.id;
+  store.save(edited);
+  assert.equal(store.lastWrite, 1, 'Only the root row holds which campaign is open');
+  assert.deepEqual(store.previous(), { ...edited, active: 'ferry' });
+  // Full-text search: prefixes, every word, accents ignored, and other campaigns only when asked.
+  const titles = (q: string, exclude?: string) =>
+    store.search(q, { exclude }).map((h) => h.kind + ':' + h.id);
+  assert.deepEqual(titles('ferry bone'), ['event:e1']);
+  assert.deepEqual(titles('cafe'), ['event:e2']);
+  assert.deepEqual(titles('bone'), ['page:new-page', 'event:e1'], 'Title matches rank first');
+  assert.deepEqual(titles('ferryman', 'ferry'), []);
+  assert.deepEqual(store.search('tarnished'), [], 'Replaced text leaves the index');
+  assert.deepEqual(store.search('***'), []);
+  edited.campaigns.pop();
+  store.save(edited);
+  assert.deepEqual(store.search('bone'), [], 'A removed campaign leaves the index');
+  store.close();
+  store = new CampaignStore(dir);
+  assert.deepEqual(store.read(), edited);
+  store.close();
+  // A database from a newer Waypoint is left alone.
+  const newer = new DatabaseSync(file);
+  newer.exec('PRAGMA user_version=3');
+  newer.close();
+  assert.throws(() => new CampaignStore(dir), /newer Waypoint/);
+  console.log(
+    'Campaign rows passed: version 1 upgrade with both saves and restore points kept, a copy of the old file, single-row saves, previous save, full-text search, newer databases refused.',
   );
 }
 console.log(

@@ -55,6 +55,43 @@ async function loadRulesStore() {
   );
   return rulesStore;
 }
+// Campaign search runs on the real campaign store, filled with the window's current save.
+let CampaignStore = null;
+async function campaignSearch(state, input) {
+  if (!state.snapshot) return [];
+  if (!CampaignStore) {
+    const file = path.join(root, '.sites-runtime/ui-harness/campaign-store.mjs');
+    if (!fs.existsSync(file)) return [];
+    ({ CampaignStore } = await import(require('node:url').pathToFileURL(file).href));
+  }
+  state.campaignStore ||= new CampaignStore(
+    fs.mkdtempSync(path.join(os.tmpdir(), 'waypoint-ui-store-')),
+  );
+  state.campaignStore.save(state.snapshot);
+  return state.campaignStore.search(String(input.query || ''), {
+    exclude: String(input.exclude || ''),
+    limit: 8,
+  });
+}
+// Update packs come from the shipped packs folder through the app's own pack reader, with an empty user folder.
+let packFolders = null;
+async function packRoute(r) {
+  if (!packFolders) {
+    const file = path.join(root, '.sites-runtime/ui-harness/packs.mjs');
+    if (!fs.existsSync(file)) return { status: 200, body: { packs: [] } };
+    const { PackFolders } = await import(require('node:url').pathToFileURL(file).href);
+    packFolders = new PackFolders(
+      path.join(root, 'desktop/data/packs'),
+      fs.mkdtempSync(path.join(os.tmpdir(), 'waypoint-ui-packs-')),
+    );
+  }
+  if (r.path === '/api/packs') return { status: 200, body: { packs: packFolders.list() } };
+  if (r.path === '/api/packs/read') {
+    const pack = packFolders.get(String(JSON.parse(r.body || '{}').id || ''));
+    return pack ? { status: 200, body: pack } : { status: 404, body: { error: 'Missing pack' } };
+  }
+  return { status: 200, body: { ok: true } };
+}
 function fixtureSnapshot(name) {
   if (!name || name === 'demo') return null;
   const file =
@@ -76,6 +113,12 @@ function installHandler() {
       }
       return { status: 200, body: state.snapshot };
     }
+    if (r.path === '/api/campaigns/search')
+      return {
+        status: 200,
+        body: { hits: await campaignSearch(state, JSON.parse(r.body || '{}')) },
+      };
+    if (r.path.startsWith('/api/packs')) return packRoute(r);
     // Two restore points that hold the current save, so the AI & backups panel has rows to show and restore.
     if (r.path === '/api/restore-points') {
       const campaigns = (state.snapshot?.campaigns || []).map((c) => ({

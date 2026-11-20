@@ -1,5 +1,5 @@
 // Assembles the Seventh Bell update pack (revision 7.6) from the authored files and checks every edit anchor against the live campaign.
-// node tools/build-pack.cjs  →  waypoint/lib/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
+// node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
 const P = require(path.join(__dirname, '../paths.cjs'));

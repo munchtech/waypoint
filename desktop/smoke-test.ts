@@ -67,6 +67,26 @@ export async function runSmokeTest(win: BrowserWindow) {
     )
       throw new Error('Restore point round trip failed');
     Object.assign(result, { restorePoints: true });
+    // The shipped update pack is read from the app's data folder, and saved campaigns are searchable.
+    const packs = (await route({ path: '/api/packs', method: 'GET' })) as {
+      status: number;
+      body: { packs?: { id: string }[] };
+    };
+    const shipped = await route({
+      path: '/api/packs/read',
+      method: 'POST',
+      body: JSON.stringify({ id: 'seventh-bell-v7' }),
+    });
+    if (!packs.body.packs?.some((p) => p.id === 'seventh-bell-v7') || shipped.status !== 200)
+      throw new Error('Shipped update pack missing');
+    const found = (await route({
+      path: '/api/campaigns/search',
+      method: 'POST',
+      body: JSON.stringify({ query: kept.campaigns[0].name }),
+    })) as { status: number; body: { hits?: unknown[] } };
+    if (found.status !== 200 || !Array.isArray(found.body.hits))
+      throw new Error('Campaign search unavailable');
+    Object.assign(result, { packs: true, campaignSearch: true });
     const transcriptFile = path.join(dataDir, 'recordings', result.id + '.transcript.json');
     fs.writeFileSync(
       transcriptFile,

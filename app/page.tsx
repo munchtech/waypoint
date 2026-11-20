@@ -84,6 +84,7 @@ function HomeScreen() {
     goTo,
     toggleReference,
     openHit,
+    openElsewhere,
     openWorkspace,
     nav,
     areas,
@@ -131,6 +132,8 @@ function HomeScreen() {
                     : openHit(hit)
               }
               onRule={openWorkspace}
+              campaigns={campaigns}
+              onElsewhere={openElsewhere}
               onClose={() => setCommandOpen(false)}
               actions={[
                 ...nav.map(([name]) => ({

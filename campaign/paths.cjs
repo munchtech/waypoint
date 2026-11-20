@@ -5,7 +5,7 @@ const repo = path.join(__dirname, '..'),
   make = path.join(repo, '../..');
 module.exports = {
   app: repo,
-  packs: path.join(repo, 'lib/packs'),
+  packs: path.join(repo, 'desktop/data/packs'),
   outputs: path.join(make, 'outputs'),
   // The DM's live campaign with revision 7.2 installed (2026-11-01): anchors are checked against what the DM actually has.
   snapshot: path.join(make, 'work/foresight/db/live-20261101-0055/snapshot.json'),

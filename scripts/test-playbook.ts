@@ -1,6 +1,9 @@
 // Playbook and update-pack checks: run `node .sites-runtime/playbook-tests/test-playbook.mjs [campaign-backup.json]` after build-desktop.
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import assert from 'node:assert/strict';
+import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
@@ -27,7 +30,7 @@ import {
   stateOf,
   undoEntry,
 } from '../lib/playbook';
-import packJson from '../lib/packs/seventh-bell-v7.json';
+import packJson from '../desktop/data/packs/seventh-bell-v7.json';
 import {
   dueAfter,
   entryStatus,
@@ -70,6 +73,36 @@ test('the bundled pack parses and targets the Seventh Bell', () => {
   assert.ok(pack.playbook);
 });
 test('installing produces a valid campaign', () => assert.ok(validateCampaign(installed)));
+test('packs load from files, and a pack in the packs folder replaces the shipped one', () => {
+  const user = fs.mkdtempSync(path.join(os.tmpdir(), 'waypoint-packs-'));
+  try {
+    const folders = new PackFolders(path.resolve('desktop/data/packs'), user);
+    assert.deepEqual(
+      folders.list().map((p) => [p.id, p.match.campaignIds]),
+      [['seventh-bell-v7', ['the-seventh-bell-corvane-v5']]],
+    );
+    fs.writeFileSync(path.join(user, 'broken.json'), '{"kind":');
+    fs.writeFileSync(path.join(user, 'notes.txt'), 'not a pack');
+    fs.writeFileSync(
+      path.join(user, 'override.json'),
+      JSON.stringify({ ...pack, title: 'Revision 8' }),
+    );
+    fs.writeFileSync(
+      path.join(user, 'other.json'),
+      JSON.stringify({ ...pack, id: 'other', title: 'Other' }),
+    );
+    assert.deepEqual(
+      folders.list().map((p) => p.title),
+      ['Revision 8', 'Other'],
+    );
+    assert.equal(folders.get('seventh-bell-v7')?.title, 'Revision 8');
+    assert.equal(folders.get('missing'), null);
+    fs.rmSync(path.join(user, 'override.json'));
+    assert.equal(folders.get('seventh-bell-v7')?.title, pack.title);
+  } finally {
+    fs.rmSync(user, { recursive: true, force: true });
+  }
+});
 if (backup) {
   test('every planned change is ready on the live campaign (no conflicts)', () => {
     const plan = planUpdate(base, pack);

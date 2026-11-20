@@ -12,7 +12,7 @@ A desktop companion for running a D&D campaign. Waypoint is an Electron app for 
 - **Claude (optional)**: drafts paths, cards and recaps through the Anthropic API, using the DM's own API key. Campaign context is sent to Anthropic only when a generate button is pressed, and nothing generated becomes canon until the DM confirms it. See [Claude](#claude) below.
 - **Restore points**: kept automatically on open, before update packs, and during editing.
 
-The Seventh Bell campaign ships with the app as an update pack (`lib/packs/seventh-bell-v7.json`), built from the sources in `campaign/`.
+The Seventh Bell campaign ships with the app as an update pack (`desktop/data/packs/seventh-bell-v7.json`), built from the sources in `campaign/`. The app reads packs as files when Foresight opens: a new revision saved in the packs folder (Foresight → Open packs folder, which is `%APPDATA%\Waypoint\packs`) replaces the shipped pack with the same id, with no rebuild.
 
 ## Repository layout
 
@@ -77,7 +77,9 @@ Everything is stored in `%APPDATA%\Waypoint`:
 
 | File | Contents |
 |---|---|
-| `waypoint.sqlite` | Campaigns, the previous save and restore points. |
+| `waypoint.sqlite` | Campaigns (one row per campaign, session, event, card, wiki page and note, with a search index), the previous save and restore points. |
+| `waypoint-before-v2.sqlite` | The campaign save as it was before the upgrade to row storage, kept once. |
+| `packs/` | Update packs you add. A pack here replaces the shipped pack with the same id. |
 | `rules.sqlite` | The rules library, including imported collections. |
 | `recordings/` | Session audio and transcripts. |
 | `ai.json`, `ai-key.bin` | The chosen Claude model, and the encrypted Anthropic API key. |

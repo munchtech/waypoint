@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Compass,
   Printer,
@@ -14,6 +14,7 @@ import {
   BookOpen,
   Download,
   Upload,
+  FolderOpen,
   Sparkles,
   Minus,
   CornerDownRight,
@@ -36,7 +37,6 @@ import {
   updatePackSchema,
   type UpdatePack,
 } from '../lib/update-pack';
-import { bundledPacks } from '../lib/packs';
 import { dueAfter } from '../lib/player-site';
 import { sendToWiki } from './player-site';
 import {
@@ -230,38 +230,44 @@ export default function Foresight({
     pb = m.playbook,
     [tab, setTab] = useState<Tab>(() => (requested(want) ? want : 'Prep brief'));
   const [pack, setPack] = useState<UpdatePack | null>(null),
-    [offer, setOffer] = useState<UpdatePack | null>(null),
+    [available, setAvailable] = useState<UpdatePack | null>(null),
     [reviewing, setReviewing] = useState(false);
   const mutate = (fn: (m: Memory) => Memory) => update((c) => ({ ...c, memory: fn(memoryOf(c)) }));
   const mutatePb = (fn: (p: Playbook) => Playbook) =>
     mutate((mem) => (mem.playbook ? { ...mem, playbook: fn(mem.playbook) } : mem));
-  // A bundled pack is offered only to the campaign it was written for, and only while it has something new.
+  // The desktop app reads update packs from files: those it ships with and any in the packs folder. A pack is offered
+  // only to the campaign it was written for, and only while it has something new. It is read once per campaign.
+  const campaignId = campaign.id,
+    campaignName = campaign.name;
   useEffect(() => {
+    if (!isDesktop()) return;
     let live = true;
-    const match = bundledPacks.find(
-      (p) =>
-        p.ids.includes(campaign.id) ||
-        p.names.some((n) => campaign.name.toLowerCase().startsWith(n)),
-    );
-    if (!match) return;
-    void match
-      .load()
-      .then((raw) => {
-        const parsed = updatePackSchema.safeParse(raw);
-        if (live)
-          setOffer(
-            parsed.success &&
-              packMatches(campaign, parsed.data) &&
-              planUpdate(campaign, parsed.data).some((p) => p.status === 'ready')
-              ? parsed.data
-              : null,
-          );
-      })
-      .catch(() => {});
+    void (async () => {
+      const r = await appFetch('/api/packs');
+      if (!r.ok) return;
+      const { packs } = (await r.json()) as { packs: { id: string; match: UpdatePack['match'] }[] };
+      const match = packs.find((p) => packMatches({ id: campaignId, name: campaignName }, p));
+      if (!match || !live) return;
+      const full = await appFetch('/api/packs/read', {
+        method: 'POST',
+        body: JSON.stringify({ id: match.id }),
+      });
+      const parsed = full.ok ? updatePackSchema.safeParse(await full.json()) : null;
+      if (live && parsed?.success) setAvailable(parsed.data);
+    })().catch(() => {});
     return () => {
       live = false;
     };
-  }, [campaign]);
+  }, [campaignId, campaignName]);
+  const offer = useMemo(
+    () =>
+      available &&
+      packMatches(campaign, available) &&
+      planUpdate(campaign, available).some((p) => p.status === 'ready')
+        ? available
+        : null,
+    [available, campaign],
+  );
   async function importPack(file?: File) {
     if (!file) return;
     try {
@@ -275,19 +281,31 @@ export default function Foresight({
     }
   }
   const importer = (
-    <label className="button">
-      <Upload size={15} />
-      Import an update pack
-      <input
-        type="file"
-        accept=".json,application/json"
-        hidden
-        onChange={(e) => {
-          void importPack(e.target.files?.[0]);
-          e.target.value = '';
-        }}
-      />
-    </label>
+    <>
+      <label className="button">
+        <Upload size={15} />
+        Import an update pack
+        <input
+          type="file"
+          accept=".json,application/json"
+          hidden
+          onChange={(e) => {
+            void importPack(e.target.files?.[0]);
+            e.target.value = '';
+          }}
+        />
+      </label>
+      {isDesktop() && (
+        <button
+          className="button"
+          title="An update pack saved in this folder is offered to its campaign the next time Foresight opens."
+          onClick={() => void appFetch('/api/packs/open-folder', { method: 'POST', body: '{}' })}
+        >
+          <FolderOpen size={15} />
+          Open packs folder
+        </button>
+      )}
+    </>
   );
   if (reviewing && (pack || offer))
     return (

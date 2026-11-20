@@ -80,10 +80,29 @@ run(async (args) => {
     },
   ];
   campaign.sessions[0].plan += '\n\nVisit the Silver Observatory. Moonwatch overlooks the harbor.';
+  // A second campaign, found only through the desktop app's full-text search across campaigns.
+  const other = structuredClone(demo);
+  Object.assign(other, { id: 'ember', name: 'The Ember Coast', cards: [] });
+  Object.assign(other.sessions[0], {
+    id: 'ember-s1',
+    title: 'Smugglers at dusk',
+    plan: 'The coast road at dusk.',
+    branches: [],
+  });
+  other.events = [
+    {
+      id: 'ember-event',
+      sessionId: 'ember-s1',
+      text: 'The smugglers hid lanterns in the tide caves.',
+      style: 'Exploration',
+      enjoyment: 'Neutral',
+      date: now,
+    },
+  ];
   const fixture = path.join(out, 'fixture.json');
   fs.writeFileSync(
     fixture,
-    JSON.stringify({ campaigns: [campaign], active: campaign.id, sessionId: sid }),
+    JSON.stringify({ campaigns: [campaign, other], active: campaign.id, sessionId: sid }),
   );
   const s = await openSession({ fixture, width: Number(args.width || 1420), height: 940 });
   const text = (selector) =>
@@ -265,6 +284,24 @@ run(async (args) => {
       );
     }
     console.log('Passed narrow-window workspace navigation and page overflow checks.');
+    await search('tide caves');
+    assert.match(
+      await text('.command-results'),
+      /The Ember Coast · Event\s+Recorded event\s+The smugglers hid lanterns in the tide caves\.\s*$/i,
+    );
+    assert(
+      await s.run(
+        "(()=>{const b=[...document.querySelectorAll('.command-results button')].find(b=>b.querySelector('.search-kind')?.textContent==='The Ember Coast · Event');if(!b)return false;b.click();return true})()",
+      ),
+      'Other-campaign result',
+    );
+    await s.settle(400);
+    assert.equal(
+      await s.run('document.querySelector(\'select[aria-label="Choose campaign"]\').value'),
+      'ember',
+    );
+    assert.match(await text('#main'), /tide caves/);
+    console.log('Passed search across campaigns, opening the match in its own campaign.');
   } catch (error) {
     await s.shot(path.join(out, 'failure.png'));
     throw error;

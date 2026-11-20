@@ -198,7 +198,7 @@ export type PlannedChange = {
   status: 'ready' | 'applied' | 'conflict';
 };
 
-export const packMatches = (c: Campaign, p: UpdatePack) =>
+export const packMatches = (c: Pick<Campaign, 'id' | 'name'>, p: Pick<UpdatePack, 'match'>) =>
   p.match.campaignIds.includes(c.id) ||
   p.match.names.some((n) => c.name.trim().toLowerCase().startsWith(n.toLowerCase()));
 // An edit counts as applied once its replacement (or its `unless` text) is present, so edits that append to their anchor never apply twice.

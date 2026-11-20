@@ -12,10 +12,21 @@ import { recentItems } from '../lib/recent-items';
 export type QuickAction = { label: string; detail: string; run: () => void };
 type Props = {
   campaign: Campaign;
+  campaigns: Campaign[];
   actions: QuickAction[];
   onOpen: (hit: SearchHit) => void;
   onRule: (hit: SearchHit) => void;
+  onElsewhere: (campaignId: string, kind: SearchHit['kind'], id: string) => void;
   onClose: () => void;
+};
+// A match the desktop app's full-text index found in another saved campaign.
+type StoreHit = { campaign: string; kind: string; id: string; title: string; text: string };
+const storeKinds: Record<string, SearchHit['kind']> = {
+  session: 'Session',
+  event: 'Event',
+  card: 'Material',
+  page: 'Wiki',
+  note: 'Journal',
 };
 const categories = [
   ['All', 'Everything'],
@@ -31,7 +42,15 @@ const categories = [
   ['Encounter', 'Encounters'],
   ['Rule', 'Rules'],
 ];
-export default function QuickNavigation({ campaign, actions, onOpen, onRule, onClose }: Props) {
+export default function QuickNavigation({
+  campaign,
+  campaigns,
+  actions,
+  onOpen,
+  onRule,
+  onElsewhere,
+  onClose,
+}: Props) {
   const dialog = useRef<HTMLDialogElement>(null),
     [query, setQuery] = useState(''),
     [index, setIndex] = useState(0);
@@ -87,6 +106,34 @@ export default function QuickNavigation({ campaign, actions, onOpen, onRule, onC
       clearTimeout(timer);
     };
   }, [query, searchingRules]);
+  const [others, setOthers] = useState<{ query: string; hits: StoreHit[] }>({
+    query: '',
+    hits: [],
+  });
+  const searchingOthers =
+    isDesktop() && campaigns.length > 1 && query.trim().length >= 2 && category === 'All';
+  useEffect(() => {
+    if (!searchingOthers) return;
+    let active = true;
+    const timer = setTimeout(() => {
+      void appFetch('/api/campaigns/search', {
+        method: 'POST',
+        body: JSON.stringify({ query: query.trim(), exclude: campaign.id }),
+      })
+        .then(async (r) => {
+          if (!r.ok) throw Error('Campaign search unavailable.');
+          const data = (await r.json()) as { hits: StoreHit[] };
+          if (active) setOthers({ query, hits: data.hits.slice(0, 8) });
+        })
+        .catch(() => {
+          if (active) setOthers({ query, hits: [] });
+        });
+    }, 220);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
+  }, [query, searchingOthers, campaign.id]);
   const matches = useMemo(() => {
     const destinations =
       category === 'All'
@@ -140,8 +187,39 @@ export default function QuickNavigation({ campaign, actions, onOpen, onRule, onC
                 }),
             }))
         : [];
-    return [...content, ...references, ...destinations];
-  }, [actions, campaign, query, rules, onOpen, onRule, category, recent, searchingRules]);
+    const elsewhere =
+      searchingOthers && others.query === query
+        ? others.hits.flatMap((hit) => {
+            const kind = storeKinds[hit.kind],
+              name = campaigns.find((c) => c.id === hit.campaign)?.name;
+            if (!kind || !name) return [];
+            return [
+              {
+                id: 'elsewhere:' + hit.campaign + ':' + hit.kind + ':' + hit.id,
+                kind: name + ' · ' + kind,
+                label: hit.title || (kind === 'Event' ? 'Recorded event' : 'Untitled'),
+                detail: plainPreview(hit.text, 150),
+                run: () => onElsewhere(hit.campaign, kind, hit.id),
+              },
+            ];
+          })
+        : [];
+    return [...content, ...references, ...elsewhere, ...destinations];
+  }, [
+    actions,
+    campaign,
+    campaigns,
+    query,
+    rules,
+    others,
+    onOpen,
+    onRule,
+    onElsewhere,
+    category,
+    recent,
+    searchingRules,
+    searchingOthers,
+  ]);
   const selected = Math.min(index, Math.max(0, matches.length - 1));
   useEffect(() => {
     dialog.current

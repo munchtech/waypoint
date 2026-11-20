@@ -23,7 +23,7 @@ node tools/build-manuscript.cjs
 ```
 
 - `build-handouts` writes the two HTML handouts to `outputs/Player-Primer`, the map canvas page, and the player site's pages.
-- `build-pack` writes the update pack the app bundles (`lib/packs/seventh-bell-v7.json`) and a copy in `outputs`. It checks every edit anchor against a copy of the live campaign, which stays outside the repo.
+- `build-pack` writes the update pack the app ships (`desktop/data/packs/seventh-bell-v7.json`) and a copy in `outputs`. It checks every edit anchor against a copy of the live campaign, which stays outside the repo. To try a revision without rebuilding the app, copy the pack into `%APPDATA%\Waypoint\packs`.
 - `build-manuscript` writes the campaign book to `outputs` (Part 13 is generated from the pack).
 
 Then build the app from the repo root (`node scripts/build-desktop.mjs`) and run `node scripts/verify.mjs`.

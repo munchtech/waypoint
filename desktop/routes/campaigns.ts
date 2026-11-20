@@ -58,6 +58,23 @@ export const campaignsRoute: Route = async (req) => {
       return { status: 200, body: { saved: !result.canceled } };
     }
   }
+  // Full-text search over the saved campaigns, for matches in campaigns other than the open one.
+  if (req.path === '/api/campaigns/search' && req.method === 'POST') {
+    if (!store) throw new Error(state.storeError || 'Campaign store unavailable');
+    const { query, exclude } = JSON.parse(req.body || '{}') as {
+      query?: unknown;
+      exclude?: unknown;
+    };
+    return {
+      status: 200,
+      body: {
+        hits: store.search(typeof query === 'string' ? query : '', {
+          exclude: typeof exclude === 'string' ? exclude : '',
+          limit: 8,
+        }),
+      },
+    };
+  }
   if (req.path === '/api/campaigns') {
     if (!store) throw new Error(state.storeError || 'Campaign store unavailable');
     if (req.method === 'POST') {

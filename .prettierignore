@@ -10,7 +10,6 @@ campaign/pack
 campaign/handouts
 campaign/ref
 scripts/fixtures
-lib/packs/*.json
 desktop/data
 package-lock.json
 *.md
