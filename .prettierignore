@@ -1,0 +1,16 @@
+# Generated, vendored or data files: never reformat.
+node_modules
+dist
+build
+desktop/build
+.sites-runtime
+vendor
+public
+campaign/pack
+campaign/handouts
+campaign/ref
+scripts/fixtures
+lib/packs/*.json
+desktop/data
+package-lock.json
+*.md

@@ -2,9 +2,9 @@
 //   node_modules/electron/dist/electron.exe scripts/ui-audit.cjs [--width 1420] [--height 940] [--fixture demo|seventh-bell] [--json out.json]
 // Checks per state: WCAG AA contrast of visible text against its effective background (text on gradients is skipped
 // and counted), buttons without an accessible name, form fields without a label, text under 11px, and horizontal overflow.
-const fs=require('node:fs');
-const {openSession,runStates,tourStates,run}=require('./ui-harness.cjs');
-const auditJS=`(()=>{
+const fs = require('node:fs');
+const { openSession, runStates, tourStates, run } = require('./ui-harness.cjs');
+const auditJS = `(()=>{
  const parse=c=>{const n=(c.match(/[0-9.]+/g)||[]).map(Number);if(n.length<3||n.some(Number.isNaN))return null;return {r:n[0],g:n[1],b:n[2],a:n.length>3?n[3]:1}};
  const lum=({r,g,b})=>{const f=v=>{v/=255;return v<=0.03928?v/12.92:Math.pow((v+0.055)/1.055,2.4)};return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b)};
  const blend=(top,bot)=>({r:top.r*top.a+bot.r*(1-top.a),g:top.g*top.a+bot.g*(1-top.a),b:top.b*top.a+bot.b*(1-top.a),a:1});
@@ -31,21 +31,42 @@ const auditJS=`(()=>{
  const wide=mr?[...main.querySelectorAll('*')].filter(e=>{const r=e.getBoundingClientRect();return visible(e)&&r.width>0&&r.right>mr.right+2&&!e.closest('[aria-hidden=true]')}).slice(0,5).map(e=>(e.getAttribute('class')||e.tagName.toLowerCase())+'|'+Math.round(e.getBoundingClientRect().right)):[];
  return {checked,gradientSkips,lowCount:low.length,low:low.slice(0,6),lowest:all.sort((a,b)=>a.r-b.r).slice(0,3),smallText:small.length,smallSample:small.slice(0,3),unnamedButtons:unnamed.length,unnamedSample:unnamed.slice(0,3),unlabeledInputs:unlabeled.length,unlabeledSample:unlabeled.slice(0,3),overflowX:overflow,wideSample:wide};
 })()`;
-run(async args=>{
- const width=Number(args.width||1420),height=Number(args.height||940);
- const s=await openSession({width,height,fixture:args.fixture||'demo',build:args.build?require('node:path').resolve(args.build):undefined});
- const report={};let problems=0;
- await runStates(s,tourStates,async(state,info)=>{
-  const res=await s.run(auditJS);report[state.name]=res;
-  const bad=res.lowCount+res.smallText+res.unnamedButtons+res.unlabeledInputs+(res.overflowX?1:0)+res.wideSample.length;problems+=bad;
-  console.log(`${state.name.padEnd(26)} text:${String(res.checked).padStart(4)} low-contrast:${res.lowCount} small:${res.smallText} unnamed-buttons:${res.unnamedButtons} unlabeled-fields:${res.unlabeledInputs} overflow-x:${res.overflowX?'YES':'no'} gradient-skips:${res.gradientSkips}`+(info.missing.length?'  (state not reached: '+info.missing[0]+')':''));
-  if(res.lowCount)console.log('   low:',JSON.stringify(res.low));
-  if(res.smallText)console.log('   small:',JSON.stringify(res.smallSample));
-  if(res.unnamedButtons)console.log('   unnamed:',JSON.stringify(res.unnamedSample));
-  if(res.unlabeledInputs)console.log('   unlabeled:',JSON.stringify(res.unlabeledSample));
-  if(res.wideSample.length)console.log('   wide:',JSON.stringify(res.wideSample));
- });
- if(args.json)fs.writeFileSync(args.json,JSON.stringify(report,null,1));
- console.log(`Audit at ${width}x${height}: ${problems} findings across ${Object.keys(report).length} states.`);
- s.close();if(problems)process.exitCode=1;
+run(async (args) => {
+  const width = Number(args.width || 1420),
+    height = Number(args.height || 940);
+  const s = await openSession({
+    width,
+    height,
+    fixture: args.fixture || 'demo',
+    build: args.build ? require('node:path').resolve(args.build) : undefined,
+  });
+  const report = {};
+  let problems = 0;
+  await runStates(s, tourStates, async (state, info) => {
+    const res = await s.run(auditJS);
+    report[state.name] = res;
+    const bad =
+      res.lowCount +
+      res.smallText +
+      res.unnamedButtons +
+      res.unlabeledInputs +
+      (res.overflowX ? 1 : 0) +
+      res.wideSample.length;
+    problems += bad;
+    console.log(
+      `${state.name.padEnd(26)} text:${String(res.checked).padStart(4)} low-contrast:${res.lowCount} small:${res.smallText} unnamed-buttons:${res.unnamedButtons} unlabeled-fields:${res.unlabeledInputs} overflow-x:${res.overflowX ? 'YES' : 'no'} gradient-skips:${res.gradientSkips}` +
+        (info.missing.length ? '  (state not reached: ' + info.missing[0] + ')' : ''),
+    );
+    if (res.lowCount) console.log('   low:', JSON.stringify(res.low));
+    if (res.smallText) console.log('   small:', JSON.stringify(res.smallSample));
+    if (res.unnamedButtons) console.log('   unnamed:', JSON.stringify(res.unnamedSample));
+    if (res.unlabeledInputs) console.log('   unlabeled:', JSON.stringify(res.unlabeledSample));
+    if (res.wideSample.length) console.log('   wide:', JSON.stringify(res.wideSample));
+  });
+  if (args.json) fs.writeFileSync(args.json, JSON.stringify(report, null, 1));
+  console.log(
+    `Audit at ${width}x${height}: ${problems} findings across ${Object.keys(report).length} states.`,
+  );
+  s.close();
+  if (problems) process.exitCode = 1;
 });

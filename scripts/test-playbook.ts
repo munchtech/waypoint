@@ -1,88 +1,800 @@
 // Playbook and update-pack checks: run `node .sites-runtime/playbook-tests/test-playbook.mjs [campaign-backup.json]` after build-desktop.
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {validateCampaign,demo,type Campaign} from '../lib/campaign';
-import {memoryOf} from '../lib/memory';
-import {applyUpdate,planUpdate,renameTerms,updatePackSchema} from '../lib/update-pack';
-import {ringsBell,tollWeight,applyChanges,blockers,clockAlerts,difficulty,echoes,encounterXP,forecast,isPossible,partyBudget,rankPlays,resolveEffects,ripple,scaleOptions,searchPlays,sessionByRef,sessionTag,setFlag,stateOf,undoEntry} from '../lib/playbook';
+import { validateCampaign, demo, type Campaign } from '../lib/campaign';
+import { memoryOf } from '../lib/memory';
+import { applyUpdate, planUpdate, renameTerms, updatePackSchema } from '../lib/update-pack';
+import {
+  ringsBell,
+  tollWeight,
+  applyChanges,
+  blockers,
+  clockAlerts,
+  difficulty,
+  echoes,
+  encounterXP,
+  forecast,
+  isPossible,
+  partyBudget,
+  rankPlays,
+  resolveEffects,
+  ripple,
+  scaleOptions,
+  searchPlays,
+  sessionByRef,
+  sessionTag,
+  setFlag,
+  stateOf,
+  undoEntry,
+} from '../lib/playbook';
 import packJson from '../lib/packs/seventh-bell-v7.json';
-import {dueAfter,entryStatus,sendEntry,sentEntries,siteHtml,takeDown} from '../lib/player-site';
-import {pace,tableCard,timeline} from '../lib/session-notes';
+import {
+  dueAfter,
+  entryStatus,
+  sendEntry,
+  sentEntries,
+  siteHtml,
+  takeDown,
+} from '../lib/player-site';
+import { pace, tableCard, timeline } from '../lib/session-notes';
 
-const pack=updatePackSchema.parse(packJson);
-let failures=0;const test=(name:string,fn:()=>void)=>{try{fn();console.log('ok  ',name)}catch(e){failures++;console.log('FAIL',name,'\n    ',e instanceof Error?e.message:e)}};
+const pack = updatePackSchema.parse(packJson);
+let failures = 0;
+const test = (name: string, fn: () => void) => {
+  try {
+    fn();
+    console.log('ok  ', name);
+  } catch (e) {
+    failures++;
+    console.log('FAIL', name, '\n    ', e instanceof Error ? e.message : e);
+  }
+};
 // Defaults to the v5 campaign in scripts/fixtures; pass a backup or restore-point export to check a live campaign.
-const fallback=new URL('../../scripts/fixtures/seventh-bell-v5.waypoint.json',import.meta.url),backup=process.argv[2]||(fs.existsSync(fallback)?fallback:'');
-const base:Campaign=backup?(JSON.parse(fs.readFileSync(backup,'utf8')).campaigns as Campaign[]).find(c=>c.id==='the-seventh-bell-corvane-v5')!:{...demo,id:'the-seventh-bell-corvane-v5',name:'The Seventh Bell'};
-const all=new Set(planUpdate(base,pack).map(p=>p.id));
-const installed=applyUpdate(base,pack,all);
-const pb=memoryOf(installed).playbook!;
+const fallback = new URL('../../scripts/fixtures/seventh-bell-v5.waypoint.json', import.meta.url),
+  backup = process.argv[2] || (fs.existsSync(fallback) ? fallback : '');
+const base: Campaign = backup
+  ? (JSON.parse(fs.readFileSync(backup, 'utf8')).campaigns as Campaign[]).find(
+      (c) => c.id === 'the-seventh-bell-corvane-v5',
+    )!
+  : { ...demo, id: 'the-seventh-bell-corvane-v5', name: 'The Seventh Bell' };
+const all = new Set(planUpdate(base, pack).map((p) => p.id));
+const installed = applyUpdate(base, pack, all);
+const pb = memoryOf(installed).playbook!;
 // A live campaign may already have revision 7 installed and wiki entries sent; site checks that start from an empty wiki take those down first.
-const fresh=!memoryOf(base).playbook,bare=sentEntries(installed).reduce((c,e)=>takeDown(c,e.id),installed);
-const guideHead='## Running this session (new DM guide)';
+const fresh = !memoryOf(base).playbook,
+  bare = sentEntries(installed).reduce((c, e) => takeDown(c, e.id), installed);
+const guideHead = '## Running this session (new DM guide)';
 
-test('the bundled pack parses and targets the Seventh Bell',()=>{assert.equal(pack.id,'seventh-bell-v7');assert.ok(pack.playbook)});
-test('installing produces a valid campaign',()=>assert.ok(validateCampaign(installed)));
-if(backup){
- test('every planned change is ready on the live campaign (no conflicts)',()=>{const plan=planUpdate(base,pack);assert.deepEqual(plan.filter(p=>p.status==='conflict').map(p=>p.label+': '+p.detail),[])});
- test('the IsoForge kits are gone, and the DM’s own text after them stays',()=>{assert.doesNotMatch(JSON.stringify({s:installed.sessions.map(s=>s.plan),p:memoryOf(installed).pages,c:installed.cards}),/isoforge/i);const c={...base,sessions:base.sessions.map((s,i)=>i===0?{...s,plan:s.plan+'\n\nDM NOTE: Ila likes the fighter.'}:s)};const next=applyUpdate(c,pack,new Set(planUpdate(c,pack).map(p=>p.id)));assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));assert.doesNotMatch(next.sessions[0].plan,/IsoForge/)});
- test('Session 1 opens at Pellmoor Landing',()=>assert.match(installed.sessions[0].plan,/Pellmoor Landing comes into sight/));
- test('replaced wiki text moves to revision history',()=>{const page=memoryOf(installed).pages.find(p=>p.id==='sb-462b2b0d93fd03c2')!;assert.equal(page.title,'PELLMOOR LANDING (Port)');assert.match(page.history[0].body,/About 300, mostly Ferry-folk/)});
- test('existing pages, cards and events are all kept, except what the pack retires',()=>{const m0=memoryOf(base),m1=memoryOf(installed),gone=new Set([...(pack.remove?.pages||[]),...(pack.remove?.cards||[])]);for(const p of m0.pages)assert.equal(m1.pages.some(x=>x.id===p.id),!gone.has(p.id),p.title);assert.equal(installed.cards.length,base.cards.filter(x=>!gone.has(x.id)).length);assert.equal(installed.events.length,base.events.length)});
- test('the DM’s own text says Heart, keeps the Tongues spell, and the chronicle keeps its words',()=>{const words=(c:Campaign)=>JSON.stringify({p:memoryOf(c).pages.map(pg=>[pg.title,pg.body,pg.aliases]),s:c.sessions.map(s=>s.plan),k:c.cards});if(fresh)assert.match(words(base),/Ossa's Tongue|Tongue/);assert.doesNotMatch(words(installed).replace(/Comprehend Languages or Tongues|Tongues spell|cast Tongues|casts Tongues/g,''),/Tongue/);const c={...base,events:[{id:'e',sessionId:base.sessions[0].id,text:'They found the Tongue.',style:'Roleplay' as const,enjoyment:'Neutral' as const,date:''}]};const next=applyUpdate(c,pack,new Set(planUpdate(c,pack).map(p=>p.id)));assert.equal(next.events[0].text,'They found the Tongue.')});
- test('unticking the rename leaves the DM’s text alone',()=>{const ids=new Set(planUpdate(base,pack).map(p=>p.id).filter(id=>id!=='terms'));const next=applyUpdate(base,pack,ids);assert.match(JSON.stringify(memoryOf(next).pages),/Tongue/);assert.ok(validateCampaign(next))});
- // A table that installed revision 6 with Waypoint 1.34 and played on: revision 7 must install over it without conflicts and keep what they recorded.
- const v6file=new URL('../../scripts/fixtures/seventh-bell-v6.waypoint-pack.json',import.meta.url);
- if(fs.existsSync(v6file))test('installs cleanly over revision 6, keeping recorded state, history and the DM’s notes',()=>{const v6=updatePackSchema.parse(JSON.parse(fs.readFileSync(v6file,'utf8')));let c=applyUpdate(base,v6,new Set(planUpdate(base,v6).map(p=>p.id)));const m=memoryOf(c);c={...c,sessions:c.sessions.map((s,i)=>i===0?{...s,plan:s.plan+'\n\nDM NOTE: Ila likes the fighter.'}:s),memory:{...m,playbook:applyChanges(m.playbook!,[{flag:'quill',from:'routine',to:'bribed'}],{sessionId:c.sessions[0].id,title:'They bribe Quill',playId:'s01-bribe-quill'})}};const plan=planUpdate(c,pack);assert.deepEqual(plan.filter(p=>p.status==='conflict').map(p=>p.label+': '+p.detail),[]);const next=applyUpdate(c,pack,new Set(plan.map(p=>p.id)));const pb7=memoryOf(next).playbook!;assert.equal(pb7.version,'7.6');assert.equal(stateOf(pb7).quill,'bribed');assert.equal(pb7.log.length,1);assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));assert.ok(validateCampaign(next));assert.deepEqual(planUpdate(next,pack).filter(p=>p.status==='ready').map(p=>p.id),[])});
- test('installing twice changes nothing more',()=>{const again=applyUpdate(installed,pack,new Set(planUpdate(installed,pack).map(p=>p.id)));assert.deepEqual(planUpdate(installed,pack).filter(p=>p.status==='ready').map(p=>p.id),[]);assert.equal(JSON.stringify(again),JSON.stringify(installed))});
- test('each Act I plan gets its new-DM guide once, after the plan',()=>{for(const [i,end] of [[0,'Who was singing?"'],[1,'which opens Session 3.'],[2,'Stormborn included.']] as const){const plan=installed.sessions[i].plan,at=plan.indexOf(guideHead);assert.ok(at>plan.indexOf(end),installed.sessions[i].title);assert.equal(plan.split(guideHead).length,2)}});
- // The DM's table: revision 7 installed, wiki entries sent, choices recorded. 7.1 must offer only its new changes and keep all of that.
- // Revision 7.1 is this pack without the play links; 7.0 is it without the guides as well.
- const older=(version:string,keep:(e:{replace:string})=>boolean)=>({...pack,sessions:pack.sessions!.map(s=>({...s,edits:s.edits?.filter(keep)})),playbook:{...pack.playbook!,version}});
- const v71=older('7.1',e=>!e.replace.includes('(play:')),v70=older('7.0',e=>!e.replace.includes('(play:')&&!e.replace.includes(guideHead));
- test('every play link in the guides names a real play, and every If they… option has one; the links install over an installed 7.1',()=>{const plays=new Set([...installed.sessions.flatMap(s=>s.branches),...pb.anytime].map(p=>p.id));for(const s of installed.sessions.slice(0,3))for(const [,id] of s.plan.matchAll(/\]\(play:([^)\s]+)\)/g))assert.ok(plays.has(id)||plays.has(id.replace(/heart/g,'tongue')),id);assert.ok((installed.sessions[0].plan.match(/\(play:/g)||[]).length>20);for(const s of installed.sessions.slice(0,3))assert.doesNotMatch(s.plan.slice(s.plan.indexOf(guideHead)),/^- \*\*…/m,s.title+' has an If they… option with no play');const c71=applyUpdate(base,v71,new Set(planUpdate(base,v71).map(p=>p.id)));const plan=planUpdate(c71,pack);assert.deepEqual(plan.filter(p=>p.status==='conflict').map(p=>p.label+': '+p.detail),[]);const next=applyUpdate(c71,pack,new Set(plan.filter(p=>p.status==='ready').map(p=>p.id)));for(const [i,s] of next.sessions.slice(0,3).entries()){assert.equal(s.plan.split(guideHead).length,2);assert.equal(s.plan,installed.sessions[i].plan)}});
- test('the current revision installs over revision 7: the guides and the refresh are ready, sent wiki entries and recorded state stay',()=>{let c=fresh?applyUpdate(base,v70,new Set(planUpdate(base,v70).map(p=>p.id))):base;const m=memoryOf(c);c=sendEntry({...c,memory:{...m,playbook:applyChanges(m.playbook!,[{flag:'quill',from:String(stateOf(m.playbook!).quill),to:'bribed'}],{sessionId:c.sessions[0].id,title:'They bribe Quill',playId:'s01-bribe-quill'})}},{id:'pw-test-sent',title:'Ila Harrow',kind:'Person',body:'b'},c.sessions[0].id);const sent=sentEntries(c).length,log=memoryOf(c).playbook!.log.length;const plan=planUpdate(c,pack);assert.deepEqual(plan.filter(p=>p.status==='conflict').map(p=>p.label+': '+p.detail),[]);const ready=plan.filter(p=>p.status==='ready').map(p=>p.id);assert.ok(ready.includes('playbook'));for(const s of c.sessions.slice(0,3))assert.ok(ready.some(id=>id.startsWith('edit:'+s.id+':')),s.title);const next=applyUpdate(c,pack,new Set(ready));const pb71=memoryOf(next).playbook!;assert.equal(pb71.version,'7.6');assert.equal(stateOf(pb71).quill,'bribed');assert.equal(pb71.log.length,log);assert.equal(sentEntries(next).length,sent);for(const s of next.sessions.slice(0,3))assert.ok(s.plan.includes(guideHead),s.title);assert.ok(validateCampaign(next));assert.deepEqual(planUpdate(next,pack).filter(p=>p.status==='ready').map(p=>p.id),[])});
+test('the bundled pack parses and targets the Seventh Bell', () => {
+  assert.equal(pack.id, 'seventh-bell-v7');
+  assert.ok(pack.playbook);
+});
+test('installing produces a valid campaign', () => assert.ok(validateCampaign(installed)));
+if (backup) {
+  test('every planned change is ready on the live campaign (no conflicts)', () => {
+    const plan = planUpdate(base, pack);
+    assert.deepEqual(
+      plan.filter((p) => p.status === 'conflict').map((p) => p.label + ': ' + p.detail),
+      [],
+    );
+  });
+  test('the IsoForge kits are gone, and the DM’s own text after them stays', () => {
+    assert.doesNotMatch(
+      JSON.stringify({
+        s: installed.sessions.map((s) => s.plan),
+        p: memoryOf(installed).pages,
+        c: installed.cards,
+      }),
+      /isoforge/i,
+    );
+    const c = {
+      ...base,
+      sessions: base.sessions.map((s, i) =>
+        i === 0 ? { ...s, plan: s.plan + '\n\nDM NOTE: Ila likes the fighter.' } : s,
+      ),
+    };
+    const next = applyUpdate(c, pack, new Set(planUpdate(c, pack).map((p) => p.id)));
+    assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
+    assert.doesNotMatch(next.sessions[0].plan, /IsoForge/);
+  });
+  test('Session 1 opens at Pellmoor Landing', () =>
+    assert.match(installed.sessions[0].plan, /Pellmoor Landing comes into sight/));
+  test('replaced wiki text moves to revision history', () => {
+    const page = memoryOf(installed).pages.find((p) => p.id === 'sb-462b2b0d93fd03c2')!;
+    assert.equal(page.title, 'PELLMOOR LANDING (Port)');
+    assert.match(page.history[0].body, /About 300, mostly Ferry-folk/);
+  });
+  test('existing pages, cards and events are all kept, except what the pack retires', () => {
+    const m0 = memoryOf(base),
+      m1 = memoryOf(installed),
+      gone = new Set([...(pack.remove?.pages || []), ...(pack.remove?.cards || [])]);
+    for (const p of m0.pages)
+      assert.equal(
+        m1.pages.some((x) => x.id === p.id),
+        !gone.has(p.id),
+        p.title,
+      );
+    assert.equal(installed.cards.length, base.cards.filter((x) => !gone.has(x.id)).length);
+    assert.equal(installed.events.length, base.events.length);
+  });
+  test('the DM’s own text says Heart, keeps the Tongues spell, and the chronicle keeps its words', () => {
+    const words = (c: Campaign) =>
+      JSON.stringify({
+        p: memoryOf(c).pages.map((pg) => [pg.title, pg.body, pg.aliases]),
+        s: c.sessions.map((s) => s.plan),
+        k: c.cards,
+      });
+    if (fresh) assert.match(words(base), /Ossa's Tongue|Tongue/);
+    assert.doesNotMatch(
+      words(installed).replace(
+        /Comprehend Languages or Tongues|Tongues spell|cast Tongues|casts Tongues/g,
+        '',
+      ),
+      /Tongue/,
+    );
+    const c = {
+      ...base,
+      events: [
+        {
+          id: 'e',
+          sessionId: base.sessions[0].id,
+          text: 'They found the Tongue.',
+          style: 'Roleplay' as const,
+          enjoyment: 'Neutral' as const,
+          date: '',
+        },
+      ],
+    };
+    const next = applyUpdate(c, pack, new Set(planUpdate(c, pack).map((p) => p.id)));
+    assert.equal(next.events[0].text, 'They found the Tongue.');
+  });
+  test('unticking the rename leaves the DM’s text alone', () => {
+    const ids = new Set(
+      planUpdate(base, pack)
+        .map((p) => p.id)
+        .filter((id) => id !== 'terms'),
+    );
+    const next = applyUpdate(base, pack, ids);
+    assert.match(JSON.stringify(memoryOf(next).pages), /Tongue/);
+    assert.ok(validateCampaign(next));
+  });
+  // A table that installed revision 6 with Waypoint 1.34 and played on: revision 7 must install over it without conflicts and keep what they recorded.
+  const v6file = new URL(
+    '../../scripts/fixtures/seventh-bell-v6.waypoint-pack.json',
+    import.meta.url,
+  );
+  if (fs.existsSync(v6file))
+    test('installs cleanly over revision 6, keeping recorded state, history and the DM’s notes', () => {
+      const v6 = updatePackSchema.parse(JSON.parse(fs.readFileSync(v6file, 'utf8')));
+      let c = applyUpdate(base, v6, new Set(planUpdate(base, v6).map((p) => p.id)));
+      const m = memoryOf(c);
+      c = {
+        ...c,
+        sessions: c.sessions.map((s, i) =>
+          i === 0 ? { ...s, plan: s.plan + '\n\nDM NOTE: Ila likes the fighter.' } : s,
+        ),
+        memory: {
+          ...m,
+          playbook: applyChanges(m.playbook!, [{ flag: 'quill', from: 'routine', to: 'bribed' }], {
+            sessionId: c.sessions[0].id,
+            title: 'They bribe Quill',
+            playId: 's01-bribe-quill',
+          }),
+        },
+      };
+      const plan = planUpdate(c, pack);
+      assert.deepEqual(
+        plan.filter((p) => p.status === 'conflict').map((p) => p.label + ': ' + p.detail),
+        [],
+      );
+      const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
+      const pb7 = memoryOf(next).playbook!;
+      assert.equal(pb7.version, '7.6');
+      assert.equal(stateOf(pb7).quill, 'bribed');
+      assert.equal(pb7.log.length, 1);
+      assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
+      assert.ok(validateCampaign(next));
+      assert.deepEqual(
+        planUpdate(next, pack)
+          .filter((p) => p.status === 'ready')
+          .map((p) => p.id),
+        [],
+      );
+    });
+  test('installing twice changes nothing more', () => {
+    const again = applyUpdate(
+      installed,
+      pack,
+      new Set(planUpdate(installed, pack).map((p) => p.id)),
+    );
+    assert.deepEqual(
+      planUpdate(installed, pack)
+        .filter((p) => p.status === 'ready')
+        .map((p) => p.id),
+      [],
+    );
+    assert.equal(JSON.stringify(again), JSON.stringify(installed));
+  });
+  test('each Act I plan gets its new-DM guide once, after the plan', () => {
+    for (const [i, end] of [
+      [0, 'Who was singing?"'],
+      [1, 'which opens Session 3.'],
+      [2, 'Stormborn included.'],
+    ] as const) {
+      const plan = installed.sessions[i].plan,
+        at = plan.indexOf(guideHead);
+      assert.ok(at > plan.indexOf(end), installed.sessions[i].title);
+      assert.equal(plan.split(guideHead).length, 2);
+    }
+  });
+  // The DM's table: revision 7 installed, wiki entries sent, choices recorded. 7.1 must offer only its new changes and keep all of that.
+  // Revision 7.1 is this pack without the play links; 7.0 is it without the guides as well.
+  const older = (version: string, keep: (e: { replace: string }) => boolean) => ({
+    ...pack,
+    sessions: pack.sessions!.map((s) => ({ ...s, edits: s.edits?.filter(keep) })),
+    playbook: { ...pack.playbook!, version },
+  });
+  const v71 = older('7.1', (e) => !e.replace.includes('(play:')),
+    v70 = older('7.0', (e) => !e.replace.includes('(play:') && !e.replace.includes(guideHead));
+  test('every play link in the guides names a real play, and every If they… option has one; the links install over an installed 7.1', () => {
+    const plays = new Set(
+      [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime].map((p) => p.id),
+    );
+    for (const s of installed.sessions.slice(0, 3))
+      for (const [, id] of s.plan.matchAll(/\]\(play:([^)\s]+)\)/g))
+        assert.ok(plays.has(id) || plays.has(id.replace(/heart/g, 'tongue')), id);
+    assert.ok((installed.sessions[0].plan.match(/\(play:/g) || []).length > 20);
+    for (const s of installed.sessions.slice(0, 3))
+      assert.doesNotMatch(
+        s.plan.slice(s.plan.indexOf(guideHead)),
+        /^- \*\*…/m,
+        s.title + ' has an If they… option with no play',
+      );
+    const c71 = applyUpdate(base, v71, new Set(planUpdate(base, v71).map((p) => p.id)));
+    const plan = planUpdate(c71, pack);
+    assert.deepEqual(
+      plan.filter((p) => p.status === 'conflict').map((p) => p.label + ': ' + p.detail),
+      [],
+    );
+    const next = applyUpdate(
+      c71,
+      pack,
+      new Set(plan.filter((p) => p.status === 'ready').map((p) => p.id)),
+    );
+    for (const [i, s] of next.sessions.slice(0, 3).entries()) {
+      assert.equal(s.plan.split(guideHead).length, 2);
+      assert.equal(s.plan, installed.sessions[i].plan);
+    }
+  });
+  test('the current revision installs over revision 7: the guides and the refresh are ready, sent wiki entries and recorded state stay', () => {
+    let c = fresh ? applyUpdate(base, v70, new Set(planUpdate(base, v70).map((p) => p.id))) : base;
+    const m = memoryOf(c);
+    c = sendEntry(
+      {
+        ...c,
+        memory: {
+          ...m,
+          playbook: applyChanges(
+            m.playbook!,
+            [{ flag: 'quill', from: String(stateOf(m.playbook!).quill), to: 'bribed' }],
+            { sessionId: c.sessions[0].id, title: 'They bribe Quill', playId: 's01-bribe-quill' },
+          ),
+        },
+      },
+      { id: 'pw-test-sent', title: 'Ila Harrow', kind: 'Person', body: 'b' },
+      c.sessions[0].id,
+    );
+    const sent = sentEntries(c).length,
+      log = memoryOf(c).playbook!.log.length;
+    const plan = planUpdate(c, pack);
+    assert.deepEqual(
+      plan.filter((p) => p.status === 'conflict').map((p) => p.label + ': ' + p.detail),
+      [],
+    );
+    const ready = plan.filter((p) => p.status === 'ready').map((p) => p.id);
+    assert.ok(ready.includes('playbook'));
+    for (const s of c.sessions.slice(0, 3))
+      assert.ok(
+        ready.some((id) => id.startsWith('edit:' + s.id + ':')),
+        s.title,
+      );
+    const next = applyUpdate(c, pack, new Set(ready));
+    const pb71 = memoryOf(next).playbook!;
+    assert.equal(pb71.version, '7.6');
+    assert.equal(stateOf(pb71).quill, 'bribed');
+    assert.equal(pb71.log.length, log);
+    assert.equal(sentEntries(next).length, sent);
+    for (const s of next.sessions.slice(0, 3)) assert.ok(s.plan.includes(guideHead), s.title);
+    assert.ok(validateCampaign(next));
+    assert.deepEqual(
+      planUpdate(next, pack)
+        .filter((p) => p.status === 'ready')
+        .map((p) => p.id),
+      [],
+    );
+  });
 }
-if(backup){
- test('each Act I guide ends with one table card, and the notes bar finds it and the timeline',()=>{for(const s of installed.sessions.slice(0,3)){assert.equal(s.plan.split('## Table card').length,2,s.title);assert.ok(s.plan.indexOf('## Table card')>s.plan.indexOf(guideHead));const card=tableCard(s.plan);assert.match(card,/^## Table card/);assert.ok(card.length<4000,s.title+' card is '+card.length);assert.doesNotMatch(card,/\(play:/)}const rows=timeline(installed.sessions[0].plan);assert.equal(rows.length,6);assert.match(pace(rows,30)!.now,/Scene 1/);assert.match(pace(rows,30)!.next,/at 0:50$/);assert.ok(pace(rows,215)!.over)});
- test('session zero is a full guide in the wiki, within the page limit',()=>{const p=memoryOf(installed).pages.find(x=>x.id==='sb-b61bdde01a01cdcf')!;assert.match(p.body,/### Step 2: Safety and boundaries/);assert.match(p.body,/Off-limits/);assert.ok(p.body.length<=12000);assert.equal(p.title,'1.4 Session Zero Script')});
+if (backup) {
+  test('each Act I guide ends with one table card, and the notes bar finds it and the timeline', () => {
+    for (const s of installed.sessions.slice(0, 3)) {
+      assert.equal(s.plan.split('## Table card').length, 2, s.title);
+      assert.ok(s.plan.indexOf('## Table card') > s.plan.indexOf(guideHead));
+      const card = tableCard(s.plan);
+      assert.match(card, /^## Table card/);
+      assert.ok(card.length < 4000, s.title + ' card is ' + card.length);
+      assert.doesNotMatch(card, /\(play:/);
+    }
+    const rows = timeline(installed.sessions[0].plan);
+    assert.equal(rows.length, 6);
+    assert.match(pace(rows, 30)!.now, /Scene 1/);
+    assert.match(pace(rows, 30)!.next, /at 0:50$/);
+    assert.ok(pace(rows, 215)!.over);
+  });
+  test('session zero is a full guide in the wiki, within the page limit', () => {
+    const p = memoryOf(installed).pages.find((x) => x.id === 'sb-b61bdde01a01cdcf')!;
+    assert.match(p.body, /### Step 2: Safety and boundaries/);
+    assert.match(p.body, /Off-limits/);
+    assert.ok(p.body.length <= 12000);
+    assert.equal(p.title, '1.4 Session Zero Script');
+  });
 }
 // Revision 7.5: Tolls are warned (kind and weight), never stated exactly, and they escalate with every bell rung.
-test('the Toll weight rises with the bells rung',()=>{assert.deepEqual(tollWeight(pb),{rung:0,weight:'Heavy'});const two=['ossa','vaer'].reduce((p,b)=>setFlag(p,'bell_'+b,'rung','x'),pb);assert.equal(tollWeight(two).weight,'Grievous');const four=['calla','hieme'].reduce((p,b)=>setFlag(p,'bell_'+b,'rung','x'),two);assert.equal(tollWeight(four).weight,'Ruinous');assert.ok(ringsBell(installed.sessions[2].branches.find(b=>b.id==='s03-ring-ossa')!))});
-test('no play, brief or ending prices a Toll exactly or for a day',()=>{const text=JSON.stringify({p:[...installed.sessions.flatMap(s=>s.branches.filter(b=>b.origin==='playbook')),...pb.anytime],b:pb.briefs,e:pb.endings,w:pb.playerWiki});for(const bad of [/state the Toll/i,/Toll[^"]{0,40}for (one|a) day/i,/Sense for one day/,/Fear for one day/,/tells you the price/i,/hear the price first/i])assert.doesNotMatch(text,bad)});
-if(backup)test('the Toll rules page, the Ring Table and the Act I guides warn rather than price',()=>{const pages=memoryOf(installed).pages,page=(id:string)=>pages.find(p=>p.id===id)!.body;assert.match(page('sb-579437dc048229b6'),/### The weight rises with every bell/);assert.match(page('sb-a23a83e518a41ee8'),/every morning for a year/);assert.doesNotMatch(page('sb-a23a83e518a41ee8'),/for one day/);for(const s of installed.sessions.slice(1,3))assert.match(s.plan,/Ossa will take a memory of the dead from you, and it will be heavy/);assert.doesNotMatch(installed.sessions[2].plan,/The player chooses which memory; you never do/)});
-if(backup)test('every Act I play names a scene of its guide, so Possibilities can group them',()=>{for(const s of installed.sessions.slice(0,3))for(const b of s.branches.filter(b=>b.origin==='playbook')){assert.ok(b.scene,b.id+' has no scene');assert.ok(s.plan.includes('### '+b.scene),b.id+': no heading '+b.scene)}});
-test('a refreshed playbook keeps recorded world state',()=>{const played=applyChanges(pb,[{flag:'t_ossa',from:'ila',to:'court'}],{sessionId:'x',title:'test'});const c={...installed,memory:{...memoryOf(installed),playbook:played}};const refreshed={...pack,playbook:{...pack.playbook!,version:'6.1'}};const next=applyUpdate(c,refreshed,new Set(['playbook']));assert.equal(stateOf(memoryOf(next).playbook!).t_ossa,'court');assert.equal(memoryOf(next).playbook!.log.length,1)});
-test('state starts at the campaign opening',()=>{const s=stateOf(pb);assert.equal(s.t_ossa,'ila');assert.equal(s.bell_ossa,'unrung');assert.equal(s.tithe_clock,0)});
-test('conditions hide plays that are no longer possible',()=>{const play=installed.sessions[0].branches.find(b=>b.id==='s01-hand-to-quill')!;assert.ok(isPossible(pb,play));const moved=applyChanges(pb,[{flag:'t_ossa',from:'ila',to:'court'}],{sessionId:'x',title:'t'});assert.ok(!isPossible(moved,play));assert.match(blockers(moved,play.when).join(),/Ossa.s Heart is Maudrin/)});
-test('effects resolve against the current state and clocks clamp',()=>{const play=installed.sessions[0].branches.find(b=>b.id==='s01-attack-quill')!;const ch=resolveEffects(pb,play.effects);assert.ok(ch.some(c=>c.flag==='clock_court'&&c.to===1));const full=setFlag(pb,'clock_court',6,'x');assert.ok(!resolveEffects(full,play.effects).some(c=>c.flag==='clock_court'))});
-test('undo restores a flag unless it changed again',()=>{const a=applyChanges(pb,[{flag:'quill',from:'routine',to:'bribed'}],{sessionId:'x',title:'bribe'});const b=setFlag(a,'quill','ally','x');const u=undoEntry(b,a.log[0].id);assert.equal(stateOf(u.pb).quill,'ally');assert.deepEqual(u.kept,['Hushman Tobias Quill']);const u2=undoEntry(a,a.log[0].id);assert.equal(stateOf(u2.pb).quill,'routine')});
-test('a ripple reports plays that close later',()=>{const r=ripple(installed,pb,[{flag:'t_ossa',to:'venn'}],1);assert.ok(r.closed.some(d=>d.play.id==='s03-return-tongue'));assert.ok(r.opened.some(d=>d.play.id==='s03-recover-from-venn'))});
-test('the forecast tracks the Concord',()=>{const f=forecast(pb).find(x=>x.ending.id==='concord')!;assert.equal(f.open,false);assert.ok(f.reqs[0].routes.length>0);const rung=['vaer','ossa','calla','hieme','thrane','mirel'].reduce((p,b)=>setFlag(p,'bell_'+b,'rung','x'),setFlag(pb,'key','party','x'));assert.equal(forecast(rung).find(x=>x.ending.id==='concord')!.open,false);const there=setFlag(rung,'shrine','reached','x');assert.equal(forecast(there).find(x=>x.ending.id==='concord')!.open,true);assert.equal(forecast(setFlag(there,'ysh','concord','x')).find(x=>x.ending.id==='concord')!.reached,true)});
-test('no ending is open at the campaign opening, and the Empty Choir waits for the table’s choice',()=>{assert.deepEqual(forecast(pb).filter(f=>f.open||f.reached).map(f=>f.ending.id),[]);const late=setFlag(setFlag(pb,'shrine','reached','x'),'key','maudrin','x');assert.ok(!forecast(late).find(f=>f.ending.id==='empty-choir')!.open);assert.ok(forecast(setFlag(late,'resistance','ended','x')).find(f=>f.ending.id==='empty-choir')!.open)});
-test('every ending can be reached by some play',()=>{const plays=[...installed.sessions.flatMap(s=>s.branches),...pb.anytime];for(const e of pb.endings)for(const c of e.reached||[])assert.ok(plays.some(p=>p.effects?.some(x=>x.flag===c.flag&&(!c.in||c.in.includes(String(x.set))))),e.id+' needs a play that sets '+c.flag)});
-test('every Tongue, Key and bell state a play can set can be left again by a play',()=>{const plays=[...installed.sessions.flatMap(s=>s.branches),...pb.anytime];const ids=['t_ossa','t_vaer','t_calla','t_hieme','t_thrane','t_mirel','key'];const terminal=['bell','sealed','spent'];for(const id of ids){const set=new Set(plays.flatMap(p=>(p.effects||[]).filter(e=>e.flag===id).map(e=>String(e.set))));for(const v of set)if(!terminal.includes(v)&&v!=='party')assert.ok(plays.some(p=>p.when?.some(c=>c.flag===id&&c.in?.includes(v))&&p.effects?.some(e=>(e.flag===id&&e.set!==v)||e.flag.startsWith('bell_'))),id+'='+v+' is a dead end')}});
-test('clock alerts fire one tick before a threshold',()=>{const near=setFlag(pb,'tithe_clock',5,'x');assert.ok(clockAlerts(near).some(a=>a.flag.id==='tithe_clock'&&a.state==='next'))});
-test('likely plays rank ahead of wildcards',()=>{const ranked=rankPlays(installed,pb,installed.sessions[0].branches);assert.ok(ranked[0].play.likelihood==='Likely')});
-test('search finds a play from the words a player uses',()=>{assert.equal(searchPlays('bribe the hushman',installed.sessions[0].branches)[0]?.id,'s01-bribe-quill');assert.ok(searchPlays('detect magic',installed.sessions[0].branches).some(p=>p.id==='s01-detect-magic-tongue'))});
-test('2024 encounter budgets and difficulty',()=>{assert.deepEqual(partyBudget([1,1,1,1]),[200,300,400]);assert.deepEqual(partyBudget([5,5,5,5]),[2000,3000,4400]);const enc=pb.encounters.find(e=>e.id==='enc-s01-quill-patrol')!;assert.equal(encounterXP(enc),500);assert.equal(difficulty(500,[3,3,3,3]).band,'Low');assert.equal(difficulty(200,[1,1,1,1]).band,'Low');assert.equal(difficulty(900,[1,1,1,1]).band,'Beyond High')});
-test('every brief, encounter and stat block reference resolves',()=>{const enc=new Set(pb.encounters.map(e=>e.id)),blocks=new Set(pb.statblocks.map(s=>s.id));for(const b of pb.briefs)for(const id of b.encounters)assert.ok(enc.has(id),id);for(const e of pb.encounters)for(const c of e.creatures)if(c.statblock)assert.ok(blocks.has(c.statblock),c.statblock)});
-test('every condition and effect names a real flag and option',()=>{const flags=new Map(pb.flags.map(f=>[f.id,f]));const plays=[...installed.sessions.flatMap(s=>s.branches),...pb.anytime];for(const p of plays){for(const c of p.when||[]){const f=flags.get(c.flag);assert.ok(f,p.id+' '+c.flag);for(const o of [...(c.in||[]),...(c.not||[])])assert.ok(f!.options?.some(x=>x.id===o),p.id+' '+c.flag+'='+o)}for(const e of p.effects||[]){const f=flags.get(e.flag);assert.ok(f,p.id+' '+e.flag);if(e.set)assert.ok(f!.options?.some(x=>x.id===e.set),p.id+' '+e.flag+'='+e.set)}}});
-test('AI-prepared paths never replace playbook plays',()=>{const s=installed.sessions[0];const kept=s.branches.filter(b=>b.origin==='playbook');assert.ok(kept.length>5)});
-if(backup){
- test('sessions go by their book numbers, and references find them',()=>{assert.equal(sessionTag(installed,installed.sessions[16].id),'S16B');assert.equal(sessionTag(installed,installed.sessions[26].id),'S23');assert.equal(sessionByRef(installed,'S23'),26);assert.equal(sessionByRef(installed,'S16'),15);assert.equal(sessionByRef(installed,'S29'),31);assert.equal(sessionByRef(installed,'S99'),-1)});
- test('a recorded choice comes back in the sessions its notes name',()=>{const s1=installed.sessions[0],play=s1.branches.find(b=>/S3:/.test(b.later||''))!;const c={...installed,events:[{id:'e1',sessionId:s1.id,text:'x',style:play.style,enjoyment:'Neutral' as const,date:'',branchId:play.id}]};const e=echoes(c,pb);assert.ok(e.some(x=>x.sessionId===installed.sessions[2].id&&x.play.id===play.id&&!/^S3:/.test(x.text)));assert.ok(e.every(x=>c.sessions.findIndex(s=>s.id===x.sessionId)>0))});
- test('world changes applied from a play also count, until undone',()=>{const s1=installed.sessions[0],play=s1.branches.find(b=>b.effects?.length&&/S\d/.test(b.later||''))!;const changes=resolveEffects(pb,play.effects);const applied=applyChanges(pb,changes,{sessionId:s1.id,title:play.title,playId:play.id});assert.equal(applied.log[0].playId,play.id);assert.ok(echoes(installed,applied).some(x=>x.play.id===play.id));assert.ok(!echoes(installed,undoEntry(applied,applied.log[0].id).pb).some(x=>x.play.id===play.id))});
- test('a play opened by earlier choices rises and says why',()=>{const s3=installed.sessions[2];const gated=s3.branches.find(b=>b.when?.some(c=>c.flag==='t_ossa'&&c.in?.includes('venn')))!;const moved=setFlag(pb,'t_ossa','venn','x');const r=rankPlays(installed,moved,s3.branches).find(x=>x.play.id===gated.id)!;assert.ok(r.possible);assert.match(r.reasons.join(),/^Because Ossa.s Heart is/)});
+test('the Toll weight rises with the bells rung', () => {
+  assert.deepEqual(tollWeight(pb), { rung: 0, weight: 'Heavy' });
+  const two = ['ossa', 'vaer'].reduce((p, b) => setFlag(p, 'bell_' + b, 'rung', 'x'), pb);
+  assert.equal(tollWeight(two).weight, 'Grievous');
+  const four = ['calla', 'hieme'].reduce((p, b) => setFlag(p, 'bell_' + b, 'rung', 'x'), two);
+  assert.equal(tollWeight(four).weight, 'Ruinous');
+  assert.ok(ringsBell(installed.sessions[2].branches.find((b) => b.id === 's03-ring-ossa')!));
+});
+test('no play, brief or ending prices a Toll exactly or for a day', () => {
+  const text = JSON.stringify({
+    p: [
+      ...installed.sessions.flatMap((s) => s.branches.filter((b) => b.origin === 'playbook')),
+      ...pb.anytime,
+    ],
+    b: pb.briefs,
+    e: pb.endings,
+    w: pb.playerWiki,
+  });
+  for (const bad of [
+    /state the Toll/i,
+    /Toll[^"]{0,40}for (one|a) day/i,
+    /Sense for one day/,
+    /Fear for one day/,
+    /tells you the price/i,
+    /hear the price first/i,
+  ])
+    assert.doesNotMatch(text, bad);
+});
+if (backup)
+  test('the Toll rules page, the Ring Table and the Act I guides warn rather than price', () => {
+    const pages = memoryOf(installed).pages,
+      page = (id: string) => pages.find((p) => p.id === id)!.body;
+    assert.match(page('sb-579437dc048229b6'), /### The weight rises with every bell/);
+    assert.match(page('sb-a23a83e518a41ee8'), /every morning for a year/);
+    assert.doesNotMatch(page('sb-a23a83e518a41ee8'), /for one day/);
+    for (const s of installed.sessions.slice(1, 3))
+      assert.match(s.plan, /Ossa will take a memory of the dead from you, and it will be heavy/);
+    assert.doesNotMatch(
+      installed.sessions[2].plan,
+      /The player chooses which memory; you never do/,
+    );
+  });
+if (backup)
+  test('every Act I play names a scene of its guide, so Possibilities can group them', () => {
+    for (const s of installed.sessions.slice(0, 3))
+      for (const b of s.branches.filter((b) => b.origin === 'playbook')) {
+        assert.ok(b.scene, b.id + ' has no scene');
+        assert.ok(s.plan.includes('### ' + b.scene), b.id + ': no heading ' + b.scene);
+      }
+  });
+test('a refreshed playbook keeps recorded world state', () => {
+  const played = applyChanges(pb, [{ flag: 't_ossa', from: 'ila', to: 'court' }], {
+    sessionId: 'x',
+    title: 'test',
+  });
+  const c = { ...installed, memory: { ...memoryOf(installed), playbook: played } };
+  const refreshed = { ...pack, playbook: { ...pack.playbook!, version: '6.1' } };
+  const next = applyUpdate(c, refreshed, new Set(['playbook']));
+  assert.equal(stateOf(memoryOf(next).playbook!).t_ossa, 'court');
+  assert.equal(memoryOf(next).playbook!.log.length, 1);
+});
+test('state starts at the campaign opening', () => {
+  const s = stateOf(pb);
+  assert.equal(s.t_ossa, 'ila');
+  assert.equal(s.bell_ossa, 'unrung');
+  assert.equal(s.tithe_clock, 0);
+});
+test('conditions hide plays that are no longer possible', () => {
+  const play = installed.sessions[0].branches.find((b) => b.id === 's01-hand-to-quill')!;
+  assert.ok(isPossible(pb, play));
+  const moved = applyChanges(pb, [{ flag: 't_ossa', from: 'ila', to: 'court' }], {
+    sessionId: 'x',
+    title: 't',
+  });
+  assert.ok(!isPossible(moved, play));
+  assert.match(blockers(moved, play.when).join(), /Ossa.s Heart is Maudrin/);
+});
+test('effects resolve against the current state and clocks clamp', () => {
+  const play = installed.sessions[0].branches.find((b) => b.id === 's01-attack-quill')!;
+  const ch = resolveEffects(pb, play.effects);
+  assert.ok(ch.some((c) => c.flag === 'clock_court' && c.to === 1));
+  const full = setFlag(pb, 'clock_court', 6, 'x');
+  assert.ok(!resolveEffects(full, play.effects).some((c) => c.flag === 'clock_court'));
+});
+test('undo restores a flag unless it changed again', () => {
+  const a = applyChanges(pb, [{ flag: 'quill', from: 'routine', to: 'bribed' }], {
+    sessionId: 'x',
+    title: 'bribe',
+  });
+  const b = setFlag(a, 'quill', 'ally', 'x');
+  const u = undoEntry(b, a.log[0].id);
+  assert.equal(stateOf(u.pb).quill, 'ally');
+  assert.deepEqual(u.kept, ['Hushman Tobias Quill']);
+  const u2 = undoEntry(a, a.log[0].id);
+  assert.equal(stateOf(u2.pb).quill, 'routine');
+});
+test('a ripple reports plays that close later', () => {
+  const r = ripple(installed, pb, [{ flag: 't_ossa', to: 'venn' }], 1);
+  assert.ok(r.closed.some((d) => d.play.id === 's03-return-tongue'));
+  assert.ok(r.opened.some((d) => d.play.id === 's03-recover-from-venn'));
+});
+test('the forecast tracks the Concord', () => {
+  const f = forecast(pb).find((x) => x.ending.id === 'concord')!;
+  assert.equal(f.open, false);
+  assert.ok(f.reqs[0].routes.length > 0);
+  const rung = ['vaer', 'ossa', 'calla', 'hieme', 'thrane', 'mirel'].reduce(
+    (p, b) => setFlag(p, 'bell_' + b, 'rung', 'x'),
+    setFlag(pb, 'key', 'party', 'x'),
+  );
+  assert.equal(forecast(rung).find((x) => x.ending.id === 'concord')!.open, false);
+  const there = setFlag(rung, 'shrine', 'reached', 'x');
+  assert.equal(forecast(there).find((x) => x.ending.id === 'concord')!.open, true);
+  assert.equal(
+    forecast(setFlag(there, 'ysh', 'concord', 'x')).find((x) => x.ending.id === 'concord')!.reached,
+    true,
+  );
+});
+test('no ending is open at the campaign opening, and the Empty Choir waits for the table’s choice', () => {
+  assert.deepEqual(
+    forecast(pb)
+      .filter((f) => f.open || f.reached)
+      .map((f) => f.ending.id),
+    [],
+  );
+  const late = setFlag(setFlag(pb, 'shrine', 'reached', 'x'), 'key', 'maudrin', 'x');
+  assert.ok(!forecast(late).find((f) => f.ending.id === 'empty-choir')!.open);
+  assert.ok(
+    forecast(setFlag(late, 'resistance', 'ended', 'x')).find((f) => f.ending.id === 'empty-choir')!
+      .open,
+  );
+});
+test('every ending can be reached by some play', () => {
+  const plays = [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime];
+  for (const e of pb.endings)
+    for (const c of e.reached || [])
+      assert.ok(
+        plays.some((p) =>
+          p.effects?.some((x) => x.flag === c.flag && (!c.in || c.in.includes(String(x.set)))),
+        ),
+        e.id + ' needs a play that sets ' + c.flag,
+      );
+});
+test('every Tongue, Key and bell state a play can set can be left again by a play', () => {
+  const plays = [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime];
+  const ids = ['t_ossa', 't_vaer', 't_calla', 't_hieme', 't_thrane', 't_mirel', 'key'];
+  const terminal = ['bell', 'sealed', 'spent'];
+  for (const id of ids) {
+    const set = new Set(
+      plays.flatMap((p) =>
+        (p.effects || []).filter((e) => e.flag === id).map((e) => String(e.set)),
+      ),
+    );
+    for (const v of set)
+      if (!terminal.includes(v) && v !== 'party')
+        assert.ok(
+          plays.some(
+            (p) =>
+              p.when?.some((c) => c.flag === id && c.in?.includes(v)) &&
+              p.effects?.some((e) => (e.flag === id && e.set !== v) || e.flag.startsWith('bell_')),
+          ),
+          id + '=' + v + ' is a dead end',
+        );
+  }
+});
+test('clock alerts fire one tick before a threshold', () => {
+  const near = setFlag(pb, 'tithe_clock', 5, 'x');
+  assert.ok(clockAlerts(near).some((a) => a.flag.id === 'tithe_clock' && a.state === 'next'));
+});
+test('likely plays rank ahead of wildcards', () => {
+  const ranked = rankPlays(installed, pb, installed.sessions[0].branches);
+  assert.ok(ranked[0].play.likelihood === 'Likely');
+});
+test('search finds a play from the words a player uses', () => {
+  assert.equal(
+    searchPlays('bribe the hushman', installed.sessions[0].branches)[0]?.id,
+    's01-bribe-quill',
+  );
+  assert.ok(
+    searchPlays('detect magic', installed.sessions[0].branches).some(
+      (p) => p.id === 's01-detect-magic-tongue',
+    ),
+  );
+});
+test('2024 encounter budgets and difficulty', () => {
+  assert.deepEqual(partyBudget([1, 1, 1, 1]), [200, 300, 400]);
+  assert.deepEqual(partyBudget([5, 5, 5, 5]), [2000, 3000, 4400]);
+  const enc = pb.encounters.find((e) => e.id === 'enc-s01-quill-patrol')!;
+  assert.equal(encounterXP(enc), 500);
+  assert.equal(difficulty(500, [3, 3, 3, 3]).band, 'Low');
+  assert.equal(difficulty(200, [1, 1, 1, 1]).band, 'Low');
+  assert.equal(difficulty(900, [1, 1, 1, 1]).band, 'Beyond High');
+});
+test('every brief, encounter and stat block reference resolves', () => {
+  const enc = new Set(pb.encounters.map((e) => e.id)),
+    blocks = new Set(pb.statblocks.map((s) => s.id));
+  for (const b of pb.briefs) for (const id of b.encounters) assert.ok(enc.has(id), id);
+  for (const e of pb.encounters)
+    for (const c of e.creatures) if (c.statblock) assert.ok(blocks.has(c.statblock), c.statblock);
+});
+test('every condition and effect names a real flag and option', () => {
+  const flags = new Map(pb.flags.map((f) => [f.id, f]));
+  const plays = [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime];
+  for (const p of plays) {
+    for (const c of p.when || []) {
+      const f = flags.get(c.flag);
+      assert.ok(f, p.id + ' ' + c.flag);
+      for (const o of [...(c.in || []), ...(c.not || [])])
+        assert.ok(
+          f!.options?.some((x) => x.id === o),
+          p.id + ' ' + c.flag + '=' + o,
+        );
+    }
+    for (const e of p.effects || []) {
+      const f = flags.get(e.flag);
+      assert.ok(f, p.id + ' ' + e.flag);
+      if (e.set)
+        assert.ok(
+          f!.options?.some((x) => x.id === e.set),
+          p.id + ' ' + e.flag + '=' + e.set,
+        );
+    }
+  }
+});
+test('AI-prepared paths never replace playbook plays', () => {
+  const s = installed.sessions[0];
+  const kept = s.branches.filter((b) => b.origin === 'playbook');
+  assert.ok(kept.length > 5);
+});
+if (backup) {
+  test('sessions go by their book numbers, and references find them', () => {
+    assert.equal(sessionTag(installed, installed.sessions[16].id), 'S16B');
+    assert.equal(sessionTag(installed, installed.sessions[26].id), 'S23');
+    assert.equal(sessionByRef(installed, 'S23'), 26);
+    assert.equal(sessionByRef(installed, 'S16'), 15);
+    assert.equal(sessionByRef(installed, 'S29'), 31);
+    assert.equal(sessionByRef(installed, 'S99'), -1);
+  });
+  test('a recorded choice comes back in the sessions its notes name', () => {
+    const s1 = installed.sessions[0],
+      play = s1.branches.find((b) => /S3:/.test(b.later || ''))!;
+    const c = {
+      ...installed,
+      events: [
+        {
+          id: 'e1',
+          sessionId: s1.id,
+          text: 'x',
+          style: play.style,
+          enjoyment: 'Neutral' as const,
+          date: '',
+          branchId: play.id,
+        },
+      ],
+    };
+    const e = echoes(c, pb);
+    assert.ok(
+      e.some(
+        (x) =>
+          x.sessionId === installed.sessions[2].id && x.play.id === play.id && !/^S3:/.test(x.text),
+      ),
+    );
+    assert.ok(e.every((x) => c.sessions.findIndex((s) => s.id === x.sessionId) > 0));
+  });
+  test('world changes applied from a play also count, until undone', () => {
+    const s1 = installed.sessions[0],
+      play = s1.branches.find((b) => b.effects?.length && /S\d/.test(b.later || ''))!;
+    const changes = resolveEffects(pb, play.effects);
+    const applied = applyChanges(pb, changes, {
+      sessionId: s1.id,
+      title: play.title,
+      playId: play.id,
+    });
+    assert.equal(applied.log[0].playId, play.id);
+    assert.ok(echoes(installed, applied).some((x) => x.play.id === play.id));
+    assert.ok(
+      !echoes(installed, undoEntry(applied, applied.log[0].id).pb).some(
+        (x) => x.play.id === play.id,
+      ),
+    );
+  });
+  test('a play opened by earlier choices rises and says why', () => {
+    const s3 = installed.sessions[2];
+    const gated = s3.branches.find((b) =>
+      b.when?.some((c) => c.flag === 't_ossa' && c.in?.includes('venn')),
+    )!;
+    const moved = setFlag(pb, 't_ossa', 'venn', 'x');
+    const r = rankPlays(installed, moved, s3.branches).find((x) => x.play.id === gated.id)!;
+    assert.ok(r.possible);
+    assert.match(r.reasons.join(), /^Because Ossa.s Heart is/);
+  });
 }
-test('a pack edit can build on its own earlier edit, and reinstalling changes nothing',()=>{const s=installed.sessions[0],tail=s.plan.slice(-40);const p2={...pack,terms:undefined,playbook:undefined,pages:[],pageEdits:[],cards:[],campaign:undefined,planner:undefined,sessions:[{id:s.id,edits:[{find:tail,replace:tail+'\n\nFIRST EDIT'},{find:'FIRST EDIT',replace:'FIRST EDIT, THEN SECOND'}]}]};const plan=planUpdate(installed,p2);assert.deepEqual(plan.map(x=>x.status),['ready','ready']);const once=applyUpdate(installed,p2,new Set(plan.map(x=>x.id)));assert.ok(once.sessions[0].plan.endsWith('FIRST EDIT, THEN SECOND'));assert.deepEqual(planUpdate(once,p2).map(x=>x.status),['applied','applied'])});
-test('a refreshed playbook drops recorded values its flags no longer offer',()=>{const c={...installed,memory:{...memoryOf(installed),playbook:{...pb,state:{...pb.state,t_ossa:'nowhere',tithe_clock:99}}}};const next=applyUpdate(c,{...pack,playbook:{...pack.playbook!,version:'x'}},new Set(['playbook']));const s=stateOf(memoryOf(next).playbook!);assert.equal(s.t_ossa,'ila');assert.equal(s.tithe_clock,12)});
-test('the player site starts with the handouts and map, and the wiki unlocks as you discover',()=>{const html=siteHtml(bare,new Date('2026-11-01'));for(const id of ['start-here','the-seventh-bell','the-ringing-land','map','wiki'])assert.match(html,new RegExp('<section id="'+id+'"'));assert.match(html,/Unlocks as you discover/);assert.match(html,/src="data:image\/webp;base64,/);assert.doesNotMatch(html.replace(/Tongues spell|Comprehend Languages or Tongues/g,''),/Tongue/);assert.doesNotMatch(html,/IMG:corvane-map|MAPSRC|<!--SET-->/)});
-test('Send to wiki publishes exactly the text sent, escaped, and Take down removes it',()=>{const c=sendEntry(bare,{id:'pw-test',title:'Ila <Harrow>',kind:'Person',body:'A **fourteen**-year-old.\n\n- hears the hum\n- <script>x</script>'},installed.sessions[0].id);const html=siteHtml(c);assert.match(html,/<article class="wiki-entry" id="pw-test"><h3>Ila &lt;Harrow&gt;<\/h3>/);assert.match(html,/<strong>fourteen<\/strong>/);assert.match(html,/<li>&lt;script&gt;x&lt;\/script&gt;<\/li>/);assert.doesNotMatch(html,/Unlocks as you discover\.<\/strong>/);assert.equal(sentEntries(takeDown(c,'pw-test')).length,0);assert.ok(validateCampaign(c))});
-test('wiki terms get a hover definition once, never in their own entry, linking only to public entries',()=>{const c=sendEntry(sendEntry(bare,{id:'pw-test',title:'Test',kind:'Lore',body:'Ask a Reckoner. The Reckoner knows the Tithe.'},'s'),{id:'pw-memory-money',title:'Memory Money',kind:'Lore',body:'A Reckoner draws it.'},'s');const html=siteHtml(c);const art=(id:string)=>html.slice(html.indexOf('id="'+id+'"'),html.indexOf('</article>',html.indexOf('id="'+id+'"')));assert.equal((art('pw-test').match(/class="term"/g)||[]).length,2);assert.match(art('pw-test'),/Reckoner<span class="tip" role="tooltip">[^<]*<a href="#pw-memory-money">More about Reckoner<\/a>/);assert.doesNotMatch(art('pw-test'),/More about Tithe/);assert.doesNotMatch(art('pw-memory-money'),/class="term"[^>]*>Reckoner/)});
-test('prepared entries wait for their session and their world state',()=>{const e={id:'pw-x',title:'X',kind:'Event' as const,body:'b',revealAt:installed.sessions[2].id,when:[{flag:'bell_ossa',in:['rung']}]};const c={...installed,memory:{...memoryOf(installed),playbook:{...pb,playerWiki:[e]}}};assert.equal(entryStatus(c,e,0),'later');assert.equal(entryStatus(c,e,2),'later','an entry for a session is not due while that session is still being played');assert.equal(entryStatus(c,e,3),'waiting');const rung={...c,memory:{...memoryOf(c),playbook:setFlag(memoryOf(c).playbook!,'bell_ossa','rung','x')}};assert.equal(entryStatus(rung,e,3),'due');const done={...rung,sessions:rung.sessions.map((s,i)=>i===2?{...s,done:true}:s)};assert.equal(entryStatus(done,e,2),'due');assert.deepEqual(dueAfter(rung,installed.sessions[2].id).map(x=>x.id),['pw-x']);assert.equal(entryStatus(sendEntry(rung,e,'s'),e,2),'sent')});
-test('encounters suggest how to retune for the party',()=>{const enc=pb.encounters.find(e=>e.id==='enc-s01-quill-patrol')!;const o=scaleOptions(enc,[3,3,3,3]);assert.deepEqual(o.map(x=>x.band+x.delta+x.name),['Moderate4Hushman','High11Hushman']);assert.deepEqual(scaleOptions(enc,[]),[])});
+test('a pack edit can build on its own earlier edit, and reinstalling changes nothing', () => {
+  const s = installed.sessions[0],
+    tail = s.plan.slice(-40);
+  const p2 = {
+    ...pack,
+    terms: undefined,
+    playbook: undefined,
+    pages: [],
+    pageEdits: [],
+    cards: [],
+    campaign: undefined,
+    planner: undefined,
+    sessions: [
+      {
+        id: s.id,
+        edits: [
+          { find: tail, replace: tail + '\n\nFIRST EDIT' },
+          { find: 'FIRST EDIT', replace: 'FIRST EDIT, THEN SECOND' },
+        ],
+      },
+    ],
+  };
+  const plan = planUpdate(installed, p2);
+  assert.deepEqual(
+    plan.map((x) => x.status),
+    ['ready', 'ready'],
+  );
+  const once = applyUpdate(installed, p2, new Set(plan.map((x) => x.id)));
+  assert.ok(once.sessions[0].plan.endsWith('FIRST EDIT, THEN SECOND'));
+  assert.deepEqual(
+    planUpdate(once, p2).map((x) => x.status),
+    ['applied', 'applied'],
+  );
+});
+test('a refreshed playbook drops recorded values its flags no longer offer', () => {
+  const c = {
+    ...installed,
+    memory: {
+      ...memoryOf(installed),
+      playbook: { ...pb, state: { ...pb.state, t_ossa: 'nowhere', tithe_clock: 99 } },
+    },
+  };
+  const next = applyUpdate(
+    c,
+    { ...pack, playbook: { ...pack.playbook!, version: 'x' } },
+    new Set(['playbook']),
+  );
+  const s = stateOf(memoryOf(next).playbook!);
+  assert.equal(s.t_ossa, 'ila');
+  assert.equal(s.tithe_clock, 12);
+});
+test('the player site starts with the handouts and map, and the wiki unlocks as you discover', () => {
+  const html = siteHtml(bare, new Date('2026-11-01'));
+  for (const id of ['start-here', 'the-seventh-bell', 'the-ringing-land', 'map', 'wiki'])
+    assert.match(html, new RegExp('<section id="' + id + '"'));
+  assert.match(html, /Unlocks as you discover/);
+  assert.match(html, /src="data:image\/webp;base64,/);
+  assert.doesNotMatch(html.replace(/Tongues spell|Comprehend Languages or Tongues/g, ''), /Tongue/);
+  assert.doesNotMatch(html, /IMG:corvane-map|MAPSRC|<!--SET-->/);
+});
+test('Send to wiki publishes exactly the text sent, escaped, and Take down removes it', () => {
+  const c = sendEntry(
+    bare,
+    {
+      id: 'pw-test',
+      title: 'Ila <Harrow>',
+      kind: 'Person',
+      body: 'A **fourteen**-year-old.\n\n- hears the hum\n- <script>x</script>',
+    },
+    installed.sessions[0].id,
+  );
+  const html = siteHtml(c);
+  assert.match(html, /<article class="wiki-entry" id="pw-test"><h3>Ila &lt;Harrow&gt;<\/h3>/);
+  assert.match(html, /<strong>fourteen<\/strong>/);
+  assert.match(html, /<li>&lt;script&gt;x&lt;\/script&gt;<\/li>/);
+  assert.doesNotMatch(html, /Unlocks as you discover\.<\/strong>/);
+  assert.equal(sentEntries(takeDown(c, 'pw-test')).length, 0);
+  assert.ok(validateCampaign(c));
+});
+test('wiki terms get a hover definition once, never in their own entry, linking only to public entries', () => {
+  const c = sendEntry(
+    sendEntry(
+      bare,
+      {
+        id: 'pw-test',
+        title: 'Test',
+        kind: 'Lore',
+        body: 'Ask a Reckoner. The Reckoner knows the Tithe.',
+      },
+      's',
+    ),
+    { id: 'pw-memory-money', title: 'Memory Money', kind: 'Lore', body: 'A Reckoner draws it.' },
+    's',
+  );
+  const html = siteHtml(c);
+  const art = (id: string) =>
+    html.slice(
+      html.indexOf('id="' + id + '"'),
+      html.indexOf('</article>', html.indexOf('id="' + id + '"')),
+    );
+  assert.equal((art('pw-test').match(/class="term"/g) || []).length, 2);
+  assert.match(
+    art('pw-test'),
+    /Reckoner<span class="tip" role="tooltip">[^<]*<a href="#pw-memory-money">More about Reckoner<\/a>/,
+  );
+  assert.doesNotMatch(art('pw-test'), /More about Tithe/);
+  assert.doesNotMatch(art('pw-memory-money'), /class="term"[^>]*>Reckoner/);
+});
+test('prepared entries wait for their session and their world state', () => {
+  const e = {
+    id: 'pw-x',
+    title: 'X',
+    kind: 'Event' as const,
+    body: 'b',
+    revealAt: installed.sessions[2].id,
+    when: [{ flag: 'bell_ossa', in: ['rung'] }],
+  };
+  const c = {
+    ...installed,
+    memory: { ...memoryOf(installed), playbook: { ...pb, playerWiki: [e] } },
+  };
+  assert.equal(entryStatus(c, e, 0), 'later');
+  assert.equal(
+    entryStatus(c, e, 2),
+    'later',
+    'an entry for a session is not due while that session is still being played',
+  );
+  assert.equal(entryStatus(c, e, 3), 'waiting');
+  const rung = {
+    ...c,
+    memory: { ...memoryOf(c), playbook: setFlag(memoryOf(c).playbook!, 'bell_ossa', 'rung', 'x') },
+  };
+  assert.equal(entryStatus(rung, e, 3), 'due');
+  const done = {
+    ...rung,
+    sessions: rung.sessions.map((s, i) => (i === 2 ? { ...s, done: true } : s)),
+  };
+  assert.equal(entryStatus(done, e, 2), 'due');
+  assert.deepEqual(
+    dueAfter(rung, installed.sessions[2].id).map((x) => x.id),
+    ['pw-x'],
+  );
+  assert.equal(entryStatus(sendEntry(rung, e, 's'), e, 2), 'sent');
+});
+test('encounters suggest how to retune for the party', () => {
+  const enc = pb.encounters.find((e) => e.id === 'enc-s01-quill-patrol')!;
+  const o = scaleOptions(enc, [3, 3, 3, 3]);
+  assert.deepEqual(
+    o.map((x) => x.band + x.delta + x.name),
+    ['Moderate4Hushman', 'High11Hushman'],
+  );
+  assert.deepEqual(scaleOptions(enc, []), []);
+});
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.
-if(process.env.WAYPOINT_SITE_OUT){const now=installed.sessions.findIndex(x=>!x.done);const early=sentEntries(installed).filter(e=>{const p=pb.playerWiki?.find(x=>x.id===e.id);return p&&entryStatus(takeDown(installed,e.id),p,Math.max(0,now))==='later'}).map(e=>e.id);fs.writeFileSync(process.env.WAYPOINT_SITE_OUT,siteHtml(early.reduce(takeDown,installed)));console.log('site written without',early.length?early.join(', '):'nothing')}
-console.log(failures?failures+' failed':'All playbook checks passed.');process.exit(failures?1:0);
+if (process.env.WAYPOINT_SITE_OUT) {
+  const now = installed.sessions.findIndex((x) => !x.done);
+  const early = sentEntries(installed)
+    .filter((e) => {
+      const p = pb.playerWiki?.find((x) => x.id === e.id);
+      return p && entryStatus(takeDown(installed, e.id), p, Math.max(0, now)) === 'later';
+    })
+    .map((e) => e.id);
+  fs.writeFileSync(process.env.WAYPOINT_SITE_OUT, siteHtml(early.reduce(takeDown, installed)));
+  console.log('site written without', early.length ? early.join(', ') : 'nothing');
+}
+console.log(failures ? failures + ' failed' : 'All playbook checks passed.');
+process.exit(failures ? 1 : 0);
