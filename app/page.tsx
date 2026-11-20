@@ -1,959 +1,95 @@
-'use client';
-import { useAIStatus } from '../components/use-ai-status';
-import { useSessionPrompt } from '../components/use-session-prompt';
-import SessionEditor, { type SessionEdit, type OutcomeEdit } from '../components/session-editor';
-import BookText from '../components/book-text';
-import CampaignHistory, { emptyHistory, type HistoryFilters } from '../components/campaign-history';
-import SessionWrapUp from '../components/session-wrap-up';
-import MaterialLibrary from '../components/material-library';
-
-import SessionRules from '../components/session-rules';
-import MaterialBody from '../components/material-body';
-import InlineMarks from '../components/inline-marks';
-import TableCoach from '../components/table-coach';
-import SessionPaths from '../components/session-paths';
-import { partySignals } from '../lib/party-signals';
 import QuickNavigation from '../components/quick-navigation';
 import { CampaignLinks } from '../components/campaign-links';
 import ReferencePanel from '../components/reference-panel';
-import { rememberItem } from '../lib/recent-items';
-import SessionReview from '../components/session-review';
-import { searchCampaign, type SearchHit } from '../lib/campaign-search';
-import PartyLedger from '../components/party-ledger';
-import { SaveQueue } from '../lib/save-queue';
-import {
-  Fragment,
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from 'react';
+import { Suspense } from 'react';
 import SessionRecorder from '../components/session-recorder';
-
-import CampaignMemory from '../components/campaign-memory';
-import TableMarkers from '../components/table-markers';
-import LiveLookup from '../components/live-lookup';
-import RippleDialog from '../components/ripple-dialog';
-import type { WikiDraft } from '../lib/player-site';
-import { applyChanges, resolveEffects, stateSummary } from '../lib/playbook';
-import NotesBar from '../components/notes-bar';
-import { tableCard } from '../lib/session-notes';
-import type { RuleReference } from '../lib/rules';
-import PlayCard from '../components/play-card';
-import { draftPage, memoryContext, memoryOf, type WikiPage } from '../lib/memory';
-import type { GoPlace } from '../lib/go-links';
-// Scrolls to a section that may still be rendering (a view loading after navigation), opening a closed <details> around it.
-function scrollToId(id: string, tries = 40) {
-  const target = document.getElementById(id);
-  if (!target) {
-    if (tries > 0) requestAnimationFrame(() => scrollToId(id, tries - 1));
-    return;
-  }
-  const box = target.closest('details');
-  if (box && !box.open) box.open = true;
-  target.scrollIntoView({ block: 'start' });
-  target.focus({ preventScroll: true });
-}
-
-import { appFetch, isDesktop } from '../lib/transport';
+import { isDesktop } from '../lib/transport';
 import {
   ArrowLeft,
   Search,
-  FileText,
-  BookOpen,
   Compass,
   Sparkles,
-  GitBranch,
-  Users,
   ScrollText,
   ChevronRight,
   Plus,
   Play,
-  ArrowUpRight,
-  ArrowRight,
   Check,
   Feather,
-  Download,
-  Upload,
   Settings2,
   X,
-  Copy,
-  RefreshCw,
-  Shield,
-  Map,
-  Dices,
   CheckCircle2,
-  Undo2,
-  Telescope,
-  KeyRound,
 } from 'lucide-react';
+import { useDesk, DeskContext } from './use-desk';
+import { SessionDeskView } from './views/session-desk';
+import { CampaignOutlineView } from './views/campaign-outline';
+import { PartyView } from './views/party-preferences';
 import {
-  Campaign,
-  Session,
-  Branch,
-  Card,
-  Event,
-  Style,
-  demo,
-  styles,
-  uid,
-  validateCampaign,
-} from '../lib/campaign';
-type View =
-  | 'Discoveries'
-  | 'Player site'
-  | 'Foresight'
-  | 'Rules library'
-  | 'Session desk'
-  | 'Campaign'
-  | 'Party & preferences'
-  | 'Chronicle'
-  | 'Saved material'
-  | 'Session journal'
-  | 'World wiki'
-  | 'Next session'
-  | 'Campaign hub'
-  | 'Player handouts';
-type Visit = {
-  campaignId: string;
-  view: View;
-  hit: SearchHit | null;
-  sessionId: string;
-  tab: string;
-  expanded: string | null;
-  scroll: number;
-};
-type SaveSnapshot = { campaigns: Campaign[]; active: string; sessionId: string };
-type Packet = {
-  title: string;
-  summary: string;
-  plan: string;
-  arc: string;
-  branches: Omit<Branch, 'id'>[];
-  cards: Omit<Card, 'id' | 'source'>[];
-  events: { text: string; style: Style; enjoyment: Event['enjoyment'] }[];
-};
-const storageKey = 'waypoint-campaigns-v1';
-const RulesLibrary = lazy(() => import('../components/rules-library'));
-const CampaignHub = lazy(() => import('../components/campaign-hub'));
-const PlayerHandouts = lazy(() => import('../components/player-handouts'));
-const PlayerSite = lazy(() => import('../components/player-site'));
-const RecapReview = lazy(() => import('../components/recap-review'));
-const AISettings = lazy(() => import('../components/ai-settings'));
-const RestorePoints = lazy(() => import('../components/restore-points'));
-const SessionCombat = lazy(() => import('../components/session-combat'));
-const Foresight = lazy(() => import('../components/foresight'));
-// Shown inside the shell while a lazy view or dialog body loads, so the sidebar, top bar and focus stay in place.
-import { count } from '../lib/plural';
-function ViewLoading() {
-  return (
-    <p className="view-loading" role="status">
-      Loading…
-    </p>
-  );
-}
+  DiscoveriesView,
+  ChronicleView,
+  RulesView,
+  SavedMaterialView,
+  MemoryView,
+  ForesightView,
+  HubView,
+  PlayerSiteView,
+  HandoutsView,
+} from './views/workspace-views';
+import { DialogBody } from './desk-dialogs';
+
+// The shell: the sidebar, top bar, section tabs and dialog frame around the current view.
 function HomeScreen() {
-  const [targetHit, setTargetHit] = useState<SearchHit | null>(null);
-  const setView = (next: View) => navigate(next);
-  const [navigationRevision, setNavigationRevision] = useState(0);
-  const [backStack, setBackStack] = useState<Visit[]>([]),
-    [referenceId, setReferenceId] = useState<string | null>(null);
-  const restoreScroll = useRef<number | null>(null),
-    workspaceSections = useRef<Record<string, View>>({});
-  // A `go:` link in session notes asks for a place: a section to scroll to after navigating, or a Foresight tab to open on.
-  const scrollTarget = useRef<string | null>(null),
-    [foresightTab, setForesightTab] = useState<{ tab: string; n: number } | null>(null);
-  const [commandOpen, setCommandOpen] = useState(false);
-  const [recordingActive, setRecordingActive] = useState(false);
-  const [planPlay, setPlanPlay] = useState<string | null>(null);
-  const [planTitle, setPlanTitle] = useState('');
-  const [eventSession, setEventSession] = useState('');
-  const [campaigns, setCampaigns] = useState<Campaign[]>([demo]);
-  const [active, setActive] = useState('demo');
-  const [sessionId, setSessionId] = useState('session-demo');
-  const [view, setViewState] = useState<View>('Session desk');
-  const [ready, setReady] = useState(false);
-  const aiStatus = useAIStatus();
-  const ai = aiStatus.ready;
-  const [busy, setBusy] = useState('');
-  const [notice, setNotice] = useState('');
-  const [error, setError] = useState('');
-  const [modal, setModal] = useState('');
-  const [live, setLive] = useState(false);
-  const [seedPage, setSeedPage] = useState<WikiPage | null>(null);
-  const [wikiSeed, setWikiSeed] = useState<WikiDraft | null>(null);
-  const clearWikiSeed = useCallback(() => setWikiSeed(null), []);
-  const [ripplePlay, setRipplePlay] = useState<{ play: Branch; sessionId: string } | null>(null);
-  useEffect(() => {
-    document.querySelector('.sidebar .navitem.active')?.scrollIntoView({ block: 'nearest' });
-  }, [view]);
-  const [tab, setTabState] = useState(() => {
-    try {
-      return localStorage.getItem('waypoint-desk-tab') || '';
-    } catch {
-      return '';
-    }
-  });
-  // The desk remembers the tab you last used (per computer); with none saved, a session that has a guide opens on its notes.
-  const setTab = (t: string) => {
-    setTabState(t);
-    try {
-      localStorage.setItem('waypoint-desk-tab', t);
-    } catch {}
-  };
-  const [expanded, setExpanded] = useState<string | null>('b1');
-  const [draft, setDraft] = useState('');
-  const [outcome, setOutcome] = useState('');
-  const [outcomeStyle, setOutcomeStyle] = useState<Style>('Roleplay');
-  const [rating, setRating] = useState<Event['enjoyment']>('Neutral');
-  const [selectedBranch, setSelectedBranch] = useState('');
-  const [editingEvent, setEditingEvent] = useState('');
-  const [newName, setNewName] = useState('');
-  const [newPremise, setNewPremise] = useState('');
-  const [newParty, setNewParty] = useState('Four adventurers, level 3');
-  const [newTone, setNewTone] = useState('Mysterious & atmospheric');
-  const [newBounds, setNewBounds] = useState('');
-  const [cardResult, setCardResult] = useState<Card | null>(null);
-  const [historyFilters, setHistoryFilters] = useState<HistoryFilters>({ ...emptyHistory });
-  const [historyReturn, setHistoryReturn] = useState(false);
-  const [historyFor, setHistoryFor] = useState(active);
-  if (historyFor !== active) {
-    setHistoryFor(active);
-    setHistoryFilters({ ...emptyHistory });
-    setHistoryReturn(false);
-    setBackStack([]);
-    setReferenceId(null);
-    setTargetHit(null);
-  }
-  const [twist, setTwist] = useState('Subtle');
-  const [loadFailed, setLoadFailed] = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const requestLock = useRef(false);
-  const saveQueue = useRef(new SaveQueue()),
-    saveRevision = useRef(0);
-  const [lastSave, setLastSave] = useState<{ snapshot: SaveSnapshot; failed: boolean } | null>(
-    null,
-  );
-  // Save status is derived from the last finished write: it counts only when it saved exactly what is on screen now.
-  const finishedSave =
-    lastSave &&
-    lastSave.snapshot.campaigns === campaigns &&
-    lastSave.snapshot.active === active &&
-    lastSave.snapshot.sessionId === sessionId
-      ? lastSave
-      : null;
-  const saving = ready && !finishedSave,
-    autoSaved = loadFailed ? false : !ready || (!!finishedSave && !finishedSave.failed);
-  const campaign = campaigns.find((c) => c.id === active) || campaigns[0];
-  const session =
-    campaign.sessions.find((s) => s.id === sessionId) ||
-    campaign.sessions[campaign.sessions.length - 1];
-  useEffect(() => {
-    const top = restoreScroll.current ?? 0,
-      target = scrollTarget.current;
-    restoreScroll.current = null;
-    scrollTarget.current = null;
-    requestAnimationFrame(() => {
-      if (target) {
-        scrollToId(target);
-        return;
-      }
-      window.scrollTo({ top });
-      document.querySelector('main')?.focus({ preventScroll: true });
-    });
-  }, [navigationRevision, campaign.id]);
-  const pinnedCard = campaign.cards.find((card) => card.id === session.pinnedCardId);
-  const promptDraft = useSessionPrompt(campaign.id, session.id);
-  const { quick, kind, setQuick, setKind } = promptDraft;
-  useEffect(() => {
-    (async () => {
-      try {
-        let saved: unknown = null;
-        if (isDesktop()) {
-          const r = await appFetch('/api/campaigns');
-          if (!r.ok)
-            throw new Error(
-              'Campaign file could not be loaded. Restore a backup from app data before continuing.',
-            );
-          saved = await r.json();
-        } else {
-          const raw = localStorage.getItem(storageKey);
-          if (raw) saved = JSON.parse(raw);
-        }
-        if (saved) {
-          const data = saved as { campaigns: Campaign[]; active: string; sessionId: string };
-          if (
-            !Array.isArray(data.campaigns) ||
-            !data.campaigns.length ||
-            !data.campaigns.every(validateCampaign)
-          )
-            throw new Error('Saved data is invalid. Import a valid backup before making changes.');
-          setCampaigns(data.campaigns);
-          setActive(data.active || data.campaigns[0].id);
-          setSessionId(data.sessionId || '');
-        }
-        setReady(true);
-      } catch (e) {
-        setError(e instanceof Error ? e.message : 'Could not load your campaigns.');
-        setLoadFailed(true);
-      }
-    })();
-  }, []);
-  useEffect(() => {
-    if (!ready) return;
-    const snapshot: SaveSnapshot = { campaigns, active, sessionId },
-      payload = JSON.stringify({ version: 2, ...snapshot }),
-      revision = ++saveRevision.current;
-    saveQueue.current
-      .enqueue(async () => {
-        if (isDesktop()) {
-          const r = await appFetch('/api/campaigns', { method: 'POST', body: payload });
-          if (!r.ok) throw new Error('Save failed');
-        } else localStorage.setItem(storageKey, payload);
-      })
-      .then(() => setLastSave({ snapshot, failed: false }))
-      .catch(() => {
-        setLastSave({ snapshot, failed: true });
-        if (revision === saveRevision.current)
-          setError('Could not save your campaign. Export a backup before closing.');
-      });
-  }, [campaigns, active, sessionId, ready]);
-  // Saves happen on every edit, so "saved" is announced once the writing has settled rather than after each keystroke.
-  const [saveAnnouncement, setSaveAnnouncement] = useState('');
-  useEffect(() => {
-    if (!ready || (!saving && !autoSaved)) return;
-    const timer = setTimeout(
-      () => setSaveAnnouncement(saving ? '' : 'All changes saved'),
-      saving ? 0 : 1200,
-    );
-    return () => clearTimeout(timer);
-  }, [ready, saving, autoSaved]);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      void import('../components/rules-library');
-      void import('../components/campaign-hub');
-      void import('../components/player-handouts');
-      void import('../components/book-text-render');
-      void import('../components/recap-review');
-      void import('../components/ai-settings');
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-  useEffect(() => {
-    if (!ready || autoSaved) return;
-    const guard = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-      event.returnValue = '';
-    };
-    window.addEventListener('beforeunload', guard);
-    return () => window.removeEventListener('beforeunload', guard);
-  }, [ready, autoSaved]);
-  useEffect(() => {
-    if (!notice) return;
-    const t = setTimeout(() => setNotice(''), 4000);
-    return () => clearTimeout(t);
-  }, [notice]);
-  function closeDialog() {
-    if (modalRef.current?.querySelector('[data-unsaved-draft="true"]')) {
-      setNotice(
-        'Draft storage is unavailable. Save, retry draft storage, or explicitly discard your edits.',
-      );
-      return;
-    }
-    setModal('');
-  }
-  useEffect(() => {
-    if (!modal) return;
-    const old = document.activeElement as HTMLElement;
-    const el = modalRef.current;
-    setTimeout(() => {
-      const fields = [
-        ...(el?.querySelectorAll<HTMLElement>(
-          '[data-autofocus],input:not([type=hidden]):not([disabled]),textarea:not([disabled]),select:not([disabled])',
-        ) || []),
-      ].filter((n) => n.getClientRects().length);
-      (
-        fields[0] ||
-        el?.querySelector<HTMLElement>('button:not(.modal-close):not([disabled])') ||
-        el?.querySelector<HTMLElement>('.modal-close')
-      )?.focus();
-    }, 20);
-    const fn = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !e.defaultPrevented) closeDialog();
-      if (e.key === 'Tab') {
-        const nodes = el?.querySelectorAll<HTMLElement>(
-          'button:not([disabled]),input,textarea,select,[tabindex="0"]',
-        );
-        if (!nodes?.length) return;
-        const first = nodes[0],
-          last = nodes[nodes.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    document.addEventListener('keydown', fn);
-    return () => {
-      document.removeEventListener('keydown', fn);
-      old?.focus();
-    };
-  }, [modal]);
-  const update = (fn: (c: Campaign) => Campaign) =>
-    setCampaigns((cs) => cs.map((c) => (c.id === campaign.id ? fn(c) : c)));
-  const updateSession = (fn: (s: Session) => Session) =>
-    update((c) => ({ ...c, sessions: c.sessions.map((s) => (s.id === session.id ? fn(s) : s)) }));
-  async function generate(mode: string, prompt: string, extra: Record<string, unknown> = {}) {
-    if (requestLock.current) return null;
-    requestLock.current = true;
-    setBusy(mode);
-    setError('');
-    try {
-      if (isDesktop() && !(await aiStatus.refresh())) {
-        setError(
-          'This action uses Claude. Add your Anthropic API key below. Your draft is still here.',
-        );
-        setModal('data');
-        return null;
-      }
-      const r = await appFetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          mode,
-          prompt,
-          kind,
-          context:
-            mode === 'campaign'
-              ? extra
-              : {
-                  campaign: {
-                    name: campaign.name,
-                    premise: campaign.premise,
-                    tone: campaign.tone,
-                    party: campaign.party,
-                    boundaries: campaign.boundaries,
-                    twist: campaign.twist,
-                    arc: campaign.arc,
-                    preferences: campaign.preferences,
-                  },
-                  currentSession: { ...session, ruleReferences: undefined },
-                  confirmedEvents: campaign.events.slice(-120),
-                  playerSignals: partySignals(campaign),
-                  ...memoryContext(
-                    campaign,
-                    false,
-                    prompt +
-                      ' ' +
-                      memoryOf(campaign).planner.focus +
-                      ' ' +
-                      session.plan.slice(0, 4000),
-                  ),
-                  rulesReferences: session.ruleReferences || [],
-                  worldState: memoryOf(campaign).playbook
-                    ? stateSummary(memoryOf(campaign).playbook!)
-                    : undefined,
-                  savedDraftMaterial: campaign.cards.slice(0, 15),
-                  priorSessions: campaign.sessions
-                    .filter((s) => s.id !== session.id)
-                    .slice(-20)
-                    .map((s) => ({
-                      title: s.title,
-                      summary: s.summary,
-                      done: s.done,
-                      debrief: s.debrief,
-                    })),
-                  ...extra,
-                },
-        }),
-      });
-      const data = (await r.json()) as Packet & { error?: string };
-      if (!r.ok) throw new Error(data.error || 'Generation failed. Please try again.');
-      return data as Packet;
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Could not connect. Try again.');
-      return null;
-    } finally {
-      setBusy('');
-      requestLock.current = false;
-    }
-  }
-  async function prepare() {
-    const p = await generate('prepare', session.plan);
-    if (p) {
-      updateSession((s) => ({
-        ...s,
-        summary: p.summary,
-        branches: [
-          ...s.branches.filter((b) => b.origin === 'playbook'),
-          ...p.branches.map((b) => ({ ...b, id: uid(), origin: 'ai' as const })),
-        ],
-        source: 'AI prepared',
-      }));
-      setExpanded(null);
-      setNotice('Possibilities are ready. Nothing is canon until you record it.');
-    }
-  }
-  async function improvise() {
-    if (!quick.trim()) return;
-    const p = await generate('improvise', quick, {
-      requestedKind: kind,
-      twistIntensity: campaign.twist,
-    });
-    if (p) {
-      const card = { ...p.cards[0], id: uid(), source: 'AI generated' };
-      setCardResult(card);
-      update((c) => ({ ...c, cards: [card, ...c.cards] }));
-      setModal('card');
-      setNotice('Saved to your material library.');
-    }
-  }
-  async function nextSession() {
-    const p = await generate(
-      'next',
-      'Create the next session, following what actually happened and what the party enjoyed.',
-    );
-    if (p) {
-      const s: Session = {
-        id: uid(),
-        title: p.title,
-        plan: p.plan,
-        summary: p.summary,
-        branches: p.branches.map((b) => ({ ...b, id: uid() })),
-        source: 'AI prepared',
-        done: false,
-      };
-      update((c) => ({ ...c, sessions: [...c.sessions, s] }));
-      setSessionId(s.id);
-      setView('Session desk');
-      setTab('Possibilities');
-      setNotice('Next session drafted from your campaign history.');
-    }
-  }
-  async function createCampaign() {
-    if (!newPremise.trim() || !newName.trim()) return;
-    const p = await generate('campaign', newPremise, {
-      name: newName,
-      party: newParty,
-      tone: newTone,
-      boundaries: newBounds,
-      twist,
-    });
-    if (p) {
-      const s: Session = {
-        id: uid(),
-        title: p.title,
-        plan: p.plan,
-        summary: p.summary,
-        branches: p.branches.map((b) => ({ ...b, id: uid() })),
-        source: 'AI prepared',
-        done: false,
-      };
-      const c: Campaign = {
-        id: uid(),
-        name: newName,
-        premise: newPremise,
-        party: newParty,
-        tone: newTone,
-        boundaries: newBounds,
-        twist,
-        arc: p.arc,
-        preferences: { Roleplay: 3, Exploration: 3, Combat: 3, Mischief: 3 },
-        events: [],
-        cards: [],
-        sessions: [s],
-      };
-      setCampaigns((cs) => [...cs, c]);
-      setActive(c.id);
-      setSessionId(s.id);
-      setModal('');
-      setView('Session desk');
-      setNotice('Your campaign and first session are ready.');
-    }
-  }
-  function manualCampaign() {
-    if (!newName.trim() || !newPremise.trim()) return;
-    const s: Session = {
-      id: uid(),
-      title: 'The first chapter',
-      plan: '',
-      summary: 'An unwritten adventure awaits.',
-      branches: [],
-      source: 'DM written',
-      done: false,
-    };
-    const c: Campaign = {
-      id: uid(),
-      name: newName.trim(),
-      premise: newPremise,
-      party: newParty,
-      tone: newTone,
-      boundaries: newBounds,
-      twist,
-      arc: '',
-      preferences: { Roleplay: 3, Exploration: 3, Combat: 3, Mischief: 3 },
-      events: [],
-      cards: [],
-      sessions: [s],
-    };
-    setCampaigns((cs) => [...cs, c]);
-    setActive(c.id);
-    setSessionId(s.id);
-    setView('Campaign');
-    setModal('');
-    setNotice('Campaign created. Add your outline and session notes.');
-  }
-  function record(branch?: Branch, sid?: string) {
-    setEditingEvent('');
-    setEventSession(sid || session.id);
-    setSelectedBranch(branch?.id || '');
-    setOutcome(branch ? `${branch.title}.` : '');
-    setOutcomeStyle(branch?.style || 'Roleplay');
-    setRating('Neutral');
-    setModal('outcome');
-  }
-  // A prepared play with tracked effects or later consequences opens the ripple review first; others go straight to the outcome editor.
-  const deskTab =
-      tab || (session.plan.includes('## Running this session') ? 'Session notes' : 'Possibilities'),
-    deskCard = tableCard(session.plan);
-  // A play a session plan links to (`play:<id>`) opens in place in the notes. Ids may have been renamed with the DM's text (Tongue → Heart).
-  const planPlays = {
-    open: planPlay,
-    toggle: (id: string) => setPlanPlay((p) => (p === id ? null : id)),
-    render: (id: string) => {
-      const all = [...session.branches, ...(memoryOf(campaign).playbook?.anytime || [])],
-        play =
-          all.find((b) => b.id === id) || all.find((b) => b.id === id.replace(/heart/g, 'tongue'));
-      return play ? (
-        <PlayCard
-          play={play}
-          pb={memoryOf(campaign).playbook}
-          open
-          recorded={campaign.events.some((e) => e.branchId === play.id)}
-          onToggle={() => setPlanPlay(null)}
-          onPlayed={(p) => played(p as Branch)}
-          onQuick={(p) => quickRecord(p as Branch)}
-        />
-      ) : (
-        <span className="tiny muted"> (This play isn’t in this campaign.)</span>
-      );
-    },
-  };
-  // Records a play in one click: its world changes, as the ripple dialog would apply them, and a chronicle line (enjoyment Neutral).
-  function quickRecord(play: Branch, sid?: string) {
-    const at = sid || session.id;
-    update((c) => {
-      const m = memoryOf(c),
-        pb = m.playbook;
-      return {
-        ...c,
-        events: [
-          ...c.events,
-          {
-            id: uid(),
-            sessionId: at,
-            text: play.title + '.',
-            style: play.style,
-            enjoyment: 'Neutral' as const,
-            date: new Date().toISOString(),
-            branchId: play.id,
-          },
-        ],
-        memory:
-          pb && play.effects?.length
-            ? {
-                ...m,
-                playbook: applyChanges(pb, resolveEffects(pb, play.effects), {
-                  sessionId: at,
-                  title: play.title,
-                  playId: play.id,
-                }),
-              }
-            : c.memory,
-      };
-    });
-    setNotice(
-      'Recorded: ' +
-        play.title +
-        '. Undo world changes in Foresight → World state; edit the line in the chronicle.',
-    );
-  }
-  function played(play: Branch, sid?: string) {
-    const pb = memoryOf(campaign).playbook;
-    if (pb && (play.effects?.length || play.later)) {
-      setRipplePlay({ play, sessionId: sid || session.id });
-      setModal('ripple');
-    } else record(play, sid);
-  }
-  function pinRule(ref: RuleReference) {
-    updateSession((s) => ({
-      ...s,
-      ruleReferences: [...(s.ruleReferences || []).filter((r) => r.id !== ref.id), ref].slice(-6),
-    }));
-  }
-  function saveOutcome(value: OutcomeEdit) {
-    update((c) => ({
-      ...c,
-      events: editingEvent
-        ? c.events.map((e) => (e.id === editingEvent ? { ...e, ...value } : e))
-        : [...c.events, { ...value, id: uid(), date: new Date().toISOString() }],
-    }));
-    setModal('');
-    setNotice(
-      editingEvent
-        ? 'Campaign history updated.'
-        : 'Recorded. Future sessions will use this outcome.',
-    );
-  }
-  function exportData() {
-    const blob = new Blob([JSON.stringify({ version: 2, campaigns, active, sessionId }, null, 2)], {
-      type: 'application/json',
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'waypoint-campaigns.json';
-    a.click();
-    URL.revokeObjectURL(url);
-    setNotice('Campaign backup downloaded.');
-  }
-  // Backups and restore points are added as copies, so existing campaigns are never replaced.
-  function addCopies(data: { campaigns?: unknown } | null, label: string) {
-    const list = data?.campaigns;
-    if (!Array.isArray(list) || !list.length || !list.every(validateCampaign))
-      throw new Error('This is not a valid Waypoint backup.');
-    const restored: Campaign[] = list.map((c: Campaign) => ({
-      ...c,
-      id: uid(),
-      name: c.name + ' (' + label + ')',
-    }));
-    setCampaigns((cs) => [...cs, ...restored]);
-    setActive(restored[0].id);
-    setSessionId(restored[0].sessions[0]?.id || '');
-    setReady(true);
-    return restored.length;
-  }
-  async function importData(file?: File) {
-    if (!file) return;
-    try {
-      if (file.size > 50000000) throw new Error('Please use a backup smaller than 50 MB.');
-      addCopies(JSON.parse(await file.text()), 'imported');
-      setNotice('Backup imported as separate campaigns.');
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Import failed.');
-    } finally {
-      if (fileRef.current) fileRef.current.value = '';
-    }
-  }
-  function coachPrompt(prompt: string) {
-    setView('Session desk');
-    setTab('Quick help');
-    promptDraft.replace(prompt.slice(0, 10000), 'DM response');
-    setNotice('Add what the players said, then generate your response.');
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => {
-        const el = document.getElementById('quick-prompt');
-        el?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-        el?.focus();
-      }),
-    );
-  }
-  useEffect(() => {
-    const shortcut = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k' && !modal) {
-        e.preventDefault();
-        setCommandOpen((v) => !v);
-      }
-    };
-    window.addEventListener('keydown', shortcut);
-    return () => window.removeEventListener('keydown', shortcut);
-  }, [modal]);
-  function navigate(next: View, hit: SearchHit | null = null) {
-    if (next !== 'Foresight') setForesightTab(null);
-    if (next === view && hit?.id === targetHit?.id && hit?.kind === targetHit?.kind) return;
-    setBackStack((stack) =>
-      [
-        ...stack,
-        {
-          campaignId: campaign.id,
-          view,
-          hit: targetHit,
-          sessionId: session.id,
-          tab: deskTab,
-          expanded,
-          scroll: window.scrollY,
-        },
-      ].slice(-40),
-    );
-    setNavigationRevision((value) => value + 1);
-    setTargetHit(hit);
-    setViewState(next);
-  }
-  function goBack() {
-    setForesightTab(null);
-    const previous = backStack[backStack.length - 1];
-    if (!previous || previous.campaignId !== campaign.id) return;
-    setBackStack((stack) => stack.slice(0, -1));
-    restoreScroll.current = previous.scroll;
-    setNavigationRevision((value) => value + 1);
-    setViewState(previous.view);
-    setTargetHit(
-      previous.hit
-        ? searchCampaign(campaign, '', previous.hit.kind).find(
-            (hit) => hit.id === previous.hit!.id,
-          ) || null
-        : null,
-    );
-    setSessionId(
-      campaign.sessions.some((s) => s.id === previous.sessionId) ? previous.sessionId : session.id,
-    );
-    setTab(previous.tab);
-    setExpanded(previous.expanded);
-  }
-  function showReference(id: string) {
-    rememberItem(campaign.id, { kind: 'Wiki', id });
-    setReferenceId(id);
-  }
-  function goTo(place: GoPlace) {
-    if (place === 'world-state') {
-      setForesightTab({ tab: 'World state', n: Date.now() });
-      navigate('Foresight');
-      return;
-    }
-    if (view === 'Party & preferences') {
-      scrollToId(place);
-      return;
-    }
-    scrollTarget.current = place;
-    navigate('Party & preferences');
-  }
-  function toggleReference(id: string) {
-    update((c) => {
-      const memory = memoryOf(c);
-      return {
-        ...c,
-        memory: {
-          ...memory,
-          pins: memory.pins?.includes(id)
-            ? memory.pins.filter((value) => value !== id)
-            : [...(memory.pins || []), id],
-        },
-      };
-    });
-  }
-  function openHit(hit: SearchHit) {
-    rememberItem(campaign.id, hit);
-    navigate('Campaign hub', hit);
-  }
-  function openWorkspace(hit: SearchHit) {
-    rememberItem(campaign.id, hit);
-    if (hit.kind === 'Material') {
-      setCardResult(campaign.cards.find((c) => c.id === hit.id) || null);
-      setModal('card');
-      return;
-    }
-    const destinations: Partial<Record<SearchHit['kind'], View>> = {
-      Wiki: 'World wiki',
-      Journal: 'Session journal',
-      Handout: 'Player handouts',
-      Character: 'Party & preferences',
-      Rule: 'Rules library',
-    };
-    navigate(destinations[hit.kind] || 'Session desk', hit);
-    if (hit.sessionId) setSessionId(hit.sessionId);
-    if (['Play', 'Event', 'Session', 'Creature', 'Encounter'].includes(hit.kind)) {
-      setTab(
-        ['Creature', 'Encounter'].includes(hit.kind)
-          ? 'Combat'
-          : hit.kind === 'Play'
-            ? 'Possibilities'
-            : hit.kind === 'Event'
-              ? 'At the table'
-              : 'Session notes',
-      );
-      if (hit.kind === 'Play') setExpanded(hit.id);
-    }
-  }
-  const nav: [View, typeof BookOpen][] = [
-    ['Session desk', BookOpen],
-    ['Foresight', Telescope],
-    ['Next session', Compass],
-    ['Saved material', Sparkles],
-    ['Rules library', BookOpen],
-    ['Campaign hub', Compass],
-    ['Campaign', Map],
-    ['World wiki', BookOpen],
-    ['Party & preferences', Users],
-    ['Session journal', FileText],
-    ['Chronicle', ScrollText],
-    ['Player site', FileText],
-    ['Player handouts', FileText],
-    ['Discoveries', CheckCircle2],
-  ];
-  const areas: { label: string; icon: typeof BookOpen; views: { view: View; label: string }[] }[] =
-    [
-      {
-        label: 'Session',
-        icon: BookOpen,
-        views: [
-          { view: 'Session desk', label: 'Current session' },
-          { view: 'Foresight', label: 'Playbook' },
-          { view: 'Next session', label: 'Plan next session' },
-        ],
-      },
-      {
-        label: 'Campaign',
-        icon: Compass,
-        views: [
-          { view: 'Campaign hub', label: 'Read & explore' },
-          { view: 'World wiki', label: 'Wiki editor' },
-          { view: 'Campaign', label: 'Outline & sessions' },
-          { view: 'Party & preferences', label: 'Party & preferences' },
-        ],
-      },
-      {
-        label: 'Journal',
-        icon: ScrollText,
-        views: [
-          { view: 'Session journal', label: 'Notes & recordings' },
-          { view: 'Discoveries', label: 'Review discoveries' },
-          { view: 'Chronicle', label: 'Confirmed history' },
-        ],
-      },
-      {
-        label: 'Library',
-        icon: BookOpen,
-        views: [
-          { view: 'Rules library', label: 'Rules' },
-          { view: 'Saved material', label: 'Saved ideas' },
-        ],
-      },
-      {
-        label: 'Players',
-        icon: Users,
-        views: [
-          { view: 'Player site', label: 'Player site' },
-          { view: 'Player handouts', label: 'Handouts & display' },
-        ],
-      },
-    ];
-  const area = areas.find((a) => a.views.some((v) => v.view === view))!;
-  const pageLabel = area.views.find((v) => v.view === view)!.label;
-  useEffect(() => {
-    workspaceSections.current[campaign.id + ':' + area.label] = view;
-  }, [campaign.id, area.label, view]);
-  const memory = memoryOf(campaign),
-    reviewCount = memory.notes.reduce(
-      (n, note) => n + note.proposals.filter((p) => p.state === 'pending').length,
-      0,
-    );
+  const desk = useDesk();
+  const {
+    setView,
+    backStack,
+    referenceId,
+    setReferenceId,
+    workspaceSections,
+    commandOpen,
+    setCommandOpen,
+    recordingActive,
+    setRecordingActive,
+    setPlanTitle,
+    view,
+    ai,
+    busy,
+    notice,
+    error,
+    setError,
+    campaigns,
+    setActive,
+    setSessionId,
+    ready,
+    campaign,
+    session,
+    saving,
+    autoSaved,
+    saveAnnouncement,
+    update,
+    modal,
+    setModal,
+    live,
+    setLive,
+    setExpanded,
+    setDraft,
+    fileRef,
+    modalRef,
+    closeDialog,
+    record,
+    importData,
+    goBack,
+    showReference,
+    goTo,
+    toggleReference,
+    openHit,
+    openWorkspace,
+    nav,
+    areas,
+    area,
+    pageLabel,
+    memory,
+    reviewCount,
+  } = desk;
   // Until the saved campaigns arrive, show a quiet opening screen instead of flashing the demo campaign's layout.
   if (!ready)
     return (
@@ -965,1771 +101,413 @@ function HomeScreen() {
       </div>
     );
   return (
-    <CampaignLinks.Provider value={{ pages: memory.pages, onOpen: showReference, onGo: goTo }}>
-      <div className={'app ' + (live ? 'live' : '')}>
-        <a
-          className="skip-link"
-          href="#main"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById('main')?.focus();
-          }}
-        >
-          Skip to main content
-        </a>
-        {commandOpen && (
-          <QuickNavigation
-            campaign={campaign}
-            onOpen={(hit) =>
-              hit.kind === 'Wiki'
-                ? showReference(hit.id)
-                : ['Creature', 'Encounter'].includes(hit.kind)
-                  ? openWorkspace(hit)
-                  : openHit(hit)
-            }
-            onRule={openWorkspace}
-            onClose={() => setCommandOpen(false)}
-            actions={[
-              ...nav.map(([name]) => ({
-                label:
-                  areas
-                    .flatMap((a) => a.views.map((v) => ({ ...v, area: a.label })))
-                    .find((v) => v.view === name)?.label || name,
-                detail:
-                  (
-                    {
-                      'Session desk': 'Run the current session',
-                      Foresight: 'Prep brief, likely plays, world state and forecast',
-                      'World wiki': 'People, places, and discoveries',
-                      'Session journal': 'Record, transcribe, and review',
-                      'Campaign hub': 'Search the campaign and follow connections',
-                      'Next session': 'Prepare the next chapter',
-                      'Rules library': 'Search offline 5etools spells, creatures and rules',
-                    } as Record<string, string>
-                  )[name] || 'Open campaign workspace',
-                run: () => setView(name),
-              })),
-              {
-                label: 'AI & backups',
-                detail: 'Set your Claude key and model, and manage backups',
-                run: () => setModal('data'),
-              },
-              {
-                label: 'Record an outcome',
-                detail: 'Capture what the players actually did',
-                run: () => record(),
-              },
-            ]}
-          />
-        )}
-        <aside className="sidebar">
+    <DeskContext.Provider value={desk}>
+      <CampaignLinks.Provider value={{ pages: memory.pages, onOpen: showReference, onGo: goTo }}>
+        <div className={'app ' + (live ? 'live' : '')}>
           <a
-            className="brand"
-            href="#"
+            className="skip-link"
+            href="#main"
             onClick={(e) => {
               e.preventDefault();
-              setView('Session desk');
+              document.getElementById('main')?.focus();
             }}
           >
-            <span className="brandmark">
-              <Compass size={26} />
-            </span>
-            <span>
-              waypoint<span className="brand-sub">THE DM’S COMPANION</span>
-            </span>
+            Skip to main content
           </a>
-          <div className="campaign-picker">
-            <span className="eyebrow">YOUR CAMPAIGN</span>
-            <select
-              aria-label="Choose campaign"
-              value={campaign.id}
-              disabled={!!busy || recordingActive}
-              onChange={(e) => {
-                setActive(e.target.value);
-                setSessionId('');
-                setExpanded(null);
+          {commandOpen && (
+            <QuickNavigation
+              campaign={campaign}
+              onOpen={(hit) =>
+                hit.kind === 'Wiki'
+                  ? showReference(hit.id)
+                  : ['Creature', 'Encounter'].includes(hit.kind)
+                    ? openWorkspace(hit)
+                    : openHit(hit)
+              }
+              onRule={openWorkspace}
+              onClose={() => setCommandOpen(false)}
+              actions={[
+                ...nav.map(([name]) => ({
+                  label:
+                    areas
+                      .flatMap((a) => a.views.map((v) => ({ ...v, area: a.label })))
+                      .find((v) => v.view === name)?.label || name,
+                  detail:
+                    (
+                      {
+                        'Session desk': 'Run the current session',
+                        Foresight: 'Prep brief, likely plays, world state and forecast',
+                        'World wiki': 'People, places, and discoveries',
+                        'Session journal': 'Record, transcribe, and review',
+                        'Campaign hub': 'Search the campaign and follow connections',
+                        'Next session': 'Prepare the next chapter',
+                        'Rules library': 'Search offline 5etools spells, creatures and rules',
+                      } as Record<string, string>
+                    )[name] || 'Open campaign workspace',
+                  run: () => setView(name),
+                })),
+                {
+                  label: 'AI & backups',
+                  detail: 'Set your Claude key and model, and manage backups',
+                  run: () => setModal('data'),
+                },
+                {
+                  label: 'Record an outcome',
+                  detail: 'Capture what the players actually did',
+                  run: () => record(),
+                },
+              ]}
+            />
+          )}
+          <aside className="sidebar">
+            <a
+              className="brand"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setView('Session desk');
               }}
             >
-              {campaigns.map((c) => (
-                <option value={c.id} key={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-            <span className="tiny">
-              <span className="dot" /> {campaign.sessions.length} session
-              {campaign.sessions.length !== 1 ? 's' : ''} ·{' '}
-              {campaign.id === 'demo' ? 'Example campaign' : 'Your story'}
-            </span>
-          </div>
-          <nav aria-label="Main navigation">
-            {areas.map((a) => (
-              <button
-                key={a.label}
-                className={area === a ? 'navitem active' : 'navitem'}
-                aria-current={area === a ? 'page' : undefined}
-                onClick={() =>
-                  setView(workspaceSections.current[campaign.id + ':' + a.label] || a.views[0].view)
-                }
-              >
-                <a.icon size={18} />
-                <span>{a.label}</span>
-                {a.label === 'Journal' && reviewCount > 0 && (
-                  <span className="nav-count">{reviewCount}</span>
-                )}
-              </button>
-            ))}
-            <button className="navitem mobile-settings" onClick={() => setModal('data')}>
-              <Settings2 size={16} /> Backups
-            </button>
-          </nav>
-          <button
-            className="new-campaign"
-            disabled={recordingActive}
-            onClick={() => setModal('new')}
-          >
-            <Plus size={17} /> New campaign
-          </button>
-          <div className="side-bottom">
-            <div className="side-note">
-              <Feather size={21} />
-              <p>
-                The best stories take
-                <br />
-                unexpected turns.
-              </p>
-            </div>
-            <button className="navitem" onClick={() => setModal('data')}>
-              <Settings2 size={17} /> AI & backups
-            </button>
-            <div className="dm-avatar">
-              <span>DM</span>
-              <div>
-                Your storyteller’s desk
-                <small>
-                  {saving
-                    ? 'Saving…'
-                    : autoSaved
-                      ? isDesktop()
-                        ? 'Saved on this computer'
-                        : 'Saved in this browser'
-                      : 'Backup needed'}
-                </small>
-              </div>
-              <span className="status-dot" />
-            </div>
-          </div>
-        </aside>
-        <div className="workspace">
-          <header className="topbar">
-            <button
-              className="icon-button workspace-back"
-              aria-label="Back to previous screen"
-              title="Back to previous screen"
-              disabled={!backStack.length}
-              onClick={goBack}
-            >
-              <ArrowLeft size={18} />
-            </button>
-            <div className="breadcrumb">
-              {campaign.name}
-              <ChevronRight size={14} />
-              <span>{area.label}</span>
-              <ChevronRight size={14} />
-              <span>{pageLabel}</span>
-            </div>
-            <div className="top-actions">
-              <button
-                className="button command-trigger"
-                aria-label="Search campaign (Control K)"
-                title="Quick navigation · Ctrl+K"
-                onClick={() => setCommandOpen(true)}
-              >
-                <Search size={15} />
-                <span>Search campaign</span>
-                <kbd>Ctrl K</kbd>
-              </button>
-              <button className="button" onClick={() => setModal('data')}>
-                <span className={'dot ' + (!ai ? 'off' : '')} />
-                AI · {ai ? 'Ready' : 'Not ready'}
-              </button>
-              <span className="save-status">
-                <Check size={13} />
-                {ready
-                  ? saving
-                    ? 'Saving…'
-                    : autoSaved
-                      ? 'All changes saved'
-                      : 'Save unavailable'
-                  : 'Loading…'}
+              <span className="brandmark">
+                <Compass size={26} />
               </span>
-              <button
-                className={'button ' + (live ? 'primary' : '')}
-                onClick={() => {
-                  setLive(!live);
-                  setView('Session desk');
+              <span>
+                waypoint<span className="brand-sub">THE DM’S COMPANION</span>
+              </span>
+            </a>
+            <div className="campaign-picker">
+              <span className="eyebrow">YOUR CAMPAIGN</span>
+              <select
+                aria-label="Choose campaign"
+                value={campaign.id}
+                disabled={!!busy || recordingActive}
+                onChange={(e) => {
+                  setActive(e.target.value);
+                  setSessionId('');
+                  setExpanded(null);
                 }}
               >
-                <Play size={14} />
-                {live ? 'Exit live mode' : 'Live mode'}
-              </button>
+                {campaigns.map((c) => (
+                  <option value={c.id} key={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+              <span className="tiny">
+                <span className="dot" /> {campaign.sessions.length} session
+                {campaign.sessions.length !== 1 ? 's' : ''} ·{' '}
+                {campaign.id === 'demo' ? 'Example campaign' : 'Your story'}
+              </span>
             </div>
-          </header>
-          <main
-            id="main"
-            tabIndex={-1}
-            className={view === 'Rules library' ? 'fill-height' : undefined}
-          >
-            <div className="page-heading">
-              <div>
-                <h1>{area.label}</h1>
-              </div>
-              {view === 'Session desk' ? (
+            <nav aria-label="Main navigation">
+              {areas.map((a) => (
                 <button
-                  className="button primary"
-                  onClick={() => {
-                    setPlanTitle(session.title);
-                    setDraft(session.plan);
-                    setModal('plan');
-                  }}
+                  key={a.label}
+                  className={area === a ? 'navitem active' : 'navitem'}
+                  aria-current={area === a ? 'page' : undefined}
+                  onClick={() =>
+                    setView(
+                      workspaceSections.current[campaign.id + ':' + a.label] || a.views[0].view,
+                    )
+                  }
                 >
-                  <Feather size={15} /> Edit session plan
-                </button>
-              ) : view === 'Chronicle' ? (
-                <div className="heading-actions">
-                  <button
-                    className="button"
-                    onClick={() => {
-                      setError('');
-                      setModal('recap');
-                    }}
-                  >
-                    <ScrollText size={15} /> Import recap
-                  </button>
-                  <button className="button primary" onClick={() => record()}>
-                    <Plus size={16} /> Record an event
-                  </button>
-                </div>
-              ) : null}
-            </div>
-            <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
-              {area.views.map((item) => (
-                <button
-                  key={item.view}
-                  className={view === item.view ? 'selected' : ''}
-                  aria-current={view === item.view ? 'page' : undefined}
-                  onClick={() => setView(item.view)}
-                >
-                  {item.label}
-                  {item.view === 'Discoveries' && reviewCount > 0 && (
+                  <a.icon size={18} />
+                  <span>{a.label}</span>
+                  {a.label === 'Journal' && reviewCount > 0 && (
                     <span className="nav-count">{reviewCount}</span>
                   )}
                 </button>
               ))}
+              <button className="navitem mobile-settings" onClick={() => setModal('data')}>
+                <Settings2 size={16} /> Backups
+              </button>
             </nav>
-            <div className="workspace-context">
-              {[
-                'Session desk',
-                'Foresight',
-                'Next session',
-                'Rules library',
-                'Player site',
-                'Party & preferences',
-              ].includes(view) && (
-                <label>
-                  Session
-                  <select
-                    aria-label="Current session"
-                    disabled={!!busy || recordingActive}
-                    value={session.id}
-                    onChange={(e) => {
-                      setSessionId(e.target.value);
-                      setExpanded(null);
-                    }}
-                  >
-                    {campaign.sessions.map((s, i) => (
-                      <option key={s.id} value={s.id}>
-                        {i + 1} · {s.title}
-                        {s.done ? ' ✓' : ''}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
+            <button
+              className="new-campaign"
+              disabled={recordingActive}
+              onClick={() => setModal('new')}
+            >
+              <Plus size={17} /> New campaign
+            </button>
+            <div className="side-bottom">
+              <div className="side-note">
+                <Feather size={21} />
+                <p>
+                  The best stories take
+                  <br />
+                  unexpected turns.
+                </p>
+              </div>
+              <button className="navitem" onClick={() => setModal('data')}>
+                <Settings2 size={17} /> AI & backups
+              </button>
+              <div className="dm-avatar">
+                <span>DM</span>
+                <div>
+                  Your storyteller’s desk
+                  <small>
+                    {saving
+                      ? 'Saving…'
+                      : autoSaved
+                        ? isDesktop()
+                          ? 'Saved on this computer'
+                          : 'Saved in this browser'
+                        : 'Backup needed'}
+                  </small>
+                </div>
+                <span className="status-dot" />
+              </div>
             </div>
-            {error && (
-              <div className="alert" role="alert">
-                <span>{error}</span>
-                <button aria-label="Dismiss error" onClick={() => setError('')}>
-                  <X size={16} />
+          </aside>
+          <div className="workspace">
+            <header className="topbar">
+              <button
+                className="icon-button workspace-back"
+                aria-label="Back to previous screen"
+                title="Back to previous screen"
+                disabled={!backStack.length}
+                onClick={goBack}
+              >
+                <ArrowLeft size={18} />
+              </button>
+              <div className="breadcrumb">
+                {campaign.name}
+                <ChevronRight size={14} />
+                <span>{area.label}</span>
+                <ChevronRight size={14} />
+                <span>{pageLabel}</span>
+              </div>
+              <div className="top-actions">
+                <button
+                  className="button command-trigger"
+                  aria-label="Search campaign (Control K)"
+                  title="Quick navigation · Ctrl+K"
+                  onClick={() => setCommandOpen(true)}
+                >
+                  <Search size={15} />
+                  <span>Search campaign</span>
+                  <kbd>Ctrl K</kbd>
+                </button>
+                <button className="button" onClick={() => setModal('data')}>
+                  <span className={'dot ' + (!ai ? 'off' : '')} />
+                  AI · {ai ? 'Ready' : 'Not ready'}
+                </button>
+                <span className="save-status">
+                  <Check size={13} />
+                  {ready
+                    ? saving
+                      ? 'Saving…'
+                      : autoSaved
+                        ? 'All changes saved'
+                        : 'Save unavailable'
+                    : 'Loading…'}
+                </span>
+                <button
+                  className={'button ' + (live ? 'primary' : '')}
+                  onClick={() => {
+                    setLive(!live);
+                    setView('Session desk');
+                  }}
+                >
+                  <Play size={14} />
+                  {live ? 'Exit live mode' : 'Live mode'}
                 </button>
               </div>
-            )}
-            {view === 'Session desk' && (
-              <>
-                {historyReturn && (
+            </header>
+            <main
+              id="main"
+              tabIndex={-1}
+              className={view === 'Rules library' ? 'fill-height' : undefined}
+            >
+              <div className="page-heading">
+                <div>
+                  <h1>{area.label}</h1>
+                </div>
+                {view === 'Session desk' ? (
                   <button
-                    className="button history-return"
+                    className="button primary"
                     onClick={() => {
-                      setView('Chronicle');
-                      setHistoryReturn(false);
+                      setPlanTitle(session.title);
+                      setDraft(session.plan);
+                      setModal('plan');
                     }}
                   >
-                    Back to filtered history
+                    <Feather size={15} /> Edit session plan
                   </button>
-                )}
-                <div className="desk-grid">
-                  <section className="desk-main">
-                    <div className="session-hero">
-                      <div className="hero-content">
-                        <div className="hero-label">
-                          <span className="pill">
-                            SESSION {campaign.sessions.indexOf(session) + 1}
-                          </span>
-                          <span>{session.done ? 'Completed' : 'On your horizon'}</span>
-                        </div>
-                        <h2>{session.title}</h2>
-                        <p>{session.summary}</p>
-                      </div>
-                      <svg className="folio-compass" viewBox="0 0 260 260" aria-hidden="true">
-                        <circle cx="130" cy="130" r="110" fill="none" stroke="currentColor" />
-                        <circle
-                          cx="130"
-                          cy="130"
-                          r="92"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeDasharray="2 9"
-                        />
-                        <path
-                          d="M130 6v248M6 130h248M43 43l174 174M43 217L217 43"
-                          stroke="currentColor"
-                          opacity=".5"
-                        />
-                        <path
-                          d="M130 37l18 75 75 18-75 18-18 75-18-75-75-18 75-18z"
-                          fill="none"
-                          stroke="currentColor"
-                        />
-                        <circle cx="130" cy="130" r="18" fill="none" stroke="currentColor" />
-                      </svg>
-                      <div className="hero-illustration" aria-hidden="true" />
-                      <div className="tower-art" aria-hidden="true">
-                        <div className="moon" />
-                        <div className="hill back" />
-                        <div className="tower">
-                          <div className="roof" />
-                          <i />
-                          <i />
-                          <div className="door" />
-                        </div>
-                        <div className="hill front" />
-                        <div className="star s1">✧</div>
-                        <div className="star s2">✦</div>
-                        <div className="star s3">·</div>
-                      </div>
-                    </div>
-
-                    <div className="session-toolbar">
-                      <div className="session-end-actions">
-                        <button className="text-button" onClick={() => record()}>
-                          <Plus size={14} />
-                          Record outcome
-                        </button>
-                        {session.done && (
-                          <button
-                            className="text-button"
-                            onClick={() => updateSession((s) => ({ ...s, done: false }))}
-                          >
-                            Mark unfinished
-                          </button>
-                        )}
-                        <button
-                          className="text-button wrap-session"
-                          onClick={() => setModal('wrap')}
-                        >
-                          <CheckCircle2 size={15} />
-                          {session.done ? 'Review session' : 'Wrap up session'}
-                        </button>
-                      </div>
-                    </div>
-                    <div className="tabs">
-                      {[
-                        'Session notes',
-                        'Possibilities',
-                        'Combat',
-                        'At the table',
-                        'Quick help',
-                      ].map((t) => (
-                        <button
-                          className={deskTab === t ? 'selected' : ''}
-                          aria-pressed={deskTab === t}
-                          key={t}
-                          onClick={() => setTab(t)}
-                        >
-                          {t}
-                          {t === 'Possibilities' && <span>{session.branches.length}</span>}
-                        </button>
-                      ))}
-                    </div>
-                    {pinnedCard && (
-                      <details className="desk-reference">
-                        <summary>Pinned reference · {pinnedCard.title}</summary>
-                        <div className="section-title">
-                          <div>
-                            <span className="eyebrow">ON YOUR DESK · SUGGESTED MATERIAL</span>
-                            <h3>{pinnedCard.title}</h3>
-                          </div>
-                          <button
-                            className="text-button unpin-material"
-                            onClick={() =>
-                              updateSession((s) => ({ ...s, pinnedCardId: undefined }))
-                            }
-                          >
-                            <X size={14} />
-                            Unpin
-                          </button>
-                        </div>
-                        {pinnedCard.readAloud && (
-                          <div className="read-aloud">
-                            <span className="eyebrow">SAY IT AT THE TABLE</span>
-                            <blockquote>
-                              <InlineMarks text={pinnedCard.readAloud} />
-                            </blockquote>
-                          </div>
-                        )}
-                        <details>
-                          <summary>Response & possible consequences</summary>
-                          <MaterialBody body={pinnedCard.body} />
-                          {pinnedCard.consequence && (
-                            <p className="prose">{pinnedCard.consequence}</p>
-                          )}
-                        </details>
-                        <button
-                          className="text-button"
-                          onClick={() => {
-                            setCardResult(pinnedCard);
-                            setModal('card');
-                          }}
-                        >
-                          Open full card <ArrowUpRight size={13} />
-                        </button>
-                      </details>
-                    )}
-                    {live && memory.playbook && (
-                      <LiveLookup
-                        campaign={campaign}
-                        session={session}
-                        pb={memory.playbook}
-                        onPlayed={played}
-                        onQuick={(p, sid) => quickRecord(p as Branch, sid)}
-                      />
-                    )}
-                    {live && (
-                      <TableMarkers
-                        campaign={campaign}
-                        sessionId={session.id}
-                        update={update}
-                        onMakePage={(seed) => {
-                          setSeedPage(draftPage(seed));
-                          setView('World wiki');
-                        }}
-                        compact
-                      />
-                    )}
-                    {deskTab === 'Possibilities' && (
-                      <>
-                        {campaign.events.some((e) => e.sessionId === session.id) && (
-                          <div className="choice-follow-through">
-                            <div>
-                              <span className="eyebrow">THE STORY HAS MOVED</span>
-                              <strong>
-                                {count(
-                                  campaign.events.filter((e) => e.sessionId === session.id).length,
-                                  'choice',
-                                )}{' '}
-                                recorded this session
-                              </strong>
-                              <p>
-                                Preparation uses confirmed outcomes and enjoyment feedback. Refresh
-                                paths when you want new suggestions.
-                              </p>
-                            </div>
-                            <div>
-                              <button
-                                className="text-button"
-                                onClick={() => setTab('At the table')}
-                              >
-                                Review choices <ArrowUpRight size={14} />
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                        <div className="section-title">
-                          <div>
-                            <h3>The paths they might take</h3>
-                            <p>
-                              Possibilities to prepare for, never a script to follow.
-                              {memory.playbook && (
-                                <>
-                                  {' '}
-                                  <button
-                                    className="text-button"
-                                    onClick={() => setView('Foresight')}
-                                  >
-                                    <Telescope size={13} />
-                                    Prep brief and world state
-                                  </button>
-                                </>
-                              )}
-                            </p>
-                          </div>
-                          <button
-                            className="text-button"
-                            disabled={!!busy || !session.plan.trim()}
-                            onClick={prepare}
-                          >
-                            <RefreshCw size={14} className={busy === 'prepare' ? 'spin' : ''} />
-                            {busy === 'prepare' ? 'Preparing…' : 'Prepare paths'}
-                          </button>
-                        </div>
-                        <SessionPaths
-                          key={campaign.id + session.id}
-                          campaign={campaign}
-                          session={session}
-                          expanded={expanded}
-                          onExpand={setExpanded}
-                          onPlayed={(p, sid) => played(p as Branch, sid)}
-                          onQuick={(p, sid) => quickRecord(p as Branch, sid)}
-                          onAdapt={coachPrompt}
-                          targetId={targetHit?.kind === 'Play' ? targetHit.id : undefined}
-                        />
-                        <button className="unexpected" onClick={() => record()}>
-                          <span className="unexpected-icon">
-                            <Dices size={21} />
-                          </span>
-                          <span>
-                            <strong>They did something else. Of course they did.</strong>
-                            <small>Capture the unexpected and let the campaign follow.</small>
-                          </span>
-                          <Plus size={18} />
-                        </button>
-                      </>
-                    )}
-                    {deskTab === 'Combat' && (
-                      <Suspense fallback={<ViewLoading />}>
-                        <SessionCombat
-                          key={campaign.id + session.id + (targetHit?.id || '')}
-                          campaign={campaign}
-                          session={session}
-                          target={targetHit}
-                          onBrowse={(name) =>
-                            openWorkspace({
-                              id: '',
-                              kind: 'Rule',
-                              title: name || '',
-                              body: '',
-                              status: 'Creature lookup',
-                              date: '',
-                              score: 0,
-                            })
-                          }
-                        />
-                      </Suspense>
-                    )}
-                    {deskTab === 'Quick help' && (
-                      <TableCoach campaign={campaign} onPrompt={coachPrompt} />
-                    )}
-                    {deskTab === 'Session notes' && (
-                      <section className="paper">
-                        <div className="section-title">
-                          <h3>Your session plan</h3>
-                          <button
-                            className="text-button"
-                            onClick={() => {
-                              setPlanTitle(session.title);
-                              setDraft(session.plan);
-                              setModal('plan');
-                            }}
-                          >
-                            <Feather size={15} /> Edit
-                          </button>
-                        </div>
-                        <NotesBar
-                          key={session.id}
-                          sessionId={session.id}
-                          plan={session.plan}
-                          onRecord={() => record()}
-                        />
-                        <BookText text={session.plan} plays={planPlays} linkEvery />
-                        <p className="muted tiny">
-                          Planned material. Record actual events separately in the chronicle.
-                        </p>
-                      </section>
-                    )}
-                    {deskTab === 'At the table' && !live && (
-                      <TableMarkers
-                        campaign={campaign}
-                        sessionId={session.id}
-                        update={update}
-                        onMakePage={(seed) => {
-                          setSeedPage(draftPage(seed));
-                          setView('World wiki');
-                        }}
-                      />
-                    )}
-                    {deskTab === 'At the table' && (
-                      <section className="paper">
-                        <div className="section-title">
-                          <h3>What’s happened this session</h3>
-                          <button className="text-button" onClick={() => record()}>
-                            <Plus size={15} /> Add event
-                          </button>
-                        </div>
-                        {campaign.events.filter((e) => e.sessionId === session.id).length ? (
-                          campaign.events
-                            .filter((e) => e.sessionId === session.id)
-                            .map((e) => (
-                              <div className="timeline-item" key={e.id}>
-                                <span className="timeline-dot" />
-                                <strong>
-                                  {e.style} · {e.enjoyment}
-                                </strong>
-                                <p>{e.text}</p>
-                                <button
-                                  className="text-button"
-                                  onClick={() => {
-                                    setEditingEvent(e.id);
-                                    setEventSession(e.sessionId);
-                                    setOutcome(e.text);
-                                    setOutcomeStyle(e.style);
-                                    setRating(e.enjoyment);
-                                    setModal('outcome');
-                                  }}
-                                >
-                                  Edit details
-                                </button>
-                              </div>
-                            ))
-                        ) : (
-                          <div className="empty">
-                            <ScrollText />
-                            <h3>The page is yours.</h3>
-                            <p>Record a choice from a path card, or add something unexpected.</p>
-                          </div>
-                        )}
-                        <div className="flow-actions">
-                          <button className="button" onClick={() => setView('Discoveries')}>
-                            Review discoveries <ArrowRight size={15} />
-                          </button>
-                          <button
-                            className="button primary"
-                            onClick={() => setView('Next session')}
-                          >
-                            Plan next session <ArrowRight size={15} />
-                          </button>
-                        </div>
-                      </section>
-                    )}
-                  </section>
-                  <aside className="right-rail">
-                    {live && deskCard && (
-                      <section className="paper rail-card" aria-label="Table card">
-                        <BookText text={deskCard} />
-                      </section>
-                    )}
-                    {deskTab === 'Quick help' ? (
-                      <section
-                        className={
-                          'improv-panel ' + (deskTab === 'Quick help' ? '' : 'improv-collapsed')
-                        }
-                      >
-                        <div className="section-title">
-                          <h3>
-                            <Sparkles size={18} />
-                            Create an idea
-                          </h3>
-                          <span className="spark-emblem">
-                            <Sparkles size={20} />
-                          </span>
-                        </div>
-                        <p>
-                          When the party goes off the map.
-                          <br />
-                          Make something that fits your world.
-                        </p>
-                        {isDesktop() && (
-                          <div
-                            className={'inspiration-engine ' + (ai ? 'is-ready' : '')}
-                            aria-live="polite"
-                          >
-                            <div>
-                              <span className={'dot ' + (!ai ? 'off' : '')} />
-                              <strong>
-                                {ai
-                                  ? 'Claude is connected'
-                                  : aiStatus.state === 'checking'
-                                    ? 'Checking AI…'
-                                    : 'Claude needs an API key'}
-                              </strong>
-                            </div>
-                            <p>
-                              {ai
-                                ? 'Uses your campaign and confirmed events.'
-                                : 'Add your Anthropic API key to create new ideas. Saved material is always available.'}
-                            </p>
-                            {ai && <small title={aiStatus.model}>{aiStatus.model}</small>}
-                            {!ai && aiStatus.state !== 'checking' && (
-                              <button
-                                className="button engine-start"
-                                onClick={() => setModal('data')}
-                              >
-                                <KeyRound size={14} />
-                                Add API key
-                              </button>
-                            )}
-                            <button className="engine-settings" onClick={() => setModal('data')}>
-                              {ai ? 'Model & key settings' : 'AI settings'}
-                              <ArrowUpRight size={12} />
-                            </button>
-                          </div>
-                        )}
-                        <div className="chips">
-                          {[
-                            'DM response',
-                            'NPC',
-                            'Encounter',
-                            'Location',
-                            'Clue',
-                            'Loot',
-                            'Twist',
-                          ].map((k) => (
-                            <button
-                              key={k}
-                              className={kind === k ? 'chosen' : ''}
-                              aria-pressed={kind === k}
-                              onClick={() => {
-                                setKind(k);
-                                if (k === 'Twist' && !quick)
-                                  setQuick(
-                                    'Suggest a foreshadowed twist that builds on our confirmed events.',
-                                  );
-                              }}
-                            >
-                              {k}
-                            </button>
-                          ))}
-                        </div>
-                        <label className="sr-only" htmlFor="quick-prompt">
-                          What do you need right now?
-                        </label>
-                        <textarea
-                          id="quick-prompt"
-                          value={quick}
-                          onChange={(e) => setQuick(e.target.value)}
-                          maxLength={10000}
-                          placeholder={
-                            kind === 'NPC'
-                              ? 'A nervous apothecary who knows more than they let on…'
-                              : `What kind of ${kind.toLowerCase()} do you need?`
-                          }
-                          rows={4}
-                        />
-                        <div className="prompt-draft-status">
-                          <span>
-                            {promptDraft.failure
-                              ? 'Draft not saved'
-                              : 'Draft saved for this session'}
-                          </span>
-                          {promptDraft.canUndo && (
-                            <button onClick={promptDraft.undo}>
-                              <Undo2 size={12} />
-                              Restore previous prompt
-                            </button>
-                          )}
-                        </div>
-                        {promptDraft.failure && (
-                          <p role="alert" className="engine-error">
-                            {promptDraft.failure}
-                          </p>
-                        )}
-                        <button
-                          className="button primary full"
-                          disabled={!!busy || !quick.trim() || (isDesktop() && !ai)}
-                          onClick={improvise}
-                        >
-                          <Sparkles size={15} />
-                          {busy === 'improvise'
-                            ? 'Finding your spark…'
-                            : isDesktop() && !ai
-                              ? 'Add an API key first'
-                              : `Generate ${kind === 'NPC' ? 'NPC' : kind.toLowerCase()}`}
-                          <ArrowRight size={15} />
-                        </button>
-                        <div className="context-line">
-                          <span className={'dot ' + (!ai ? 'off' : '')} />
-                          {isDesktop()
-                            ? ai
-                              ? 'Sent to Anthropic when you generate'
-                              : 'Add an API key above to generate'
-                            : ai
-                              ? 'Uses your campaign & confirmed events'
-                              : 'AI connection pending'}
-                        </div>
-                      </section>
-                    ) : null}
-                    {campaign.cards.length > 0 && (
-                      <section className="recent-material">
-                        <div className="section-title">
-                          <h3>Within reach</h3>
-                          <button className="text-button" onClick={() => setView('Saved material')}>
-                            View all <ArrowUpRight size={13} />
-                          </button>
-                        </div>
-                        <p>Recent ideas · ready with AI off</p>
-                        {campaign.cards.slice(0, 3).map((card) => (
-                          <button
-                            className="recent-material-item"
-                            key={card.id}
-                            onClick={() => {
-                              setCardResult(card);
-                              setModal('card');
-                            }}
-                          >
-                            <span>
-                              <small>{card.kind}</small>
-                              <strong>{card.title}</strong>
-                            </span>
-                            <ChevronRight size={16} />
-                          </button>
-                        ))}
-                      </section>
-                    )}
-                    {(memory.pins || []).some((id) =>
-                      memory.pages.some((page) => page.id === id),
-                    ) && (
-                      <section className="paper handy-references">
-                        <h3>
-                          <BookOpen size={16} />
-                          Kept handy
-                        </h3>
-                        {memory.pages
-                          .filter((page) => memory.pins?.includes(page.id))
-                          .slice(0, 8)
-                          .map((page) => (
-                            <button
-                              className="session-list-item"
-                              key={page.id}
-                              onClick={() => showReference(page.id)}
-                            >
-                              <span>
-                                <small>
-                                  {page.kind} · {page.status}
-                                </small>
-                                <strong>{page.title}</strong>
-                              </span>
-                              <ArrowUpRight size={14} />
-                            </button>
-                          ))}
-                      </section>
-                    )}
-                    <SessionRules
-                      references={session.ruleReferences || []}
-                      onRemove={(id) =>
-                        updateSession((s) => ({
-                          ...s,
-                          ruleReferences: (s.ruleReferences || []).filter((r) => r.id !== id),
-                        }))
-                      }
-                      onBrowse={() => setView('Rules library')}
-                    />
-                    <div className="rail-footer">
-                      <Shield size={13} /> Your world. Your final say.
-                    </div>
-                  </aside>
-                </div>
-              </>
-            )}
-            {view === 'Campaign' && (
-              <div className="content-grid">
-                <section className="paper">
-                  <span className="eyebrow">THE BIG PICTURE</span>
-                  <h2>{campaign.name}</h2>
-                  <label>
-                    Campaign name
-                    <input
-                      value={campaign.name}
-                      maxLength={100}
-                      onChange={(e) => update((c) => ({ ...c, name: e.target.value }))}
-                    />
-                  </label>
-                  <label>
-                    Premise
-                    <textarea
-                      value={campaign.premise}
-                      rows={4}
-                      onChange={(e) => update((c) => ({ ...c, premise: e.target.value }))}
-                    />
-                  </label>
-                  <label>
-                    Campaign outline · editable draft
-                    <textarea
-                      className="outline-editor"
-                      value={campaign.arc}
-                      onChange={(e) => update((c) => ({ ...c, arc: e.target.value }))}
-                    />
-                  </label>
-                </section>
-                <section className="paper">
-                  <h3>The road so far</h3>
-                  <p className="muted">
-                    {campaign.sessions.length}{' '}
-                    {campaign.sessions.length === 1 ? 'session' : 'sessions'} ·{' '}
-                    {campaign.events.length} confirmed{' '}
-                    {campaign.events.length === 1 ? 'event' : 'events'}
-                  </p>
-                  {campaign.sessions.map((s, i) => (
+                ) : view === 'Chronicle' ? (
+                  <div className="heading-actions">
                     <button
-                      className="session-list-item"
-                      key={s.id}
+                      className="button"
                       onClick={() => {
-                        setSessionId(s.id);
-                        setView('Session desk');
+                        setError('');
+                        setModal('recap');
                       }}
                     >
-                      <span>{String(i + 1).padStart(2, '0')}</span>
-                      <div>
-                        <strong>{s.title}</strong>
-                        <small>{s.done ? 'Completed' : 'Prepared draft'}</small>
-                      </div>
-                      <ChevronRight size={16} />
+                      <ScrollText size={15} /> Import recap
                     </button>
-                  ))}
-                  <button
-                    className="button full"
-                    onClick={() => {
-                      const s: Session = {
-                        id: uid(),
-                        title: `Session ${campaign.sessions.length + 1}`,
-                        plan: '',
-                        summary: 'Your next adventure starts here.',
-                        branches: [],
-                        source: 'DM written',
-                        done: false,
-                      };
-                      update((c) => ({ ...c, sessions: [...c.sessions, s] }));
-                      setSessionId(s.id);
-                      setPlanTitle(s.title);
-                      setDraft('');
-                      setModal('plan');
-                      setView('Session desk');
-                    }}
-                  >
-                    <Plus size={16} /> Add a blank session
-                  </button>
-                </section>
+                    <button className="button primary" onClick={() => record()}>
+                      <Plus size={16} /> Record an event
+                    </button>
+                  </div>
+                ) : null}
               </div>
-            )}
-            {view === 'Party & preferences' && (
-              <>
-                <PartyLedger
-                  campaign={campaign}
-                  session={session}
-                  pb={memory.playbook}
-                  startLevel={
-                    memory.playbook?.briefs.find((b) => b.sessionId === session.id)?.level
-                  }
-                  mutate={(fn) => update((c) => ({ ...c, memory: fn(memoryOf(c)) }))}
-                />
-                <div className="content-grid">
-                  <section className="paper">
-                    <h3>The adventurers</h3>
-                    <label>
-                      Party members, level, and what makes them tick
-                      <textarea
-                        rows={6}
-                        value={campaign.party}
-                        onChange={(e) => update((c) => ({ ...c, party: e.target.value }))}
-                      />
-                    </label>
-                    <label>
-                      Campaign tone
-                      <select
-                        value={campaign.tone}
-                        onChange={(e) => update((c) => ({ ...c, tone: e.target.value }))}
-                      >
-                        {[
-                          'Mysterious & atmospheric',
-                          'Heroic & hopeful',
-                          'Dark & dangerous',
-                          'Whimsical & chaotic',
-                          'Political & intricate',
-                        ].map((t) => (
-                          <option key={t}>{t}</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      Off-limits, off-screen, and things to avoid
-                      <textarea
-                        rows={4}
-                        value={campaign.boundaries}
-                        placeholder="Themes to avoid, fade-to-black subjects, table agreements…"
-                        onChange={(e) => update((c) => ({ ...c, boundaries: e.target.value }))}
-                      />
-                    </label>
-                    <p className="tiny muted">
-                      These instructions travel with every generation request.
-                    </p>
-                  </section>
-                  <section className="paper">
-                    <h3>What your table enjoys</h3>
-                    <p className="muted">
-                      Your explicit preferences guide generation. Update these anytime.
-                    </p>
-                    {styles.map((s) => (
-                      <label className="range-label" key={s}>
-                        <span>
-                          {s}
-                          <b>{campaign.preferences[s]} / 5</b>
-                        </span>
-                        <input
-                          type="range"
-                          min="0"
-                          max="5"
-                          step="1"
-                          style={{ '--fill': campaign.preferences[s] * 20 + '%' } as CSSProperties}
-                          value={campaign.preferences[s]}
-                          onChange={(e) =>
-                            update((c) => ({
-                              ...c,
-                              preferences: { ...c.preferences, [s]: Number(e.target.value) },
-                            }))
-                          }
-                        />
-                      </label>
-                    ))}
-                    <section className="twist-panel">
-                      <div className="section-title">
-                        <h3>
-                          <GitBranch size={16} /> Plot twists
-                        </h3>
-                      </div>
-                      <p>How surprising should new ideas be?</p>
-                      <div className="segmented">
-                        {['None', 'Subtle', 'Bold'].map((t) => (
-                          <button
-                            className={campaign.twist === t ? 'selected' : ''}
-                            aria-pressed={campaign.twist === t}
-                            key={t}
-                            onClick={() => update((c) => ({ ...c, twist: t }))}
-                          >
-                            {t}
-                          </button>
-                        ))}
-                      </div>
-                      <small>
-                        {campaign.twist === 'None'
-                          ? 'Keep new material straightforward.'
-                          : campaign.twist === 'Subtle'
-                            ? 'Plant clues. Let the reveal feel earned.'
-                            : 'Bigger reversals, grounded in your story.'}
-                      </small>
-                    </section>
-                    <div className="info-box">
-                      <Feather size={18} />
-                      <p>
-                        Waypoint adapts by reusing your recorded events and feedback. It does not
-                        retrain a model or assume every choice reflects a preference.
-                      </p>
-                    </div>
-                    <button className="button" onClick={() => setView('Chronicle')}>
-                      Review the party’s history
-                      <ArrowRight size={15} />
-                    </button>
-                  </section>
+              <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
+                {area.views.map((item) => (
+                  <button
+                    key={item.view}
+                    className={view === item.view ? 'selected' : ''}
+                    aria-current={view === item.view ? 'page' : undefined}
+                    onClick={() => setView(item.view)}
+                  >
+                    {item.label}
+                    {item.view === 'Discoveries' && reviewCount > 0 && (
+                      <span className="nav-count">{reviewCount}</span>
+                    )}
+                  </button>
+                ))}
+              </nav>
+              <div className="workspace-context">
+                {[
+                  'Session desk',
+                  'Foresight',
+                  'Next session',
+                  'Rules library',
+                  'Player site',
+                  'Party & preferences',
+                ].includes(view) && (
+                  <label>
+                    Session
+                    <select
+                      aria-label="Current session"
+                      disabled={!!busy || recordingActive}
+                      value={session.id}
+                      onChange={(e) => {
+                        setSessionId(e.target.value);
+                        setExpanded(null);
+                      }}
+                    >
+                      {campaign.sessions.map((s, i) => (
+                        <option key={s.id} value={s.id}>
+                          {i + 1} · {s.title}
+                          {s.done ? ' ✓' : ''}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+              </div>
+              {error && (
+                <div className="alert" role="alert">
+                  <span>{error}</span>
+                  <button aria-label="Dismiss error" onClick={() => setError('')}>
+                    <X size={16} />
+                  </button>
                 </div>
-              </>
-            )}
-            {view === 'Discoveries' && (
-              <SessionReview
-                key={campaign.id + (targetHit?.id || '')}
-                initialSourceId={targetHit?.kind === 'Journal' ? targetHit.id : undefined}
-                memory={memory}
-                sessions={campaign.sessions}
-                mutate={(fn) => update((c) => ({ ...c, memory: fn(memoryOf(c)) }))}
-                openSource={(id) =>
-                  openWorkspace(searchCampaign(campaign, '', 'Journal').find((h) => h.id === id)!)
-                }
-                onOpenPage={(id) =>
-                  openWorkspace(searchCampaign(campaign, '', 'Wiki').find((h) => h.id === id)!)
-                }
-              />
-            )}
-            {view === 'Chronicle' && (
-              <CampaignHistory
-                campaign={campaign}
-                filters={historyFilters}
-                onFilters={setHistoryFilters}
-                onRecord={() => record()}
-                sessionLocked={recordingActive || !!busy}
-                onEdit={(e) => {
-                  setEditingEvent(e.id);
-                  setEventSession(e.sessionId);
-                  setOutcome(e.text);
-                  setOutcomeStyle(e.style);
-                  setRating(e.enjoyment);
-                  setModal('outcome');
-                }}
-                onRemove={(e) => {
-                  setEditingEvent(e.id);
-                  setModal('delete-event');
-                }}
-                onSession={(id) => {
-                  setHistoryReturn(true);
-                  setSessionId(id);
-                  setTab('At the table');
-                  setView('Session desk');
-                  window.scrollTo({ top: 0 });
-                }}
-              />
-            )}
-            {view === 'Rules library' && (
-              <Suspense fallback={<ViewLoading />}>
-                <RulesLibrary
-                  key={campaign.id + session.id + (targetHit?.id || '')}
-                  initialKind={targetHit?.status === 'Creature lookup' ? 'Creature' : undefined}
-                  initialQuery={targetHit?.kind === 'Rule' ? targetHit.title : undefined}
-                  initialId={targetHit?.kind === 'Rule' ? targetHit.id : undefined}
-                  pinned={session.ruleReferences || []}
-                  onPin={(entry) => {
-                    updateSession((s) => ({
-                      ...s,
-                      ruleReferences: [
-                        ...(s.ruleReferences || []).filter((r) => r.id !== entry.id),
-                        entry,
-                      ].slice(0, 6),
-                    }));
-                    setNotice(entry.name + ' pinned to this session.');
-                  }}
-                  onPrompt={(entry) => {
-                    promptDraft.replace(
-                      `Help me apply ${entry.name} to the current scene. Ask for missing details and distinguish the reference from a suggested ruling.\n\nReference: ${entry.source} (${entry.edition})${entry.page ? ' p. ' + entry.page : ''}\n${entry.body}`,
-                      'DM response',
-                    );
-                    setView('Session desk');
-                    setNotice(
-                      'Reference added to your prompt. Review it, then generate when ready.',
-                    );
-                  }}
-                />
-              </Suspense>
-            )}
-            {view === 'Saved material' && (
-              <MaterialLibrary
-                key={campaign.id}
-                cards={campaign.cards}
-                onOpen={(card) => {
-                  setCardResult(card);
-                  setModal('card');
-                }}
-                onDesk={() => setView('Session desk')}
-              />
-            )}
-            <SessionRecorder
-              campaign={campaign}
-              sessionId={session.id}
-              visible={view === 'Session journal'}
-              update={update}
-              onActive={setRecordingActive}
-            />
-            {(view === 'Session journal' || view === 'World wiki' || view === 'Next session') && (
-              <CampaignMemory
-                key={campaign.id + view + (targetHit?.id || '')}
+              )}
+              {view === 'Session desk' && <SessionDeskView />}
+              {view === 'Campaign' && <CampaignOutlineView />}
+              {view === 'Party & preferences' && <PartyView />}
+              {view === 'Discoveries' && <DiscoveriesView />}
+              {view === 'Chronicle' && <ChronicleView />}
+              {view === 'Rules library' && <RulesView />}
+              {view === 'Saved material' && <SavedMaterialView />}
+              <SessionRecorder
                 campaign={campaign}
                 sessionId={session.id}
-                section={view}
-                initialId={targetHit?.id}
-                onReview={(sourceId) =>
-                  navigate(
-                    'Discoveries',
-                    searchCampaign(campaign, '', 'Journal').find((h) => h.id === sourceId) || null,
-                  )
-                }
-                onOpenHit={openWorkspace}
-                busy={!!busy}
+                visible={view === 'Session journal'}
                 update={update}
-                generate={generate}
-                next={nextSession}
-                seedPage={seedPage}
-                onSeedUsed={() => setSeedPage(null)}
-                onSendToWiki={(d) => {
-                  setWikiSeed(d);
-                  setView('Player site');
-                }}
+                onActive={setRecordingActive}
               />
-            )}
-            {view === 'Foresight' && (
-              <Suspense fallback={<ViewLoading />}>
-                <Foresight
-                  tabRequest={foresightTab}
-                  onPaths={(id) => {
-                    const hit = id
-                      ? searchCampaign(campaign, '', 'Play').find((h) => h.id === id)
-                      : undefined;
-                    if (hit) openWorkspace(hit);
-                    else {
-                      setView('Session desk');
-                      setTab('Possibilities');
-                      setExpanded(null);
-                    }
-                  }}
-                  key={campaign.id + (foresightTab ? '-' + foresightTab.n : '')}
-                  campaign={campaign}
-                  session={session}
-                  update={update}
-                  onPlayed={played}
-                  onQuick={(p, sid) => quickRecord(p as Branch, sid)}
-                  onNavigate={(next) => setView(next as View)}
-                  onPinRule={(ref) => {
-                    pinRule(ref);
-                  }}
-                  notify={setNotice}
-                  fail={setError}
-                />
-              </Suspense>
-            )}
-            {view === 'Campaign hub' && (
-              <Suspense fallback={<ViewLoading />}>
-                <CampaignHub
-                  key={campaign.id + (targetHit?.kind || '') + (targetHit?.id || '')}
-                  initialHit={targetHit}
-                  onOpenHit={openWorkspace}
-                  campaign={campaign}
-                  update={update}
-                  onNavigate={(next, id) => {
-                    setView(next as View);
-                    if (id) setSessionId(id);
-                  }}
-                />
-              </Suspense>
-            )}
-            {view === 'Player site' && (
-              <Suspense fallback={<ViewLoading />}>
-                <PlayerSite
-                  key={'site' + campaign.id}
-                  campaign={campaign}
-                  session={session}
-                  update={update}
-                  notify={setNotice}
-                  fail={setError}
-                  seed={wikiSeed}
-                  onSeedUsed={clearWikiSeed}
-                />
-              </Suspense>
-            )}
-            {view === 'Player handouts' && (
-              <Suspense fallback={<ViewLoading />}>
-                <PlayerHandouts
-                  key={campaign.id + (targetHit?.id || '')}
-                  initialId={targetHit?.id}
-                  campaign={campaign}
-                  update={update}
-                />
-              </Suspense>
-            )}
-            <footer className="page-footer">
-              <span>MADE FOR THE MOMENTS YOU DIDN’T PLAN.</span>
-              <span>
-                Waypoint <span>✧</span> Keep the story moving.
-              </span>
-            </footer>
-          </main>
-        </div>
-        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-          {notice}
-        </div>
-        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-          {saveAnnouncement}
-        </div>
-        {notice && (
-          <div className="toast" aria-hidden="true">
-            <CheckCircle2 size={17} />
+              {(view === 'Session journal' || view === 'World wiki' || view === 'Next session') && (
+                <MemoryView view={view} />
+              )}
+              {view === 'Foresight' && <ForesightView />}
+              {view === 'Campaign hub' && <HubView />}
+              {view === 'Player site' && <PlayerSiteView />}
+              {view === 'Player handouts' && <HandoutsView />}
+              <footer className="page-footer">
+                <span>MADE FOR THE MOMENTS YOU DIDN’T PLAN.</span>
+                <span>
+                  Waypoint <span>✧</span> Keep the story moving.
+                </span>
+              </footer>
+            </main>
+          </div>
+          <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
             {notice}
           </div>
-        )}
-        {busy && (
-          <div className="generating" role="status">
-            <Sparkles className="spin" size={17} />{' '}
-            {busy === 'campaign'
-              ? 'Building your world…'
-              : busy === 'next'
-                ? 'Following the threads of your story…'
-                : busy === 'prepare'
-                  ? 'Preparing the possibilities…'
-                  : 'Finding a spark…'}
-            <small>You can keep reading your notes.</small>
-            {isDesktop() && (
-              <button className="cancel-generation" onClick={() => window.waypoint?.cancel()}>
-                Stop waiting
-              </button>
-            )}
+          <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {saveAnnouncement}
           </div>
-        )}
-        {modal && (
-          <div
-            className="modal-overlay"
-            onMouseDown={(e) => {
-              if (e.target === e.currentTarget && !busy) closeDialog();
-            }}
-          >
-            <div
-              className={'modal ' + (modal === 'card' ? 'wide' : '')}
-              ref={modalRef}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="modal-title"
-            >
-              <button
-                className="modal-close icon-button"
-                aria-label="Close dialog"
-                onClick={closeDialog}
-              >
-                <X size={21} />
-              </button>
-              {modal === 'ripple' && ripplePlay && memory.playbook && (
-                <RippleDialog
-                  campaign={campaign}
-                  session={campaign.sessions.find((s) => s.id === ripplePlay.sessionId) || session}
-                  pb={memory.playbook}
-                  play={ripplePlay.play}
-                  onCancel={() => setModal('')}
-                  onApply={(changes, rec) => {
-                    update((c) => {
-                      const m = memoryOf(c);
-                      return m.playbook
-                        ? {
-                            ...c,
-                            memory: {
-                              ...m,
-                              playbook: applyChanges(m.playbook, changes, {
-                                sessionId: ripplePlay.sessionId,
-                                title: ripplePlay.play.title,
-                                playId: ripplePlay.play.id,
-                              }),
-                            },
-                          }
-                        : c;
-                    });
-                    if (rec) record(ripplePlay.play, ripplePlay.sessionId);
-                    else {
-                      setModal('');
-                      setNotice(
-                        changes.length
-                          ? 'World state updated. Undo it in Foresight if needed.'
-                          : 'Nothing to change.',
-                      );
-                    }
-                  }}
-                />
-              )}
-              {modal === 'recap' && (
-                <Suspense fallback={<ViewLoading />}>
-                  <RecapReview
-                    sessions={campaign.sessions}
-                    currentSession={session.id}
-                    busy={!!busy}
-                    error={error}
-                    onGenerate={(text, sessionId) =>
-                      generate('recap', text, { recapSessionId: sessionId })
-                    }
-                    onSave={(sessionId, events) => {
-                      update((c) => ({
-                        ...c,
-                        events: [
-                          ...c.events,
-                          ...events.map((e) => ({
-                            ...e,
-                            id: uid(),
-                            sessionId,
-                            date: new Date().toISOString(),
-                          })),
-                        ],
-                      }));
-                      setModal('');
-                      setNotice('Reviewed events added to your campaign history.');
-                    }}
-                  />
-                </Suspense>
-              )}
-              {modal === 'plan' && (
-                <SessionEditor
-                  key={campaign.id + ':plan:' + session.id}
-                  draftKey={JSON.stringify([campaign.id, 'plan', session.id])}
-                  plan
-                  initial={{ title: planTitle, plan: draft }}
-                  base={JSON.stringify({ title: session.title, plan: session.plan })}
-                  sessions={campaign.sessions}
-                  onClose={() => setModal('')}
-                  onSave={(value) => {
-                    const v = value as SessionEdit;
-                    updateSession((s) => ({
-                      ...s,
-                      title: v.title.trim() || s.title,
-                      plan: v.plan,
-                    }));
-                    setModal('');
-                    setNotice('Session notes saved. Prepare paths to refresh suggestions.');
-                  }}
-                />
-              )}
-              {modal === 'outcome' && (
-                <SessionEditor
-                  key={campaign.id + ':outcome:' + (editingEvent || session.id)}
-                  draftKey={JSON.stringify([campaign.id, 'outcome', editingEvent || session.id])}
-                  plan={false}
-                  initial={{
-                    text: outcome,
-                    sessionId: eventSession || session.id,
-                    style: outcomeStyle,
-                    enjoyment: rating,
-                    branchId: editingEvent
-                      ? campaign.events.find((e) => e.id === editingEvent)?.branchId
-                      : selectedBranch || undefined,
-                  }}
-                  base={
-                    editingEvent
-                      ? JSON.stringify(campaign.events.find((e) => e.id === editingEvent))
-                      : 'new'
-                  }
-                  sessions={campaign.sessions}
-                  onClose={() => setModal('')}
-                  onSave={(value) => saveOutcome(value as OutcomeEdit)}
-                />
-              )}
-              {modal === 'new' && (
-                <>
-                  <span className="eyebrow">A NEW WORLD AWAITS</span>
-                  <h2 id="modal-title">Start a campaign</h2>
-                  <p>
-                    Bring a seed of an idea. Get a flexible campaign arc and a playable first
-                    session.
-                  </p>
-                  <label>
-                    Campaign name
-                    <input
-                      value={newName}
-                      onChange={(e) => setNewName(e.target.value)}
-                      maxLength={100}
-                      placeholder="The stars beneath the sea"
-                    />
-                  </label>
-                  <label>
-                    Your starting idea
-                    <textarea
-                      rows={3}
-                      value={newPremise}
-                      onChange={(e) => setNewPremise(e.target.value)}
-                      placeholder="An island resurfaces every hundred years. This time, it brought someone back…"
-                      maxLength={10000}
-                    />
-                  </label>
-                  <label>
-                    The party
-                    <input value={newParty} onChange={(e) => setNewParty(e.target.value)} />
-                  </label>
-                  <div className="two-cols">
-                    <label>
-                      Tone
-                      <select value={newTone} onChange={(e) => setNewTone(e.target.value)}>
-                        {[
-                          'Mysterious & atmospheric',
-                          'Heroic & hopeful',
-                          'Dark & dangerous',
-                          'Whimsical & chaotic',
-                          'Political & intricate',
-                        ].map((t) => (
-                          <option key={t}>{t}</option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      Twists
-                      <select value={twist} onChange={(e) => setTwist(e.target.value)}>
-                        {['None', 'Subtle', 'Bold'].map((t) => (
-                          <option key={t}>{t}</option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                  <label>
-                    Boundaries
-                    <input
-                      value={newBounds}
-                      onChange={(e) => setNewBounds(e.target.value)}
-                      placeholder="Themes to avoid or handle off-screen"
-                    />
-                  </label>
-                  {(!newName.trim() || !newPremise.trim()) && !busy && (
-                    <p className="tiny muted" role="status">
-                      Add a campaign name and a starting idea to continue.
-                    </p>
-                  )}
-                  <button
-                    className="button primary full"
-                    disabled={!!busy || !newName.trim() || !newPremise.trim()}
-                    onClick={createCampaign}
-                  >
-                    <Sparkles size={16} />
-                    {busy === 'campaign'
-                      ? 'Creating your campaign…'
-                      : 'Create campaign & first session'}
-                  </button>
-                  <button
-                    className="text-button manual-start"
-                    disabled={!!busy || !newName.trim() || !newPremise.trim()}
-                    onClick={manualCampaign}
-                  >
-                    Or start writing the campaign yourself
-                  </button>
-                  {error && (
-                    <p className="error-text" role="alert">
-                      {error}
-                    </p>
-                  )}
-                </>
-              )}
-              {modal === 'wrap' && (
-                <SessionWrapUp
-                  onReview={() => {
-                    setModal('');
-                    setView('Discoveries');
-                  }}
-                  campaign={campaign}
-                  session={session}
-                  recording={recordingActive}
-                  update={update}
-                  onRecord={() => record()}
-                  onPlan={() => {
-                    setModal('');
-                    setView('Next session');
-                  }}
-                  onSite={() => {
-                    setModal('');
-                    setView('Player site');
-                  }}
-                  notify={setNotice}
-                  fail={setError}
-                />
-              )}
-              {modal === 'card' && cardResult && (
-                <>
-                  <span className="eyebrow">
-                    {cardResult.kind.toUpperCase()} · SUGGESTED MATERIAL
-                  </span>
-                  <h2 id="modal-title">{cardResult.title}</h2>
-                  {cardResult.readAloud && (
-                    <div className="read-aloud">
-                      <span className="eyebrow">READ ALOUD</span>
-                      <blockquote>
-                        <InlineMarks text={cardResult.readAloud} />
-                      </blockquote>
-                    </div>
-                  )}
-                  <MaterialBody body={cardResult.body} />
-                  <h4>Possible consequences</h4>
-                  <p className="prose">{cardResult.consequence}</p>
-                  <div className="modal-actions">
-                    <button
-                      className="button pin-material"
-                      onClick={() => {
-                        updateSession((s) => ({ ...s, pinnedCardId: cardResult.id }));
-                        setModal('');
-                        setView('Session desk');
-                        setNotice('Pinned to this session’s desk.');
-                      }}
-                    >
-                      <BookOpen size={14} />
-                      Keep on desk
-                    </button>
-                    <button
-                      className="button"
-                      onClick={async () => {
-                        try {
-                          await navigator.clipboard.writeText(
-                            `${cardResult.title}\n\n${cardResult.readAloud}\n\n${cardResult.body}\n\n${cardResult.consequence}`,
-                          );
-                          setNotice('Copied to clipboard.');
-                        } catch {
-                          setError('Clipboard unavailable. Select and copy the text instead.');
-                        }
-                      }}
-                    >
-                      <Copy size={14} /> Copy
-                    </button>
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        setEventSession(session.id);
-                        setOutcome(cardResult.title + ': ');
-                        setOutcomeStyle('Roleplay');
-                        setRating('Neutral');
-                        setEditingEvent('');
-                        setSelectedBranch('');
-                        setModal('outcome');
-                      }}
-                    >
-                      <Check size={14} /> Record what happened
-                    </button>
-                  </div>
-                  <p className="tiny muted">
-                    Saved in your material library. This idea is not canon until you record an
-                    event.
-                  </p>
-                </>
-              )}
-              {modal === 'data' && (
-                <>
-                  <span className="eyebrow">YOUR STORIES, IN YOUR HANDS</span>
-                  <h2 id="modal-title">AI & backups</h2>
-                  {isDesktop() && (
-                    <Suspense fallback={<ViewLoading />}>
-                      <AISettings onChanged={() => void aiStatus.refresh()} />
-                    </Suspense>
-                  )}
-                  <p>
-                    {isDesktop()
-                      ? 'Campaigns and wiki notes save in a local SQLite database. Original JSON saves are preserved during migration. Export a JSON backup to move your campaign; audio files are stored separately in the recordings folder.'
-                      : 'Campaigns save automatically in this browser. Export a backup before clearing browser data.'}
-                  </p>
-                  {!isDesktop() && (
-                    <div className="info-box">
-                      <Shield size={20} />
-                      <p>
-                        {ai
-                          ? 'AI is connected. Generation sends your campaign context to OpenAI. API usage requires active billing on your OpenAI project.'
-                          : 'AI is not configured. Previously prepared content and local editing remain available.'}
-                      </p>
-                    </div>
-                  )}
-                  {!isDesktop() && (
-                    <a
-                      className="text-button"
-                      href="https://platform.openai.com/settings/organization/billing"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Manage OpenAI API billing <ArrowUpRight size={13} />
-                    </a>
-                  )}
-                  <div className="modal-actions">
-                    <button className="button primary" onClick={exportData}>
-                      <Download size={16} /> Export all campaigns
-                    </button>
-                    <button
-                      className="button"
-                      disabled={recordingActive}
-                      onClick={() => fileRef.current?.click()}
-                    >
-                      <Upload size={16} /> Import backup
-                    </button>
-                  </div>
-                  {isDesktop() && (
-                    <button
-                      className="text-button"
-                      onClick={async () => {
-                        const r = await appFetch('/api/export-previous', { method: 'POST' });
-                        const data = (await r.json()) as { error?: string; saved?: boolean };
-                        if (!r.ok) setError(data.error || 'Backup export failed');
-                        else if (data.saved)
-                          setNotice(
-                            'Previous save exported. Import it as a separate campaign to recover content.',
-                          );
-                      }}
-                    >
-                      Export previous database save
-                    </button>
-                  )}
-                  <p className="tiny muted">
-                    Import adds separate copies and preserves existing campaigns.
-                  </p>
-                  {isDesktop() && (
-                    <Suspense fallback={<ViewLoading />}>
-                      <RestorePoints
-                        disabled={recordingActive}
-                        onError={setError}
-                        onNotice={setNotice}
-                        onRestore={(data, when) => {
-                          try {
-                            const n = addCopies(
-                              data as { campaigns?: unknown },
-                              'restored ' + when,
-                            );
-                            setModal('');
-                            setNotice(
-                              count(n, 'campaign') +
-                                ' from ' +
-                                when +
-                                ' restored as separate copies.',
-                            );
-                          } catch (e) {
-                            setError(e instanceof Error ? e.message : 'Restore failed.');
-                          }
-                        }}
-                      />
-                    </Suspense>
-                  )}
-                </>
-              )}
-              {modal === 'delete-event' && (
-                <>
-                  <h2 id="modal-title">Remove this event?</h2>
-                  <p>
-                    This will remove it from confirmed history and future generation context.
-                    Previously generated material will stay unchanged.
-                  </p>
-                  <div className="modal-actions">
-                    <button className="button" onClick={() => setModal('')}>
-                      Keep event
-                    </button>
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        update((c) => ({
-                          ...c,
-                          events: c.events.filter((e) => e.id !== editingEvent),
-                        }));
-                        setModal('');
-                        setNotice('Event removed from campaign history.');
-                      }}
-                    >
-                      Remove event
-                    </button>
-                  </div>
-                </>
+          {notice && (
+            <div className="toast" aria-hidden="true">
+              <CheckCircle2 size={17} />
+              {notice}
+            </div>
+          )}
+          {busy && (
+            <div className="generating" role="status">
+              <Sparkles className="spin" size={17} />{' '}
+              {busy === 'campaign'
+                ? 'Building your world…'
+                : busy === 'next'
+                  ? 'Following the threads of your story…'
+                  : busy === 'prepare'
+                    ? 'Preparing the possibilities…'
+                    : 'Finding a spark…'}
+              <small>You can keep reading your notes.</small>
+              {isDesktop() && (
+                <button className="cancel-generation" onClick={() => window.waypoint?.cancel()}>
+                  Stop waiting
+                </button>
               )}
             </div>
-          </div>
-        )}
-        {referenceId && (
-          <ReferencePanel
-            key={campaign.id + referenceId}
-            campaign={campaign}
-            pageId={referenceId}
-            onClose={() => setReferenceId(null)}
-            onOpen={openWorkspace}
-            onPin={toggleReference}
+          )}
+          {modal && (
+            <div
+              className="modal-overlay"
+              onMouseDown={(e) => {
+                if (e.target === e.currentTarget && !busy) closeDialog();
+              }}
+            >
+              <div
+                className={'modal ' + (modal === 'card' ? 'wide' : '')}
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+              >
+                <button
+                  className="modal-close icon-button"
+                  aria-label="Close dialog"
+                  onClick={closeDialog}
+                >
+                  <X size={21} />
+                </button>
+                <DialogBody />
+              </div>
+            </div>
+          )}
+          {referenceId && (
+            <ReferencePanel
+              key={campaign.id + referenceId}
+              campaign={campaign}
+              pageId={referenceId}
+              onClose={() => setReferenceId(null)}
+              onOpen={openWorkspace}
+              onPin={toggleReference}
+            />
+          )}
+          <input
+            ref={fileRef}
+            hidden
+            type="file"
+            accept=".json,application/json"
+            onChange={(e) => importData(e.target.files?.[0])}
           />
-        )}
-        <input
-          ref={fileRef}
-          hidden
-          type="file"
-          accept=".json,application/json"
-          onChange={(e) => importData(e.target.files?.[0])}
-        />
-      </div>
-    </CampaignLinks.Provider>
+        </div>
+      </CampaignLinks.Provider>
+    </DeskContext.Provider>
   );
 }
 export default function Home() {
