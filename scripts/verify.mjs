@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { unitSuites } from './test-unit.mjs';
 
 const root = path.resolve(
   path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')),
@@ -41,11 +42,7 @@ const steps = [
   node('typescript', ['node_modules/typescript/bin/tsc', '--noEmit'], { timeout: 300000 }),
   node('eslint', ['node_modules/eslint/bin/eslint.js', '.', ...lintIgnores], { timeout: 300000 }),
   node('build', ['scripts/build-desktop.mjs'], { build: true, timeout: 300000 }),
-  node('memory tests', ['.sites-runtime/memory-tests/test-memory.mjs']),
-  node('rules tests', ['.sites-runtime/rules-tests/test-rules.mjs']),
-  node('claude engine tests', ['scripts/test-cloud-engine.mjs']),
-  node('book text tests', ['.sites-runtime/book-tests/test-book-text.mjs']),
-  node('playbook tests', ['.sites-runtime/playbook-tests/test-playbook.mjs']),
+  ...unitSuites.map(([name, file]) => node(name, [file])),
   ui('ai ui', 'test-ai-ui.cjs'),
   ui('workspaces', 'test-workspaces.cjs', ['--out', path.join(logs, 'workspace-shots')]),
   ui('seventh bell', 'test-seventh-bell.cjs'),

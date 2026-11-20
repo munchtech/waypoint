@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
-import { applyUpdate, planUpdate, renameTerms, updatePackSchema } from '../lib/update-pack';
+import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
 import {
   ringsBell,
   tollWeight,

@@ -6,7 +6,10 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern \"desktop/build/**\" --ignore-pattern \"campaign/**\" --ignore-pattern \".sites-runtime/**\"",
+    "typecheck": "tsc --noEmit",
+    "test": "node scripts/test-unit.mjs",
+    "verify": "node scripts/verify.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
