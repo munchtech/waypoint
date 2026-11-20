@@ -17,7 +17,7 @@ import {sendToWiki} from './player-site';
 import {clockAlerts,dependents,difficulty,echoes,encounterXP,flagLabel,forecast,partyLevels,rankPlays,sessionTag,setFlag,stateOf,undoEntry,valueLabel,type Encounter,type Play,type Playbook} from '../lib/playbook';
 
 type Tab='Prep brief'|'World state'|'Forecast';
-type Props={campaign:Campaign;session:Session;update:(fn:(c:Campaign)=>Campaign)=>void;onPlayed:(play:Play,sessionId?:string)=>void;onQuick?:(play:Play,sessionId?:string)=>void;onNavigate:(view:string)=>void;onPinRule:(ref:RuleReference)=>void;notify:(m:string)=>void;fail:(m:string)=>void;onPaths:(id?:string)=>void};
+type Props={campaign:Campaign;session:Session;update:(fn:(c:Campaign)=>Campaign)=>void;onPlayed:(play:Play,sessionId?:string)=>void;onQuick?:(play:Play,sessionId?:string)=>void;onNavigate:(view:string)=>void;onPinRule:(ref:RuleReference)=>void;notify:(m:string)=>void;fail:(m:string)=>void;onPaths:(id?:string)=>void;tabRequest?:{tab:string;n:number}|null};
 const general=['Re-read this chapter and its most likely plays','Choose one faction move to show this session (World state, clocks)','Pick one rumour the party can overhear','Know the voice, want and one secret of the three NPCs most likely to appear','Check the memory ledger: who has paid what, and what is still owed','Decide how you will end: on a question, not a resolution'];
 const sessionLabel=sessionTag;
 async function rule<T>(path:string,body:unknown){const r=await appFetch('/api/rules/'+path,{method:'POST',body:JSON.stringify(body)});const data=await r.json() as T&{error?:string};if(!r.ok)throw new Error(data.error||'The rules library could not be reached.');return data}
@@ -32,8 +32,10 @@ function UpdateReview({campaign,pack,onDone,update,notify,fail}:{campaign:Campai
   {groups.map(g=>{const items=plan.filter(p=>p.group===g);return <fieldset key={g} className="update-group"><legend>{g} <small>{items.filter(i=>i.status==='ready').length} ready</small></legend>{items.map(i=><label key={i.id} className={'check-label update-item status-'+i.status}><input type="checkbox" disabled={i.status!=='ready'} checked={i.status==='ready'&&chosen.has(i.id)} onChange={e=>setChosen(s=>{const n=new Set(s);if(e.target.checked)n.add(i.id);else n.delete(i.id);return n})}/><span><strong>{i.label}</strong><small>{i.status==='applied'?'Already in your campaign. ':i.status==='conflict'?'Skipped: your text has changed here, so this edit can’t be placed. ':''}{i.detail}</small></span></label>)}</fieldset>})}
   <div className="modal-actions"><button className="button" onClick={onDone}>Not now</button><button className="button primary" disabled={busy||!ready} onClick={()=>void install()}><Download size={15}/>{busy?'Installing…':'Install '+count(ready,'change')}</button></div><p className="tiny muted">Waypoint keeps a restore point first. Your own notes, map kits, world state and chronicle are preserved; replaced wiki text moves to each page’s revision history.</p></section>}
 
-export default function Foresight({campaign,session,update,onPlayed,onQuick,onNavigate,onPinRule,notify,fail,onPaths}:Props){
- const m=memoryOf(campaign),pb=m.playbook,[tab,setTab]=useState<Tab>('Prep brief');
+export default function Foresight({campaign,session,update,onPlayed,onQuick,onNavigate,onPinRule,notify,fail,onPaths,tabRequest}:Props){
+ // A `go:world-state` link in session notes opens Foresight on that tab (the app remounts Foresight for each request).
+ const requested=(t?:string):t is Tab=>!!t&&(['Prep brief','World state','Forecast'] as string[]).includes(t);
+ const want=tabRequest?.tab,m=memoryOf(campaign),pb=m.playbook,[tab,setTab]=useState<Tab>(()=>requested(want)?want:'Prep brief');
  const [pack,setPack]=useState<UpdatePack|null>(null),[offer,setOffer]=useState<UpdatePack|null>(null),[reviewing,setReviewing]=useState(false);
  const mutate=(fn:(m:Memory)=>Memory)=>update(c=>({...c,memory:fn(memoryOf(c))}));
  const mutatePb=(fn:(p:Playbook)=>Playbook)=>mutate(mem=>mem.playbook?{...mem,playbook:fn(mem.playbook)}:mem);

@@ -1,8 +1,9 @@
 import {createElement, Fragment, useId, useMemo, type ReactNode} from 'react';
 import MarkdownIt from 'markdown-it';
-import {useMentionRenderer} from './campaign-links';
+import {useGo,useMentionRenderer} from './campaign-links';
 type Token = ReturnType<typeof markdown.parse>[number];
 import {safeWebLink} from '../lib/safe-web-link';
+import {goPlaces,isGoPlace,type GoPlace} from '../lib/go-links';
 
 // Parse Markdown, but construct React elements ourselves. Raw HTML and arbitrary
 // token attributes never enter the DOM, and images never load remote resources.
@@ -15,14 +16,14 @@ function plain(tokens:Token[]):string {
 // A link to `play:<id>` names a prepared play. Where the page knows its plays (session notes), the link becomes a button that opens
 // the play's card in place; elsewhere (the book, the wiki) it reads as plain text.
 export type PlayLinks={open:string|null;toggle:(id:string)=>void;render:(id:string)=>ReactNode};
-function render(tokens:Token[], prefix:string, mention:ReturnType<typeof useMentionRenderer>, seen:Set<string>, plays?:PlayLinks, skipMentions=false):ReactNode[] {
+function render(tokens:Token[], prefix:string, mention:ReturnType<typeof useMentionRenderer>, seen:Set<string>, plays?:PlayLinks, skipMentions=false, go?:(place:GoPlace)=>void):ReactNode[] {
  let index=0;
  function walk(skip=false):ReactNode[] {
   const nodes:ReactNode[]=[];
   while(index<tokens.length){
    const key=index, token=tokens[index++];
    if(token.nesting===-1)break;
-   const children=token.nesting===1?walk(skip||token.type==='link_open'||token.type==='heading_open'):token.children?render(token.children,prefix,mention,seen,plays,skip):[];
+   const children=token.nesting===1?walk(skip||token.type==='link_open'||token.type==='heading_open'):token.children?render(token.children,prefix,mention,seen,plays,skip,go):[];
    if(token.hidden){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
    if(token.type==='inline'){nodes.push(<Fragment key={key}>{children}</Fragment>);continue;}
    if(token.type==='text'){const value=token.content.replace(/^\[ \] /,'☐ ').replace(/^\[[xX]\] /,'☑ ');nodes.push(skip?value:mention(value,seen));continue;}
@@ -34,6 +35,12 @@ function render(tokens:Token[], prefix:string, mention:ReturnType<typeof useMent
    if(token.type==='link_open'&&String(token.attrGet('href')||'').startsWith('play:')){
     const id=String(token.attrGet('href')).slice(5),open=plays?.open===id;
     nodes.push(plays?<Fragment key={key}><button type="button" className={'play-link'+(open?' open':'')} aria-expanded={open} onClick={()=>plays.toggle(id)}>{children}</button>{open&&plays.render(id)}</Fragment>:<Fragment key={key}>{children}</Fragment>);
+    continue;
+   }
+   // A link to `go:<place>` opens that part of the app (see lib/go-links); without a handler it reads as plain text.
+   if(token.type==='link_open'&&String(token.attrGet('href')||'').startsWith('go:')){
+    const place=String(token.attrGet('href')).slice(3);
+    nodes.push(go&&isGoPlace(place)?<button type="button" key={key} className="go-link" title={'Open '+goPlaces[place]} onClick={()=>go(place)}>{children}</button>:<Fragment key={key}>{children}</Fragment>);
     continue;
    }
    if(token.type==='link_open'||token.type==='image'){
@@ -64,9 +71,10 @@ function render(tokens:Token[], prefix:string, mention:ReturnType<typeof useMent
  }
  return walk(skipMentions);
 }
-export default function BookText({text,plays,excludePageId}:{text:string;plays?:PlayLinks;excludePageId?:string}){
+// `linkEvery` links every mention of a wiki page instead of only the first, for text read at the table (session notes).
+export default function BookText({text,plays,excludePageId,linkEvery=false}:{text:string;plays?:PlayLinks;excludePageId?:string;linkEvery?:boolean}){
  const prefix=useId()+'-';
- const mention=useMentionRenderer(excludePageId);
+ const mention=useMentionRenderer(excludePageId,linkEvery),go=useGo();
  const tokens=useMemo(()=>{
   const tokens=markdown.parse(text,{}),counts=new Map<string,number>();
   for(let i=0;i<tokens.length;i++)if(tokens[i].type==='heading_open'){
@@ -75,7 +83,7 @@ export default function BookText({text,plays,excludePageId}:{text:string;plays?:
   }
   return tokens;
  },[text,prefix]);
- return <div className="book-text">{render(tokens,prefix,mention,new Set(),plays)}</div>;
+ return <div className="book-text">{render(tokens,prefix,mention,new Set(),plays,false,go)}</div>;
 }
 
 
