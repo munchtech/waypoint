@@ -18,6 +18,7 @@ import {
   Settings2,
   X,
   CheckCircle2,
+  MessageCircleQuestion,
 } from 'lucide-react';
 import { useDesk, DeskContext } from './use-desk';
 import { SessionDeskView } from './views/session-desk';
@@ -53,6 +54,7 @@ function HomeScreen() {
     view,
     ai,
     busy,
+    progress,
     notice,
     error,
     setError,
@@ -90,6 +92,10 @@ function HomeScreen() {
     memory,
     reviewCount,
   } = desk;
+  const openAsk = () => {
+    setError('');
+    setModal('ask');
+  };
   // Until the saved campaigns arrive, show a quiet opening screen instead of flashing the demo campaign's layout.
   if (!ready)
     return (
@@ -146,6 +152,11 @@ function HomeScreen() {
                     )[name] || 'Open campaign workspace',
                   run: () => setView(name),
                 })),
+                {
+                  label: 'Ask the campaign',
+                  detail: 'Ask Claude a question and get an answer from your wiki and history',
+                  run: openAsk,
+                },
                 {
                   label: 'AI & backups',
                   detail: 'Set your Claude key and model, and manage backups',
@@ -287,6 +298,15 @@ function HomeScreen() {
                   <Search size={15} />
                   <span>Search campaign</span>
                   <kbd>Ctrl K</kbd>
+                </button>
+                <button
+                  className="button ask-trigger"
+                  aria-label="Ask the campaign"
+                  title="Ask the campaign"
+                  onClick={openAsk}
+                >
+                  <MessageCircleQuestion size={15} />
+                  <span>Ask</span>
                 </button>
                 <button className="button" onClick={() => setModal('data')}>
                   <span className={'dot ' + (!ai ? 'off' : '')} />
@@ -454,8 +474,14 @@ function HomeScreen() {
                   ? 'Following the threads of your story…'
                   : busy === 'prepare'
                     ? 'Preparing the possibilities…'
-                    : 'Finding a spark…'}
-              <small>You can keep reading your notes.</small>
+                    : busy === 'path'
+                      ? 'Finding another path…'
+                      : busy === 'ask'
+                        ? 'Looking through your campaign…'
+                        : 'Finding a spark…'}
+              <small className="generating-progress">
+                {progress || 'You can keep reading your notes.'}
+              </small>
               {isDesktop() && (
                 <button className="cancel-generation" onClick={() => window.waypoint?.cancel()}>
                   Stop waiting

@@ -10,6 +10,8 @@ import { applyReview, relatedEvidence } from '../lib/session-review';
 import { audioRange, reviseTranscript } from '../lib/transcript';
 import { searchCampaign, composePlayerHandout, playerFacts } from '../lib/campaign-search';
 import { playerDocument } from '../lib/player-display';
+import { generationContext } from '../lib/ai-context';
+import { progressOf } from '../lib/generation-contract';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -623,6 +625,96 @@ console.log(
   );
   console.log(
     'Campaign problems passed: field paths, campaign names, empty lists, limits, null entries and kept extra fields.',
+  );
+}
+{
+  // Generation context: the latest history plus older entries that match the request, in their original order.
+  const base = structuredClone(demo);
+  const sid = base.sessions[0].id;
+  const events = Array.from({ length: 300 }, (_, i) => ({
+    id: 'e' + i,
+    sessionId: sid,
+    text:
+      i === 5 ? 'The party promised the ferryman a silver bell.' : 'Market day number ' + i + '.',
+    style: 'Roleplay' as const,
+    enjoyment: 'Neutral' as const,
+    date: new Date(Date.UTC(2026, 0, 1 + i)).toISOString(),
+  }));
+  const cards = Array.from({ length: 40 }, (_, i) => ({
+    id: 'c' + i,
+    kind: 'NPC',
+    title: i === 30 ? 'The Ferryman' : 'Stall keeper ' + i,
+    body: 'Sells apples.',
+    readAloud: '',
+    consequence: '',
+    source: 'AI generated',
+  }));
+  const big = { ...base, events, cards };
+  const session = big.sessions[0];
+  const asked = generationContext(big, session, 'ask', 'What did we promise the ferryman?');
+  const ids = asked.confirmedEvents.map((e) => Number(e.id.slice(1)));
+  // The latest 15, plus the one older event that matches; unrelated older events stay home.
+  assert.equal(ids.length, 16);
+  assert.ok(ids.includes(5), 'an old matching event is sent');
+  assert.equal(ids.at(-1), 299, 'the latest event is always sent');
+  assert.deepEqual(
+    ids,
+    [...ids].sort((a, b) => a - b),
+    'events keep their order',
+  );
+  assert.equal(asked.savedDraftMaterial[0].title, 'The Ferryman');
+  assert.equal(asked.savedDraftMaterial.length, 6);
+  assert.deepEqual(asked.contextSelection.confirmedEvents, { included: 16, total: 300 });
+  assert.ok(asked.wiki.length <= 30);
+  assert.equal('ruleReferences' in asked.currentSession, false);
+
+  const quick = generationContext(big, session, 'improvise', 'A ferryman stops the boat');
+  assert.equal(quick.confirmedEvents.length, 13);
+  assert.ok(quick.confirmedEvents.some((e) => e.id === 'e5'));
+  for (const b of (quick.currentSession as { branches: object[] }).branches)
+    assert.deepEqual(Object.keys(b), ['title', 'style']);
+
+  const path = generationContext(big, session, 'path', session.plan);
+  assert.equal('branches' in path.currentSession, false);
+  assert.deepEqual(
+    path.existingPaths,
+    session.branches.map((b) => b.title),
+  );
+
+  // A small campaign is sent whole; extra fields from the caller are kept.
+  const small = generationContext(base, session, 'prepare', session.plan, {
+    twistIntensity: 'Subtle',
+  });
+  assert.equal(small.confirmedEvents.length, base.events.length);
+  assert.equal((small as Record<string, unknown>).twistIntensity, 'Subtle');
+
+  // Progress labels read from a streamed reply; a title counts once its closing quote has arrived.
+  assert.equal(progressOf('', 'prepare'), 'Writing…');
+  assert.equal(
+    progressOf('{"title":"","summary":"x","plan":"Scene one', 'prepare'),
+    'Writing the session notes…',
+  );
+  assert.equal(progressOf('{"branches":[{"title":"Barg', 'path'), 'Writing the paths…');
+  assert.equal(
+    progressOf('{"plan":"","branches":[{"title":"Bargain with \\"Voss\\"","style":"Ro', 'prepare'),
+    'Writing path 1: Bargain with "Voss"',
+  );
+  assert.equal(
+    progressOf('{"branches":[{"title":"A","why":""},{"title":"Refuse the hook","st', 'prepare'),
+    'Writing path 2: Refuse the hook',
+  );
+  assert.equal(progressOf('{"branches":[{"title":"A"}],"cards":[', 'prepare'), 'Finishing up…');
+  assert.equal(
+    progressOf('{"cards":[{"kind":"NPC","title":"Mara","body":"', 'improvise'),
+    'Writing card 1: Mara',
+  );
+  assert.equal(
+    progressOf('{"summary":"","cards":[{"kind":"NPC","title":"Mara"', 'memory'),
+    'Writing proposal 1: Mara',
+  );
+  assert.equal(progressOf('{"answer":"The', 'ask'), 'Writing the answer…');
+  console.log(
+    'Generation context passed: recent and matching events, matching material, per-task limits, path titles, progress labels.',
   );
 }
 {

@@ -2,16 +2,16 @@ import { useAIStatus } from '../components/use-ai-status';
 import { useSessionPrompt } from '../components/use-session-prompt';
 import { type OutcomeEdit } from '../components/session-editor';
 import { emptyHistory, type HistoryFilters } from '../components/campaign-history';
-import { partySignals } from '../lib/party-signals';
+import { generationContext } from '../lib/ai-context';
 import { rememberItem } from '../lib/recent-items';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import { useCallback, useEffect, useRef, useState, createContext, useContext } from 'react';
 import { type WikiDraft } from '../lib/player-site';
-import { applyChanges, resolveEffects, stateSummary } from '../lib/playbook';
+import { applyChanges, resolveEffects } from '../lib/playbook';
 import { tableCard } from '../lib/session-notes';
 import { type RuleReference } from '../lib/rules';
 import PlayCard from '../components/play-card';
-import { memoryContext, memoryOf, type WikiPage } from '../lib/memory';
+import { memoryOf, type WikiPage } from '../lib/memory';
 import { type GoPlace } from '../lib/go-links';
 import { appFetch, isDesktop } from '../lib/transport';
 import {
@@ -51,6 +51,11 @@ export function useDesk() {
   const aiStatus = useAIStatus();
   const ai = aiStatus.ready;
   const [busy, setBusy] = useState('');
+  // What the running generation is writing now, streamed from the desktop app ("Writing path 2: …").
+  const [progress, setProgress] = useState('');
+  useEffect(() => window.waypoint?.onProgress?.(setProgress), []);
+  const [askQuestion, setAskQuestion] = useState('');
+  const [askResult, setAskResult] = useState<Answer | null>(null);
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const {
@@ -203,10 +208,15 @@ export function useDesk() {
       old?.focus();
     };
   }, [modal]);
-  async function generate(mode: string, prompt: string, extra: Record<string, unknown> = {}) {
+  async function generate<T = Packet>(
+    mode: string,
+    prompt: string,
+    extra: Record<string, unknown> = {},
+  ): Promise<T | null> {
     if (requestLock.current) return null;
     requestLock.current = true;
     setBusy(mode);
+    setProgress('');
     setError('');
     try {
       if (isDesktop() && !(await aiStatus.refresh())) {
@@ -224,58 +234,36 @@ export function useDesk() {
           prompt,
           kind,
           context:
-            mode === 'campaign'
-              ? extra
-              : {
-                  campaign: {
-                    name: campaign.name,
-                    premise: campaign.premise,
-                    tone: campaign.tone,
-                    party: campaign.party,
-                    boundaries: campaign.boundaries,
-                    twist: campaign.twist,
-                    arc: campaign.arc,
-                    preferences: campaign.preferences,
-                  },
-                  currentSession: { ...session, ruleReferences: undefined },
-                  confirmedEvents: campaign.events.slice(-120),
-                  playerSignals: partySignals(campaign),
-                  ...memoryContext(
-                    campaign,
-                    false,
-                    prompt +
-                      ' ' +
-                      memoryOf(campaign).planner.focus +
-                      ' ' +
-                      session.plan.slice(0, 4000),
-                  ),
-                  rulesReferences: session.ruleReferences || [],
-                  worldState: memoryOf(campaign).playbook
-                    ? stateSummary(memoryOf(campaign).playbook!)
-                    : undefined,
-                  savedDraftMaterial: campaign.cards.slice(0, 15),
-                  priorSessions: campaign.sessions
-                    .filter((s) => s.id !== session.id)
-                    .slice(-20)
-                    .map((s) => ({
-                      title: s.title,
-                      summary: s.summary,
-                      done: s.done,
-                      debrief: s.debrief,
-                    })),
-                  ...extra,
-                },
+            mode === 'campaign' ? extra : generationContext(campaign, session, mode, prompt, extra),
         }),
       });
-      const data = (await r.json()) as Packet & { error?: string };
+      const data = (await r.json()) as T & { error?: string };
       if (!r.ok) throw new Error(data.error || 'Generation failed. Please try again.');
-      return data as Packet;
+      return data as T;
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not connect. Try again.');
       return null;
     } finally {
       setBusy('');
+      setProgress('');
       requestLock.current = false;
+    }
+  }
+  // Ask the campaign: a plain answer from the wiki, the chronicle and the sessions, naming the pages it used.
+  async function ask() {
+    const question = askQuestion.trim();
+    if (!question) return;
+    const answer = await generate<Omit<Answer, 'question'>>('ask', question);
+    if (answer) setAskResult({ question, answer: answer.answer, pages: answer.pages || [] });
+  }
+  // One more path for the current session, different from the ones already there; the others are kept.
+  async function addPath() {
+    const p = await generate('path', session.plan);
+    if (p?.branches[0]) {
+      const path = { ...p.branches[0], id: uid(), origin: 'ai' as const };
+      updateSession((s) => ({ ...s, branches: [...s.branches, path] }));
+      setExpanded(path.id);
+      setNotice('Path added: ' + path.title + '. Nothing is canon until you record it.');
     }
   }
   async function prepare() {
@@ -762,6 +750,13 @@ export function useDesk() {
     ai,
     busy,
     setBusy,
+    progress,
+    askQuestion,
+    setAskQuestion,
+    askResult,
+    setAskResult,
+    ask,
+    addPath,
     notice,
     setNotice,
     error,
@@ -871,6 +866,7 @@ export function useDesk() {
     reviewCount,
   };
 }
+export type Answer = { question: string; answer: string; pages: { id: string; title: string }[] };
 export type Desk = ReturnType<typeof useDesk>;
 export const DeskContext = createContext<Desk | null>(null);
 // Views and dialogs read the desk from here; the shell provides it.

@@ -9,6 +9,7 @@ import {
   buildRequest,
   explain,
   generateCloud,
+  parseAnswer,
   parseMaterial,
   readMessage,
   testKey,
@@ -149,8 +150,72 @@ await assert.rejects(
   /stopped|not changed/i,
 );
 
+// Ask the campaign: a shorter request with its own format, and an answer that names only pages that were sent.
+{
+  const wiki = [
+    { id: 'p1', title: 'Captain Voss' },
+    { id: 'p2', title: 'The Drowned Bell' },
+  ];
+  const { params } = buildRequest(DEFAULT_MODEL, {
+    mode: 'ask',
+    prompt: 'Who is Voss?',
+    context: { wiki },
+  });
+  assert.deepEqual(Object.keys(params.output_config.format.schema.properties), ['answer', 'pages']);
+  assert.equal(params.output_config.effort, 'low');
+  assert.equal(params.max_tokens, 16000);
+  assert.match(params.system[0].text, /answering a dungeon master's question/);
+  const answer = parseAnswer(
+    JSON.stringify({
+      answer: ' Voss is the harbour captain. ',
+      pages: ['captain voss', 'Captain Voss', 'Invented Page'],
+    }),
+    wiki,
+  );
+  assert.deepEqual(answer, {
+    answer: 'Voss is the harbour captain.',
+    pages: [{ id: 'p1', title: 'Captain Voss' }],
+  });
+  for (const bad of ['not json', '{"answer":"","pages":[]}', '{"answer":"x"}'])
+    assert.throws(() => parseAnswer(bad, wiki), /readable answer/);
+}
+
+// One path at a time: the format asks only for branches, and only the first returned branch is kept.
+{
+  const { params } = buildRequest(DEFAULT_MODEL, {
+    mode: 'path',
+    prompt: 'Notes',
+    context: { existingPaths: ['Pursue the hook'] },
+  });
+  assert.deepEqual(Object.keys(params.output_config.format.schema.properties), ['branches']);
+  assert.equal(params.output_config.effort, 'medium');
+  const branch = {
+    title: 'Steal the boat',
+    style: 'Mischief',
+    likelihood: 'Contingency',
+    why: 'w',
+    readAloud: 'r',
+    response: 'x',
+    consequence: 'c',
+    fallback: 'f',
+  };
+  const one = parseMaterial(
+    JSON.stringify({
+      branches: [branch, { ...branch, title: 'Second' }],
+      events: [{ text: 'x', style: 'Combat', enjoyment: 'Neutral' }],
+    }),
+    'path',
+  );
+  assert.deepEqual(
+    one.branches.map((b) => b.title),
+    ['Steal the boat'],
+  );
+  assert.equal(one.events.length, 0);
+  assert.throws(() => parseMaterial('{"branches":[]}', 'path'), /no session paths/);
+}
+
 console.log(
-  'Passed: model and key validation, request shape, cached instructions, reply reading, refusal and cut-off handling, output parsing, stopped generation.',
+  'Passed: model and key validation, request shape, cached instructions, reply reading, refusal and cut-off handling, output parsing, ask answers, single paths, stopped generation.',
 );
 
 if (process.argv.includes('--live')) {

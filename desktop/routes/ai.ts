@@ -13,7 +13,7 @@ import {
   validSettings,
   type Settings,
 } from '../cloud-engine';
-import { atomicWrite, dataDir, type Route } from '../runtime';
+import { atomicWrite, dataDir, state, type Route } from '../runtime';
 
 const aiFile = path.join(dataDir, 'ai.json'),
   keyFile = path.join(dataDir, 'ai-key.bin');
@@ -104,11 +104,13 @@ export const aiRoute: Route = async (req) => {
     controller = new AbortController();
     const timer = setTimeout(() => controller?.abort(), 600000);
     try {
+      // Progress goes to the app window as it streams; the finished result is still this request's reply.
       const body = await generateCloud(
         readAI(),
         key,
         JSON.parse(req.body || '{}'),
         controller.signal,
+        (label) => state.win?.webContents.send('waypoint:progress', { label }),
       );
       return { status: 200, body };
     } finally {

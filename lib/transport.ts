@@ -4,6 +4,7 @@ declare global {
     waypoint?: {
       request: (path: string, method: string, body?: string) => Promise<NativeReply>;
       cancel: () => Promise<void>;
+      onProgress?: (listener: (label: string) => void) => () => void;
       desktop: true;
     };
   }

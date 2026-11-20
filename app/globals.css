@@ -7531,3 +7531,40 @@ input:focus {
     padding: 16px;
   }
 }
+/* Ask the campaign, and adding one path at a time. */
+.path-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.ask-dialog label {
+  display: grid;
+  gap: 6px;
+}
+.ask-dialog textarea {
+  width: 100%;
+  resize: vertical;
+}
+.ask-answer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e1ddd2;
+  overflow-wrap: anywhere;
+}
+.ask-pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.generating-progress {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1100px) {
+  .ask-trigger > span {
+    display: none;
+  }
+}

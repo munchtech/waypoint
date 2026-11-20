@@ -1,7 +1,15 @@
 // Claude generation for the desktop app, through the official Anthropic SDK.
 // The API key is passed in by the caller: desktop/main.ts keeps it encrypted on disk, and nothing here reads the disk or the environment.
 import Anthropic from '@anthropic-ai/sdk';
-import { input, instructionsFor, packet, schema } from '../lib/generation-contract';
+import {
+  answerPacket,
+  answerSchema,
+  input,
+  instructionsFor,
+  packet,
+  progressOf,
+  schema,
+} from '../lib/generation-contract';
 
 export const MODELS = [
   {
@@ -80,6 +88,16 @@ export function parseMaterial(raw: string, mode: string) {
       cards: value.cards,
       events: [],
     };
+  if (mode === 'path' && value && typeof value === 'object')
+    value = {
+      title: '',
+      summary: '',
+      plan: '',
+      arc: '',
+      branches: Array.isArray(value.branches) ? value.branches.slice(0, 1) : value.branches,
+      cards: [],
+      events: [],
+    };
   if (mode === 'memory' && value && typeof value === 'object')
     value = {
       title: '',
@@ -102,24 +120,59 @@ export function parseMaterial(raw: string, mode: string) {
   return parsed.data;
 }
 
+// An answer to Ask the campaign. Only titles of pages that were actually sent are kept, matched without case,
+// so the DM can open each one; anything else the model named is dropped.
+export function parseAnswer(raw: string, wiki: unknown) {
+  let value;
+  try {
+    value = JSON.parse(raw.trim());
+  } catch {
+    throw new Error('Claude did not return a readable answer. Nothing was changed. Try again.');
+  }
+  const parsed = answerPacket.safeParse(value);
+  if (!parsed.success || !parsed.data.answer.trim())
+    throw new Error('Claude did not return a readable answer. Nothing was changed. Try again.');
+  const sent = (Array.isArray(wiki) ? wiki : []).filter(
+    (p): p is { id: string; title: string } =>
+      !!p && typeof p.id === 'string' && typeof p.title === 'string',
+  );
+  const pages: { id: string; title: string }[] = [];
+  for (const title of parsed.data.pages) {
+    const page = sent.find((p) => p.title.trim().toLowerCase() === title.trim().toLowerCase());
+    if (page && !pages.some((p) => p.id === page.id))
+      pages.push({ id: page.id, title: page.title });
+  }
+  return { answer: parsed.data.answer.trim(), pages };
+}
+
+// Only the lists a mode fills are in its reply format, so a short request does not pay for empty fields.
+function formatFor(mode: string) {
+  const only = (key: 'cards' | 'branches') => ({
+    type: 'object',
+    properties: { [key]: schema.properties[key] },
+    required: [key],
+    additionalProperties: false,
+  });
+  return mode === 'improvise'
+    ? only('cards')
+    : mode === 'path'
+      ? only('branches')
+      : mode === 'ask'
+        ? answerSchema
+        : schema;
+}
+
 // The whole request for one generation. The instructions are the stable part, so they carry the cache marker;
 // the campaign context changes every time and goes in the user turn.
 export function buildRequest(model: ModelId, request: unknown) {
   const data = input.parse(request);
-  const format =
-    data.mode === 'improvise'
-      ? {
-          type: 'object',
-          properties: { cards: schema.properties.cards },
-          required: ['cards'],
-          additionalProperties: false,
-        }
-      : schema;
+  const format = formatFor(data.mode);
+  const short = data.mode === 'ask';
   return {
     data,
     params: {
       model,
-      max_tokens: 64000,
+      max_tokens: short ? 16000 : 64000,
       thinking: { type: 'adaptive' as const },
       system: [
         {
@@ -132,7 +185,7 @@ export function buildRequest(model: ModelId, request: unknown) {
         { role: 'user' as const, content: 'TASK AND CAMPAIGN CONTEXT:\n' + JSON.stringify(data) },
       ],
       output_config: {
-        effort: 'medium' as const,
+        effort: short ? ('low' as const) : ('medium' as const),
         format: { type: 'json_schema' as const, schema: format },
       },
     },
@@ -224,22 +277,43 @@ export async function testKey(settings: Settings, apiKey: string) {
   }
 }
 
+type Streaming = {
+  on(event: 'text', listener: (delta: string, snapshot: string) => void): unknown;
+};
+
 export async function generateCloud(
   settings: Settings,
   apiKey: string,
   request: unknown,
   signal: AbortSignal,
+  onProgress: (label: string) => void = () => {},
 ) {
   const { data, params } = buildRequest(settings.model, request);
   const client = new Anthropic({ apiKey, maxRetries: 1 });
+  // The banner changes only when the label does: when a new path or card title has arrived.
+  let last = '';
+  const report = (label: string) => {
+    if (label !== last) onProgress((last = label));
+  };
+  const follow = <T extends Streaming>(stream: T) => {
+    stream.on('text', (_delta, snapshot) => report(progressOf(snapshot, data.mode)));
+    return stream;
+  };
+  report('Thinking it through…');
   try {
-    // Streamed so a long reply cannot hit an HTTP timeout; only the finished message is used.
+    // Streamed so a long reply cannot hit an HTTP timeout; the finished message is what gets used.
     const message = withFallback.has(settings.model)
-      ? await client.beta.messages
-          .stream({ ...params, betas: [FALLBACK_BETA], fallbacks: 'default' }, { signal })
-          .finalMessage()
-      : await client.messages.stream(params, { signal }).finalMessage();
-    return parseMaterial(readMessage(message), data.mode);
+      ? await follow(
+          client.beta.messages.stream(
+            { ...params, betas: [FALLBACK_BETA], fallbacks: 'default' },
+            { signal },
+          ),
+        ).finalMessage()
+      : await follow(client.messages.stream(params, { signal })).finalMessage();
+    const text = readMessage(message);
+    return data.mode === 'ask'
+      ? parseAnswer(text, data.context.wiki)
+      : parseMaterial(text, data.mode);
   } catch (error) {
     throw new Error(explain(error));
   }

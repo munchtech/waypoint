@@ -69,6 +69,7 @@ export function SessionDeskView() {
     setQuick,
     setKind,
     prepare,
+    addPath,
     improvise,
     record,
     deskTab,
@@ -279,14 +280,27 @@ export function SessionDeskView() {
                     )}
                   </p>
                 </div>
-                <button
-                  className="text-button"
-                  disabled={!!busy || !session.plan.trim()}
-                  onClick={prepare}
-                >
-                  <RefreshCw size={14} className={busy === 'prepare' ? 'spin' : ''} />
-                  {busy === 'prepare' ? 'Preparing…' : 'Prepare paths'}
-                </button>
+                <div className="path-actions">
+                  {session.branches.length > 0 && (
+                    <button
+                      className="text-button"
+                      disabled={!!busy || !session.plan.trim()}
+                      title="Keep these paths and add one the players might take instead"
+                      onClick={addPath}
+                    >
+                      <Plus size={14} className={busy === 'path' ? 'spin' : ''} />
+                      {busy === 'path' ? 'Adding…' : 'Add one path'}
+                    </button>
+                  )}
+                  <button
+                    className="text-button"
+                    disabled={!!busy || !session.plan.trim()}
+                    onClick={prepare}
+                  >
+                    <RefreshCw size={14} className={busy === 'prepare' ? 'spin' : ''} />
+                    {busy === 'prepare' ? 'Preparing…' : 'Prepare paths'}
+                  </button>
+                </div>
               </div>
               <SessionPaths
                 key={campaign.id + session.id}

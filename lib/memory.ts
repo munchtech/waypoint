@@ -296,7 +296,7 @@ export function acceptProposal(
     ),
   };
 }
-export function memoryContext(c: Campaign, partyOnly = false, query = '') {
+export function memoryContext(c: Campaign, partyOnly = false, query = '', limit = 40) {
   const m = memoryOf(c);
   const words = (query.toLowerCase().match(/[\p{L}\p{N}]{4,}/gu) || []).slice(0, 150);
   const eligible = m.pages.filter((p) => !partyOnly || p.visibility === 'Party knows');
@@ -322,7 +322,7 @@ export function memoryContext(c: Campaign, partyOnly = false, query = '') {
         score(b) - score(a) ||
         b.updated.localeCompare(a.updated),
     )
-    .slice(0, 40);
+    .slice(0, limit);
   // Live markers are DM-only: they are left out of the player-safe context entirely.
   const tableMarkers = partyOnly
     ? []

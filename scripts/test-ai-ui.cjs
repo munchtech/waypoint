@@ -39,10 +39,26 @@ const fixtureKey = 'sk-ant-api03-fixture-key-000000000000',
   ];
 let ready = false,
   posts = 0,
+  asks = [],
+  releaseAsk = null,
   tests = 0,
   savedKey = '',
   model = 'claude-opus-5-5';
-ipcMain.handle('waypoint:request', (_e, r) => {
+ipcMain.handle('waypoint:request', async (event, r) => {
+  // Ask the campaign is the one generation this test answers: it reports progress, waits for the test, then replies
+  // with the shape the main process returns after checking the pages.
+  if (r.path === '/api/generate' && r.method === 'POST' && JSON.parse(r.body).mode === 'ask') {
+    asks.push(JSON.parse(r.body));
+    event.sender.send('waypoint:progress', { label: 'Writing the answer…' });
+    await new Promise((resolve) => (releaseAsk = resolve));
+    return {
+      status: 200,
+      body: {
+        answer: 'The ferryman takes a silver coin for each crossing.',
+        pages: [{ id: 'ferry-page', title: 'The Ferryman' }],
+      },
+    };
+  }
   if (r.path === '/api/rules/search') {
     const query = JSON.parse(r.body || '{}');
     const matches =
@@ -556,6 +572,58 @@ app.whenReady().then(async () => {
     );
     console.log(
       'Draft recovery passed: undo, restart recovery, session isolation and offline recent-material access.',
+    );
+
+    // Ask the campaign: the progress label shows while Claude writes, the answer names its pages, and a page opens.
+    ready = true;
+    const c0 = snapshot.campaigns[0];
+    c0.memory = {
+      notes: [],
+      planner: { duration: '3 hours', focus: '', spotlight: '', locked: '' },
+      ...c0.memory,
+      pages: [
+        ...(c0.memory?.pages || []),
+        {
+          id: 'ferry-page',
+          title: 'The Ferryman',
+          kind: 'NPC',
+          body: 'Takes a silver coin for each crossing.',
+          aliases: '',
+          status: 'Confirmed',
+          visibility: 'DM only',
+          sourceId: '',
+          quote: '',
+          updated: new Date().toISOString(),
+          history: [],
+        },
+      ],
+    };
+    await reload();
+    await wait("document.querySelector('.ask-trigger')!==null");
+    await run("document.querySelector('.ask-trigger').click()");
+    await wait("document.querySelector('.ask-dialog textarea')!==null");
+    await setInput('.ask-dialog textarea', 'What does the ferryman charge?');
+    await wait("!document.querySelector('.ask-dialog button[type=submit]').disabled");
+    await run("document.querySelector('.ask-dialog button[type=submit]').click()");
+    await wait(
+      "document.querySelector('.generating-progress')?.textContent==='Writing the answer…'",
+    );
+    assert.equal(asks.length, 1);
+    assert(
+      asks[0].context.wiki.some((p) => p.id === 'ferry-page'),
+      'The matching page is sent',
+    );
+    assert.equal(asks[0].prompt, 'What does the ferryman charge?');
+    releaseAsk();
+    await wait("document.querySelector('.ask-answer')?.textContent.includes('silver coin')");
+    assert(await run("!document.querySelector('.generating')"), 'The banner closes');
+    await run("document.querySelector('.ask-pages button').click()");
+    await wait(
+      "!document.querySelector('.modal')&&!!document.querySelector('.reference-dialog')?.textContent.includes('The Ferryman')",
+    );
+    assert.equal(posts, 0, 'Only the question was sent');
+    console.log(
+      'Ask the campaign passed: question sent with its matching page, progress shown, answer and page link opened.',
     );
     console.log(
       'AI UI passed: no key disables generation, a rejected key is reported, a saved key is never shown again, connection test, model choice, prompt retained, key removal, generation guarded.',
