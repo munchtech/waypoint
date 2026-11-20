@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { type Campaign, type Session, demo, uid, validateCampaign } from '../lib/campaign';
+import { type Campaign, type Session, demo, uid, campaignsProblem } from '../lib/campaign';
 import { SaveQueue } from '../lib/save-queue';
 import { appFetch, isDesktop } from '../lib/transport';
 
@@ -50,12 +50,11 @@ export function useCampaignStore(onError: (message: string) => void) {
         }
         if (saved) {
           const data = saved as { campaigns: Campaign[]; active: string; sessionId: string };
-          if (
-            !Array.isArray(data.campaigns) ||
-            !data.campaigns.length ||
-            !data.campaigns.every(validateCampaign)
-          )
-            throw new Error('Saved data is invalid. Import a valid backup before making changes.');
+          const problem = campaignsProblem(data.campaigns);
+          if (problem)
+            throw new Error(
+              `Saved data is invalid (${problem}). Import a valid backup before making changes.`,
+            );
           setCampaigns(data.campaigns);
           setActive(data.active || data.campaigns[0].id);
           setSessionId(data.sessionId || '');
@@ -112,9 +111,9 @@ export function useCampaignStore(onError: (message: string) => void) {
   // Backups and restore points are added as copies, so existing campaigns are never replaced.
   function addCopies(data: { campaigns?: unknown } | null, label: string) {
     const list = data?.campaigns;
-    if (!Array.isArray(list) || !list.length || !list.every(validateCampaign))
-      throw new Error('This is not a valid Waypoint backup.');
-    const restored: Campaign[] = list.map((c: Campaign) => ({
+    const problem = campaignsProblem(list);
+    if (problem) throw new Error(`This is not a valid Waypoint backup (${problem}).`);
+    const restored: Campaign[] = (list as Campaign[]).map((c) => ({
       ...c,
       id: uid(),
       name: c.name + ' (' + label + ')',

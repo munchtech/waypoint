@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { validateCampaign, type Branch, type Campaign, type Card } from './campaign';
+import { campaignProblem, type Branch, type Campaign, type Card } from './campaign';
 import { memoryOf, pageKinds, factStates, type WikiPage } from './memory';
 import { count } from './plural';
 import { playSchema, playbookSchema, type Playbook } from './playbook-schema';
@@ -618,7 +618,10 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
       if (take('cedit:' + i)) next[e.field] = applyEdits(next[e.field], [e]);
     });
   }
-  if (!validateCampaign(next))
-    throw new Error('This update would produce an invalid campaign, so nothing was changed.');
+  const problem = campaignProblem(next);
+  if (problem)
+    throw new Error(
+      `This update would produce an invalid campaign (${problem}), so nothing was changed.`,
+    );
   return next;
 }

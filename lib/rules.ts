@@ -1,3 +1,4 @@
+import { z } from 'zod';
 export type RuleEntry = {
   id: string;
   name: string;
@@ -31,18 +32,22 @@ export function referenceOf(entry: RuleEntry): RuleReference {
         : text,
   };
 }
+const field = z.string().max(2000);
+// A session pins at most six references, each a snapshot of the entry as it was when pinned.
+export const ruleReferencesSchema = z
+  .array(
+    z.object({
+      id: field,
+      name: field,
+      kind: field,
+      source: field,
+      edition: field,
+      page: field,
+      body: z.string().max(8000),
+    }),
+  )
+  .max(6)
+  .optional();
 export function validRuleReferences(value: unknown) {
-  return (
-    value === undefined ||
-    (Array.isArray(value) &&
-      value.length <= 6 &&
-      value.every((r) => {
-        if (!r || typeof r !== 'object' || Array.isArray(r)) return false;
-        const record = r as Record<string, unknown>;
-        return ['id', 'name', 'kind', 'source', 'edition', 'page', 'body'].every((k) => {
-          const v = record[k];
-          return typeof v === 'string' && v.length <= (k === 'body' ? 8000 : 2000);
-        });
-      }))
-  );
+  return ruleReferencesSchema.safeParse(value).success;
 }

@@ -1,4 +1,4 @@
-import { validRuleReferences, type RuleReference } from './rules';
+import { ruleReferencesSchema, type RuleReference } from './rules';
 import { memorySchema } from './memory';
 import type { Memory } from './memory';
 import { z } from 'zod';
@@ -15,7 +15,6 @@ export type Branch = {
   consequence: string;
   fallback: string;
 } & PlayFields;
-const branchExtras = z.object(playFields);
 export type Session = {
   ruleReferences?: RuleReference[];
   debrief?: { remember: string; openQuestions: string; nextFocus: string };
@@ -141,71 +140,95 @@ export function affinity(c: Campaign, style: Style) {
       )
   );
 }
+// What a saved campaign must look like. Fields it does not list (older or newer extras) are allowed and kept as they are.
+const styleSchema = z.enum(['Roleplay', 'Exploration', 'Combat', 'Mischief']);
+const debriefText = z.string().max(3000);
+const branchSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  style: styleSchema,
+  likelihood: z.string(),
+  why: z.string(),
+  readAloud: z.string(),
+  response: z.string(),
+  consequence: z.string(),
+  fallback: z.string(),
+  ...playFields,
+});
+const sessionSchema = z.object({
+  ruleReferences: ruleReferencesSchema,
+  debrief: z
+    .object({ remember: debriefText, openQuestions: debriefText, nextFocus: debriefText })
+    .optional(),
+  pinnedCardId: z.string().optional(),
+  id: z.string(),
+  title: z.string(),
+  plan: z.string(),
+  summary: z.string(),
+  branches: z.array(branchSchema),
+  source: z.string(),
+  done: z.boolean(),
+});
+const eventSchema = z.object({
+  id: z.string(),
+  sessionId: z.string(),
+  text: z.string(),
+  style: styleSchema,
+  enjoyment: z.enum(['Loved it', 'Neutral', 'Less of this']),
+  date: z.string(),
+});
+const cardSchema = z.object({
+  id: z.string(),
+  kind: z.string(),
+  title: z.string(),
+  body: z.string(),
+  readAloud: z.string(),
+  consequence: z.string(),
+  source: z.string(),
+});
+const preference = z.number().finite();
+export const campaignSchema = z.object({
+  memory: memorySchema.optional(),
+  id: z.string(),
+  name: z.string(),
+  premise: z.string(),
+  tone: z.string(),
+  party: z.string(),
+  boundaries: z.string(),
+  twist: z.string(),
+  arc: z.string(),
+  sessions: z.array(sessionSchema).min(1),
+  events: z.array(eventSchema),
+  cards: z.array(cardSchema),
+  preferences: z.object({
+    Roleplay: preference,
+    Exploration: preference,
+    Combat: preference,
+    Mischief: preference,
+  }),
+});
 export function validateCampaign(value: unknown): value is Campaign {
-  if (!value || typeof value !== 'object') return false;
-  const c = value as Campaign;
-  return (
-    (c.memory === undefined || memorySchema.safeParse(c.memory).success) &&
-    typeof c.id === 'string' &&
-    typeof c.name === 'string' &&
-    typeof c.premise === 'string' &&
-    typeof c.arc === 'string' &&
-    ['tone', 'party', 'boundaries', 'twist'].every(
-      (k) => typeof (c as unknown as Record<string, unknown>)[k] === 'string',
-    ) &&
-    Array.isArray(c.sessions) &&
-    c.sessions.length > 0 &&
-    c.sessions.every(
-      (s) =>
-        (s.debrief === undefined ||
-          (!!s.debrief &&
-            ['remember', 'openQuestions', 'nextFocus'].every(
-              (k) =>
-                typeof (s.debrief as Record<string, unknown>)[k] === 'string' &&
-                (s.debrief as Record<string, string>)[k].length <= 3000,
-            ))) &&
-        (s.pinnedCardId === undefined || typeof s.pinnedCardId === 'string') &&
-        validRuleReferences(s.ruleReferences) &&
-        typeof s.id === 'string' &&
-        typeof s.title === 'string' &&
-        typeof s.plan === 'string' &&
-        typeof s.summary === 'string' &&
-        typeof s.source === 'string' &&
-        typeof s.done === 'boolean' &&
-        Array.isArray(s.branches) &&
-        s.branches.every(
-          (b) =>
-            [
-              'id',
-              'title',
-              'likelihood',
-              'why',
-              'readAloud',
-              'response',
-              'consequence',
-              'fallback',
-            ].every((k) => typeof (b as unknown as Record<string, unknown>)[k] === 'string') &&
-            styles.includes(b.style) &&
-            branchExtras.safeParse(b).success,
-        ),
-    ) &&
-    Array.isArray(c.events) &&
-    c.events.every(
-      (e) =>
-        typeof e.id === 'string' &&
-        typeof e.sessionId === 'string' &&
-        typeof e.text === 'string' &&
-        typeof e.date === 'string' &&
-        styles.includes(e.style) &&
-        ['Loved it', 'Neutral', 'Less of this'].includes(e.enjoyment),
-    ) &&
-    Array.isArray(c.cards) &&
-    c.cards.every((a) =>
-      ['id', 'kind', 'title', 'body', 'readAloud', 'consequence', 'source'].every(
-        (k) => typeof (a as unknown as Record<string, unknown>)[k] === 'string',
-      ),
-    ) &&
-    !!c.preferences &&
-    styles.every((s) => Number.isFinite(c.preferences[s]))
+  return campaignSchema.safeParse(value).success;
+}
+// The first wrong field, as a path a person can find in the backup file: "sessions[0].branches[2].style: Expected string, received number".
+export function campaignProblem(value: unknown): string | null {
+  const result = campaignSchema.safeParse(value);
+  if (result.success) return null;
+  const { path, message } = result.error.issues[0];
+  const where = path.reduce<string>(
+    (s, p) => (typeof p === 'number' ? `${s}[${p}]` : s ? `${s}.${p}` : p),
+    '',
   );
+  return where ? `${where}: ${message}` : message;
+}
+// The same for a saved list of campaigns, naming the campaign: "“The Hollow Crown” sessions[0].title: Required".
+export function campaignsProblem(list: unknown): string | null {
+  if (!Array.isArray(list) || !list.length) return 'there are no campaigns in it';
+  for (const [i, c] of list.entries()) {
+    const problem = campaignProblem(c);
+    if (!problem) continue;
+    const name = (c as { name?: unknown } | null)?.name;
+    return (typeof name === 'string' && name ? `“${name}”` : `campaign ${i + 1}`) + ' ' + problem;
+  }
+  return null;
 }

@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
-import { validateCampaign } from '../lib/campaign';
+import { campaignsProblem } from '../lib/campaign';
 
 export type RestoreReason = 'opened' | 'autosave' | 'update';
 export type RestorePoint = {
@@ -145,9 +145,11 @@ export class CampaignStore {
     return JSON.parse(zlib.gunzipSync(row.content).toString('utf8'));
   }
   private validate(value: unknown) {
-    const campaigns = (value as { campaigns?: unknown } | null)?.campaigns;
-    if (!Array.isArray(campaigns) || !campaigns.length || !campaigns.every(validateCampaign))
-      throw new Error('Campaign data is invalid. Original data has not been overwritten.');
+    const problem = campaignsProblem((value as { campaigns?: unknown } | null)?.campaigns);
+    if (problem)
+      throw new Error(
+        `Campaign data is invalid (${problem}). Original data has not been overwritten.`,
+      );
   }
   read() {
     const row = this.db.prepare('SELECT content FROM snapshots WHERE id=1').get() as

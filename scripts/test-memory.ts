@@ -14,7 +14,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { demo, validateCampaign } from '../lib/campaign';
+import { demo, validateCampaign, campaignProblem, campaignsProblem } from '../lib/campaign';
 import {
   emptyMemory,
   groundedProposals,
@@ -571,6 +571,58 @@ console.log(
   );
   console.log(
     'Session debrief validation passed: roundtrip, invalid type and oversized note rejection.',
+  );
+}
+{
+  // Problems name the field that is wrong, and the campaign it is in.
+  assert.equal(campaignProblem(demo), null);
+  assert.equal(campaignsProblem([demo]), null);
+  const badStyle = structuredClone(demo);
+  (badStyle.sessions[0].branches[2] as { style: string }).style = 'Fighting';
+  assert.match(
+    campaignProblem(badStyle)!,
+    /^sessions\[0\]\.branches\[2\]\.style: Invalid enum value/,
+  );
+  const noTitle = { ...demo, sessions: [{ ...demo.sessions[0], title: undefined }] };
+  assert.equal(campaignProblem(noTitle), 'sessions[0].title: Required');
+  assert.equal(campaignsProblem([demo, noTitle]), '“The Hollow Crown” sessions[0].title: Required');
+  assert.equal(
+    campaignsProblem([{ ...noTitle, name: '' }]),
+    'campaign 1 sessions[0].title: Required',
+  );
+  assert.equal(campaignsProblem([]), 'there are no campaigns in it');
+  assert.match(
+    campaignProblem({ ...demo, sessions: [] })!,
+    /^sessions: Array must contain at least 1/,
+  );
+  assert.match(
+    campaignProblem({ ...demo, preferences: { ...demo.preferences, Combat: Infinity } })!,
+    /^preferences\.Combat:/,
+  );
+  assert.match(campaignProblem({ ...demo, memory: { pages: 'invalid' } })!, /^memory\./);
+  assert.match(campaignProblem(null)!, /^Expected object, received null/);
+  // Null entries are rejected instead of throwing, and fields Waypoint does not list are kept.
+  assert(!validateCampaign({ ...demo, sessions: [null] }));
+  assert(!validateCampaign({ ...demo, events: [null] }));
+  assert(validateCampaign({ ...demo, laterField: { kept: true } }));
+  assert(
+    validateCampaign({
+      ...demo,
+      events: [
+        {
+          id: 'e',
+          sessionId: 'session-demo',
+          text: 'Bargained',
+          style: 'Roleplay',
+          enjoyment: 'Loved it',
+          date: '2026-11-20',
+          branchId: 'b1',
+        },
+      ],
+    }),
+  );
+  console.log(
+    'Campaign problems passed: field paths, campaign names, empty lists, limits, null entries and kept extra fields.',
   );
 }
 {
