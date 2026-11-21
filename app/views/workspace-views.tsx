@@ -1,5 +1,6 @@
 import CampaignHistory from '../../components/campaign-history';
 import MaterialLibrary from '../../components/material-library';
+import { trackerStatus } from '../../lib/trackers';
 import SessionReview from '../../components/session-review';
 import { searchCampaign } from '../../lib/campaign-search';
 import { lazy, Suspense } from 'react';
@@ -126,6 +127,7 @@ export function SavedMaterialView() {
     <MaterialLibrary
       key={campaign.id}
       cards={campaign.cards}
+      live={(card) => trackerStatus(campaign, card)}
       onOpen={(card) => {
         setCardResult(card);
         setModal('card');

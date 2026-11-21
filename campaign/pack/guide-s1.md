@@ -93,7 +93,7 @@
 > **SAY (her offer):** "Keep it safe for three days. Not from thieves. From the Court. Do that, and I'll tell you what the water knows. And learn this before the dark comes: when they sing, you sing back."
 
 **If they…**
-- **[…accept the three days:](play:s01-sallow-bargain)** she nods once and pours more tea. Record the bargain in Foresight → Party & ledger → Bargain log ("Keep the Heart from the Court for three days"). Session 3 rewards it: she opens the ledger without being asked.
+- **[…accept the three days:](play:s01-sallow-bargain)** she nods once and pours more tea. Record the bargain in the [Bargain log](go:bargains) ("Keep the Heart from the Court for three days"). Session 3 rewards it: she opens the ledger without being asked.
 - **[…try to charm her:](play:s01-charm-sallow)** it slides off. Her attitude stays Indifferent. Blunt honesty, especially about something they've lost, makes her Friendly.
 - **[…offer to take the Heart themselves:](play:s01-keep-heart-for-ila)** "It's Ila's to give." If Ila trusts them, Ila gives it. That's a real choice; let it happen.
 - **[…ask for payment:](play:s01-ask-sallow-payment)** "Gold? I've got some, and it buys nothing I need. Find the eastern ferry and I'll pay you for that." (That's Session 2's hook.)

@@ -463,7 +463,7 @@ export function useDesk() {
     setNotice(
       'Recorded: ' +
         play.title +
-        '. Undo world changes in Foresight → World state; edit the line in the chronicle.',
+        '. Undo world changes in Session → Playbook → World state; edit the line in the chronicle.',
     );
   }
   function played(play: Branch, sid?: string) {

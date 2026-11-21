@@ -1,5 +1,13 @@
 import { z } from 'zod';
-import { campaignProblem, type Branch, type Campaign, type Card } from './campaign';
+import {
+  campaignProblem,
+  cardTracksSchema,
+  type Branch,
+  type Campaign,
+  type Card,
+  type CardTracks,
+} from './campaign';
+import { goPlaces } from './go-links';
 import { memoryOf, pageKinds, factStates, type WikiPage } from './memory';
 import { count } from './plural';
 import { playSchema, playbookSchema, type Playbook } from './playbook-schema';
@@ -81,11 +89,27 @@ export const updatePackSchema = z.object({
         id: z.string().max(120),
         title: z.string().min(1).max(160).optional(),
         edits: z.array(edit).min(1).max(40),
+        // Moves the page from one status to another; skipped as a conflict when the DM has already set a different one.
+        status: z.object({ from: z.enum(factStates), to: z.enum(factStates) }).optional(),
+        // Rewords the page's source quote the same way.
+        quote: z.object({ from: z.string().max(400), to: z.string().max(400) }).optional(),
       }),
     )
     .max(200)
     .optional(),
   cards: z.array(packCard).max(100).optional(),
+  // Changes to saved cards the campaign already has: a rename (only from the expected title), text edits, and a tracker to follow.
+  cardEdits: z
+    .array(
+      z.object({
+        id: z.string().max(120),
+        title: z.object({ from: z.string().max(200), to: z.string().min(1).max(200) }).optional(),
+        edits: z.array(edit).max(40).optional(),
+        tracks: cardTracksSchema.optional(),
+      }),
+    )
+    .max(100)
+    .optional(),
   terms: z
     .object({
       replace: z
@@ -212,6 +236,14 @@ const applyEdits = (text: string, edits: TextEdit[] = []) =>
 const editStatus = (text: string, e: TextEdit): PlannedChange['status'] =>
   done(text, e) ? 'applied' : text.includes(e.find) ? 'ready' : 'conflict';
 // Edits in one list are checked in order against the text as the earlier ready ones leave it, so a pack can build on its own earlier edits.
+// A value the pack moves from one setting to another: done once it holds the new one, a conflict if the DM chose something else.
+const swapStatus = (
+  now: string | undefined,
+  x: { from: string; to: string },
+): PlannedChange['status'] =>
+  now === undefined ? 'conflict' : now === x.to ? 'applied' : now === x.from ? 'ready' : 'conflict';
+const sameTracks = (a: CardTracks | undefined, b: CardTracks) =>
+  !!a && a.place === b.place && (a.flag || '') === (b.flag || '');
 const chain = (text: string, edits: TextEdit[]) => {
   let t = text;
   return edits.map((e) => {
@@ -390,6 +422,52 @@ export function planUpdate(original: Campaign, p: UpdatePack): PlannedChange[] {
         status: st[i] || 'conflict',
       }),
     );
+    if (x.status)
+      out.push({
+        id: 'pstatus:' + x.id,
+        group: 'World wiki',
+        label: (old ? old.title : 'Missing page') + (x.title ? ' → ' + x.title : ''),
+        detail: 'Mark it ' + x.status.to + ' (now ' + x.status.from + ')',
+        status: swapStatus(old?.status, x.status),
+      });
+    if (x.quote)
+      out.push({
+        id: 'pquote:' + x.id,
+        group: 'World wiki',
+        label: (old ? old.title : 'Missing page') + ' · source note',
+        detail: 'Replace “' + snippet(x.quote.from) + '” with “' + snippet(x.quote.to) + '”',
+        status: swapStatus(old?.quote, x.quote),
+      });
+  }
+  for (const x of p.cardEdits || []) {
+    const old = c.cards.find((k) => k.id === x.id),
+      name = old ? old.title : 'Missing card',
+      st = old ? chain(old.body, x.edits || []) : [];
+    if (x.title)
+      out.push({
+        id: 'ktitle:' + x.id,
+        group: 'Saved material',
+        label: name + ' → ' + x.title.to,
+        detail: 'Renames the saved card.',
+        status: swapStatus(old?.title, x.title),
+      });
+    (x.edits || []).forEach((e, i) =>
+      out.push({
+        id: 'kedit:' + x.id + ':' + i,
+        group: 'Saved material',
+        label: name,
+        detail: 'Replace “' + snippet(e.find) + '” with “' + snippet(e.replace) + '”',
+        status: st[i] || 'conflict',
+      }),
+    );
+    if (x.tracks)
+      out.push({
+        id: 'ktrack:' + x.id,
+        group: 'Saved material',
+        label: name,
+        detail: 'Show the count you keep in ' + goPlaces[x.tracks.place] + ' beside its title',
+        status: !old ? 'conflict' : sameTracks(old.tracks, x.tracks) ? 'applied' : 'ready',
+      });
   }
   if (p.campaign) {
     for (const k of ['premise', 'tone', 'arc'] as const)
@@ -548,12 +626,16 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
   for (const x of p.pageEdits || []) {
     const old = pages.find((pg) => pg.id === x.id);
     if (!old) continue;
-    const taken = x.edits.filter((e, i) => take('pedit:' + x.id + ':' + i));
-    if (!taken.length) continue;
+    const taken = x.edits.filter((e, i) => take('pedit:' + x.id + ':' + i)),
+      status = x.status && take('pstatus:' + x.id) ? x.status.to : old.status,
+      quote = x.quote && take('pquote:' + x.id) ? x.quote.to : old.quote;
+    if (!taken.length && status === old.status && quote === old.quote) continue;
     const page: WikiPage = {
       ...old,
       title: x.title && take('pedit:' + x.id + ':0') ? x.title : old.title,
       body: applyEdits(old.body, taken),
+      status,
+      quote,
       updated: now,
       history: [
         {
@@ -597,11 +679,22 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
           : pg,
       );
   const keep = (ids?: string[]) => ids?.filter((id) => !gonePages.has(id));
+  const editCard = (card: Card): Card => {
+    const x = (p.cardEdits || []).find((k) => k.id === card.id);
+    if (!x) return card;
+    const taken = (x.edits || []).filter((e, i) => take('kedit:' + x.id + ':' + i));
+    return {
+      ...card,
+      title: x.title && take('ktitle:' + x.id) ? x.title.to : card.title,
+      body: applyEdits(card.body, taken),
+      ...(x.tracks && take('ktrack:' + x.id) ? { tracks: x.tracks } : {}),
+    };
+  };
   const next: Campaign = {
     ...c,
     sessions: trimmed,
     cards: [
-      ...c.cards.filter((x) => !goneCards.has(x.id)),
+      ...c.cards.filter((x) => !goneCards.has(x.id)).map(editCard),
       ...((p.cards || []).filter((card) => take('card:' + card.id)) as Card[]),
     ],
     memory: {

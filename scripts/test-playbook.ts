@@ -51,6 +51,7 @@ import {
 } from '../lib/session-notes';
 import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { influenceDc, intelligenceOf } from '../lib/influence';
+import { trackerStatus } from '../lib/trackers';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -233,7 +234,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.10');
+      assert.equal(pb7.version, '7.11');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -373,7 +374,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.10');
+    assert.equal(pb71.version, '7.11');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -501,6 +502,113 @@ test('Last we left off draws only from the session before, and names what was lo
   assert.deepEqual(leastSpotlit(roster, {}), roster);
 });
 // 1.46: the wrap-up's notes and the Follow up markers carry into the next prep brief, never into the read-aloud recap.
+if (backup)
+  test('the tracker cards follow the ledger, the bargain log and the Tithe Clock', () => {
+    const card = (c: Campaign, id: string) => c.cards.find((k) => k.id === id)!;
+    const toll = card(installed, 'sb-628326040ad473fd'),
+      deal = card(installed, 'sb-0e8a67a6dabcf49c'),
+      tithe = card(installed, 'sb-2d085aa1b2576d17');
+    assert.equal(toll.title, 'Toll Tracker');
+    assert.ok(!toll.body.includes('No character has paid a Toll'));
+    assert.equal(trackerStatus(installed, toll), 'no losses recorded');
+    assert.equal(trackerStatus(installed, deal), 'no bargains recorded');
+    assert.equal(trackerStatus(installed, tithe), '0 / 12');
+    const m = memoryOf(installed),
+      played = {
+        ...installed,
+        memory: {
+          ...m,
+          ledger: [
+            {
+              id: 'l1',
+              character: 'Wren',
+              kind: 'Toll',
+              weight: 'Heavy',
+              what: 'Her name',
+              bell: 'Ossa',
+              sessionId: 's',
+              date: '',
+            },
+            {
+              id: 'l2',
+              character: 'Bram',
+              kind: 'Mere',
+              weight: '',
+              what: 'A song',
+              bell: '',
+              sessionId: 's',
+              date: '',
+            },
+          ],
+          bargains: [
+            {
+              id: 'b1',
+              with: 'Mother Sallow',
+              terms: 'A favour',
+              status: 'Open',
+              sessionId: 's',
+              date: '',
+            },
+          ],
+          playbook: { ...m.playbook!, state: { ...m.playbook!.state, tithe_clock: 4 } },
+        },
+      } as unknown as Campaign;
+    assert.equal(trackerStatus(played, toll), '2 losses recorded · 1 Toll');
+    assert.equal(trackerStatus(played, deal), '1 bargain · 1 open');
+    assert.equal(trackerStatus(played, tithe), '4 / 12');
+    // The paper copies stop showing as open threads, and their links open Waypoint's own trackers.
+    for (const id of ['sb-1a80bcc5dfb81835', 'sb-7fb85235497d244d', 'sb-bc7e324cd9b20ac1']) {
+      const page = memoryOf(installed).pages.find((p) => p.id === id)!;
+      assert.equal(page.status, 'Confirmed', page.title);
+      assert.ok(/\(go:(memory-ledger|bargains|world-state)\)/.test(page.body), page.title);
+      assert.ok(!page.body.includes('Players →'), page.title);
+    }
+    // A card the DM renamed keeps its name; the rename shows as a conflict instead.
+    const renamed = {
+      ...base,
+      cards: base.cards.map((k) => (k.id === toll.id ? { ...k, title: 'My Tolls' } : k)),
+    };
+    const plan = planUpdate(renamed, pack);
+    assert.equal(plan.find((p) => p.id === 'ktitle:' + toll.id)?.status, 'conflict');
+    assert.equal(
+      card(applyUpdate(renamed, pack, new Set(plan.map((p) => p.id))), toll.id).title,
+      'My Tolls',
+    );
+    // Installing again changes nothing.
+    assert.ok(
+      planUpdate(installed, pack)
+        .filter((p) => /^(ktitle|kedit|ktrack|pstatus|pquote):/.test(p.id))
+        .every((p) => p.status === 'applied'),
+    );
+  });
+if (backup)
+  test('every In Waypoint pointer names a menu that exists, and nothing says the campaign is unplayed', () => {
+    const m = memoryOf(installed),
+      texts = [
+        ...m.pages.map((p) => [p.title, p.body, p.quote || '']),
+        ...installed.sessions.map((s) => [s.title, s.plan]),
+        ...installed.cards.map((k) => [k.title, k.body]),
+        [JSON.stringify(m.playbook)],
+      ].flat();
+    for (const stale of [
+      'Party & ledger',
+      'Player handouts → Player site',
+      'Foresight → World state',
+      "party's compass",
+      'unplayed campaign',
+      'not yet entered.',
+      'recorded yet',
+    ])
+      assert.ok(!texts.some((t) => t.includes(stale)), stale);
+    const s1 = installed.sessions.find((s) => s.plan.includes('accept the three days'))!;
+    assert.ok(s1.plan.includes('Record the bargain in the [Bargain log](go:bargains)'));
+    const zero = m.pages.find((p) => p.id === 'sb-b61bdde01a01cdcf')!;
+    assert.ok(
+      zero.body.includes('**Campaign → Party & preferences → Roster:** press **Add character**'),
+    );
+    assert.ok(zero.body.includes('**Party & preferences → What your table enjoys**'));
+    assert.ok(zero.body.includes('**Players → Player site → Send all**'));
+  });
 test('the carry-over keeps the DM notes and follow-ups out of the recap', () => {
   const at = '2026-11-20T21:05:00.000Z',
     c = {
@@ -858,6 +966,7 @@ test('a pack edit can build on its own earlier edit, and reinstalling changes no
     playbook: undefined,
     pages: [],
     pageEdits: [],
+    cardEdits: [],
     cards: [],
     campaign: undefined,
     planner: undefined,

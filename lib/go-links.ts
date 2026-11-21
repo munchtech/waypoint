@@ -5,5 +5,6 @@ export const goPlaces = {
   'world-state': 'World state',
 } as const;
 export type GoPlace = keyof typeof goPlaces;
+export const goPlaceIds = Object.keys(goPlaces) as [GoPlace, ...GoPlace[]];
 export const isGoPlace = (value: string): value is GoPlace =>
   Object.prototype.hasOwnProperty.call(goPlaces, value);

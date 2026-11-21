@@ -10,6 +10,7 @@ import LiveLookup from '../../components/live-lookup';
 import NotesBar from '../../components/notes-bar';
 import { draftPage, memoryOf } from '../../lib/memory';
 import { isDesktop } from '../../lib/transport';
+import { trackerStatus } from '../../lib/trackers';
 import {
   BookOpen,
   Sparkles,
@@ -577,22 +578,28 @@ export function SessionDeskView() {
                 </button>
               </div>
               <p>Recent ideas · ready with AI off</p>
-              {campaign.cards.slice(0, 3).map((card) => (
-                <button
-                  className="recent-material-item"
-                  key={card.id}
-                  onClick={() => {
-                    setCardResult(card);
-                    setModal('card');
-                  }}
-                >
-                  <span>
-                    <small>{card.kind}</small>
-                    <strong>{card.title}</strong>
-                  </span>
-                  <ChevronRight size={16} />
-                </button>
-              ))}
+              {campaign.cards.slice(0, 3).map((card) => {
+                const live = trackerStatus(campaign, card);
+                return (
+                  <button
+                    className="recent-material-item"
+                    key={card.id}
+                    onClick={() => {
+                      setCardResult(card);
+                      setModal('card');
+                    }}
+                  >
+                    <span>
+                      <small>{live ? 'Live tracker' : card.kind}</small>
+                      <strong>
+                        {card.title}
+                        {live && ' · ' + live}
+                      </strong>
+                    </span>
+                    <ChevronRight size={16} />
+                  </button>
+                );
+              })}
             </section>
           )}
           {(memory.pins || []).some((id) => memory.pages.some((page) => page.id === id)) && (

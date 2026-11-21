@@ -30,10 +30,13 @@ export default function MaterialLibrary({
   cards,
   onOpen,
   onDesk,
+  live = () => '',
 }: {
   cards: Card[];
   onOpen: (card: Card) => void;
   onDesk: () => void;
+  // What a card that follows a Waypoint tracker currently counts (see lib/trackers).
+  live?: (card: Card) => string;
 }) {
   const [query, setQuery] = useState(''),
     [kind, setKind] = useState('All');
@@ -85,7 +88,8 @@ export default function MaterialLibrary({
       )}
       <div className="material-grid">
         {found.map((c) => {
-          const Icon = materialIcons[c.kind] || Sparkles;
+          const Icon = materialIcons[c.kind] || Sparkles,
+            now = live(c);
           return (
             <button className="material-card" key={c.id} onClick={() => onOpen(c)}>
               <div className="material-card-heading">
@@ -93,9 +97,12 @@ export default function MaterialLibrary({
                   <Icon size={21} />
                 </span>
                 <span className="eyebrow">{c.kind}</span>
-                <span className="material-draft">Draft</span>
+                <span className="material-draft">{now ? 'Live' : 'Draft'}</span>
               </div>
-              <h3>{c.title}</h3>
+              <h3>
+                {c.title}
+                {now && ' · ' + now}
+              </h3>
               <p>{plainPreview(c.body, 160)}</p>
               <span className="text-button">
                 Open material

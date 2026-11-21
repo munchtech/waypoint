@@ -18,6 +18,7 @@ import {
   Shield,
 } from 'lucide-react';
 import { uid } from '../lib/campaign';
+import { trackerName, trackerStatus } from '../lib/trackers';
 import { count } from '../lib/plural';
 import { ViewLoading } from './desk-shared';
 import { useDeskContext } from './use-desk';
@@ -87,7 +88,9 @@ export function DialogBody() {
     showReference,
     setSessionId,
     setLive,
+    goTo,
   } = useDeskContext();
+  const tracker = cardResult?.tracks ? trackerName(cardResult) : '';
   return (
     <>
       {modal === 'ask' && (
@@ -408,8 +411,17 @@ export function DialogBody() {
       )}
       {modal === 'card' && cardResult && (
         <>
-          <span className="eyebrow">{cardResult.kind.toUpperCase()} · SUGGESTED MATERIAL</span>
+          <span className="eyebrow">
+            {cardResult.kind.toUpperCase()} · {tracker ? 'LIVE TRACKER' : 'SUGGESTED MATERIAL'}
+          </span>
           <h2 id="modal-title">{cardResult.title}</h2>
+          {tracker && (
+            <p className="tracker-live">
+              <strong>Waypoint’s count:</strong>{' '}
+              {trackerStatus(campaign, cardResult) || 'not set yet'} ({tracker}). The text below is
+              the paper copy.
+            </p>
+          )}
           {cardResult.readAloud && (
             <div className="read-aloud">
               <span className="eyebrow">READ ALOUD</span>
@@ -449,23 +461,37 @@ export function DialogBody() {
             >
               <Copy size={14} /> Copy
             </button>
-            <button
-              className="button primary"
-              onClick={() => {
-                setEventSession(session.id);
-                setOutcome(cardResult.title + ': ');
-                setOutcomeStyle('Roleplay');
-                setRating('Neutral');
-                setEditingEvent('');
-                setSelectedBranch('');
-                setModal('outcome');
-              }}
-            >
-              <Check size={14} /> Record what happened
-            </button>
+            {tracker ? (
+              <button
+                className="button primary"
+                onClick={() => {
+                  setModal('');
+                  goTo(cardResult.tracks!.place);
+                }}
+              >
+                <ArrowUpRight size={14} /> Open {tracker}
+              </button>
+            ) : (
+              <button
+                className="button primary"
+                onClick={() => {
+                  setEventSession(session.id);
+                  setOutcome(cardResult.title + ': ');
+                  setOutcomeStyle('Roleplay');
+                  setRating('Neutral');
+                  setEditingEvent('');
+                  setSelectedBranch('');
+                  setModal('outcome');
+                }}
+              >
+                <Check size={14} /> Record what happened
+              </button>
+            )}
           </div>
           <p className="tiny muted">
-            Saved in your material library. This idea is not canon until you record an event.
+            {tracker
+              ? 'Waypoint updates the count from what you record. Nothing here changes it.'
+              : 'Saved in your material library. This idea is not canon until you record an event.'}
           </p>
         </>
       )}

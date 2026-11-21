@@ -2,6 +2,7 @@ import { ruleReferencesSchema, type RuleReference } from './rules';
 import { memorySchema } from './memory';
 import type { Memory } from './memory';
 import { z } from 'zod';
+import { goPlaceIds, type GoPlace } from './go-links';
 import { playFields, type PlayFields } from './playbook-schema';
 export type Style = 'Roleplay' | 'Exploration' | 'Combat' | 'Mischief';
 export type Branch = {
@@ -44,7 +45,10 @@ export type Card = {
   readAloud: string;
   consequence: string;
   source: string;
+  // A card that follows one of Waypoint's own trackers shows the recorded count beside its title (see lib/trackers).
+  tracks?: CardTracks;
 };
+export type CardTracks = { place: GoPlace; flag?: string };
 export type Campaign = {
   memory?: Memory;
   id: string;
@@ -177,6 +181,10 @@ const eventSchema = z.object({
   enjoyment: z.enum(['Loved it', 'Neutral', 'Less of this']),
   date: z.string(),
 });
+export const cardTracksSchema = z.object({
+  place: z.enum(goPlaceIds),
+  flag: z.string().max(80).optional(),
+});
 const cardSchema = z.object({
   id: z.string(),
   kind: z.string(),
@@ -185,6 +193,7 @@ const cardSchema = z.object({
   readAloud: z.string(),
   consequence: z.string(),
   source: z.string(),
+  tracks: cardTracksSchema.optional(),
 });
 const preference = z.number().finite();
 export const campaignSchema = z.object({

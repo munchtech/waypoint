@@ -7854,3 +7854,12 @@ input:focus {
   overflow-wrap: anywhere;
   min-width: 0;
 }
+/* A saved card that follows a Waypoint tracker shows the recorded count above the paper copy. */
+.tracker-live {
+  margin: 4px 0 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  background: light-dark(#eef3f0, #131a22);
+  border: 1px solid light-dark(#cddcd6, #3b444d);
+}

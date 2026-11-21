@@ -19,7 +19,7 @@ Then show the player site's front page or *What's It About?* and let them read f
 - **Name what's in this campaign, plainly:** drowning; children in danger (a fourteen-year-old is central, and the book keeps her safe on-screen); memories taken by force; families split up; the possible end of the world.
 - **Hand out an index card each.** Ask them to write anything Off-limits or Off-screen, anonymously, and fold it. Read them later, privately.
 - **Agree three table rules out loud:** anyone can pause the game without explaining; what happens when two characters disagree (talk it out in character, never take control of another player's character); what happens when someone can't come (their character is quietly busy, never harmed, never pays a Toll).
-- **Ask:** "Mostly story, mostly fighting, or a mix?" Set the four sliders in **Party & preferences → Your party's compass** to match (Roleplay, Exploration, Combat, Mischief). Foresight ranks plays by them.
+- **Ask:** "Mostly story, mostly fighting, or a mix?" Set the four sliders in **Party & preferences → What your table enjoys** to match (Roleplay, Exploration, Combat, Mischief). Foresight ranks plays by them.
 
 **In Waypoint:** type the Off-limits and Off-screen topics into **Party & preferences → Off-limits, off-screen, and things to avoid**. Write the topics, never who asked for them.
 
@@ -54,7 +54,7 @@ Explain these in plain words, then stop.
 
 ### Step 5: Put it into Waypoint (15 minutes, or right after)
 
-1. **Foresight → Party & ledger → Roster:** press **Add character** for each: character name, player name, level 3, and in Notes the three answers (how they arrived, what they lost, who they know).
+1. **Campaign → Party & preferences → Roster:** press **Add character** for each: character name, player name, level 3, and in Notes the three answers (how they arrived, what they lost, who they know).
 2. **Party & preferences → The adventurers:** one line per character: name, species, class and subclass, and one thing that makes them tick.
 3. **Party & preferences → Off-limits, off-screen, and things to avoid:** the topics from Step 2.
 4. **Memory ledger:** nothing yet. The first entries come in Session 1.
@@ -67,6 +67,6 @@ Write both answers down. Then read the folded index cards from Step 2, privately
 
 ### After session zero
 
-- Send the general player-wiki entries (Corvane, Pellmoor Landing, Memory Money and the rest) if they're not on the site yet: **Player handouts → Player site → Send all**. The Session 1 entries wait until after Session 1.
+- Send the general player-wiki entries (Corvane, Pellmoor Landing, Memory Money and the rest) if they're not on the site yet: **Players → Player site → Send all**. The Session 1 entries wait until after Session 1.
 - Read Session 1's **Running this session** once.
 - If you want the first three sessions fitted to these four characters, give Claude the roster and the answers to the three questions. It can weave each character into Sessions 1 to 3 and run a practice session with you.

@@ -7,4 +7,4 @@ After the epilogue for the chosen path, and before the closing question, go roun
 3. **Read the Tolls aloud.** One line for each Toll paid in the campaign, in the order they were paid, in the players' own words from the Memory ledger. Then pause.
 4. **Then the closing question:** "What will you ring next?"
 
-**In Waypoint:** Foresight → Party & ledger → Memory ledger lists every Toll in order, and the roster keeps the session-zero answers.
+**In Waypoint:** the [Memory ledger](go:memory-ledger) (Campaign → Party & preferences) lists every Toll in order, and the roster keeps the session-zero answers.

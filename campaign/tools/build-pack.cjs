@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.10) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.11) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -124,6 +124,16 @@ const sessions = live.sessions
     return out;
   })
   .filter((s) => s.plays || s.edits);
+const cardEdits = lore.cardEdits.map((x) => {
+  const card = live.cards.find((c) => c.id === x.id);
+  if (!card) warn('card edit target missing: ' + x.id);
+  else {
+    if (x.title && card.title !== x.title.from && card.title !== x.title.to)
+      warn('card ' + x.id + ': title is ' + card.title);
+    placeable(card.body, x.edits || [], 'card ' + card.title);
+  }
+  return x;
+});
 const pageEdits = lore.pageEdits.map((x) => {
   const page = live.memory.pages.find((p) => p.id === x.id);
   if (!page) {
@@ -136,6 +146,8 @@ const pageEdits = lore.pageEdits.map((x) => {
       : e,
   );
   placeable(page.body, edits, 'page ' + page.title);
+  if (x.quote && page.quote !== x.quote.from && page.quote !== x.quote.to)
+    warn('page ' + page.title + ': source note is ' + page.quote);
   return { ...x, edits };
 });
 for (const field of new Set(lore.campaign.edits.map((e) => e.field)))
@@ -165,16 +177,16 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.10',
-  summary: `Revision 7.10 of The Seventh Bell, for Waypoint 1.35.7. It installs over revisions 7.9 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.11',
+  summary: `Revision 7.11 of The Seventh Bell, for Waypoint 1.47. It installs over revisions 7.10 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **One story, one set of numbers (7.10).** Plans match the play cards (vault DC 17, Tessa's order DC 16, Vaer theft DC 17); Vaer's dawn lasts a year everywhere; the paper trackers point to Waypoint's own.
+- **One story, one set of numbers (7.10, 7.11).** Plans match the play cards (vault DC 17, Tessa's order DC 16, Vaer theft DC 17); Vaer's dawn lasts a year everywhere; the Toll, Bargain and Tithe cards show the counts Waypoint keeps; every "In Waypoint" pointer names the real menu.
 - **Run Act II from the page (7.9).** Sessions 4 to 9 gain the full new-DM guide and table card, as Act I has.
-- **Silly and serious (7.8).** From a study of 572 actual-play episodes: every scene in Sessions 1 to 3 gains a **Bring it back** line (one move in the fiction for when a joke runs on), each session marks **Where to break**, Sessions 2 and 3 open with a recap that names what was lost, session zero gains **Silly and serious** (quiet scenes, Tolls, a character falling), and the finale gains an **Epilogue round**. Waypoint 1.44 shows the lines in the session notes bar.
+- **Silly and serious (7.8).** From 572 actual-play episodes: every scene in Sessions 1 to 3 gains a **Bring it back** line (one move in the fiction for when a joke runs on), each session marks **Where to break**, Sessions 2 and 3 open with a recap that names what was lost, session zero gains **Silly and serious** (quiet scenes, Tolls, a character falling), and the finale gains an **Epilogue round**.
 - **Know who is in the room (7.7).** Before the first scene, Sessions 1 to 3 gain **Key people tonight**, laid out the way the 2024 adventures do it: who matters, their stat block, where they are, their starting attitude, their Influence DC and the secret they keep. Then **Places at a glance** (light, footing, sound, exits, cover) and a d6 rumour table. Session zero gains optional **Table jobs** for players.
 - **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll; plays that ring a bell show the current weight.
 - **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a printable table card; every "If they…" option is a button that opens its play; Possibilities lists plays by scene; session zero becomes a full guide (World wiki → 1.4). The IsoForge map kits are retired.
-- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
+- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
 - **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
 - **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them, so Waypoint can bring them back in your prep brief.
@@ -191,10 +203,11 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   remove: lore.remove,
   pages: lore.pages.map((page) => ({ mode: 'replace', page })),
   pageEdits,
+  cardEdits,
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.10',
+    version: '7.11',
     flags,
     anytime,
     encounters,
