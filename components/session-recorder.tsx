@@ -5,6 +5,7 @@ type RecorderReply = {
   recordings?: Recording[];
   jobs?: Record<string, { state: string; segments: number; error?: string }>;
   speechReady?: boolean;
+  speechFolder?: string;
   invalidRecordings?: number;
 };
 import { importTranscript, timestamp } from '../lib/transcript-import';
@@ -57,6 +58,7 @@ export default function SessionRecorder({
     [error, setError] = useState(''),
     [pending, setPending] = useState(false),
     [speechReady, setSpeechReady] = useState(false),
+    [speechFolder, setSpeechFolder] = useState(''),
     [jobs, setJobs] = useState<Record<string, { state: string; segments: number; error?: string }>>(
       {},
     ),
@@ -86,6 +88,7 @@ export default function SessionRecorder({
       setRecordings(data.recordings ?? []);
       setJobs(data.jobs ?? {});
       setSpeechReady(data.speechReady ?? false);
+      setSpeechFolder(data.speechFolder ?? '');
       if (data.invalidRecordings)
         setError(
           `${data.invalidRecordings} recording metadata file(s) could not be read. Their audio is preserved in the app data folder.`,
@@ -397,8 +400,15 @@ export default function SessionRecorder({
               >
                 <Upload size={15} /> Import audio
               </button>
-              <span className="tiny muted">
-                {speechReady ? 'Local speech model ready' : 'Speech runtime not found'}
+              <span
+                className="tiny muted"
+                title={speechReady || !speechFolder ? undefined : speechFolder}
+              >
+                {speechReady
+                  ? 'Local speech model ready'
+                  : speechFolder
+                    ? 'Speech runtime not found. Put the Waypoint-Speech folder at ' + speechFolder
+                    : 'Speech runtime not found'}
               </span>
             </div>
           </>

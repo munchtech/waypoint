@@ -99,6 +99,7 @@ export class RecordingLibrary {
           fs.readdirSync(this.folder).filter((f) => /^[a-f0-9-]{36}\.json$/.test(f)).length -
           this.list().length,
         speechReady: Boolean(this.speech()),
+        speechFolder: this.speechRoots[0] ?? '',
       };
     if (action === 'start') {
       if (this.active) throw new Error('A recording is already running.');

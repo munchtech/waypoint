@@ -152,6 +152,27 @@ function runStep(step) {
   });
 }
 
+// The suites keep throwaway data folders in the temp folder. A folder is in use until its step exits, so the ones made
+// during this run are removed once every step has finished. Logs are kept.
+const runStarted = Date.now();
+const scratch =
+  /^(seventh-bell-ui|waypoint-(ui|ui-packs|ui-rules|ui-store|ai-ui|editor-ui|history-ui|migration-test|packs|pdf-test|restore|rows|rules-test|rules-upgrade|save-audit))-[A-Za-z0-9]{6}$/;
+function removeScratch() {
+  let removed = 0;
+  for (const name of fs.readdirSync(os.tmpdir())) {
+    if (!scratch.test(name)) continue;
+    const dir = path.join(os.tmpdir(), name);
+    try {
+      if (fs.statSync(dir).birthtimeMs < runStarted - 1000) continue;
+      fs.rmSync(dir, { recursive: true, force: true, maxRetries: 3 });
+      removed++;
+    } catch {
+      // Still in use, or already gone: leave it.
+    }
+  }
+  return removed;
+}
+
 const results = [];
 for (const step of selected) {
   process.stdout.write(step.name.padEnd(26) + ' ');
@@ -171,7 +192,10 @@ console.log(
       ? failed.length + ' of ' + results.length + ' steps failed:'
       : 'All ' + results.length + ' steps passed.') +
     ' Logs: ' +
-    logs,
+    logs +
+    '. Removed ' +
+    removeScratch() +
+    ' temp data folders.',
 );
 for (const r of failed) console.log('  ' + r.name + ': ' + r.file);
 process.exitCode = failed.length ? 1 : 0;

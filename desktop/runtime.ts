@@ -10,9 +10,34 @@ import { RulesStore } from './rules-store';
 app.setName('Waypoint');
 export const smoke = process.argv.includes('--smoke-test');
 const preview = process.argv.includes('--preview-test');
-if (smoke || preview)
+if (smoke || preview) {
+  removeOldIsolatedFolders();
   app.setPath('userData', path.join(app.getPath('temp'), 'waypoint-isolated-smoke-' + process.pid));
+}
 export const dataDir = app.getPath('userData');
+
+// An isolated run's data folder is in use until that app exits, so each isolated run removes the ones left by earlier
+// runs that have ended. A folder whose process is still running is left alone.
+function removeOldIsolatedFolders() {
+  const temp = app.getPath('temp');
+  const running = (pid: number) => {
+    try {
+      process.kill(pid, 0);
+      return true;
+    } catch (e) {
+      return (e as NodeJS.ErrnoException).code === 'EPERM';
+    }
+  };
+  try {
+    for (const name of fs.readdirSync(temp)) {
+      const pid = Number(/^waypoint-isolated-smoke-(\d+)$/.exec(name)?.[1]);
+      if (pid && pid !== process.pid && !running(pid))
+        fs.rmSync(path.join(temp, name), { recursive: true, force: true });
+    }
+  } catch {
+    // Never let tidying stop a test run.
+  }
+}
 fs.mkdirSync(dataDir, { recursive: true });
 
 // Filled in by main.ts once the app is ready; null until then, and the windows again after they close.

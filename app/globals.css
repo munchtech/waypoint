@@ -7726,3 +7726,8 @@ input:focus {
   color: var(--accent);
   font-weight: 650;
 }
+/* A long speech folder path wraps instead of widening the recorder */
+.recorder-actions > .tiny {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
