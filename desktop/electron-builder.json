@@ -16,17 +16,33 @@
   "win": {
     "target": [
       {
-        "target": "portable",
+        "target": "nsis",
         "arch": ["x64"]
       }
     ],
     "signAndEditExecutable": false,
     "icon": "desktop/icons/waypoint.ico"
   },
+  "nsis": {
+    "oneClick": true,
+    "perMachine": false,
+    "artifactName": "Waypoint-Setup-${version}.exe",
+    "shortcutName": "Waypoint",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "deleteAppDataOnUninstall": false
+  },
   "portable": {
     "artifactName": "Waypoint.exe"
   },
   "asar": true,
   "npmRebuild": false,
-  "publish": null
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "munchtech",
+      "repo": "waypoint",
+      "releaseType": "release"
+    }
+  ]
 }

@@ -20,6 +20,7 @@ import {
   CheckCircle2,
   MessageCircleQuestion,
   SunMoon,
+  RefreshCw,
 } from 'lucide-react';
 import { useDesk, DeskContext } from './use-desk';
 import { SessionDeskView } from './views/session-desk';
@@ -38,11 +39,13 @@ import {
 } from './views/workspace-views';
 import { DialogBody } from './desk-dialogs';
 import { useTheme, themeLabel } from '../components/use-theme';
+import { useUpdate } from '../components/use-update';
 
 // The shell: the sidebar, top bar, section tabs and dialog frame around the current view.
 function HomeScreen() {
   const desk = useDesk();
   const theme = useTheme();
+  const appUpdate = useUpdate();
   const {
     setView,
     backStack,
@@ -260,6 +263,25 @@ function HomeScreen() {
                   unexpected turns.
                 </p>
               </div>
+              {appUpdate.status?.state === 'ready' && (
+                <button
+                  className="navitem update-ready"
+                  title={
+                    'Version ' +
+                    appUpdate.status.available +
+                    ' is downloaded. Waypoint closes, installs it and opens again.'
+                  }
+                  onClick={() =>
+                    appUpdate
+                      .restart()
+                      .catch((e) =>
+                        setError(e instanceof Error ? e.message : 'The update could not start.'),
+                      )
+                  }
+                >
+                  <RefreshCw size={17} /> Restart to update
+                </button>
+              )}
               <button className="navitem" onClick={() => setModal('data')}>
                 <Settings2 size={17} /> AI & backups
               </button>

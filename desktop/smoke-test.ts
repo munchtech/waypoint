@@ -92,7 +92,19 @@ export async function runSmokeTest(win: BrowserWindow) {
     };
     if (appearance.status !== 200 || !appearance.body.theme)
       throw new Error('Theme setting unavailable');
-    Object.assign(result, { packs: true, campaignSearch: true, theme: appearance.body.theme });
+    // The self-test never checks for updates, but the route must answer with the running version.
+    const update = (await route({ path: '/api/update', method: 'GET' })) as {
+      status: number;
+      body: { state?: string; version?: string };
+    };
+    if (update.status !== 200 || update.body.state !== 'off' || !update.body.version)
+      throw new Error('Update status unavailable');
+    Object.assign(result, {
+      packs: true,
+      campaignSearch: true,
+      theme: appearance.body.theme,
+      updates: update.body.state,
+    });
     const transcriptFile = path.join(dataDir, 'recordings', result.id + '.transcript.json');
     fs.writeFileSync(
       transcriptFile,

@@ -30,7 +30,9 @@ export class RecordingLibrary {
   private jobs = new Map<string, { state: string; error?: string; segments: number }>();
   constructor(
     dataDir: string,
-    private speechRoot: string,
+    // Places the Waypoint-Speech folder may be, in order. The first one holding the runtime and the model is used,
+    // so a folder moved there while Waypoint runs is found without a restart.
+    private speechRoots: string[],
     private script: string,
   ) {
     this.folder = path.join(dataDir, 'recordings');
@@ -55,6 +57,13 @@ export class RecordingLibrary {
     const file = this.meta(r.id);
     fs.writeFileSync(file + '.tmp', JSON.stringify(r));
     fs.renameSync(file + '.tmp', file);
+  }
+  private speech() {
+    return this.speechRoots.find(
+      (root) =>
+        fs.existsSync(path.join(root, 'python.exe')) &&
+        fs.existsSync(path.join(root, 'model', 'model.bin')),
+    );
   }
   list() {
     return fs
@@ -89,9 +98,7 @@ export class RecordingLibrary {
         invalidRecordings:
           fs.readdirSync(this.folder).filter((f) => /^[a-f0-9-]{36}\.json$/.test(f)).length -
           this.list().length,
-        speechReady:
-          fs.existsSync(path.join(this.speechRoot, 'python.exe')) &&
-          fs.existsSync(path.join(this.speechRoot, 'model', 'model.bin')),
+        speechReady: Boolean(this.speech()),
       };
     if (action === 'start') {
       if (this.active) throw new Error('A recording is already running.');
@@ -235,12 +242,15 @@ export class RecordingLibrary {
       if (this.worker) throw new Error('A transcription is already running.');
       const r = this.read(b.id ?? '');
       if (this.active === r.id) throw new Error('Stop recording before transcribing.');
-      const python = path.join(this.speechRoot, 'python.exe'),
-        model = path.join(this.speechRoot, 'model');
-      if (!fs.existsSync(python) || !fs.existsSync(path.join(model, 'model.bin')))
+      const root = this.speech();
+      if (!root)
         throw new Error(
-          'Keep the Waypoint-Speech folder next to Waypoint.exe. The local speech model is missing.',
+          'The local speech model is missing. Put the Waypoint-Speech folder at ' +
+            this.speechRoots[0] +
+            ' and try again.',
         );
+      const python = path.join(root, 'python.exe'),
+        model = path.join(root, 'model');
       const output = path.join(this.folder, r.id + '.transcript.json');
       if (fs.existsSync(output))
         throw new Error('A transcript already exists. Open Review transcript to correct it.');

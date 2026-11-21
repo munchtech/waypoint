@@ -5,6 +5,7 @@ import { route } from './routes';
 import { cancelGeneration } from './routes/ai';
 import { applySavedTheme } from './routes/appearance';
 import { runSmokeTest } from './smoke-test';
+import { cancelRestart, installOnQuit, startUpdates } from './updater';
 import { safeWebLink } from '../lib/safe-web-link';
 import { audioRange } from '../lib/transcript';
 import { Readable } from 'node:stream';
@@ -75,15 +76,20 @@ else {
     } catch (e) {
       state.storeError = e instanceof Error ? e.message : 'Campaign migration failed';
     }
-    const externalAssets =
-      process.env.PORTABLE_EXECUTABLE_DIR ||
-      (app.isPackaged
+    // The speech helper is too large to ship inside the app. The portable exe looks beside itself; the installed app looks
+    // in %LOCALAPPDATA%\Waypoint, because an update replaces everything in its install folder.
+    const speechRoots = [
+      process.env.PORTABLE_EXECUTABLE_DIR,
+      path.join(process.env.LOCALAPPDATA || app.getPath('appData'), 'Waypoint'),
+      app.isPackaged
         ? path.dirname(app.getPath('exe'))
-        : path.resolve(__dirname, '..', '..', '..', '..', 'outputs'));
-    const speechRoot = path.join(externalAssets, 'Waypoint-Speech');
+        : path.resolve(__dirname, '..', '..', '..', '..', 'outputs'),
+    ]
+      .filter((dir): dir is string => Boolean(dir))
+      .map((dir) => path.join(dir, 'Waypoint-Speech'));
     const speechScript = path.join(dataDir, 'speech-worker.py');
     fs.writeFileSync(speechScript, fs.readFileSync(path.join(__dirname, 'speech-worker.py')));
-    const library = (state.library = new RecordingLibrary(dataDir, speechRoot, speechScript));
+    const library = (state.library = new RecordingLibrary(dataDir, speechRoots, speechScript));
     protocol.handle('waypoint-audio', (request) => {
       try {
         const url = new URL(request.url);
@@ -196,6 +202,7 @@ else {
           'Keep Waypoint open until saving finishes. If saving has failed, export a backup first.',
       });
       if (choice === 1) event.preventDefault();
+      else cancelRestart();
     });
     win.webContents.on('will-navigate', (e) => e.preventDefault());
     win.webContents.session.setPermissionRequestHandler((wc, permission, callback) =>
@@ -256,6 +263,7 @@ else {
       if (smoke) void runSmokeTest(win);
     });
     win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
+    startUpdates();
   });
 }
 let quitting = false;
@@ -275,4 +283,5 @@ app.on('will-quit', () => {
   state.library?.close();
   state.store?.close();
   closeRules();
+  installOnQuit();
 });

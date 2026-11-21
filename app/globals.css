@@ -7701,3 +7701,28 @@ input:focus {
   opacity: 0.4;
   cursor: default;
 }
+
+/* Updates in AI & backups, and the sidebar's restart button once an update is downloaded */
+.update-settings {
+  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  padding-top: 20px;
+}
+.update-settings > .section-title {
+  flex-wrap: wrap;
+}
+.modal .update-settings h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+}
+.update-settings .update-line {
+  font-size: 12px;
+  color: light-dark(#627057, #bac1b6);
+  margin: 10px 0 4px;
+}
+.side-bottom .navitem.update-ready {
+  color: var(--accent);
+  font-weight: 650;
+}

@@ -24,6 +24,7 @@ import { useDeskContext } from './use-desk';
 const RecapReview = lazy(() => import('../components/recap-review'));
 const AISettings = lazy(() => import('../components/ai-settings'));
 const RestorePoints = lazy(() => import('../components/restore-points'));
+const UpdateSettings = lazy(() => import('../components/update-settings'));
 
 // The body of the open dialog, chosen by `modal`. The shell draws the overlay, the frame and the close button.
 export function DialogBody() {
@@ -535,6 +536,11 @@ export function DialogBody() {
                   }
                 }}
               />
+            </Suspense>
+          )}
+          {isDesktop() && (
+            <Suspense fallback={<ViewLoading />}>
+              <UpdateSettings />
             </Suspense>
           )}
         </>

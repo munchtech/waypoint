@@ -398,9 +398,7 @@ export default function SessionRecorder({
                 <Upload size={15} /> Import audio
               </button>
               <span className="tiny muted">
-                {speechReady
-                  ? 'Local speech model ready'
-                  : 'Speech runtime not found beside the app'}
+                {speechReady ? 'Local speech model ready' : 'Speech runtime not found'}
               </span>
             </div>
           </>

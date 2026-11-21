@@ -6,8 +6,17 @@ import { campaignsRoute } from './campaigns';
 import { packsRoute } from './packs';
 import { playersRoute } from './players';
 import { rulesRoute } from './rules';
+import { updateRoute } from '../updater';
 
-const routes = [playersRoute, aiRoute, rulesRoute, campaignsRoute, packsRoute, appearanceRoute];
+const routes = [
+  playersRoute,
+  aiRoute,
+  rulesRoute,
+  campaignsRoute,
+  packsRoute,
+  appearanceRoute,
+  updateRoute,
+];
 
 export async function route(req: LocalRequest): Promise<LocalResponse> {
   if (

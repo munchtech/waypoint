@@ -64,10 +64,18 @@ Generation uses the official Anthropic SDK from the main process (`desktop/cloud
 
 ```
 node scripts/build-desktop.mjs
-node node_modules/electron-builder/cli.js --config desktop/electron-builder.json
+node node_modules/electron-builder/cli.js --config desktop/electron-builder.json --publish never
 ```
 
-This produces a portable `Waypoint.exe` in `../waypoint-packaged`. Session transcription expects a `Waypoint-Speech` folder beside the executable.
+This writes the installer `Waypoint-Setup-<version>.exe`, its `.blockmap` and `latest.yml` to `../waypoint-packaged`. The installer needs no administrator rights: it installs Waypoint for the current Windows account in `%LOCALAPPDATA%\Programs\Waypoint` and adds Start menu and desktop shortcuts. Uninstalling keeps `%APPDATA%\Waypoint`. Add `--win portable` to build the portable `Waypoint.exe` instead, which never updates itself.
+
+Session transcription needs the `Waypoint-Speech` folder, which is too large to ship in the app. The installed app looks for it at `%LOCALAPPDATA%\Waypoint\Waypoint-Speech` (an update replaces the install folder, so it must not go there); the portable exe looks beside itself.
+
+## Updates
+
+The installed app checks the latest release of `munchtech/waypoint` on GitHub when it opens and every six hours, and downloads a newer one in the background. The update installs when Waypoint closes, or straight away from **Restart to update** in the sidebar. AI & backups → Updates shows the running version and the status. The repository is public, so no token is involved.
+
+To release a version: raise `version` in `package.json`, build the installer as above, then create a GitHub release tagged `v<version>` and attach the three files from `../waypoint-packaged`. The installer is not code-signed, so Windows SmartScreen warns on the first install; updates are checked against the SHA-512 in `latest.yml`.
 
 ## Version
 
