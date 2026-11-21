@@ -40,6 +40,7 @@ import {
   takeDown,
 } from '../lib/player-site';
 import { pace, tableCard, timeline } from '../lib/session-notes';
+import { influenceDc, intelligenceOf } from '../lib/influence';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -222,7 +223,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.6');
+      assert.equal(pb7.version, '7.7');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -333,7 +334,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.6');
+    assert.equal(pb71.version, '7.7');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -543,6 +544,21 @@ test('clock alerts fire one tick before a threshold', () => {
 test('likely plays rank ahead of wildcards', () => {
   const ranked = rankPlays(installed, pb, installed.sessions[0].branches);
   assert.ok(ranked[0].play.likelihood === 'Likely');
+});
+test('Influence DCs follow the 2024 rule and read both stat block formats', () => {
+  assert.equal(intelligenceOf('Ability scores\nSTR 15 (+2) · DEX 12 (+1) · INT 18 (+4)'), 18);
+  assert.equal(
+    intelligenceOf(
+      '| STR | DEX | CON | INT | WIS | CHA |\n|---|---|---|---|---|---|\n| 10 (+0) | 14 (+2) | 12 (+1) | 7 (-2) | 11 (+0) | 9 (-1) |',
+    ),
+    7,
+  );
+  assert.equal(intelligenceOf('A plain note with no scores.'), undefined);
+  assert.equal(influenceDc(7), 15);
+  assert.equal(influenceDc(18), 18);
+  const tabled = pb.statblocks.filter((b) => /\|\s*INT\s*\|/.test(b.body));
+  assert.ok(tabled.length > 0);
+  for (const b of tabled) assert.ok(intelligenceOf(b.body) !== undefined, b.name);
 });
 test('search finds a play from the words a player uses', () => {
   assert.equal(

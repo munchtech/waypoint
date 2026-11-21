@@ -47,6 +47,7 @@ import {
   encounterXP,
   flagLabel,
   forecast,
+  likelihoodWeight,
   partyLevels,
   rankPlays,
   sessionTag,
@@ -359,6 +360,17 @@ export default function Foresight({
   const ranked = rankPlays(campaign, pb, session.branches),
     likely = ranked.filter((r) => r.possible).slice(0, 5),
     blockedCount = ranked.filter((r) => !r.possible).length;
+  // The 2024 DMG's hour of prep: prepare what will probably happen, skim what might, and know where the wildcards are.
+  const tiers = [
+    { weight: 3, label: 'Prepare fully', hint: 'what will probably happen' },
+    { weight: 2, label: 'Skim', hint: 'what might' },
+    { weight: 1, label: 'Know where to find', hint: 'the wildcards' },
+  ]
+    .map((t) => ({
+      ...t,
+      plays: ranked.filter((r) => r.possible && likelihoodWeight(r.play.likelihood) === t.weight),
+    }))
+    .filter((t) => t.plays.length);
   const encounters = [
     ...(brief?.encounters || [])
       .map((id) => pb.encounters.find((e) => e.id === id))
@@ -579,6 +591,19 @@ export default function Foresight({
                 All plays
               </button>
             </div>
+            {tiers.length > 0 && (
+              <div className="prep-hour">
+                <h4>Prep in an hour</h4>
+                <ul>
+                  {tiers.map((t) => (
+                    <li key={t.weight}>
+                      <strong>{t.label}</strong> <span className="muted">({t.hint})</span>:{' '}
+                      {t.plays.map((r) => r.play.title).join(' · ')}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {likely.map((r) => (
               <PlayCard
                 key={r.play.id}

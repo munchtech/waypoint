@@ -130,7 +130,7 @@ The answer: a Court patrol stopped Tam's boat on the Mere, took his memory of th
 - **[Quill comes back](play:s03-quill-returns)** (if he was Suspicious or Bribed). He brings a second Hushman, who isn't polite.
 > **SAY:** "Two grey coats on the lane. The first one smiles. 'Good afternoon. Just following up.'"
 - He asks the coat question again. If Mother Sallow's name was given in Session 1, he asks for her ledger.
-- He wants a reason to search. Influence, Charisma (Persuasion) DC 16, buys a week. A bribed Quill takes more gold and complains less. Hold Person or Suggestion works, but the Landing House reads the hum of the spell as a confession.
+- He wants a reason to search. Influence, Charisma (Persuasion) DC 15, buys a week. A bribed Quill takes more gold and complains less. Hold Person or Suggestion works, but the Landing House reads the hum of the spell as a confession.
 
 - **[Master Venn's note](play:s03-sell-to-venn)** (if he knows about the Heart). A Coster clerk delivers it to the Shuttered Bell.
 > **SAY (the note):** "Friend: my offer stands. Six hundred in gold for the humming relic, and a berth home on the *Gilded Heron*, which sails in three days. Discretion assured. With warmest regard, O. Venn."

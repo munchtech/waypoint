@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.6) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.7) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -165,9 +165,10 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.6',
-  summary: `Revision 7.6 of The Seventh Bell, for Waypoint 1.35.7. It installs over revisions 7.5 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.7',
+  summary: `Revision 7.7 of The Seventh Bell, for Waypoint 1.35.7. It installs over revisions 7.6 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **Know who is in the room (7.7).** Before the first scene, Sessions 1 to 3 gain **Key people tonight**, laid out the way the 2024 adventures do it: who matters, their stat block, where they are, their starting attitude, their Influence DC and the secret they keep. Then **Places at a glance** (light, footing, sound, exits, cover) and a d6 rumour table. Session zero gains optional **Table jobs** for players. Quill's Influence DC in Session 3 now follows the 2024 rule.
 - **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll; plays that ring a bell show the current weight.
 - **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a printable table card; every "If they…" option is a button that opens its play; Possibilities lists plays by scene; session zero becomes a full guide (World wiki → 1.4). The IsoForge map kits are retired.
 - **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), which is easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
@@ -190,7 +191,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.6',
+    version: '7.7',
     flags,
     anytime,
     encounters,

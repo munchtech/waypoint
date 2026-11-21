@@ -2063,7 +2063,7 @@
    "style": "Roleplay",
    "likelihood": "Likely",
    "tells": "The party has lied to Quill or named a villager to him in S1.",
-   "rules": "Influence DC 16 on Quill (Intelligence 11, Insight +5). If bribed, he takes more gold and complains less.",
+   "rules": "Influence DC 15 on Quill (2024: 15 or his Intelligence of 10, whichever is higher). If bribed, he takes more gold and complains less.",
    "later": "S4: the Gate Clerk raises Persuasion DCs by 2 if Quill is Suspicious (s04-refuse-courtesy-memory).",
    "fallback": "If the party fights him, run s01-attack-quill.",
    "id": "s03-quill-returns",

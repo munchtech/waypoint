@@ -44,7 +44,8 @@ const diff=(name,old,now)=>{const out=[];if(old.length!==now.length)throw new Er
 // edit with neither its anchor nor its replacement, so each edit also counts as applied once the current wording of its lines is there.
 const chainEdits=(name,texts)=>{const last=texts[texts.length-1];return texts.slice(1).flatMap((now,k)=>diff(name,texts[k],now).map(({at,end,...h})=>{const fin=last.slice(at,end).join('\n');return {...h,...(fin!==h.replace?{unless:fin}:{}),guide:true}}))};
 const versions=(file,list)=>list.map(v=>read(file.replace('.md',v?'-'+v+'.md':'.md')).split('\n'));
-const links=n=>chainEdits('guide-s'+n,versions('guide-s'+n+'.md',guideVersions));
+// Revision 7.7 rewords one line of Session 3 (Quill's Influence DC follows the 2024 rule), so its 7.5 to 7.6 text is kept as guide-s3-7.6.md.
+const links=n=>chainEdits('guide-s'+n,versions('guide-s'+n+'.md',n===3?['7.1','7.2','7.3','7.4','7.6','']:guideVersions));
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
@@ -60,6 +61,11 @@ const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e069
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
 // The card is inserted as 7.4 had it; later rewordings follow as edits (revision 7.5: the Toll warning).
 const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return [{find:last,replace:last+'\n\n'+read('table-card-s'+n+'-7.4.md'),unless:'## Table card',guide:true},...chainEdits('table-card-s'+n,versions('table-card-s'+n+'.md',['7.4','']))]};
+
+// Revision 7.7: before each Act I session's first scene, Key people tonight (a table of who matters, their attitude, Influence DC and secret),
+// Places at a glance and a d6 rumour table, as the 2024 adventures lay them out (people-sN.md). When people-sN.md is reworded,
+// keep this text as people-sN-7.7.md and chain the change, as the table cards do.
+const people=(n,before)=>({find:before,replace:read('people-s'+n+'.md')+'\n\n'+before,unless:'### Key people tonight (Session '+n+')',guide:true});
 
 const pellmoorBody=`- **Read-aloud:**
 > **SAY:** "The Mute Mere is so still that the ships look painted on it. Forty masts stand over the water where a drowned town lies just beneath, rooftops like the backs of sleeping animals. On the Quays, a dozen languages argue over the price of a memory. Gnomes shout. Gulls do not; there are no gulls on the Mere. And at the far end of the waterfront, past the last warehouse, the old reed-roofed village of Pellmoor still leans toward the water as if none of this were happening."
@@ -211,7 +217,9 @@ const pages=[
 
 const pageEdits=[
  // Revision 7.4: the session zero script becomes a full guide for a first-time DM (session-zero.md).
- {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero-7.4.md'),unless:'### Step 5: Put it into Waypoint'},...chainEdits('session-zero',versions('session-zero.md',['7.4','']))]},
+ {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero-7.4.md'),unless:'### Step 5: Put it into Waypoint'},...chainEdits('session-zero',versions('session-zero.md',['7.4',''])),
+  // Revision 7.7: optional table jobs for players, as the 2024 adventures' Player Assistance sections suggest.
+  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('session-zero-jobs.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Table jobs (optional).**'}]},
  // Revision 7.5: the Toll rules.
  {id:'sb-579437dc048229b6',edits:[{find:'__WHOLE__',replace:read('toll-rules.md'),unless:'### The weight rises with every bell'}]},
  {id:'sb-cda9019c57971a98',edits:[{find:'When in doubt, ask the player what their character is willing to give up.',replace:'Before every ringing, warn the player what kind of thing the bell will take and how heavy it will be, never exactly what, and let them say no (Part 2.7).'}]},
@@ -298,7 +306,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1)],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2)],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3)],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock')],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart')],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry')],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

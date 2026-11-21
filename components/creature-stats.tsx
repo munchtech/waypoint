@@ -7,6 +7,7 @@ import { appFetch, isDesktop } from '../lib/transport';
 import type { RuleEntry } from '../lib/rules';
 import type { Playbook } from '../lib/playbook';
 import type { EncounterCreature } from '../lib/combat';
+import { influenceDc, intelligenceOf } from '../lib/influence';
 
 type Loaded = { name: string; entry?: RuleEntry; error?: string };
 async function loadBase(name: string): Promise<RuleEntry> {
@@ -86,8 +87,21 @@ export default function CreatureStats({
       shorthand.some((name) => name.toLowerCase() === block.name.toLowerCase()),
   );
   const inherited = shorthand.length > 0;
+  // The campaign's own block decides; otherwise the first base creature the library opened.
+  const intelligence =
+    (custom && intelligenceOf(custom.body)) ??
+    (loaded.base === creature.base
+      ? loaded.entries.map((e) => e.entry && intelligenceOf(e.entry.body)).find((n) => n)
+      : undefined);
   return (
     <div className="creature-stats">
+      {intelligence !== undefined && (
+        <p className="rule-summary influence-dc">
+          <strong>Influence DC {influenceDc(intelligence)}</strong> (15 or its Intelligence of{' '}
+          {intelligence}, whichever is higher). Roll only if it&apos;s hesitant: Friendly gives
+          Advantage, Hostile Disadvantage. After a failure, the same ask waits a day.
+        </p>
+      )}
       {custom && (
         <section className="campaign-statblock">
           <span className="eyebrow">CAMPAIGN STAT BLOCK · CR {custom.cr}</span>

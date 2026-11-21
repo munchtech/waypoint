@@ -6005,6 +6005,23 @@ input:focus {
 .prep-checks .check-label input[type='checkbox'] {
   margin-top: 3px;
 }
+.prep-hour {
+  margin: 4px 0 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.prep-hour h4 {
+  margin: 0 0 6px;
+}
+.prep-hour ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+}
 .rule-chips {
   display: flex;
   flex-wrap: wrap;
