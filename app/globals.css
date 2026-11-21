@@ -3540,6 +3540,25 @@ select:focus-visible {
 .material-body .card-prose {
   margin: 0;
 }
+.material-body .card-table {
+  margin: 4px 0;
+}
+.material-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+.material-body th,
+.material-body td {
+  padding: 8px 10px;
+  height: 36px;
+  border: 1px solid light-dark(#d6ded7, #39424b);
+  text-align: left;
+  vertical-align: top;
+}
+.material-body th {
+  background: light-dark(#edf1e9, #121920);
+}
 .response-section {
   background: light-dark(#f0f3e8, #131a21);
   border: 1px solid light-dark(#dce3ce, #374049);

@@ -13,3 +13,44 @@ export function responseSections(body: string) {
   );
   return sections;
 }
+
+export type TextBlock =
+  | { kind: 'text'; text: string }
+  | { kind: 'table'; head: string[]; rows: string[][] };
+const tableRule = /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?$/;
+const cells = (line: string) =>
+  line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/(?<!\\)\|$/, '')
+    .split(/(?<!\\)\|/)
+    .map((c) => c.trim().replace(/\\\|/g, '|'));
+// Splits card text into plain runs and Markdown tables (a header row, a --- rule, then rows), so a card's paper tables
+// show as tables instead of rows of pipes. Anything that is not a well-formed table stays text.
+export function textBlocks(text: string): TextBlock[] {
+  const lines = text.split('\n'),
+    out: TextBlock[] = [];
+  let plain: string[] = [];
+  const flush = () => {
+    const t = plain.join('\n').trim();
+    if (t) out.push({ kind: 'text', text: t });
+    plain = [];
+  };
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim().startsWith('|') && tableRule.test((lines[i + 1] || '').trim())) {
+      const head = cells(lines[i]);
+      let j = i + 2;
+      const rows: string[][] = [];
+      while (j < lines.length && lines[j].trim().startsWith('|')) rows.push(cells(lines[j++]));
+      flush();
+      out.push({
+        kind: 'table',
+        head,
+        rows: rows.map((r) => head.map((_, k) => r[k] || '')),
+      });
+      i = j - 1;
+    } else plain.push(lines[i]);
+  }
+  flush();
+  return out;
+}

@@ -1,4 +1,4 @@
-import { responseSections } from '../lib/response-sections';
+import { responseSections, textBlocks } from '../lib/response-sections';
 import { plainPreview } from '../lib/plain-text';
 import { partySignals } from '../lib/party-signals';
 import { importTranscript, timestamp, transcriptText } from '../lib/transcript-import';
@@ -641,12 +641,31 @@ console.log(
   assert.equal(parts[0].text, 'Intro');
   assert.equal(parts[2].text, 'What do you offer?');
   assert.equal(parts[4].text, 'Visit the well.');
+  // A card's paper tracker table renders as a table, blank writing rows included; stray pipes stay text.
+  assert.deepEqual(
+    textBlocks(
+      'Record each Toll.\n\n| Who | What \\| why |\n|---|:---:|\n| Wren | Her name |\n| | |\n\nKeep losses apart.\n| not | a table |',
+    ),
+    [
+      { kind: 'text', text: 'Record each Toll.' },
+      {
+        kind: 'table',
+        head: ['Who', 'What | why'],
+        rows: [
+          ['Wren', 'Her name'],
+          ['', ''],
+        ],
+      },
+      { kind: 'text', text: 'Keep losses apart.\n| not | a table |' },
+    ],
+  );
+  assert.deepEqual(textBlocks('No tables here.'), [{ kind: 'text', text: 'No tables here.' }]);
   const pinned = structuredClone(demo);
   pinned.sessions[0].pinnedCardId = 'fixture';
   assert(validateCampaign(pinned));
   assert(!validateCampaign({ ...pinned, sessions: [{ ...pinned.sessions[0], pinnedCardId: 42 }] }));
   console.log(
-    'Reference cards passed: labeled/plain text preservation and backward-compatible pin validation.',
+    'Reference cards passed: labeled/plain text preservation, tables and backward-compatible pin validation.',
   );
 }
 
