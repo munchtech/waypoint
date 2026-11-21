@@ -49,7 +49,7 @@ import {
   tableCard,
   timeline,
 } from '../lib/session-notes';
-import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
+import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { influenceDc, intelligenceOf } from '../lib/influence';
 
 const pack = updatePackSchema.parse(packJson);
@@ -233,7 +233,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.9');
+      assert.equal(pb7.version, '7.10');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -373,7 +373,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.9');
+    assert.equal(pb71.version, '7.10');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -499,6 +499,48 @@ test('Last we left off draws only from the session before, and names what was lo
   const roster = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
   assert.deepEqual(leastSpotlit(roster, { a: 2, b: 1 }), [{ id: 'c' }]);
   assert.deepEqual(leastSpotlit(roster, {}), roster);
+});
+// 1.46: the wrap-up's notes and the Follow up markers carry into the next prep brief, never into the read-aloud recap.
+test('the carry-over keeps the DM notes and follow-ups out of the recap', () => {
+  const at = '2026-11-20T21:05:00.000Z',
+    c = {
+      ...demo,
+      events: [],
+      sessions: [
+        {
+          ...demo.sessions[0],
+          id: 's1',
+          debrief: {
+            remember: 'The duel landed',
+            openQuestions: '',
+            nextFocus: 'Give Ila a scene',
+          },
+        },
+      ],
+      memory: {
+        ...memoryOf(demo),
+        markers: [
+          {
+            id: 'f1',
+            sessionId: 's1',
+            kind: 'Follow up',
+            text: 'Who paid the ferryman?',
+            created: at,
+          },
+          { id: 'f2', sessionId: 's1', kind: 'Follow up', text: '', created: at },
+          { id: 'f3', sessionId: 's2', kind: 'Follow up', text: 'Later', created: at },
+        ],
+      },
+    } as unknown as Campaign;
+  const k = carryOver(c, 's1');
+  assert.deepEqual(k.notes, [
+    ['What worked', 'The duel landed'],
+    ['Next time', 'Give Ila a scene'],
+  ]);
+  assert.equal(k.followUps[0], 'Who paid the ferryman?');
+  assert.match(k.followUps[1], /^A follow-up you marked at .+, with no note$/);
+  assert.equal(k.followUps.length, 2);
+  assert.ok(recapEmpty(lastWeLeftOff(c, 's1')));
 });
 // Revision 7.5: Tolls are warned (kind and weight), never stated exactly, and they escalate with every bell rung.
 test('the Toll weight rises with the bells rung', () => {

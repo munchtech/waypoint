@@ -54,3 +54,24 @@ export function recapText(r: Recap) {
     .filter(Boolean)
     .join('\n\n');
 }
+
+// What the DM left for themself last time: the wrap-up reflections and the open Follow up markers.
+// Not read aloud; the prep brief shows it under the recap, and the wrap-up previews it.
+export type CarryOver = { notes: [string, string][]; followUps: string[] };
+export function carryOver(campaign: Campaign, sessionId: string): CarryOver {
+  const d = campaign.sessions.find((s) => s.id === sessionId)?.debrief;
+  return {
+    notes: (
+      [
+        ['What worked', d?.remember || ''],
+        ['Open questions', d?.openQuestions || ''],
+        ['Next time', d?.nextFocus || ''],
+      ] as [string, string][]
+    ).filter(([, t]) => t.trim()),
+    followUps: unique(
+      (memoryOf(campaign).markers || [])
+        .filter((k) => k.sessionId === sessionId && k.kind === 'Follow up')
+        .map((k) => k.text.trim() || `A follow-up you marked at ${clock(k.created)}, with no note`),
+    ),
+  };
+}

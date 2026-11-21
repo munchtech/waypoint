@@ -1334,11 +1334,11 @@
    "likelihood": "Likely",
    "why": "They hold Vaer's Tongue and stand under the only thing in Hallowmere that isn't grey.",
    "tells": "A player asks what Vaer would do, or what it costs.",
-   "readAloud": "The bell cracks the grey like a knife through glass. For one heartbeat the cloud tears open, and a line of gold falls across the terraces. Every person in the city looks up. The opening widens. For this one day, sunlight reaches every terrace.",
+   "readAloud": "The bell cracks the grey like a knife through glass. For one heartbeat the cloud tears open, and a line of gold falls across the terraces. Every person in the city looks up. The opening widens. For one whole day, sunlight reaches every terrace.",
    "response": "First the silence-stone chains must come off: Rook's chain-key opens them, or DC 17 Thieves' Tools, or breaking three chain-stones (AC 12, 10 HP each), which is loud. Then warn the Ringer and wait for a yes: 'Vaer will take a memory of a beginning from you, and it will be [weight].' Never say which: after it rings you choose it (a dawn they loved or, for someone who never saw one, a hoped-for beginning). The dawn returns every morning for a year. If they decline, the bell does not ring and no Toll is taken. When it rings, the Court marks the Ringer with a Silence Warrant. If Sister Aurelie is in the city, she is on the terraces singing to Lathander within the hour (s09-aurelie-on-the-terraces).",
-   "rules": "Record the Toll (Toll, Vaer). Silence Warrant: any Hushman may arrest the Ringer on sight in a Court city; the Dawn Order enforces it only if Haldric won the duel or Rook's case failed. One day of true sunlight; dawn-based abilities at full strength; Hushmen and Blanks look up.",
-   "consequence": "Hallowmere has one real day of sun. The Ringer is wanted in every Court city.",
-   "later": "Concord: one more of six. S9: the Warrant follows the Ringer (s09-warrant-arrest). S22: a freed Aurelie and her Dawn Mission are the Stormborn ally. S23: the Strike's Hushmen go for the Ringer first. Act V: Vaer's dawn lasts one day unless the final rite sustains it (Concord or Second Dawn).",
+   "rules": "Record the Toll (Toll, Vaer). Silence Warrant: any Hushman may arrest the Ringer on sight in a Court city; the Dawn Order enforces it only if Haldric won the duel or Rook's case failed. One whole day of true sunlight, then a real dawn every morning for a year; dawn-based abilities at full strength; Hushmen and Blanks look up.",
+   "consequence": "Hallowmere has one whole day of sun, then a real dawn every morning for a year. The Ringer is wanted in every Court city.",
+   "later": "Concord: one more of six. S9: the Warrant follows the Ringer (s09-warrant-arrest). S22: a freed Aurelie and her Dawn Mission are the Stormborn ally. S23: the Strike's Hushmen go for the Ringer first. Act V: Vaer's dawn fades after its year unless the final rite sustains it (Concord or Second Dawn).",
    "fallback": "If the Ringer hesitates, Rook says, 'I've waited my whole life. I can wait one more minute.' And she does.",
    "keywords": "ring, vaer, dawn, bell, belfry, toll, sun, sunrise, warrant, chains, ringer",
    "when": [
@@ -4409,7 +4409,7 @@
     "Warn of both Tolls before any ringing (Vaer: a memory of a beginning; Calla: a gift), at their weight (Heavy for the first two bells the party rings, Grievous for the third and fourth, Ruinous after; the card shows it); decide the exact losses privately",
     "Know the chain-room: silence-stone chains on Vaer, Rook's chain-key, two knights",
     "Check jonah, ilam, aurelie, ila and duel: each decides which loose-thread plays show",
-    "Mark days on the road: Vaer's dawn lasts one day, Calla's harvest one season",
+    "Mark days on the road: Vaer's dawn lasts a year, Calla's harvest one season",
     "Level the party to 5 when they leave Hallowmere. Water Breathing and Tongues are still out of reach for this level"
    ],
    "encounters": [

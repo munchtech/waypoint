@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { asDraft, sendManyToWiki } from './player-site';
 import { dueAfter } from '../lib/player-site';
 import { count } from '../lib/plural';
+import { memoryOf } from '../lib/memory';
+import { carryOver, lastWeLeftOff } from '../lib/recap';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import type { Campaign, Session, Event } from '../lib/campaign';
 type Props = {
@@ -16,6 +18,8 @@ type Props = {
   onSite?: () => void;
   notify?: (m: string) => void;
   fail?: (m: string) => void;
+  // With a playbook the next session is already written: finishing opens its prep brief instead of the planner.
+  next?: { label: string; go: () => void };
 };
 export default function SessionWrapUp({
   campaign,
@@ -28,6 +32,7 @@ export default function SessionWrapUp({
   onReview,
   notify,
   fail,
+  next,
 }: Props) {
   const [sending, setSending] = useState(false);
   async function sendDue() {
@@ -44,7 +49,22 @@ export default function SessionWrapUp({
   }
   // Prepared player-wiki entries this session makes ready (Send them from Player handouts → Player site).
   const wikiDue = dueAfter(campaign, session.id);
-  const events = campaign.events.filter((e) => e.sessionId === session.id);
+  const events = campaign.events.filter((e) => e.sessionId === session.id),
+    markers = (memoryOf(campaign).markers || []).filter((k) => k.sessionId === session.id),
+    loved =
+      events.filter((e) => e.enjoyment === 'Loved it').length +
+      markers.filter((k) => k.kind === 'Loved this').length;
+  // What next session's prep brief will open with, so the DM can fix it before closing.
+  const recap = lastWeLeftOff(campaign, session.id),
+    carried = carryOver(campaign, session.id),
+    preview = (
+      [
+        ['What happened', recap.happened],
+        ['What it cost', recap.lost],
+        ['Still owed', recap.owed],
+        ['Your follow-ups (not read aloud)', carried.followUps],
+      ] as const
+    ).filter(([, list]) => list.length);
   const debrief = session.debrief || { remember: '', openQuestions: '', nextFocus: '' };
   function field(key: keyof typeof debrief, value: string) {
     update((c) => ({
@@ -73,7 +93,8 @@ export default function SessionWrapUp({
       ...c,
       sessions: c.sessions.map((s) => (s.id === session.id ? { ...s, done: true } : s)),
     }));
-    onPlan();
+    if (next) next.go();
+    else onPlan();
   }
   return (
     <section className="session-wrap-up">
@@ -88,8 +109,10 @@ export default function SessionWrapUp({
           <strong>{events.length}</strong> recorded {events.length === 1 ? 'choice' : 'choices'}
         </span>
         <span>
-          <strong>{events.filter((e) => e.enjoyment === 'Loved it').length}</strong> loved{' '}
-          {events.filter((e) => e.enjoyment === 'Loved it').length === 1 ? 'moment' : 'moments'}
+          <strong>{markers.length}</strong> marked {markers.length === 1 ? 'moment' : 'moments'}
+        </span>
+        <span className="wrap-loved">
+          <strong>{loved}</strong> loved
         </span>
         <span>
           <strong>{events.filter((e) => e.enjoyment === 'Less of this').length}</strong> course{' '}
@@ -125,7 +148,7 @@ export default function SessionWrapUp({
         </p>
       )}
       <button className="text-button" onClick={onRecord}>
-        Add a missing outcome <ArrowRight size={14} />
+        Record what happened <ArrowRight size={14} />
       </button>
       <p className="tiny muted">
         Leave Neutral when enjoyment is unknown. Choosing an action does not automatically mean the
@@ -161,6 +184,25 @@ export default function SessionWrapUp({
           placeholder="A short exploration scene, a choice with a cost, and a chance to follow up on their bargain…"
         />
       </label>
+      {preview.length > 0 && (
+        <div className="recap-draft wrap-preview">
+          <h3>Next session opens with</h3>
+          <p className="tiny muted">
+            Drafted from your outcomes, markers, ledger and bargains. Fix anything wrong here before
+            you finish; it shows in next session’s prep brief.
+          </p>
+          {preview.map(([title, list]) => (
+            <div key={title}>
+              <h4>{title}</h4>
+              <ul>
+                {list.map((t) => (
+                  <li key={t}>{t}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
       <div className="info-box">
         These reflections guide future preparation. They do not automatically create events or wiki
         facts.
@@ -206,10 +248,18 @@ export default function SessionWrapUp({
         </button>
         <button className="button primary finish-session" disabled={recording} onClick={complete}>
           <CheckCircle2 size={15} />
-          {session.done ? 'Review next-session plan' : 'Finish & plan next session'}
+          {next
+            ? (session.done ? 'Open ' : 'Finish & prep ') + next.label
+            : session.done
+              ? 'Review next-session plan'
+              : 'Finish & plan next session'}
         </button>
       </div>
-      <p className="tiny muted">Opening the planner does not start AI or generate anything.</p>
+      <p className="tiny muted">
+        {next
+          ? 'The prep brief shows this recap and your notes. Nothing is generated.'
+          : 'Opening the planner does not start AI or generate anything.'}
+      </p>
     </section>
   );
 }

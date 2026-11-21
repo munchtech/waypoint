@@ -360,7 +360,7 @@ app.whenReady().then(async () => {
       "(()=>{const e=document.querySelector('.wrap-events select');e.value='Loved it';e.dispatchEvent(new Event('change',{bubbles:true}));})()",
     );
     await wait(
-      "document.querySelector('.wrap-summary span:nth-child(2) strong').textContent==='1'",
+      "document.querySelector('.wrap-summary .wrap-loved strong').textContent==='1'",
     );
     await run(
       "(()=>{const e=document.querySelectorAll('.session-wrap-up textarea')[1];Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value').set.call(e,'Who hired the courier?');e.dispatchEvent(new Event('input',{bubbles:true}))})()",

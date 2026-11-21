@@ -38,7 +38,7 @@ import {
   type UpdatePack,
 } from '../lib/update-pack';
 import { dueAfter } from '../lib/player-site';
-import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
+import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { sendToWiki } from './player-site';
 import {
   clockAlerts,
@@ -399,6 +399,9 @@ export default function Foresight({
   // A spoken recap to open the session with, drafted from what the table recorded last time (lib/recap.ts).
   const recap = prev ? lastWeLeftOff(campaign, prev.id) : null,
     recapShown = recap && !recapEmpty(recap) ? recap : null;
+  // The DM's own notes from the last wrap-up and the follow-ups marked at the table (not read aloud).
+  const carried = prev ? carryOver(campaign, prev.id) : null,
+    carriedShown = carried && (carried.notes.length || carried.followUps.length) ? carried : null;
   const toggleCheck = (n: number) =>
     mutatePb((p) => ({
       ...p,
@@ -599,6 +602,31 @@ export default function Foresight({
                         </ul>
                       </div>
                     ),
+                )}
+              </div>
+            )}
+            {carriedShown && (
+              <div className="recap-draft carry-over">
+                <h3>For you from last time</h3>
+                <p className="tiny muted">
+                  Your wrap-up notes and the follow-ups you marked at the table. Not for reading
+                  aloud. Dismiss a follow-up in Plan next session once it’s handled.
+                </p>
+                {carriedShown.notes.map(([title, text]) => (
+                  <div key={title}>
+                    <h4>{title}</h4>
+                    <p>{text}</p>
+                  </div>
+                ))}
+                {carriedShown.followUps.length > 0 && (
+                  <div>
+                    <h4>Follow up</h4>
+                    <ul>
+                      {carriedShown.followUps.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             )}

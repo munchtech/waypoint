@@ -85,6 +85,8 @@ export function DialogBody() {
     askResult,
     ask,
     showReference,
+    setSessionId,
+    setLive,
   } = useDeskContext();
   return (
     <>
@@ -382,6 +384,20 @@ export function DialogBody() {
             setModal('');
             setView('Next session');
           }}
+          next={(() => {
+            const after = campaign.sessions[campaign.sessions.indexOf(session) + 1];
+            return memory.playbook && after
+              ? {
+                  label: 'Session ' + (campaign.sessions.indexOf(after) + 1),
+                  go: () => {
+                    setModal('');
+                    setLive(false);
+                    setSessionId(after.id);
+                    setView('Foresight');
+                  },
+                }
+              : undefined;
+          })()}
           onSite={() => {
             setModal('');
             setView('Player site');

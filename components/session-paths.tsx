@@ -15,6 +15,8 @@ type Props = {
   onQuick: (play: Play, sessionId?: string) => void;
   onAdapt: (prompt: string) => void;
   targetId?: string;
+  // In Live mode the live lookup above is the one search box, so this list drops its own.
+  hideSearch?: boolean;
 };
 // A collapsible group that renders its cards only while open, so hundreds of plays cost nothing until asked for.
 function Group({
@@ -67,6 +69,7 @@ export default function SessionPaths({
   onQuick,
   onAdapt,
   targetId,
+  hideSearch = false,
 }: Props) {
   const pb = memoryOf(campaign).playbook;
   const [query, setQuery] = useState(''),
@@ -160,16 +163,18 @@ Treat this as hypothetical until I record an outcome.`,
   return (
     <div className="session-paths" ref={list}>
       <div className="path-search">
-        <label>
-          <Search size={16} />
-          <input
-            aria-label="Search prepared paths"
-            placeholder="A choice, character, spell, or response…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            maxLength={200}
-          />
-        </label>
+        {!hideSearch && (
+          <label>
+            <Search size={16} />
+            <input
+              aria-label="Search prepared paths"
+              placeholder="A choice, character, spell, or response…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              maxLength={200}
+            />
+          </label>
+        )}
         <select aria-label="Which plays" value={scope} onChange={(e) => setScope(e.target.value)}>
           {['This session', ...(pb ? ['Anytime'] : []), 'All sessions'].map((s) => (
             <option key={s}>{s}</option>

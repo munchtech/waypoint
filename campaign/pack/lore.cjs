@@ -63,9 +63,15 @@ const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e069
 // keep this text as guide-sN-7.9.md and chain the change, as links() does for Act I.
 const S4='sb-0408eb3a9ef383eb',S5='sb-879a0d8936c67231',S6='sb-173cd869f38cc637',S7='sb-159e9351d101d536',S8='sb-e6aca23e4a267d72';
 const act2=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'.md'),unless:'## Running this session (new DM guide)',guide:true});
+// Revision 7.10: the plans now match the play cards (vault lock 17, Tessa's forged order 16, Vaer theft 17) and Vaer's dawn lasts a year.
+const s5Lock={find:"- Entry requires a DC 15 Thieves' Tools check, or a bribe",replace:"- Entry requires a DC 17 Thieves' Tools check, or a bribe"};
+const s6Tessa={find:'A forged transfer order (DC 14 Deception)',replace:'A forged transfer order (DC 16 Deception)'};
+const s9Theft={find:"by theft: DC 15 Thieves' Tools, with two Dawn Order guards",replace:"by theft: DC 17 Thieves' Tools, with two Dawn Order guards"};
+const s9Dawn={find:'- Ringing Vaer lifts the Long Dusk over Hallowmere for one day. A real dawn.',replace:'- Ringing Vaer lifts the Long Dusk over Hallowmere: one whole day of real sun, then a real dawn every morning for a year.'};
+const planFixes={[S5]:[s5Lock],[S6]:[s6Tessa]};
 const act2Guides=[[S4,4,'**Session 4 end:** End on the question: "Who in this city can you trust?"'],[S5,5,'**Session 5 end:** End on the question: "What did the Court take from the diary?"'],
  [S6,6,'**Session 6 end:** End on the question: "What will the defeated side do next?"'],[S7,7,'**Session 7 end:** End on an unresolved question: "Where can this family be safe?"'],
- [S8,8,'**Session 8 end:** End on the question: "What does I.V. want from you?"']].map(([id,n,find])=>({id,edits:[act2(n,find)]}));
+ [S8,8,'**Session 8 end:** End on the question: "What does I.V. want from you?"']].map(([id,n,find])=>({id,edits:[...(planFixes[id]||[]),act2(n,find)]}));
 const s9Guide=act2(9,'**Transition to Act III.** The party heads for Glassreach with whatever they took from Hallowmere: a diary, a Tongue, a jar, a wooden bird, or a Court seal.');
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
 // The card is inserted as 7.4 had it; later rewordings follow as edits (revision 7.5: the Toll warning).
@@ -261,6 +267,12 @@ const pages=[
 ];
 
 const pageEdits=[
+ // Revision 7.10: the vault page matches the play card (lock DC 17).
+ // Revision 7.10: the paper trackers point to the ones Waypoint keeps, so a stale "no losses recorded yet" never contradicts the ledger.
+ {id:'sb-1a80bcc5dfb81835',title:'Toll Tracker (paper copy)',edits:[{find:"Record each character's secret on the back of the sheet",replace:"**Waypoint keeps this for you:** record each Toll in Players → Memory ledger, and the next prep brief names it under What it cost. This table is the paper copy.\n\nRecord each character's secret on the back of the sheet"}]},
+ {id:'sb-7fb85235497d244d',title:'Bargain Log (paper copy)',edits:[{find:'| Bargain | With | Terms | Kept or broken? |',replace:'**Waypoint keeps this for you:** record bargains in Players → Bargain log; open ones show under Still owed in the next prep brief. This table is the paper copy.\n\n| Bargain | With | Terms | Kept or broken? |'}]},
+ {id:'sb-bc7e324cd9b20ac1',title:'Tithe Clock and tracks (paper copy)',edits:[{find:'The campaign uses four simple tracks. Keep them on paper in front of you.',replace:'The campaign uses four simple tracks. Waypoint keeps the Tithe Clock in Session → Playbook → World state and moves it when you mark a play; keep this page as the paper version.'}]},
+ {id:'sb-30af780baa82038c',edits:[{find:"- **Access:** a DC 15 Thieves' Tools check, or a bribe",replace:"- **Access:** a DC 17 Thieves' Tools check, or a bribe"}]},
  // Revision 7.4: the session zero script becomes a full guide for a first-time DM (session-zero.md).
  {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero-7.4.md'),unless:'### Step 5: Put it into Waypoint'},...chainEdits('session-zero',versions('session-zero.md',['7.4',''])),
   // Revision 7.7: optional table jobs for players, as the 2024 adventures' Player Assistance sections suggest.
@@ -353,7 +365,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:AFTER,edits:[epilogue]},{id:S9,edits:[s9Vaer,s9Calla,s9Guide]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
+const sessions=[{id:AFTER,edits:[epilogue]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

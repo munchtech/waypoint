@@ -110,7 +110,7 @@ export function SessionDeskView() {
               <div className="session-end-actions">
                 <button className="text-button" onClick={() => record()}>
                   <Plus size={14} />
-                  Record outcome
+                  Record what happened
                 </button>
                 {session.done && (
                   <button
@@ -312,6 +312,7 @@ export function SessionDeskView() {
                 onQuick={(p, sid) => quickRecord(p as Branch, sid)}
                 onAdapt={coachPrompt}
                 targetId={targetHit?.kind === 'Play' ? targetHit.id : undefined}
+                hideSearch={live && !!memory.playbook}
               />
               <button className="unexpected" onClick={() => record()}>
                 <span className="unexpected-icon">
@@ -391,7 +392,7 @@ export function SessionDeskView() {
               <div className="section-title">
                 <h3>What’s happened this session</h3>
                 <button className="text-button" onClick={() => record()}>
-                  <Plus size={15} /> Add event
+                  <Plus size={15} /> Record what happened
                 </button>
               </div>
               {campaign.events.filter((e) => e.sessionId === session.id).length ? (
