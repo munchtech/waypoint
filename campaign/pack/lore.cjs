@@ -58,6 +58,15 @@ const s14Toll=tollLine('A Memory (Part 2.11).','A memory, at the weight in Part 
 const s19aToll=tollLine('A Sense, for one day (Part 2.11).','A sense, at the weight in Part 2.7 (dulled for a year at the least). Warn of the kind and the weight; you choose the sense after it rings.');
 const s19bToll=tollLine('A Fear, chosen by the player, lost for one day (Part 2.7).','A fear the bell gives the Ringer, at the weight in Part 2.7. Warn of the kind and the weight; you choose the fear after it rings.');
 const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e06917',S19B='sb-abff956ca382268b';
+// Revision 7.9: Sessions 4 to 9 get the full guide, in the Act I format with the 7.4 to 7.8 additions built in (Key people, a recap,
+// Bring it back lines, Where to break and the table card). Each goes in whole after the session's end line. When one is reworded,
+// keep this text as guide-sN-7.9.md and chain the change, as links() does for Act I.
+const S4='sb-0408eb3a9ef383eb',S5='sb-879a0d8936c67231',S6='sb-173cd869f38cc637',S7='sb-159e9351d101d536',S8='sb-e6aca23e4a267d72';
+const act2=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'.md'),unless:'## Running this session (new DM guide)',guide:true});
+const act2Guides=[[S4,4,'**Session 4 end:** End on the question: "Who in this city can you trust?"'],[S5,5,'**Session 5 end:** End on the question: "What did the Court take from the diary?"'],
+ [S6,6,'**Session 6 end:** End on the question: "What will the defeated side do next?"'],[S7,7,'**Session 7 end:** End on an unresolved question: "Where can this family be safe?"'],
+ [S8,8,'**Session 8 end:** End on the question: "What does I.V. want from you?"']].map(([id,n,find])=>({id,edits:[act2(n,find)]}));
+const s9Guide=act2(9,'**Transition to Act III.** The party heads for Glassreach with whatever they took from Hallowmere: a diary, a Tongue, a jar, a wooden bird, or a Court seal.');
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
 // The card is inserted as 7.4 had it; later rewordings follow as edits (revision 7.5: the Toll warning).
 const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return [{find:last,replace:last+'\n\n'+read('table-card-s'+n+'-7.4.md'),unless:'## Table card',guide:true},...chainEdits('table-card-s'+n,versions('table-card-s'+n+'.md',['7.4','']))]};
@@ -344,7 +353,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:AFTER,edits:[epilogue]},{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:AFTER,edits:[epilogue]},{id:S9,edits:[s9Vaer,s9Calla,s9Guide]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

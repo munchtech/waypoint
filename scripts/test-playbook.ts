@@ -233,7 +233,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.8');
+      assert.equal(pb7.version, '7.9');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -269,6 +269,35 @@ if (backup) {
         at = plan.indexOf(guideHead);
       assert.ok(at > plan.indexOf(end), installed.sessions[i].title);
       assert.equal(plan.split(guideHead).length, 2);
+    }
+  });
+  // Revision 7.9: Sessions 4 to 9 get the full guide, in the Act I format with its table card built in.
+  test('Sessions 4 to 9 each get one guide with Bring it back lines, a break, a table card and real play links', () => {
+    const plays = new Set(
+      [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime].map((p) => p.id),
+    );
+    const act2 = [
+      'sb-0408eb3a9ef383eb',
+      'sb-879a0d8936c67231',
+      'sb-173cd869f38cc637',
+      'sb-159e9351d101d536',
+      'sb-e6aca23e4a267d72',
+      'sb-3b8d18ebd647c28a',
+    ].map((id) => installed.sessions.find((s) => s.id === id)!);
+    for (const [i, s] of act2.entries()) {
+      assert.equal(s.plan.split(guideHead).length, 2, s.title);
+      assert.match(s.plan, new RegExp('### Opening recap \\(Session ' + (i + 4) + '\\)'));
+      assert.ok(bringBacks(s.plan).length >= 3, s.title);
+      assert.ok(breakNote(s.plan).length > 20, s.title);
+      assert.ok(timeline(s.plan).length >= 5, s.title);
+      const card = tableCard(s.plan);
+      assert.match(card, /^## Table card/);
+      assert.ok(card.length < 4000, s.title + ' card is ' + card.length);
+      assert.doesNotMatch(card, /\(play:/);
+      const links = [...s.plan.matchAll(/\]\(play:([^)\s]+)\)/g)].map((m) => m[1]);
+      assert.ok(links.length >= 9, s.title);
+      for (const id of links)
+        assert.ok(plays.has(id) || plays.has(id.replace(/heart/g, 'tongue')), id);
     }
   });
   // The DM's table: revision 7 installed, wiki entries sent, choices recorded. 7.1 must offer only its new changes and keep all of that.
@@ -344,7 +373,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.8');
+    assert.equal(pb71.version, '7.9');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
