@@ -6530,6 +6530,30 @@ input:focus {
   color: light-dark(#285861, #a3d8e3);
   margin-right: 6px;
 }
+.recap-draft {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: light-dark(#eef3f0, #131a22);
+  border: 1px solid light-dark(#cddcd6, #3b444d);
+}
+.recap-draft h3 {
+  font-size: 14px;
+  margin: 0;
+}
+.recap-draft h4 {
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: light-dark(#285861, #a3d8e3);
+  margin: 8px 0 2px;
+}
+.recap-draft ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.55;
+}
 @media print {
   body.print-brief .coming-back {
     break-inside: avoid-page;
@@ -6781,6 +6805,79 @@ input:focus {
 .session-clock.over strong,
 .session-clock.over .pace {
   color: light-dark(#9a4a1f, #fcac87);
+}
+/* 1.44: Bring it back, the spotlight count and the break hint (docs/actual-play-study.md). */
+.notes-bar small {
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: light-dark(#285861, #a3d8e3);
+  margin-right: 4px;
+}
+.bring-back {
+  flex-basis: 100%;
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: light-dark(#eef3f0, #131a22);
+  border: 1px solid light-dark(#cddcd6, #3b444d);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.bring-back p,
+.bring-back ul {
+  margin: 0;
+}
+.bring-back ul {
+  padding-left: 18px;
+  margin-top: 4px;
+}
+.bring-back summary {
+  cursor: pointer;
+  font-size: 12.5px;
+}
+.spotlight-count {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.spotlight-count button {
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid light-dark(#d8d2c3, #46505a);
+  background: light-dark(#fffefa, #1a2129);
+  color: inherit;
+  cursor: pointer;
+}
+.spotlight-count button strong {
+  font-variant-numeric: tabular-nums;
+  margin-left: 2px;
+}
+.break-hint {
+  flex-basis: 100%;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: light-dark(#455b63, #c2cbcf);
+}
+.care-card {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: light-dark(#f3efe6, #1b2026);
+  border: 1px solid light-dark(#ddd3bf, #444b53);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.care-card ul {
+  margin: 6px 0;
+  padding-left: 18px;
+}
+.care-card p {
+  margin: 0;
 }
 .play-actions {
   display: flex;

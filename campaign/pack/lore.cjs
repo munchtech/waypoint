@@ -67,6 +67,42 @@ const card=n=>{const last=read('guide-s'+n+'.md').split('\n').pop();return [{fin
 // keep this text as people-sN-7.7.md and chain the change, as the table cards do.
 const people=(n,before)=>({find:before,replace:read('people-s'+n+'.md')+'\n\n'+before,unless:'### Key people tonight (Session '+n+')',guide:true});
 
+// Revision 7.8, from the actual-play study (docs/actual-play-study.md). Each Act I scene gains a Bring it back line: one move in the
+// fiction for when a bit doesn't end by itself. It goes just before the scene's "How it ends" (or before the next heading if it has none).
+// Each pacing section gains Where to break; Sessions 2 and 3 open with a recap (recap-sN.md). Waypoint's session notes read both lines.
+const sceneEnd=(n,scene)=>{const lines=read('guide-s'+n+'.md').split('\n'),at=lines.findIndex(l=>l.startsWith('### Scene '+scene+':'));if(at<0)throw new Error('guide-s'+n+': no Scene '+scene);
+ return lines.slice(at+1).find(l=>l.startsWith('**How it ends.**')||l.startsWith('### '))};
+const backs=(n,list)=>list.map((text,k)=>{const end=sceneEnd(n,k+1),line='**Bring it back.** '+text;return {find:end,replace:line+'\n\n'+end,unless:line,guide:true}});
+const breakAt=(n,text)=>{const find=read('guide-s'+n+'.md').split('\n').find(l=>l.startsWith('- **Running long:**'));return {find,replace:'- **Where to break:** '+text+'\n'+find,unless:'- **Where to break:**',guide:true}};
+const recap=(n,before)=>({find:before,replace:read('recap-s'+n+'.md')+'\n\n'+before,unless:'### Opening recap (Session '+n+')',guide:true});
+const s1Flow=[...backs(1,[
+ `The Heart hums once in Ila's pocket, loud enough that she stops counting. "Did you hear that?"`,
+ `Sallow taps her pipe on the table, twice. "The light goes early on the Old Shore. Ask what you came to ask."`,
+ `A ship's bell rings the hour on the Quays, and every Corvanese head turns toward it. Ask one player where their character is standing when it rings.`,
+ `Quill's pen stops. For the first time he looks up from the ledger: "I have three more doors tonight. Shall we settle this one?"`,
+ `The lamp gutters. Out on the water, very faintly, someone begins to sing a name.`]),
+ breakAt(1,`between Scenes 2 and 3 (about 1:30), straight after Sallow's "The afternoon's yours. What do you do?" The players can plan over the break. Never during Quill's patrol or the raid.`)];
+const s2Flow=[...backs(2,[
+ `The song stops in the middle of a name. Every ferry-folk face along the shore turns to the party: it's their turn to sing back.`,
+ `Brannagh slaps the tide-board. "Tide turns in a quarter hour, lads. With me or without me."`,
+ `The fog closes in until you can't see the skiff's bow, and something long slides under the hull.`,
+ `The oar drips three times, slowly. The Tidewarden lifts his head and waits for their one question.`,
+ `Air. Tell the swimmers they have about a minute left in their chests, and ask what they do with it.`,
+ `Mother Sallow turns the ledger round so they can see the torn edge, and waits.`]),
+ breakAt(2,`after the eels flee (about 2:10), before the Tidewarden appears. Never in the middle of the eel fight. If that's late for your table, break when the skiff pushes off (about 1:20).`)];
+const s3Flow=[...backs(3,[
+ `The kettle boils over. Sallow doesn't move to take it off; she's looking at the torn edge of the page, waiting for someone to say a name.`,
+ `Footsteps on the chapel path. Someone is coming back sooner than expected.`,
+ `This is the quiet scene, so bring nothing in. If it stalls, Ila speaks first, to the person she trusts most: "Did Dad know?"`,
+ `A second knock, harder. Then something slides under the door.`,
+ `The Heart hums, a little louder, as if it's listening. Go round the table: "What does your character want done with it? One sentence each."`,
+ `The water on the stair rises an inch around their ankles. Below, something very large and very old hums back at the Heart.`,
+ `The Court rider is still at the door, waiting for an answer to carry back. He coughs.`]),
+ breakAt(3,`after the knocks in Scene 4 (about 1:50), right before the choice, so the players can talk it over at the kettle. If you skipped Scene 4, break once Ila gives the page back.`)];
+// Revision 7.8: the finale's epilogue round (epilogue.md), after the NPC list in the Aftermath plan.
+const AFTER='sb-5c4fc37d597122e9',epilogueEnd='- **The Tidewarden:** rows the last dead home. The oar stops dripping.';
+const epilogue={find:epilogueEnd,replace:epilogueEnd+'\n\n'+read('epilogue.md'),unless:'### Epilogue round (Session 30)',guide:true};
+
 const pellmoorBody=`- **Read-aloud:**
 > **SAY:** "The Mute Mere is so still that the ships look painted on it. Forty masts stand over the water where a drowned town lies just beneath, rooftops like the backs of sleeping animals. On the Quays, a dozen languages argue over the price of a memory. Gnomes shout. Gulls do not; there are no gulls on the Mere. And at the far end of the waterfront, past the last warehouse, the old reed-roofed village of Pellmoor still leans toward the water as if none of this were happening."
 - **What it is:** Corvane's only lawful port for foreign ships since the Landing Charter of 384 SS. Not a Court city: the Tithe Clock does not tick here. The Court is present through the Landing House and its six Hushmen.
@@ -219,7 +255,9 @@ const pageEdits=[
  // Revision 7.4: the session zero script becomes a full guide for a first-time DM (session-zero.md).
  {id:'sb-b61bdde01a01cdcf',edits:[{find:'__WHOLE__',replace:read('session-zero-7.4.md'),unless:'### Step 5: Put it into Waypoint'},...chainEdits('session-zero',versions('session-zero.md',['7.4',''])),
   // Revision 7.7: optional table jobs for players, as the 2024 adventures' Player Assistance sections suggest.
-  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('session-zero-jobs.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Table jobs (optional).**'}]},
+  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('session-zero-jobs.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Table jobs (optional).**'},
+  // Revision 7.8: how to handle silly and serious moments, from the actual-play study.
+  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('silly-and-serious.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Silly and serious (for you, not the players).**'}]},
  // Revision 7.5: the Toll rules.
  {id:'sb-579437dc048229b6',edits:[{find:'__WHOLE__',replace:read('toll-rules.md'),unless:'### The weight rises with every bell'}]},
  {id:'sb-cda9019c57971a98',edits:[{find:'When in doubt, ask the player what their character is willing to give up.',replace:'Before every ringing, warn the player what kind of thing the bell will take and how heavy it will be, never exactly what, and let them say no (Part 2.7).'}]},
@@ -306,7 +344,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 ];
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
-const sessions=[{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock')],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart')],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry')],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
+const sessions=[{id:AFTER,edits:[epilogue]},{id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'}];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

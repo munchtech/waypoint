@@ -39,7 +39,16 @@ const seedFrom = (k: TableMarker, kind: WikiSeed['kind']): WikiSeed => ({
 });
 
 // Compact mode sits above the play area during Live mode: chips and note only, with the newest few markers.
-// Alt+1 to Alt+6 save the matching marker type from anywhere on the desk.
+// Alt+1 to Alt+7 save the matching marker type from anywhere on the desk.
+// A Heavy moment marker opens a short care card: how long-running tables handle a death, a Toll or a real upset
+// (docs/actual-play-study.md). It names the moment in next session's "Last we left off".
+const care = [
+  'Say what happened plainly, then stop talking.',
+  'Let the player whose character it was speak first, or not at all.',
+  'No joke to fix it. If someone laughs, that’s fine; it’s often how people cope.',
+  'If it’s real upset, not the character’s, offer a break. Nobody’s to blame.',
+  'Let the players bring the light back when they’re ready. Don’t do it for them.',
+];
 export default function TableMarkers({
   campaign,
   sessionId,
@@ -48,7 +57,8 @@ export default function TableMarkers({
   compact = false,
 }: Props) {
   const [note, setNote] = useState(''),
-    [announcement, setAnnouncement] = useState({ n: 0, text: '' });
+    [announcement, setAnnouncement] = useState({ n: 0, text: '' }),
+    [caring, setCaring] = useState(false);
   const markers = markersForSession(memoryOf(campaign), sessionId);
   const shown = compact ? markers.slice(0, recentCount) : markers;
   const field = (
@@ -73,6 +83,7 @@ export default function TableMarkers({
       }),
     }));
     setNote('');
+    if (kind === 'Heavy moment') setCaring(true);
     setAnnouncement((a) => ({
       n: a.n + 1,
       text: `${kind} marker saved${text ? ': ' + text : ''}`,
@@ -128,6 +139,29 @@ export default function TableMarkers({
           </button>
         ))}
       </div>
+      {caring && (
+        <div className="care-card" role="note" aria-label="A heavy moment">
+          <div className="section-title">
+            <strong>A heavy moment</strong>
+            <button
+              type="button"
+              className="text-button"
+              aria-label="Close the heavy moment card"
+              onClick={() => setCaring(false)}
+            >
+              <X size={14} />
+            </button>
+          </div>
+          <ul>
+            {care.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+          <p className="muted tiny">
+            It’s named, as you wrote it, in next session’s Last we left off.
+          </p>
+        </div>
+      )}
       {shown.length ? (
         <ol className="marker-list">
           {shown.map((k) => {

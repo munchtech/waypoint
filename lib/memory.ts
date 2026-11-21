@@ -84,6 +84,8 @@ export const markerKinds = [
   'Ruling',
   'Follow up',
   'Loved this',
+  // A Toll paid, a character falling, a real loss: Foresight's Last we left off names it in the next recap.
+  'Heavy moment',
 ] as const;
 export type MarkerKind = (typeof markerKinds)[number];
 const tableMarker = z.object({

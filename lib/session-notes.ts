@@ -41,6 +41,45 @@ export function pace(rows: Row[], min: number) {
       }
     : null;
 }
+// Revision 7.8 gives each Act I scene a "**Bring it back.**" line: one move in the fiction for when a joke runs on.
+// Each is returned with the heading it sits under.
+export function bringBacks(plan: string) {
+  const out: { scene: string; line: string }[] = [];
+  let scene = '';
+  for (const l of plan.split('\n')) {
+    const h = /^#{2,3} (.+)$/.exec(l);
+    if (h) scene = h[1].trim();
+    const m = /^\*\*Bring it back\.\*\*\s*(.+)$/.exec(l);
+    if (m) out.push({ scene, line: plainText(m[1]) });
+  }
+  return out;
+}
+// The scene a timeline row is about ("Scene 3: the port", "Scenes 4 and 5: …" → 3, 4), if any.
+export const rowScene = (what: string) => {
+  const m = /\bScenes? (\d+)/.exec(what);
+  return m ? +m[1] : null;
+};
+// The plan's "**Where to break:**" line.
+export function breakNote(plan: string) {
+  const m = /\*\*Where to break:\*\*\s*(.+)$/m.exec(plan);
+  return m ? plainText(m[1]) : '';
+}
+// Actual-play tables break at a median 48% of the session, four in five between a third and two thirds of the way in,
+// so the hint shows from 40% of the planned time until 65%.
+export function breakDue(rows: Row[], min: number) {
+  if (!rows.length) return false;
+  const total = rows[rows.length - 1].to;
+  return min >= total * 0.4 && min < total * 0.65;
+}
+// Who has had the scene least tonight, from the spotlight counts (ties: everyone tied, in roster order).
+export function leastSpotlit<T extends { id: string }>(
+  roster: T[],
+  counts: Record<string, number>,
+) {
+  if (!roster.length) return [];
+  const low = Math.min(...roster.map((r) => counts[r.id] || 0));
+  return roster.filter((r) => (counts[r.id] || 0) === low);
+}
 // The guide's sections, for jumping between scenes: its ### headings and the table card.
 export function guideSections(plan: string) {
   const at = plan.indexOf('## Running this session');

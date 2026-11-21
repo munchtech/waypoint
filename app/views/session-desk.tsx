@@ -8,7 +8,7 @@ import { lazy, Suspense } from 'react';
 import TableMarkers from '../../components/table-markers';
 import LiveLookup from '../../components/live-lookup';
 import NotesBar from '../../components/notes-bar';
-import { draftPage } from '../../lib/memory';
+import { draftPage, memoryOf } from '../../lib/memory';
 import { isDesktop } from '../../lib/transport';
 import {
   BookOpen,
@@ -366,6 +366,7 @@ export function SessionDeskView() {
                 key={session.id}
                 sessionId={session.id}
                 plan={session.plan}
+                roster={memoryOf(campaign).roster || []}
                 onRecord={() => record()}
               />
               <BookText text={session.plan} plays={planPlays} linkEvery />

@@ -56,4 +56,15 @@ export const responseSituations = [
     prompt: 'The party attempts an unexpected approach.',
     tip: 'Clarify the intended result. Decide what is certain, what is risky, and what changes on success or failure. Reward a workable idea.',
   },
+  // From the actual-play study (docs/actual-play-study.md): most jokes end on their own, and the DM's lever is the fiction.
+  {
+    label: 'The table drifts',
+    prompt: 'The table has drifted into jokes or side talk, and the scene has stalled.',
+    tip: 'Laugh first; most bits end on their own. If it runs on, move the world, not the players: a sound, a change of light, someone arrives. Then ask the quietest player what their character does.',
+  },
+  {
+    label: 'A heavy moment',
+    prompt: 'Something heavy has just happened at the table: a Toll, a character falling, a loss.',
+    tip: 'Say what happened plainly, in a sentence or two, then stop. Let that player speak first. Don’t joke to fix the mood; offer a break if it’s real. The players will bring the light back.',
+  },
 ] as const;

@@ -38,6 +38,7 @@ import {
   type UpdatePack,
 } from '../lib/update-pack';
 import { dueAfter } from '../lib/player-site';
+import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { sendToWiki } from './player-site';
 import {
   clockAlerts,
@@ -395,6 +396,9 @@ export default function Foresight({
           .flatMap((l) => l.changes)
           .reverse()
       : [];
+  // A spoken recap to open the session with, drafted from what the table recorded last time (lib/recap.ts).
+  const recap = prev ? lastWeLeftOff(campaign, prev.id) : null,
+    recapShown = recap && !recapEmpty(recap) ? recap : null;
   const toggleCheck = (n: number) =>
     mutatePb((p) => ({
       ...p,
@@ -440,6 +444,7 @@ export default function Foresight({
   function briefText() {
     return [
       `# ${session.title}`,
+      recapShown ? recapText(recapShown) : '',
       brief ? `Pressure: ${brief.pressure}` : '',
       coming.length
         ? `Coming back tonight:\n${coming.map((e) => `- ${e.text} (${sessionLabel(campaign, e.from)}: ${e.play.title})`).join('\n')}`
@@ -554,6 +559,48 @@ export default function Foresight({
                   .map((c) => flagLabel(pb, c.flag) + ': ' + valueLabel(pb, c.flag, c.to))
                   .join(' · ')}
               </p>
+            )}
+            {recapShown && (
+              <div className="recap-draft">
+                <div className="section-title">
+                  <h3>Last we left off</h3>
+                  <button
+                    className="text-button no-print"
+                    onClick={() => {
+                      void navigator.clipboard.writeText(recapText(recapShown)).then(
+                        () => notify('Recap copied as text.'),
+                        () => fail('Clipboard unavailable.'),
+                      );
+                    }}
+                  >
+                    <Copy size={13} />
+                    Copy
+                  </button>
+                </div>
+                <p className="tiny muted">
+                  A draft from what you recorded last session. Open with it in your own words, name
+                  what was lost plainly, then hand the scene to a player.
+                </p>
+                {(
+                  [
+                    ['What happened', recapShown.happened],
+                    ['What it cost', recapShown.lost],
+                    ['Still owed', recapShown.owed],
+                  ] as const
+                ).map(
+                  ([title, list]) =>
+                    list.length > 0 && (
+                      <div key={title}>
+                        <h4>{title}</h4>
+                        <ul>
+                          {list.map((t) => (
+                            <li key={t}>{t}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ),
+                )}
+              </div>
             )}
             {coming.length > 0 && (
               <div className="coming-back">

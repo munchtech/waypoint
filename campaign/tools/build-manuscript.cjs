@@ -49,9 +49,11 @@ for (const x of lore.pageEdits)
     apply(e.find, e.replace, x.id);
   }
 // A session guide's headings start at ## in Waypoint; in the book they sit two levels lower, under the session's ### heading.
+// The anchor is shifted too: an edit that inserts before a guide heading must find the book's deeper heading, not the end of it.
+const shift = (t) => t.replace(/^(#{2,4}) /gm, '##$1 ');
 for (const s of lore.sessions)
   for (const e of s.edits)
-    apply(e.find, e.guide ? e.replace.replace(/^(#{2,4}) /gm, '##$1 ') : e.replace, s.id);
+    apply(e.guide ? shift(e.find) : e.find, e.guide ? shift(e.replace) : e.replace, s.id);
 apply(
   '*Revision 5. Core setting, characters, and five-act structure are unchanged from the original manuscript.',
   '*Revision 7. Tuned for four players starting at level 3, with 2024 encounters, a full Act IV–V playbook and reachable endings (see Part 13). Revision 6: Corvane is part of the Forgotten Realms, Pellmoor is a port, memory works as money, and the rules are D&D 2024 (see Part 12). Revision 5: core setting, characters, and five-act structure are unchanged from the original manuscript.',

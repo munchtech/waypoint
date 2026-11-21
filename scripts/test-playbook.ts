@@ -39,7 +39,17 @@ import {
   siteHtml,
   takeDown,
 } from '../lib/player-site';
-import { pace, tableCard, timeline } from '../lib/session-notes';
+import {
+  breakDue,
+  breakNote,
+  bringBacks,
+  leastSpotlit,
+  pace,
+  rowScene,
+  tableCard,
+  timeline,
+} from '../lib/session-notes';
+import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { influenceDc, intelligenceOf } from '../lib/influence';
 
 const pack = updatePackSchema.parse(packJson);
@@ -223,7 +233,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.7');
+      assert.equal(pb7.version, '7.8');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -334,7 +344,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.7');
+    assert.equal(pb71.version, '7.8');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -364,6 +374,32 @@ if (backup) {
     assert.match(pace(rows, 30)!.next, /at 0:50$/);
     assert.ok(pace(rows, 215)!.over);
   });
+  // Revision 7.8 and Waypoint 1.44 (docs/actual-play-study.md).
+  test('each Act I guide has Bring it back lines and a break, and the notes bar reads them', () => {
+    const [s1, s2, s3] = installed.sessions;
+    assert.deepEqual(
+      [s1, s2, s3].map((s) => bringBacks(s.plan).length),
+      [5, 6, 7],
+    );
+    for (const s of [s1, s2, s3]) {
+      for (const b of bringBacks(s.plan)) {
+        assert.ok(b.scene && b.line, s.title);
+        assert.doesNotMatch(b.line, /\*\*/);
+      }
+      assert.ok(breakNote(s.plan).length > 20, s.title);
+      assert.equal(s.plan.split('**Bring it back.**').length - 1, bringBacks(s.plan).length);
+    }
+    assert.ok(bringBacks(s1.plan).every((b) => /^Scene \d+:/.test(b.scene)));
+    const rows = timeline(s1.plan);
+    assert.ok(!breakDue(rows, 30) && breakDue(rows, 100) && !breakDue(rows, 150));
+    assert.equal(rowScene('Scenes 4 and 5: the crossing'), 4);
+    assert.equal(rowScene('The closing question'), null);
+    assert.match(s2.plan, /### Opening recap \(Session 2\)/);
+    assert.match(s3.plan, /### Opening recap \(Session 3\)/);
+    assert.equal(installed.sessions.filter((s) => /### Epilogue round/.test(s.plan)).length, 1);
+    const zero = memoryOf(installed).pages.find((x) => x.id === 'sb-b61bdde01a01cdcf')!;
+    assert.match(zero.body, /Silly and serious \(for you, not the players\)/);
+  });
   test('session zero is a full guide in the wiki, within the page limit', () => {
     const p = memoryOf(installed).pages.find((x) => x.id === 'sb-b61bdde01a01cdcf')!;
     assert.match(p.body, /### Step 2: Safety and boundaries/);
@@ -372,6 +408,69 @@ if (backup) {
     assert.equal(p.title, '1.4 Session Zero Script');
   });
 }
+test('Last we left off draws only from the session before, and names what was lost', () => {
+  const at = '2026-11-20T21:05:00.000Z',
+    c = {
+      ...demo,
+      events: [
+        { id: 'e1', sessionId: 's1', text: 'The ferry burned', date: at },
+        { id: 'e2', sessionId: 's0', text: 'Older news', date: at },
+      ],
+      memory: {
+        ...memoryOf(demo),
+        markers: [
+          { id: 'm1', sessionId: 's1', kind: 'Heavy moment', text: '', created: at },
+          {
+            id: 'm2',
+            sessionId: 's1',
+            kind: 'Promise',
+            text: 'Ila will find the boy',
+            created: at,
+          },
+          {
+            id: 'm3',
+            sessionId: 's1',
+            kind: 'Important moment',
+            text: 'The ferry burned',
+            created: at,
+          },
+        ],
+        ledger: [
+          {
+            id: 'l1',
+            character: 'Ila',
+            kind: 'Toll',
+            weight: 'Heavy',
+            what: 'her mother’s name',
+            bell: 'Ossa',
+            sessionId: 's1',
+            date: at,
+          },
+        ],
+        bargains: [
+          {
+            id: 'b1',
+            with: 'The Tidewarden',
+            terms: 'one oar-stroke owed',
+            status: 'Open',
+            sessionId: 's1',
+            date: at,
+          },
+          { id: 'b2', with: 'Mere', terms: 'settled', status: 'Kept', sessionId: 's1', date: at },
+        ],
+      },
+    } as unknown as Campaign;
+  const r = lastWeLeftOff(c, 's1');
+  assert.deepEqual(r.happened, ['The ferry burned']);
+  assert.equal(r.lost[0], 'Ila: her mother’s name (Ossa’s Toll)');
+  assert.match(r.lost[1], /^A heavy moment you marked at .+, with no note$/);
+  assert.deepEqual(r.owed, ['Ila will find the boy', 'The Tidewarden: one oar-stroke owed']);
+  assert.match(recapText(r), /^Last we left off\n- The ferry burned\n\nWhat it cost\n/);
+  assert.ok(recapEmpty(lastWeLeftOff(c, 'nothing')));
+  const roster = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
+  assert.deepEqual(leastSpotlit(roster, { a: 2, b: 1 }), [{ id: 'c' }]);
+  assert.deepEqual(leastSpotlit(roster, {}), roster);
+});
 // Revision 7.5: Tolls are warned (kind and weight), never stated exactly, and they escalate with every bell rung.
 test('the Toll weight rises with the bells rung', () => {
   assert.deepEqual(tollWeight(pb), { rung: 0, weight: 'Heavy' });
