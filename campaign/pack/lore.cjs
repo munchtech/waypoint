@@ -309,7 +309,7 @@ const pageEdits=[
   {find:'never invent a backstory loss without the player.',replace:'choose the exact loss from what the table knows of the character, and never invent a backstory loss.'},
   {find:"Losing a Fear changes a feeling, not the player's authority to decide actions or immunity to magical fear.",replace:"A Fear Toll changes a feeling, never the player's authority to decide their character's actions."}]},
  {id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},
- {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',replace:pellmoorBody},
+ {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',unless:'- **The Quays:**',replace:pellmoorBody},
   // Revision 7.12: what the party sees at each spot on the Old Shore, to read aloud.
   {find:'- **The Quays:**',unless:'- **On the Old Shore (read aloud):**',replace:`- **On the Old Shore (read aloud):**
   - *The old ferry-dock:* "The oldest dock on the Mere is gray and soft with age, its pilings furred green. Ropes hang from it into water so still you can see the reeds standing upright beneath the surface, and deeper down, the dark line of a drowned roof."

@@ -24,8 +24,10 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
     // A trail step is a page id, or `creature:<name>` when a stat block name was clicked.
     creatureName = current.startsWith('creature:') ? current.slice(9) : '',
     page = creatureName ? undefined : memory.pages.find((page) => page.id === current);
-  const statblocks = memory.playbook?.statblocks;
-  const creatureNames = useMemo(() => statblocks?.map((b) => b.name), [statblocks]);
+  const creatureNames = useMemo(
+    () => memoryOf(campaign).playbook?.statblocks.map((b) => b.name),
+    [campaign],
+  );
   useEffect(() => {
     const d = dialog.current,
       opener = document.activeElement as HTMLElement | null;
