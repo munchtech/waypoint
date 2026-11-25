@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.12) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.13) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -177,9 +177,10 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.12',
-  summary: `Revision 7.12 of The Seventh Bell, for Waypoint 1.47. It installs over revisions 7.11 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.13',
+  summary: `Revision 7.13 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.12 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **Run Act III from the page (7.13).** Sessions 10 to 15 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
 - **Words ready for every NPC (7.12).** Each NPC page gains a first look to read aloud and lines to say, one of them for stuck players; the Old Shore and Strangers' Row gain read-aloud text.
 - **One story, one set of numbers (7.10, 7.11).** Plans match the play cards (vault DC 17, Tessa's order DC 16, Vaer theft DC 17); Vaer's dawn lasts a year everywhere; the Toll, Bargain and Tithe cards show the counts Waypoint keeps; every "In Waypoint" pointer names the real menu.
 - **Run Act II from the page (7.9).** Sessions 4 to 9 gain the full new-DM guide and table card, as Act I has.
@@ -208,7 +209,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.12',
+    version: '7.13',
     flags,
     anytime,
     encounters,

@@ -241,7 +241,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.12');
+      assert.equal(pb7.version, '7.13');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -279,20 +279,26 @@ if (backup) {
       assert.equal(plan.split(guideHead).length, 2);
     }
   });
-  // Revision 7.9: Sessions 4 to 9 get the full guide, in the Act I format with its table card built in.
-  test('Sessions 4 to 9 each get one guide with Bring it back lines, a break, a table card and real play links', () => {
+  // Revisions 7.9 and 7.13: Sessions 4 to 15 get the full guide, in the Act I format with its table card built in.
+  test('Sessions 4 to 15 each get one guide with Bring it back lines, a break, a table card and real play links', () => {
     const plays = new Set(
       [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime].map((p) => p.id),
     );
-    const act2 = [
+    const acts2And3 = [
       'sb-0408eb3a9ef383eb',
       'sb-879a0d8936c67231',
       'sb-173cd869f38cc637',
       'sb-159e9351d101d536',
       'sb-e6aca23e4a267d72',
       'sb-3b8d18ebd647c28a',
+      'sb-578cbd5020d97b1f',
+      'sb-0c7fc8fe12e71ad5',
+      'sb-8a9134f39dcce6b4',
+      'sb-f40bf272eb1b252f',
+      'sb-7b8acacf7aaa51b8',
+      'sb-897e70317077e42d',
     ].map((id) => installed.sessions.find((s) => s.id === id)!);
-    for (const [i, s] of act2.entries()) {
+    for (const [i, s] of acts2And3.entries()) {
       assert.equal(s.plan.split(guideHead).length, 2, s.title);
       assert.match(s.plan, new RegExp('### Opening recap \\(Session ' + (i + 4) + '\\)'));
       assert.ok(bringBacks(s.plan).length >= 3, s.title);
@@ -381,7 +387,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.12');
+    assert.equal(pb71.version, '7.13');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
