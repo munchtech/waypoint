@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.13) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.14) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -177,10 +177,10 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.13',
-  summary: `Revision 7.13 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.12 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.14',
+  summary: `Revision 7.14 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.13 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **Run Act III from the page (7.13).** Sessions 10 to 15 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
+- **Run Acts III and IV from the page (7.13, 7.14).** Sessions 10 to 19 (both roads) gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
 - **Words ready for every NPC (7.12).** Each NPC page gains a first look to read aloud and lines to say, one of them for stuck players; the Old Shore and Strangers' Row gain read-aloud text.
 - **One story, one set of numbers (7.10, 7.11).** Plans match the play cards (vault DC 17, Tessa's order DC 16, Vaer theft DC 17); Vaer's dawn lasts a year everywhere; the Toll, Bargain and Tithe cards show the counts Waypoint keeps; every "In Waypoint" pointer names the real menu.
 - **Run Act II from the page (7.9).** Sessions 4 to 9 gain the full new-DM guide and table card, as Act I has.
@@ -188,7 +188,7 @@ const result = {
 - **Know who is in the room (7.7).** Sessions 1 to 3 gain **Key people tonight** (stat block, attitude, Influence DC, secret), **Places at a glance** and a d6 rumour table; session zero gains optional **Table jobs**.
 - **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll; plays that ring a bell show the current weight.
 - **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a printable table card; every "If they…" option is a button that opens its play; Possibilities lists plays by scene; session zero becomes a full guide (World wiki → 1.4). The IsoForge map kits are retired.
-- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound), easier to say at the table. One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
+- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound). One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for four players at the level each chapter expects, from Low skirmishes in Pellmoor to High fights at the Strike, the summit and the Seventh Bell.
 - **A real finale.** Acts IV and V now have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
 - **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them, so Waypoint can bring them back in your prep brief.
@@ -209,7 +209,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.13',
+    version: '7.14',
     flags,
     anytime,
     encounters,

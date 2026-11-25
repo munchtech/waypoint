@@ -84,6 +84,32 @@ const act3Fixes={[S10]:[s10Cold],[S11]:[s11Ambush],[S13]:[s13Sexton],[S15]:[s15E
 const act3Guides=[[S10,10,'**Session 10 end:** End on the question: "What is the glass hiding?"'],[S11,11,'**Session 11 end:** End on the question: "What did you see in the glass?"'],
  [S12,12,'**Session 12 end:** End on the question: "Will you listen to him?"'],[S13,13,`**Session 13 end:** The Sexton says: "Don't ring the Frost Spire without the Tongue. The winter will come back all at once."`],
  [S15,15,'**Transition to Act IV.** The party must now choose a branch. Brassfall lies to the east and Vael Tor at the center of the plain, and both bells are required for the Concord.']].map(([id,n,find])=>({id,edits:[...(act3Fixes[id]||[]),act2(n,find)]}));
+// Revision 7.14: Act IV, Sessions 16 to 19 on both roads, gets the same guide. Its plans now match the play cards: how many of each foe,
+// Yenna's favor, the Concord and its price, and what the shrine stair takes.
+const S16A='sb-65a7d51b78a8d14d',S16B='sb-4a1554713c1ac7c1',S17A='sb-3b3f7af5135fd7d2',S17B='sb-93be53f2a6747fe1',S18A='sb-42bb15639f8889ad',S18B='sb-f0b728a69d395cb2';
+const s16aGolems={find:'- A Storm-stone Golem guards the vault (Appendix A).',replace:'- Three Storm-stone Golems guard the vault. One is awake; the others wake as stones are lifted.'};
+const s16bCount={find:'**Encounter: Sleepless (two).**',replace:'**Encounter: Sleepless (three).**'};
+const s16bNight={find:'If they fail by 5 or more, a Sleepless takes shape.',replace:'If they fail by 5 or more, a Sleepless takes shape (one a night at most).'};
+const s17aYenna={find:'or Yenna Garrow can smuggle it out for a favor (DC 14 Stealth).',
+ replace:`or, if she has her father's lamp, Yenna Garrow can smuggle it out for a favor (she takes the risk; the party's distraction is a group Stealth check, DC 14).`};
+const s17bCount={find:'Hush Cultists (four) and a Cult Leader.',replace:'Hush Cultists (eight) and a Cult Leader.'};
+const s17bDream={find:'until the Hush is struck or sealed (Session 26).',replace:'until the Hush is struck, sealed or tuned (Session 26).'};
+const s18aConcord={find:'They describe a safe way to ring the Seventh.',replace:'They describe the Concord: all six bells rung, then the Key seated in the Seventh, never struck.'};
+const s18aPrice={find:'The Seventh asks its Ringer for all six Tolls. Everyone else risks the world they know.',
+ replace:`Strike the Seventh, and it takes all six Tolls from whoever struck it. The Notes have a gentler way, and they ask its Ringer for 'the whole name'. I think it means yours. Everyone else risks the world they know.`};
+const s18aHounds={find:'Three Tongue-Hounds. If forced to fight, Corin joins at CR 5.',replace:'Five Tongue-Hounds. If forced to fight, Corin joins them (CR 6).'};
+const s18bStair={find:'- The party may descend a few steps.',
+ replace:'- The party may descend a few steps. Say the price first: nineteen of the hundred are free, and each full twenty costs a memory. One DC 13 Wisdom save, at step twenty, caps it at five memories, or two on a success.'};
+const s18bCorin={find:`wanting Mirel rung to weaken the Tor's defences. He wants the party to help him ring Ysh later.`,
+ replace:'wanting Mirel rung first because it quiets the Tor. Later he wants the Concord: six bells rung, then the Key seated in the Seventh, never struck.'};
+const act4Guides=[[S16A,'16a',[s16aGolems],s16aGolems.replace],
+ [S16B,'16b',[s16bCount,s16bNight],'the party can return or devise another way to acquire the Tongue before the finale.'],
+ [S17A,'17a',[s17aYenna],'He will take it, by force if needed or by contest if the party is clever.'],
+ [S17B,'17b',[s17bCount,s17bDream],'Their dreams are taken. Describe the emptiness. The Hush begins to stir.'],
+ [S18A,'18a',[s18aConcord,s18aPrice,s18aHounds],s18aHounds.replace],
+ [S18B,'18b',[s18bStair,s18bCorin],'My grandmother rang one. Let me help you do it right."'],
+ [S19A,'19a',[s19aToll],'- The Court sends a strike force of Hushmen and Dawn Order knights to take the Thrane Tongue.'],
+ [S19B,'19b',[s19bToll],'- The Court sends Hushmen to the Tor to investigate.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,act2(n,find)]}));
 const s14Guide=act2(14,'**Session 14 end:** End on the question: "What did the Frost Spire cost the thaw?"');
 const s9Guide=act2(9,'**Transition to Act III.** The party heads for Glassreach with whatever they took from Hallowmere: a diary, a Tongue, a jar, a wooden bird, or a Court seal.');
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
@@ -291,6 +317,8 @@ const cardEdits=[
  {id:'sb-2d085aa1b2576d17',title:{from:'Tithe Clock · 0 / 12',to:'Tithe Clock'},tracks:{place:'world-state',flag:'tithe_clock'},edits:[{find:'Initial value: 0; this is a fresh unplayed campaign. Update the count only after actual qualifying rests.',replace:'Waypoint keeps the live count in Session → Playbook → World state; move it only after actual qualifying rests.'}]},
 ];
 const pageEdits=[
+ // Revision 7.14: the CRs match the stat blocks.
+ {id:'sb-604f141fc3833c2f',edits:[{find:'Bellwright-Mage (CR 5)',replace:'Bellwright-Mage (CR 6)'}]},{id:'sb-ff1d8fd85ca3b0f1',edits:[{find:'Ironhorn Rider (CR 1)',replace:'Ironhorn Rider (CR 3)'}]},
  // Revision 7.10: the vault page matches the play card (lock DC 17).
  // Revision 7.10: the paper trackers point to the ones Waypoint keeps, so a stale "no losses recorded yet" never contradicts the ledger.
  {id:'sb-1a80bcc5dfb81835',title:'Toll Tracker (paper copy)',status:{from:'Unresolved',to:'Confirmed'},quote:{from:'Initialized for this unplayed campaign; update only from confirmed play.',to:'Paper copy of a tracker Waypoint keeps for you.'},edits:[{unless:'**Waypoint keeps this for you:**',find:"Record each character's secret on the back of the sheet",replace:"**Waypoint keeps this for you:** record each Toll in Players → Memory ledger, and the next prep brief names it under What it cost. This table is the paper copy.\n\nRecord each character's secret on the back of the sheet"},{find:'record each Toll in Players → Memory ledger',replace:'record each Toll in the [Memory ledger](go:memory-ledger) (Campaign → Party & preferences)'},{app:true,find:'No character has paid a Toll in recorded play. Keep scene memory losses separate from ringing Tolls.',replace:'Keep scene memory losses separate from ringing Tolls; the Memory ledger records both, each with its kind.'}]},
@@ -398,7 +426,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
 const epilogueLedger={find:'Foresight → Party & ledger → Memory ledger lists every Toll in order',replace:'the [Memory ledger](go:memory-ledger) (Campaign → Party & preferences) lists every Toll in order',guide:true};
-const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll,s14Guide]},...act3Guides,{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
+const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll,s14Guide]},...act3Guides,...act4Guides,{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},

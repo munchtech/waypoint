@@ -13,9 +13,9 @@ const wasOpen = () => {
     return true;
   }
 };
-// "Read-alouds (Session 1)" → "Read-alouds": the session is already on screen. A day or place after it stays.
+// "Read-alouds (Session 1)" → "Read-alouds", and (Session 16B) too: the session is already on screen. A day or place after it stays.
 const shortTitle = (title: string) =>
-  title.replace(/\s*\(Session \d+(?:, ([^)]+))?\)/, (_, rest?: string) =>
+  title.replace(/\s*\(Session \d+[A-Z]?(?:, ([^)]+))?\)/, (_, rest?: string) =>
     rest ? ` (${rest})` : '',
   );
 export default function PlanOutline({

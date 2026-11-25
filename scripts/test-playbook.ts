@@ -241,7 +241,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.13');
+      assert.equal(pb7.version, '7.14');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -279,12 +279,12 @@ if (backup) {
       assert.equal(plan.split(guideHead).length, 2);
     }
   });
-  // Revisions 7.9 and 7.13: Sessions 4 to 15 get the full guide, in the Act I format with its table card built in.
-  test('Sessions 4 to 15 each get one guide with Bring it back lines, a break, a table card and real play links', () => {
+  // Revisions 7.9, 7.13 and 7.14: Sessions 4 to 19 get the full guide, in the Act I format with its table card built in.
+  test('Sessions 4 to 19 each get one guide with Bring it back lines, a break, a table card and real play links', () => {
     const plays = new Set(
       [...installed.sessions.flatMap((s) => s.branches), ...pb.anytime].map((p) => p.id),
     );
-    const acts2And3 = [
+    const guided = [
       'sb-0408eb3a9ef383eb',
       'sb-879a0d8936c67231',
       'sb-173cd869f38cc637',
@@ -297,10 +297,20 @@ if (backup) {
       'sb-f40bf272eb1b252f',
       'sb-7b8acacf7aaa51b8',
       'sb-897e70317077e42d',
+      'sb-65a7d51b78a8d14d',
+      'sb-4a1554713c1ac7c1',
+      'sb-3b3f7af5135fd7d2',
+      'sb-93be53f2a6747fe1',
+      'sb-42bb15639f8889ad',
+      'sb-f0b728a69d395cb2',
+      'sb-ad6ec717a7e06917',
+      'sb-abff956ca382268b',
     ].map((id) => installed.sessions.find((s) => s.id === id)!);
-    for (const [i, s] of acts2And3.entries()) {
+    // Act IV's roads share a number: 16A to 19A is Brassfall, 16B to 19B Vael Tor.
+    const roads = ['16A', '16B', '17A', '17B', '18A', '18B', '19A', '19B'];
+    for (const [i, s] of guided.entries()) {
       assert.equal(s.plan.split(guideHead).length, 2, s.title);
-      assert.match(s.plan, new RegExp('### Opening recap \\(Session ' + (i + 4) + '\\)'));
+      assert.match(s.plan, new RegExp('### Opening recap \\(Session ' + (roads[i - 12] ?? i + 4) + '\\)'));
       assert.ok(bringBacks(s.plan).length >= 3, s.title);
       assert.ok(breakNote(s.plan).length > 20, s.title);
       assert.ok(timeline(s.plan).length >= 5, s.title);
@@ -387,7 +397,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.13');
+    assert.equal(pb71.version, '7.14');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
