@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import {
   Compass,
   Printer,
@@ -673,7 +673,19 @@ export default function Foresight({
                   {tiers.map((t) => (
                     <li key={t.weight}>
                       <strong>{t.label}</strong> <span className="muted">({t.hint})</span>:{' '}
-                      {t.plays.map((r) => r.play.title).join(' · ')}
+                      {t.plays.map((r, i) => (
+                        <Fragment key={r.play.id}>
+                          {i > 0 && ' · '}
+                          <button
+                            type="button"
+                            className="wiki-mention"
+                            title="Open this play"
+                            onClick={() => onPaths(r.play.id)}
+                          >
+                            {r.play.title}
+                          </button>
+                        </Fragment>
+                      ))}
                     </li>
                   ))}
                 </ul>

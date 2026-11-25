@@ -4,6 +4,7 @@ import { Monitor, FileText, Plus, Check, Download } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf, handoutSchema, type Handout } from '../lib/memory';
 import { composePlayerHandout } from '../lib/campaign-search';
+import { pageName } from '../lib/page-name';
 import { appFetch, isDesktop } from '../lib/transport';
 export default function PlayerHandouts({
   campaign,
@@ -124,7 +125,7 @@ export default function PlayerHandouts({
                 }
               />
               <span>
-                {p.title}
+                {pageName(p)}
                 <small>{p.status}</small>
               </span>
             </label>

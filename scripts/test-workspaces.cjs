@@ -388,7 +388,7 @@ run(async (args) => {
     await p.settle(600);
     assert(
       await p.run(
-        "(()=>{const result=[...document.querySelectorAll('.command-results button')].find(button=>button.querySelector('.search-kind')?.textContent==='Wiki'&&/Tobias Quill/i.test(button.querySelector('strong')?.textContent||''));if(!result)return false;result.click();return true})()",
+        "(()=>{const result=[...document.querySelectorAll('.command-results button')].find(button=>button.querySelector('.search-kind')?.textContent==='NPC'&&/Tobias Quill/i.test(button.querySelector('strong')?.textContent||''));if(!result)return false;result.click();return true})()",
       ),
     );
     await p.settle(400);

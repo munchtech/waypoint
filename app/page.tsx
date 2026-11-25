@@ -4,6 +4,8 @@ import ReferencePanel from '../components/reference-panel';
 import { Suspense, useMemo } from 'react';
 import SessionRecorder from '../components/session-recorder';
 import { isDesktop } from '../lib/transport';
+import { guideSections } from '../lib/session-notes';
+import { jumpToHeading } from '../lib/plan-jump';
 import {
   ArrowLeft,
   Search,
@@ -41,6 +43,14 @@ import { DialogBody } from './desk-dialogs';
 import { useTheme, themeLabel } from '../components/use-theme';
 import { useUpdate } from '../components/use-update';
 
+// The session desk's tabs, as Ctrl K lists them.
+const deskTabs = [
+  ['Session notes', 'The plan for this session, scene by scene'],
+  ['Possibilities', 'The paths the players might take'],
+  ['Combat', 'This session’s fights, round by round, with stat blocks'],
+  ['At the table', 'Markers and what has happened this session'],
+  ['Quick help', 'An answer for what the players just did, or a new idea'],
+];
 // The shell: the sidebar, top bar, section tabs and dialog frame around the current view.
 function HomeScreen() {
   const desk = useDesk();
@@ -79,6 +89,7 @@ function HomeScreen() {
     live,
     setLive,
     setExpanded,
+    setTab,
     setDraft,
     fileRef,
     modalRef,
@@ -164,6 +175,25 @@ function HomeScreen() {
                       } as Record<string, string>
                     )[name] || 'Open campaign workspace',
                   run: () => setView(name),
+                })),
+                ...guideSections(session.plan)
+                  .filter((s) => /^Scene \d/.test(s))
+                  .map((s) => ({
+                    label: s,
+                    detail: 'Session notes · ' + session.title,
+                    run: () => {
+                      setView('Session desk');
+                      setTab('Session notes');
+                      jumpToHeading(s);
+                    },
+                  })),
+                ...deskTabs.map(([tab, detail]) => ({
+                  label: tab,
+                  detail,
+                  run: () => {
+                    setView('Session desk');
+                    setTab(tab);
+                  },
                 })),
                 {
                   label: 'Ask the campaign',

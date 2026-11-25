@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowUpRight, Pin, X } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
+import { pageName } from '../lib/page-name';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import BookText from './book-text';
 import CreatureStats from './creature-stats';
@@ -111,7 +112,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                 <span className="eyebrow">
                   {page.kind} · {page.status} · {page.visibility}
                 </span>
-                <h2>{page.title}</h2>
+                <h2>{pageName(page)}</h2>
                 <div className="flow-actions">
                   <button
                     className="button"
@@ -152,7 +153,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                       className="text-button"
                       onClick={() => setTrail((ids) => [...ids, p.id])}
                     >
-                      {p.title}
+                      {pageName(p)}
                       <ArrowUpRight size={13} />
                     </button>
                   ))}

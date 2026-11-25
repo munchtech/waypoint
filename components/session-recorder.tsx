@@ -11,7 +11,7 @@ type RecorderReply = {
 import { importTranscript, timestamp } from '../lib/transcript-import';
 import TranscriptReview from './transcript-review';
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
-import { Mic, Square, Pause, Play, Flag, Upload, FileText } from 'lucide-react';
+import { ChevronDown, Mic, Square, Pause, Play, Flag, Upload, FileText } from 'lucide-react';
 import { appFetch, isDesktop } from '../lib/transport';
 import { memoryOf } from '../lib/memory';
 import { count } from '../lib/plural';
@@ -292,6 +292,12 @@ export default function SessionRecorder({
         <h3>
           <Mic size={18} /> {active ? 'Recording session' : 'Session recorder'}
         </h3>
+        {!active && (
+          <span className="recorder-hint">
+            Record the table, or import audio
+            <ChevronDown size={16} aria-hidden="true" />
+          </span>
+        )}
         {active && (
           <strong className="recording-indicator">
             {paused ? 'PAUSED' : '● REC'} {stamp(elapsed)}

@@ -215,10 +215,10 @@ run(async (args) => {
     'clicking it again closes it',
     !(await s.run(`!!document.querySelector('.book-text .play-card')`)),
   );
-  // The notes bar: a session clock that reads the plan's timeline, quick record on a card, and "Something else happened".
+  // The notes bar: a session clock that reads the plan's timeline, quick record on a card, and "Record what happened".
   check(
-    'the notes bar offers Something else happened and the table card',
-    /Something else happened/.test(await text('.notes-bar')) &&
+    'the notes bar offers Record what happened and the table card',
+    /Record what happened/.test(await text('.notes-bar')) &&
       /Print table card/.test(await text('.notes-bar')),
   );
   await s.clickText('Start the clock', { within: '.notes-bar' });
@@ -242,10 +242,10 @@ run(async (args) => {
     s.state.snapshot.campaigns.find((c) => c.memory?.playbook).events.length === before + 1 &&
       !(await s.run(`!!document.querySelector('.modal')`)),
   );
-  await s.clickText('Something else happened', { within: '.notes-bar' });
+  await s.clickText('Record what happened', { within: '.notes-bar' });
   await s.settle(400);
   check(
-    'Something else happened opens the outcome editor',
+    'Record what happened opens the outcome editor',
     /What actually happened/.test(await text('.modal')),
   );
   await s.clickText('Close & keep draft');
@@ -253,6 +253,47 @@ run(async (args) => {
   check(
     "the notes bar can jump between the guide's scenes",
     (await s.run(`document.querySelectorAll('.scene-jump option').length`)) > 6,
+  );
+  // The outline beside the notes: one click to a scene, and it marks the one you are reading.
+  const outline = await s.run(
+    "[...document.querySelectorAll('.plan-outline nav button')].map(b=>b.textContent)",
+  );
+  check(
+    "the outline lists the guide's sections",
+    outline.length > 6 && outline.some((x) => x.startsWith('Scene 4')),
+    outline.join(', ').slice(0, 90),
+  );
+  await s.run(
+    "[...document.querySelectorAll('.plan-outline nav button')].find(b=>b.textContent.startsWith('Scene 4')).click()",
+  );
+  await s.settle(1800);
+  const landing = await s.run(
+    `(()=>{const h=[...document.querySelectorAll('.plan-guide :is(h4,h5)')].find(e=>e.textContent.startsWith('Scene 4'));return {heading:h.getBoundingClientRect().top,bar:document.querySelector('.notes-bar').getBoundingClientRect().bottom,now:document.querySelector('.plan-outline [aria-current]')?.textContent||''}})()`,
+  );
+  check(
+    'the outline jumps to the scene, clear of the pinned bar, and marks it',
+    landing.heading >= landing.bar &&
+      landing.heading < landing.bar + 60 &&
+      landing.now.startsWith('Scene 4'),
+    JSON.stringify(landing),
+  );
+  // Looking something up on another tab, or another screen, comes back to the same place in the notes.
+  const scene = await s.run('window.scrollY');
+  await s.clickText('Combat', { within: '.desk-main .tabs' });
+  await s.settle(1200);
+  await s.clickText('Session notes', { within: '.desk-main .tabs' });
+  await s.settle(1200);
+  check(
+    'changing tab and back keeps your place in the notes',
+    Math.abs((await s.run('window.scrollY')) - scene) <= 5,
+  );
+  await nav('World wiki');
+  await nav('Session desk');
+  await s.settle(1200);
+  check(
+    'leaving the desk and coming back keeps it too',
+    Math.abs((await s.run('window.scrollY')) - scene) <= 5,
+    scene + ' ' + (await s.run('window.scrollY')),
   );
   await s.clickText('Live mode');
   await s.settle(600);

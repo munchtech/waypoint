@@ -5,6 +5,7 @@ import type { WikiPage } from '../lib/memory';
 import type { GoPlace } from '../lib/go-links';
 import { mentionIndex, splitMentions } from '../lib/wiki-mentions';
 import { plainPreview } from '../lib/plain-text';
+import { pageName } from '../lib/page-name';
 
 // `onOpen` takes a page id, or `creature:<name>` for a stat block (see lib/wiki-mentions). `creatures` names the campaign's
 // own stat blocks so prose can link them.
@@ -50,7 +51,7 @@ export function useMentionRenderer(excludeId?: string, every = false) {
           type="button"
           key={i}
           className="wiki-mention"
-          title={page.title + ' · ' + page.status + '\n' + plainPreview(page.body, 180)}
+          title={pageName(page) + ' · ' + page.status + '\n' + plainPreview(page.body, 180)}
           onClick={() => links.onOpen(page.id)}
         >
           {part.text}

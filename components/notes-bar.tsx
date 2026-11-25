@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { CornerUpLeft, Pause, Play, PenLine, Printer, RotateCcw, Timer } from 'lucide-react';
 import BookText from './book-text';
 
@@ -44,11 +44,16 @@ export default function NotesBar({
   sessionId,
   plan,
   roster = [],
+  focus,
+  onJump,
   onRecord,
 }: {
   sessionId: string;
   plan: string;
   roster?: Character[];
+  // The scene last jumped to, from here or from the outline beside the notes.
+  focus: string;
+  onJump: (title: string) => void;
   onRecord: () => void;
 }) {
   const key = 'waypoint-clock:' + sessionId,
@@ -57,8 +62,7 @@ export default function NotesBar({
     [counts, setCounts] = useState<Record<string, number>>(() => load(spotKey, isCounts, {})),
     [now, setNow] = useState(() => Date.now()),
     [printing, setPrinting] = useState(false),
-    [backOpen, setBackOpen] = useState(false),
-    [focus, setFocus] = useState('');
+    [backOpen, setBackOpen] = useState(false);
   const sections = guideSections(plan),
     rows = timeline(plan),
     card = tableCard(plan),
@@ -78,6 +82,21 @@ export default function NotesBar({
         ? backs.find((b) => b.scene.startsWith('Scene ' + pacedScene + ':'))
         : undefined),
     quiet = leastSpotlit(roster, counts);
+  // A jump lands its heading just below the bar, however many rows the bar has wrapped to.
+  const bar = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = bar.current,
+      root = document.documentElement.style;
+    if (!el) return;
+    const measure = () => root.setProperty('--notes-bar', el.offsetHeight + 'px');
+    measure();
+    const watch = new ResizeObserver(measure);
+    watch.observe(el);
+    return () => {
+      watch.disconnect();
+      root.removeProperty('--notes-bar');
+    };
+  }, []);
   useEffect(() => {
     if (!running) return;
     const t = setInterval(() => setNow(Date.now()), 15000);
@@ -93,14 +112,6 @@ export default function NotesBar({
     setCounts(next);
     store(spotKey, next);
   };
-  // Scrolls the notes to a guide heading (### renders as h5, ## as h4 in the notes).
-  function jump(title: string) {
-    if (backs.some((b) => b.scene === title)) setFocus(title);
-    const h = [...document.querySelectorAll('.book-text h4, .book-text h5')].find(
-      (x) => x.textContent?.trim() === title,
-    );
-    h?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }
   function print() {
     setPrinting(true);
     requestAnimationFrame(() => {
@@ -115,14 +126,14 @@ export default function NotesBar({
     });
   }
   return (
-    <div className="notes-bar no-print" role="toolbar" aria-label="Running this session">
+    <div ref={bar} className="notes-bar no-print" role="toolbar" aria-label="Running this session">
       {sections.length > 0 && (
         <select
           className="scene-jump"
           aria-label="Jump to a scene"
           value=""
           onChange={(e) => {
-            if (e.target.value) jump(e.target.value);
+            if (e.target.value) onJump(e.target.value);
           }}
         >
           <option value="">Jump to…</option>
@@ -139,7 +150,7 @@ export default function NotesBar({
         title="Write one line about something no play covers. It goes in the chronicle, and next week it can become a play."
       >
         <PenLine size={14} />
-        Something else happened
+        Record what happened
       </button>
       <button
         className="button small"

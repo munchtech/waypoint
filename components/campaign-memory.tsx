@@ -4,6 +4,7 @@ import BookText from './book-text';
 import { useWikiDraft } from './use-wiki-draft';
 import { isDesktop } from '../lib/transport';
 import { plainPreview } from '../lib/plain-text';
+import { pageName } from '../lib/page-name';
 import { useEffect, useState } from 'react';
 import {
   BookOpen,
@@ -89,6 +90,7 @@ export default function CampaignMemory({
   } = useWikiDraft(campaign, initialId);
   const m = memoryOf(campaign),
     [order, setOrder] = useState('campaign'),
+    [pageKind, setPageKind] = useState(''),
     [query, setQuery] = useState(''),
     [selected, setSelected] = useState(initialId || ''),
     [text, setText] = useState(''),
@@ -113,6 +115,13 @@ export default function CampaignMemory({
     if (seedPage) onSeedUsed?.();
   }, [seedPage, onSeedUsed]);
   const mutate = (fn: (m: Memory) => Memory) => update((c) => ({ ...c, memory: fn(memoryOf(c)) }));
+  const usedKinds = pageKinds.filter((k) => m.pages.some((p) => p.kind === k)),
+    shownKind = usedKinds.find((k) => k === pageKind),
+    shownPages = m.pages.filter(
+      (p) =>
+        (!shownKind || p.kind === shownKind) &&
+        (p.title + p.aliases + p.body + p.kind).toLowerCase().includes(query.trim().toLowerCase()),
+    );
   const source = m.notes.find((n) => n.id === selected);
   const openMarkers = (m.markers || [])
     .filter((k) => k.kind === 'Promise' || k.kind === 'Follow up')
@@ -274,9 +283,11 @@ export default function CampaignMemory({
                 />
               </label>
             ))}
-            <button className="button primary" disabled={busy} onClick={next}>
-              <Sparkles size={16} /> Draft next session <ArrowRight size={16} />
-            </button>
+            <div className="flow-actions">
+              <button className="button primary" disabled={busy} onClick={next}>
+                <Sparkles size={16} /> Draft next session <ArrowRight size={16} />
+              </button>
+            </div>
           </section>
           <section className="paper">
             {campaign.sessions
@@ -387,7 +398,7 @@ export default function CampaignMemory({
         </div>
       ) : section === 'World wiki' ? (
         <>
-          <div className="search-row">
+          <div className="search-row wiki-tools">
             <Search size={18} />
             <input
               aria-label="Search wiki"
@@ -395,6 +406,20 @@ export default function CampaignMemory({
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Find people, places, promises or aliases…"
             />
+            {usedKinds.length > 1 && (
+              <select
+                aria-label="Wiki page kind"
+                value={shownKind || ''}
+                onChange={(e) => setPageKind(e.target.value)}
+              >
+                <option value="">Every kind</option>
+                {usedKinds.map((k) => (
+                  <option key={k} value={k}>
+                    {k} · {m.pages.filter((p) => p.kind === k).length}
+                  </option>
+                ))}
+              </select>
+            )}
             <select
               aria-label="Wiki order"
               value={order}
@@ -412,15 +437,10 @@ export default function CampaignMemory({
           </div>
           <div className="memory-columns">
             <section className="wiki-cards">
-              {m.pages
-                .filter((p) =>
-                  (p.title + p.aliases + p.body + p.kind)
-                    .toLowerCase()
-                    .includes(query.trim().toLowerCase()),
-                )
+              {shownPages
                 .sort((a, b) =>
                   order === 'title'
-                    ? a.title.localeCompare(b.title, undefined, {
+                    ? pageName(a).localeCompare(pageName(b), undefined, {
                         numeric: true,
                         sensitivity: 'base',
                       })
@@ -435,26 +455,27 @@ export default function CampaignMemory({
                     <span className="eyebrow">
                       {p.kind} · {p.status}
                     </span>
-                    <h3>{p.title}</h3>
+                    <h3>{pageName(p)}</h3>
                     <p>{plainPreview(p.body, 220)}</p>
                     <small>
                       {p.visibility} · {p.sourceId ? 'Source linked' : 'DM written'}
                     </small>
                   </button>
                 ))}
-              {m.pages.length > 0 &&
-                !m.pages.some((p) =>
-                  (p.title + p.aliases + p.body + p.kind)
-                    .toLowerCase()
-                    .includes(query.trim().toLowerCase()),
-                ) && (
-                  <div className="paper empty">
-                    <h3>No pages match.</h3>
-                    <button className="button" onClick={() => setQuery('')}>
-                      Clear wiki search
-                    </button>
-                  </div>
-                )}
+              {m.pages.length > 0 && !shownPages.length && (
+                <div className="paper empty">
+                  <h3>No pages match.</h3>
+                  <button
+                    className="button"
+                    onClick={() => {
+                      setQuery('');
+                      setPageKind('');
+                    }}
+                  >
+                    Clear wiki search
+                  </button>
+                </div>
+              )}
               {!m.pages.length && (
                 <div className="paper empty">
                   <BookOpen size={30} />
@@ -591,7 +612,7 @@ export default function CampaignMemory({
                       .filter((p) => p.id !== draft.id)
                       .map((p) => (
                         <option key={p.id} value={p.id}>
-                          {p.title}
+                          {pageName(p)}
                         </option>
                       ))}
                   </select>
@@ -730,60 +751,62 @@ export default function CampaignMemory({
                 placeholder="[00:14:32] Mara promised to bring the captain proof…"
               />
             </label>
-            <label className="button">
-              Import text / Markdown / VTT
-              <input
-                type="file"
-                accept=".txt,.md,.vtt,.srt"
-                hidden
-                onChange={async (e) => {
-                  const f = e.target.files?.[0];
-                  if (f) {
-                    if (f.size > 120000) {
-                      setMessage('Import notes smaller than 120 KB, or split by scene.');
-                      return;
+            <div className="flow-actions">
+              <label className="button">
+                Import text / Markdown / VTT
+                <input
+                  type="file"
+                  accept=".txt,.md,.vtt,.srt"
+                  hidden
+                  onChange={async (e) => {
+                    const f = e.target.files?.[0];
+                    if (f) {
+                      if (f.size > 120000) {
+                        setMessage('Import notes smaller than 120 KB, or split by scene.');
+                        return;
+                      }
+                      const content = await f.text();
+                      if (content.length > 30000) {
+                        setMessage(
+                          'This source exceeds 30,000 characters. Split it by scene before importing; nothing was truncated.',
+                        );
+                        return;
+                      }
+                      setText(content);
+                      setTitle(f.name);
                     }
-                    const content = await f.text();
-                    if (content.length > 30000) {
-                      setMessage(
-                        'This source exceeds 30,000 characters. Split it by scene before importing; nothing was truncated.',
-                      );
-                      return;
-                    }
-                    setText(content);
-                    setTitle(f.name);
-                  }
+                  }}
+                />
+              </label>
+              <button
+                className="button primary"
+                disabled={!text.trim()}
+                onClick={() => {
+                  const id = crypto.randomUUID();
+                  mutate((mem) => ({
+                    ...mem,
+                    notes: [
+                      {
+                        id,
+                        sessionId: noteSession,
+                        title: title.trim() || 'Session notes',
+                        text,
+                        date: new Date().toISOString(),
+                        summary: '',
+                        proposals: [],
+                      },
+                      ...mem.notes,
+                    ],
+                  }));
+                  setSelected(id);
+                  setTitle('');
+                  setText('');
+                  setMessage('Source notes saved. Select Extract wiki proposals when ready.');
                 }}
-              />
-            </label>
-            <button
-              className="button primary"
-              disabled={!text.trim()}
-              onClick={() => {
-                const id = crypto.randomUUID();
-                mutate((mem) => ({
-                  ...mem,
-                  notes: [
-                    {
-                      id,
-                      sessionId: noteSession,
-                      title: title.trim() || 'Session notes',
-                      text,
-                      date: new Date().toISOString(),
-                      summary: '',
-                      proposals: [],
-                    },
-                    ...mem.notes,
-                  ],
-                }));
-                setSelected(id);
-                setTitle('');
-                setText('');
-                setMessage('Source notes saved. Select Extract wiki proposals when ready.');
-              }}
-            >
-              <FileText size={15} /> Save source notes
-            </button>
+              >
+                <FileText size={15} /> Save source notes
+              </button>
+            </div>
             <div className="journal-list">
               {m.notes.map((n) => (
                 <button

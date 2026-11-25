@@ -142,7 +142,7 @@ export default function QuickNavigation({
             .map((a, i) => ({ ...a, id: 'action:' + i, kind: 'Go to' }))
         : [];
     const entries = searchCampaign(campaign, query, category);
-    const asAction = (hit: SearchHit, kind: string = hit.kind) => ({
+    const asAction = (hit: SearchHit, kind: string = hit.pageKind || hit.kind) => ({
       id: hit.kind + ':' + hit.id,
       kind,
       label: hit.title,
@@ -161,7 +161,7 @@ export default function QuickNavigation({
         );
       return [
         ...pinned.slice(0, 6).map((hit) => asAction(hit, 'Kept handy')),
-        ...visited.map((hit) => asAction(hit, 'Recent · ' + hit.kind)),
+        ...visited.map((hit) => asAction(hit, 'Recent · ' + (hit.pageKind || hit.kind))),
         ...destinations,
       ];
     }
@@ -204,7 +204,16 @@ export default function QuickNavigation({
             ];
           })
         : [];
-    return [...content, ...references, ...elsewhere, ...destinations];
+    // "combat" or "scene 3" names the place itself, so it comes before pages that mention it.
+    const named = query.trim().toLowerCase(),
+      direct = destinations.filter((d) => named && d.label.toLowerCase().startsWith(named));
+    return [
+      ...direct,
+      ...content,
+      ...references,
+      ...elsewhere,
+      ...destinations.filter((d) => !direct.includes(d)),
+    ];
   }, [
     actions,
     campaign,

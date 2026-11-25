@@ -7,6 +7,8 @@ import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { creatureByName, statLine } from '../lib/combat';
 import { memoryOf } from '../lib/memory';
+import { pageName } from '../lib/page-name';
+import { searchCampaign } from '../lib/campaign-search';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
 import {
   ringsBell,
@@ -1158,6 +1160,26 @@ test("a stat line in an NPC's entry opens that creature", () => {
   const hushman = creatureByName('hushman', pb);
   assert(hushman.statblock, 'a campaign stat block is found whatever its capitals');
   assert.equal(creatureByName('Commoner (for talk)', pb).name, 'Commoner');
+});
+test('book headings read as names on screen, and section numbers stay', () => {
+  const name = (title: string, kind = 'NPC') => pageName({ title, kind } as never);
+  assert.equal(name('19. HUSHMAN TOBIAS QUILL'), 'Hushman Tobias Quill');
+  assert.equal(name('THE QUIET COURT', 'Faction'), 'The Quiet Court');
+  assert.equal(name('PELLMOOR (Village)', 'Location'), 'Pellmoor (Village)');
+  assert.equal(name('1.4 Session Zero Script', 'Lore'), '1.4 Session Zero Script');
+  assert.equal(name('Mother Sallow'), 'Mother Sallow');
+});
+test('search finds a page by another name without putting that name in its title', () => {
+  const page = memoryOf(installed).pages[0],
+    known = {
+      ...installed,
+      memory: {
+        ...memoryOf(installed),
+        pages: [{ ...page, title: 'Tobias Quill', aliases: 'the Zorvane clerk', body: '' }],
+      },
+    },
+    hit = searchCampaign(known, 'Zorvane', 'Wiki')[0];
+  assert.equal(hit?.title, 'Tobias Quill');
 });
 test('every numbered NPC has a look to read out and lines to say', () => {
   const npcs = memoryOf(installed).pages.filter((x) => x.kind === 'NPC' && /^\d+\. /.test(x.title));

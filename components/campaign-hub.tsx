@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { BookOpen, Pin, ArrowRight, Clock, GitBranch, FileText } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
+import { pageName } from '../lib/page-name';
 export default function CampaignHub({
   campaign,
   update,
@@ -84,7 +85,7 @@ export default function CampaignHub({
           {pinned.map((p) => (
             <article key={p.id} className="memory-thread">
               <div className="section-title">
-                <h3>{p.title}</h3>
+                <h3>{pageName(p)}</h3>
                 <button className="text-button" onClick={() => togglePin(p.id)}>
                   Unpin
                 </button>
@@ -103,7 +104,7 @@ export default function CampaignHub({
             .filter((p) => p.clock)
             .map((p) => (
               <article className="memory-thread" key={p.id}>
-                <strong>{p.title}</strong>
+                <strong>{pageName(p)}</strong>
                 <div className="clock-segments" aria-label={`${p.clock!.progress} of 6`}>
                   {Array.from({ length: 6 }, (_, i) => (
                     <i key={i} className={i < p.clock!.progress ? 'filled' : ''} />
@@ -152,7 +153,7 @@ export default function CampaignHub({
           >
             {pages.map((p) => (
               <option key={p.id} value={p.id}>
-                {p.title}
+                {pageName(p)}
               </option>
             ))}
           </select>
@@ -162,7 +163,7 @@ export default function CampaignHub({
                 className="relationship-map"
                 viewBox="0 0 500 340"
                 role="img"
-                aria-label={`Connections to ${focus.title}`}
+                aria-label={`Connections to ${pageName(focus)}`}
               >
                 <circle className="ring" cx="250" cy="170" r="118" strokeDasharray="3 7" />
                 {related.map((p, i) => {
@@ -174,21 +175,21 @@ export default function CampaignHub({
                       <line className="link" x1="250" y1="170" x2={x} y2={y} />
                       <circle className="node" cx={x} cy={y} r="9" />
                       <text x={x} y={y + 25} textAnchor="middle">
-                        {p.title.slice(0, 20)}
+                        {pageName(p).slice(0, 20)}
                       </text>
                     </g>
                   );
                 })}
                 <circle className="hub" cx="250" cy="170" r="42" />
                 <text className="hub-label" x="250" y="174" textAnchor="middle">
-                  {focus.title.slice(0, 17)}
+                  {pageName(focus).slice(0, 17)}
                 </text>
               </svg>
               <div className="connection-list">
                 {related.map((p) => (
                   <button className="button" key={p.id} onClick={() => setGraphFocus(p.id)}>
                     <BookOpen size={13} />
-                    {p.title}
+                    {pageName(p)}
                   </button>
                 ))}
               </div>

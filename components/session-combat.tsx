@@ -55,79 +55,83 @@ export default function SessionCombat({
           Find a creature
         </button>
       </div>
-      {fights && (
-        <details className="paper fight-plan" open>
-          <summary>
-            Round by round, from the session guide
-            <small>
-              Setup, what they do each round, when they run. Click a creature for its stat block.
-            </small>
-          </summary>
-          <BookText text={fights} linkEvery />
-        </details>
-      )}
-      {block && (
-        <section className="paper combat-target">
-          <h3>{block.name}</h3>
-          <CreatureStats
-            creature={{
-              name: block.name,
-              statblock: block.id,
-              base: block.base,
-              cr: block.cr,
-              count: 1,
-            }}
-            pb={pb}
-            onBrowse={onBrowse}
-          />
-        </section>
-      )}
-      {encounters.length > 0 && (
-        <>
-          <div className="encounter-picker" aria-label="Session encounters">
-            {encounters.map((item) => (
-              <button
-                key={item.id}
-                className={item === encounter ? 'selected' : ''}
-                aria-pressed={item === encounter}
-                onClick={() => setSelected(item.id)}
-              >
-                <strong>{item.title}</strong>
-                <small>
-                  {item.creatures.reduce((sum, creature) => sum + creature.count, 0)} participants ·{' '}
-                  {item.creatures.length} profiles
-                </small>
-              </button>
-            ))}
-          </div>
-          {encounter && pb && (
-            <EncounterCard
-              key={encounter.id}
-              enc={encounter}
-              pb={pb}
-              levels={levels}
-              defaultOpen
-              onBrowse={onBrowse}
-            />
+      <div className="combat-columns">
+        {fights && (
+          <details className="paper fight-plan" open>
+            <summary>
+              Round by round, from the session guide
+              <small>
+                Setup, what they do each round, when they run. Click a creature for its stat block.
+              </small>
+            </summary>
+            <BookText text={fights} linkEvery />
+          </details>
+        )}
+        <div className="combat-main">
+          {block && (
+            <section className="paper combat-target">
+              <h3>{block.name}</h3>
+              <CreatureStats
+                creature={{
+                  name: block.name,
+                  statblock: block.id,
+                  base: block.base,
+                  cr: block.cr,
+                  count: 1,
+                }}
+                pb={pb}
+                onBrowse={onBrowse}
+              />
+            </section>
           )}
-        </>
-      )}
-      {pinned.length > 0 && (
-        <section className="paper">
-          <h3>Pinned creature references</h3>
-          {pinned.map((reference) => (
-            <details key={reference.id} open>
-              <summary>
-                {reference.name} · {reference.edition}
-              </summary>
-              <RuleBody body={reference.body} />
-              <button className="text-button" onClick={() => onBrowse(reference.name)}>
-                Open full library entry
-              </button>
-            </details>
-          ))}
-        </section>
-      )}
+          {encounters.length > 0 && (
+            <>
+              <div className="encounter-picker" aria-label="Session encounters">
+                {encounters.map((item) => (
+                  <button
+                    key={item.id}
+                    className={item === encounter ? 'selected' : ''}
+                    aria-pressed={item === encounter}
+                    onClick={() => setSelected(item.id)}
+                  >
+                    <strong>{item.title}</strong>
+                    <small>
+                      {item.creatures.reduce((sum, creature) => sum + creature.count, 0)}{' '}
+                      participants · {item.creatures.length} profiles
+                    </small>
+                  </button>
+                ))}
+              </div>
+              {encounter && pb && (
+                <EncounterCard
+                  key={encounter.id}
+                  enc={encounter}
+                  pb={pb}
+                  levels={levels}
+                  defaultOpen
+                  onBrowse={onBrowse}
+                />
+              )}
+            </>
+          )}
+          {pinned.length > 0 && (
+            <section className="paper">
+              <h3>Pinned creature references</h3>
+              {pinned.map((reference) => (
+                <details key={reference.id} open>
+                  <summary>
+                    {reference.name} · {reference.edition}
+                  </summary>
+                  <RuleBody body={reference.body} />
+                  <button className="text-button" onClick={() => onBrowse(reference.name)}>
+                    Open full library entry
+                  </button>
+                </details>
+              ))}
+            </section>
+          )}
+        </div>
+      </div>
       {!encounters.length && !block && (
         <div className="paper empty">
           <Swords size={28} />

@@ -240,8 +240,8 @@ export default function SessionReview({
         </div>
       ) : (
         <p className="muted">
-          No pending discoveries in this selection. Save a source note below and extract wiki
-          proposals to begin.
+          No pending discoveries in this selection. Save a session note under Notes &amp;
+          recordings, then extract wiki proposals from it.
         </p>
       )}
     </section>

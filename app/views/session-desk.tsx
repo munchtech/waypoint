@@ -4,14 +4,17 @@ import MaterialBody from '../../components/material-body';
 import InlineMarks from '../../components/inline-marks';
 import TableCoach from '../../components/table-coach';
 import SessionPaths from '../../components/session-paths';
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useMemo, useRef, useState } from 'react';
 import TableMarkers from '../../components/table-markers';
 import LiveLookup from '../../components/live-lookup';
 import NotesBar from '../../components/notes-bar';
+import PlanOutline from '../../components/plan-outline';
 import { draftPage, memoryOf } from '../../lib/memory';
+import { pageName } from '../../lib/page-name';
 import { isDesktop } from '../../lib/transport';
 import { trackerStatus } from '../../lib/trackers';
 import { planParts, ruleUses, withFightRoster } from '../../lib/session-notes';
+import { jumpToHeading } from '../../lib/plan-jump';
 import { sessionEncounters } from '../../lib/combat';
 import {
   BookOpen,
@@ -35,6 +38,7 @@ import { Branch } from '../../lib/campaign';
 import { count } from '../../lib/plural';
 import { ViewLoading } from '../desk-shared';
 import { useDeskContext } from '../use-desk';
+import { useDeskPlace } from '../use-desk-place';
 const SessionCombat = lazy(() => import('../../components/session-combat'));
 
 // The session desk: the current session’s notes, plays, table tools and history.
@@ -87,6 +91,14 @@ export function SessionDeskView() {
   } = useDeskContext();
   const { guide: guideText, book: planBook } = planParts(session.plan);
   const pb = memory.playbook;
+  const tabs = useRef<HTMLDivElement>(null);
+  useDeskPlace(campaign.id, session.id, deskTab, targetHit, tabs);
+  // The scene last jumped to, from the notes bar or the outline beside the notes.
+  const [jumped, setJumped] = useState({ session: '', title: '' });
+  const jump = (title: string) => {
+    setJumped({ session: session.id, title });
+    jumpToHeading(title);
+  };
   const planGuide = useMemo(() => {
     const names = [
       ...new Set(
@@ -182,7 +194,7 @@ export function SessionDeskView() {
             </div>
           </div>
 
-          <div className="tabs">
+          <div className="tabs" ref={tabs}>
             {['Session notes', 'Possibilities', 'Combat', 'At the table', 'Quick help'].map((t) => (
               <button
                 className={deskTab === t ? 'selected' : ''}
@@ -284,20 +296,15 @@ export function SessionDeskView() {
               <div className="section-title">
                 <div>
                   <h3>The paths they might take</h3>
-                  <p>
-                    Possibilities to prepare for, never a script to follow.
-                    {memory.playbook && (
-                      <>
-                        {' '}
-                        <button className="text-button" onClick={() => setView('Foresight')}>
-                          <Telescope size={13} />
-                          Prep brief and world state
-                        </button>
-                      </>
-                    )}
-                  </p>
+                  <p>Possibilities to prepare for, never a script to follow.</p>
                 </div>
                 <div className="path-actions">
+                  {memory.playbook && (
+                    <button className="text-button" onClick={() => setView('Foresight')}>
+                      <Telescope size={14} />
+                      Prep brief and world state
+                    </button>
+                  )}
                   {session.branches.length > 0 && (
                     <button
                       className="text-button"
@@ -368,7 +375,20 @@ export function SessionDeskView() {
           {deskTab === 'Session notes' && (
             <section className="paper">
               <div className="section-title">
-                <h3>Your session plan</h3>
+                <div>
+                  <h3>Your session plan</h3>
+                  {memory.pages.length > 0 && (
+                    <p className="note-legend">
+                      <span className="legend-page">Blue names</span> open a page.
+                      {(pb?.statblocks.length || 0) > 0 && (
+                        <>
+                          {' '}
+                          <span className="legend-creature">Gold names</span> open a stat block.
+                        </>
+                      )}
+                    </p>
+                  )}
+                </div>
                 <button
                   className="text-button"
                   onClick={() => {
@@ -385,6 +405,8 @@ export function SessionDeskView() {
                 sessionId={session.id}
                 plan={session.plan}
                 roster={memoryOf(campaign).roster || []}
+                focus={jumped.session === session.id ? jumped.title : ''}
+                onJump={jump}
                 onRecord={() => record()}
               />
               {planBook ? (
@@ -398,10 +420,14 @@ export function SessionDeskView() {
                     </summary>
                     <BookText text={planBook} plays={planPlays} linkEvery />
                   </details>
-                  <BookText text={planGuide} plays={planPlays} linkEvery />
+                  <div className="plan-guide">
+                    <BookText text={planGuide} plays={planPlays} linkEvery />
+                  </div>
                 </>
               ) : (
-                <BookText text={session.plan} plays={planPlays} linkEvery />
+                <div className="plan-guide">
+                  <BookText text={planGuide} plays={planPlays} linkEvery />
+                </div>
               )}
               <p className="muted tiny">
                 Planned material. Record actual events separately in the chronicle.
@@ -471,6 +497,7 @@ export function SessionDeskView() {
           )}
         </section>
         <aside className="right-rail">
+          {deskTab === 'Session notes' && <PlanOutline plan={session.plan} onJump={jump} />}
           {live && deskCard && (
             <section className="paper rail-card" aria-label="Table card">
               <BookText text={deskCard} />
@@ -652,7 +679,7 @@ export function SessionDeskView() {
                       <small>
                         {page.kind} · {page.status}
                       </small>
-                      <strong>{page.title}</strong>
+                      <strong>{pageName(page)}</strong>
                     </span>
                     <ArrowUpRight size={14} />
                   </button>

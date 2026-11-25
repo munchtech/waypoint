@@ -7043,7 +7043,7 @@ input:focus {
 }
 .book-text h4,
 .book-text h5 {
-  scroll-margin-top: 190px;
+  scroll-margin-top: calc(var(--notes-bar, 110px) + 84px);
 }
 .rail-card {
   position: sticky;
@@ -7458,17 +7458,18 @@ input:focus {
   display: inline;
   padding: 0;
   border: 0;
-  border-bottom: 1px dotted light-dark(#477276, #adbec0);
   border-radius: 0;
   background: none;
   color: light-dark(#245c60, #9dd9dd);
   font: inherit;
   text-align: inherit;
+  text-decoration: underline dotted light-dark(#477276, #adbec0) 1px;
+  text-underline-offset: 3px;
   cursor: pointer;
 }
 .wiki-mention:hover {
   background: light-dark(#dce9e4, #1f272e);
-  border-bottom-style: solid;
+  text-decoration-style: solid;
 }
 .wiki-mention:focus-visible {
   outline: 2px solid light-dark(#245c60, #9cd5d9);
@@ -7477,7 +7478,7 @@ input:focus {
 /* A stat block name: amber, so it reads as "open the numbers" rather than "open the page". */
 .creature-mention {
   color: light-dark(#8a5a1c, #e9c27f);
-  border-bottom-color: light-dark(#b58a4a, #a88b5a);
+  text-decoration-color: light-dark(#b58a4a, #a88b5a);
 }
 /* A heading and its "?" stay on one line. */
 .book-text th:has(.head-note) {
@@ -7775,12 +7776,6 @@ input:focus {
 .reference-combat .creature-stats {
   padding: 12px 0;
 }
-.session-combat > .encounter-card {
-  background: light-dark(#fffdf8, #192128);
-  padding: 22px;
-  border: 1px solid light-dark(#c3d0c9, #414b54);
-  border-radius: 12px;
-}
 @media (max-width: 1100px) {
   .combatant-toggle {
     align-items: flex-start;
@@ -7998,4 +7993,290 @@ input:focus {
   font-size: 14px;
   background: light-dark(#eef3f0, #131a22);
   border: 1px solid light-dark(#cddcd6, #3b444d);
+}
+
+/* The desk's side rail. Cards keep their own height (the rail scrolls as one), so a tall card is never squeezed to a strip. */
+.right-rail > * {
+  flex-shrink: 0;
+}
+@media (min-width: 901px) {
+  .desk-grid > aside {
+    position: sticky;
+    top: 86px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  .rail-card {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin-bottom: 0;
+  }
+}
+@media (min-width: 1700px) {
+  .desk-grid {
+    grid-template-columns: minmax(0, 1fr) 400px;
+  }
+}
+/* The scene outline beside the notes. While it's open, the notes bar's Jump to… would only repeat it. */
+.plan-outline {
+  padding: 12px 8px 12px 14px;
+}
+.plan-outline > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  list-style: none;
+  color: light-dark(#2f4452, #ced8df);
+}
+.plan-outline > summary::-webkit-details-marker {
+  display: none;
+}
+.plan-outline nav {
+  display: grid;
+  gap: 1px;
+  margin-top: 8px;
+  max-height: 46vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.plan-outline nav button {
+  padding: 5px 8px;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 0 6px 6px 0;
+  background: none;
+  color: light-dark(#4c5d64, #b7c3ca);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+.plan-outline nav .outline-scene {
+  font-weight: 600;
+  color: light-dark(#24414c, #dbe5ea);
+}
+.plan-outline nav small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.plan-outline nav button:hover {
+  background: light-dark(#eef2ec, #202a32);
+}
+.plan-outline nav button:focus-visible {
+  outline: 2px solid light-dark(#245c60, #9cd5d9);
+  outline-offset: -2px;
+}
+.plan-outline nav [aria-current] {
+  border-left-color: light-dark(#8a6420, #dbb271);
+  background: light-dark(#f4efe2, #232b31);
+}
+@media (min-width: 901px) {
+  .desk-grid:has(.plan-outline[open]) .scene-jump {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .plan-outline {
+    display: none;
+  }
+}
+/* What the coloured names in the notes do. */
+.section-title .note-legend {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.note-legend span {
+  text-decoration: underline dotted 1px;
+  text-underline-offset: 3px;
+}
+.note-legend .legend-page {
+  color: light-dark(#245c60, #9dd9dd);
+}
+.note-legend .legend-creature {
+  color: light-dark(#8a5a1c, #e9c27f);
+}
+/* Small alignment fixes: the wiki's tools on one row, the combat intro clear of the card below, headings beside their icon. */
+.memory-workspace .wiki-tools {
+  gap: 12px;
+}
+.memory-workspace .wiki-tools input {
+  flex: 1 1 260px;
+  max-width: none;
+}
+.memory-workspace .wiki-tools select {
+  flex: 0 1 190px;
+  width: auto;
+  margin: 0;
+}
+.session-combat > .section-title {
+  margin-bottom: 16px;
+}
+.ledger-anchor > h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The desk's tabs stay under the top bar, so Combat is one click from anywhere in the notes; the notes bar pins below them. */
+.desk-main > .tabs button,
+.foresight-tabs button {
+  justify-content: center;
+}
+.desk-main > .tabs button.selected,
+.foresight-tabs button.selected {
+  color: light-dark(#17414a, #f0e3c6);
+  background: light-dark(#fffdf8, #2d3a44);
+  box-shadow:
+    inset 0 -2px light-dark(#8a6420, #dbb271),
+    0 2px 5px light-dark(#172a3b1c, #00000040);
+}
+.desk-main > .tabs button:not(.selected):hover,
+.foresight-tabs button:not(.selected):hover {
+  background: light-dark(#eef1ec, #252f38);
+}
+@media (min-width: 1101px) and (min-height: 800px) {
+  .desk-main > .tabs {
+    position: sticky;
+    top: 70px;
+    z-index: 4;
+  }
+  .desk-main .notes-bar {
+    top: 126px;
+  }
+  .desk-main .book-text :is(h4, h5) {
+    scroll-margin-top: calc(var(--notes-bar, 110px) + 140px);
+  }
+}
+@media (min-height: 900px) {
+  .plan-outline nav {
+    max-height: none;
+  }
+}
+/* Side-rail session lists: numbers in the book face, rules straight across. */
+.session-list-item {
+  border-radius: 0;
+}
+.session-list-item > span {
+  font-family: 'Lora', serif;
+}
+.handy-references .session-list-item > span {
+  font-family: inherit;
+}
+/* Closed play cards: likelihood shares the top line, so more plays fit on a screen. */
+.branch {
+  margin-bottom: 4px;
+}
+.branch-head {
+  padding: 14px 18px;
+}
+.branch-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 14px;
+}
+.branch-heading > :is(strong, .play-preview) {
+  grid-column: 1 / -1;
+}
+.branch-heading > .branch-meta {
+  grid-area: 1 / 1;
+  flex-wrap: wrap;
+}
+.branch-heading > .branch-priority {
+  grid-area: 1 / 2;
+  align-self: start;
+  margin: 0;
+}
+/* Hub counters are links, not the page: one slim row. */
+.hub-stats .paper {
+  padding: 12px 18px;
+}
+.hub-stats strong {
+  font-size: 24px;
+}
+/* The recorder opens from its heading; say so, and say what is inside. */
+.recorder-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.recorder-panel[open] .recorder-hint svg {
+  transform: rotate(180deg);
+}
+.flow-actions {
+  align-items: center;
+}
+.flow-actions > label.button {
+  margin: 0;
+}
+.history-results {
+  margin-top: 12px;
+}
+/* Combat: with room, the round-by-round plan stays beside the stat blocks instead of above them. */
+.session-combat {
+  container-type: inline-size;
+}
+.combat-main > .encounter-card {
+  background: light-dark(#fffdf8, #192128);
+  padding: 22px;
+  border: 1px solid light-dark(#c3d0c9, #414b54);
+  border-radius: 12px;
+}
+@container (min-width: 1020px) {
+  .combat-columns:has(> .fight-plan[open]):has(> .combat-main > *) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .combat-columns:has(> .combat-main > *) > .fight-plan[open] {
+    position: sticky;
+    top: 136px;
+    max-height: calc(100vh - 152px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    margin: 0;
+  }
+  .combat-columns > .combat-main > .encounter-picker {
+    margin-top: 0;
+  }
+}
+.paper.table-markers > :is(p, label) {
+  margin: 0;
+}
+.table-markers > .section-title > small {
+  margin: 0;
+}
+.recorder-panel:not([open]) > summary {
+  margin: 0;
+}
+/* The outline beside the notes lists the same sections as the guide's own contents line. */
+@media (min-width: 901px) {
+  .desk-grid:has(.plan-outline[open])
+    .plan-guide
+    p:has(> strong:first-child + a[href^='#'] + a[href^='#'] + a[href^='#']) {
+    display: none;
+  }
+}
+/* Narrow windows: tables keep their words whole by giving up padding first. */
+@media (max-width: 1100px) {
+  .book-text table {
+    font-size: 13px;
+  }
+  .book-text :is(td, th) {
+    padding: 8px 6px;
+  }
+  .book-text td:first-child {
+    min-width: 6em;
+  }
 }

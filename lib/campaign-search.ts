@@ -1,5 +1,6 @@
 import type { Campaign } from './campaign';
 import { memoryOf } from './memory';
+import { pageName } from './page-name';
 
 export type SearchHit = {
   id: string;
@@ -16,11 +17,15 @@ export type SearchHit = {
     | 'Creature'
     | 'Encounter';
   title: string;
+  // Other names a wiki page goes by; searched with the title.
+  aliases?: string;
   body: string;
   status: string;
   date: string;
   sessionId?: string;
   sourceId?: string;
+  // What a wiki page is about: NPC, Location, Lore…
+  pageKind?: string;
   score: number;
 };
 const stop = new Set([
@@ -107,11 +112,13 @@ export function searchCampaign(c: Campaign, query: string, kind = 'All'): Search
     ...m.pages.map((p) => ({
       id: p.id,
       kind: 'Wiki' as const,
-      title: p.title + (p.aliases ? ' · ' + p.aliases : ''),
+      title: pageName(p),
+      aliases: p.aliases,
       body: p.body,
       status: p.status + ' · ' + p.visibility,
       date: p.updated,
       sourceId: p.sourceId,
+      pageKind: p.kind,
     })),
     ...m.notes.map((n) => ({
       id: n.id,
@@ -245,13 +252,16 @@ export function searchCampaign(c: Campaign, query: string, kind = 'All'): Search
   ];
   return entries
     .filter((e) => kind === 'All' || e.kind === kind)
-    .map((e) => ({
-      ...e,
-      score:
-        relevance(e.title, query) * 4 +
-        relevance(e.body, query) +
-        (query.trim() && e.title.toLowerCase().includes(query.trim().toLowerCase()) ? 12 : 0),
-    }))
+    .map((e) => {
+      const names = e.title + ' ' + (e.aliases || '');
+      return {
+        ...e,
+        score:
+          relevance(names, query) * 4 +
+          relevance(e.body, query) +
+          (query.trim() && names.toLowerCase().includes(query.trim().toLowerCase()) ? 12 : 0),
+      };
+    })
     .filter((e) => !query.trim() || e.score > 0)
     .sort((a, b) => b.score - a.score || b.date.localeCompare(a.date));
 }
@@ -269,7 +279,7 @@ export function playerFacts(c: Campaign, ids: string[]) {
     .pages.filter(
       (p) => ids.includes(p.id) && p.visibility === 'Party knows' && p.status !== 'Planned',
     )
-    .map((p) => ({ id: p.id, title: p.title, status: p.status, body: p.body }));
+    .map((p) => ({ id: p.id, title: pageName(p), status: p.status, body: p.body }));
 }
 export function composePlayerHandout(c: Campaign, ids: string[]) {
   return playerFacts(c, ids)

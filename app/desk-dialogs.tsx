@@ -6,6 +6,7 @@ import { lazy, Suspense } from 'react';
 import RippleDialog from '../components/ripple-dialog';
 import { applyChanges } from '../lib/playbook';
 import { memoryOf } from '../lib/memory';
+import { pageName } from '../lib/page-name';
 import { appFetch, isDesktop } from '../lib/transport';
 import {
   BookOpen,
@@ -160,7 +161,12 @@ export function DialogBody() {
                             showReference(page.id);
                           }}
                         >
-                          <BookOpen size={13} /> {page.title}
+                          <BookOpen size={13} />{' '}
+                          {pageName({
+                            kind: 'Lore' as const,
+                            ...memoryOf(campaign).pages.find((p) => p.id === page.id),
+                            title: page.title,
+                          })}
                         </button>
                       </li>
                     ))}

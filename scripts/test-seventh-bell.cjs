@@ -71,11 +71,15 @@ app.whenReady().then(async () => {
     for (const view of ['World wiki', 'Campaign hub', 'Next session', 'Session desk']) {
       await go(view);
       if (view === 'Campaign hub') {
-        // The reader opens on every kind of entry; the wiki category has its own page count and reading order.
+        // The reader opens on the book's own pages, in campaign order; All adds the plays, sessions and the rest.
+        const category = (value) =>
+          run(
+            `(()=>{const e=document.querySelector('select[aria-label="Reader category"]');e.value='${value}';e.dispatchEvent(new Event('change',{bubbles:true}))})()`,
+          );
+        await wait("document.querySelectorAll('.reader-contents button').length===179");
+        await category('All');
         await wait("document.querySelectorAll('.reader-contents button').length>179");
-        await run(
-          "(()=>{const e=document.querySelector('select[aria-label=\"Reader category\"]');e.value='Wiki';e.dispatchEvent(new Event('change',{bubbles:true}))})()",
-        );
+        await category('Wiki');
         await wait("document.querySelectorAll('.reader-contents button').length===179");
         await run(
           "[...document.querySelectorAll('.reader-contents button')].find(b=>b.textContent.includes('1.4 Session Zero')).click()",

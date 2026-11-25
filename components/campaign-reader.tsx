@@ -1,9 +1,25 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { BookOpen, Search, ChevronLeft, ChevronRight, Pin } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
-import { memoryOf, type WikiPage } from '../lib/memory';
+import { memoryOf, pageKinds, type WikiPage } from '../lib/memory';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
+import { pageName } from '../lib/page-name';
 import BookText from './book-text';
+// What the reader can show, as [value, label]. A wiki kind is added for each kind the campaign uses ("Wiki:NPC").
+const categories: [string, string][] = [
+  ['All', 'Everything'],
+  ['Wiki', 'World wiki'],
+  ['Session', 'Session plans'],
+  ['Play', 'Prepared paths'],
+  ['Event', 'Confirmed outcomes'],
+  ['Journal', 'Source notes'],
+  ['Material', 'Saved ideas'],
+  ['Character', 'Party'],
+  ['Handout', 'Handouts'],
+  ['Creature', 'Campaign creatures'],
+  ['Encounter', 'Encounters'],
+  ['Rule', 'Rules'],
+];
 function stored(key: string) {
   try {
     return JSON.parse(localStorage.getItem(key) || 'null');
@@ -34,22 +50,11 @@ export default function CampaignReader({
   );
   const [query, setQuery] = useState(typeof saved?.query === 'string' ? saved.query : ''),
     [kind, setKind] = useState(
-      [
-        'All',
-        'Wiki',
-        'Journal',
-        'Event',
-        'Session',
-        'Material',
-        'Play',
-        'Rule',
-        'Character',
-        'Handout',
-        'Creature',
-        'Encounter',
-      ].includes(saved?.kind)
+      categories.some(([value]) => value === String(saved?.kind).split(':')[0])
         ? saved.kind
-        : 'All',
+        : memoryOf(campaign).pages.length
+          ? 'Wiki'
+          : 'All',
     ),
     [selected, setSelected] = useState(typeof saved?.selected === 'string' ? saved.selected : ''),
     [large, setLarge] = useState(saved?.large === true),
@@ -122,9 +127,14 @@ export default function CampaignReader({
   }
   const article = useRef<HTMLElement>(null),
     m = memoryOf(campaign);
+  const usedKinds = pageKinds.filter((k) => m.pages.some((p) => p.kind === k)),
+    inWiki = kind.startsWith('Wiki');
   const found = useMemo(() => {
-    const results = searchCampaign(campaign, query, kind);
-    if (kind === 'Wiki' && !query.trim())
+    const [base, only] = kind.split(':');
+    const results = searchCampaign(campaign, query, base).filter(
+      (h) => !only || h.pageKind === only,
+    );
+    if (base === 'Wiki' && !query.trim())
       return results.sort((a, b) =>
         order === 'title'
           ? a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' })
@@ -240,24 +250,20 @@ export default function CampaignReader({
             setKind(e.target.value);
           }}
         >
-          {[
-            'All',
-            'Wiki',
-            'Journal',
-            'Event',
-            'Session',
-            'Material',
-            'Play',
-            'Rule',
-            'Character',
-            'Handout',
-            'Creature',
-            'Encounter',
-          ].map((k) => (
-            <option key={k}>{k}</option>
+          {categories.map(([value, label]) => (
+            <Fragment key={value}>
+              <option value={value}>{label}</option>
+              {value === 'Wiki' &&
+                usedKinds.length > 1 &&
+                usedKinds.map((k) => (
+                  <option key={k} value={'Wiki:' + k}>
+                    – {k}
+                  </option>
+                ))}
+            </Fragment>
           ))}
         </select>
-        {kind === 'Wiki' && (
+        {inWiki && (
           <select
             aria-label="Reader order"
             value={order}
@@ -277,7 +283,7 @@ export default function CampaignReader({
         <nav className="reader-contents" aria-label="Campaign contents">
           <div className="reader-count">
             {hits.length}{' '}
-            {kind === 'Wiki'
+            {inWiki
               ? hits.length === 1
                 ? 'page'
                 : 'pages'
@@ -292,7 +298,9 @@ export default function CampaignReader({
               onClick={() => open(h)}
             >
               <span>{h.title}</span>
-              {kind !== 'Wiki' && <small>{h.kind}</small>}
+              {(kind === 'All' || (kind === 'Wiki' && h.pageKind !== 'Lore')) && (
+                <small>{h.pageKind || h.kind}</small>
+              )}
             </button>
           ))}
         </nav>
@@ -305,7 +313,7 @@ export default function CampaignReader({
             <>
               <div className="reader-page-tools">
                 <span className="eyebrow">
-                  {opened.kind} · {index + 1} of {hits.length}
+                  {opened.pageKind || opened.kind} · {index + 1} of {hits.length}
                 </span>
                 <button
                   className="text-button"
@@ -379,7 +387,7 @@ export default function CampaignReader({
                         });
                       }}
                     >
-                      {p.title}
+                      {pageName(p)}
                     </button>
                   ))}
                 </div>

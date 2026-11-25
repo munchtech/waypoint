@@ -5,7 +5,15 @@ import { emptyHistory, type HistoryFilters } from '../components/campaign-histor
 import { generationContext } from '../lib/ai-context';
 import { rememberItem } from '../lib/recent-items';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
-import { useCallback, useEffect, useRef, useState, createContext, useContext } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useRef,
+  useState,
+  createContext,
+  useContext,
+} from 'react';
 import { type WikiDraft } from '../lib/player-site';
 import { applyChanges, resolveEffects } from '../lib/playbook';
 import { tableCard } from '../lib/session-notes';
@@ -24,9 +32,11 @@ import {
   Map,
   CheckCircle2,
   Telescope,
+  LibraryBig,
 } from 'lucide-react';
 import { Campaign, Session, Branch, Card, Event, Style, uid } from '../lib/campaign';
 import { scrollToId, type View, type Visit, type Packet } from './desk-shared';
+import { deskPlace, justJumped, placeOf, scrollToPlace } from '../lib/scroll-place';
 import { useCampaignStore } from './use-campaign-store';
 
 // The desk controller: what the shell, the views and the dialogs share — navigation, the open dialog, drafts, and the
@@ -38,6 +48,7 @@ export function useDesk() {
   const [backStack, setBackStack] = useState<Visit[]>([]),
     [referenceId, setReferenceId] = useState<string | null>(null);
   const restoreScroll = useRef<number | null>(null),
+    returning = useRef(false),
     workspaceSections = useRef<Record<string, View>>({});
   // A `go:` link in session notes asks for a place: a section to scroll to after navigating, or a Foresight tab to open on.
   const scrollTarget = useRef<string | null>(null),
@@ -126,9 +137,12 @@ export function useDesk() {
   const fileRef = useRef<HTMLInputElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const requestLock = useRef(false);
+  const deskScroll = useEffectEvent(() => placeOf(deskPlace(campaign.id, session.id, deskTab)));
   useEffect(() => {
-    const top = restoreScroll.current ?? 0,
+    const kept = returning.current ? deskScroll() : 0,
+      top = restoreScroll.current ?? kept ?? 0,
       target = scrollTarget.current;
+    returning.current = false;
     restoreScroll.current = null;
     scrollTarget.current = null;
     requestAnimationFrame(() => {
@@ -136,7 +150,7 @@ export function useDesk() {
         scrollToId(target);
         return;
       }
-      window.scrollTo({ top });
+      if (!justJumped()) scrollToPlace(top);
       document.querySelector('main')?.focus({ preventScroll: true });
     });
   }, [navigationRevision, campaign.id]);
@@ -557,6 +571,8 @@ export function useDesk() {
         },
       ].slice(-40),
     );
+    // Going back to the desk from the sidebar returns to the place you left on it.
+    returning.current = next === 'Session desk' && !hit;
     setNavigationRevision((value) => value + 1);
     setTargetHit(hit);
     setViewState(next);
@@ -705,7 +721,7 @@ export function useDesk() {
       },
       {
         label: 'Library',
-        icon: BookOpen,
+        icon: LibraryBig,
         views: [
           { view: 'Rules library', label: 'Rules' },
           { view: 'Saved material', label: 'Saved ideas' },
