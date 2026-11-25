@@ -110,6 +110,26 @@ const act4Guides=[[S16A,'16a',[s16aGolems],s16aGolems.replace],
  [S18B,'18b',[s18bStair,s18bCorin],'My grandmother rang one. Let me help you do it right."'],
  [S19A,'19a',[s19aToll],'- The Court sends a strike force of Hushmen and Dawn Order knights to take the Thrane Tongue.'],
  [S19B,'19b',[s19bToll],'- The Court sends Hushmen to the Tor to investigate.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,act2(n,find)]}));
+// Revision 7.15: the finale and the aftermath, Sessions 20 to 30, get the same guide (Sessions 28 to 30 share one). The plans of
+// Sessions 23 to 25 now match the play cards: who comes to the Strike, Maudrin at the stones, and what the long stair takes.
+const S20='sb-5a3ec12d1d59e95c',S21='sb-24c29d78b60ca13f',S22='sb-742e25b3e3af8fbf',S23='sb-007cc9c6ed7fecff',S24='sb-dce15a8ce35d16ab',S25='sb-8272ccffe0002037',S26='sb-2fce596a41a06436',S27='sb-b2b43775bb66b9c5';
+const s23Force={find:'- Maudrin commands four Hushmen, two Dawn Order knights, and Ser Haldric Mose.',
+ replace:'- Maudrin commands three Wardens, two Sergeants, four Hushmen, two Dawn Order knights, and Ser Haldric Mose. If Rook won the duel, there are no knights: four Wardens, three Sergeants and eight Hushmen. If Maudrin is dead, Tristan brings the column.'};
+const s23Strike={find:'**Encounter: The Strike (Appendix A).** Four Hushmen, two Dawn Order Knights, Ser Haldric Mose, and Maudrin Vesk. Deadly for levels 7 to 9. If Rook won the duel, Haldric and both Knights are absent, which makes it Hard.',
+ replace:'**Encounter: The Strike (Appendix A).** Maudrin Vesk (CR 8), three Wardens, two Sergeants, four Hushmen, two Dawn Order Knights, and Ser Haldric Mose, for four characters at level 9. If Rook won the duel, Haldric and the Knights are absent: four Wardens, three Sergeants and eight Hushmen.'};
+const s24Seal={find:'She intends to seal the Key and preserve her rule.',replace:'She means to seal the stairs and keep the Key.'};
+const s24Maudrin={find:'**Encounter: Maudrin Vesk (CR 6).** Use only if Maudrin holds the Key; otherwise run her negotiation. She fights with *Silence* and *Counterspell*. At half HP, she retreats down the stairs with the Key.',
+ replace:'**Encounter: Maudrin Vesk, Keeper of the Seventh (CR 12).** Use only if Maudrin holds the Key; otherwise run her negotiation. She has three Wardens, a Sergeant and four Hushmen. When she is Bloodied, she retreats down the stairs with the Key.'};
+const s25Stair={find:'- Each descender makes one DC 13 Wisdom save at the entrance; success reduces the total to two memories.',
+ replace:'- The first nineteen steps are free. Each descender makes one DC 13 Wisdom save the first time they reach step twenty: a failure caps the total at five memories, a success at two.'};
+const finaleGuides=[[S20,20,[],`**If the party has rung both bells:** The Court's strike force is already moving. Session 22 begins at dusk.`],
+ [S21,21,[],`**If the party has rung both bells:** The Court's strike force is already moving. Session 22 begins at dusk.`],
+ [S22,22,[],`the Blanks break the Hushmen's line by numbers.`],
+ [S23,23,[s23Force,s23Strike],'**Session 23 end:** The party reaches the foot of the Tor. Ahead, a ring of gray stones glows, and the light is the color of a dream they have almost forgotten.'],
+ [S24,24,[s24Seal,s24Maudrin],s24Maudrin.replace],
+ [S25,25,[s25Stair],'Flight or another route that genuinely avoids the stairs avoids this price; do not add a replacement punishment.'],
+ [S26,26,[],'- The party chooses, and the endings open. See Session 27.'],
+ [S27,27,[],'Oum sleeps on, and the world remains incomplete.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,act2(n,find)]}));
 const s14Guide=act2(14,'**Session 14 end:** End on the question: "What did the Frost Spire cost the thaw?"');
 const s9Guide=act2(9,'**Transition to Act III.** The party heads for Glassreach with whatever they took from Hallowmere: a diary, a Tongue, a jar, a wooden bird, or a Court seal.');
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
@@ -426,7 +446,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
 const epilogueLedger={find:'Foresight → Party & ledger → Memory ledger lists every Toll in order',replace:'the [Memory ledger](go:memory-ledger) (Campaign → Party & preferences) lists every Toll in order',guide:true};
-const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll,s14Guide]},...act3Guides,...act4Guides,{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
+const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger,act2(28,'and the roster keeps the session-zero answers.')]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll,s14Guide]},...act3Guides,...act4Guides,...finaleGuides,{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},
