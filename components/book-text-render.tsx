@@ -1,6 +1,7 @@
 import { createElement, Fragment, useId, useMemo, type ReactNode } from 'react';
 import MarkdownIt from 'markdown-it';
-import { useGo, useMentionRenderer } from './campaign-links';
+import { CircleHelp } from 'lucide-react';
+import { useCreatureOpener, useGo, useMentionRenderer } from './campaign-links';
 type Token = ReturnType<typeof markdown.parse>[number];
 import { safeWebLink } from '../lib/safe-web-link';
 import { goPlaces, isGoPlace, type GoPlace } from '../lib/go-links';
@@ -30,6 +31,56 @@ const slug = (value: string) =>
     .trim()
     .replace(/[^\p{L}\p{N}\s_-]/gu, '')
     .replace(/\s+/g, '-');
+// What a table's column headings mean, for the "?" beside them (the Key people tables in the session guides).
+const headNotes: Record<string, string> = {
+  'stat block':
+    'The creature to use for their numbers if it comes to a fight or a roll. Click a name to open its stat block.',
+  starts:
+    'Their attitude when the party first meets them. Friendly gives Advantage on Influence checks; Hostile gives Disadvantage. Good play can shift it.',
+  influence:
+    'The DC when a player tries to talk them into something they are hesitant about: Charisma (Persuasion, Deception or Intimidation), or Wisdom (Animal Handling). It is 15 or their Intelligence score, whichever is higher. If they are willing, no roll; if it goes against their nature, no roll can do it. After a failure the same ask waits a day.',
+};
+function HeadNote({ label, note }: { label: string; note: string }) {
+  const id = useId();
+  return (
+    <>
+      <button
+        type="button"
+        className="head-note"
+        popoverTarget={id}
+        aria-label={'What “' + label + '” means'}
+        title={note}
+      >
+        <CircleHelp size={13} />
+      </button>
+      <span popover="auto" id={id} className="head-note-pop" role="note">
+        <strong>{label}</strong> {note}
+      </span>
+    </>
+  );
+}
+type Marks = { note?: string; creature?: boolean; creatureLead?: boolean };
+// A "Stat block" cell ("Noble, two Toughs", "Hushman Sergeant"): each creature name opens its stat block.
+function creatureCell(text: string, open: (name: string) => void): ReactNode[] {
+  return text.split(/(,\s*|\s+\+\s+|\s+and\s+|;\s*)/).map((part, i) => {
+    const bare = part.replace(/\(.*?\)/g, '').trim(),
+      counted = bare.match(/^(?:a|an|one|two|three|four|five|six|\d+)\s+(.+)$/i),
+      name = counted ? counted[1].replace(/(?<=[a-z])s$/, '') : bare;
+    return i % 2 === 0 && /^\p{Lu}[\p{L}' -]{2,}$/u.test(name) ? (
+      <button
+        type="button"
+        key={i}
+        className="wiki-mention creature-mention"
+        title={'Stat block · ' + name}
+        onClick={() => open(name)}
+      >
+        {part}
+      </button>
+    ) : (
+      part
+    );
+  });
+}
 function plain(tokens: Token[]): string {
   return tokens
     .map((t) => (t.type === 'image' ? t.content : t.children ? plain(t.children) : t.content))
@@ -50,6 +101,7 @@ function render(
   plays?: PlayLinks,
   skipMentions = false,
   go?: (place: GoPlace) => void,
+  creature?: (name: string) => void,
 ): ReactNode[] {
   let index = 0;
   function walk(skip = false): ReactNode[] {
@@ -62,19 +114,43 @@ function render(
         token.nesting === 1
           ? walk(skip || token.type === 'link_open' || token.type === 'heading_open')
           : token.children
-            ? render(token.children, prefix, mention, seen, plays, skip, go)
+            ? render(token.children, prefix, mention, seen, plays, skip, go, creature)
             : [];
       if (token.hidden) {
         nodes.push(<Fragment key={key}>{children}</Fragment>);
         continue;
       }
+      const meta = token.meta as Marks | null;
       if (token.type === 'inline') {
-        nodes.push(<Fragment key={key}>{children}</Fragment>);
+        const cell = meta?.creature && creature && !skip;
+        nodes.push(
+          <Fragment key={key}>
+            {cell ? creatureCell(plain(token.children || []), creature) : children}
+            {meta?.note && <HeadNote label={plain(token.children || [])} note={meta.note} />}
+          </Fragment>,
+        );
         continue;
       }
       if (token.type === 'text') {
         const value = token.content.replace(/^\[ \] /, '☐ ').replace(/^\[[xX]\] /, '☑ ');
-        nodes.push(skip ? value : mention(value, seen));
+        // After "**2024 stat block:**" the creature's name opens its stat block; the rest reads as usual.
+        const lead =
+          meta?.creatureLead && creature && !skip
+            ? value.match(/^(\s*)(\p{Lu}[\p{L}' -]*?)(?=\s*\(|[.,;]|$)/u)
+            : null;
+        nodes.push(
+          skip ? (
+            value
+          ) : lead ? (
+            <Fragment key={key}>
+              {lead[1]}
+              {creatureCell(lead[2], creature!)}
+              {mention(value.slice(lead[0].length), seen)}
+            </Fragment>
+          ) : (
+            mention(value, seen)
+          ),
+        );
         continue;
       }
       if (token.type === 'softbreak') {
@@ -238,7 +314,8 @@ export default function BookText({
 }) {
   const prefix = useId() + '-';
   const mention = useMentionRenderer(excludePageId, linkEvery),
-    go = useGo();
+    go = useGo(),
+    creature = useCreatureOpener();
   const tokens = useMemo(() => {
     const tokens = markdown.parse(text, {}),
       counts = new Map<string, number>();
@@ -249,9 +326,41 @@ export default function BookText({
         counts.set(name, count + 1);
         tokens[i].attrSet('id', prefix + name + (count ? '-' + count : ''));
       }
+    // Table columns: a "Stat block" column's cells link their creatures, and the headings in `headNotes` get a "?".
+    let columns: string[] = [],
+      column = 0;
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i],
+        inline = tokens[i + 1];
+      if (token.type === 'thead_open') columns = [];
+      if (token.type === 'tr_open') column = 0;
+      if (token.type === 'th_open' && inline?.type === 'inline') {
+        const head = plain(inline.children || [])
+          .trim()
+          .toLowerCase();
+        columns.push(head);
+        if (headNotes[head]) inline.meta = { note: headNotes[head] };
+      }
+      if (token.type === 'td_open') {
+        if (columns[column] === 'stat block' && inline?.type === 'inline')
+          inline.meta = { creature: true };
+        column++;
+      }
+      const kids = token.type === 'inline' ? token.children || [] : [];
+      for (let j = 0; j + 3 < kids.length; j++)
+        if (
+          kids[j].type === 'strong_open' &&
+          /stat block:?$/i.test(kids[j + 1].content) &&
+          kids[j + 2].type === 'strong_close' &&
+          kids[j + 3].type === 'text'
+        )
+          kids[j + 3].meta = { creatureLead: true };
+    }
     return tokens;
   }, [text, prefix]);
   return (
-    <div className="book-text">{render(tokens, prefix, mention, new Set(), plays, false, go)}</div>
+    <div className="book-text">
+      {render(tokens, prefix, mention, new Set(), plays, false, go, creature)}
+    </div>
   );
 }

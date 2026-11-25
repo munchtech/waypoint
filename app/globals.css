@@ -234,11 +234,11 @@ small,
   padding: 26px 17px 16px;
   background: linear-gradient(
     165deg,
-    light-dark(#203b4d, #031e2e) 0%,
-    light-dark(#172a3b, #031424) 48%,
-    light-dark(#142433, #03111f) 100%
+    light-dark(#203b4d, #1a232b) 0%,
+    light-dark(#172a3b, #151d24) 48%,
+    light-dark(#142433, #11181e) 100%
   );
-  border-right: 1px solid light-dark(#112432, #d6dfe7);
+  border-right: 1px solid light-dark(#112432, #2d3740);
   box-shadow: 5px 0 25px light-dark(#172a3b10, #00000028);
 }
 .brand {
@@ -409,7 +409,8 @@ small,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 36px;
+  /* On wide screens the page column stops at 1680px and centres; keep the bar's ends in line with it. */
+  padding: 0 max(36px, calc((100% - 1680px) / 2 + 36px));
   position: sticky;
   top: 0;
   z-index: 12;
@@ -424,6 +425,7 @@ small,
   align-items: center;
   gap: 13px;
   max-width: 35%;
+  margin: 0 auto 0 16px;
   font-size: 12px;
   color: light-dark(#586773, #bcc3c8);
 }
@@ -513,6 +515,16 @@ small,
 }
 .desk-main {
   min-width: 0;
+}
+/* On a full-size window the side rail stays in view while the plan scrolls, instead of leaving an empty column. */
+@media (min-width: 1051px) {
+  .desk-grid > aside {
+    position: sticky;
+    top: 86px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
 }
 .session-hero {
   position: relative;
@@ -4411,11 +4423,11 @@ main .paper > .section-title h3,
   opacity: 0.85;
 }
 .sidebar nav .navitem.active {
-  background: light-dark(#e8ddc5, #2c281f);
-  color: light-dark(#172a3b, #dee8f1);
-  border-color: light-dark(#e8ddc5, #443f34);
+  background: light-dark(#e8ddc5, #1f3438);
+  color: light-dark(#172a3b, #e3eef0);
+  border-color: light-dark(#e8ddc5, #2f5257);
   box-shadow:
-    inset 3px 0 light-dark(#b2874a, #b2874a40),
+    inset 3px 0 light-dark(#b2874a, #9cd9df),
     0 3px 10px light-dark(#0001, #0000002b);
   font-weight: 700;
 }
@@ -4919,8 +4931,14 @@ input:focus {
     400 16px/1.9 'DM Sans',
     sans-serif;
   color: light-dark(#304750, #cdd7dc);
-  max-width: 76ch;
   overflow-wrap: anywhere;
+}
+/* Prose keeps a readable line length; tables take the card's full width so their columns don't crush words. */
+.book-text > :not(.book-table, details) {
+  max-width: 76ch;
+}
+.book-text details > :not(.book-table, summary) {
+  max-width: 76ch;
 }
 .reader-large .book-text {
   font-size: 19px;
@@ -4962,13 +4980,23 @@ input:focus {
   margin-bottom: 0;
 }
 .book-table {
-  overflow: auto;
+  overflow-x: auto;
   margin: 20px 0;
 }
 .book-text table {
   border-collapse: collapse;
   width: 100%;
   font-size: 14px;
+  line-height: 1.55;
+}
+.book-text :is(td, th) {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  vertical-align: top;
+}
+.book-text td:first-child {
+  min-width: 9em;
 }
 .book-text td {
   padding: 10px;
@@ -6788,7 +6816,7 @@ input:focus {
 /* 1.35.4: the bar pinned above a session plan (record what no play covers, the session clock, print the table card). */
 .notes-bar {
   position: sticky;
-  top: 78px;
+  top: 70px;
   z-index: 3;
   display: flex;
   flex-wrap: wrap;
@@ -6800,6 +6828,48 @@ input:focus {
   background: light-dark(#f7f4ec, #141c23);
   border: 1px solid light-dark(#e3dccb, #38424b);
   box-shadow: 0 6px 14px -12px light-dark(#1d3b4580, #000000ff);
+}
+/* The book's short plan, folded above the new-DM guide that retells its scenes in full. */
+.plan-book {
+  margin: 0 0 22px;
+  padding: 10px 14px;
+  border: 1px dashed light-dark(#d6cfbd, #3d4851);
+  border-radius: 10px;
+}
+.fight-plan {
+  margin: 0 0 18px;
+}
+:is(.plan-book, .fight-plan) > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: light-dark(#2f4452, #ced8df);
+}
+:is(.plan-book, .fight-plan) > summary small {
+  display: block;
+  font-weight: 400;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+:is(.plan-book, .fight-plan)[open] > summary {
+  margin-bottom: 12px;
+}
+/* Fills the strip between the top bar and the pinned bar so scrolled text doesn't show through above it. */
+.notes-bar::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: -14px;
+  height: 14px;
+  background: var(--paper);
+  pointer-events: none;
+}
+@media (min-width: 1400px) {
+  .notes-bar .session-clock {
+    flex-basis: auto;
+    margin-left: auto;
+  }
 }
 .session-clock {
   flex-basis: 100%;
@@ -7403,6 +7473,53 @@ input:focus {
 .wiki-mention:focus-visible {
   outline: 2px solid light-dark(#245c60, #9cd5d9);
   outline-offset: 3px;
+}
+/* A stat block name: amber, so it reads as "open the numbers" rather than "open the page". */
+.creature-mention {
+  color: light-dark(#8a5a1c, #e9c27f);
+  border-bottom-color: light-dark(#b58a4a, #a88b5a);
+}
+/* A heading and its "?" stay on one line. */
+.book-text th:has(.head-note) {
+  white-space: nowrap;
+}
+/* The "?" beside a table heading, and what it opens: a note under the heading. */
+.head-note {
+  display: inline-flex;
+  vertical-align: -2px;
+  margin-left: 5px;
+  padding: 1px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: light-dark(#527077, #a9c5ca);
+  cursor: pointer;
+}
+.head-note:hover,
+.head-note:focus-visible {
+  color: light-dark(#183f44, #e3f1f3);
+  background: light-dark(#dce9e4, #26323a);
+}
+.head-note-pop {
+  position-area: bottom span-right;
+  position-try-fallbacks: flip-inline, flip-block;
+  margin: 6px 0 0;
+  width: min(340px, 90vw);
+  padding: 12px 14px;
+  border: 1px solid light-dark(#d6d0bf, #3e4952);
+  border-radius: 10px;
+  background: light-dark(#fffdf8, #1d262e);
+  color: light-dark(#304750, #d3dde2);
+  font:
+    400 13px/1.55 'DM Sans',
+    sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+  box-shadow: 0 10px 30px -12px #0008;
+}
+.head-note-pop strong {
+  display: block;
+  margin-bottom: 4px;
 }
 .reference-dialog {
   position: fixed;

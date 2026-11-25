@@ -19,22 +19,106 @@ const genericAliases = new Set([
 ]);
 // Three-letter names (Ila, Tam, Eld) link only when written exactly as on the page, capital first, so "ila" or "TAM" stay plain text.
 const shortName = (name: string) => /^\p{Lu}\p{Ll}{2}$/u.test(name);
-export function mentionIndex(pages: WikiPage[], excludeId?: string) {
-  const names = new Map<string, { name: string; ids: Set<string> }>();
+// Titles and ranks people are called by but that aren't their names: "Hushman Tobias Quill" is also just "Tobias Quill".
+const honorifics = new Set([
+  'brother',
+  'captain',
+  'chancellor',
+  'father',
+  'hushman',
+  'lady',
+  'lord',
+  'master',
+  'mistress',
+  'mother',
+  'old',
+  'pilot-mistress',
+  'reckoner',
+  'ser',
+  'sir',
+  'sister',
+  'thane',
+]);
+const notNames = new Set(['deceased', 'the', 'of', 'and']);
+// Book titles come numbered and in capitals ("2. MOTHER SALLOW", "10. ONDRA SALLOW (THE CANTOR)", "B.6 Canon Quick Check");
+// text names them plainly ("Mother Sallow"), so the number and the bracketed note come off and capitals become Title Case.
+const titleCase = (s: string) =>
+  s === s.toLocaleUpperCase()
+    ? s.toLocaleLowerCase().replace(/(^|[\s\-'])(\p{L})/gu, (_, a, b) => a + b.toLocaleUpperCase())
+    : s;
+export function titleNames(page: Pick<WikiPage, 'title' | 'kind'>) {
+  const plain = page.title
+    .replace(/^(?:[A-Z]\.)?\d+(?:\.\d+)*\.?\s+/, '')
+    .replace(/\s*\(([^)]*)\)\s*$/, '')
+    .trim();
+  const bracket = page.title.match(/\(([^)]*)\)\s*$/)?.[1].trim() || '';
+  const full = titleCase(plain),
+    names = [full],
+    single: string[] = [];
+  // Other pages keep a derived name only when it is more than one word: "5.2 Characters" must not link every "characters".
+  if (page.kind !== 'NPC')
+    return { names: full === page.title || !/\s/.test(full) ? [] : names, single };
+  const words = full.split(/\s+/);
+  let rest = words;
+  while (rest.length > 2 && honorifics.has(rest[0].toLocaleLowerCase())) rest = rest.slice(1);
+  if (rest[0]?.toLocaleLowerCase() === 'the' && rest.length > 1) rest = rest.slice(1);
+  if (rest.length < words.length) names.push(rest.join(' '));
+  if (bracket && !notNames.has(bracket.toLocaleLowerCase()) && !/,/.test(bracket)) {
+    const b = titleCase(bracket);
+    names.push(b);
+    if (/^the\s+\S+$/i.test(b)) names.push(b.replace(/^the\s+/i, ''));
+  }
+  // A person's own first and last names link on their own too, capital first, unless another page shares the word.
+  if (!/^the\b/i.test(full) && rest.length >= 2 && rest.length <= 3)
+    for (const w of rest)
+      if (
+        /^\p{Lu}[\p{L}'-]{2,}$/u.test(w) &&
+        !notNames.has(w.toLocaleLowerCase()) &&
+        !honorifics.has(w.toLocaleLowerCase())
+      )
+        single.push(w);
+  return { names: names.filter((n) => n !== page.title), single };
+}
+// `creatures` are stat block names ("Hushman Sergeant") that link to the creature itself, as `creature:<name>`, unless a
+// wiki page already goes by that name.
+export function mentionIndex(pages: WikiPage[], excludeId?: string, creatures: string[] = []) {
+  const names = new Map<string, { name: string; ids: Set<string>; exact: boolean }>();
+  const add = (name: string, id: string, exact: boolean) => {
+    const key = name.toLocaleLowerCase();
+    const entry = names.get(key) || { name, ids: new Set<string>(), exact };
+    entry.ids.add(id);
+    entry.exact &&= exact;
+    names.set(key, entry);
+  };
   for (const page of pages) {
     const aliases = page.aliases
       .split(/[,;\n]/)
       .map((name) => name.trim())
       .filter((name) => !genericAliases.has(name.toLocaleLowerCase()) && !/^\d+$/.test(name));
-    for (const name of [page.title, ...aliases]
+    const derived = titleNames(page);
+    for (const name of [page.title, ...derived.names, ...aliases]
       .map((name) => name.trim())
-      .filter((name) => name.length >= 4 || shortName(name))) {
-      const key = name.toLocaleLowerCase();
-      const entry = names.get(key) || { name, ids: new Set<string>() };
-      entry.ids.add(page.id);
-      names.set(key, entry);
-    }
+      .filter((name) => name.length >= 4 || shortName(name)))
+      add(name, page.id, name.length < 4);
+    for (const name of derived.single)
+      if (!genericAliases.has(name.toLocaleLowerCase())) add(name, page.id, true);
   }
+  // Text names them in the plural as often as not: "four Hushmen", "memory-eels", "Glass-Wolves".
+  const plural = (name: string) =>
+    /[(,]/.test(name)
+      ? ''
+      : /man$/i.test(name)
+        ? name.replace(/man$/i, 'men')
+        : /f$/i.test(name)
+          ? name.replace(/f$/i, 'ves')
+          : /s$/i.test(name)
+            ? ''
+            : name + 's';
+  for (const name of creatures)
+    for (const form of [name, plural(name)])
+      if (form.length >= 4 && !names.has(form.toLocaleLowerCase()))
+        add(form, 'creature:' + name, false);
+  // A name two pages share links to neither: "Sallow" could be Mother Sallow or Ondra.
   const unique = [...names.values()].filter(
     (entry) => entry.ids.size === 1 && !entry.ids.has(excludeId || ''),
   );
@@ -43,7 +127,7 @@ export function mentionIndex(pages: WikiPage[], excludeId?: string) {
   );
   const exact = new Map(
     unique
-      .filter((entry) => entry.name.length < 4)
+      .filter((entry) => entry.exact)
       .map((entry) => [entry.name.toLocaleLowerCase(), entry.name]),
   );
   const escaped = unique

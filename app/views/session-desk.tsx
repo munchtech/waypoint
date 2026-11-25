@@ -4,13 +4,15 @@ import MaterialBody from '../../components/material-body';
 import InlineMarks from '../../components/inline-marks';
 import TableCoach from '../../components/table-coach';
 import SessionPaths from '../../components/session-paths';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import TableMarkers from '../../components/table-markers';
 import LiveLookup from '../../components/live-lookup';
 import NotesBar from '../../components/notes-bar';
 import { draftPage, memoryOf } from '../../lib/memory';
 import { isDesktop } from '../../lib/transport';
 import { trackerStatus } from '../../lib/trackers';
+import { planParts, ruleUses, withFightRoster } from '../../lib/session-notes';
+import { sessionEncounters } from '../../lib/combat';
 import {
   BookOpen,
   Sparkles,
@@ -83,6 +85,20 @@ export function SessionDeskView() {
     openWorkspace,
     memory,
   } = useDeskContext();
+  const { guide: guideText, book: planBook } = planParts(session.plan);
+  const pb = memory.playbook;
+  const planGuide = useMemo(() => {
+    const names = [
+      ...new Set(
+        sessionEncounters(pb, session.id).flatMap((e) =>
+          e.creatures.map(
+            (c) => pb?.statblocks.find((b) => b.id === c.statblock)?.name || c.base || c.name,
+          ),
+        ),
+      ),
+    ];
+    return withFightRoster(ruleUses(guideText), names);
+  }, [guideText, pb, session.id]);
   return (
     <>
       {historyReturn && (
@@ -371,7 +387,22 @@ export function SessionDeskView() {
                 roster={memoryOf(campaign).roster || []}
                 onRecord={() => record()}
               />
-              <BookText text={session.plan} plays={planPlays} linkEvery />
+              {planBook ? (
+                <>
+                  <details className="plan-book">
+                    <summary>
+                      The book&apos;s short plan
+                      <small>
+                        The same opening scenes in brief. The guide below runs them in full.
+                      </small>
+                    </summary>
+                    <BookText text={planBook} plays={planPlays} linkEvery />
+                  </details>
+                  <BookText text={planGuide} plays={planPlays} linkEvery />
+                </>
+              ) : (
+                <BookText text={session.plan} plays={planPlays} linkEvery />
+              )}
               <p className="muted tiny">
                 Planned material. Record actual events separately in the chronicle.
               </p>

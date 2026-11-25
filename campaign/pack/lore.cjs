@@ -232,13 +232,16 @@ const pages=[
 > **SAY:** "The clerk stamps your papers without reading them. 'Landing due, five gold. Pellmoor and the Mere road only. Anywhere else needs a writ from Hallowmere. They take about a season. Next.'"
 
 **The Pilots' Hall (Quays).** A long reed-roofed shed built over the water, its floor a map of Old Pellmoor's drowned streets in painted planks. Brannagh Wick's pilots wait on benches for ships.
+> **SAY:** "The floor creaks under you, and you realise it's painted: streets, alleys and a market square in faded blue, each with its old name lettered beside it. Old Pellmoor, the town under the harbour. On the benches along the wall, a dozen pilots in salt-stiff coats look up, decide you're not a ship, and look away again."
 
 **The Reckoning House (the Tally).** A narrow shop with a slate by the door and a counter scored by tuning forks. Sela Maunt weighs keeps under a Lantanese lens. Behind a curtain: the Lost Shelf.
 > **SAY:** "The slate by the door reads, in careful chalk: 1 KEEP = 1 GP 2 SP. MOTES AT 1 SP. HEARTKEEPS BY APPRAISAL. Underneath, smaller: NO GOLD FOR TITHES."
 
 **Strangers' Row, the Loud Quarter.** Foreign inns, counting-houses, the Dawn Mission, a dwarven smithy, a gnomish clockmaker selling silent clocks, Brother Hadrik's shrine-tent, and music at all hours.
+> **SAY:** "Strangers' Row hits you all at once: a fiddle and a lute playing two different songs, a smith's hammer clanging, the smell of frying onions and temple incense, shop signs in Common, Dwarvish and scripts you don't know. After the gray hush of the rest of Corvane, it is almost too loud to bear."
 
-**The Brass Lantern.** The Faerûnian inn. Loud, warm, overpriced, and the only place in Corvane that serves Waterdhavian ale. The *Gull's Wager*'s old first mate drinks in the corner.`},
+**The Brass Lantern.** The Faerûnian inn. Loud, warm, overpriced, and the only place in Corvane that serves Waterdhavian ale. The *Gull's Wager*'s old first mate drinks in the corner.
+> **SAY:** "The Brass Lantern is warm, crowded and loud: brass lamps, wet cloaks steaming by the fire, and someone singing a Waterdeep drinking song badly. The board over the bar lists prices in gold and, in smaller letters underneath, in motes. In the far corner an old sailor drinks alone with his back to the wall."`},
  {id:'v6-rules-2024',title:'2024 RULES NOTES (v6)',kind:'Ruling',status:'Confirmed',visibility:'DM only',aliases:'2024, 5.5e, rules, Heroic Inspiration, Influence, Extreme Cold, Suffocation, Exhaustion, encounter budget',body:`- **Heroic Inspiration** replaces v5's "Inspiration."
 - **Influence** (action): social plays use it. The DC is 15 or the creature's Intelligence score, whichever is higher; its attitude (Friendly, Indifferent, Hostile) decides whether a check is needed at all.
 - **Study** (Intelligence) and **Search** (Wisdom) actions: clue scenes use them. Essential clues are never lost to a failed roll.
@@ -306,7 +309,15 @@ const pageEdits=[
   {find:'never invent a backstory loss without the player.',replace:'choose the exact loss from what the table knows of the character, and never invent a backstory loss.'},
   {find:"Losing a Fear changes a feeling, not the player's authority to decide actions or immunity to magical fear.",replace:"A Fear Toll changes a feeling, never the player's authority to decide their character's actions."}]},
  {id:S9,edits:[s9Vaer,s9Calla]},{id:S14,edits:[s14Toll]},{id:S19A,edits:[s19aToll]},{id:S19B,edits:[s19bToll]},
- {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',replace:pellmoorBody}]},
+ {id:'sb-462b2b0d93fd03c2',title:'PELLMOOR LANDING (Port)',edits:[{find:'__WHOLE__',replace:pellmoorBody},
+  // Revision 7.12: what the party sees at each spot on the Old Shore, to read aloud.
+  {find:'- **The Quays:**',unless:'- **On the Old Shore (read aloud):**',replace:`- **On the Old Shore (read aloud):**
+  - *The old ferry-dock:* "The oldest dock on the Mere is gray and soft with age, its pilings furred green. Ropes hang from it into water so still you can see the reeds standing upright beneath the surface, and deeper down, the dark line of a drowned roof."
+  - *The chapel:* "The chapel is reed-roofed like everything else on the Old Shore, and smells of candle-smoke and damp. Nine faded saints are painted along one wall. The bell-frame over the door is empty, and its beam is gray with dust."
+  - *Mother Sallow's reed-hut:* "A low hut of bundled reeds sits right at the water's edge, half hidden behind racks of rushes drying green. Herbs hang from the eaves. Inside, every shelf holds a jar of dye, and the whole place smells of wet green things and pipe-wood."
+  - *The Harrow house:* "A narrow ferry-house with its shutters latched. A man's oilskin still hangs by the door, stiff with salt. On the step someone has set out a row of small stones, counted and evenly spaced."
+  - *The ledger-house:* "The only stone building on the Old Shore, squat, with no windows on the water side. Inside, ferry ledgers climb the shelves to the roof: centuries of crossings in faded ink, who went out and who came back. It is very dry, and very quiet."
+- **The Quays:**`}]},
  {id:'sb-74c9bfaa3dfbf94e',edits:[{find:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face.`,replace:`- **Key NPCs:** Dorra Pell, the innkeeper. She does not like questions but remembers every face, and now every ship that brought one. The ferry-folk drink here; Stormborn are served politely and not invited back.`}]},
  {id:'sb-bb6db9d171c44c8e',edits:[{find:`- **Wants:** To be left alone. Safe passage. Their dead remembered properly.`,replace:`- **Wants:** To be left alone, which the port has made impossible. Safe passage. Their dead remembered properly. The Pilots' Hall kept free of the Court and the trading houses.`},{find:`- **Methods:** Ferries, net-fishing, careful silence, and keeping the old ledger of names.`,replace:`- **Methods:** Ferries, net-fishing, piloting every foreign ship across the drowned town (the Pilots' Hall), careful silence, and keeping the old ledger of names.`}]},
  {id:'sb-7d90e0f92bf832a7',edits:[{find:`drowned in the Mere in a storm 30 years ago.`,replace:`drowned in the Mere in the Wrongweather of 382 SS, the only storm to reach the Mere in four centuries, on the night the Stormwall opened.`},{find:`- **Stat-lite:** Mage (CR 2), reed-healing as a druid-style spell list. Can read the ledger.`,replace:`- **2024 stat block:** Druid (CR 2), with reed-healing flavour. Can read the ledger.`}]},
@@ -387,4 +398,16 @@ const planner={locked:[{find:`Source canon: Part 3.3 wins conflicts within the m
 // Revision 7.2 retires the IsoForge map kits (DM's decision, 2026-11-01: not ready yet): the kit section at the end of each Act I plan,
 // the three "Maps and visual prep" wiki pages and the three IsoForge saved cards. Waypoint lists each removal for review.
 const remove={sections:[{heading:'## IsoForge scene kit',until:'Prepared visual staging only. No events or outcomes are implied.'}],pages:['sb-isoforge-kit-1','sb-isoforge-kit-2','sb-isoforge-kit-3'],cards:['sb-isoforge-session-1','sb-isoforge-session-2','sb-isoforge-session-3'],note:'The IsoForge map kits are retired for now.'};
+// Revision 7.12: every named NPC gets a first look to read aloud and things to say (npc-voices.cjs), before the page's
+// Voice and Wants lines. The pack's own pages carry them in their text; the book's pages take them as edits.
+const said=t=>'"'+t.replace(/"/g,"'")+'"';
+const voiceEdits=v=>[
+ {find:'- **Voice:**',unless:'- **First look (read aloud):**',replace:'- **First look (read aloud):** '+said(v.look)+'\n- **Voice:**'},
+ {find:'- **Wants:**',unless:'- **Things to say:**',replace:'- **Things to say:**\n'+v.lines.map(([k,t])=>'  - *'+k+':* '+said(t)).join('\n')+'\n- **Wants:**'}];
+for(const v of require('./npc-voices.cjs')){
+ const edits=voiceEdits(v),page=pages.find(p=>p.id===v.id),at=pageEdits.find(x=>x.id===v.id);
+ if(page)page.body=edits.reduce((b,e)=>b.includes(e.unless)?b:b.replace(e.find,()=>e.replace),page.body);
+ else if(at)at.edits.push(...edits);
+ else pageEdits.push({id:v.id,edits});
+}
 module.exports={pages,pageEdits,cardEdits,sessions,campaign,planner,pellmoorBody,remove};

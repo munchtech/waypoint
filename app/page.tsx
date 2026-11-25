@@ -1,7 +1,7 @@
 import QuickNavigation from '../components/quick-navigation';
 import { CampaignLinks } from '../components/campaign-links';
 import ReferencePanel from '../components/reference-panel';
-import { Suspense } from 'react';
+import { Suspense, useMemo } from 'react';
 import SessionRecorder from '../components/session-recorder';
 import { isDesktop } from '../lib/transport';
 import {
@@ -99,6 +99,8 @@ function HomeScreen() {
     memory,
     reviewCount,
   } = desk;
+  const statblocks = memory.playbook?.statblocks;
+  const creatureNames = useMemo(() => statblocks?.map((b) => b.name), [statblocks]);
   const openAsk = () => {
     setError('');
     setModal('ask');
@@ -115,7 +117,9 @@ function HomeScreen() {
     );
   return (
     <DeskContext.Provider value={desk}>
-      <CampaignLinks.Provider value={{ pages: memory.pages, onOpen: showReference, onGo: goTo }}>
+      <CampaignLinks.Provider
+        value={{ pages: memory.pages, onOpen: showReference, onGo: goTo, creatures: creatureNames }}
+      >
         <div className={'app ' + (live ? 'live' : '')}>
           <a
             className="skip-link"

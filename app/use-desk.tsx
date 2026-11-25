@@ -583,7 +583,7 @@ export function useDesk() {
     setExpanded(previous.expanded);
   }
   function showReference(id: string) {
-    rememberItem(campaign.id, { kind: 'Wiki', id });
+    if (!id.startsWith('creature:')) rememberItem(campaign.id, { kind: 'Wiki', id });
     setReferenceId(id);
   }
   function goTo(place: GoPlace) {

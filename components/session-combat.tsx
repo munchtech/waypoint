@@ -5,6 +5,8 @@ import type { Campaign, Session } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
 import { partyLevels } from '../lib/playbook';
 import { sessionEncounters } from '../lib/combat';
+import { fightPlan } from '../lib/session-notes';
+import BookText from './book-text';
 import type { SearchHit } from '../lib/campaign-search';
 import EncounterCard from './encounter-card';
 import CreatureStats from './creature-stats';
@@ -34,6 +36,7 @@ export default function SessionCombat({
       : undefined;
   const brief = pb?.briefs.find((brief) => brief.sessionId === session.id),
     levels = partyLevels(memory.roster, brief);
+  const fights = fightPlan(session.plan);
   const pinned = (session.ruleReferences || []).filter(
     (reference) => reference.kind === 'Creature',
   );
@@ -52,6 +55,17 @@ export default function SessionCombat({
           Find a creature
         </button>
       </div>
+      {fights && (
+        <details className="paper fight-plan" open>
+          <summary>
+            Round by round, from the session guide
+            <small>
+              Setup, what they do each round, when they run. Click a creature for its stat block.
+            </small>
+          </summary>
+          <BookText text={fights} linkEvery />
+        </details>
+      )}
       {block && (
         <section className="paper combat-target">
           <h3>{block.name}</h3>
