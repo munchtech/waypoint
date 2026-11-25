@@ -116,6 +116,20 @@ assert(
   ).some((part) => part.pageId),
   'Generic words and years must not become alias links',
 );
+// "The Landing" and "Landing House" are two pages; "the Landing House" is the second one, whole.
+const houses = splitMentions(
+  'At the Landing House, then the Landing.',
+  mentionIndex([
+    { ...page, id: 'landing', title: 'Landing traders', aliases: 'The Landing' },
+    { ...page, id: 'house', title: 'Landing House', aliases: '' },
+  ]),
+  new Set(),
+  true,
+).filter((part) => part.pageId);
+assert.deepEqual(
+  houses.map((part) => part.text + '>' + part.pageId),
+  ['the Landing House>house', 'the Landing>landing'],
+);
 const linked = renderToStaticMarkup(
   <CampaignLinks.Provider value={{ pages: [page], onOpen: () => {} }}>
     <BookText

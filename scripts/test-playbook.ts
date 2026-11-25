@@ -5,6 +5,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
+import { creatureByName, statLine } from '../lib/combat';
 import { memoryOf } from '../lib/memory';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
 import {
@@ -43,11 +44,15 @@ import {
   breakDue,
   breakNote,
   bringBacks,
+  fightPlan,
   leastSpotlit,
   pace,
+  planParts,
   rowScene,
+  ruleUses,
   tableCard,
   timeline,
+  withFightRoster,
 } from '../lib/session-notes';
 import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { influenceDc, intelligenceOf } from '../lib/influence';
@@ -1110,6 +1115,57 @@ test('encounters suggest how to retune for the party', () => {
     ['Moderate4Hushman', 'High11Hushman'],
   );
   assert.deepEqual(scaleOptions(enc, []), []);
+});
+test('the notes fold the short plan, name the scenes a rule is for, and list the fight stat blocks', () => {
+  for (const s of installed.sessions.filter((x) => /^## Running this session/m.test(x.plan))) {
+    const { guide, book } = planParts(s.plan);
+    assert.equal((book + guide).replace(/\s+/g, ''), s.plan.replace(/\s+/g, ''), s.title);
+    // The links added to the rules list point at headings the guide has.
+    const used = ruleUses(guide);
+    const slugs = new Set(
+      [...guide.matchAll(/^#{2,3} (.+)$/gm)].map((m) =>
+        m[1]
+          .toLowerCase()
+          .trim()
+          .replace(/[^\p{L}\p{N}\s_-]/gu, '')
+          .replace(/\s+/g, '-'),
+      ),
+    );
+    for (const line of used.split('\n').filter((l) => l.includes('*Tonight:*')))
+      for (const m of line.split('*Tonight:*')[1].matchAll(/\]\(#([^)]+)\)/g))
+        assert(slugs.has(m[1]), s.title + ': no heading ' + m[1]);
+    assert.equal(used.replace(/ \*Tonight:\* .+$/gm, ''), guide, s.title + ': only links added');
+  }
+  const one = installed.sessions.find((x) => /^Session 1:/.test(x.title))!.plan;
+  assert(planParts(one).book.length > 100);
+  assert.match(ruleUses(planParts(one).guide), /\*Tonight:\* \[Scene \d\]\(#scene-/);
+  assert.deepEqual(planParts('# Just a plan'), { guide: '# Just a plan', book: '' });
+  assert.match(fightPlan(one), /Round 1/);
+  assert.equal(fightPlan('# Just a plan'), '');
+  const roster = withFightRoster(planParts(one).guide, ['Hushman', 'Hushman Sergeant']);
+  assert.match(
+    roster,
+    /^### Running the fights[^\n]*\n\n?\*\*Stat blocks for tonight's fights:\*\* Hushman · Hushman Sergeant\./m,
+  );
+  assert.equal(withFightRoster('text', []), 'text');
+});
+test("a stat line in an NPC's entry opens that creature", () => {
+  const first = (body: string) => statLine(body, pb)[0];
+  assert.equal(first('**2024 stat block:** Druid (CR 2), with reed-healing.')?.name, 'Druid');
+  assert.equal(first('**2024 stat block:** Druid (CR 2), with reed-healing.')?.cr, '2');
+  assert.equal(first('**Stat-lite:** Use Scholar (CR 1) for talk.')?.name, 'Scholar');
+  assert.equal(statLine('No numbers here.', pb).length, 0);
+  const hushman = creatureByName('hushman', pb);
+  assert(hushman.statblock, 'a campaign stat block is found whatever its capitals');
+  assert.equal(creatureByName('Commoner (for talk)', pb).name, 'Commoner');
+});
+test('every numbered NPC has a look to read out and lines to say', () => {
+  const npcs = memoryOf(installed).pages.filter((x) => x.kind === 'NPC' && /^\d+\. /.test(x.title));
+  assert(npcs.length >= 25, 'found ' + npcs.length);
+  for (const x of npcs) {
+    assert.match(x.body, /First look \(read aloud\)/, x.title);
+    assert.match(x.body, /Things to say/, x.title);
+  }
 });
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

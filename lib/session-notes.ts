@@ -80,7 +80,6 @@ export function leastSpotlit<T extends { id: string }>(
   const low = Math.min(...roster.map((r) => counts[r.id] || 0));
   return roster.filter((r) => (counts[r.id] || 0) === low);
 }
-// The guide's sections, for jumping between scenes: its ### headings and the table card.
 // A plan carrying a new-DM guide holds two tellings of its opening scenes: the book's short plan, then the full guide after
 // it. The notes show the guide and fold the short plan, so a scene doesn't read twice. Plans without a guide stay whole.
 export function planParts(plan: string): { guide: string; book: string } {
@@ -184,6 +183,7 @@ export function withFightRoster(guide: string, names: string[]): string {
     '. Click a name for its numbers and what it does. The Combat tab has each fight with its difficulty and how to retune it.';
   return guide.replace(/^### Running the fights[^\n]*\n/m, (head) => head + '\n' + line + '\n');
 }
+// The guide's sections, for jumping between scenes: its ### headings and the table card.
 export function guideSections(plan: string) {
   const at = plan.indexOf('## Running this session');
   if (at < 0) return [];

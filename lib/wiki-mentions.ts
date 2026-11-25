@@ -16,6 +16,13 @@ const genericAliases = new Set([
   'story',
   'time',
   'pilot',
+  'keeps',
+  'coin',
+  'coins',
+  'gold',
+  'knowing',
+  'merchant',
+  'merchants',
 ]);
 // Three-letter names (Ila, Tam, Eld) link only when written exactly as on the page, capital first, so "ila" or "TAM" stay plain text.
 const shortName = (name: string) => /^\p{Lu}\p{Ll}{2}$/u.test(name);
@@ -118,6 +125,15 @@ export function mentionIndex(pages: WikiPage[], excludeId?: string, creatures: s
     for (const form of [name, plural(name)])
       if (form.length >= 4 && !names.has(form.toLocaleLowerCase()))
         add(form, 'creature:' + name, false);
+  // "the Landing House" is the Landing House, not "the Landing" followed by a stray word.
+  const known = [...names.values()];
+  for (const short of known) {
+    if (!/^the\s/i.test(short.name)) continue;
+    const stem = short.name.slice(4).toLocaleLowerCase() + ' ';
+    for (const long of known)
+      if (long.name.toLocaleLowerCase().startsWith(stem))
+        for (const id of long.ids) add('the ' + long.name, id, false);
+  }
   // A name two pages share links to neither: "Sallow" could be Mother Sallow or Ondra.
   const unique = [...names.values()].filter(
     (entry) => entry.ids.size === 1 && !entry.ids.has(excludeId || ''),

@@ -28,7 +28,7 @@ export function creatureByName(name: string, pb?: Playbook, cr = ''): EncounterC
 // or "**Stat-lite:** Use Scholar (CR 1) for talk". A flavoured name ("Commoner-clerk") falls back to its base creature.
 export function statLine(body: string, pb?: Playbook): EncounterCreature[] {
   const m = body.match(
-    /(?:stat block|Stat-lite):?\*\*:?\s*(?:Use\s+)?([A-Z][\p{L}' -]*?)(?:\s+stats)?\s*(?:\(CR ([\d/]+)[^)]*\))?[.,;\n]/u,
+    /(?:stat block|Stat-lite):?\*\*:?\s*(?:Use\s+)?([A-Z][\p{L}' -]*?)(?:\s+stats)?\s*(?:\(CR ([\d/]+)[^)]*\)|[.,;\n])/u,
   );
   if (!m) return [];
   const found = creatureByName(m[1], pb, m[2] || '');
