@@ -17,7 +17,7 @@
 - **The resistance.** If they're riding with her, use "For the Court" in the fights.
 - **The Forecast.** Which bells are rung, which endings are open. Read it yourself before anyone asks.
 
-**What this session is about.** The truth about a person. They've fought what she did. Tonight they meet why.
+**What this session is about.** The truth about a person. They've fought what she did; tonight they hear why she did it.
 
 **Your goals tonight:**
 - Let Maudrin make her whole case, uninterrupted, once.
@@ -82,7 +82,7 @@
 
 > **SAY:** "It's an easy road. By the first bend you can see the whole valley. By the second, you can't hear it. By the third the grass is warm, and you're all walking in step."
 
-**What's really going on.** The lullaby's very near the top. It isn't hostile, and it isn't a trap. It just wants everybody to lie down.
+**What's really going on.** The lullaby's very near the top. It isn't hostile or a trap; it wants everybody to lie down.
 
 **At each bend, give them one thing:**
 1. **First bend.** The battlefield, from above. Somebody's putting up a tent for the wounded, and there are people from both sides carrying the poles.
@@ -327,7 +327,7 @@ Read out half a line of one, if they open it. *"You came fourth in the tilting t
 - **Where to break:** when the Final Offer's on the table and nobody's answered.
 - **Running long:** Maudrin goes down at the start of round three, whatever her Hit Points are.
 - **Running short:** more of Scene 2. Let each player ask her one thing. She'll answer.
-- **If you need to stop early:** stop on "Shall we begin?" It's a fine place.
+- **If you need to stop early:** stop on "Shall we begin?"
 
 ### If you get stuck (Session 24)
 

@@ -49,7 +49,7 @@
 | **Edrin Moss** | The courier from Session 8 | Scout | Yara's fire, if they protected him | Friendly | None needed | He won't go past the first tree. He never has. |
 | **The Stilled child** | A girl frozen in 2 SS | Commoner; never attacks | The Stilled Clearing | Asleep | None | She heard the man in the tower stop singing. |
 | **Bosun Corran Vell** | A sailor of the Brightwater, from Zazesspur | Stilled Person (until calmed) | The edge of the clearing | Hostile from shock for a moment, then Indifferent | DC 15, in Common | He thinks it's 1082 DR. His crew are in these trees. |
-| **The Glass-Wolves** | A hunting pack | Glass-Wolf | Off the path | Hungry | — | They hate a high, steady note. |
+| **The Glass-Wolves** | A hunting pack | Glass-Wolf | Off the path | Hungry | None | They hate a high, steady note. |
 
 **Places at a glance:**
 - **The edge:** snow, then grey trees, then glass ones. The change takes about ten steps.
@@ -87,7 +87,7 @@
 
 - **Touch a leaf:** it's warm for a heartbeat, the way a hand would be. Then cold.
 - **Look for the bird:** it's on a low branch, beak open, perfectly still. The note comes out anyway.
-- **Use magic to look:** Detect Magic shows nothing. This isn't a spell. It's a silence.
+- **Use magic to look:** Detect Magic shows nothing, because no spell did this.
 
 **Bring it back.** A leaf turns in the air beside someone's face, very slowly, as if it had been waiting for them to look. Ask them: "Do you touch it?"
 

@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. One room, one man, one enormous idea. Corin Aldeth has waited three generations for people like the party, and he'll tell them everything, including the part that frightens him. It's an argument with a forge behind it. The fight's only there if they insist.*
+*Read this once the day before. One room, one man, one enormous idea. Corin Aldeth has waited three generations for people like the party, and he'll tell them everything, including the part that frightens him. It's mostly an argument. The fight's only there if they insist.*
 
 **Contents:** [Before you start](#before-you-start-session-18a) · [Key people](#key-people-tonight-session-18a) · [Opening recap](#opening-recap-session-18a) · [Scene 1: The Dry Thunder](#scene-1-the-dry-thunder) · [Scene 2: The workshop](#scene-2-the-workshop) · [Scene 3: The Notes](#scene-3-the-notes) · [Scene 4: The price](#scene-4-the-price) · [Scene 5: The answer](#scene-5-the-answer) · [Fights](#running-the-fights-session-18a) · [Pacing](#pacing-session-18a) · [If you get stuck](#if-you-get-stuck-session-18a) · [End of session](#end-of-session-18a)
 
@@ -89,7 +89,7 @@
 
 ### Scene 2: The workshop
 
-**Where and why.** Under the tavern. Give them time to walk about. It's a treasure room where the treasure's work.
+**Where and why.** Under the tavern. Give them time to walk about.
 
 > **SAY (Corin Aldeth):** "Ah, you've been to Brassfall. Good. I was hoping you'd come this way. My name is Corin Aldeth. I'm a Bellwright. My family has tried to finish a song for three generations, and I think you may be the first people in a century who can help me finish it."
 
@@ -167,7 +167,7 @@ Influence, Persuasion DC 15, and only with a real alternative: he'll agree not t
 
 **If they…**
 - **[Help him:](play:s18a-meet-corin)** he gives them the Notes. He just hands them over, and then doesn't know what to do with his hands. He's an ally; so are his people.
-- **[Refuse:](play:s18a-refuse-corin)** he's disappointed, not angry. He lets them go up the ladder. Then:
+- **[Refuse:](play:s18a-refuse-corin)** he lets them go up the ladder. Then:
 
 > **SAY:** "Corin looks disappointed rather than angry. Somewhere under the workshop, something bronze begins to pace."
 

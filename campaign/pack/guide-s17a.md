@@ -15,7 +15,7 @@
 - **Was Isolde captured, or their informant?** Then they may already know she sold Tithed memories to the Ironhorn.
 - **Thrane's Heart** is in Kessa's Heart-Hall. By the end it's theirs, or it isn't.
 
-**What this session is about.** Everyone in this camp wants to be asked honestly. Yenna wants to hear what her father said. Kessa wants somebody to know he's dying who isn't waiting to be Thane. The Heart is what they came for; how they get it is what the steppe will remember.
+**What this session is about.** Everyone in this camp wants to be asked honestly. Yenna wants to hear what her father said. Kessa wants somebody to know he's dying who isn't waiting to be Thane.
 
 **Your goals tonight:**
 - Let the party be good at something silly in front of a crowd.
@@ -102,7 +102,7 @@
 
 ### Scene 2: The red skull
 
-**Where and why.** The horse lines, away from the noise. It's the quiet heart of the session. Don't hurry it.
+**Where and why.** The horse lines, away from the noise. Don't hurry it.
 
 > **SAY:** "A sun-darkened rider is brushing down a horse outside a tent with a red horse-skull over the door. A long bronze braid hangs down her back. She gives you a short nod and goes back to work."
 
@@ -133,7 +133,7 @@
 
 *(If they didn't bring the lamp, start from "My guests win a wager".)*
 
-**What's really going on.** [The steppe contest.](play:s17a-contest) He's not trying to win. He's trying to see who they are when they lose.
+**What's really going on.** [The steppe contest.](play:s17a-contest) He wants to see who they are when they lose.
 
 **First, the stake.** Agree it before anybody rolls. One metal thing, specific, that they'd miss but can do without. Use their list from last session. Don't take anyone's magic weapon unless they offer it.
 
@@ -198,7 +198,7 @@ He takes his gloves off while he's talking. Both hands are black to the wrist.
 
 **How it ends.** They've got the Heart, or they know what it'll cost. Either way, it's nearly dawn.
 
-Ask: **"What did you promise the Thane?"** Have each of them answer out loud, in their own words. If the answers are different, that's the best thing that could happen. Write them all down.
+Ask: **"What did you promise the Thane?"** Have each of them answer out loud, in their own words. If the answers differ, write each one down.
 
 ### Running the fights (Session 17A)
 

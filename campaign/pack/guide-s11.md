@@ -18,8 +18,8 @@
 
 **Your goals tonight:**
 - The winter-moment is a seed for Act V. Ask one question, write down the answer word for word, and don't explain.
-- Waking Maren is the heart of the session. Make it slow. Give it a full half-hour if they let you.
-- The ambush is a tragedy and not a brawl. The Stilled are terrified people. Show the players they can talk.
+- Waking Maren is the main scene. Make it slow. Give it a full half-hour if they let you.
+- The ambush is a tragedy. The Stilled are terrified people. Show the players they can talk.
 - Never push the fight harder than written.
 - End on: "What did you see in the glass?"
 
@@ -27,7 +27,7 @@
 - **Tokens or minis:** the four characters; Wyn, Maren, Yara; five Stilled; five Glass-Wolves.
 - **Maps:** a clearing about 80 feet across with five Stilled standing in it, and trees all round.
 - **Props:**
-  - *A blank card and a pen* for the winter-moment answer. Keep it with your notes until Session 26. This is the most useful card in the campaign.
+  - *A blank card and a pen* for the winter-moment answer. Keep it with your notes until Session 26, when you read it back.
   - *The cold tracker* from last session.
 
 **Rules you'll use tonight, in plain words (D&D 2024):**
@@ -48,7 +48,7 @@
 | **Yara Thenn** | Guide, if she's with them | Scout | A little way back, with her whistle | From last session | DC 15 | She's counted the sleepers in this wood. There are ninety-four. She knows most of their faces. |
 | **The Stilled** | Five, in the sleepers' wood | Stilled Person | The clearing past the first stream | Asleep | DC 15, as an action | Each one is still in the middle of the last thing they did. |
 | **Corran Vell** | Bosun of the Brightwater | Stilled Person, or a friend | Depends on last session | Depends | DC 15, in Common | He'll give his sailor's word and keep it. |
-| **The Spire pack** | Glass-Wolves | Glass-Wolf | Hunting between the streams | Hungry | — | The same pack guards the Frost Spire. Each wolf lost here is one fewer there. |
+| **The Spire pack** | Glass-Wolves | Glass-Wolf | Hunting between the streams | Hungry | None | The same pack guards the Frost Spire. Each wolf lost here is one fewer there. |
 
 **Places at a glance:**
 - **The mirror:** a sheet of glass as tall as a door, standing alone between two trees.
@@ -68,7 +68,7 @@
 
 > **SAY:** "Last time, you walked into a forest of glass. Yara sold you *(say what)*. A child landed, and asked you if it was still winter. *(Say what they told her.)* An old woman asked you to be gentle. And at dusk you heard a man preaching to nobody. This morning, Wyn Talla is standing at the edge of the camp with a basket of candles. 'It's three trees past the clearing,' she says. 'I'll show you.'"
 
-- **Then hand it over:** "What was the last thing you thought of before you fell asleep?" One sentence each. It's a good warm-up for what the glass does next.
+- **Then hand it over:** "What was the last thing you thought of before you fell asleep?" One sentence each.
 
 ### Scene 1: The winter-moment
 
@@ -201,7 +201,7 @@ Choose who sees it before you start: the character whose story is most tied to t
 - **Where to break:** after Wyn takes Maren's hand.
 - **Running long:** if Maren takes more than an hour, skip the wolves. Let them sneak through at advantage and end on the bank.
 - **Running short:** let them wake a second person, by a ribbon they choose. Or cross the stream.
-- **If you need to stop early:** stop after Maren's song. It's a good ending.
+- **If you need to stop early:** stop after Maren's song.
 
 ### If you get stuck (Session 11)
 

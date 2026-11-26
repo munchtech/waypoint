@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. It's the last bell before the Seventh, and the first time the Court comes with everything it has on the road. The ringing's the middle of the night, not the end. After it, somebody brings news: Maudrin Vesk has stopped waiting.*
+*Read this once the day before. It's the last bell before the Seventh, and the first time the Court comes with everything it has on the road. The ringing's halfway through the session. After it, somebody brings news: Maudrin Vesk has stopped waiting.*
 
 **Contents:** [Before you start](#before-you-start-session-21) · [Key people](#key-people-tonight-session-21) · [Opening recap](#opening-recap-session-21) · [Scene 1: The threshold](#scene-1-the-threshold) · [Scene 2: The second ringing](#scene-2-the-second-ringing) · [Scene 3: What it gave back](#scene-3-what-it-gave-back) · [Scene 4: A long grey line](#scene-4-a-long-grey-line) · [Scene 5: Maudrin is coming](#scene-5-maudrin-is-coming) · [Fights](#running-the-fights-session-21) · [Pacing](#pacing-session-21) · [If you get stuck](#if-you-get-stuck-session-21) · [End of session](#end-of-session-21)
 
@@ -77,7 +77,7 @@
 
 > **SAY (Mirel):** "Hundreds of people are asleep. The bed in the middle's made up, with one corner turned down. The bell over it is the colour of old honey, and it's so quiet in here you can hear it being patient."
 
-**What's really going on.** It's the same as last time, and it's worse. Every bell that's rung makes the next one heavier. The bells aren't cruel; there's simply less of the world left for them to lean on.
+**What's really going on.** It's the same as last time, and it's worse. Every bell that's rung makes the next one heavier. There's less of the world left for the bells to lean on.
 
 **If they…**
 - **Can't agree who:** ask each player, "If nobody else would, would you?" Then ask whoever said yes fastest to wait, and whoever said it slowest to speak.
@@ -141,7 +141,7 @@
 > **SAY (neither):** "Nothing happens. It's an ordinary afternoon. You can hear a lark. You'd forgotten there were ordinary afternoons."
 
 **Pick one or two:**
-- **Road B, Kessa living:** he picks up a cup, with two fingers, easily. It's a season's ease and not a cure, and he knows it. "I'll wait at the Hall, rider. Don't be long." Then settle the oath, here or on the way:
+- **Road B, Kessa living:** he picks up a cup, with two fingers, easily. It's a season's ease, and he knows it won't last. "I'll wait at the Hall, rider. Don't be long." Then settle the oath, here or on the way:
   - **[Give the Heart back:](play:s21-return-tongue)** the oath's **Kept.** They'll ride at the Strike.
 
 > **SAY:** "Kessa hangs the Heart back on its skull. 'You kept your word.'"
@@ -174,7 +174,7 @@
 **If they…**
 - **Talk:** Influence, Persuasion DC 17, once. A success doesn't send Rushe home. It buys the thing they asked for: ten minutes, or the wounded left alone, or the Hall untouched.
 - **Give up the Heart:** they'll go. Write it down. [It can be won back at the Strike:](play:s23-recover-thrane) tell them so. (Mirel's is [the same](play:s23-recover-mirel).)
-- **Give up the Ringer:** it's a jail, not a grave, and there's a rescue.
+- **Give up the Ringer:** the Ringer goes to jail and lives, and there's a rescue.
 - **Use a friend:** the Ironhorn (oath kept, or Yenna alone), or the Cult's circle, or the Bellwrights with Corin, can break the line. **An ally takes an objective, never a kill:** Yenna's riders drive off the Knights' horses; the Cult links hands across the road; Corin's hounds open every lead case in the rear rank.
 - **Run:** there's one track. Horses are faster. They lose the tail of the party unless somebody holds the narrow place. Who?
 - **Hide:** group Stealth, DC 14, in a valley in broad daylight. With rain, or with mist, Advantage.
@@ -186,7 +186,7 @@
 
 ### Scene 5: Maudrin is coming
 
-**Where and why.** The far end of the valley, at dusk. The whole of Act IV's been leading here.
+**Where and why.** The far end of the valley, at dusk.
 
 > **SAY:** "There's a rider on the road, coming the other way, on a horse that's nearly finished. They don't slow down for you. They just fall off it, more or less, at your feet, and start talking."
 

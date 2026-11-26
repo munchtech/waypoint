@@ -49,8 +49,8 @@
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
 | **Maudrin Vesk** | The Quiet Chancellor, and the last one holding it up | Keeper of the Seventh (Maudrin Vesk) | By the bell | Frightened | DC 20 | She hasn't decided. She came down to find out. |
-| **The Hush** | The lullaby | — | In the bell | Tired | It can't be persuaded | It'd like to stop. It's afraid of what happens when it does. |
-| **The one in the glass** | One of them, older | — | At the foot of the bell | Waiting | No | None. It's a question. |
+| **The Hush** | The lullaby | None | In the bell | Tired | It can't be persuaded | It'd like to stop. It's afraid of what happens when it does. |
+| **The one in the glass** | One of them, older | None | At the foot of the bell | Waiting | No | None. It's a question. |
 | **Ser Haldric Mose** | If he's still hers | Ser Haldric Mose | In front of her | Sure of himself | DC 15 | Nobody's told him why she keeps him close. |
 | **Corin Aldeth** | Coming, or beside them | Corin Aldeth | The stairs | Certain | DC 15, or the truth | He knows what it costs. He's never thought of it as *his.* |
 | **Sergeant Godric** | Her door-ward | Hushman Sergeant | The last step | Wishing he was elsewhere | DC 13 | Has been humming along and hasn't noticed. |
@@ -83,7 +83,7 @@
 
 > **SAY:** "It doesn't get any bigger as you walk. It was already as big as it was. The floor's worn smooth in a ring around it, about as wide as a person pacing. Inside the ring there's writing cut in the rock, in a small plain hand. It only says one thing, over and over. *For whoever can't sleep.*"
 
-**Ask each of them:** "Do you touch it?" Anyone who does hears their own mother, or whoever was nearest to one, humming. Same tune. It always was.
+**Ask each of them:** "Do you touch it?" Anyone who does hears their own mother, or whoever was nearest to one, humming. Same tune.
 
 **What's really going on.** Somebody cast this, in the pit overhead, for something frightening they had to look after. Nobody knows who. Nobody was hiding it, either. They only wanted it left alone.
 
@@ -216,13 +216,13 @@ Say to that player, "What do you feel?" Then read them, word for word, what they
 
 **Ask once round the table:** "What does your character want to happen? Not the group. You." No answering back. Then: **"And who's holding the Key?"**
 
-**What's really going on.** You're not resolving it tonight. You're making sure they know what they've chosen. The rite, the strike, the minute: that's all next time. *(If there's an hour left and everybody's wide awake, go straight on to Session 27. It's allowed.)*
+**What's really going on.** Don't resolve it tonight. Make sure they know what they've chosen. The rite, the strike, the minute: that's all next time. *(If there's an hour left and everybody's wide awake, go straight on to Session 27. It's allowed.)*
 
 **If they…**
 - **Have chosen:** say it back in one sentence. "So: you'll seat it, and it's *(name)*'s voice." Or "So: you'll strike it, and it's *(name)*'s hand." Get a nod from each of them.
 - **Have a Ringer who wants to think:** of course. Ask that player again, privately, before next time.
 - **Have [lost someone tonight](play:s26-help-ringer-falls):** "Your friend is on the stone, and Maudrin's hand has stopped." Everybody's does. Let them reach. [Revivify](play:any-pc-dies) has a minute. The dead pay nothing.
-- **Were too late:** it's been struck. It isn't a failure. Somebody enormous is opening an eye, and they're the first thing it'll see.
+- **Were too late:** it's been struck. Somebody enormous is opening an eye, and they're the first thing it'll see.
 
 **Bring it back.** Whoever struck the first bell of the campaign: remind them what they said when they picked up the hammer.
 
@@ -289,7 +289,7 @@ Say to that player, "What do you feel?" Then read them, word for word, what they
 - **Where to break:** after Scene 4, always, before anyone decides anything.
 - **Running long:** cut the fight at round three; somebody gets a hand on the Key.
 - **Running short:** go on into Session 27. There's nothing in the way.
-- **If you need to stop early:** stop on Maudrin's shaking hand. It's a very good place.
+- **If you need to stop early:** stop on Maudrin's shaking hand.
 
 ### If you get stuck (Session 26)
 
@@ -304,7 +304,7 @@ Say to that player, "What do you feel?" Then read them, word for word, what they
 
 **If they've got a cleverer plan than any of this:** check it against two things. Is the Key struck or unstruck? Does anybody pay who didn't choose to? Then let it work.
 
-**If someone's really upset:** stop, kettle, come back. It'll wait. It's good at it.
+**If someone's really upset:** stop, kettle, come back. It'll wait.
 
 **Names for the Court's people down here** (cross one off when you use it): Sergeant Godric, Tolliver, Bettany, Rusk, Jocelyn.
 

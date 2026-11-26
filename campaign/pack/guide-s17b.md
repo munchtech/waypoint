@@ -14,10 +14,10 @@
 - **Did the party stop the song last night?** If so, the circle's frightened, and it knows who did it.
 - **What evidence have they got?** Edda's Notes, something the Librarian said, or the Hush's own words. Any of those makes the argument easier.
 
-**What this session is about.** The Cult's right about the danger. If the Seventh wakes badly, everyone dies. It's wrong about the cure: it feeds the Hush its own people's dreams, and that's why the Hush is failing. How do you tell somebody kind that they're doing harm?
+**What this session is about.** The Cult's right about the danger. If the Seventh wakes badly, everyone dies. It's wrong about the cure: it feeds the Hush its own people's dreams, and that's why the Hush is failing. The party has to tell kind people they're doing harm.
 
 **Your goals tonight:**
-- Make the offer genuinely tempting. The party's exhausted. Say so.
+- Make the offer tempting. The party's exhausted. Say so.
 - State the price in the offer, before anyone says yes.
 - Give them three good ways through: argue, sneak, or fight. And one way in: say yes.
 - End on the question: **"What did the Hush take from you?"** Then stop.
@@ -101,7 +101,7 @@
 
 **If they…**
 - **Offer to help:** they get on better with everybody. Give one free Advantage on any Influence roll tonight to whoever worked hardest.
-- **Ask to see bed two hundred and twelve:** she's young, and there's a child's drawing under her hand. [They can wake her, for one minute.](play:s16b-wake-a-sleeper) If Wat's there, let him talk to her. It's the best thing they can do for anyone tonight.
+- **Ask to see bed two hundred and twelve:** she's young, and there's a child's drawing under her hand. [They can wake her, for one minute.](play:s16b-wake-a-sleeper) If Wat's there, let him talk to her.
 - **Look for what's wrong:** Wisdom (Insight or Medicine) DC 13. Everyone who's given a dream is a little *less.* They finish each other's sentences because there's only about a sentence each.
 - **Look at the nails:** Study, Investigation DC 13. They go back sixty years, and there are more and more of them, closer and closer together. The Hush has needed feeding more often every year.
 
@@ -178,7 +178,7 @@ Ask each player what's hanging on their nail. Write it down.
 
 **Bring it back.** From under the arch, quite a long way down: one small, clear, metal tap.
 
-**How it ends.** Ask: **"What did the Hush take from you?"** If it took nothing, ask it anyway. Everyone's lost something on this hill, if it's only a night's sleep or an opinion.
+**How it ends.** Ask: **"What did the Hush take from you?"** If it took nothing, ask it anyway.
 
 ### Running the fights (Session 17B)
 

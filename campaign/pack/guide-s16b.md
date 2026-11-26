@@ -15,7 +15,7 @@
 - **Who's carrying other Hearts?** The Hall hums at them.
 - **Session zero:** read what each player said about nightmares, parents, and anything else they'd rather not meet. **You're going to use their fears tonight. Use only the ones they've agreed to.**
 
-**What this session is about.** Everyone's tired, and here's a place that says *lie down*. They'll have to decide whether to sleep on a hill that uses what you're afraid of. Being tired isn't a weakness. It's how the hill gets in.
+**What this session is about.** Everyone's tired, and here's a place that says *lie down*. They'll have to decide whether to sleep on a hill that uses what you're afraid of.
 
 **Your goals tonight:**
 - Make the players want to whisper.
@@ -220,7 +220,7 @@
 - **Where to break:** when they've chosen where to sleep, before anyone rolls.
 - **Running long:** use two Sleepless.
 - **Running short:** explore the foundry. The seven moulds are still there. One's much bigger than the rest, and it's been cleaned.
-- **If you need to stop early:** stop on the read-aloud with the thing at the edge of the firelight. It's a wonderful place to stop, and they'll all be early next week.
+- **If you need to stop early:** stop on the read-aloud with the thing at the edge of the firelight.
 
 ### If you get stuck (Session 16B)
 

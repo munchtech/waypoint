@@ -1,4 +1,4 @@
-**Silly and serious (for you, not the players).** At long-running tables people laugh every couple of minutes, and four laughs in five come from the players. That's the game working. The serious stretches come about five times a night, and almost all of them are conversations, not fights.
+**Silly and serious (for you, not the players).** At long-running tables people laugh every couple of minutes, and four laughs in five come from the players. The serious stretches come about five times a night, and almost all of them are conversations, not fights.
 - **Let bits land.** Three jokes in four are a single laugh, and most longer bits end on their own. Laugh, answer in a few words, carry on.
 - **If a bit runs on, move the world, not the players.** Each scene in Sessions 1 to 3 has a **Bring it back** line: a sound, a change of light, someone arriving. Use it once. Never tell anyone to stop being funny.
 - **Protect the quiet scenes.** When the room goes quiet, slow down, say less and wait. Session 3's Scene 3 (Ila's name) is the first one.

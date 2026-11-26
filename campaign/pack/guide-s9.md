@@ -23,7 +23,7 @@
 - The ringing is the night's high point. Slow down for it: state the Toll, wait for the yes, read the box.
 - Getting out is a puzzle with many answers. Reward any plan that uses a friend they made.
 - Nobody dies in the street. Capture is a cell, not a Tithe.
-- Leave twenty minutes for the Ledger. It's the whole of Act II in seven questions, and players enjoy it.
+- Leave twenty minutes for the Ledger. It's the whole of Act II in seven questions.
 - End on: "Which unfinished promise do you carry north?"
 
 **Prepare:**
@@ -264,7 +264,7 @@ Then the last question: **"Which unfinished promise do you carry north?"** Write
 | **Captain Rook** | Clipped; says "we" for "I" | To hear the bell | "One night." |
 | **Sister Aurelie** | Bright, unafraid | To sing in the sun | "When the sun comes back." |
 | **Lady Isolde** | Charming; a mile behind | Her son safe | "Oh, you clever people." |
-| **Nessa Harrow** | Quiet | Her daughter | — |
+| **Nessa Harrow** | Quiet | Her daughter | None |
 
 **Vaer:** grille Thieves' Tools DC 17, yard Stealth DC 15, or Rook's loan (Influence DC 15). Chains: Rook's key, DC 17, or three chain-stones (AC 12, 10 HP). Toll: a memory of a beginning (warn the kind and weight; you choose after). A day of sun, then a dawn every morning for a year; a Silence Warrant.
 

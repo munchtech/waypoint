@@ -1,4 +1,4 @@
-# Corvane in the Realms — DM Canon, Revision 7.5
+# Corvane in the Realms: DM Canon, Revision 7.5
 
 *Revision 7 keeps everything in Revision 6 and adds Section 9 (the table, the timeline fixes and the endings). Revision 6 added three things to The Seventh Bell v5: Corvane is part of the Forgotten Realms, Pellmoor is a port that newcomers arrive in, and memory is a working currency alongside gold. Where this sheet and v5 disagree, this sheet wins. The v5 Canon Sheet (Part 3.3) still governs every date and family line it lists.*
 
@@ -140,7 +140,7 @@ Corvane had little coin of its own. Bronze is bell-metal and the Court has restr
 ### Table rules (2024)
 - **Paying in memory.** A character may pay anywhere coin is accepted in Corvane, at the posted rate. The player chooses the memory and writes one line about it in the Memory Ledger. The DM never chooses it.
 - **Selling memory for gold.** A Reckoner buys at the posted rate less a 10 percent fee.
-- **Motes and keeps** have no mechanical effect. The character simply no longer has that recollection.
+- **Motes and keeps** have no mechanical effect. The character no longer has that recollection.
 - **Heartkeeps.** When a character sells one, the player rewrites one thing about the character that the memory held up: a belief, a bond, a fear. No mechanical penalty. It never removes player knowledge or control of the character.
 - **Generosity.** The DM may award **Heroic Inspiration** when a character gives a memory freely to someone who needs it. (This matches v5's Kell's Crossing Gift rule.)
 - **Witnessing a Knowing.** Once, a character who witnesses a Knowing keep has advantage on one ability check that knowledge would plainly help (a pilot's route memory helps navigate the Mere).
@@ -152,7 +152,7 @@ Corvane had little coin of its own. Bronze is bell-metal and the Court has restr
 - **Session 1 opening** is rewritten for the port (the new read-aloud is in the playbook). The party may arrive by ship through the Seam, by the Mere road, or already live here. Ila waits on the *old* ferry-dock at the Old Shore, apart from the noise of the Quays.
 - **Quill** is the Landing House's Tithe officer, short on quota because Pellmoor pays in gold.
 - **H-03, the Tithe Quota:** the three villagers want to pay in gold, which is illegal for locals. Gilding is a new way out.
-- **New Session 3 option: sell the Heart to Master Venn.** He pays 600 gp up front (more if the party haggles) and loads it on the Coster ship *Gilded Heron*, sailing in three days. A pilot is required to leave the Mere, so Brannagh Wick can delay the ship by a day; the Seam crossing takes another day. If the Heart leaves Corvane, Ossa cannot be rung until it is recovered. That is a hard, earned consequence. The DM's safety valve, if the table wants it: the *Gilded Heron* wrecks in the Stormwall and the Heart washes back into the Mere weeks later ("the Mere remembers what is taken from it").
+- **New Session 3 option: sell the Heart to Master Venn.** He pays 600 gp up front (more if the party haggles) and loads it on the Coster ship *Gilded Heron*, sailing in three days. A pilot is required to leave the Mere, so Brannagh Wick can delay the ship by a day; the Seam crossing takes another day. If the Heart leaves Corvane, Ossa cannot be rung until it is recovered. The DM's safety valve, if the table wants it: the *Gilded Heron* wrecks in the Stormwall and the Heart washes back into the Mere weeks later ("the Mere remembers what is taken from it").
 - **New complication:** a Kelemvorite zealot, **Brother Hadrik Voss** (Priest), wants to lay the Drowned Choir to rest by force, which would anger the Choir and endanger Pellmoor. Use him if the table likes conflict among allies.
 
 **Act II**

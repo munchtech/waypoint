@@ -512,7 +512,7 @@
    "why": "Investigative parties reach for truth magic in a story built on lies.",
    "tells": "A caster prepares Zone of Truth before the oath-duel or an interrogation.",
    "readAloud": "",
-   "response": "The firm rulings for levels 3 to 6 are in the early play on truth and minds (the oath-duel's herald fields, Maudrin's dais, Haldric's shield). Later in the campaign the same rules hold: Zone of Truth works as written (Charisma save; a creature may refuse to answer, which is itself telling), and Haldric and Maudrin, who know the spell, simply refuse. Detect Thoughts on a Tithed person finds blank patches where things were taken; on Maudrin with the Key it finds one repeating thought: “keep it as it is.”",
+   "response": "The firm rulings for levels 3 to 6 are in the early play on truth and minds (the oath-duel's herald fields, Maudrin's dais, Haldric's shield). Later in the campaign the same rules hold: Zone of Truth works as written (Charisma save; a creature may refuse to answer, which is itself telling), and Haldric and Maudrin, who know the spell, refuse. Detect Thoughts on a Tithed person finds blank patches where things were taken; on Maudrin with the Key it finds one repeating thought: “keep it as it is.”",
    "rules": "Zone of Truth: Charisma save; creatures can evade or refuse to answer. Detect Thoughts: Wisdom save to probe deeper.",
    "consequence": "Truth magic gets answers outside the hearing, and pointed refusals from the people who know the spell.",
    "later": "",
@@ -692,7 +692,7 @@
    "response": "Venn denies nothing he can't be forced to. Evidence (the Tithe-Ledger column, a crate manifest, a bribed Quill) makes him bargain: he'll give up a crate bound for Athkatla, or betray Quill, to keep his licence hopes. Exposing him publicly turns the Old Shore against the Coster.",
    "rules": "Influence: Venn is Indifferent; Hostile once humiliated in public. Evidence grants Advantage.",
    "consequence": "Venn becomes an enemy or an unwilling source.",
-   "later": "A recovered crate holds Blanks' memories: returning them is a powerful act (Blanks can join the S22 allies, s22-ally-blanks). The Landing clock moves.",
+   "later": "A recovered crate holds Blanks' memories. Return them and the Blanks can join the S22 allies (s22-ally-blanks). The Landing clock moves.",
    "fallback": "",
    "keywords": "venn, confront, coster, export, memory trade, crates, athkatla, merchant",
    "when": [

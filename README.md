@@ -11,7 +11,7 @@ A desktop companion for running a D&D campaign. Waypoint is an Electron app for 
 - **Players**: handouts, the player site (one `site.html` the DM uploads) and a separate player display window.
 - **Claude (optional)**: drafts paths, cards and recaps through the Anthropic API, using the DM's own API key. Campaign context is sent to Anthropic only when a generate button is pressed, and nothing generated becomes canon until the DM confirms it. See [Claude](#claude) below.
 - **Restore points**: kept automatically on open, before update packs, and during editing.
-- **Light and dark themes**: follows Windows, or pick one under Theme in the sidebar.
+- **Light and dark themes**: dark by default; Theme in the sidebar switches to light and back.
 - **Now**: on Possibilities, pick the scene the table is in and only its paths stay open; the arrows step to the next scene. All sessions lists each session's paths in its own group, drawn when opened.
 
 The Seventh Bell campaign ships with the app as an update pack (`desktop/data/packs/seventh-bell-v7.json`), built from the sources in `campaign/`. The app reads packs as files when Foresight opens: a new revision saved in the packs folder (Foresight → Open packs folder, which is `%APPDATA%\Waypoint\packs`) replaces the shipped pack with the same id, with no rebuild.

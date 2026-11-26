@@ -253,7 +253,7 @@ Either take away two Hushmen and one Warden, or leave the fight as it is and let
 2. **A flash flood** comes down the shaft road, ankle-deep, full of blue stones.
 3. **A horse lies down** in a puddle and won't be moved.
 
-**If nobody wants to pay the Toll:** don't push. Say, "You can ring it later. Kessa gets sicker and the clans get restless, and the bell waits." It's true, and it's not a punishment.
+**If nobody wants to pay the Toll:** don't push. Say, "You can ring it later. Kessa gets sicker and the clans get restless, and the bell waits."
 
 **If a player's upset by the sense you chose:** change it. You've both got the Toll Deck. Pick again together.
 

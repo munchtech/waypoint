@@ -15,7 +15,7 @@
 - **Dreams:** who's lost theirs? The Hush speaks to them differently.
 - **Mirel's Heart, and Mirel:** it's what Corin wants to talk about.
 
-**What this session is about.** The thing that's holding the world together is tired, and it would like them to be quiet. It's not a monster. It's the first person in the campaign to ask for nothing but rest, and they can't give it any.
+**What this session is about.** The thing that's holding the world together is tired, and it would like them to be quiet. It's the first person in the campaign to ask for nothing but rest, and they can't give it any.
 
 **Your goals tonight:**
 - **State the price of the stairs before anyone takes a step.** Then count.
@@ -188,7 +188,7 @@
 
 They can walk round it. They can't ring it; there's a place for the Key, and it's the wrong shape for anything else. They can touch it: it's warm. **They've now paid, for good. In Session 25 it's free for them.** And from tonight they've seen it, so a Teleport can find it.
 
-- **Sing to it:** it stops breathing for a second. Then it breathes out. Everyone on the Tor sighs. (Nothing else happens. It's enough.)
+- **Sing to it:** it stops breathing for a second. Then it breathes out. Everyone on the Tor sighs. (Nothing else happens.)
 
 **Bring it back.** From the top, very small, Pip: "*Are you still counting?*"
 
@@ -235,7 +235,7 @@ They can walk round it. They can't ring it; there's a place for the Key, and it'
 
 **If nobody wants to go down:** good. It's a visit. The voice, the man and the question are the session.
 
-**If a player can't think of a memory to give:** offer three small ones from earlier in the campaign. Let them pick. Small is fine. It's always the small ones that hurt.
+**If a player can't think of a memory to give:** offer three small ones from earlier in the campaign. Let them pick. Small is fine.
 
 **Names for the memories' owners** (cross one off when you use it): Aunt Vetch, Little Junie, the dyer Wick, Grandfather Osk, a dog called Button, Miss Penn the schoolteacher.
 

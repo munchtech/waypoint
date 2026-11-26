@@ -17,7 +17,7 @@
 **What this session is about.** A breathless courier brings a one-line letter in blue wax from the north: *I am still here. Come to Glassreach before the winter takes the last of me. I.V.* The Court wants the courier and the letter. Then Maudrin, through Isolde, sends them a polite farewell that is also a warning. They leave knowing who I.V. is, or wanting to.
 
 **Your goals tonight:**
-- The letter is a hook, not a puzzle. They can go just because it asks.
+- The letter needs no solving. They can go just because it asks.
 - Isolde is a real person, with a son. Give her a chance to be more than the Court's eyes.
 - Every character says goodbye to someone in Hallowmere.
 - End on: "What does I.V. want from you?"
@@ -180,7 +180,7 @@ Read Maudrin's message from the plan above. Isolde reads it from a grey card, th
 |---|---|---|---|
 | **Edrin Moss** | Out of breath; can't read | His money; a fire | "A woman paid me." |
 | **Lady Isolde** | Tired under the lace | Her son safe | "I'm only the post." |
-| **Isolde's man** | Silent | The letter | — |
+| **Isolde's man** | Silent | The letter | None |
 
 **The letter:** *I am still here. Come to Glassreach before the winter takes the last of me. I.V.* **I.V.** is Imber Vesk, the Glass Sexton. Trace: Investigation or Influence DC 15 on Edrin (Wyn Talla's hut, beside Yara's camp). Librarian or Lysse: Study DC 16.
 

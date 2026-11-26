@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. It's the big battle, and it's the first time most of them will have stood in front of Maudrin. Give her ten good minutes before anybody rolls anything. She'll be polite. That's what's frightening about it.*
+*Read this once the day before. It's the big battle, and it's the first time most of them will have stood in front of Maudrin. Give her ten good minutes before anybody rolls anything. She'll be polite the whole time.*
 
 **Contents:** [Before you start](#before-you-start-session-23) · [Key people](#key-people-tonight-session-23) · [Opening recap](#opening-recap-session-23) · [Scene 1: The foot of the Tor](#scene-1-the-foot-of-the-tor) · [Scene 2: Good evening](#scene-2-good-evening) · [Scene 3: The boy with the bird](#scene-3-the-boy-with-the-bird) · [Scene 4: The Strike](#scene-4-the-strike) · [Scene 5: The baggage](#scene-5-the-baggage) · [Fights](#running-the-fights-session-23) · [Pacing](#pacing-session-23) · [If you get stuck](#if-you-get-stuck-session-23) · [End of session](#end-of-session-23)
 
@@ -363,7 +363,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 2. **An ally does their job,** right now, where it's needed.
 3. **The light on the hill gets brighter,** and everyone on both sides looks up.
 
-**If they won't fight and won't give in:** good. Let Maudrin wait. She's patient. Then the Hushmen start taking down the tents behind her, and it's clear she'll simply walk round them.
+**If they won't fight and won't give in:** good. Let Maudrin wait. She's patient. Then the Hushmen start taking down the tents behind her, and it's clear she'll walk round them.
 
 **If somebody wants to fight her alone:** she gets down off the horse. She thinks it's only manners.
 

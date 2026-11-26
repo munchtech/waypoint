@@ -18,7 +18,7 @@
 **What this session is about.** The party walks into the Quiet Court's own city. The gate takes a small memory from each of them, politely. At a masque in the white palace they meet the woman who runs the Silence, and she is kind, patient and reasonable. Then she makes them an offer. Whatever they answer, they leave knowing they're watched.
 
 **Your goals tonight:**
-- Hallowmere feels quiet, courteous and wrong. Nobody is rude to them. That's the threat.
+- Hallowmere feels quiet, courteous and wrong. Nobody is ever rude to them.
 - Each player decides about the courtesy memory for their own character. You never choose it.
 - Maudrin speaks to every character in turn. Give each one a moment alone with her.
 - The players choose how to answer her bargain. Every answer is written up; don't steer.

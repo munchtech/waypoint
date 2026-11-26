@@ -35,17 +35,23 @@ const fs=require('fs'),path=require('path');
 // each run of changed lines between one revision's text and the next becomes one more edit, applied after the guide.
 // Every revision a table may have installed is kept (guide-sN-7.1.md, guide-sN-7.2.md); guide-sN.md is the current text.
 const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8').trim();
-const guideVersions=['7.1','7.2','7.3','7.4',''];
+const guideVersions=['7.1','7.2','7.3','7.4','7.16',''];
 // `unless`: once a session has the guide's heading, the guide is in, even after the link edits have reworded some of its lines.
 const guide=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'-7.1.md'),unless:'## Running this session (new DM guide)',guide:true});
 const diff=(name,old,now)=>{const out=[];if(old.length!==now.length)throw new Error(name+': each revision must keep the first revision\'s line count');
  for(let i=0;i<old.length;i++){if(old[i]===now[i])continue;let j=i;while(j+1<old.length&&old[j+1]!==now[j+1])j++;const find=old.slice(i,j+1).join('\n');if(old.join('\n').split(find).length!==2)throw new Error(name+' line '+(i+1)+' is not unique');out.push({find,replace:now.slice(i,j+1).join('\n'),at:i,end:j+1});i=j}return out};
 // Edits that carry a text from its first installed revision to the current one. A line reworded again later would leave an earlier
 // edit with neither its anchor nor its replacement, so each edit also counts as applied once the current wording of its lines is there.
-const chainEdits=(name,texts)=>{const last=texts[texts.length-1];return texts.slice(1).flatMap((now,k)=>diff(name,texts[k],now).map(({at,end,...h})=>{const fin=last.slice(at,end).join('\n');return {...h,...(fin!==h.replace?{unless:fin}:{}),guide:true}}))};
+// A cut that shortens a line can leave a replacement (or current wording) that the older text already contains, which would count the
+// edit as applied too early, so such an edit takes in a neighbouring line on each side (up to three times) until neither is found there.
+const chainEdits=(name,texts)=>{const last=texts[texts.length-1];return texts.slice(1).flatMap((now,k)=>{const old=texts[k],seen=texts.slice(0,k+1).map(t=>t.join('\n'));
+ const early=(a,b)=>{const o=old.slice(a,b).join('\n'),r=now.slice(a,b).join('\n'),f=last.slice(a,b).join('\n');return seen.some(t=>t.includes(r)||(f!==o&&f!==r&&t.includes(f)))};
+ let rs=diff(name,old,now).map(({at,end})=>[at,end]);
+ for(let n=0;n<3;n++)rs=rs.map(([a,b])=>early(a,b)?[Math.max(0,a-1),Math.min(old.length,b+1)]:[a,b]).reduce((m,r)=>{const p=m[m.length-1];if(p&&r[0]<=p[1])p[1]=Math.max(p[1],r[1]);else m.push(r);return m},[]);
+ return rs.map(([a,b])=>{const find=old.slice(a,b).join('\n'),replace=now.slice(a,b).join('\n'),fin=last.slice(a,b).join('\n');if(early(a,b))throw new Error(name+' line '+(a+1)+' still reads as applied');if(old.join('\n').split(find).length!==2)throw new Error(name+' line '+(a+1)+' is not unique');return {find,replace,...(fin!==replace?{unless:fin}:{}),guide:true}})})};
 const versions=(file,list)=>list.map(v=>read(file.replace('.md',v?'-'+v+'.md':'.md')).split('\n'));
 // Revision 7.7 rewords one line of Session 3 (Quill's Influence DC follows the 2024 rule), so its 7.5 to 7.6 text is kept as guide-s3-7.6.md.
-const links=n=>chainEdits('guide-s'+n,versions('guide-s'+n+'.md',n===3?['7.1','7.2','7.3','7.4','7.6','']:n===1?['7.1','7.2','7.3','7.4','7.10','']:guideVersions));
+const links=n=>chainEdits('guide-s'+n,versions('guide-s'+n+'.md',n===3?['7.1','7.2','7.3','7.4','7.6','7.16','']:n===1?['7.1','7.2','7.3','7.4','7.10','7.16','']:guideVersions));
 const s1Guide=guide(1,`**Session 1 end:** The Hushmen raid Ila's house that night, or the party hears the Drowned Choir for the first time. Either way, end on the question: "Who was singing?"`);
 const s2Guide=guide(2,`**Session 2 end:** End on the question: "Who was on the ferry?" Mother Sallow's ledger is missing a page, which opens Session 3.`);
 const s3Guide=guide(3,`**DO (v6):** The letter's grey seal is a writ of passage for everyone it names, Stormborn included.`);
@@ -64,9 +70,11 @@ const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e069
 const S4='sb-0408eb3a9ef383eb',S5='sb-879a0d8936c67231',S6='sb-173cd869f38cc637',S7='sb-159e9351d101d536',S8='sb-e6aca23e4a267d72';
 // Revision 7.16 rewords lines of later guides (stat block cells that open nothing, the scout and the knight renamed, the hand-offs);
 // each of those guides as first installed is kept as guide-sN-<rev>.md, and the edits carry it to the current text.
-const guideRevs={4:'7.9',5:'7.9',8:'7.9',10:'7.13',11:'7.13',12:'7.13',13:'7.13','16b':'7.14','18a':'7.14','19a':'7.14','19b':'7.14',20:'7.15',21:'7.15',22:'7.15',23:'7.15',24:'7.15',25:'7.15',26:'7.15',27:'7.15'};
+// Revision 7.17 rewords the guides for plain speech: their 7.16 text is kept as guide-sN-7.16.md (Act I's too), and guides that
+// had not been reworded before are kept as first installed under their revision.
+const guideRevs={4:'7.9',5:'7.9',8:'7.9',10:'7.13',11:'7.13',12:'7.13',13:'7.13','16b':'7.14','18a':'7.14','19a':'7.14','19b':'7.14',20:'7.15',21:'7.15',22:'7.15',23:'7.15',24:'7.15',25:'7.15',26:'7.15',27:'7.15',6:'7.9',7:'7.9',9:'7.9',14:'7.13',15:'7.13','16a':'7.14','17a':'7.14','17b':'7.14','18b':'7.14',28:'7.15'};
 const act2=(n,find)=>{const rev=guideRevs[n],file='guide-s'+n+'.md';
- return [{find,replace:find+'\n\n'+read(rev?'guide-s'+n+'-'+rev+'.md':file),unless:'## Running this session (new DM guide)',guide:true},...(rev?chainEdits('guide-s'+n,versions(file,[rev,''])):[])]};
+ return [{find,replace:find+'\n\n'+read(rev?'guide-s'+n+'-'+rev+'.md':file),unless:'## Running this session (new DM guide)',guide:true},...(rev?chainEdits('guide-s'+n,versions(file,[rev,...(fs.existsSync(path.join(__dirname,'guide-s'+n+'-7.16.md'))?['7.16']:[]),''])):[])]};
 // Revision 7.10: the plans now match the play cards (vault lock 17, Tessa's forged order 16, Vaer theft 17) and Vaer's dawn lasts a year.
 const s5Lock={find:"- Entry requires a DC 15 Thieves' Tools check, or a bribe",replace:"- Entry requires a DC 17 Thieves' Tools check, or a bribe"};
 const s6Tessa={find:'A forged transfer order (DC 14 Deception)',replace:'A forged transfer order (DC 16 Deception)'};
@@ -354,9 +362,11 @@ const pageEdits=[
   // Revision 7.7: optional table jobs for players, as the 2024 adventures' Player Assistance sections suggest.
   {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('session-zero-jobs.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Table jobs (optional).**'},
   // Revision 7.8: how to handle silly and serious moments, from the actual-play study.
-  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('silly-and-serious.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Silly and serious (for you, not the players).**'}]},
+  {find:'### Step 5: Put it into Waypoint (15 minutes, or right after)',replace:read('silly-and-serious-7.8.md')+'\n\n### Step 5: Put it into Waypoint (15 minutes, or right after)',unless:'**Silly and serious (for you, not the players).**'},
+  // Revision 7.17 rewords it; the 7.8 text is kept as silly-and-serious-7.8.md.
+  ...chainEdits('silly-and-serious',versions('silly-and-serious.md',['7.8','']))]},
  // Revision 7.5: the Toll rules.
- {id:'sb-579437dc048229b6',edits:[{find:'__WHOLE__',replace:read('toll-rules.md'),unless:'### The weight rises with every bell'}]},
+ {id:'sb-579437dc048229b6',edits:[{find:'__WHOLE__',replace:read('toll-rules-7.5.md'),unless:'### The weight rises with every bell'},...chainEdits('toll-rules',versions('toll-rules.md',['7.5','']))]},
  {id:'sb-cda9019c57971a98',edits:[{find:'When in doubt, ask the player what their character is willing to give up.',replace:'Before every ringing, warn the player what kind of thing the bell will take and how heavy it will be, never exactly what, and let them say no (Part 2.7).'}]},
  {id:'sb-a23a83e518a41ee8',edits:[
   {find:'| The Long Dusk lifts over Hallowmere for one day. A real dawn. |',replace:'| The Long Dusk lifts over Hallowmere: a real dawn, every morning for a year. |'},

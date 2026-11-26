@@ -13,7 +13,7 @@
 - **Ossa's Heart:** if it's in the Dawn Order armory, whoever wins the duel holds it.
 - **Wren Caddock:** still the Court's spy. She confesses tonight (Scene 3).
 - **Tessa Caddock:** "Not used at this table" if your table hasn't agreed to child peril. Then Tessa is Wren's grown sister, and the rescue is the same.
-- **Ila Harrow:** if she travels with the party, she hears Wren's confession. That matters: Wren gave the Court her father's name.
+- **Ila Harrow:** if she travels with the party, she hears Wren's confession, and Wren gave the Court her father's name.
 
 **What this session is about.** Captain Rook of the Dawn Order knows her senior knight sells the Order's protection to the Court. She's challenged him to an oath-duel: a public hearing where each swears one oath and the crowd asks questions. She asks the party for proof. Afterwards Wren, who has been giving the Court names for two years, confesses at Bet's bakery. One of those names was Tam Harrow's. The Court holds her daughter.
 

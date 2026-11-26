@@ -14,7 +14,7 @@
 - **Tobias Quill:** if Suspicious or Bribed, he comes back tonight (Scene 4).
 - **The Drowned Choir:** if still Hunting, the ferry-stair to the bell is guarded (Scene 6).
 
-**What this session is about.** A page is missing from Mother Sallow's ledger. It's in the desk of Brother Eld, the gentle village friar, and it lists the children he reported to the Court. Ila's name is on it. The party works out how her father really died. Then they make the biggest choice of Act I: what to do with Ossa's Heart. Return it to the drowned bell and maybe ring it, at a real personal cost? Carry it to the capital? Keep it and defend the village? Sell it? Give it to the Court? Every one of those is a good story. At the end, whatever they chose, a polite letter arrives from the Quiet Chancellor, inviting them to Hallowmere.
+**What this session is about.** A page is missing from Mother Sallow's ledger. It's in the desk of Brother Eld, the gentle village friar, and it lists the children he reported to the Court. Ila's name is on it. The party works out how her father really died. Then they make the biggest choice of Act I: what to do with Ossa's Heart. Return it to the drowned bell and maybe ring it, at a real personal cost? Carry it to the capital? Keep it and defend the village? Sell it? Give it to the Court? At the end, whatever they chose, a polite letter arrives from the Quiet Chancellor, inviting them to Hallowmere.
 
 **Your goals tonight:**
 - The players find the page (always: it's never behind a failed roll).
@@ -99,7 +99,7 @@
 
 ### Scene 3: Ila's name
 
-**Where and why.** Wherever Ila is: on the old dock, at the Pilots' Hall, in her house. This is a quiet scene. Let it be quiet.
+**Where and why.** Wherever Ila is: on the old dock, at the Pilots' Hall, in her house. Keep this scene quiet.
 
 > **SAY:** "Ila takes the page and reads it the way she counts masts, one name at a time, under her breath. She reaches the bottom and stops. She reads it again. Then she says, very flatly: 'That's me. Four hundred and ten. That's when Dad started locking the door.'"
 
@@ -194,7 +194,7 @@ If none of those apply and the Choir is Hunting, see [the ferry-stair guard](#th
 > **SAY (when Ossa rings):** "The bell rings from under the water. It is deep and slow and it makes the whole Mere ripple. Every grey face on the shore lifts toward the sound. The Drowned fall silent, and one voice, very old and very clear, speaks a single name. Then the Mere is only water again, and the reeds bend in a breeze that smells of rain."
 
 **After the ringing:**
-- **[Mother Sallow remembers.](play:s03-ring-ossa)** On the shore, she suddenly remembers her husband Davin's face, and the night of the Wrongweather. She sits down on the stones and laughs and cries at once. Let it be a big moment.
+- **[Mother Sallow remembers.](play:s03-ring-ossa)** On the shore, she suddenly remembers her husband Davin's face, and the night of the Wrongweather. She sits down on the stones and laughs and cries at once. Give it time.
 - **[The release verse.](play:s03-sing-release)** If anyone learned it from the Cantor (or Mother Sallow reads it from the ledger: an hour's work), singing it now releases the Choir. The singer must sincerely remember someone who has died. The Cantor speaks her own name, "Ondra," and goes quiet. Released spirits may return once, willingly, as allies later.
 - **The Court notices.** The Hushmen pull their collectors back from the newly quiet Mere for a while. The Court still wants the Heart.
 
@@ -281,6 +281,6 @@ Most tables won't fight tonight. These are here if they do. Both are written for
 - **Level:** none yet. They stay level 3 until after Session 6.
 - **The letter:** a true writ of passage for everyone it names.
 - **Evidence:** the page, the Court forms and the patrol entry. Keep them; the Dawn Order will want them in Session 6.
-- **Coin:** 600 to 900 gp if they sold the Heart. Nothing if they didn't, and that's the point.
+- **Coin:** 600 to 900 gp if they sold the Heart. Nothing if they didn't.
 - **Gifts:** if they returned the Heart, Brannagh gives them a pilot-letter: any pilot of the Hall will carry them anywhere on the Mere, free, for as long as she runs it. If Ossa rang, Mother Sallow gives the Ringer one of Davin's net-needles, carved bone, and says, "So you remember what you paid for."
 - **Heroic Inspiration:** to the Ringer who paid the Toll, to whoever told Ila the truth gently, and to anyone who protected Eld or Ila when it cost them something.

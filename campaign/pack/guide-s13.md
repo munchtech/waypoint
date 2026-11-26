@@ -19,7 +19,7 @@
 
 **Your goals tonight:**
 - Read the confession slowly, and stop in the middle for them to ask things.
-- Give the truth about the Key straight, if they tell him who holds it. This isn't a secret to protect; let them plan with it.
+- Tell them the truth about the Key plainly, if they tell him who holds it, and let them plan with it.
 - However the scene goes, **the Frost Heart leaves with the party.** Every route ends that way.
 - If they fight, he's a man in pain, and the fight stops the moment they stop.
 - End on his warning: "Don't ring the Frost Spire without the Heart. The winter will come back all at once." Then ask: "Who will carry it up?"

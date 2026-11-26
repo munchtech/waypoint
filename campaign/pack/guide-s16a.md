@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. A dead foreman asks a small favour, down a mine where the lightning went to die. There's a ghost who swears at them, a dark bell, and one room full of treasure that fights back. If they carry his lamp, the hardest fight of the night never happens, and they'll have earned that.*
+*Read this once the day before. A dead foreman asks a small favour, down a mine where the lightning went to die. There's a ghost who swears at them, a dark bell, and one room full of treasure that fights back. If they carry his lamp, the hardest fight of the night never happens.*
 
 **Contents:** [Before you start](#before-you-start-session-16a) · [Key people](#key-people-tonight-session-16a) · [Opening recap](#opening-recap-session-16a) · [Scene 1: The Brass Road](#scene-1-the-brass-road) · [Scene 2: The lamp](#scene-2-the-lamp) · [Scene 3: Down the Old Works](#scene-3-down-the-old-works) · [Scene 4: The storm-stone vault](#scene-4-the-storm-stone-vault) · [Scene 5: Four riders](#scene-5-four-riders) · [Fights](#running-the-fights-session-16a) · [Pacing](#pacing-session-16a) · [If you get stuck](#if-you-get-stuck-session-16a) · [End of session](#end-of-session-16a)
 

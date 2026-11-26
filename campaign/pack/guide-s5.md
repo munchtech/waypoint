@@ -172,7 +172,7 @@
 | 2:00 to 3:10 | Scene 4: the jars, the diary, the choice of what to carry |
 | 3:10 to 3:30 | Out, or the alarm; the closing question |
 
-- **Where to break:** after the Librarian, before they decide how to get into the vault. Planning the heist over a break is half the fun.
+- **Where to break:** after the Librarian, before they decide how to get into the vault, so they can plan the heist over the break.
 - **Running long:** let Lysse find the label by morning and skip the Librarian; Mirel's Heart waits for a second visit (Session 9).
 - **Running short:** let them read the diary to Lysse at Bet's bakery afterwards, and play her face as she hears it.
 - **If you need to stop early:** stop at the vault door, as it closes. Next session opens inside.

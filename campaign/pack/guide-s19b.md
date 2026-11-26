@@ -65,7 +65,7 @@
 
 > **SAY:** "You've been as far as step *(nineteen / twenty / a hundred)*. Something spoke to each of you in your own voice. It asked you *(read out one or two)*. Now you're back in the Hall, in the grey light, with *(a warm bronze Heart the size of a loaf / a man with a hammer / a child holding a pair of shoes)*. Hundreds of people are asleep all round you. And over the empty bed there's a bell, the colour of old honey, leaning toward you."
 
-- **Then hand it over:** "What's the best night's sleep your character ever had?" One answer each. Don't rush. It's the shape of what's coming.
+- **Then hand it over:** "What's the best night's sleep your character ever had?" One answer each. Don't rush.
 
 ### Scene 1: The Heart and the bed
 
@@ -156,7 +156,7 @@
 - **Take him to bed sixty:** he goes, with two men. She's smiling. He stands there for as long as you like. **He still has an order.** But he'll give them until sunset before he remembers it, if they ask. Influence, Persuasion DC 16, or no roll if Lull shows him her socks.
 - **Lie about who rang:** Deception against his Insight, at Disadvantage: the Ringer's got honey-coloured light in their hair, and it won't brush out.
 - **Give up the Heart:** he'll take it, and he'll look away while the Ringer leaves. Write it down.
-- **Give up the Ringer:** it's a real choice. It's a jail, not a grave; you've got a rescue for next session.
+- **Give up the Ringer:** it's a real choice. The Ringer goes to jail and lives; you've got a rescue for next session.
 - **Hide among the sleepers:** lovely. Six of them search the rows, very quietly, on tiptoe, because it's a room full of people asleep. A group Stealth check, DC 13, under the covers.
 - **Run west, into the Cult's circle:** they won't follow. It's the one place the Court has never set foot. If the Cult's an ally, they link hands.
 - **Stand:** he puts his helmet on. "I'm sorry about this." Run the fight. **Outside.** He won't fight in the Hall, and neither should they.
@@ -215,7 +215,7 @@
 - **Where to break:** when Pip says "soldiers."
 - **Running long:** let Thale go to bed sixty, and give them until sunset. No fight.
 - **Running short:** write three of Lull's letters home. Who are they to?
-- **If you need to stop early:** stop on the first good morning, and let the riders be next week's opening. It's a kind way to end a hard stretch.
+- **If you need to stop early:** stop on the first good morning, and let the riders be next week's opening.
 
 ### If you get stuck (Session 19B)
 

@@ -10,10 +10,10 @@
 
 **First, check Ila.** Open Foresight and look at Ila Harrow. If the raid took her (Arrested), start tonight with [the Mere road cart](#if-ila-was-taken-the-mere-road-cart) at dawn, then pick up the rest. If she's free or hidden, start with the Night Song.
 
-**What this session is about.** The dead of the Mute Mere sing every night, and the Old Shore sings back. Tonight the party learns why. Mother Sallow asks them to find the eastern-marsh ferry, missing a week. They find it grounded on a sandbank in the middle of the Mere, its ferryman dead and peaceful, with memory-eels circling. If they're brave, they dive to the drowned bell, where the Cantor of the Drowned Choir asks each of them one question: who are you grieving? This is the session about grief, water and honesty. It's the first time the danger is real.
+**What this session is about.** The dead of the Mute Mere sing every night, and the Old Shore sings back. Tonight the party learns why. Mother Sallow asks them to find the eastern-marsh ferry, missing a week. They find it grounded on a sandbank in the middle of the Mere, its ferryman dead and peaceful, with memory-eels circling. If they're brave, they dive to the drowned bell, where the Cantor of the Drowned Choir asks each of them one question: who are you grieving? It's the first session where the danger is real.
 
 **Your goals tonight:**
-- The Night Song lands as eerie and sad, not just scary.
+- The Night Song feels eerie and sad.
 - The party finds the ferry and fights or avoids the eels.
 - If they dive, the Cantor's question gets a real answer from at least one player.
 - They pick up a second clue about Tam Harrow's death.
@@ -203,7 +203,7 @@
 
 ### Running the fights (Session 2)
 
-All of these are written for four level-3 characters. Foresight shows the difficulty for your actual party. Water makes everything harder than its numbers: breath is the real clock.
+All of these are written for four level-3 characters. Foresight shows the difficulty for your actual party. Water makes these fights harder than their numbers suggest, so keep track of everyone's breath.
 
 #### Memory-eels at the sandbank
 

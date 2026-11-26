@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. You'll only run one of the endings below, and you already know which. Read that one twice and skim the rest. Nothing tonight is difficult; it's only big. Go at half your normal speed, and leave silences alone.*
+*Read this once the day before. You'll only run one of the endings below, and you already know which. Read that one twice and skim the rest. Nothing tonight is hard to run. Go at half your normal speed, and leave silences alone.*
 
 **Contents:** [Before you start](#before-you-start-session-27) · [Key people](#key-people-tonight-session-27) · [Opening recap](#opening-recap-session-27) · [Scene 1: Once more round](#scene-1-once-more-round) · [Scene 2: The Concord](#scene-2-the-concord) · [Scene 3: The Second Dawn](#scene-3-the-second-dawn) · [Scene 4: The Hush Unbound](#scene-4-the-hush-unbound) · [Scene 5: The first morning](#scene-5-the-first-morning) · [Fights](#running-the-fights-session-27) · [Pacing](#pacing-session-27) · [If you get stuck](#if-you-get-stuck-session-27) · [End of session](#end-of-session-27)
 
@@ -48,12 +48,12 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Oum** | The one who's dreaming | — | Everywhere, if it's woken | Curious | It can't be fooled | It likes them. It's always liked them. |
-| **The Hush** | The lullaby | — | In the bell | Ready | It can't be persuaded | It doesn't mind who sings it. |
-| **The Ringer** | One of them, or someone who's offered | — | At the notch | However they are | None needed | Ask the player. |
+| **Oum** | The one who's dreaming | None | Everywhere, if it's woken | Curious | It can't be fooled | It likes them. It's always liked them. |
+| **The Hush** | The lullaby | None | In the bell | Ready | It can't be persuaded | It doesn't mind who sings it. |
+| **The Ringer** | One of them, or someone who's offered | None | At the notch | However they are | None needed | Ask the player. |
 | **Maudrin Vesk** | If she's alive and here | Keeper of the Seventh (Maudrin Vesk) | By the wall | Finished fighting | DC 20 | Would do it, if anyone thought she deserved to. |
 | **Corin Aldeth** | If he's an ally | Corin Aldeth | By the notch | Calm | None needed | Came to terms with it on the stairs. |
-| **Ondra, the Cantor** | Far off, under the Mere | — | Not here | Singing | The verse | Has been holding the place in the music for somebody. |
+| **Ondra, the Cantor** | Far off, under the Mere | None | Not here | Singing | The verse | Has been holding the place in the music for somebody. |
 
 **Places at a glance:**
 - **The notch:** under the bell's lip. For the Concord.
@@ -66,7 +66,7 @@
 2. "The gods come back." (Nobody's ever met one. They've met bells.)
 3. "Everybody dies." (Not unless everybody at this table says so.)
 4. "It's all somebody's dream." (True. It doesn't make it less.)
-5. "They'll put up a statue." (Not in the Concord. That's the point.)
+5. "They'll put up a statue." (Not in the Concord.)
 6. "You'll wake up at home." (Nobody's ever tested it.)
 
 ### Opening recap (Session 27)
@@ -227,7 +227,7 @@
 
 > **SAY:** "That night, for the first time in weeks, you dream."
 
-Ask each player: **"What of?"** Ten words. This is often the best minute of the campaign.
+Ask each player: **"What of?"** Ten words.
 
 **The other three ways it can go:**
 - **[The Empty Choir](play:s27-empty-choir),** only because they all said they'd finished fighting. "The Hush falls quiet again, not because you saved it, but because the Hushmen have sealed the stairs. The places you changed still bear your mark. Elsewhere, the collectors return to their rounds." Then say what they changed that's still changed: the thaw, the storms, the quiet Sleepless. Dreams stay lost. Dawns and harvests run out when they run out. Ask if they're sure. A crew, the Choir or the Stilled would still come for them.
@@ -248,7 +248,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 
 ### Running the fights (Session 27)
 
-**There's one, and only if they're sealing the Key and Mirel never rang.** It's a minute long. They don't have to win it. They have to not stop.
+**There's one, and only if they're sealing the Key and Mirel never rang.** It's a minute long, and they only have to keep going.
 
 #### The sealing minute
 
@@ -263,7 +263,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 - **Who to worry about:** whoever's got the fewest Hit Points next to the sealer. Maximum Hit Points come back after a Long Rest; say so.
 - **When it ends:** ten counters. They go out like candles.
 - **Scale on the fly:** easier, the count carries on when someone else takes over. Harder, two of them were never afraid of anything until now.
-- **Non-lethal:** the Sleepless don't kill a sealer. They sit down on top of them and keep them company. It's worse.
+- **Non-lethal:** the Sleepless don't kill a sealer. They sit down on top of them and keep them company.
 
 #### What's left of the Court
 
@@ -286,14 +286,14 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 - **Where to break:** straight after the last note. Nobody'll want to talk for a bit anyway.
 - **Running long:** let it. Skip the verse; it's in Session 28.
 - **Running short:** start Session 28 tonight, with the ferry-dock.
-- **If you need to stop early:** stop on the last note. It's the end of something.
+- **If you need to stop early:** stop on the last note.
 
 ### If you get stuck (Session 27)
 
 **Three quick moves:**
 1. **Somebody's allowed to laugh.** Have Corin, or Ilam, or Linnet sneeze at the wrong moment.
 2. **The bell hums one person's name.** Just to see.
-3. **Ask, "What's your character's hand doing?"** It always works.
+3. **Ask, "What's your character's hand doing?"**
 
 **If they want a fifth ending:** check three things. Is the Key struck, sealed, seated, or theirs? Did anyone pay who didn't choose to? Is it more than they rang for? If it passes, let them have it.
 
@@ -301,7 +301,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 
 **If somebody wants Unmake and others don't:** it's Remake. They get to name the thing that survives first.
 
-**If the Ringer's player regrets it next week:** in the story, a Toll doesn't come back. At your table, people matter more than rules. Talk to them, and fix it together.
+**If the Ringer's player regrets it next week:** in the story, a Toll doesn't come back. At the table, talk to them and fix it together.
 
 **Names, if you need one** (cross one off when you use it): Juniper, Sorley, Brock, Yarrow.
 
@@ -320,7 +320,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 - **The world,** more or less.
 - **A name nobody knows,** and a feeling.
 - **Dreams.**
-- **Heroic Inspiration:** to the table. They can spend it on anything, at any time, in any game.
+- **Heroic Inspiration:** to the table. They can spend it any time, in any game.
 
 ## Table card
 

@@ -45,7 +45,7 @@
 |---|---|---|---|---|---|---|
 | **Ansel Quay** | Maudrin's steward | Commoner | Comes up the road on a mule | Ashamed | None needed | Has the routes of every column for thirty years in his head. |
 | **Corin Aldeth** | Bellwright | Corin Aldeth | Their fire, or a milestone | Depends | DC 15 if they fought him | If they let him, he'd pay it himself. |
-| **The Librarian** | A book that reads | — | The courier's hands | Glad | It trades | It's had Edda's page all along. It wanted to be asked. |
+| **The Librarian** | A book that reads | None | The courier's hands | Glad | It trades | It's had Edda's page all along. It wanted to be asked. |
 | **Thane Oru Kessa** | If he lives | Thane Oru Kessa | Wherever he's found | Hopeful | None needed | He's already half guessed about the Key. |
 | **Lady Isolde Drave** | Court envoy | Court Agent | A coach, with the blinds down | Careful | Truth, not a roll | Has the Frost Heart in a hatbox, if the Court took it. |
 | **Captain Rook** | If she won the duel | Captain Rook (Veteran) | With forty knights | Ready | None needed | Hasn't slept for three nights, and won't say so. |
@@ -290,7 +290,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 - **Where to break:** when Linnet says "several somebodies".
 - **Running long:** no ambush. They watch the column go by, and that's enough.
 - **Running short:** soup. Put two allies next to each other who've never met, and let the players listen. (Tolla and a Stilled. Rook and Isolde. Corin and the Librarian.)
-- **If you need to stop early:** stop with the barn full. It's a lovely place to stop.
+- **If you need to stop early:** stop with the barn full.
 
 ### If you get stuck (Session 22)
 
@@ -301,7 +301,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 
 **If they don't follow the lore:** say it in two lines. "The Seventh's a lullaby. The Key's the only thing that can play it, and it's always been the wrong hands."
 
-**If nobody's available:** it's fine. Four people at the foot of a hill's a good story too. Drop the Strike to its lighter size.
+**If nobody's available:** it's fine. Drop the Strike to its lighter size.
 
 **Names for knights, riders and Blanks** (cross one off when you use it): Ser Aldis, Merrow, Gorse, Thessaly, Corporal Sabel, the Blank they call Monday.
 

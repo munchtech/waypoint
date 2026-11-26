@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. A frozen bell at the top of two hundred feet of ice, a pack asleep at the bottom, and a price. It's the big night of Act III: the climb is the action, the ringing is the choice.*
+*Read this once the day before. A frozen bell at the top of two hundred feet of ice, a pack asleep at the bottom, and a price. This is the big night of Act III.*
 
 **Contents:** [Before you start](#before-you-start-session-14) · [Key people](#key-people-tonight-session-14) · [Opening recap](#opening-recap-session-14) · [Scene 1: The foot of the Spire](#scene-1-the-foot-of-the-spire) · [Scene 2: The climb](#scene-2-the-climb) · [Scene 3: The bell](#scene-3-the-bell) · [Scene 4: The thaw](#scene-4-the-thaw) · [Fights](#running-the-fights-session-14) · [Pacing](#pacing-session-14) · [If you get stuck](#if-you-get-stuck-session-14) · [End of session](#end-of-session-14)
 
@@ -26,7 +26,7 @@
 
 **Prepare:**
 - **Tokens or minis:** the four characters; seven Glass-Wolves; six Stilled; Yara; Imber.
-- **Maps:** draw the Spire from the side, as a tall triangle with a line every twenty feet and the stair on the north face. Mark where the six Stilled stand on it. It's all you need.
+- **Maps:** draw the Spire from the side, as a tall triangle with a line every twenty feet and the stair on the north face. Mark where the six Stilled stand on it.
 - **The memory.** Think about what you'd take from each character who might ring: one clear thing they've talked about at the table. Keep it kind, and make it matter. You say it after the thaw begins. Don't take the thing a player has asked you not to touch.
 - **Props:** a wine glass and a wet finger. One note, quietly, when they ring it.
 
@@ -159,7 +159,7 @@
 > **SAY (an example, for heavy):** "You're thinking about *(say who)*, because you often do when something is beautiful. And there's a gap. You know you had a mother. You know she had a kitchen. You can't see it."
 
 - Ask them to write down the belief, bond or fear that went with it, and what they'll say instead.
-- **If they want a private moment:** stop the game for a few minutes. It's a hard thing.
+- **If they want a private moment:** stop the game for a few minutes.
 
 **If they…**
 - **Look down:** the Stilled on the stair are moving, very slowly. They stop fighting the moment it rings.

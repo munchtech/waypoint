@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. It's a hundred steps and not much else, and it's the one people talk about afterwards. Go slowly. The memories they give up are the best writing anyone will do all campaign, and it won't be you that does it.*
+*Read this once the day before. It's a hundred steps and not much else. Go slowly. The players write the memories they give up, so leave them room.*
 
 **Contents:** [Before you start](#before-you-start-session-25) · [Key people](#key-people-tonight-session-25) · [Opening recap](#opening-recap-session-25) · [Scene 1: The top step](#scene-1-the-top-step) · [Scene 2: Twenty](#scene-2-twenty) · [Scene 3: Forty-one](#scene-3-forty-one) · [Scene 4: The landing](#scene-4-the-landing) · [Scene 5: The last step](#scene-5-the-last-step) · [Fights](#running-the-fights-session-25) · [Pacing](#pacing-session-25) · [If you get stuck](#if-you-get-stuck-session-25) · [End of session](#end-of-session-25)
 
@@ -21,7 +21,7 @@
 **Your goals tonight:**
 - Say the price again, all of it, at the first step.
 - Ask for each memory out loud or on paper. The player picks. Nobody hurries them.
-- Let friends say no. It's a good thing when they do.
+- Let friends say no.
 - Get whoever's going to the bottom, whole or lighter.
 - End on the question: **"What did the stairs take from you?"** Then stop.
 
@@ -45,13 +45,13 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **The Hush** | The lullaby, and what it's saying | — | In the steps | Asleep, nearly | It can't be persuaded | It's frightened. It's a song for someone else's baby. |
+| **The Hush** | The lullaby, and what it's saying | None | In the steps | Asleep, nearly | It can't be persuaded | It's frightened. It's a song for someone else's baby. |
 | **Ilam Bray** | If he's an ally | Commoner | The top | Not going | None needed | Wanted to be asked anyway. |
 | **Corin Aldeth** | If he's an ally | Corin Aldeth | Beside them | Going | None needed | Came as far as here once already, by himself, and turned round. |
 | **Maudrin Vesk** | If she's a witness | Chancellor Maudrin Vesk | Last in line | Quiet | None needed | She's never paid this. She's always sent someone. |
 | **Sergeant Minna Saul** | On the landing, if it's sealed | Hushman Sergeant | Step fifty | Frightened | DC 15, or the Key | Has already lost three, and one was her husband's name. |
 | **Linnet Pask** | The scout | Commoner | The top step | Theirs | None needed | Would go, if one of them told her to. Don't let them. |
-| **The voices** | Whoever was Tithed here | — | Every step | Talking | No | One of them's Jonah's mother. |
+| **The voices** | Whoever was Tithed here | None | Every step | Talking | No | One of them's Jonah's mother. |
 
 **Places at a glance:**
 - **The top step:** in the ring of stones. Daylight.
@@ -84,7 +84,7 @@
 
 > **SAY:** "Nineteen steps, free. Then one memory for every twenty. At the twentieth there's one save, and only one, ever. If it goes against you, you'll lose five, all told. If it goes your way, two. You choose them. They don't come back, not with any ending. You can turn round on any step. Coming up costs nothing."
 
-**What's really going on.** It isn't a punishment. The Seventh's what keeps the Dreamer asleep, and it's made of what people give it. The stairs are where it's fed.
+**What's really going on.** The Seventh's what keeps the Dreamer asleep, and it's made of what people give it. The stairs are where it's fed.
 
 **Then the friends.** [Let each one answer for themselves.](play:s25-allies-refuse) Go round, quickly.
 
@@ -296,7 +296,7 @@ Let each of them answer. It isn't a test. "That's all right," it says, to anythi
 
 ### End of session 25
 
-**The closing question:** "What did the stairs take from you?" Then: "Let's each say one thing we'll remember." (It lands differently tonight.)
+**The closing question:** "What did the stairs take from you?" Then: "Let's each say one thing we'll remember."
 
 **Record in Waypoint:**
 - **Plays that happened:** who walked, who climbed, who turned round; the landing; Jonah's mother.

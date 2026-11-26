@@ -85,7 +85,7 @@
 **Who they might meet:** a tall woman who can't stop apologising; a boy with a fishing rod; two brothers who want to know who won; a baker; a nun of the Ninefold (Brother Ewin's friend Sister Corrow); Joss Arrand with his bucket, if he was calmed in Session 11.
 
 **If they…**
-- **[Organise it:](play:s15-help-stilled)** Yara's camp as a hall, Wyn and Maren as guides, Kell's Crossing bread if Calla rang. It's the biggest thing a group can do here. It earns their trust.
+- **[Organise it:](play:s15-help-stilled)** Yara's camp as a hall, Wyn and Maren as guides, Kell's Crossing bread if Calla rang. It earns their trust.
 - **Are in a hurry:** Yara takes charge. "Coin and one promise. Come back."
 - **The child asks for her mother.** Let the table decide who tells her, and what. Don't rush. Her mother isn't among the Stilled. Her name was on a ribbon that Maren's family never found.
 - **[The Stilled remember them badly:](play:s15-win-back-the-stilled)** if trust is wary, a woman steps out of the winter: "You. You woke my husband with fire." Read it, and let them answer. Influence DC 17, with advantage if Maren or a Stilled they saved vouches.

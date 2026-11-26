@@ -216,7 +216,7 @@
    "title": "They find another way down",
    "style": "Exploration",
    "likelihood": "Possible",
-   "why": "v5 says a route that genuinely avoids the stairs avoids their price.",
+   "why": "v5 says a route that avoids the stairs entirely avoids their price.",
    "tells": "Players ask about the old foundry where the bells were cast, or prepare flight or Dimension Door.",
    "readAloud": "At the top of the Tor, under the ring of stones, the old casting-pit drops straight down into the dark. Warm air rises out of it, smelling of bronze.",
    "response": "The bells were cast at the summit and lowered to their halls; the casting chute still drops to the Hush chamber. It's a hard climb in the dark but costs no memories. Corin or the Notes can point it out. Flight or teleportation that reaches the chamber also works. Don't add a replacement punishment. Allies who cannot climb wait above.",

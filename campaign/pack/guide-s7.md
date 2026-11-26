@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. Tonight is a crowd, a line of Hushmen, and a family that doesn't know it's a family. The fight is optional; the reunion is the heart of it. A child is in danger tonight, so check your session-zero list before you start: Jonah is never harmed on-screen.*
+*Read this once the day before. Tonight is a crowd, a line of Hushmen, and a family that doesn't know it's a family. The fight is optional; the reunion is what matters. A child is in danger tonight, so check your session-zero list before you start: Jonah is never harmed on-screen.*
 
 **Contents:** [Before you start](#before-you-start-session-7) · [Key people](#key-people-tonight-session-7) · [Opening recap](#opening-recap-session-7) · [Scene 1: The Blanks](#scene-1-the-blanks-at-the-hall-of-tithes) · [Scene 2: Jonah and Ilam](#scene-2-jonah-and-ilam) · [Scene 3: A roof for the night](#scene-3-a-roof-for-the-night) · [Fights](#running-the-fights-session-7) · [Pacing](#pacing-session-7) · [If you get stuck](#if-you-get-stuck-session-7) · [End of session](#end-of-session-7)
 
@@ -96,7 +96,7 @@
 
 Read Ilam's box from the plan above, if the party is close enough to hear.
 
-**What's really going on.** Ilam carved the bird for his son. He was Tithed of the boy's name; Mara was Tithed of the boy himself. Jonah doesn't know either of them. Nothing magic fixes this tonight. Getting them in the same place does.
+**What's really going on.** Ilam carved the bird for his son. He was Tithed of the boy's name; Mara was Tithed of the boy himself. Jonah doesn't know either of them. No magic fixes this tonight; all the party can do is get them in the same place.
 
 **Jonah.** Sweet, very literal, repeats what others say. *Lines:* "It's a bird. I don't know where I got it." · "Are you a Hushman? You're crying." · "He said 'my son.' Who's his son?"
 

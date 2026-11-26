@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. One evening, two or three: your choice. There's nothing to beat any more. You're going to visit people. Pick the ones your table loves, give each a scene, and ask a question at the end. That's all an epilogue is.*
+*Read this once the day before. One evening, two or three: your choice. There's nothing to beat any more. You're going to visit people. Pick the ones your table loves, give each a scene, and ask a question at the end.*
 
 **Contents:** [Before you start](#before-you-start-session-28) · [Key people](#key-people-tonight-session-28) · [Opening recap](#opening-recap-session-28) · [Scene 1: The grey vault](#scene-1-the-grey-vault) · [Scene 2: The oldest dock](#scene-2-the-oldest-dock) · [Scene 3: The empty chair](#scene-3-the-empty-chair) · [Scene 4: A sail, and another](#scene-4-a-sail-and-another) · [Scene 5: The last round](#scene-5-the-last-round) · [Fights](#running-the-fights-session-28) · [Pacing](#pacing-session-28) · [If you get stuck](#if-you-get-stuck-session-28) · [End of session](#end-of-session-28)
 
@@ -43,7 +43,7 @@
 - **[Jars](play:s28-return-jars):** owners who open their own get their memories back, whole. Nobody can open one for somebody else.
 - **Tolls don't come back.** Nor do the stairs. Not from jars, not by Wish, not in any ending.
 - **[A smashed jar](play:s28-jars-destroyed)** is gone; only a Remake could have mended it.
-- **The Great Toll:** nobody remembers the name. Not one person. Don't let somebody half-remember it to be nice. It's the whole point.
+- **The Great Toll:** nobody remembers the name. Not one person. Don't let somebody half-remember it to be nice.
 - **Heroic Inspiration:** anybody who's got one, spend it now. They may add one true thing to the world.
 
 ### Key people tonight (Session 28)
@@ -59,7 +59,7 @@
 | **Tristan Vesk** | Would like the chair | Commoner | Near the chair | Very polite | DC 15 | Keeps a list of everybody who was kind to him. It's short. |
 | **Thane Oru Kessa** | If he's alive | Thane Oru Kessa | The steps, in the rain | Cheerful | None needed | He knows which storm. |
 | **Brannagh Wick** | Pilot-Mistress | Commoner | The Pilots' Hall | Counting sails | None needed | For the first time in her life, she's lost count. |
-| **The Librarian** | A book | — | Wherever it's open | Finishing | No | It wants to be read to. |
+| **The Librarian** | A book | None | Wherever it's open | Finishing | No | It wants to be read to. |
 
 **Places at a glance:**
 - **The grey vault,** under Hallowmere: shelves and shelves of small jars, and the door propped open with a chair.
@@ -196,7 +196,7 @@
 **Ask each player:** "What does your character make of it?" A Stormborn going home. Somebody who's never seen a wave. A Lander who's decided to stay.
 
 **If they…**
-- **Go and look:** it's just the sea. That's extraordinary.
+- **Go and look:** it's just the sea.
 - **Meet Master Venn:** he's got nothing left to sell; people have stopped. He's taken up clocks. His own's ticking. "Friend! Listen!"
 - **Go to [Corin's workshop](play:s28-corin-epilogue),** on the way: "The workshop is quiet." He's asleep in a chair. Peal's on his feet. Or there's nobody, and all the bells on the wall ring a bit when you come in, and nobody knows who hung them.
 - **Meet Imber:** he's preaching to six people and a dog in a wood that's dripping. He gets to the end. "That's all," he says, astonished. "That's the end of it."
@@ -233,7 +233,7 @@
 
 **If somebody became the voice:** in the Epilogue round their player goes last. Everyone else says what they're doing the first time they hear a bell, a year on. Then that player hums. It's their turn.
 
-**Read the Tolls aloud,** in order, in their words. It's in the ledger. Pause after each. Don't hurry because it's long. It's supposed to be long.
+**Read the Tolls aloud,** in order, in their words. It's in the ledger. Pause after each. Don't hurry because it's long.
 
 **What's really going on.** You've been sitting round a table with these people for a year. That's the thing that survived.
 
@@ -273,9 +273,9 @@
 | 2:30 to 2:45 | The closing question |
 
 - **Where to break:** between the two people, while everybody's still smiling.
-- **Running long:** "And what happened to…?" Answer in a sentence. People love a sentence.
+- **Running long:** "And what happened to…?" Answer in a sentence.
 - **Running short:** ask who they haven't seen. There's always somebody.
-- **If you need to stop early:** ask the closing question anyway. It always works.
+- **If you need to stop early:** ask the closing question anyway.
 
 ### If you get stuck (Session 28)
 

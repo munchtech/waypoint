@@ -6,7 +6,7 @@ Before anyone strikes a bell, warn the Ringer of two things, the **kind** and th
 
 > **SAY:** "Ringing [bell] will take [its kind] from you, and it will be [heavy / grievous / ruinous]. You won't know exactly what until it's paid, and it can never be undone or bought back. Do you ring?"
 
-- **Never say exactly what will be lost.** The not-knowing is the point.
+- **Never say exactly what will be lost.**
 - **Yes or no, nothing in between.** If the player says no, the bell does not ring and nothing is taken.
 - **You choose the exact loss, after the bell rings,** from what the table already knows of the character: their session-zero answers (what they lost, who they know), their backstory and what has happened in play. Never invent a new backstory loss, and never touch anything on the Off-limits list. The player then plays the loss and writes one line about it on the Toll Tracker.
 - **Who may ring:** any willing adult character who is present. Children never ring (Ila may stand beside the Ringer). An absent player's character never pays. The dead pay nothing.

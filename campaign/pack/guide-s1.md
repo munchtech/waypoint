@@ -14,12 +14,12 @@
 - Every player gets one moment to show who their character is.
 - The players meet Ila, Mother Sallow and Quill, and care about at least one of them.
 - The players learn three facts: the Heart belongs to a drowned bell, the Court wants it, and memory is money here.
-- End on a question, not a resolution: "Who was singing?"
+- End on the open question: "Who was singing?"
 
 **Prepare:**
 - **Tokens or minis:** the four characters; Ila; Mother Sallow; Tobias Quill; four Hushmen (one walks with Quill, three wait at the lane's end); a Hushman Sergeant for the night raid. Optional: Brannagh Wick, Sela Maunt, Master Venn, Sister Aurelie, a Harper with a lute.
 - **Maps:** sketch each place on paper, a battle mat or in Foundry. The old dock: a long pier, net-racks, reed roofs behind. Mother Sallow's hut: one round room, a table, a stove. For the raid, sketch the Harrow house: one room, one door, one shuttered window over the water, net-racks outside.
-- **The Heart prop:** something heavy and roughly pear-shaped wrapped in an old cloth: a brass doorknob, a big smooth stone, a candle in a jar. Put your phone inside the cloth on vibrate and call it from the table, or simply hum one low note when Ila holds it. Stop humming when she puts it down. Players remember this.
+- **The Heart prop:** something heavy and roughly pear-shaped wrapped in an old cloth: a brass doorknob, a big smooth stone, a candle in a jar. Put your phone inside the cloth on vibrate and call it from the table, or simply hum one low note when Ila holds it. Stop humming when she puts it down.
 - **The response hymn:** two lines you can speak or sing. Use this, or make up your own: *Call:* "Who walks the water?" *Answer:* "We remember you."
 - **Quill's question,** written on a card so you don't forget it: "Where did the child's coat go?"
 - **Names:** have the list at the end of this guide open.
@@ -188,7 +188,7 @@ Both fights are written for four level-3 characters. Foresight shows the 2024 di
 - **Round 2 onward:** two Hushmen stand shoulder to shoulder in the narrowest gap between the houses (they get Advantage from **Pack Tactics** when an ally is next to their target). Two go round through the net-racks to flank. They use the **Silence-Glove Strike** (+4 to hit, 1d6 + 2 bludgeoning plus 1d4 necrotic) and keep trying Arrest on the Heart-holder. Quill hangs back and fires his heavy crossbow only if nobody is watching.
 - **Describe hits:** "The glove lands with no sound at all, and the cold goes into your arm like river water." **Misses:** "His fist goes past your ear and you hear nothing, not even the air." Silence is the creepy part; lean on it.
 - **Retreat:** a Hushman retreats when Bloodied unless a Sergeant is watching. Quill backs off toward the Landing House as soon as his first guard is Bloodied, or as soon as the ferry-folk come out of their doors (two rounds of noise). They don't follow anyone onto the water.
-- **Scale on the fly:** if the party is struggling by round 2, the last two Hushmen arrive late or not at all ("They're stuck at the lane, shouting"). If the party is crushing it, a fifth Hushman joins from the Quays. If someone drops Quill with Hold Person in round 1, let it work: that's a great moment. Note the caster's name will be in his report.
+- **Scale on the fly:** if the party is struggling by round 2, the last two Hushmen arrive late or not at all ("They're stuck at the lane, shouting"). If the party is crushing it, a fifth Hushman joins from the Quays. If someone drops Quill with Hold Person in round 1, let it work. Note the caster's name will be in his report.
 - **Non-lethal outcomes:** a character at 0 HP is bound and dragged to the handcart, not killed; Quill offers them back for the Heart. A Hushman reduced to 0 HP by a melee attack can be knocked out instead of killed (the attacker chooses). Killing Quill is a big choice: ask once, plainly, "You mean to kill him?" If yes, the Old Shore is closed by Hushmen within the hour and the Court sends a Sergeant with a warrant.
 
 **The night raid** (a Hushman Sergeant and three Hushmen).

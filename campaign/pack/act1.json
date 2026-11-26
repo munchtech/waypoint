@@ -484,7 +484,7 @@
    "rules": "Detect Magic (ritual) or Identify. Study action, Intelligence (Arcana or Religion) DC 14, for the same answer without a spell. Locate Object on the Tongue gives a direction by its hum (see any-l3-locate-and-scry).",
    "consequence": "The party knows what it is and where it belongs.",
    "later": "S2: they may think to bring it on the dive. S3: returning it to the Mere becomes an informed choice.",
-   "fallback": "If no one has the spell, Mother Sallow simply tells them.",
+   "fallback": "If no one has the spell, Mother Sallow tells them.",
    "keywords": "detect magic, identify, arcana, study, what is it, magic, aura, spell, ritual",
    "when": [
     {
@@ -943,7 +943,7 @@
    "tells": "Players ask Mother Sallow about the dead ferryman, or ask the Tidewarden who he was.",
    "readAloud": "Mother Sallow turns the ledger to the ferry roll and taps one line with her pipe. \"Abel Tarn. Rowed the eastern ferry since before I was born. Funny thing. Nobody remembers him getting old.\"",
    "response": "The ledger names the eastern ferryman as Old Abel Tarn. If the party met the hooded ferryman, they can put it together, and Sallow nods: 'Then he's rowing the dead now. Good. Somebody should.' The Tidewarden confirms it if asked. Tarn's body goes to the ferry-folk cold-house and is sung for that night.",
-   "rules": "No check for the name. A Study check, Intelligence (Religion) DC 12, or the players simply guessing, connects him to the Tidewarden; if nobody does, the Tidewarden says it himself at the ferry-stair.",
+   "rules": "No check for the name. A Study check, Intelligence (Religion) DC 12, or the players guessing, connects him to the Tidewarden; if nobody does, the Tidewarden says it himself at the ferry-stair.",
    "consequence": "The party knows the dead ferryman was the Tidewarden's old body, and that the Mere's spirits were once Pellmoor's own people.",
    "later": "",
    "fallback": "If nobody asks, Mother Sallow mentions it while she shows them where the page was torn out.",
@@ -1934,7 +1934,7 @@
    "tells": "They treat the dead ferryman with respect, ask who he was, or keep watching the dripping oar.",
    "readAloud": "There's someone standing in the ferry's stern who wasn't there a moment ago: hooded, tall, holding the same long oar as the dead man. \"You found him. Will you carry him home? I would, but I carry others now.\"",
    "response": "This is the Tidewarden (H-10). He never lies and answers one question truly, in a riddle: about Tam, 'He came looking for a road to the bell, and someone took the road out of his head'; about the body, 'He was me. I set him down when I took up the oar.' Then he asks one question back: 'Will the Tongue come home?' Any honest answer will do. For a mote freely given, he offers passage to the belfry inside a pocket of air, now or in S3.",
-   "rules": "No check. A mote paid to him is chosen by the player and recorded in the Memory ledger as a trade. He uses the Specter stat block but does not fight; attacked, he is simply gone.",
+   "rules": "No check. A mote paid to him is chosen by the player and recorded in the Memory ledger as a trade. He uses the Specter stat block but does not fight; attacked, he is gone.",
    "consequence": "The party has met the Tidewarden and may hold his offer of safe passage to the bell.",
    "later": "S3: the Tidewarden waits at the ferry-stair and holds the air pocket for anyone he met kindly (s03-return-tongue). S3: he confirms who was on the ferry (s03-who-was-on-the-ferry).",
    "fallback": "If they attack or ignore him, he is gone between one drip of the oar and the next, and waits at the ferry-stair in S3 anyway.",

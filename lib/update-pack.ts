@@ -66,7 +66,7 @@ export const updatePackSchema = z.object({
       z.object({
         id: z.string().max(120),
         summary: z.string().max(2000).optional(),
-        edits: z.array(edit).max(40).optional(),
+        edits: z.array(edit).max(80).optional(),
         plays: z.array(playSchema).max(40).optional(),
         retire: z.array(z.string().max(120)).max(40).optional(),
       }),

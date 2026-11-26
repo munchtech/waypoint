@@ -15,7 +15,7 @@
 - **Corin:** if he's still **unmet**, he finds them tonight, in Scene 4. If he's an ally or refused, skip him.
 - **Mirel** (the Tor only): if she's rung, nothing walks at night.
 
-**What this session is about.** They've done this once. They know what a Heart costs now. What'll they pay when they can see the bill coming?
+**What this session is about.** They've done this once, and they know what a Heart costs now. Tonight they choose what to pay with the bill in sight.
 
 **Your goals tonight:**
 - Get them across the plain, and show them what the first ringing changed.
