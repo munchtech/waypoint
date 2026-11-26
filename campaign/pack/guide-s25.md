@@ -50,7 +50,7 @@
 | **Corin Aldeth** | If he's an ally | Corin Aldeth | Beside them | Going | None needed | Came as far as here once already, by himself, and turned round. |
 | **Maudrin Vesk** | If she's a witness | Chancellor Maudrin Vesk | Last in line | Quiet | None needed | She's never paid this. She's always sent someone. |
 | **Sergeant Minna Saul** | On the landing, if it's sealed | Hushman Sergeant | Step fifty | Frightened | DC 15, or the Key | Has already lost three, and one was her husband's name. |
-| **Sela Pask** | The scout | Commoner | The top step | Theirs | None needed | Would go, if one of them told her to. Don't let them. |
+| **Linnet Pask** | The scout | Commoner | The top step | Theirs | None needed | Would go, if one of them told her to. Don't let them. |
 | **The voices** | Whoever was Tithed here | — | Every step | Talking | No | One of them's Jonah's mother. |
 
 **Places at a glance:**
@@ -70,7 +70,7 @@
 
 ### Opening recap (Session 25)
 
-> **SAY:** "You went up the Tor in three bends, and by the third you were walking in step. Maudrin Vesk asked you what you'd have done. *(What you said. What happened to her.)* And then there was a hole in the ground with steps in it, worn down in the middle, and somebody told you what they cost. *(Who said they'd go?)* Sela's moved over. You've got one foot on the top step. It's warm."
+> **SAY:** "You went up the Tor in three bends, and by the third you were walking in step. Maudrin Vesk asked you what you'd have done. *(What you said. What happened to her.)* And then there was a hole in the ground with steps in it, worn down in the middle, and somebody told you what they cost. *(Who said they'd go?)* Linnet's moved over. You've got one foot on the top step. It's warm."
 
 - **Then hand it over:** "What's a memory your character would never give up? Don't tell me why." Write it on a card. **Nobody's going to ask for that one.** Say so.
 
@@ -94,9 +94,9 @@
 - **Rook:** "We'll hold the top. That's an order I can give."
 - **Corin:** yes. He won't say why he's shaking.
 - **Kessa:** "I've a wife's laugh and a horse's name, and I'm keeping both. Shout, and I'll hear."
-- **Yenna:** yes, if her father's lamp can stay with Sela.
+- **Yenna:** yes, if her father's lamp can stay with Linnet.
 - **The Stilled:** they can't bend their knees.
-- **Sela:** "I could. If you want." Let a player answer her.
+- **Linnet:** "I could. If you want." Let a player answer her.
 
 **If they…**
 - **[Turn back:](play:s25-turn-back)** they can. No penalty.
@@ -321,7 +321,7 @@ Let each of them answer. It isn't a test. "That's all right," it says, to anythi
 | **Ilam** | Few words | To keep what he's got | "I can't lose him again." |
 | **Corin** | Humming; shaking | To get to the bottom | "I came as far as this once." |
 | **Minna Saul** | Touches her ring | Her husband's name (Emmot) | "We're to ask you to go back." |
-| **Sela** | Hoarse; on the top step | To be told to stay | "I could. If you want." |
+| **Linnet** | Hoarse; on the top step | To be told to stay | "I could. If you want." |
 
 **Say the price in full at step one:** nineteen free; one memory per twenty; **one Wisdom save DC 13 at step 20, once ever: two or five;** turn back any time; up is free. Pit: three Athletics DC 15, slips 2d6, no other price. Flying and a seen teleport are free. Absent players and children never pay.
 

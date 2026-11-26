@@ -2,6 +2,7 @@ import { createElement, Fragment, useId, useMemo, type ReactNode } from 'react';
 import MarkdownIt from 'markdown-it';
 import { CircleHelp } from 'lucide-react';
 import { useCreatureOpener, useGo, useMentionRenderer } from './campaign-links';
+import { cellCreatures } from '../lib/combat';
 type Token = ReturnType<typeof markdown.parse>[number];
 import { safeWebLink } from '../lib/safe-web-link';
 import { goPlaces, isGoPlace, type GoPlace } from '../lib/go-links';
@@ -62,11 +63,8 @@ function HeadNote({ label, note }: { label: string; note: string }) {
 type Marks = { note?: string; creature?: boolean; creatureLead?: boolean };
 // A "Stat block" cell ("Noble, two Toughs", "Hushman Sergeant"): each creature name opens its stat block.
 function creatureCell(text: string, open: (name: string) => void): ReactNode[] {
-  return text.split(/(,\s*|\s+\+\s+|\s+and\s+|;\s*)/).map((part, i) => {
-    const bare = part.replace(/\(.*?\)/g, '').trim(),
-      counted = bare.match(/^(?:a|an|one|two|three|four|five|six|\d+)\s+(.+)$/i),
-      name = counted ? counted[1].replace(/(?<=[a-z])s$/, '') : bare;
-    return i % 2 === 0 && /^\p{Lu}[\p{L}' -]{2,}$/u.test(name) ? (
+  return cellCreatures(text).map(({ part, name }, i) =>
+    name ? (
       <button
         type="button"
         key={i}
@@ -78,8 +76,8 @@ function creatureCell(text: string, open: (name: string) => void): ReactNode[] {
       </button>
     ) : (
       part
-    );
-  });
+    ),
+  );
 }
 function plain(tokens: Token[]): string {
   return tokens

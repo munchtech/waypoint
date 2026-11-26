@@ -45,7 +45,7 @@
 | **Sergeant Ivo Quade** | His second | Hushman Sergeant | At his shoulder | By the book | DC 15 | He's started humming at night. He thinks nobody's heard. |
 | **Mother Lumen** | Leader of the Hush Cult | Hush Cult Leader | The Hall, or the circle | Weeping | None needed | She hasn't dreamed for eleven years. She will tonight. |
 | **Brother Lull** | Tucks them in | Hush Cultist | The rows, with a lamp | Beside himself | None needed | He's got a list of every name, and where they came from. |
-| **Wat and Pip Furrow** | Waiting at bed two hundred and twelve | Hush Cultist; Pip has no stats | The far rows | Hopeful | None needed | Pip's brought her shoes. |
+| **Wat and Pip Furrow** | Waiting at bed two hundred and twelve | Hush Cultist (Wat); no stats (Pip) | The far rows | Hopeful | None needed | Pip's brought her shoes. |
 | **Page two hundred and six** | The courier, if it's still here | Commoner | By the central bed | Patient | It trades | It'd like to hear the bell before it goes back. |
 
 **Places at a glance:**

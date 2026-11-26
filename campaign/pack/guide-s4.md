@@ -50,7 +50,7 @@
 | **Lady Isolde Drave** | Hostess of the masque; sells information | Spy (Cunning Action, three hidden daggers) | The masque, glass in hand | Indifferent; clever talk makes her Friendly | DC 15 | She sells Tithed memories to the Ironhorn Compact. Her son's safety is the only thing she'd trade the Court for. |
 | **Brother Eld** | Now a Court chaplain, if he fled here | Priest Acolyte | The masque, by the wall | Friendly if forgiven; frightened and Hostile if exposed | DC 15 | Scared people tell Haldric everything. A forgiven Eld tells the party instead. |
 | **Ser Haldric Mose** | Senior knight of the Dawn Order; secretly the Court's | Ser Haldric Mose (Knight) | Maudrin's shadow | Courteous | DC 15 | He takes Maudrin's orders. His silence-stone shield stops the first spell aimed only at him each day. |
-| **Chancellor Maudrin Vesk** | The Quiet Chancellor | Maudrin Vesk | Arrives late | Warm, patient | DC 17 (Intelligence 17) | She has read Edda Thorne's diary and knows the Key, not the bells, caused the Quiet Night. Mention a key and she goes still. |
+| **Chancellor Maudrin Vesk** | The Quiet Chancellor | Chancellor Maudrin Vesk | Arrives late | Warm, patient | DC 17 (Intelligence 17) | She has read Edda Thorne's diary and knows the Key, not the bells, caused the Quiet Night. Mention a key and she goes still. |
 | **Captain Dessa Rook** | Captain of the Dawn Order | Captain Rook (Veteran) | Not tonight, unless they go to her | Friendly to anyone who protects the innocent | DC 15 | She's sure Haldric is taking Tithes and needs proof. |
 | **Sister Aurelie** | Lathander's priestess, if she came | Priest | At the party's side, or under arrest | As Act I left her | DC 15 | The Court refused her writ four times. Caught without one, she's arrested. |
 

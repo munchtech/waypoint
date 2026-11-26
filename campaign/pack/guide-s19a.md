@@ -44,7 +44,7 @@
 | **Thane Oru Kessa** | Leader of the Ironhorn | Thane Oru Kessa | The lip of the shaft, or the Hall | Watching them, not the bell | He gave his word | He doesn't expect them to bring it back. He's decided not to be angry. |
 | **Yenna Garrow** | His captain | Ironhorn Rider | Beside him; later, on the ridge | Anxious | None needed | If he dies, they'll ask her to lead, and she'll say yes. |
 | **Warden Ostrel** | Commands the strike force | Hushman Warden | The Brass Road | Polite | DC 16, and only for a truce to carry wounded | His orders are the Heart. They don't mention the people. |
-| **Dame Ines Harrow** | Dawn Order knight, if Haldric won | Knight | His left hand | Unhappy | DC 14 | She gave Haldric her word. She's starting to think it was the wrong one. |
+| **Dame Ines Corbel** | Dawn Order knight, if Haldric won | Knight | His left hand | Unhappy | DC 14 | She gave Haldric her word. She's starting to think it was the wrong one. |
 | **Old Garrow** | The foreman's ghost | Specter, but he rarely fights | In the lamp, if they still have it | Excited | None needed | He's waited four hundred years to hear this bell. |
 | **The courier, Tamsin Reed** | From Pellmoor | Commoner | The road, later | Exhausted | None needed | She's seen the new flags, and one of them frightened her. |
 

@@ -64,7 +64,7 @@
 
 ### Opening recap (Session 16B)
 
-> **SAY:** "You came home through the Seam with *(what they brought back, or who)*. Behind you there's a city that's been quiet for a long time. Ahead of you the road splits: east, where the sky flickers, and north, where the land gets very flat and there's one hill on it. You chose the hill. It's four days. On the second day, everyone started yawning."
+> **SAY:** "You came south out of Glassreach with *(what they brought back, or who)*, and the thaw running in every ditch behind you. Then the road split: round the foothills, where the sky flickers, or straight out onto the plain, where the land gets very flat and there's one hill on it. You chose the hill. It's four days. On the second day, everyone started yawning."
 
 - **Then hand it over:** "Who's sleeping badly, and how do the others know?" One answer each. It's all ammunition; write it down.
 

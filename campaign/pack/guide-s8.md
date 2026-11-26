@@ -43,8 +43,8 @@
 | **Edrin Moss** | A Glassreach trapper; the courier | Scout | The inn steps, breathless | Indifferent; Friendly if paid or warmed up | DC 15 | Wyn Talla paid him: an old woman at the forest's edge, beside Yara's camp, whose family has watched the glass for four hundred years. A voice in the glass told her what to write. |
 | **Lady Isolde Drave** | The Court's hostess; Maudrin's messenger | Spy | Her carriage, outside the inn | Indifferent; Friendly to clever people | DC 15 | She sells Tithed memories to the Ironhorn Compact, and she's going north after them within a day. She'd trade the Court for her son's safety. |
 | **Isolde's man** | A Court agent | Court agent (Spy) | The alley | Hostile | None tonight | He has orders to take the letter, not the courier's life. |
-| **Lysse Carrow** | The scholar | Scholar (Commoner) | The Archive | Friendly | DC 15 | She can find I.V. in the records, in an hour, with luck. |
-| **Maudrin Vesk** | Present only by message | Maudrin Vesk | The white palace | Courteous | DC 17 | The Glass Sexton is her family. She isn't sorry. |
+| **Lysse Carrow** | The scholar | Commoner (a scholar) | The Archive | Friendly | DC 15 | She can find I.V. in the records, in an hour, with luck. |
+| **Maudrin Vesk** | Present only by message | Chancellor Maudrin Vesk | The white palace | Courteous | DC 17 | The Glass Sexton is her family. She isn't sorry. |
 
 **Places at a glance:**
 - **The party's inn:** where the courier arrives.

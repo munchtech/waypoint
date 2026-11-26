@@ -62,7 +62,11 @@ const S9='sb-3b8d18ebd647c28a',S14='sb-7b8acacf7aaa51b8',S19A='sb-ad6ec717a7e069
 // Bring it back lines, Where to break and the table card). Each goes in whole after the session's end line. When one is reworded,
 // keep this text as guide-sN-7.9.md and chain the change, as links() does for Act I.
 const S4='sb-0408eb3a9ef383eb',S5='sb-879a0d8936c67231',S6='sb-173cd869f38cc637',S7='sb-159e9351d101d536',S8='sb-e6aca23e4a267d72';
-const act2=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'.md'),unless:'## Running this session (new DM guide)',guide:true});
+// Revision 7.16 rewords lines of later guides (stat block cells that open nothing, the scout and the knight renamed, the hand-offs);
+// each of those guides as first installed is kept as guide-sN-<rev>.md, and the edits carry it to the current text.
+const guideRevs={4:'7.9',5:'7.9',8:'7.9',10:'7.13',11:'7.13',12:'7.13',13:'7.13','16b':'7.14','18a':'7.14','19a':'7.14','19b':'7.14',20:'7.15',21:'7.15',22:'7.15',23:'7.15',24:'7.15',25:'7.15',26:'7.15',27:'7.15'};
+const act2=(n,find)=>{const rev=guideRevs[n],file='guide-s'+n+'.md';
+ return [{find,replace:find+'\n\n'+read(rev?'guide-s'+n+'-'+rev+'.md':file),unless:'## Running this session (new DM guide)',guide:true},...(rev?chainEdits('guide-s'+n,versions(file,[rev,''])):[])]};
 // Revision 7.10: the plans now match the play cards (vault lock 17, Tessa's forged order 16, Vaer theft 17) and Vaer's dawn lasts a year.
 const s5Lock={find:"- Entry requires a DC 15 Thieves' Tools check, or a bribe",replace:"- Entry requires a DC 17 Thieves' Tools check, or a bribe"};
 const s6Tessa={find:'A forged transfer order (DC 14 Deception)',replace:'A forged transfer order (DC 16 Deception)'};
@@ -71,7 +75,7 @@ const s9Dawn={find:'- Ringing Vaer lifts the Long Dusk over Hallowmere for one d
 const planFixes={[S5]:[s5Lock],[S6]:[s6Tessa]};
 const act2Guides=[[S4,4,'**Session 4 end:** End on the question: "Who in this city can you trust?"'],[S5,5,'**Session 5 end:** End on the question: "What did the Court take from the diary?"'],
  [S6,6,'**Session 6 end:** End on the question: "What will the defeated side do next?"'],[S7,7,'**Session 7 end:** End on an unresolved question: "Where can this family be safe?"'],
- [S8,8,'**Session 8 end:** End on the question: "What does I.V. want from you?"']].map(([id,n,find])=>({id,edits:[...(planFixes[id]||[]),act2(n,find)]}));
+ [S8,8,'**Session 8 end:** End on the question: "What does I.V. want from you?"']].map(([id,n,find])=>({id,edits:[...(planFixes[id]||[]),...act2(n,find)]}));
 // Revision 7.13: Act III (Sessions 10 to 15) gets the same guide, and its plans now match the play cards: Extreme Cold, the ambush's
 // five and five, the Sexton's CR 7 and hit points, and Isolde's escort.
 const S10='sb-578cbd5020d97b1f',S11='sb-0c7fc8fe12e71ad5',S12='sb-8a9134f39dcce6b4',S13='sb-f40bf272eb1b252f',S15='sb-897e70317077e42d';
@@ -83,7 +87,7 @@ const s15Escort={find:'She has silence-stone gloves and two Hushmen.',replace:'S
 const act3Fixes={[S10]:[s10Cold],[S11]:[s11Ambush],[S13]:[s13Sexton],[S15]:[s15Escort]};
 const act3Guides=[[S10,10,'**Session 10 end:** End on the question: "What is the glass hiding?"'],[S11,11,'**Session 11 end:** End on the question: "What did you see in the glass?"'],
  [S12,12,'**Session 12 end:** End on the question: "Will you listen to him?"'],[S13,13,`**Session 13 end:** The Sexton says: "Don't ring the Frost Spire without the Tongue. The winter will come back all at once."`],
- [S15,15,'**Transition to Act IV.** The party must now choose a branch. Brassfall lies to the east and Vael Tor at the center of the plain, and both bells are required for the Concord.']].map(([id,n,find])=>({id,edits:[...(act3Fixes[id]||[]),act2(n,find)]}));
+ [S15,15,'**Transition to Act IV.** The party must now choose a branch. Brassfall lies to the east and Vael Tor at the center of the plain, and both bells are required for the Concord.']].map(([id,n,find])=>({id,edits:[...(act3Fixes[id]||[]),...act2(n,find)]}));
 // Revision 7.14: Act IV, Sessions 16 to 19 on both roads, gets the same guide. Its plans now match the play cards: how many of each foe,
 // Yenna's favor, the Concord and its price, and what the shrine stair takes.
 const S16A='sb-65a7d51b78a8d14d',S16B='sb-4a1554713c1ac7c1',S17A='sb-3b3f7af5135fd7d2',S17B='sb-93be53f2a6747fe1',S18A='sb-42bb15639f8889ad',S18B='sb-f0b728a69d395cb2';
@@ -109,7 +113,7 @@ const act4Guides=[[S16A,'16a',[s16aGolems],s16aGolems.replace],
  [S18A,'18a',[s18aConcord,s18aPrice,s18aHounds],s18aHounds.replace],
  [S18B,'18b',[s18bStair,s18bCorin],'My grandmother rang one. Let me help you do it right."'],
  [S19A,'19a',[s19aToll],'- The Court sends a strike force of Hushmen and Dawn Order knights to take the Thrane Tongue.'],
- [S19B,'19b',[s19bToll],'- The Court sends Hushmen to the Tor to investigate.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,act2(n,find)]}));
+ [S19B,'19b',[s19bToll],'- The Court sends Hushmen to the Tor to investigate.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,...act2(n,find)]}));
 // Revision 7.15: the finale and the aftermath, Sessions 20 to 30, get the same guide (Sessions 28 to 30 share one). The plans of
 // Sessions 23 to 25 now match the play cards: who comes to the Strike, Maudrin at the stones, and what the long stair takes.
 const S20='sb-5a3ec12d1d59e95c',S21='sb-24c29d78b60ca13f',S22='sb-742e25b3e3af8fbf',S23='sb-007cc9c6ed7fecff',S24='sb-dce15a8ce35d16ab',S25='sb-8272ccffe0002037',S26='sb-2fce596a41a06436',S27='sb-b2b43775bb66b9c5';
@@ -129,7 +133,7 @@ const finaleGuides=[[S20,20,[],`**If the party has rung both bells:** The Court'
  [S24,24,[s24Seal,s24Maudrin],s24Maudrin.replace],
  [S25,25,[s25Stair],'Flight or another route that genuinely avoids the stairs avoids this price; do not add a replacement punishment.'],
  [S26,26,[],'- The party chooses, and the endings open. See Session 27.'],
- [S27,27,[],'Oum sleeps on, and the world remains incomplete.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,act2(n,find)]}));
+ [S27,27,[],'Oum sleeps on, and the world remains incomplete.']].map(([id,n,fixes,find])=>({id,edits:[...fixes,...act2(n,find)]}));
 const s14Guide=act2(14,'**Session 14 end:** End on the question: "What did the Frost Spire cost the thaw?"');
 const s9Guide=act2(9,'**Transition to Act III.** The party heads for Glassreach with whatever they took from Hallowmere: a diary, a Tongue, a jar, a wooden bird, or a Court seal.');
 // Revision 7.4: a one-page table card after each guide (Waypoint prints it from the session notes).
@@ -446,7 +450,7 @@ If they seek the edge of Corvane rather than another country, use the Edge of th
 
 // The guides go last in each list: they anchor on text the earlier edits leave behind.
 const epilogueLedger={find:'Foresight → Party & ledger → Memory ledger lists every Toll in order',replace:'the [Memory ledger](go:memory-ledger) (Campaign → Party & preferences) lists every Toll in order',guide:true};
-const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger,act2(28,'and the roster keeps the session-zero answers.')]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,s9Guide]},{id:S14,edits:[s14Toll,s14Guide]},...act3Guides,...act4Guides,...finaleGuides,{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
+const sessions=[{id:AFTER,edits:[epilogue,epilogueLedger,...act2(28,'and the roster keeps the session-zero answers.')]},{id:S9,edits:[s9Vaer,s9Calla,s9Theft,s9Dawn,...s9Guide]},{id:S14,edits:[s14Toll,...s14Guide]},...act3Guides,...act4Guides,...finaleGuides,{id:S1,edits:[s1Opening,s1Do,s1Quill,s1QuillSay,s1Port,s1Patrol,s1Guide,...links(1),...card(1),people(1,'### Scene 1: The old dock'),...s1Flow],summary:'A port of forty masts on a drowned town, a girl on the oldest dock, and a bronze tongue that hums.'},{id:S2,edits:[s2Ferry,s2Dive,s2Hadrik,s2Sneak,s2Eels,s2Singers,s2Guide,...links(2),...card(2),people(2,'### If Ila was taken: the Mere road cart'),recap(2,'### If Ila was taken: the Mere road cart'),...s2Flow],summary:'The Night Song, a missing ferry on a sandbank, memory-eels, and a question from the deep: who are you grieving?'},{id:S3,edits:[s3Venn,s3Writ,s3Toll,s3Guide,...links(3),...card(3),people(3,'### Scene 1: Who was on the ferry'),recap(3,'### Scene 1: Who was on the ferry'),...s3Flow],summary:'A missing ledger page, a frightened friar, and the choice of what to do with the Tongue before the Court decides for you.'},...act2Guides];
 
 const campaign={edits:[
  {field:'premise',find:`Corvane is a world that was once rung like a great cathedral.`,replace:`Corvane is a land far out in the Trackless Sea of the Forgotten Realms, a world of its own that was once rung like a great cathedral.`},
@@ -471,4 +475,299 @@ for(const v of require('./npc-voices.cjs')){
  else if(at)at.edits.push(...edits);
  else pageEdits.push({id:v.id,edits});
 }
+// Revision 7.16: the book's copy of each session in the wiki takes the same plan fixes; the Sexton's and Maudrin's pages
+// give their Combat stat blocks; the old Encounter Lists page is rebuilt from the fight cards, so it matches the Combat tab.
+const addPageEdits=(id,edits)=>{const at=pageEdits.find(x=>x.id===id);if(at)at.edits.push(...edits);else pageEdits.push({id,edits});};
+for(const [id,fixes] of [[S5,[s5Lock]],[S6,[s6Tessa]],[S9,[s9Theft,s9Dawn]],[S10,[s10Cold]],[S11,[s11Ambush]],[S13,[s13Sexton]],[S15,[s15Escort]],
+ [S16A,[s16aGolems]],[S16B,[s16bCount,s16bNight]],[S17A,[s17aYenna]],[S17B,[s17bCount,s17bDream]],[S18A,[s18aConcord,s18aPrice,s18aHounds]],
+ [S18B,[s18bStair,s18bCorin]],[S23,[s23Force,s23Strike]],[S24,[s24Seal,s24Maudrin]],[S25,[s25Stair]],['sb-33f69fa6e5d53e5d',[s16bNight]]]) addPageEdits(id,fixes);
+addPageEdits('sb-bb93b0c927c2b0dc',[{find:'- **Stat-lite:** Glass Sexton (CR 5). See Appendix A.',
+ replace:'- **2024 stat block:** The Glass Sexton (Imber Vesk), CR 7, in the Combat tab. Session 13 runs his two phases.'}]);
+addPageEdits('sb-24aea1701bba67cd',[{find:'- **Stat-lite:** Campaign caster prototype (provisional CR 6). Casts *Silence* and *Counterspell*. Hushmen guard her.',
+ replace:'- **2024 stat block:** Chancellor Maudrin Vesk (CR 8) up to the Strike (Session 23); Maudrin Vesk, Keeper of the Seventh (CR 12) from the Summit (Session 24). Both are in the Combat tab. She casts *Silence* and *Counterspell*, and Hushmen guard her.'}]);
+const firstSentence=t=>((t||'').match(/^.*?[.!?](?=\s|$)/)||[t||''])[0];
+const fights=fs.readdirSync(__dirname).filter(f=>/^act.*\.json$/.test(f)).sort()
+ .flatMap(f=>JSON.parse(fs.readFileSync(path.join(__dirname,f),'utf8')).encounters||[])
+ .map((e,i)=>{const m=e.id.match(/^enc-s(\d+)([ab]?)-/);return {e,i,n:+m[1],x:m[2]};})
+ .sort((a,b)=>a.n-b.n||a.x.localeCompare(b.x)||a.i-b.i);
+const encounterBody=`*This list is built from the campaign's fight cards, so it matches the Combat tab, where each card opens with its stat blocks. The level is the one the fight is written for; each card's scale note says how to grow or shrink it for your table. Prepare a way out, a talk, or a goal other than killing for every fight: each card says how it ends.*
+
+`+fights.map(({e,n,x})=>'- **Session '+n+x.toUpperCase()+', '+e.title+':** '+e.creatures.map(c=>c.count>1?c.name+' ×'+c.count:c.name).join(', ')+'. *'+firstSentence(e.scale)+'* Ends: '+firstSentence(e.exit)).join('\n')+'\n\n---';
+addPageEdits('sb-45e7ac6f16c59fd8',[{find:'__WHOLE__',replace:encounterBody,unless:"This list is built from the campaign's fight cards"}]);
+// Revision 7.16: pop-outs. A name in a plan opens a page only when exactly one page goes by it, so the three people who shared a
+// place's name with its page give it back, the book's place and faction pages take the names the plans use, and the bells, the
+// campaign's own words and the people the guides name session after session get pages of their own.
+for (const [id,drop] of [['v6-npc-brannagh',"Pilots' Hall"],['v6-npc-sela','Reckoning House'],['v6-npc-venn','Vennmark Coster']]){
+ const p=pages.find(x=>x.id===id);p.aliases=p.aliases.split(/,\s*/).filter(a=>a!==drop).join(', ');}
+const addAliases=(id,to)=>{const at=pageEdits.find(x=>x.id===id);if(at)at.aliases={from:'',to};else pageEdits.push({id,edits:[],aliases:{from:'',to}});};
+for (const [id,to] of [['sb-efcdea29187495d0','Hallowmere, Grey City'],['sb-462b2b0d93fd03c2','Pellmoor'],['sb-74c9bfaa3dfbf94e','Shuttered Bell'],
+ ['sb-30af780baa82038c','Tithe-Ledger, Tithe-Ledger Room'],['sb-f7d5d89f237775c9','Bone Archive, Sealed Stacks'],['sb-f04ad09a8410cbb6','Sleeping Hall'],
+ ['sb-a642c9ff7f79bce3','Hush Shrine'],['sb-72c0b21c8d4cfbdb','Frost Spire'],['sb-655447336897e411','Heart-Hall, Ironhorn Steppe, Ironhorn camp'],
+ ['sb-9183922a9ac8e591','Memory Shore'],['sb-426b1a753733a92d','Ossa Belfry, drowned town'],['sb-fd617b364bd1b149','Bellwright, Bellwrights'],
+ ['sb-a97db13025803821','Ironhorn, Ironhorn Compact'],['sb-bb6db9d171c44c8e','ferry-folk, Old Shore'],['sb-4bdfcc6a023f3b01','Dawn Order']]) addAliases(id,to);
+const lorePage=(id,title,aliases,body,kind='Lore')=>pages.push({id,title,kind,status:'Confirmed',visibility:'DM only',aliases,body});
+const weight='Heavy if no bell or one bell has rung before it, Grievous after two or three, Ruinous after four or five. Name the kind and the weight, never the memory, and wait for a yes.';
+for (const [id,title,aliases,lines] of [
+ ['v7-bell-vaer','VAER, THE BELL OF DAWN',"Vaer, Vaer's Heart",[
+  '**Vaer is the bell of dawn, law and beginnings.** It hangs in Vaer\'s Belfry in Hallowmere, a prison and watchtower, in chains of silence-stone above the Dawn Order\'s barracks.',
+  '- **While it is silent:** the Long Dusk. The dawn never fully comes to Hallowmere.',
+  '- **Its Heart:** Vaer\'s Heart, in the Dawn Order armory. Ser Haldric Mose holds it.',
+  '- **The Toll:** a memory of a beginning. '+weight,
+  '- **When it can ring:** Session 9.',
+  '- **What ringing does:** one whole day of real sun, then a real dawn every morning for a year. The Court issues a Silence Warrant for the Ringer; the Dawn Order enforces it only if Captain Rook lost the oath-duel in Session 6.']],
+ ['v7-bell-ossa','OSSA, THE BELL OF MEMORY',"Ossa, Ossa's Heart",[
+  '**Ossa is the bell of memory, ancestors and rest.** It hangs in the Ossa Belfry in Old Pellmoor, the drowned town under the Mute Mere.',
+  '- **While it is silent:** the dead cannot rest. The Drowned Choir sings grief in Ondra Sallow\'s voice and hunts the Mere.',
+  '- **Its Heart:** Ossa\'s Heart. Tam Harrow stole it in 392 SS and hid it in an oilskin in the reeds; Ila Harrow has it in Act I.',
+  '- **The Toll:** a memory of someone who has died. '+weight,
+  '- **When it can ring:** Session 2 (if they bring the Heart down that night), Session 3, or on a Pellmoor detour in Session 9.',
+  '- **What ringing does:** the dead of the Mere are free to rest, and the Choir falls silent and stops hunting. Only the verse releases the Cantor: she sings her own name, then goes quiet. Mother Sallow remembers her husband.']],
+ ['v7-bell-hieme','HIEME, THE BELL OF WINTER',"Hieme, Hieme's Heart, Frost Heart",[
+  '**Hieme is the bell of winter and endurance.** It hangs in the Frost Spire in Glassreach.',
+  '- **While it is silent:** winter is frozen in place. Glassreach froze in a single night in 2 SS, and the Stilled stand in it still.',
+  '- **Its Heart:** the Frost Heart, set in the Glass Sexton\'s crown. He can give it in Session 13.',
+  '- **The Toll:** a memory, any memory. '+weight+' If nobody will pay, it does not ring.',
+  '- **When it can ring:** Session 14.',
+  '- **What ringing does:** a thaw. The Stilled wake over several weeks (Session 15). If the Sexton is alive, he weeps. The Court sends Lady Isolde Drave to recover the bell.']],
+ ['v7-bell-calla','CALLA, THE BELL OF HARVEST',"Calla, Calla's Heart, Old Granary",[
+  '**Calla is the bell of harvest, grace and generosity.** It hangs in the Old Granary at Kell\'s Crossing.',
+  '- **While it is silent:** crops fail. Bet Ostrow rang it once, at nine, in 340 SS, and was Tithed for it.',
+  '- **Its Heart:** Calla\'s Heart, in the Tithe-Ledger Room of the Court\'s vault, on a shelf marked "Harvest, Withheld". Maudrin Vesk controls it.',
+  '- **The Toll:** a gift, given to someone in need, and never returned. '+weight,
+  '- **When it can ring:** Session 9, at Kell\'s Crossing.',
+  '- **What ringing does:** one harvest season. The ash fields bloom and there is bread for everyone. Court Tithe-men raid the Crossing for the rest of the season, and collectors try to take the Ringer.']],
+ ['v7-bell-thrane','THRANE, THE BELL OF STORMS',"Thrane, Thrane's Heart, Lightning Shafts",[
+  '**Thrane is the bell of storm, courage and war.** It hangs in the Lightning Shafts at Brassfall.',
+  '- **While it is silent:** no storm has crossed the mountains since the Quiet Night. The storms went out to sea instead, and became the Stormwall.',
+  '- **Its Heart:** Thrane\'s Heart, in the Heart-Hall of the Ironhorn camp. Thane Oru Kessa holds it, and its dead lightning is killing her.',
+  '- **The Toll:** a sense. '+weight,
+  '- **When it can ring:** Session 19A, or as the second bell in Session 21.',
+  '- **What ringing does:** storms return, storm-stones blaze and metal hums. The Stormwall loosens. Kessa\'s sickness eases and the Ironhorn celebrate. The Court sends a strike force, and Maudrin moves.']],
+ ['v7-bell-mirel','MIREL, THE BELL OF DREAMS',"Mirel, Mirel's Heart",[
+  '**Mirel is the bell of dreams and hope.** It hangs in the Sleeping Hall at Vael Tor.',
+  '- **While it is silent:** nightmares walk. The Sleepless come out of Vael Tor in the shape of a sleeper\'s worst fear.',
+  '- **Its Heart:** Mirel\'s Heart, in the Sealed Stacks of the Bone Archive. The Librarian of the Sealed Book keeps it.',
+  '- **The Toll:** a fear, which the bell gives the Ringer. '+weight,
+  '- **When it can ring:** Session 16B (as soon as they reach it), Session 19B, or as the second bell in Session 21.',
+  '- **What ringing does:** the Sleepless dissolve and the sleepers dream gently. The Hush\'s lullaby changes key. Hushmen come to the Tor.']],
+ ['v7-bell-ysh','YSH, THE SEVENTH BELL','Ysh, the Seventh, Seventh Bell',[
+  '**Ysh is the bell of sleep, peace and rest, and it is silent on purpose.** It hangs in the Hush Shrine, deep under Vael Tor. Its silence holds Oum, the Dreamer, asleep.',
+  '- **Its Heart:** the Tuning Key. Maudrin Vesk keeps it in her palace vault in Hallowmere until she leaves the city (Session 22), then carries it in a silence-stone case.',
+  '- **The Toll, if it is struck:** all six kinds at once, each Ruinous.',
+  '- **Never struck:** in the Concord the Key is seated in the Seventh and never struck, and the Ringer pays the Great Toll instead.',
+  '- **Struck:** the Hush opens and Oum begins to wake (Hush Unbound: Remake or Unmake).',
+  '- **Where it is decided:** Sessions 26 and 27.']],
+]) lorePage(id,title,aliases,lines.join('\n'));
+for (const [id,title,aliases,lines,kind] of [
+ ['v7-term-ringer','THE RINGER','Ringer, Ringers',[
+  '**The Ringer is whoever rings a bell, and the one who pays its Toll.**',
+  '- **Who may ring:** any willing adult who is there. Children never ring; Ila may stand beside the Ringer. A character whose player is absent never pays a Toll, and the dead pay nothing.',
+  '- **Before it rings:** say the kind of Toll and its weight, never the exact memory, and wait for a yes. If nobody says yes, the bell does not ring and nothing is taken.',
+  '- **The weight:** Heavy if no bell or one bell has rung before, Grievous after two or three, Ruinous after four or five. Ysh takes all six kinds at once, each Ruinous.',
+  '- **After it rings:** you choose what was taken, within the kind, and it goes on the Toll tracker.',
+  '- **Afterwards:** once Vaer rings, the Court issues a Silence Warrant for the Ringer.']],
+ ['v7-term-concord','THE CONCORD','Concord',[
+  '**The Concord is the ending in which the world is mended.** It is the first of the four paths.',
+  '- **What it needs:** all six bells rung (Vaer, Ossa, Hieme, Calla, Thrane and Mirel), Ysh still unstruck, and the Tuning Key in the party\'s hands.',
+  '- **The rite:** a willing Ringer seats the Key in the Seventh, never striking it, and pays the Great Toll, giving up their whole name. Session 27 runs it.',
+  '- **What it makes:** a restored world, not a perfect one.',
+  '- **How the party learns of it:** Edda Thorne\'s diary gives the first hint (Session 5). Corin Aldeth shows them Edda Thorne\'s Notes, which describe it in full (Session 18A).',
+  '- **The other paths:** Hush Unbound (Ysh is struck: Remake or Unmake), the Empty Choir (the Court secures the Key and the Long Dusk goes on) and the Second Dawn (the party seals the Key away unstruck, and the world is partly restored).']],
+ ['v7-term-tithe','THE TITHE OF MEMORY','Tithe, Tithes, Tithe of Memory, Tithe Clock',[
+  '**The Tithe of Memory is the Quiet Court\'s tax in memories.** Since 1 SS, people have given up memories in exchange for protection and tax relief. It pays for the silence-stones and the Court\'s grip on Tonework.',
+  '- **Where:** memories are taken and recorded at the Hall of Tithes. The master ledger is in the Tithe-Ledger Room.',
+  '- **What it does to people:** those who give too much become Blanks.',
+  '- **The Tithe Clock:** each night the party spends inside a Court-controlled city adds one tick, from 0. At 6, the Hushmen sweep the city with a checkpoint on every road. At 12, the Court puts silence-stones in every street. The clock resets after a week away from Court cities; checkpoints and stones already placed stay.']],
+ ['v7-term-blanks','BLANKS','Blanks',[
+  '**A Blank is someone who has given away so many memories that they no longer know their own family.** They are common in Hallowmere.',
+  '- Jonah Bray\'s mother, Mara Bray, is a Blank: she was Tithed of him.',
+  '- In Session 7, hundreds of them surround the Hall of Tithes, asking who they were.']],
+ ['v7-term-quiet-night','THE QUIET NIGHT','Quiet Night',[
+  '**The Quiet Night is the night of 0 SS, when all seven bells fell silent in one breath.** Years are counted from it: SS is years since, BS years before.',
+  '- **What happened:** High Sexton Imber Vesk took the Tuning Key from the Bellwright Tower\'s reliquary and tuned the bells into one long, gentle spring, against Edda Thorne\'s warning. The Key sang against the bells, and the Choir went silent. Brassfall\'s storms stopped the same night.',
+  '- **What people believe:** that the bells caused it. The Ninefold Church became the Quiet Court on that belief. Within the Court\'s leaders, only Maudrin Vesk knows that the Key did it.',
+  '- **The Key afterwards:** it passed to Imber\'s daughter, Cassia Vesk, and stayed in the Vesk reliquary until Maudrin took it in 374 SS.',
+  '- **Where the truth comes out:** Edda Thorne\'s diary (Session 5), the Glass Sexton\'s story (Session 13) and the truth of the Key (Session 22).']],
+ ['v7-term-warrant','THE SILENCE WARRANT','Silence Warrant',[
+  '**A Silence Warrant is a Court order that lets any Hushman arrest the Ringer on sight in a Court city.** The Court issues it after Vaer rings (Session 9).',
+  '- The Dawn Order enforces it only if Captain Rook lost the oath-duel (Session 6).',
+  '- While it stands, a bluff about the Ringer is 2 harder.']],
+ ['v7-term-key','THE TUNING KEY','Tuning Key',[
+  '**The Tuning Key is the Heart of Ysh, the Seventh Bell, and the most important object in the campaign.**',
+  '- **Its history:** Imber Vesk used it on the Quiet Night. It passed to his daughter, Cassia Vesk, and stayed in the Vesk reliquary until Maudrin Vesk took it in 374 SS, at twenty.',
+  '- **Where it is:** Maudrin\'s palace vault in Hallowmere until she leaves the city (Session 22). After that she carries it in a silence-stone case.',
+  '- **What it decides:** seated in Ysh and never struck, it makes the Concord. Struck, it opens the Hush. Sealed away unstruck, it gives the Second Dawn. Kept by the Court, it means the Empty Choir.']],
+ ['v7-term-oum','OUM, THE DREAMER','Oum, the Dreamer',[
+  '**Oum, the Dreamer, is the god dreaming the world.** Nobody has ever seen Oum.',
+  '- The seven bells were cast to keep the dream steady. Ysh keeps Oum asleep; the other six keep the world in shape while the dream lasts.',
+  '- Some believe Oum is dying. Others believe Oum is waking.',
+  '- If Ysh is struck, the Hush opens and Oum begins to wake.']],
+ ['v7-term-silence-stone','SILENCE-STONE','silence-stone, silence-stones',[
+  '**Silence-stone is a grey stone that drinks sound.** The Court uses it to hold down Tonework.',
+  '- Hushmen wear silence-stone gloves. Vaer hangs in chains of it. Maudrin carries the Tuning Key in a silence-stone case once she leaves Hallowmere.',
+  '- At 12 on the Tithe Clock, the Court puts silence-stones in every street of the city.']],
+ ['v7-term-long-dusk','THE LONG DUSK','Long Dusk',[
+  '**The Long Dusk is the grey, endless twilight over Hallowmere since 1 SS.** The dawn has not come since Vaer fell silent.',
+  '- Ringing Vaer brings one day of real sun, then a real dawn every morning for a year.',
+  '- If the Court secures the Tuning Key (the Empty Choir), the Long Dusk goes on.']],
+ ['v7-place-brass-road','THE BRASS ROAD','Brass Road',[
+  '**The Brass Road is the old trade road from Brassfall to the steppe,** partly collapsed since the Long Unraveling: bronze carts, ruts, and a sky that flickers with no clouds in it.',
+  '- Session 16A opens on it. Corin Aldeth\'s workshop is under a tavern on it (Session 18A), and the Court\'s strike force comes up it (Session 19A).',
+  '- Thane Oru Kessa took Thrane\'s Heart from it, and the Heart has been eating her hands since.'],'Location'],
+ ['v7-place-hall-of-tithes','THE HALL OF TITHES','Hall of Tithes',[
+  '**The Hall of Tithes is where Hallowmere\'s memories are taken and recorded.**',
+  '- Court pensions are paid there (Session 4). Hushmen don\'t chase past it.',
+  '- **The clerks\' dormitory** (Session 6): one corridor, three doors, a stair-head with an alarm bell, and a kitchen at the bottom. Tessa Caddock is held there.',
+  '- **Session 7:** hundreds of Blanks surround it, asking who they were, and Sergeant Orla Gaunt\'s Hushmen form a line on its steps.'],'Location'],
+]) lorePage(id,title,aliases,lines.join('\n'),kind);
+// People the guides name in more than one scene: each page is built from the guides' two people tables, session by session.
+const guideRows=fs.readdirSync(__dirname).filter(f=>/^guide-s\d+[ab]?\.md$/.test(f)).flatMap(f=>{
+ const m=f.match(/^guide-s(\d+)([ab]?)\.md$/),n=+m[1],x=m[2],label=n===28?'28 to 30':n+x.toUpperCase(),rows=[];let kind=null;
+ for (const line of read(f).split('\n')){
+  if (/^\| Who \| What they are \|/.test(line)) kind='who';
+  else if (/^\| Who \| Voice and habit \|/.test(line)) kind='voice';
+  else if (!line.startsWith('|')) kind=null;
+  else if (kind && !/^\|[-| ]+\|$/.test(line)) rows.push({n,x,label,kind,cells:line.split('|').slice(1,-1).map(c=>c.trim())});
+ }
+ return rows;}).sort((a,b)=>a.n-b.n||a.x.localeCompare(b.x));
+const whoName=c=>c.replace(/\*\*/g,'').replace(/\s*\([^)]*\)\s*/g,' ').trim(),whoNote=c=>(c.match(/\(([^)]*)\)/)||[])[1];
+// What the characters see on first meeting each of them, and things they say, as on the book's NPC pages. The lines are the
+// guides' own where the guides give them.
+const guideVoices={
+ 31:{look:`A woman of about thirty in a shawl stands in the glass, half turned, one hand held out behind her as if somebody small was meant to take it. Around the worn bench at her feet lie a hundred years of candle stubs.`,
+  lines:[['Once she is woken',`I've been told. I should like to hear it from you. What year is it?`],['About the other Stilled',`We don't want to be a wonder. We want to be neighbours.`],
+   ['Asked what they will do',`We'll walk. Slowly. Tell us which road.`],['About the Sexton',`He asked me to forgive him. I said I'd think about it. I've had practice thinking.`]]},
+ 32:{look:`An old woman by the fire, with a trapper's hands, a weaver's patience and a basket of candles at her feet. She has been watching you since you arrived, and she doesn't pretend otherwise.`,
+  lines:[['Greeting',`You came. I told her you'd come. I tell her everything.`],['About the vigil',`My mother sat with her, and hers. I haven't got a daughter. So it's me, and then it's nobody.`],
+   ['About the glass',`Don't use a hammer. Whatever you do. Please.`],['If the players are stuck',`My family has sat with her four hundred years. The voice in the chapel is the first thing that ever answered us.`]]},
+ 33:{look:`A weather-beaten trapper, out of breath, holds a letter sealed in blue wax well away from himself, as if it might bite. He looks at the fire before he looks at you.`,
+  lines:[['About the letter',`Don't ask me to read it. I don't read.`],['Asked who sent him',`An old woman paid me. She talks to the glass.`],
+   ['Worried',`There were grey coats on the road behind me. Is that bad?`],['If the players are stuck',`Her hut's by Yara's camp, at the edge of the glass. I'll take you to the first tree. Not one step past it.`]]},
+ 34:{look:`Among the Stilled at the edge of the clearing stands a man in a sea-coat cut four hundred years out of fashion, with a brass badge on his breast: a ship under three stars. When the glass lets him go, the first thing he does is look at the sky.`,
+  lines:[['Greeting',`What year is it? Is it still ten hundred and eighty-two?`],['About the ship',`The Brightwater was moored at a river mouth, west of here, under a sky full of weather. Where did the weather go?`],
+   ['About the crew',`There were thirty-one of us. I counted. A bosun always counts.`],['Asked why they came',`We only came ashore for water.`],['About home',`Who won? There was a war on, at home. There's always a war on.`]]},
+ 35:{look:`On the end of a narrow cot in the clerks' dormitory sits Wren's daughter, knees drawn up, watching the door. She has her mother's face exactly. (At a table that keeps children out of danger, she is Wren's grown sister, with the same face.)`,
+  lines:[['Greeting',`Are you from Mam? Don't lie. Everyone here lies, nicely.`],['Asked why she is here',`They keep me so Mam keeps working. She knows it. I know it. We don't say it.`],
+   ['On the way out',`Don't let go of my hand till we're outside. Not even on the stairs.`],['Afterwards',`Is Mam all right? Is she in trouble now, because of me?`]]},
+ 36:{look:`A Hushman sergeant in grey stands by the gate-house door with his arms folded, one hand in a glove of silence-stone. He looks bored, and he misses nothing: who's nervous, who's armed, whose writ is new.`,
+  lines:[['Greeting',`Hands where I can see them.`],['At the counter',`Writ.`],['If they refuse the courtesy memory',`Refusing is your right. So is a night in the Belfry.`],
+   ['At the north gate, Session 9',`I remember you. You were polite at my gate. Don't make me sorry.`]]},
+ 37:{look:`Behind the Hushman line on the steps of the Hall of Tithes stands a sergeant with a whistle on a cord and a hand crossbow held low. She is watching the crowd, not you, and counting: her people, their sticks, the ways out.`,
+  lines:[['To the crowd',`Clear the steps.`],['To Ilam Bray',`Bray! Back in line!`],
+   ['If the party talks to her',`I've got orders, and I've got a square full of frightened people with sticks. Give me a reason to go home.`],['If the crowd sits down',`Nobody dies on these steps today. Not on my record.`]]},
+ 38:{look:`A woman of sixty, thin as a rake, in a grey robe, comes to meet you with both hands out to take one of yours. Her voice goes down at the end of everything she says, like being tucked in.`,
+  lines:[['Greeting',`There. There you are.`],['To anyone tired',`You needn't decide anything. You can just sit.`],
+   ['About the Cult',`We don't take. We're given.`],['About the price',`I'll tell you exactly what it costs before you say yes. I wouldn't do that to you.`]]},
+ 39:{look:`A round little man in a grey robe goes along the rows of beds whispering, always folding something: a blanket, a sock, a hand put back under the covers.`,
+  lines:[['Greeting',`Oh, shoes, please. Thank you.`],['About a sleeper',`That's Master Wick. He was a dyer. He's been here since my grandfather.`],
+   ['About the sleepers',`They're not unhappy. I'd have known.`],['If they bring socks for bed forty-one',`Forty-one. Aunt Posy. Nobody's ever... Oh, thank you.`]]},
+ 40:{look:`A young woman, pale and exact, tucks a blanket into an empty bed with perfect corners, then looks up at whichever of you is most tired.`,
+  lines:[['Greeting',`I don't dream. It's very restful.`],['To the most tired one',`You look so tired.`],['Asked what she gave',`I don't mind. Really. I don't mind.`]]},
+ 41:{look:`A big, slow man in a farmer's coat is chopping wood beside the Hall, very carefully, as if he has all the time in the world. Every so often he stops and looks at the door.`,
+  lines:[['Greeting',`I was going to take her home. I expect I still am.`],['About his wife',`Bed two hundred and twelve. I sat down for a minute.`],
+   ['If they try to take Pip away',`He'll sleep in a bit. He always does in the end.`],['If they offer to bring his wife out',`You'd do that? Then I'm coming. I'll carry her. I'm good at carrying.`]]},
+ 42:{look:`A boy of six, furious, is throwing stones at the Hall doors one at a time. He is the only person on the hill who looks properly awake.`,
+  lines:[['Greeting',`There's a man on the stairs. He's got a hammer. Nobody believes me because they're all asleep even when they're not.`],
+   ['Asked how many steps',`A hundred exactly. I did it by listening. And there's a man.`],['Later, proved right',`I said there was a man.`],
+   ['A warning',`There's soldiers. They're walking funny. They're not making any noise.`]]},
+ 43:{look:`A young woman, filthy and hoarse, slides off a ruined horse and stands bent double with her hands on her knees, trying to talk before she has the breath for it.`,
+  lines:[['Greeting',`Hallowmere. I've come from... give me a minute. She's packing.`],['The news',`She's leaving the city. Vesk. Herself. Within the day.`],
+   ['If they doubt her',`I've watched that gate four years. She's never once come out of it.`]]},
+};
+for (const [num,title,aliases,names,role,statLine] of [
+ [31,'MAREN TALLA','',['Maren Talla'],'A weaver of Glassreach, Stilled on the first night of the freeze, in 2 SS. Wyn Talla\'s family has kept vigil over her for four hundred years. She asks first after her brother, Pell.','Stilled Person while the glass holds her; Commoner once woken'],
+ [32,'WYN TALLA','',['Wyn Talla'],'An old trapper at the edge of Glassreach, beside Yara Thenn\'s camp, and the last of her family to keep the vigil over Maren Talla. She paid Edrin Moss to carry the glass letter.'],
+ [33,'EDRIN MOSS','',['Edrin Moss'],'A Glassreach trapper who can\'t read. Wyn Talla paid him to carry the glass letter (Session 8). He will guide them to the forest, but never past the first tree.'],
+ [34,'CORRAN VELL','Bosun Corran Vell',['Bosun Corran Vell','Corran Vell'],'Bosun of the Brightwater, a ship out of Zazesspur caught in the freeze of 2 SS with thirty-one aboard. He thinks it is 1082 DR.','Stilled Person until calmed; Commoner once thawed'],
+ [35,'TESSA CADDOCK, THE HOSTAGE','Tessa, Tessa Caddock',['Tessa Caddock'],'Wren Caddock\'s daughter, held in the clerks\' dormitory of the Hall of Tithes to keep her mother working for the Court (Session 6). If your table has not agreed to children in danger, make her Wren\'s grown sister.'],
+ [36,'MABRY COLE','Sergeant Mabry Cole, Sergeant Cole, Sgt Mabry Cole',['Sergeant Mabry Cole','Sgt Mabry Cole','Sergeant Cole'],'The Hushman sergeant on Hallowmere\'s gate (Session 4). He reads writs well. In Session 9 he holds the north gate against the Ringer, and he may remember them.'],
+ [37,'ORLA GAUNT','Sergeant Orla Gaunt, Sgt Orla Gaunt',['Sergeant Orla Gaunt','Sgt Orla Gaunt'],'The Hushman sergeant who commands the line at the Hall of Tithes in Session 7. She doesn\'t want a massacre.'],
+ [38,'MOTHER LUMEN','',['Mother Lumen'],'Leader of the Hush Cult in the Sleeping Hall at Vael Tor. She is dying slowly, and she feeds the Hush her own dreams first.'],
+ [39,'BROTHER LULL','',['Brother Lull'],'A Hush Cultist who looks after the sleepers in the Sleeping Hall. He has never given a dream: he says he is too busy, and he is frightened to.'],
+ [40,'SISTER NOD','',['Sister Nod'],'A Hush Cultist of twenty who gave up dreaming last winter, and has forgotten what she used to want.'],
+ [41,'WAT FURROW','',['Wat Furrow','Wat and Pip Furrow'],'Came up to Vael Tor in the autumn with his son, Pip, to take his wife home from bed two hundred and twelve of the Sleeping Hall, and stayed.','Hush Cultist'],
+ [42,'PIP FURROW','',['Pip Furrow','Pip','Wat and Pip Furrow'],'Wat Furrow\'s son: six, and a bad sleeper. He has given the Hush nothing, keeps waking up, and is the only one who has seen what comes up the stair.','No stats: he is six'],
+ [43,'LINNET PASK','',['Linnet Pask','Linnet'],'A scout for anybody who hates the Court. She rides in on a ruined horse in Session 21 with news that Maudrin\'s trunk is being packed, and stays with the party to the summit.'],
+]){
+ const mine=guideRows.filter(r=>names.includes(whoName(r.cells[0])));
+ if (!mine.length) throw new Error('no guide rows for '+title);
+ const stats=statLine?[statLine]:[...new Set(mine.filter(r=>r.kind==='who').map(r=>r.cells[2]))],lines=[];
+ for (const label of [...new Set(mine.map(r=>r.label))]){
+  const who=mine.filter(r=>r.label===label&&r.kind==='who'),voice=mine.filter(r=>r.label===label&&r.kind==='voice'),bits=[];
+  for (const r of who){const [,what,,where,starts,influence,secret]=r.cells,note=whoNote(r.cells[0]);
+   bits.push((note?'('+note+') ':'')+what+'. **Where:** '+where+'. **Starts:** '+starts+'. **Influence:** '+influence+'. **Secret:** '+secret);}
+  for (const r of voice){const [,how,wants,first]=r.cells;bits.push('**Voice:** '+how+'. **Wants:** '+wants+'. **First words:** '+first);}
+  lines.push({label,text:bits.join(' ').replace(/\.\./g,'.').replace(/([!?])\./g,'$1')});
+ }
+ const merged=[];
+ for (const l of lines){const last=merged[merged.length-1];if(last&&last.text===l.text)last.labels.push(l.label);else merged.push({labels:[l.label],text:l.text});}
+ const v=guideVoices[num];
+ if (!v) throw new Error('no first look for '+title);
+ const body=['- **Role:** '+role,'- **First look (read aloud):** '+said(v.look),'- **Things to say:**',...v.lines.map(([k,t])=>'  - *'+k+':* '+said(t)),
+  '- **Stat block:** '+stats.join('; ')+'.','',
+  '**Session by session** *(from the guides\' people tables)*',
+  ...merged.map(m=>'- **Session'+(m.labels.length>1?'s ':' ')+m.labels.join(', ')+':** '+m.text)].join('\n').replace(/\.\./g,'.');
+ pages.push({id:'v7-npc-'+title.split(',')[0].toLowerCase().replace(/[^a-z]+/g,'-'),title:num+'. '+title,kind:'NPC',status:'Confirmed',visibility:'DM only',aliases,body});
+}
+// The names the plans use for people and places that had no page: Imber and the Sexton, the Librarian, the Tor, the Spire and the Cult
+// open their pages, and the dead the story turns on, the Mere, the Old Works and the other three endings get pages of their own.
+for (const [id,to] of [['sb-bb93b0c927c2b0dc','Imber, Sexton, High Sexton'],['sb-b0f92748217e1595','Librarian'],['sb-2ba366669232d0c6','the Tor'],
+ ['sb-72c0b21c8d4cfbdb','Frost Spire, the Spire'],['sb-5ab0b331dfa9af2d','the Cult']]) addAliases(id,to);
+for (const [id,title,aliases,lines,kind] of [
+ ['v7-npc-edda-thorne','EDDA THORNE (DECEASED)','',[
+  "- **Role:** Warden of the Bellwright Tower on the Quiet Night. She died in the Court's custody in 9 SS. Nobody meets her; her words come back.",
+  "- **What she heard:** at the last routine tuning, in 1 BS, a \"note beneath the note\" in Ysh's tone. She wrote in her diary that she was afraid of it.",
+  "- **The Quiet Night:** Imber Vesk ordered her to tune the bells into one long spring. She refused, wrote a warning in her diary and gave him a copy in person. He tuned them anyway, with the Key.",
+  "- **Her diary:** taken by the Court's first Tithe-clerks in 1 SS and sealed in the Tithe-Ledger Room, labelled MIREL, LOST. Lysse Carrow has looked for it for years. The party can take it in Session 5.",
+  "- **Edda Thorne's Notes:** the Bellwrights' copy of her tuning pages, made after the ban of 112 SS. Corin Aldeth's family keeps them, and he shows them in Session 18A. They describe the Concord.",
+  "- **The Librarian:** began as her tuning pages, bound into a book by Court archivists who could not bear to burn them.",
+  "- **Where her words matter:** Session 5 (the diary), Session 12 (say her name and the Sexton goes still), Session 13 (read her diary to him and the Frost Heart comes free at once) and Session 22 (her page tells the truth of the Key)."],'NPC'],
+ ['v7-npc-cassia-vesk','CASSIA VESK (DECEASED)','',[
+  "- **Role:** Imber Vesk's daughter, dead for centuries. Maudrin Vesk is descended from her, through Ilse Vesk.",
+  "- **The Key:** when Imber was disgraced after the Quiet Night, Cassia took the Tuning Key home to the Vesk family reliquary. It stayed there until Maudrin took it in 374 SS.",
+  "- **Imber remembers her** asleep in the vestry because the rehearsals ran late (Session 12), and laughing like his mother (Session 13). Detect Thoughts on him finds a lullaby and her name. Asking him about her earns Heroic Inspiration.",
+  "- **Maudrin says her name** under her breath when she is hurt (Session 23), and again before she strikes (Session 26). Saying it to her gives Advantage on the Persuasion that might stop her."],'NPC'],
+ ['v7-npc-ilse-vesk','ILSE VESK','',[
+  "- **Role:** Maudrin Vesk's grandmother, and the first Warden of Silence. She is not met in the campaign.",
+  "- **374 SS:** she stood in the doorway when Maudrin, at twenty, took the Tuning Key from the family's reliquary. All she said was not to drop it (Session 24).",
+  "- **382 SS:** in the chaos after the Ironhorn raid on Brassfall, she seized control of the Quiet Court and named herself Warden of Silence.",
+  "- **384 SS:** her Landing Charter made Pellmoor the only lawful landing for foreign ships, with a Court writ of passage for any foreigner going inland.",
+  "- **Session 26:** Maudrin says her name before she strikes. Saying it to her gives Advantage on the Persuasion that might stop her."],'NPC'],
+ ['v7-npc-wenna-aldeth',"WENNA ALDETH, CORIN'S GRANDMOTHER (DECEASED)",'Wenna, Wenna Aldeth',[
+  "- **Role:** a Bellwright, and Corin Aldeth's grandmother. She died in 352 SS.",
+  "- **The Great Nightmare Wave (352 SS):** she rang a small handbell at the foot of Vael Tor. The sound lasted one breath. The Sleepless poured out and killed forty people. The Court blamed the Bellwrights, and she was caught and died in the hunt.",
+  "- **Her handbell:** cracked, on the back wall of Corin's workshop, labelled with her name and Vael Tor (Session 18A). He lets people hold it, not ring it. Peal, the oldest Heart-Hound, was cast from the crack.",
+  "- **Her work:** Corin's family has tried to finish it for three generations: Wenna, his mother, and now him (Sessions 18A and 26)."],'NPC'],
+ ['v7-place-mute-mere','THE MUTE MERE','Mute Mere, the Mere',[
+  "**The Mute Mere is the great still lake in the middle of Corvane.** The river Pell runs about forty miles inland from the Seam into it. Act I (Sessions 1 to 3) happens on it and under it.",
+  "- **Ossa is silent, so the dead don't rest:** their memories bleed into the water. A character who spends a full night on the shore rolls on the Mere Memory table (11.4) unless they make a DC 12 Wisdom save. Drowned bodies do not decay.",
+  "- **Under it:** Old Pellmoor, drowned when the Mere rose in 14 SS. Ossa hangs in its belfry, and the Drowned Choir sings there in Ondra Sallow's voice.",
+  "- **On its shores:** Pellmoor Landing on the west, where the Pell flows in, and the ferry-folk and the Mere Memory Shore. Vael Tor is three days east, through the marsh; Hallowmere is three days by ferry and road.",
+  "- **Its weather:** none for centuries, until the Wrongweather of 382 SS tore up the Pell and opened the Seam. Davin Sallow drowned in it.",
+  "- **Six weeks before Session 1,** the ice cracked early, and Tam Harrow's net came up with Ossa's Heart in an oilskin."],'Location'],
+ ['v7-place-old-works','THE OLD WORKS','Old Works',[
+  "**The Old Works are Old Garrow's mine at Brassfall:** three mouths in a cliff and a foreman's hut with no roof. The galleries run from the mouths to the Lightning Shafts, where Thrane hangs.",
+  "- **372 SS:** Garrow found an unstable deposit of dead lightning, sealed the shafts with his own hands and died in the collapse. His ghost walks the mine with a blue lamp.",
+  "- **382 SS:** the Ironhorn, raiding for bronze, broke his seals. The dead lightning called the storms at the rim, and the Wrongweather opened the Seam.",
+  "- **Session 16A:** with Garrow's lamp it is a guided tour, with no rolls. Without it there are three galleries: long and safe, flooded and humming, or short and visibly cracked (DC 13 Dexterity save, 3d6 Bludgeoning damage, half on a success).",
+  "- Garrow's body lies under the fall in the middle gallery. His daughter, Yenna Garrow, has heard his voice in the mine for a year and never told the Thane."],'Location'],
+ ['v7-term-empty-choir','THE EMPTY CHOIR','Empty Choir',[
+  "**The Empty Choir is the ending where the Court wins (10.1).** The Court secures the unstruck Key and the shrine, and the group ends its resistance.",
+  "- **Only by choice:** it happens only if every player says they have finished fighting (Session 27). If the Court has the Key and they are still fighting, it is the rescue chapter instead.",
+  "- **The world:** the Long Dusk goes on and the Court rules. The places the party changed still bear their mark.",
+  "- **Sessions 28 to 30:** Scene 2, in whispers, then the Court rules on in Scene 5. The epilogue script is Path 3 in 10.4. The tone is dark and quiet."]],
+ ['v7-term-second-dawn','THE SECOND DAWN','Second Dawn',[
+  "**The Second Dawn is the ending where the party seals the Key away unstruck (10.1).** Any number of bells may have been rung.",
+  "- **The price:** no Toll. One character, one uninterrupted minute at the recess in the rock below Ysh: in a fight, one action a round for ten rounds, and a skipped round starts it again (Session 27).",
+  "- **What changes:** what was rung stays rung; what wasn't doesn't come back. With no bells rung it is a stalemate, and nothing is mended. If Mirel is unrung, seven Sleepless come up the stair.",
+  "- **It is also the way out** if a Ringer declines the Great Toll (10.3).",
+  "- **Sessions 28 to 30:** all five scenes. The epilogue script is Path 4 in 10.4. The tone is mixed and realistic."]],
+ ['v7-term-hush-unbound','THE HUSH UNBOUND','Hush Unbound, Remake, Unmake',[
+  "**The Hush Unbound is the ending where the Seventh is struck (10.1),** by the party or by Maudrin. It stays open until the Key is sealed.",
+  "- **The price:** whoever strikes pays all six kinds of Toll, each Ruinous: the Memory, the Year, the Sense, the Name, the Fear and the Gift.",
+  "- **Then Oum wakes** and asks whether the dream is finished. Oum asks direct questions and never lies (Session 27).",
+  "- **Remake:** Oum dreams the world again from the parts it loved best. Each player names one thing that won't be lost.",
+  "- **Unmake:** the dream ends: one last night with everyone they love, then the light. It happens only if every player wants it; any doubt means Remake. The votes are folded, on paper.",
+  "- **Sessions 28 to 30:** a Remake runs Scenes 1 to 4 in a world a little different, then the rebuilt one. An Unmake skips to the last night. The tone is hopeful and strange (Remake), or sad and beautiful (Unmake)."]],
+]) if (kind==='NPC') pages.push({id,title,kind,status:'Confirmed',visibility:'DM only',aliases,body:lines.join('\n')}); else lorePage(id,title,aliases,lines.join('\n'),kind);
 module.exports={pages,pageEdits,cardEdits,sessions,campaign,planner,pellmoorBody,remove};

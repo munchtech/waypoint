@@ -48,13 +48,13 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Chancellor Maudrin Vesk** | Keeper of the Seventh, if she's got the Key | Maudrin Vesk, Keeper of the Seventh | By the stairs | Tired, and glad of the company | DC 20 (18 without the Key) | She's Haldric's mother. She wrote him a letter every month for forty years. |
+| **Chancellor Maudrin Vesk** | Keeper of the Seventh, if she's got the Key | Keeper of the Seventh (Maudrin Vesk) | By the stairs | Tired, and glad of the company | DC 20 (18 without the Key) | She's Haldric's mother. She wrote him a letter every month for forty years. |
 | **Ser Haldric Mose** | Knight, or what's left of one | Ser Haldric Mose | At her right hand | Uneasy | DC 18 with Disadvantage; none needed with proof | He's half known since he was nine. |
 | **Tristan Vesk** | If she's dead or captured | Court Agent | Behind the Wardens | Determined | The Key, or a way out | He's frightened of the hole. |
 | **Corin Aldeth** | If he's an enemy | Corin Aldeth | Over the west stones | Desperate | Tell him what it costs | He'd stop if anyone asked him kindly. |
 | **Captain Rook** | If she won | Captain Rook (Veteran) | A stone on the east side | Steady | None needed | Knew Haldric's mother wasn't who they said. |
 | **Ilam Bray** | If he's an ally | Commoner | The road, below | Waiting | None needed | Won't go down. |
-| **Sela Pask** | The scout | Commoner | With the party | Theirs | None needed | Has been sitting on the top step since dawn. |
+| **Linnet Pask** | The scout | Commoner | With the party | Theirs | None needed | Has been sitting on the top step since dawn. |
 
 **Places at a glance:**
 - **The three bends:** the road up. The grass is warm after the second one.
@@ -64,7 +64,7 @@
 
 **Rumours (d6)** that the light tells them, on the way up:
 1. Your mother's voice, saying your name. (It's the Hush. It means nothing by it.)
-2. "She was up here all night by herself." (Sela. True.)
+2. "She was up here all night by herself." (Linnet. True.)
 3. "The stones aren't stones." (They're the moulds the bells were cast from. True.)
 4. "You can get down without the stairs." (True. The casting-pit.)
 5. "You have to leave something on every step." (Nearly. One in twenty.)
@@ -87,7 +87,7 @@
 **At each bend, give them one thing:**
 1. **First bend.** The battlefield, from above. Somebody's putting up a tent for the wounded, and there are people from both sides carrying the poles.
 2. **Second bend.** A folded grey glove on the wall. A Hushman's taken it off and left it. Then another. There are eleven by the top.
-3. **Third bend.** Sela. "She's up there. She's just standing there. I think she's waiting for you to get your breath."
+3. **Third bend.** Linnet. "She's up there. She's just standing there. I think she's waiting for you to get your breath."
 
 **[Their friends come up with them,](play:s24-allies-hold-the-stones)** and each takes a stone:
 
@@ -96,7 +96,7 @@
 At **three** on the allies clock, the party picks which side nobody comes from. At **six,** Maudrin's got no reserve: take the Sergeant out of the fight.
 
 **If they…**
-- **Haven't got allies:** Sela goes and stands by a stone. "I'm one," she says.
+- **Haven't got allies:** Linnet goes and stands by a stone. "I'm one," she says.
 - **Look for another way up:** the sheep track on the north side comes out under the casting-pit. Perception, DC 13. They can have a head start on next session.
 - **Lie down:** it's lovely. They could stay here. A friend shakes them after a minute. No roll.
 - **Sneak up:** group Stealth, DC 15, gets two of them behind a stone. She says, without turning round, "Do mind the edge."
@@ -234,9 +234,9 @@ Read out half a line of one, if they open it. *"You came fourth in the tilting t
 
 **Where and why.** The top of the stairs. No hurry. Everyone chooses.
 
-> **SAY:** "It's a hole with steps in it. They're worn in the middle. The sound comes up them, and it's the thing your mother sang, whoever your mother was. Sela's still on the top one. She shuffles over, so there's room."
+> **SAY:** "It's a hole with steps in it. They're worn in the middle. The sound comes up them, and it's the thing your mother sang, whoever your mother was. Linnet's still on the top one. She shuffles over, so there's room."
 
-**Tell them the price, now, before anyone steps.** Sela knows, or the Hush does, or Maudrin does. Read it:
+**Tell them the price, now, before anyone steps.** Linnet knows, or the Hush does, or Maudrin does. Read it:
 
 > **SAY:** "The first nineteen steps are free. After that it takes one memory for every twenty. You'll be tested once, at the twentieth. If it goes badly, it's five, and if it goes well, it's two. It's only ever once in your life. They're yours to name. It won't take what you can do, only something you had. You can turn round. Nobody will think less of you."
 
@@ -368,7 +368,7 @@ Read out half a line of one, if they open it. *"You came fourth in the tilting t
 | **Haldric** | Polishing his sword | Not to know | "Chancellor? What do they mean?" |
 | **Corin** (enemy) | Humming stopped | The Key | "You will not do it right." |
 | **Tristan** (if she's gone) | Soft; behind a stone | For it to go on | "She is not here, and I am." |
-| **Sela** | Hoarse; on the top step | Company | "There's room." |
+| **Linnet** | Hoarse; on the top step | Company | "There's room." |
 
 **Say aloud first:** if she thinks they'll take it, she'll strike. **Talk:** DC 20 (18 without the Key; no roll with the Key and a seal). Final Offer: everything Tithed, for the stairs; **only if the whole group says yes.** Haldric's her son: letters = no roll; else DC 18, Disadvantage.
 

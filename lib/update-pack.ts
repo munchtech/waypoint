@@ -88,11 +88,13 @@ export const updatePackSchema = z.object({
       z.object({
         id: z.string().max(120),
         title: z.string().min(1).max(160).optional(),
-        edits: z.array(edit).min(1).max(40),
+        edits: z.array(edit).max(40),
         // Moves the page from one status to another; skipped as a conflict when the DM has already set a different one.
         status: z.object({ from: z.enum(factStates), to: z.enum(factStates) }).optional(),
         // Rewords the page's source quote the same way.
         quote: z.object({ from: z.string().max(400), to: z.string().max(400) }).optional(),
+        // Gives the page other names to find and link it by, the same way.
+        aliases: z.object({ from: z.string().max(1000), to: z.string().max(1000) }).optional(),
       }),
     )
     .max(200)
@@ -438,6 +440,14 @@ export function planUpdate(original: Campaign, p: UpdatePack): PlannedChange[] {
         detail: 'Replace “' + snippet(x.quote.from) + '” with “' + snippet(x.quote.to) + '”',
         status: swapStatus(old?.quote, x.quote),
       });
+    if (x.aliases)
+      out.push({
+        id: 'paliases:' + x.id,
+        group: 'World wiki',
+        label: (old ? old.title : 'Missing page') + ' · other names',
+        detail: 'Also call it “' + snippet(x.aliases.to) + '”',
+        status: swapStatus(old?.aliases, x.aliases),
+      });
   }
   for (const x of p.cardEdits || []) {
     const old = c.cards.find((k) => k.id === x.id),
@@ -628,14 +638,17 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
     if (!old) continue;
     const taken = x.edits.filter((e, i) => take('pedit:' + x.id + ':' + i)),
       status = x.status && take('pstatus:' + x.id) ? x.status.to : old.status,
-      quote = x.quote && take('pquote:' + x.id) ? x.quote.to : old.quote;
-    if (!taken.length && status === old.status && quote === old.quote) continue;
+      quote = x.quote && take('pquote:' + x.id) ? x.quote.to : old.quote,
+      aliases = x.aliases && take('paliases:' + x.id) ? x.aliases.to : old.aliases;
+    if (!taken.length && status === old.status && quote === old.quote && aliases === old.aliases)
+      continue;
     const page: WikiPage = {
       ...old,
       title: x.title && take('pedit:' + x.id + ':0') ? x.title : old.title,
       body: applyEdits(old.body, taken),
       status,
       quote,
+      aliases,
       updated: now,
       history: [
         {

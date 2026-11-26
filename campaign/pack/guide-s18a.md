@@ -118,7 +118,7 @@
 
 **Where and why.** The bench. Put the prop on the table.
 
-> **SAY:** "The pages are brittle and tight with a student's hand. 'Edda Thorne,' Corin says. 'She was nineteen. She wrote down everything her teacher said, including the things he shouldn't have. We have kept these for three generations, and we have never used them. None of us trusted the others enough.'"
+> **SAY:** "The pages are brittle and close-written in a careful hand. 'Edda Thorne,' Corin says. 'Warden of the Bellwright Tower, the night it went quiet. She wrote down everything the High Sexton told her, including the things he shouldn't have. We have kept these for three generations, and we have never used them. None of us trusted the others enough.'"
 
 **What's really going on.** The Notes describe the **Concord,** the one safe way to deal with the Seventh. Let Corin explain it in four plain sentences. This is the plan the rest of the campaign may follow, so make sure they get it:
 

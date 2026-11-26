@@ -41,8 +41,8 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Lysse Carrow** | Scholar of the Bone Archive | Scholar (Commoner) | The reading room | Friendly to anyone who treats her as a person | DC 15 | She's been Tithed twice. Her missing memories are filed in the vault under other people's names. |
-| **The Librarian of the Sealed Book** | An ancient mind in a book with no words | The Librarian (Knight base) | The Sealed Stacks | Courteous, patient | Trades, not checks | It holds Mirel's Heart and will trade it for a dream nobody has ever been told. |
+| **Lysse Carrow** | Scholar of the Bone Archive | Commoner (a scholar) | The reading room | Friendly to anyone who treats her as a person | DC 15 | She's been Tithed twice. Her missing memories are filed in the vault under other people's names. |
+| **The Librarian of the Sealed Book** | An ancient mind in a book with no words | Knight (the Librarian's numbers) | The Sealed Stacks | Courteous, patient | Trades, not checks | It holds Mirel's Heart and will trade it for a dream nobody has ever been told. |
 | **Ansel Quay** | Maudrin's steward; holds the vault key | Commoner | The vault corridor, every morning | Indifferent; Friendly for a Gift or a promise of safety | DC 15 | He copies the Ledger for the Bellwrights. He's more loyal to Wren Caddock than to Maudrin. |
 | **Wren Caddock** | A Bellwright contact, nervous | Spy | A message, or a corner of the Archive | Friendly | DC 15 | She's the Court's spy among the Bellwrights. Her confession is next session. |
 | **The vault's Hushmen** | Four and a Sergeant | Hushman, Hushman Sergeant | The guardroom by the kitchens | Hostile if called | Not tonight | They never break a jar to stop a thief. |

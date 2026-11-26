@@ -14,7 +14,7 @@
 - **Edda Thorne's diary:** do they have it? It's the best thing they could bring in here.
 - **Isolde:** close, but she matters in Session 15. Keep her offstage.
 
-**What this session is about.** Imber Vesk was the High Sexton of the Ninefold Church. He tuned the bells on the Quiet Night with the Chancellor's Key, against advice, and the world went silent. He has been sealed in his own winter for three hundred and eighty years, preaching that silence is a kindness. He half believes it. He has one question: who rules the Court now?
+**What this session is about.** Imber Vesk was the High Sexton of the Ninefold Church. He tuned the bells on the Quiet Night with the Tuning Key, the one the Chancellor holds now, against Edda Thorne's warning, and the world went silent. He has been sealed in his own winter for three hundred and eighty years, preaching that silence is a kindness. He half believes it. He has one question: who rules the Court now?
 
 **Your goals tonight:**
 - Make him gentle. The sermon should be *persuasive*, and kind, and wrong.

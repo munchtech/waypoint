@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. It's the last bell on this side of the sea, and the first time the Court comes with everything it has on the road. The ringing's the middle of the night, not the end. After it, somebody brings news: Maudrin Vesk has stopped waiting.*
+*Read this once the day before. It's the last bell before the Seventh, and the first time the Court comes with everything it has on the road. The ringing's the middle of the night, not the end. After it, somebody brings news: Maudrin Vesk has stopped waiting.*
 
 **Contents:** [Before you start](#before-you-start-session-21) · [Key people](#key-people-tonight-session-21) · [Opening recap](#opening-recap-session-21) · [Scene 1: The threshold](#scene-1-the-threshold) · [Scene 2: The second ringing](#scene-2-the-second-ringing) · [Scene 3: What it gave back](#scene-3-what-it-gave-back) · [Scene 4: A long grey line](#scene-4-a-long-grey-line) · [Scene 5: Maudrin is coming](#scene-5-maudrin-is-coming) · [Fights](#running-the-fights-session-21) · [Pacing](#pacing-session-21) · [If you get stuck](#if-you-get-stuck-session-21) · [End of session](#end-of-session-21)
 
@@ -43,10 +43,10 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Sela Pask** | A scout for anybody who hates the Court | Commoner | Arrives on a ruined horse | Out of breath | None needed | Saw Maudrin's trunk being packed. It was very small. |
+| **Linnet Pask** | A scout for anybody who hates the Court | Commoner | Arrives on a ruined horse | Out of breath | None needed | Saw Maudrin's trunk being packed. It was very small. |
 | **Commander Rushe** | Leads the patrol | Hushman Warden | The ridge | Correct | DC 17, once | Has been told that if they fail, they needn't come back. |
 | **Sergeant Harl** | Second in command | Hushman Sergeant | The road | Loud | DC 14 | Doesn't want to be here. Nobody's asked. |
-| **Kessa** (road B, living) | Thane | Kessa Ironhorn | The lip of the shaft | Hopeful | Not tonight | Has told the council they'll bring it back. Privately he's not sure. |
+| **Kessa** (road B, living) | Thane | Thane Oru Kessa | The lip of the shaft | Hopeful | Not tonight | Has told the council they'll bring it back. Privately he's not sure. |
 | **Yenna** (road B) | His rider | Ironhorn Rider | With the horses | Steady | None needed | Would ride against the Court tomorrow if somebody asked. |
 | **Mother Lumen** (road A) | The Cult's Leader | Hush Cult Leader | The Hall | Depends on the Cult | DC 14 | Hasn't dreamed for eleven years. |
 
@@ -190,11 +190,11 @@
 
 > **SAY:** "There's a rider on the road, coming the other way, on a horse that's nearly finished. They don't slow down for you. They just fall off it, more or less, at your feet, and start talking."
 
-**Sela Pask.** Young, filthy, hoarse. Talks in bits, with her hands on her knees. *Lines:* "Hallowmere. I've come from… give me a minute. She's packing." · "She's leaving the city. Vesk. *Herself.* Within the day." · "I've watched that gate four years. She's never once come out of it."
+**Linnet Pask.** Young, filthy, hoarse. Talks in bits, with her hands on her knees. *Lines:* "Hallowmere. I've come from… give me a minute. She's packing." · "She's leaving the city. Vesk. *Herself.* Within the day." · "I've watched that gate four years. She's never once come out of it."
 
 **What's really going on.** The ringing frightened her. She hasn't been frightened since she was a child, and she doesn't know what to do with it except work. She's going to Vael Tor, with the Key, to seal the stairs before anyone can reach the Seventh. **She leaves within a day,** unless something they did earlier changed that.
 
-**What Sela knows, if they ask:**
+**What Linnet knows, if they ask:**
 - **How many?** A column. Carts. She counted forty before someone looked up.
 - **Who's with her?** The Dawn Order, if Rook lost the duel. Only the grey, if Rook won.
 - **Why now?** "Because of *you*. Everyone in the city heard it. The windows hummed."
@@ -206,8 +206,8 @@
 - **Want to go for her now:** Session 22 starts at dusk. This is dusk.
 - **Want to rest:** they can have a Long Rest. She's four days from the Tor.
 - **Ask for help:** who've they been kind to? Start the list. It's next week's session.
-- **Give Sela a horse:** she's theirs for life. Where does she ride?
-- **Despair:** Sela looks at them, puzzled. "She's never come *out* before. You did that."
+- **Give Linnet a horse:** she's theirs for life. Where does she ride?
+- **Despair:** Linnet looks at them, puzzled. "She's never come *out* before. You did that."
 
 **Bring it back.** Somewhere, a long way south, the bell they've just rung is still going. Very faintly. Nobody's touched it.
 
@@ -253,7 +253,7 @@
 **Three quick moves:**
 1. **The bell rings once more by itself,** and everyone, on both sides, stops and looks up.
 2. **One of the grey riders takes their gloves off,** and puts them down on the road.
-3. **Sela arrives early,** through the middle of everything, shouting the news to both sides.
+3. **Linnet arrives early,** through the middle of everything, shouting the news to both sides.
 
 **If the Toll lands badly:** stop, change it, out loud. "It wasn't that. It was this."
 
@@ -284,7 +284,7 @@
 |---|---|---|---|
 | **Commander Rushe** | Exact; reads from a paper | One of the three, and nobody dead | "The bell, the Ringer, or the Heart." |
 | **Sergeant Harl** | Loud, unhappy | To go home | "Hands! Hands where I can… thank you." |
-| **Sela Pask** | Hoarse; hands on knees | Water, then to be believed | "She's packing." |
+| **Linnet Pask** | Hoarse; hands on knees | Water, then to be believed | "She's packing." |
 | **Kessa** | Big laugh, gentler now | His Heart, hung up | "I'll wait at the Hall, rider." |
 | **Mother Lumen** | Weeping, gentle | To dream | "It sounded like someone loved it." |
 

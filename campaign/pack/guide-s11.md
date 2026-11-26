@@ -44,7 +44,7 @@
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
 | **Wyn Talla** | Keeper of the vigil | Commoner | Beside the glass, all night | Friendly | None needed | She's afraid that Maren will be angry with her for taking so long. |
-| **Maren Talla** | A weaver; frozen on the first night, in 2 SS | Commoner once woken; Stilled Person if cracked awake | Her glass, three trees past the clearing | Indifferent, confused | DC 15, or say her name | She heard the Sexton before he froze. He can't bear to be argued with. |
+| **Maren Talla** | A weaver; frozen on the first night, in 2 SS | Commoner (once woken); Stilled Person (if cracked awake) | Her glass, three trees past the clearing | Indifferent, confused | DC 15, or say her name | She heard the Sexton before he froze. He can't bear to be argued with. |
 | **Yara Thenn** | Guide, if she's with them | Scout | A little way back, with her whistle | From last session | DC 15 | She's counted the sleepers in this wood. There are ninety-four. She knows most of their faces. |
 | **The Stilled** | Five, in the sleepers' wood | Stilled Person | The clearing past the first stream | Asleep | DC 15, as an action | Each one is still in the middle of the last thing they did. |
 | **Corran Vell** | Bosun of the Brightwater | Stilled Person, or a friend | Depends on last session | Depends | DC 15, in Common | He'll give his sailor's word and keep it. |

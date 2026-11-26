@@ -46,10 +46,10 @@
 | **Ansel Quay** | Maudrin's steward | Commoner | Comes up the road on a mule | Ashamed | None needed | Has the routes of every column for thirty years in his head. |
 | **Corin Aldeth** | Bellwright | Corin Aldeth | Their fire, or a milestone | Depends | DC 15 if they fought him | If they let him, he'd pay it himself. |
 | **The Librarian** | A book that reads | — | The courier's hands | Glad | It trades | It's had Edda's page all along. It wanted to be asked. |
-| **Thane Oru Kessa** | If he lives | Kessa Ironhorn | Wherever he's found | Hopeful | None needed | He's already half guessed about the Key. |
+| **Thane Oru Kessa** | If he lives | Thane Oru Kessa | Wherever he's found | Hopeful | None needed | He's already half guessed about the Key. |
 | **Lady Isolde Drave** | Court envoy | Court Agent | A coach, with the blinds down | Careful | Truth, not a roll | Has the Frost Heart in a hatbox, if the Court took it. |
 | **Captain Rook** | If she won the duel | Captain Rook (Veteran) | With forty knights | Ready | None needed | Hasn't slept for three nights, and won't say so. |
-| **Sela Pask** | The scout | Commoner | Everywhere | Theirs | None needed | Would like to be asked to stay. |
+| **Linnet Pask** | The scout | Commoner | Everywhere | Theirs | None needed | Would like to be asked to stay. |
 
 **Places at a glance:**
 - **The drovers' barn:** a big stone barn at a crossroads, two days short of the Tor. Dry, warm, and empty this time of year. Use it as their headquarters. (If they're already at the Tor, it's a shepherd's barn at the foot of the hill.)
@@ -66,7 +66,7 @@
 
 ### Opening recap (Session 22)
 
-> **SAY:** "You *(rang / turned away from)* the last bell on this side of the sea. A patrol came for you, and *(what happened)*. And then a rider fell off her horse at your feet and said a thing nobody's said in thirty-eight years: Maudrin Vesk has left Hallowmere. You said you'd meet her *(where)*. It's dusk. There's a barn at a crossroads, and somebody's lit a lamp in it."
+> **SAY:** "You *(rang / turned away from)* the last bell before the Seventh. A patrol came for you, and *(what happened)*. And then a rider fell off her horse at your feet and said a thing nobody's said in thirty-eight years: Maudrin Vesk has left Hallowmere. You said you'd meet her *(where)*. It's dusk. There's a barn at a crossroads, and somebody's lit a lamp in it."
 
 - **Then hand it over:** "Who's the first person your character thinks of, when they hear she's coming?" One name each. **Write them down. They're your allies, or your stakes.**
 
@@ -151,7 +151,7 @@
 
 (If Rook won the duel, only Haldric's own few knights ride with the Court, or none.)
 
-**Then Ansel.** Stooped, ink-stained cuffs, spectacles he wipes when he's nervous. *Lines:* "I counted that shelf every morning for thirty-eight years. I've just dusted it. There's nothing on it." · "I thought if I kept the books straight, it'd be all right. I'm so sorry." · "Ask me about roads. I do know about roads." (If he's dead, Sela brings his route-book.)
+**Then Ansel.** Stooped, ink-stained cuffs, spectacles he wipes when he's nervous. *Lines:* "I counted that shelf every morning for thirty-eight years. I've just dusted it. There's nothing on it." · "I thought if I kept the books straight, it'd be all right. I'm so sorry." · "Ask me about roads. I do know about roads." (If he's dead, Linnet brings his route-book.)
 
 [If they ask about the vault:](play:s22-key-leaves-vault)
 
@@ -176,7 +176,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 
 **Bring it back.** Ansel counts them. He can't help it. He gets to the Ringer and starts again from one.
 
-**How it ends.** Sela, from the door: "There's somebody on the road. There's *several* somebodies."
+**How it ends.** Linnet, from the door: "There's somebody on the road. There's *several* somebodies."
 
 ### Scene 4: Who comes
 
@@ -228,7 +228,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 > **SAY:** "Rook unwraps a bundle of oilcloth. 'These were never the Order's to keep.'"
 
 - **Want the children to come:** no. Jonah's kept well away, with somebody kind. So's Pip. So's Ila, unless her guardian says otherwise and the Ringer wants her near; she doesn't fight.
-- **Have hardly anyone:** then make the one who did come count. "It's just me," says Sela. "Is that all right?"
+- **Have hardly anyone:** then make the one who did come count. "It's just me," says Linnet. "Is that all right?"
 - **Have all six:** the Court can't hold the road. Maudrin has to come in person.
 
 **Bring it back.** At every arrival, Ansel writes a name in his book and gets it right.
@@ -287,7 +287,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 | 2:25 to 3:05 | Scene 5: the ridge, and the ambush if they want it |
 | 3:05 to 3:15 | The question |
 
-- **Where to break:** when Sela says "several somebodies".
+- **Where to break:** when Linnet says "several somebodies".
 - **Running long:** no ambush. They watch the column go by, and that's enough.
 - **Running short:** soup. Put two allies next to each other who've never met, and let the players listen. (Tolla and a Stilled. Rook and Isolde. Corin and the Librarian.)
 - **If you need to stop early:** stop with the barn full. It's a lovely place to stop.

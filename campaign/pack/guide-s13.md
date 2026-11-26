@@ -44,7 +44,7 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **The Glass Sexton (Imber Vesk)** | High Sexton of the Quiet Night | The Glass Sexton in the glass; Commoner when freed | The pulpit | Friendly, Indifferent or Hostile, from last session | DC 15 | The Key is the Seventh Bell's tongue. His daughter Cassia carried it home. |
+| **The Glass Sexton (Imber Vesk)** | High Sexton of the Quiet Night | The Glass Sexton (in the glass); Commoner (when freed) | The pulpit | Friendly, Indifferent or Hostile, from last session | DC 15 | The Key is the Seventh Bell's tongue. His daughter Cassia carried it home. |
 | **Yara Thenn** | Guide | Scout | The arch, with her saw | From before | DC 15 | She's drawn the chapel twice and never gone in. |
 | **Maren Talla** | If she's awake | Commoner | The arch | Friendly | None needed | She remembers Imber as a kind man who forgave her for laughing in church. |
 | **A Stilled in the pews** | One more if it comes to a fight | Stilled Person | The back row | Asleep | DC 15, as an action | Cracks awake in round 2 if there's a fight. |

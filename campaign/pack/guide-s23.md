@@ -50,8 +50,8 @@
 | **Tristan Vesk** | Only if Maudrin's dead | Court Agent | At the back | Regretful | If he's losing | He'd rather have been the one who filed it. |
 | **Ilam Bray** | Once a Hushman | Commoner | The south road, if he's an ally | Steady | None needed | He's been practising what to say to his son. |
 | **Jonah Bray** | His boy, nine | None | With Ilam's friend, or on a Hushman's saddle | Quiet | None needed | Has the wooden bird. |
-| **Thane Oru Kessa** | If the oath's broken | Kessa Ironhorn | The north ridge | Furious | Hand him the Heart | He doesn't want to do this. |
-| **Sela Pask** | The scout | Commoner | With the party | Theirs | None needed | Has already been up as far as the first stone. |
+| **Thane Oru Kessa** | If the oath's broken | Thane Oru Kessa | The north ridge | Furious | Hand him the Heart | He doesn't want to do this. |
+| **Linnet Pask** | The scout | Commoner | With the party | Theirs | None needed | Has already been up as far as the first stone. |
 
 **Places at a glance:**
 - **The foot of Vael Tor:** short grass, sheep tracks, and a road that goes up in three long bends.
@@ -110,7 +110,7 @@
 
   It's in her wagons by nightfall. They can win it back in Scene 5.
 - **[Have Imber with them:](play:s23-imber-speaks)** he asks whether he might say something to the knights, when they come. He isn't fit for a fight. He knows that.
-- **Ask what's up there:** Sela's been to the first stone. "It's warm," she says. "I put my hand on it and it was *warm.*"
+- **Ask what's up there:** Linnet's been to the first stone. "It's warm," she says. "I put my hand on it and it was *warm.*"
 
 **Bring it back.** Someone's the first to see it: each stone up there's the shape of a bell, if you stop looking straight at it.
 
@@ -276,7 +276,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 
 **If they…**
 - **Find nothing:** because the Court had nothing. There's a trunk of children's shoes, and a ledger saying whose. Jonah's are in it.
-- **Want to follow her tonight:** it's dark, they've just fought, and the light's getting brighter. Sela: "It'll still be there in the morning. Won't it?" Sleep. A long rest's fine.
+- **Want to follow her tonight:** it's dark, they've just fought, and the light's getting brighter. Linnet: "It'll still be there in the morning. Won't it?" Sleep. A long rest's fine.
 - **Ask after their allies:** nobody's been killed who had a name, unless a player wants it to have cost something. Ask them.
 - **Have captured her:** she'll say one thing. "It's the fourth step that's loose." She doesn't explain.
 

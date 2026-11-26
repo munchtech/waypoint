@@ -51,7 +51,7 @@
 | **Oum** | The one who's dreaming | — | Everywhere, if it's woken | Curious | It can't be fooled | It likes them. It's always liked them. |
 | **The Hush** | The lullaby | — | In the bell | Ready | It can't be persuaded | It doesn't mind who sings it. |
 | **The Ringer** | One of them, or someone who's offered | — | At the notch | However they are | None needed | Ask the player. |
-| **Maudrin Vesk** | If she's alive and here | Maudrin Vesk, Keeper of the Seventh | By the wall | Finished fighting | DC 20 | Would do it, if anyone thought she deserved to. |
+| **Maudrin Vesk** | If she's alive and here | Keeper of the Seventh (Maudrin Vesk) | By the wall | Finished fighting | DC 20 | Would do it, if anyone thought she deserved to. |
 | **Corin Aldeth** | If he's an ally | Corin Aldeth | By the notch | Calm | None needed | Came to terms with it on the stairs. |
 | **Ondra, the Cantor** | Far off, under the Mere | — | Not here | Singing | The verse | Has been holding the place in the music for somebody. |
 
@@ -215,7 +215,7 @@
 
 *The Concord, the Second Dawn or a Remake:*
 
-> **SAY:** "Sela Pask's on the top step with a lamp, where you left her. She looks at your faces. She doesn't ask. She blows the lamp out, because, look. You don't need it."
+> **SAY:** "Linnet Pask's on the top step with a lamp, where you left her. She looks at your faces. She doesn't ask. She blows the lamp out, because, look. You don't need it."
 
 **[Sing the verse](play:s27-release-choir),** if they've got it and Ossa's rung. They only have to mean it, for one dead person, by name.
 
@@ -291,7 +291,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 ### If you get stuck (Session 27)
 
 **Three quick moves:**
-1. **Somebody's allowed to laugh.** Have Corin, or Ilam, or Sela sneeze at the wrong moment.
+1. **Somebody's allowed to laugh.** Have Corin, or Ilam, or Linnet sneeze at the wrong moment.
 2. **The bell hums one person's name.** Just to see.
 3. **Ask, "What's your character's hand doing?"** It always works.
 
@@ -332,7 +332,7 @@ Ask each player: **"What of?"** Ten words. This is often the best minute of the 
 | **The Hush** | Your own voice | Somebody to sing it | "Ready when you are." |
 | **Corin** | Not humming, for once | To be let | "Three generations. It's an old song." |
 | **Maudrin** | Bare hands | To be useful | "Let me keep it as it should be." |
-| **Sela** | Hoarse; top step; a lamp | To see their faces | *(Blows it out.)* |
+| **Linnet** | Hoarse; top step; a lamp | To see their faces | *(Blows it out.)* |
 
 **Ask again first.** A no costs nothing, at any moment before it's done.
 

@@ -43,7 +43,7 @@
 |---|---|---|---|---|---|---|
 | **Old Garrow** | Foreman's ghost (Brassfall) | Specter, but he rarely fights | The mouth of the Old Works | Gruff; friendly to anyone who works | None needed | He thinks the Ironhorn raid was his fault. |
 | **Yenna Garrow** | His daughter, a clan rider | Ironhorn Rider | The red horse-skull | Wary | DC 15; none with the lamp | She's always known he's down there. |
-| **Kessa Ironhorn** | Thane of the Ironhorn | Kessa Ironhorn | The Heart-Hall | Loud, fair | DC 15 | Dying of the Heart's lightning. The Key won't cure him. |
+| **Thane Oru Kessa** | Thane of the Ironhorn | Thane Oru Kessa | The Heart-Hall | Loud, fair | DC 15 | Dying of the Heart's lightning. The Key won't cure him. |
 | **The courier** | The Librarian's hands (the Tor) | Commoner | The central bed | Patient | It trades | "Page two hundred and six." It'd like to be put back. |
 | **Mother Lumen** | Leader of the Hush Cult (the Tor) | Hush Cult Leader | The circle of humming | Kind | Not tonight | Her rest takes every dream you've got. |
 | **Corin Aldeth** | A Bellwright, if he's unmet | Corin Aldeth | Wherever they camp | Hopeful | DC 15 | "The whole name" is the Ringer's own. He's guessed. |
@@ -62,7 +62,7 @@
 
 ### Opening recap (Session 20)
 
-> **SAY:** "Six bells hang in the Ninefold Shore, and you've stood under *(number)* of them. The last one was *(Thrane's, in the Lightning Shafts / Mirel's, in the Sleeping Hall)*. You paid *(the Toll, in one line)*, or you walked away. The Court's grey riders came for you afterwards, and they know your faces now. There's one more bell on this side of the sea. It's three days across the plain, and it's getting dark earlier."
+> **SAY:** "Six bells can be rung in Corvane, and you've stood under *(number)* of them. The last one was *(Thrane's, in the Lightning Shafts / Mirel's, in the Sleeping Hall)*. You paid *(the Toll, in one line)*, or you walked away. The Court's grey riders came for you afterwards, and they know your faces now. There's one more bell to ring before the Seventh. It's three days across the plain, and it's getting dark earlier."
 
 - **Then hand it over:** "What's the one thing your character's doing differently, this time?" One line each. Hold them to it.
 
@@ -125,7 +125,7 @@
 
 #### If tonight's Brassfall: the thane
 
-**Kessa Ironhorn.** Laughs with his whole chest; tucks his gloved hands in his belt. Skip the contest unless they ask for it. He's heard about them.
+**Thane Oru Kessa.** Laughs with his whole chest; tucks his gloved hands in his belt. Skip the contest unless they ask for it. He's heard about them.
 
 > **SAY (Kessa, in private):** "I'm dying, rider. Ring it, and return it after."
 

@@ -48,7 +48,7 @@
 | **Wyn Talla** | An old trapper; keeper of a vigil | Commoner | Yara's fire | Friendly to anyone who asks about Maren | None needed | She paid for the letter. A voice in the glass told her what to write, and signed itself I.V. |
 | **Edrin Moss** | The courier from Session 8 | Scout | Yara's fire, if they protected him | Friendly | None needed | He won't go past the first tree. He never has. |
 | **The Stilled child** | A girl frozen in 2 SS | Commoner; never attacks | The Stilled Clearing | Asleep | None | She heard the man in the tower stop singing. |
-| **Bosun Corran Vell** | A sailor of the Brightwater, from Zazesspur | Stilled Person until calmed | The edge of the clearing | Hostile from shock for a moment, then Indifferent | DC 15, in Common | He thinks it's 1082 DR. His crew are in these trees. |
+| **Bosun Corran Vell** | A sailor of the Brightwater, from Zazesspur | Stilled Person (until calmed) | The edge of the clearing | Hostile from shock for a moment, then Indifferent | DC 15, in Common | He thinks it's 1082 DR. His crew are in these trees. |
 | **The Glass-Wolves** | A hunting pack | Glass-Wolf | Off the path | Hungry | — | They hate a high, steady note. |
 
 **Places at a glance:**

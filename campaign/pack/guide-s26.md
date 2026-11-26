@@ -48,7 +48,7 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Maudrin Vesk** | The Quiet Chancellor, and the last one holding it up | Maudrin Vesk, Keeper of the Seventh | By the bell | Frightened | DC 20 | She hasn't decided. She came down to find out. |
+| **Maudrin Vesk** | The Quiet Chancellor, and the last one holding it up | Keeper of the Seventh (Maudrin Vesk) | By the bell | Frightened | DC 20 | She hasn't decided. She came down to find out. |
 | **The Hush** | The lullaby | — | In the bell | Tired | It can't be persuaded | It'd like to stop. It's afraid of what happens when it does. |
 | **The one in the glass** | One of them, older | — | At the foot of the bell | Waiting | No | None. It's a question. |
 | **Ser Haldric Mose** | If he's still hers | Ser Haldric Mose | In front of her | Sure of himself | DC 15 | Nobody's told him why she keeps him close. |
@@ -64,7 +64,7 @@
 - **The last step** on one side, **the casting-pit** on the other.
 
 **Rumours (d6)** (what people have told them about this room, all the way along):
-1. "Wenna Aldeth rang it once." (False. She rang a handbell, up on the hill, and it killed her.)
+1. "Wenna Aldeth rang it once." (False. She rang a handbell at the foot of the Tor, and the hunt that followed killed her.)
 2. "Nobody built it. It was here." (False. Somebody did. There's a pit.)
 3. "If you put your hand on it, you hear your mother." (True. Everyone does.)
 4. "She goes down there to talk to it." (Maudrin. False. She'd never been past the top step, until now.)
@@ -162,7 +162,7 @@ Say to that player, "What do you feel?" Then read them, word for word, what they
 *Lines:*
 - "It's all right. I know how it goes. Let me just… I know how it goes."
 - "Three generations. Three. And you want to *talk* about it?"
-- "Wenna got as far as the top of the hill. Look. Look how far I've got."
+- "Wenna only got as far as the foot of the hill. Look. Look how far I've got."
 
 **If they…**
 - **[Get in his way](play:s26-corin-races-to-the-bell):** he tries to take the Key off whoever's holding it. He'll hit a person to do it and be appalled.

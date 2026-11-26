@@ -5,7 +5,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
-import { creatureByName, statLine } from '../lib/combat';
+import { cellCreatures, creatureByName, statLine } from '../lib/combat';
 import { memoryOf } from '../lib/memory';
 import { pageName } from '../lib/page-name';
 import { searchCampaign } from '../lib/campaign-search';
@@ -241,7 +241,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.15');
+      assert.equal(pb7.version, '7.16');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -406,7 +406,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.15');
+    assert.equal(pb71.version, '7.16');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -609,7 +609,7 @@ if (backup)
     // Installing again changes nothing.
     assert.ok(
       planUpdate(installed, pack)
-        .filter((p) => /^(ktitle|kedit|ktrack|pstatus|pquote):/.test(p.id))
+        .filter((p) => /^(ktitle|kedit|ktrack|pstatus|pquote|paliases):/.test(p.id))
         .every((p) => p.status === 'applied'),
     );
   });
@@ -989,6 +989,32 @@ if (backup) {
     assert.match(r.reasons.join(), /^Because Ossa.s Heart is/);
   });
 }
+test('a pack gives a page other names, and leaves names the DM changed alone', () => {
+  const page = memoryOf(installed).pages[0],
+    p2 = updatePackSchema.parse({
+      ...packJson,
+      pages: [],
+      cardEdits: [],
+      sessions: [],
+      cards: [],
+      pageEdits: [{ id: page.id, edits: [], aliases: { from: page.aliases, to: 'Another Name' } }],
+    }),
+    named = (c: Campaign) => memoryOf(c).pages.find((p) => p.id === page.id)!.aliases,
+    ids = (c: Campaign) => new Set(planUpdate(c, p2).map((p) => p.id));
+  assert.equal(planUpdate(installed, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'ready');
+  const done = applyUpdate(installed, p2, ids(installed));
+  assert.equal(named(done), 'Another Name');
+  assert.equal(planUpdate(done, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'applied');
+  const mine = {
+    ...installed,
+    memory: {
+      ...memoryOf(installed),
+      pages: memoryOf(installed).pages.map((p) => (p.id === page.id ? { ...p, aliases: 'Mine' } : p)),
+    },
+  } as Campaign;
+  assert.equal(planUpdate(mine, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'conflict');
+  assert.equal(named(applyUpdate(mine, p2, ids(mine))), 'Mine');
+});
 test('a pack edit can build on its own earlier edit, and reinstalling changes nothing', () => {
   const s = installed.sessions[0],
     tail = s.plan.slice(-40);
@@ -1186,6 +1212,44 @@ test("a stat line in an NPC's entry opens that creature", () => {
   assert(hushman.statblock, 'a campaign stat block is found whatever its capitals');
   assert.equal(creatureByName('Commoner (for talk)', pb).name, 'Commoner');
 });
+test('a stat block cell opens the campaign block it means, by a short name or an epithet', () => {
+  const named = (name: string) => creatureByName(name, pb).name;
+  assert.equal(named('Court Agent'), 'Court Agent (Isolde Drave, Tristan Vesk)');
+  assert.equal(named('Keeper of the Seventh'), 'Maudrin Vesk, Keeper of the Seventh');
+  assert.equal(named('Ondra Sallow'), 'Ondra Sallow, the Cantor');
+  assert.equal(named('Captain Rook'), 'Captain Dessa Rook');
+  // Two blocks fit "Maudrin Vesk" (the Chancellor and the Keeper), so it opens neither; one word never matches loosely.
+  assert.equal(creatureByName('Maudrin Vesk', pb).statblock, undefined);
+  assert.equal(creatureByName('Mage', pb).statblock, undefined);
+  const names = (cell: string) => cellCreatures(cell).flatMap((c) => (c.name ? [c.name] : []));
+  assert.deepEqual(names('Hush Cultist (Wat); no stats (Pip)'), ['Hush Cultist']);
+  assert.deepEqual(names('Noble, two Toughs'), ['Noble', 'Tough']);
+  assert.deepEqual(names('None'), []);
+  assert.deepEqual(names('No stats tonight'), []);
+});
+if (backup)
+  test('every stat block cell in the session plans opens a stat block', () => {
+    const srd = JSON.parse(fs.readFileSync(path.resolve('desktop/data/srd-5etools.json'), 'utf8')),
+      plain = (t: string) => t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(),
+      library = new Set((srd.monster as { name: string }[]).map((m) => plain(m.name))),
+      cells = (row: string) => row.replace(/^\s*\||\|\s*$/g, '').split('|').map((c) => c.trim()),
+      missing: string[] = [];
+    for (const s of installed.sessions) {
+      const lines = s.plan.split('\n');
+      lines.forEach((line, i) => {
+        if (!/^\|/.test(line) || !/^\|[\s:|-]+$/.test(lines[i + 1] || '')) return;
+        const at = cells(line).findIndex((h) => /^stat block/i.test(h.replace(/\*/g, '')));
+        if (at < 0) return;
+        for (let j = i + 2; /^\|/.test(lines[j] || ''); j++) {
+          const cell = (cells(lines[j])[at] || '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_]/g, '');
+          for (const { name } of cellCreatures(cell))
+            if (name && !creatureByName(name, pb).statblock && !library.has(plain(name)))
+              missing.push(s.title.slice(0, 12) + ': ' + name);
+        }
+      });
+    }
+    assert.deepEqual(missing, []);
+  });
 test('book headings read as names on screen, and section numbers stay', () => {
   const name = (title: string, kind = 'NPC') => pageName({ title, kind } as never);
   assert.equal(name('19. HUSHMAN TOBIAS QUILL'), 'Hushman Tobias Quill');
