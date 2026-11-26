@@ -1,6 +1,7 @@
 'use client';
 import CampaignReader from './campaign-reader';
 import CampaignBookPanel from './campaign-book';
+import FoundryExportPanel from './foundry-export';
 import RollTablesPanel from './roll-tables-panel';
 import FactionStandingPanel from './faction-standing';
 import { Pin, ArrowRight, Clock, FileText } from 'lucide-react';
@@ -160,6 +161,7 @@ export default function CampaignHub({
       <FactionStandingPanel campaign={campaign} update={update} />
       <RollTablesPanel campaign={campaign} />
       <CampaignBookPanel campaign={campaign} />
+      <FoundryExportPanel campaign={campaign} />
     </div>
   );
 }

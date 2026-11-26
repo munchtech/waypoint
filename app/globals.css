@@ -7970,6 +7970,36 @@ fieldset.relation-labels input {
   align-items: center;
   gap: 4px;
 }
+/* Foundry VTT export: the import steps beside the choices, and the macro to copy by hand. */
+.foundry-steps {
+  margin: 0;
+  padding-left: 20px;
+  max-width: 52ch;
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+}
+.foundry-panel > .tiny {
+  margin: 12px 0 0;
+}
+.foundry-macro {
+  margin-top: 10px;
+}
+.foundry-macro summary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.foundry-macro textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  font:
+    12px/1.45 ui-monospace,
+    Consolas,
+    monospace;
+  white-space: pre;
+}
 .campaign-book {
   display: none;
 }

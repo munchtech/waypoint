@@ -160,6 +160,11 @@ function installHandler() {
       fs.writeFileSync(file, pdf);
       return { status: 200, body: { saved: true, path: file } };
     }
+    // The Foundry export: keep the file in memory so a test can read it.
+    if (r.path === '/api/foundry-export') {
+      state.foundry = JSON.parse(r.body || '{}');
+      return { status: 200, body: { saved: true, path: 'C:/Waypoint/' + state.foundry.fileName } };
+    }
     if (r.path === '/api/campaign-book/open') return { status: 200, body: { ok: true } };
     // The player site: keep the written page in memory so a test can read what players would see.
     if (r.path === '/api/site/write') {

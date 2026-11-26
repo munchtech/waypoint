@@ -107,6 +107,17 @@ import {
   tablesInText,
 } from '../lib/roll-tables';
 import { diceLabel, diceSpec, parseDice, randomDie, rollAnnouncement, rollDice } from '../lib/dice';
+import {
+  NONE,
+  OBSERVER,
+  creatureStats,
+  foundryBundle,
+  foundryFileName,
+  foundryId,
+  foundryParts,
+  foundrySummary,
+} from '../lib/foundry-export';
+import { foundryMacro } from '../lib/foundry-macro';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -1509,6 +1520,13 @@ test('die tables and die lists roll, with the dice in a row rolled too', () => {
     ],
   );
   assert.equal(found[1].table.entries[0], '2d6 sp');
+  assert.deepEqual(found[0].table.entries.slice(0, 2), ['One.', 'Two.']);
+  // A die list has no numbers of its own, so each item is one face, and rolling it lands on an item.
+  assert.deepEqual(
+    found[0].table.ranges,
+    [1, 2, 3, 4, 5, 6].map((n) => [n, n]),
+  );
+  assert.equal(rollOn(found[0].table, at(0.99)).index, 5);
   const withLoot = structuredClone(installed);
   memoryOf(withLoot).pages.push({
     ...memoryOf(withLoot).pages[0],
@@ -1938,6 +1956,391 @@ test('a homebrew copy of a library creature is renamed, found by its own name on
   // Applying the update pack again replaces the playbook and keeps the homebrew.
   assert.deepEqual(memoryOf(applyUpdate(mine([reed]), pack, all)).homebrew, [reed]);
 });
+
+test('the Foundry export makes journal entries, roll tables and creatures with ids that stay the same', () => {
+  const mem = memoryOf(installed),
+    bundle = foundryBundle(installed, [...foundryParts], 'T');
+  assert.equal(bundle.format, 'waypoint-foundry');
+  // One entry per wiki page and handout, one for the session plans and one for the stat blocks.
+  assert.equal(bundle.journal.length, mem.pages.length + (mem.handouts || []).length + 2);
+  assert.equal(bundle.tables.length, campaignTables(installed).length);
+  assert.equal(bundle.actors.length, pb.statblocks.length);
+  assert.deepEqual(foundrySummary(installed, [...foundryParts]), [
+    bundle.journal.length + ' journal entries',
+    bundle.tables.length + ' roll tables',
+    bundle.actors.length + ' creatures',
+  ]);
+  // Foundry ids: 16 letters and digits, all different, and the same every time for the same campaign.
+  const ids = [
+    ...bundle.folders.map((f) => f._id),
+    ...bundle.journal.flatMap((j) => [j._id, ...j.pages.map((p) => p._id)]),
+    ...bundle.tables.flatMap((t) => [t._id, ...t.results.map((r) => r._id)]),
+    ...bundle.actors.map((a) => a._id),
+  ];
+  assert.ok(ids.every((id) => /^[A-Za-z0-9]{16}$/.test(id)));
+  assert.equal(new Set(ids).size, ids.length);
+  assert.deepEqual(foundryBundle(installed, [...foundryParts], 'T'), bundle);
+  assert.notEqual(
+    foundryBundle({ ...installed, id: 'other' }, ['wiki'], 'T').journal[0]._id,
+    bundle.journal[0]._id,
+  );
+  // Every folder sits in a folder of its own type, or at the top.
+  for (const f of bundle.folders)
+    assert.ok(!f.folder || bundle.folders.some((p) => p._id === f.folder && p.type === f.type));
+  const sessions = bundle.journal.find((j) => j.name === 'Session plans')!;
+  assert.equal(sessions.pages.length, installed.sessions.length);
+  assert.equal(sessions.ownership.default, NONE);
+  assert.equal(
+    bundle.journal.find((j) => j.name === 'Stat blocks')!.pages.length,
+    pb.statblocks.length,
+  );
+  // Names become Foundry links to entries and creature pages that are in the file, first mention only, never to itself.
+  const pageIds = new Set(
+      bundle.journal.flatMap((j) => j.pages.map((p) => j._id + '.JournalEntryPage.' + p._id)),
+    ),
+    entryIds = new Set(bundle.journal.map((j) => j._id));
+  let toEntries = 0,
+    toCreatures = 0;
+  for (const j of bundle.journal)
+    for (const p of j.pages) {
+      const links = [...p.text.content.matchAll(/@UUID\[JournalEntry\.([^\]]+)\]\{([^}]*)\}/g)].map(
+        (m) => m[1],
+      );
+      for (const to of links) {
+        if (to.includes('.JournalEntryPage.')) {
+          assert.ok(pageIds.has(to), 'creature link ' + to);
+          toCreatures++;
+        } else {
+          assert.ok(entryIds.has(to) && to !== j._id, 'page link ' + to);
+          toEntries++;
+        }
+      }
+      if (j.name !== 'Session plans' && j.name !== 'Stat blocks')
+        assert.equal(new Set(links).size, links.length, j.name + ' links each page once');
+    }
+  assert.ok(
+    toEntries > 50 && toCreatures > 0,
+    toEntries + ' page links, ' + toCreatures + ' creature links',
+  );
+  // Tables roll their own die and keep their rows' ranges.
+  const found = campaignTables(installed);
+  bundle.tables.forEach((t, i) => {
+    assert.equal(t.formula, '1d' + found[i].table.sides);
+    assert.deepEqual(
+      t.results.map((r) => r.range),
+      found[i].table.ranges,
+    );
+  });
+  // A creature's numbers come out of its stat block, in the pack's shape and the rules library's.
+  const hushman = pb.statblocks.find((b) =>
+    /\*\*AC\*\* 12 \(leather coat\) · \*\*HP\*\* 32 \(5d8 \+ 10\)/.test(b.body),
+  )!;
+  assert.deepEqual(creatureStats(hushman), {
+    cr: 0.5,
+    ac: 12,
+    hp: 32,
+    hpFormula: '5d8 + 10',
+    speed: 30,
+    abilities: { str: 15, dex: 12, con: 14, int: 10, wis: 11, cha: 10 },
+  });
+  for (const a of bundle.actors)
+    assert.ok(
+      a.ac && a.hp && Object.keys(a.abilities).length === 6 && a.cr !== null,
+      a.name + ' has its numbers',
+    );
+  assert.deepEqual(
+    creatureStats({
+      cr: '1/4',
+      body: [
+        'Small humanoid · CR 1/4',
+        'Armor class\n15 (leather armor, shield)',
+        'Hit points\n7 (2d6)',
+        'Speed\nwalk 30',
+        'Ability scores\nSTR 8 (-1) · DEX 14 (+2) · CON 10 (+0) · INT 10 (+0) · WIS 8 (-1) · CHA 8 (-1)',
+      ].join('\n\n'),
+    }),
+    {
+      cr: 0.25,
+      ac: 15,
+      hp: 7,
+      hpFormula: '2d6',
+      speed: 30,
+      abilities: { str: 8, dex: 14, con: 10, int: 10, wis: 8, cha: 8 },
+    },
+  );
+  assert.deepEqual(creatureStats({ cr: '?', body: 'Nothing here.' }), {
+    cr: null,
+    ac: null,
+    hp: null,
+    hpFormula: '',
+    speed: null,
+    abilities: {},
+  });
+  // Players can open a page the party knows; planned and DM-only pages stay hidden. Handouts are for players.
+  const [known, planned, secret] = mem.pages;
+  const shared: Campaign = {
+    ...installed,
+    memory: {
+      ...mem,
+      pages: mem.pages.map((p) =>
+        p === known
+          ? {
+              ...p,
+              visibility: 'Party knows',
+              status: 'Confirmed',
+              body: 'A <script>x</script> **bold** note. See [World state](go:world-state), [below](#notes) and [the map](https://example.com/map).',
+            }
+          : p === planned
+            ? { ...p, visibility: 'Party knows', status: 'Planned' }
+            : { ...p, visibility: 'DM only' },
+      ),
+      handouts: [
+        { id: 'h1', title: 'A letter', body: 'Come alone.', sourcePageIds: [], updated: 'T' },
+      ],
+    },
+  };
+  const players = foundryBundle(shared, ['wiki', 'handouts'], 'T'),
+    entry = (id: string) => players.journal.find((j) => j.flags.world.waypoint === id)!;
+  assert.equal(entry('page:' + known.id).ownership.default, OBSERVER);
+  assert.equal(entry('page:' + planned.id).ownership.default, NONE);
+  assert.equal(entry('page:' + secret.id).ownership.default, NONE);
+  assert.equal(entry('handout:h1').ownership.default, OBSERVER);
+  assert.equal(entry('handout:h1').pages[0].text.content, '<p>Come alone.</p>');
+  assert.equal(
+    entry('page:' + known.id).pages[0].text.content,
+    '<p>A &lt;script&gt;x&lt;/script&gt; <strong>bold</strong> note. See World state, below and <a href="https://example.com/map">the map</a>.</p>',
+  );
+  // Only what was chosen goes in, and links only go to what is in the file.
+  const tablesOnly = foundryBundle(installed, ['tables'], 'T');
+  assert.deepEqual(
+    [tablesOnly.journal.length, tablesOnly.actors.length, tablesOnly.folders.map((f) => f.type)],
+    [0, 0, ['RollTable']],
+  );
+  const noWiki = foundryBundle(installed, ['sessions'], 'T');
+  assert.ok(!noWiki.journal[0].pages.some((p) => p.text.content.includes('@UUID')));
+  assert.deepEqual(foundrySummary(installed, []), []);
+  assert.equal(foundryFileName('The Seventh Bell!'), 'the-seventh-bell.foundry.json');
+  assert.equal(foundryId('a'), foundryId('a'));
+  assert.notEqual(foundryId('a'), foundryId('b'));
+});
+
+// A stand-in for the parts of Foundry the import macro uses. It checks the calls the way Foundry would: ids kept, no
+// embedded arrays in an update, and text results in the shape of the Foundry version it pretends to be.
+type Doc = Record<string, unknown> & { _id: string; id: string; name: string };
+class Docs<T> extends Map<string, T> {
+  get contents() {
+    return [...this.values()];
+  }
+}
+function mockFoundry(
+  gen: number,
+  system: string,
+  file: string | null,
+  opts: { gm?: boolean; broken?: string } = {},
+) {
+  const store: Record<string, Docs<Doc>> = {
+    Folder: new Docs(),
+    JournalEntry: new Docs(),
+    RollTable: new Docs(),
+    Actor: new Docs(),
+  };
+  const notes: [string, string][] = [],
+    warnings: string[] = [];
+  const nested = { JournalEntry: 'pages', RollTable: 'results' } as Record<string, string>;
+  const checkResult = (r: Record<string, unknown>) => {
+    if (gen >= 13)
+      assert.ok(r.type === 'text' && typeof r.name === 'string' && !('text' in r), 'v13 result');
+    else
+      assert.ok(
+        r.type === (gen >= 11 ? 'text' : 0) && typeof r.text === 'string' && !('name' in r),
+        'old result',
+      );
+  };
+  const make = (type: string, data: Doc) => {
+    const doc: Doc = { ...structuredClone(data), id: data._id };
+    const key = nested[type];
+    if (key) {
+      const list = new Docs<Doc>();
+      for (const e of (data[key] as Doc[]) || []) {
+        if (type === 'RollTable') checkResult(e);
+        list.set(e._id, { ...structuredClone(e), id: e._id });
+      }
+      doc[key] = list;
+      doc.createEmbeddedDocuments = async (_: string, add: Doc[], o: { keepId?: boolean }) => {
+        assert.ok(o?.keepId, 'embedded ids kept');
+        for (const e of add) {
+          if (list.has(e._id)) throw Error('Duplicate ' + e._id);
+          if (type === 'RollTable') checkResult(e);
+          list.set(e._id, { ...structuredClone(e), id: e._id });
+        }
+      };
+      doc.updateEmbeddedDocuments = async (_: string, change: Doc[]) => {
+        for (const e of change) {
+          const old = list.get(e._id);
+          if (!old) throw Error('No ' + e._id);
+          Object.assign(old, structuredClone(e));
+        }
+      };
+      doc.deleteEmbeddedDocuments = async (_: string, ids: string[]) => {
+        for (const id of ids) list.delete(id);
+      };
+    }
+    return doc;
+  };
+  const documentClass = (type: string) => ({
+    createDocuments: async (list: Doc[], o: { keepId?: boolean }) => {
+      assert.ok(o?.keepId, 'ids kept');
+      if (list.some((d) => d.name === opts.broken)) throw Error('Broken document');
+      for (const d of list) {
+        if (store[type].has(d._id)) throw Error('Duplicate ' + d._id);
+        if (d.folder && !store.Folder.has(d.folder as string)) throw Error('No folder ' + d.folder);
+        store[type].set(d._id, make(type, d));
+      }
+      return list;
+    },
+    updateDocuments: async (list: Doc[]) => {
+      for (const d of list) {
+        const doc = store[type].get(d._id);
+        if (!doc) throw Error('No ' + d._id);
+        if (nested[type] && nested[type] in d) throw Error('Embedded documents in an update');
+        Object.assign(doc, structuredClone(d));
+      }
+      return list;
+    },
+  });
+  const input: {
+    files?: { text: () => Promise<string> }[];
+    onchange?: () => void;
+    click: () => void;
+  } = {
+    click: () =>
+      queueMicrotask(() => {
+        input.files = file === null ? [] : [{ text: async () => file }];
+        input.onchange?.();
+      }),
+  };
+  const globals = {
+    game: {
+      user: { isGM: opts.gm ?? true },
+      release: { generation: gen },
+      version: gen + '.300',
+      system: { id: system },
+      collections: { get: (type: string) => store[type] },
+      journal: store.JournalEntry,
+      tables: store.RollTable,
+      actors: store.Actor,
+    },
+    CONFIG: Object.fromEntries(
+      Object.keys(store).map((t) => [t, { documentClass: documentClass(t) }]),
+    ),
+    ui: {
+      notifications: Object.fromEntries(
+        ['info', 'warn', 'error'].map((level) => [
+          level,
+          (text: string) => notes.push([level, text]),
+        ]),
+      ),
+    },
+    document: { createElement: () => input },
+    console: { warn: (text: string) => warnings.push(text) },
+  };
+  const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor as new (
+    ...args: string[]
+  ) => (...values: unknown[]) => Promise<void>;
+  const run = () =>
+    new AsyncFunction(...Object.keys(globals), foundryMacro)(...Object.values(globals));
+  return { store, notes, warnings, run, last: () => notes[notes.length - 1] };
+}
+async function asyncTest(name: string, fn: () => Promise<void>) {
+  try {
+    await fn();
+    console.log('ok  ', name);
+  } catch (e) {
+    failures++;
+    console.log('FAIL', name, '\n    ', e instanceof Error ? e.message : e);
+  }
+}
+await asyncTest(
+  'the Foundry import macro creates everything once, then updates the same documents',
+  async () => {
+    const bundle = foundryBundle(installed, [...foundryParts], 'T'),
+      total =
+        bundle.folders.length + bundle.journal.length + bundle.tables.length + bundle.actors.length;
+    const world = mockFoundry(13, 'dnd5e', JSON.stringify(bundle));
+    await world.run();
+    assert.deepEqual(world.last(), ['info', 'Waypoint import: ' + total + ' created, 0 updated.']);
+    assert.deepEqual(
+      ['Folder', 'JournalEntry', 'RollTable', 'Actor'].map((t) => world.store[t].size),
+      [bundle.folders.length, bundle.journal.length, bundle.tables.length, bundle.actors.length],
+    );
+    const actor = world.store.Actor.get(bundle.actors[0]._id)!,
+      stats = bundle.actors[0];
+    assert.equal(actor.type, 'npc');
+    assert.deepEqual((actor.system as { attributes: unknown }).attributes, {
+      ac: { flat: stats.ac, calc: 'flat' },
+      hp: { value: stats.hp, max: stats.hp, formula: stats.hpFormula },
+      movement: { walk: stats.speed },
+    });
+    // The DM adds a page in Foundry and changes a page in Waypoint, then imports again: the same documents are updated.
+    const firstEntry = world.store.JournalEntry.get(bundle.journal[0]._id)!;
+    (firstEntry.pages as Docs<Doc>).set('dmsOwnPage00000', {
+      _id: 'dmsOwnPage00000',
+      id: 'dmsOwnPage00000',
+      name: 'Mine',
+    });
+    const changed = structuredClone(installed);
+    memoryOf(changed).pages[0].body = 'Changed in Waypoint.';
+    const again = foundryBundle(changed, [...foundryParts], 'T2');
+    const second = mockFoundry(13, 'dnd5e', JSON.stringify(again));
+    for (const t of Object.keys(world.store))
+      for (const [k, v] of world.store[t]) second.store[t].set(k, v);
+    await second.run();
+    assert.deepEqual(second.last(), ['info', 'Waypoint import: 0 created, ' + total + ' updated.']);
+    const pages = (second.store.JournalEntry.get(again.journal[0]._id)!.pages as Docs<Doc>)
+      .contents;
+    assert.deepEqual(
+      pages.map((p) => p.name),
+      [again.journal[0].pages[0].name, 'Mine'],
+    );
+    assert.equal((pages[0].text as { content: string }).content, '<p>Changed in Waypoint.</p>');
+    const table = second.store.RollTable.get(again.tables[0]._id)!;
+    assert.equal((table.results as Docs<Doc>).size, again.tables[0].results.length);
+    // Foundry 11 in another system: text results, and no creatures, only their journal pages.
+    const pf = mockFoundry(11, 'pf2e', JSON.stringify(bundle));
+    await pf.run();
+    assert.equal(pf.store.Actor.size, 0);
+    assert.ok(!pf.store.Folder.contents.some((f) => f.type === 'Actor'));
+    assert.match(pf.last()[1], /Creatures are made only in a dnd5e world/);
+    // One document Foundry refuses doesn't stop the rest; it is named in the console.
+    const broken = mockFoundry(12, 'dnd5e', JSON.stringify(bundle), {
+      broken: bundle.journal[1].name,
+    });
+    await broken.run();
+    assert.equal(broken.store.JournalEntry.size, bundle.journal.length - 1);
+    assert.equal(broken.last()[0], 'warn');
+    assert.match(broken.last()[1], /, 1 failed \(details in the console/);
+    assert.ok(
+      broken.warnings[0].includes('JournalEntry "' + bundle.journal[1].name + '": Broken document'),
+      broken.warnings[0],
+    );
+    // Players can't import, other files are refused, and choosing nothing does nothing.
+    const player = mockFoundry(13, 'dnd5e', JSON.stringify(bundle), { gm: false });
+    await player.run();
+    assert.deepEqual(
+      [player.last(), player.store.JournalEntry.size],
+      [['warn', 'Only a GM can import from Waypoint.'], 0],
+    );
+    const wrong = mockFoundry(13, 'dnd5e', '{"format":"something-else"}');
+    await wrong.run();
+    assert.deepEqual(wrong.last(), ['error', 'That file is not a Waypoint export for Foundry.']);
+    const none = mockFoundry(13, 'dnd5e', null);
+    await none.run();
+    assert.deepEqual(none.notes, []);
+    const old = mockFoundry(9, 'dnd5e', JSON.stringify(bundle));
+    await old.run();
+    assert.deepEqual(old.last(), ['error', 'Waypoint imports need Foundry VTT 10 or newer.']);
+  },
+);
 
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

@@ -80,6 +80,7 @@ const steps = [
   ui('maps', 'ui-maps.cjs', ['--out', path.join(logs, 'maps')]),
   ui('homebrew', 'ui-homebrew.cjs', ['--out', path.join(logs, 'homebrew')]),
   ui('restore points', 'ui-restore.cjs'),
+  ui('foundry export', 'ui-foundry.cjs'),
   ui('foresight', 'ui-foresight.cjs', [
     '--fixture',
     path.join(root, 'scripts/fixtures/seventh-bell-v5.waypoint.json'),

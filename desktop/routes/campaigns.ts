@@ -46,6 +46,29 @@ export const campaignsRoute: Route = async (req) => {
     const failed = await shell.openPath(savedBook);
     return failed ? { status: 400, body: { error: failed } } : { status: 200, body: { ok: true } };
   }
+  // A Foundry VTT export: the window builds the file (lib/foundry-export.ts) and this asks where to save it.
+  if (req.path === '/api/foundry-export' && req.method === 'POST') {
+    const win = state.win;
+    if (!win) throw new Error('The Waypoint window is not open.');
+    const { fileName, bundle } = JSON.parse(req.body || '{}') as {
+      fileName?: unknown;
+      bundle?: { format?: unknown };
+    };
+    if (!bundle || bundle.format !== 'waypoint-foundry')
+      return { status: 400, body: { error: 'That is not a Foundry export.' } };
+    const name =
+      typeof fileName === 'string' && /^[\w.-]{1,100}\.foundry\.json$/.test(fileName)
+        ? fileName
+        : 'campaign.foundry.json';
+    const result = await dialog.showSaveDialog(win, {
+      title: 'Save for Foundry VTT',
+      defaultPath: path.join(app.getPath('documents'), name),
+      filters: [{ name: 'Foundry import file', extensions: ['json'] }],
+    });
+    if (result.canceled || !result.filePath) return { status: 200, body: { saved: false } };
+    fs.writeFileSync(result.filePath, JSON.stringify(bundle));
+    return { status: 200, body: { saved: true, path: result.filePath } };
+  }
   if (req.path === '/api/open-data' && req.method === 'POST') {
     await shell.openPath(dataDir);
     return { status: 200, body: { ok: true } };

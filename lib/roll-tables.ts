@@ -45,7 +45,8 @@ export function rowRange(cell: string, sides: number): [number, number] | null {
 export function rollTable(sides: number, keys: string[], entries: string[]): RollTable | null {
   if (!entries.length) return null;
   const ranges = keys.map((k) => rowRange(k, sides));
-  if (ranges.every((r) => r)) return { sides, ranges: ranges as [number, number][], entries };
+  if (keys.length === entries.length && ranges.every((r) => r))
+    return { sides, ranges: ranges as [number, number][], entries };
   if (entries.length !== sides) return null;
   return { sides, ranges: entries.map((_, i) => [i + 1, i + 1]), entries };
 }
@@ -146,7 +147,7 @@ export function markRollTables(tokens: Token[]): { title: string; table: RollTab
         if (t.type === 'list_item_open' && depth === 0) items.push({ open: t, text: '' });
         else if (
           t.type === 'inline' &&
-          depth === 1 &&
+          depth === 0 &&
           items.length &&
           !items[items.length - 1].text
         )

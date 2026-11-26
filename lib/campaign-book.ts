@@ -18,7 +18,7 @@ export const bookPartLabels: Record<BookPart, string> = {
 };
 // Parts that only make sense in the DM's copy.
 export const dmOnlyParts: BookPart[] = ['sessions', 'appendix', 'cards'];
-const kindTitles: Record<WikiPage['kind'], string> = {
+export const kindTitles: Record<WikiPage['kind'], string> = {
   NPC: 'People',
   Character: 'Player characters',
   Location: 'Places',
