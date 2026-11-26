@@ -7567,6 +7567,96 @@ input:focus {
 .mentioned-in > .text-button {
   margin-top: 12px;
 }
+/* Rollable tables: a Roll button over any die table or die list, the rolled row marked, and the hub's list of them all. */
+.roll-table {
+  margin: 10px 0;
+}
+.roll-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 6px 0;
+}
+.roll-bar .roll-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  font-size: 12px;
+}
+.roll-out {
+  margin: 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.roll-out:empty {
+  display: none;
+}
+.roll-out > strong {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  margin-right: 4px;
+  border-radius: 6px;
+  background: light-dark(#315a42, #315a42);
+  color: #fff;
+  font-family: 'Lora', Georgia, serif;
+}
+.dice-total {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: light-dark(#e6efdc, #24332a);
+}
+.roll-table tr.rolled > td,
+.roll-table li.rolled {
+  background: light-dark(#fbf1cf, #3a3420);
+}
+.roll-table li.rolled {
+  border-radius: 4px;
+  outline: 4px solid light-dark(#fbf1cf, #3a3420);
+}
+.random-tables-panel h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.random-tables-panel input[type='search'] {
+  max-width: 340px;
+}
+.random-table-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 4px;
+}
+.random-table {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid light-dark(#e3e8dc, #2d363e);
+}
+.random-table > div:first-child {
+  display: grid;
+  gap: 2px;
+}
+.random-table small {
+  color: light-dark(#6b7a62, #9fb092);
+}
+@media (max-width: 700px) {
+  .random-table {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  .roll-bar {
+    display: none !important;
+  }
+}
 /* The campaign book: options in the hub, and the printed book itself, which only exists while it prints. */
 .campaign-book-panel h3 {
   display: flex;

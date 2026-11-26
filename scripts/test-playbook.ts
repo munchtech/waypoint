@@ -62,6 +62,18 @@ import { trackerStatus } from '../lib/trackers';
 import { atQuery, backlinks, creatureEncounters, linkOptions, sharedIndex } from '../lib/backlinks';
 import { splitMentions } from '../lib/wiki-mentions';
 import { bookContents, bookFileName, bookParts } from '../lib/campaign-book';
+import {
+  campaignTables,
+  dieInHead,
+  dieInLabel,
+  lootTemplate,
+  rollOn,
+  rollTable,
+  rollText,
+  rollTextPlain,
+  rowRange,
+  tablesInText,
+} from '../lib/roll-tables';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -1404,6 +1416,80 @@ test('the campaign book holds everything for the DM and only known pages for pla
   assert.equal(bookContents(installed, 'DM', []).chapters.length, 0);
   assert.equal(bookFileName('The Seventh Bell!', 'DM'), 'the-seventh-bell-dm-book.pdf');
   assert.equal(bookFileName('***', 'Players'), 'campaign-players-guide.pdf');
+});
+test('die tables and die lists roll, with the dice in a row rolled too', () => {
+  assert.equal(dieInHead('d6'), 6);
+  assert.equal(dieInHead('1d20'), 20);
+  assert.equal(dieInHead('d%'), 100);
+  assert.equal(dieInHead('Roll (d8)'), 8);
+  assert.equal(dieInHead('Name'), null);
+  assert.equal(dieInLabel("**Rumours (d6), round Yara's fire:**"), 6);
+  assert.equal(dieInLabel('The Hushmen hit for 1d6 + 2.'), null);
+  assert.deepEqual(rowRange('2–3', 6), [2, 3]);
+  assert.deepEqual(rowRange('96-00', 100), [96, 100]);
+  assert.deepEqual(rowRange('0', 10), [10, 10]);
+  assert.deepEqual(rowRange('19+', 20), [19, 20]);
+  assert.equal(rowRange('7', 6), null);
+  // Unnumbered rows count one per face, so they need one row per face.
+  assert.equal(rollTable(4, ['a', 'b'], ['x', 'y']), null);
+  assert.deepEqual(rollTable(2, ['a', 'b'], ['x', 'y'])?.ranges, [
+    [1, 1],
+    [2, 2],
+  ]);
+  const at = (v: number) => () => v;
+  const loot = rollTable(20, ['1–5', '6–19', '20'], ['coins', 'gems', 'a crown'])!;
+  assert.deepEqual(rollOn(loot, at(0)), { roll: 1, index: 0 });
+  assert.deepEqual(rollOn(loot, at(0.5)), { roll: 11, index: 1 });
+  assert.deepEqual(rollOn(loot, at(0.99)), { roll: 20, index: 2 });
+  // Every die at its top face: 3d6 × 10 is 180, 1d4 + 1 is 5.
+  assert.equal(
+    rollTextPlain(rollText('3d6 × 10 gp and 1d4 + 1 potions', at(0.99))),
+    '3d6 × 10 (180) gp and 1d4 + 1 (5) potions',
+  );
+  assert.equal(rollTextPlain(rollText('a d8 of rope', at(0))), 'a d8 (1) of rope');
+  assert.equal(rollTextPlain(rollText('no dice here', at(0))), 'no dice here');
+  const text = [
+    '## The Glass Garden',
+    '',
+    "**Rumours (d6), round Yara's fire:**",
+    '1. One.',
+    '2. Two.',
+    '3. Three.',
+    '4. Four.',
+    '5. Five.',
+    '6. Six.',
+    '',
+    '| d4 | Find |',
+    '| --- | --- |',
+    '| 1–2 | 2d6 sp |',
+    '| 3–4 | a map |',
+    '',
+    'Steps:',
+    '1. Not a die list.',
+  ].join('\n');
+  const found = tablesInText(text);
+  assert.deepEqual(
+    found.map((f) => [f.title, f.table.sides, f.table.entries.length]),
+    [
+      ["Rumours (d6), round Yara's fire", 6, 6],
+      ['The Glass Garden', 4, 2],
+    ],
+  );
+  assert.equal(found[1].table.entries[0], '2d6 sp');
+  const withLoot = structuredClone(installed);
+  memoryOf(withLoot).pages.push({
+    ...memoryOf(withLoot).pages[0],
+    id: 'loot',
+    title: 'Loot',
+    kind: 'Item',
+    body: lootTemplate,
+  });
+  const tables = campaignTables(withLoot);
+  const lootTable = tables.find((t) => t.id === 'page:loot:0');
+  assert.equal(lootTable?.table.sides, 20);
+  // Its opening line does not end in a colon and there is no heading, so it takes the page's name.
+  assert.equal(lootTable?.title, 'Loot');
+  assert.equal(lootTable?.table.entries.length, 6);
 });
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

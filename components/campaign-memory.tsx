@@ -7,6 +7,7 @@ import { useWikiDraft } from './use-wiki-draft';
 import { isDesktop } from '../lib/transport';
 import { plainPreview } from '../lib/plain-text';
 import { pageName } from '../lib/page-name';
+import { lootTemplate } from '../lib/roll-tables';
 import { useEffect, useState } from 'react';
 import {
   BookOpen,
@@ -19,6 +20,7 @@ import {
   Lock,
   ArrowRight,
   Send,
+  Dices,
 } from 'lucide-react';
 import type { WikiDraft } from '../lib/player-site';
 import type { Campaign } from '../lib/campaign';
@@ -130,6 +132,12 @@ export default function CampaignMemory({
     .slice()
     .reverse();
   const newPage = () => setDraft(draftPage({ title: '', kind: 'NPC', body: '' }));
+  // A d20 loot table to adjust: it rolls wherever it shows (lib/roll-tables).
+  const newLootTable = () =>
+    setDraft({
+      ...draftPage({ title: 'Loot table', kind: 'Item', body: lootTemplate }),
+      status: 'Planned',
+    });
   function savePage() {
     if (!draft?.title.trim()) return;
     const current = m.pages.find((p) => p.id === draft.id);
@@ -432,6 +440,9 @@ export default function CampaignMemory({
             </select>
             <button className="button" onClick={exportWiki}>
               Export party-known pages
+            </button>
+            <button className="button" onClick={newLootTable}>
+              <Dices size={16} /> New loot table
             </button>
             <button className="button primary" onClick={newPage}>
               <Plus size={16} /> New page

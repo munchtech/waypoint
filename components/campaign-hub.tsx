@@ -1,6 +1,7 @@
 'use client';
 import CampaignReader from './campaign-reader';
 import CampaignBookPanel from './campaign-book';
+import RollTablesPanel from './roll-tables-panel';
 import { useState } from 'react';
 import { BookOpen, Pin, ArrowRight, Clock, GitBranch, FileText } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
@@ -226,6 +227,7 @@ export default function CampaignHub({
           <p className="muted">Confirmed outcomes will appear here as you record them.</p>
         )}
       </section>
+      <RollTablesPanel campaign={campaign} />
       <CampaignBookPanel campaign={campaign} />
     </div>
   );

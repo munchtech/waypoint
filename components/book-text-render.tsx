@@ -6,6 +6,8 @@ import { cellCreatures } from '../lib/combat';
 type Token = ReturnType<typeof markdown.parse>[number];
 import { safeWebLink } from '../lib/safe-web-link';
 import { goPlaces, isGoPlace, type GoPlace } from '../lib/go-links';
+import { markRollTables, type RollMeta } from '../lib/roll-tables';
+import RollableTable, { RollRow } from './roll-table';
 
 // Parse Markdown, but construct React elements ourselves. Raw HTML and arbitrary
 // token attributes never enter the DOM, and images never load remote resources.
@@ -276,12 +278,28 @@ function render(
           )?.[1];
           if (alignment) props.style = { textAlign: alignment };
         }
-        const element = createElement(token.tag, props, children);
-        nodes.push(
-          token.tag === 'table' ? (
+        // A die table or die list (lib/roll-tables) gets a Roll button, and its rows mark the one rolled.
+        const roll = token.meta as RollMeta | null;
+        if ((token.tag === 'tr' || token.tag === 'li') && typeof roll?.row === 'number') {
+          nodes.push(
+            <RollRow key={key} as={token.tag} row={roll.row}>
+              {children}
+            </RollRow>,
+          );
+          continue;
+        }
+        let element: ReactNode = createElement(token.tag, props, children);
+        if (token.tag === 'table')
+          element = (
             <div className="book-table" key={key}>
               {element}
             </div>
+          );
+        nodes.push(
+          roll?.roll ? (
+            <RollableTable key={key} table={roll.roll}>
+              {element}
+            </RollableTable>
           ) : (
             element
           ),
@@ -354,6 +372,7 @@ export default function BookText({
         )
           kids[j + 3].meta = { creatureLead: true };
     }
+    markRollTables(tokens);
     return tokens;
   }, [text, prefix]);
   return (
