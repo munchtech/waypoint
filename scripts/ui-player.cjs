@@ -4,7 +4,7 @@
 const fs = require('node:fs'),
   path = require('node:path'),
   assert = require('node:assert/strict');
-const { BrowserWindow } = require('electron');
+const { BrowserWindow, nativeImage } = require('electron');
 const { root, sleep, run } = require('./ui-harness.cjs');
 run(async (args) => {
   const moduleFile = path.join(root, '.sites-runtime/ui-harness/player-display.mjs');
@@ -57,8 +57,34 @@ run(async (args) => {
     await sleep(250);
     fs.writeFileSync(path.resolve(args.out), (await win.webContents.capturePage()).toPNG());
   }
+  // A map: its data: image shows, with the shared pins' names as text, still with no scripts or remote requests.
+  const png = nativeImage
+    .createFromBitmap(Buffer.alloc(40 * 30 * 4, 0x80), { width: 40, height: 30 })
+    .toPNG()
+    .toString('base64');
+  await win.loadURL(
+    'data:text/html;charset=utf-8,' +
+      encodeURIComponent(
+        playerDocument({
+          title: 'Harbour chart',
+          body: '',
+          image: 'data:image/png;base64,' + png,
+          pins: [{ x: 0.25, y: 0.5, label: '<i>Quay</i>' }],
+        }),
+      ),
+  );
+  await sleep(400);
+  const map = await win.webContents.executeJavaScript(
+    `(()=>{const img=document.querySelector('figure img'),pin=document.querySelector('figure span'),r=img.getBoundingClientRect(),p=pin.getBoundingClientRect();return {loaded:img.complete&&img.naturalWidth===40,pins:document.querySelectorAll('figure span').length,label:pin.textContent,italic:document.querySelectorAll('i').length,x:(p.left+p.width/2-r.left)/r.width,tip:(p.bottom-r.top)/r.height}})()`,
+  );
+  assert(map.loaded, 'The map image should load');
+  assert.equal(map.pins, 1);
+  assert.equal(map.label, '<i>Quay</i>', 'Pin names are text');
+  assert.equal(map.italic, 0);
+  assert(Math.abs(map.x - 0.25) < 0.01 && Math.abs(map.tip - 0.5) < 0.01, 'Pin sits at its place');
+  assert.deepEqual(requests, [], 'The map must not request anything remote');
   console.log(
-    'Player window passed: formatted text, escaped HTML, plain links, no images, no scripts, no remote requests.',
+    'Player window passed: formatted text, escaped HTML, plain links, no images, no scripts, no remote requests, and a map with its pins in place.',
   );
   win.destroy();
 });

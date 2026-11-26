@@ -36,7 +36,13 @@ export const playersRoute: Route = async (req) => {
         state.playerWin = null;
       });
     }
-    await state.playerWin.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(html));
+    // A map image makes the page too long for a data: URL (Chromium stops near 2MB), so a large page goes through a file.
+    const url = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
+    if (url.length > 1_500_000) {
+      const file = path.join(dataDir, 'player-display.html');
+      fs.writeFileSync(file, html, 'utf8');
+      await state.playerWin.loadFile(file);
+    } else await state.playerWin.loadURL(url);
     if (!smoke) state.playerWin.show();
     return { status: 200, body: { ok: true } };
   }

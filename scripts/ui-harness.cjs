@@ -220,6 +220,11 @@ function installHandler() {
         return { status: 500, body: { error: error.message } };
       }
     }
+    // The player display: keeps what was sent, so a suite can check what the players would see.
+    if (r.path === '/api/player/show') {
+      state.player = JSON.parse(r.body || '{}');
+      return { status: 200, body: { ok: true } };
+    }
     return { status: 200, body: { recordings: [] } };
   });
 }
@@ -373,6 +378,7 @@ const views = [
   'Session journal',
   'Chronicle',
   'Player handouts',
+  'Maps',
 ];
 // Ordered tour. Each state continues from the previous one, so every modal ends with Escape.
 const slug = (text) =>

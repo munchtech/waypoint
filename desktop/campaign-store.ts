@@ -53,6 +53,7 @@ const layout: Record<string, { list: string } | 'split'> = {
   'campaigns.memory': 'split',
   'campaigns.memory.pages': { list: 'page' },
   'campaigns.memory.notes': { list: 'note' },
+  'campaigns.memory.maps': { list: 'map' },
   'campaigns.memory.playbook': 'split',
 };
 const REF = '$row';

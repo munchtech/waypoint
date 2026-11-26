@@ -12,6 +12,7 @@ import { useDeskContext } from '../use-desk';
 const RulesLibrary = lazy(() => import('../../components/rules-library'));
 const CampaignHub = lazy(() => import('../../components/campaign-hub'));
 const PlayerHandouts = lazy(() => import('../../components/player-handouts'));
+const CampaignMaps = lazy(() => import('../../components/campaign-maps'));
 const PlayerSite = lazy(() => import('../../components/player-site'));
 const Foresight = lazy(() => import('../../components/foresight'));
 
@@ -281,6 +282,25 @@ export function HandoutsView() {
         initialId={targetHit?.id}
         campaign={campaign}
         update={update}
+      />
+    </Suspense>
+  );
+}
+
+// Map images with pins.
+export function MapsView() {
+  const { targetHit, campaign, update, openWorkspace } = useDeskContext();
+  return (
+    <Suspense fallback={<ViewLoading />}>
+      <CampaignMaps
+        key={campaign.id + (targetHit?.kind === 'Map' ? targetHit.id : '')}
+        initial={targetHit?.kind === 'Map' ? targetHit.id : undefined}
+        campaign={campaign}
+        update={update}
+        onOpenPage={(id) => {
+          const hit = searchCampaign(campaign, '', 'Wiki').find((h) => h.id === id);
+          if (hit) openWorkspace(hit);
+        }}
       />
     </Suspense>
   );

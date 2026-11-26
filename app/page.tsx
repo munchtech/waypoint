@@ -38,6 +38,7 @@ import {
   HubView,
   PlayerSiteView,
   HandoutsView,
+  MapsView,
 } from './views/workspace-views';
 import { DialogBody } from './desk-dialogs';
 import { useTheme, themeLabel } from '../components/use-theme';
@@ -168,6 +169,7 @@ function HomeScreen() {
                         'Session desk': 'Run the current session',
                         Foresight: 'Prep brief, likely plays, world state and forecast',
                         'World wiki': 'People, places, and discoveries',
+                        Maps: 'Map images with pins for places and people',
                         'Session journal': 'Record, transcribe, and review',
                         'Campaign hub': 'Search the campaign and follow connections',
                         'Next session': 'Prepare the next chapter',
@@ -522,6 +524,7 @@ function HomeScreen() {
               {view === 'Campaign hub' && <HubView />}
               {view === 'Player site' && <PlayerSiteView />}
               {view === 'Player handouts' && <HandoutsView />}
+              {view === 'Maps' && <MapsView />}
               <footer className="page-footer">
                 <span>MADE FOR THE MOMENTS YOU DIDN’T PLAN.</span>
                 <span>

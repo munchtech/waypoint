@@ -77,6 +77,7 @@ const steps = [
   ui('focus', 'ui-focus.cjs'),
   ui('announce', 'ui-announce.cjs'),
   ui('player', 'ui-player.cjs'),
+  ui('maps', 'ui-maps.cjs', ['--out', path.join(logs, 'maps')]),
   ui('restore points', 'ui-restore.cjs'),
   ui('foresight', 'ui-foresight.cjs', [
     '--fixture',

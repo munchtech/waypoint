@@ -8,6 +8,7 @@ import { pageName } from '../lib/page-name';
 import BookText from './book-text';
 import MentionedIn from './mentioned-in';
 import { creatureEncounters } from '../lib/backlinks';
+import { pinName, pinsForPage } from '../lib/maps';
 // What the reader can show, as [value, label]. A wiki kind is added for each kind the campaign uses ("Wiki:NPC").
 const categories: [string, string][] = [
   ['All', 'Everything'],
@@ -19,6 +20,7 @@ const categories: [string, string][] = [
   ['Material', 'Saved ideas'],
   ['Character', 'Party'],
   ['Handout', 'Handouts'],
+  ['Map', 'Maps'],
   ['Creature', 'Campaign creatures'],
   ['Encounter', 'Encounters'],
   ['Rule', 'Rules'],
@@ -405,6 +407,37 @@ export default function CampaignReader({
                   onOpenNote={(id) => jump('Journal', id)}
                 />
               )}
+              {opened.kind === 'Wiki' &&
+                onOpenHit &&
+                (() => {
+                  const onMap = pinsForPage(m.maps, opened.id);
+                  return (
+                    onMap.length > 0 && (
+                      <div className="reader-related">
+                        <h3>On the map</h3>
+                        {onMap.map(({ map, pin }) => (
+                          <button
+                            className="text-button"
+                            key={map.id + pin.id}
+                            onClick={() =>
+                              onOpenHit({
+                                id: map.id + ':' + pin.id,
+                                kind: 'Map',
+                                title: map.title,
+                                body: '',
+                                status: '',
+                                date: '',
+                                score: 0,
+                              })
+                            }
+                          >
+                            {map.title} · {pinName(pin, m.pages, map.pins.indexOf(pin))}
+                          </button>
+                        ))}
+                      </div>
+                    )
+                  );
+                })()}
               {fights.length > 0 && (
                 <div className="reader-related">
                   <h3>Fights in</h3>

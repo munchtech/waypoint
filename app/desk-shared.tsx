@@ -16,7 +16,8 @@ export type View =
   | 'World wiki'
   | 'Next session'
   | 'Campaign hub'
-  | 'Player handouts';
+  | 'Player handouts'
+  | 'Maps';
 export type Visit = {
   campaignId: string;
   view: View;

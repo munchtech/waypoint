@@ -38,6 +38,7 @@ const categories = [
   ['Material', 'Saved ideas'],
   ['Character', 'Party'],
   ['Handout', 'Handouts'],
+  ['Map', 'Maps'],
   ['Creature', 'Campaign creatures'],
   ['Encounter', 'Encounters'],
   ['Rule', 'Rules'],

@@ -276,6 +276,7 @@ run(async (args) => {
       'Discoveries',
       'Rules library',
       'Player handouts',
+      'Maps',
     ]) {
       await nav(view);
       assert(

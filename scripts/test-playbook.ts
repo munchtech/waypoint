@@ -18,6 +18,18 @@ import {
   undoProposal,
 } from '../lib/assistant';
 import { pageName } from '../lib/page-name';
+import {
+  PIN_LIMIT,
+  fitted,
+  newMap,
+  newPin,
+  pinName,
+  pinsForPage,
+  playerMap,
+  titleFromFile,
+  withPin,
+  withoutPin,
+} from '../lib/maps';
 import { searchCampaign } from '../lib/campaign-search';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
 import {
@@ -1686,6 +1698,67 @@ test('make changes proposes, applies and undoes wiki changes one at a time', () 
   assert.equal(attachmentType('scan.pdf', 'application/pdf'), 'application/pdf');
   assert.equal(attachmentType('photo.heic', 'image/heic'), null);
   assert.equal(attachmentType('sheet.docx', 'application/msword'), null);
+});
+
+test('map pins stay on the image, name their pages, and only shared pins reach players', () => {
+  const image = 'data:image/png;base64,iVBORw0KGgo=';
+  const map = newMap(
+    { title: '  Harbour chart ', image, width: 1200.4, height: 799.6 },
+    'm1',
+    '2026-11-26',
+  );
+  assert.equal(map.title, 'Harbour chart');
+  assert.deepEqual([map.width, map.height], [1200, 800]);
+  assert.equal(titleFromFile('old_harbour-map.final.png'), 'old harbour map.final');
+  assert.equal(titleFromFile('.png'), 'Map');
+  assert.deepEqual(fitted(4800, 2400), { width: 2400, height: 1200 });
+  assert.deepEqual(fitted(800, 600), { width: 800, height: 600 }, 'Small images are not enlarged');
+  const pages = [{ id: 'quay', title: 'The Quay' }];
+  const quay = newPin({ x: 1.4, y: -0.2 }, 'p1', pages[0]);
+  assert.deepEqual(
+    [quay.x, quay.y, quay.label, quay.pageId, quay.shared],
+    [1, 0, 'The Quay', 'quay', false],
+  );
+  const loose = newPin({ x: 0.25, y: 0.75 }, 'p2');
+  assert.equal(loose.pageId, undefined);
+  let m = withPin(withPin(map, quay, 't1'), loose, 't2');
+  assert.equal(m.pins.length, 2);
+  assert.equal(m.updated, 't2');
+  m = withPin(m, { ...quay, x: 0.5, y: 2 }, 't3');
+  assert.deepEqual(
+    [m.pins[0].x, m.pins[0].y, m.pins.length],
+    [0.5, 1, 2],
+    'Moving a pin keeps it on the image',
+  );
+  assert.equal(pinName({ ...quay, label: '' }, pages), 'The Quay');
+  assert.equal(pinName(loose, pages, 1), 'Pin 2');
+  assert.deepEqual(
+    pinsForPage([m], 'quay').map((x) => x.pin.id),
+    ['p1'],
+  );
+  assert.deepEqual(pinsForPage(undefined, 'quay'), []);
+  m = withPin(m, { ...loose, shared: true, note: 'The smugglers wait here.' }, 't4');
+  const shown = playerMap(m, pages);
+  assert.deepEqual(
+    shown.pins,
+    [{ x: 0.25, y: 0.75, label: 'Pin 2' }],
+    'Only shared pins, without notes',
+  );
+  assert(!JSON.stringify(shown).includes('smugglers'));
+  const full = {
+    ...m,
+    pins: Array.from({ length: PIN_LIMIT }, (_, i) => newPin({ x: 0, y: 0 }, 'f' + i)),
+  };
+  assert.equal(withPin(full, newPin({ x: 0, y: 0 }, 'extra'), 't5'), full, 'No pin past the limit');
+  assert.equal(withoutPin(m, 'p1', 't6').pins.length, 1);
+  const withMaps = (maps: unknown[]) =>
+    validateCampaign({
+      ...installed,
+      memory: { ...memoryOf(installed), maps },
+    } as unknown as Campaign);
+  assert.equal(withMaps([m]), true);
+  assert.equal(withMaps([{ ...m, image: 'data:image/svg+xml;base64,PHN2Zz4=' }]), false);
+  assert.equal(withMaps([{ ...m, image: image + '"' }]), false);
 });
 
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.

@@ -15,7 +15,8 @@ export type SearchHit = {
     | 'Character'
     | 'Handout'
     | 'Creature'
-    | 'Encounter';
+    | 'Encounter'
+    | 'Map';
   title: string;
   // Other names a wiki page goes by; searched with the title.
   aliases?: string;
@@ -216,6 +217,14 @@ export function searchCampaign(c: Campaign, query: string, kind = 'All'): Search
       body: h.body,
       status: 'Handout draft',
       date: h.updated,
+    })),
+    ...(m.maps || []).map((map) => ({
+      id: map.id,
+      kind: 'Map' as const,
+      title: map.title,
+      body: map.pins.map((p) => [p.label, p.note].filter(Boolean).join(' · ')).join('\n'),
+      status: 'Map · ' + map.pins.length + (map.pins.length === 1 ? ' pin' : ' pins'),
+      date: map.updated,
     })),
     ...(m.playbook?.statblocks || []).map((block) => ({
       id: block.id,

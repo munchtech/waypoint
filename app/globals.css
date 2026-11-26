@@ -9053,3 +9053,206 @@ fieldset.relation-labels input {
     min-width: 6em;
   }
 }
+/* Maps: the image with its pins, and the pin editor beside it. */
+.maps-empty .button {
+  margin-top: 8px;
+}
+.maps-view {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.maps-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.maps-bar select {
+  width: auto;
+  max-width: 260px;
+}
+.maps-bar input.map-title {
+  flex: 1 1 220px;
+  width: auto;
+  min-width: 0;
+  font-family: 'Lora', serif;
+  font-size: 18px;
+}
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 16px;
+  align-items: start;
+}
+.map-board {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.map-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.map-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.map-zoom span {
+  min-width: 44px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+.map-scroll {
+  overflow: auto;
+  max-height: 74vh;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: light-dark(#ebe7dc, #0d1419);
+  padding: 28px 18px 10px;
+}
+.map-stage {
+  position: relative;
+  margin: 0 auto;
+  user-select: none;
+}
+.map-stage.placing {
+  cursor: crosshair;
+}
+.map-stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  pointer-events: none;
+}
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #9b2f22;
+  cursor: grab;
+  touch-action: none;
+  filter: drop-shadow(0 1px 1px #0008);
+}
+.map-pin svg {
+  fill: #f6efe0;
+}
+.map-pin span {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: #fffdf8e6;
+  color: #203345;
+}
+.map-pin.shared {
+  color: #235c62;
+}
+.map-pin.selected {
+  color: #826031;
+  z-index: 2;
+}
+.map-pin.selected span {
+  background: #826031;
+  color: #fffdf8;
+}
+.map-pin.dragging {
+  cursor: grabbing;
+  z-index: 3;
+}
+.map-pin:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.map-side {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+.pin-editor {
+  display: grid;
+  gap: 10px;
+}
+.pin-editor label {
+  margin: 0;
+  font-size: 12px;
+}
+.pin-editor label input,
+.pin-editor label select,
+.pin-editor label textarea {
+  margin-top: 4px;
+}
+.pin-editor .check-label {
+  font-weight: 500;
+}
+.pin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.pin-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  max-height: 260px;
+  overflow: auto;
+}
+.pin-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.pin-list .text-button {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pin-list .text-button.current {
+  font-weight: 700;
+}
+.pin-list small {
+  flex: none;
+  color: var(--muted);
+  font-size: 11px;
+}
+.map-remove {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.map-remove p {
+  margin: 0;
+  flex-basis: 100%;
+}
+@media (max-width: 1100px) {
+  .map-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

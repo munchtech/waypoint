@@ -1,6 +1,7 @@
 // The packaged app's self-check (Waypoint.exe --smoke-test): runs in an isolated data folder once the renderer has loaded,
 // prints "Native smoke passed" and quits, or prints "Smoke failed" and exits with code 1.
-import { app, type BrowserWindow } from 'electron';
+import { app, nativeImage, type BrowserWindow } from 'electron';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import fs from 'node:fs';
 import { dataDir, rules, state } from './runtime';
@@ -161,6 +162,32 @@ export async function runSmokeTest(win: BrowserWindow) {
       !playerCheck.body.includes('Reviewed content only.')
     )
       throw new Error('Player isolation failed');
+    // A map too large for a data: URL goes through a file, and stays as isolated.
+    const noise = nativeImage
+      .createFromBitmap(crypto.randomBytes(800 * 600 * 4), { width: 800, height: 600 })
+      .toPNG()
+      .toString('base64');
+    await route({
+      path: '/api/player/show',
+      method: 'POST',
+      body: JSON.stringify({
+        title: 'Large map test',
+        body: '',
+        image: 'data:image/png;base64,' + noise,
+        pins: [{ x: 0.5, y: 0.5, label: 'Centre' }],
+      }),
+    });
+    const mapCheck = await state.playerWin!.webContents.executeJavaScript(
+      `new Promise(r=>{const img=document.querySelector('figure img');const done=()=>r({bridge:typeof window.waypoint,scripts:document.scripts.length,protocol:location.protocol,width:img.naturalWidth,pin:document.querySelector('figure em')?.textContent});img.complete?done():img.onload=done})`,
+    );
+    if (
+      mapCheck.bridge !== 'undefined' ||
+      mapCheck.scripts !== 0 ||
+      mapCheck.protocol !== 'file:' ||
+      mapCheck.width !== 800 ||
+      mapCheck.pin !== 'Centre'
+    )
+      throw new Error('Large map display failed: ' + JSON.stringify(mapCheck));
     await route({ path: '/api/player/clear', method: 'POST' });
     console.log('Native smoke passed', JSON.stringify({ ...result, playerIsolation: true }));
     fs.writeFileSync(

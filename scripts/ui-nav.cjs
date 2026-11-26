@@ -6,6 +6,7 @@ const destinations = {
   'Next session': ['Session', 'Plan next session'],
   'Campaign hub': ['Campaign', 'Read & explore'],
   'World wiki': ['Campaign', 'Wiki editor'],
+  Maps: ['Campaign', 'Maps'],
   Campaign: ['Campaign', 'Outline & sessions'],
   'Party & preferences': ['Campaign', 'Party & preferences'],
   'Session journal': ['Journal', 'Notes & recordings'],

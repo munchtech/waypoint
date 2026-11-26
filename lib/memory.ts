@@ -8,6 +8,7 @@ import {
   wikiKinds,
 } from './playbook-schema';
 import { standingText } from './standing';
+import { campaignMap, MAP_LIMIT } from './maps';
 
 export const pageKinds = [
   'NPC',
@@ -135,6 +136,8 @@ export const memorySchema = z.object({
   handouts: z.array(handoutSchema).optional(),
   table: tableSchema.optional(),
   markers: z.array(tableMarker).optional(),
+  // Map images with pins (lib/maps). Each map is a row of its own in the desktop store.
+  maps: z.array(campaignMap).max(MAP_LIMIT).optional(),
   pages: z.array(wikiPage),
   notes: z.array(note),
   planner: z.object({

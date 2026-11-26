@@ -32,6 +32,7 @@ import {
   Users,
   ScrollText,
   Map,
+  MapPin,
   CheckCircle2,
   Telescope,
   LibraryBig,
@@ -697,6 +698,7 @@ export function useDesk() {
       Wiki: 'World wiki',
       Journal: 'Session journal',
       Handout: 'Player handouts',
+      Map: 'Maps',
       Character: 'Party & preferences',
       Rule: 'Rules library',
     };
@@ -724,6 +726,7 @@ export function useDesk() {
     ['Campaign hub', Compass],
     ['Campaign', Map],
     ['World wiki', BookOpen],
+    ['Maps', MapPin],
     ['Party & preferences', Users],
     ['Session journal', FileText],
     ['Chronicle', ScrollText],
@@ -748,6 +751,7 @@ export function useDesk() {
         views: [
           { view: 'Campaign hub', label: 'Read & explore' },
           { view: 'World wiki', label: 'Wiki editor' },
+          { view: 'Maps', label: 'Maps' },
           { view: 'Campaign', label: 'Outline & sessions' },
           { view: 'Party & preferences', label: 'Party & preferences' },
         ],

@@ -172,6 +172,32 @@ assert.throws(
   () => playerDocument({ title: 'Bad', body: 'Text', campaign: demo }),
   'Player payload must reject campaign objects',
 );
+// A map on the player display: the image, and pins with escaped names. Only data: images, and no fields beyond a pin's place and name.
+const tinyPng = 'data:image/png;base64,iVBORw0KGgo=';
+const mapMarkup = playerDocument({
+  title: 'Harbour',
+  body: '',
+  image: tinyPng,
+  pins: [{ x: 0.25, y: 0.5, label: '<b>Dock</b>' }],
+});
+assert(mapMarkup.includes('img-src data:'));
+assert(mapMarkup.includes('<img src="' + tinyPng + '"'));
+assert(mapMarkup.includes('left:25.000%;top:50.000%'));
+assert(mapMarkup.includes('&lt;b&gt;Dock&lt;/b&gt;'));
+assert(mapMarkup.includes('<main class="wide">'));
+assert(!markup.includes('<figure>'), 'No figure without an image');
+assert.throws(() =>
+  playerDocument({ title: 'Bad', body: '', image: 'https://example.com/map.png' }),
+);
+assert.throws(() => playerDocument({ title: 'Bad', body: '', image: tinyPng + '" onerror="x' }));
+assert.throws(() =>
+  playerDocument({
+    title: 'Bad',
+    body: '',
+    image: tinyPng,
+    pins: [{ x: 0.1, y: 0.1, label: 'A', note: 'DM only' }],
+  }),
+);
 const many = Array.from({ length: 70 }, (_, i) => ({
   ...publicPage,
   id: 'other-' + i,
@@ -518,6 +544,27 @@ recoveryStore.close();
   store.save(edited);
   assert.equal(store.lastWrite, 1, 'Only the root row holds which campaign is open');
   assert.deepEqual(store.previous(), { ...edited, active: 'ferry' });
+  // Maps: each map is a row of its own, so moving one pin rewrites that map alone. Map images stay out of the search index.
+  const harbour = {
+    id: 'harbour',
+    title: 'Harbour chart',
+    image: 'data:image/png;base64,iVBORw0KGgo=',
+    width: 40,
+    height: 30,
+    pins: [{ id: 'p1', x: 0.5, y: 0.5, label: 'Quay', note: '', shared: true }],
+    updated: '2026-11-26',
+  };
+  edited.campaigns[1].memory!.maps = [
+    harbour,
+    { ...harbour, id: 'reef', title: 'Reef chart', pins: [] },
+  ];
+  store.save(edited);
+  assert.equal(store.lastWrite, 3, 'Two map rows and the list that names them');
+  edited.campaigns[1].memory!.maps[0].pins[0].x = 0.6;
+  store.save(edited);
+  assert.equal(store.lastWrite, 1, 'Moving a pin rewrites its own map');
+  assert.deepEqual(store.read(), edited);
+  assert.deepEqual(store.search('harbour'), [], 'Maps are not in the search index');
   // Full-text search: prefixes, every word, accents ignored, and other campaigns only when asked.
   const titles = (q: string, exclude?: string) =>
     store.search(q, { exclude }).map((h) => h.kind + ':' + h.id);
