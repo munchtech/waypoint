@@ -239,7 +239,6 @@ export default function CampaignReader({
             <BookOpen size={23} />
             Your campaign, chapter by chapter.
           </h2>
-          <p>Campaign order keeps imported chapters together. Search by title, alias or text.</p>
         </div>
         <button className="button" aria-pressed={focus} onClick={() => setFocus(!focus)}>
           {focus ? 'Show contents' : 'Focus on reading'}
@@ -350,9 +349,11 @@ export default function CampaignReader({
                     Open in workspace
                   </button>
                 )}
-                <button className="button" disabled={!trail.length} onClick={back}>
-                  Back to previous page
-                </button>
+                {trail.length > 0 && (
+                  <button className="button" onClick={back}>
+                    Back to previous page
+                  </button>
+                )}
                 {opened.kind === 'Wiki' && (
                   <button
                     className="button"

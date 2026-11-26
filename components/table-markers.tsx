@@ -120,12 +120,6 @@ export default function TableMarkers({
         <h3 id="table-markers-title">Mark this moment</h3>
         <small className="muted">{markers.length} this session</small>
       </div>
-      {!compact && (
-        <p className="muted tiny">
-          One click saves a timestamped marker. Markers are your notes; none of them becomes canon
-          until you say so.
-        </p>
-      )}
       {compact ? field : <label>Optional note{field}</label>}
       <div className="chips" role="group" aria-label="Marker type">
         {markerKinds.map((kind, i) => (

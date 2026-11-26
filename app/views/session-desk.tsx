@@ -298,7 +298,6 @@ export function SessionDeskView() {
               <div className="section-title">
                 <div>
                   <h3>The paths they might take</h3>
-                  <p>Possibilities to prepare for, never a script to follow.</p>
                 </div>
                 <div className="path-actions">
                   {memory.playbook && (
@@ -648,7 +647,6 @@ export function SessionDeskView() {
                   View all <ArrowUpRight size={13} />
                 </button>
               </div>
-              <p>Recent ideas · ready with AI off</p>
               {campaign.cards.slice(0, 3).map((card) => {
                 const live = trackerStatus(campaign, card);
                 return (

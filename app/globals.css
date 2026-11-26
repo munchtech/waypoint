@@ -91,6 +91,10 @@
 * {
   box-sizing: border-box;
 }
+/* Keep room for the page scrollbar so content does not jump sideways when a page grows. */
+html {
+  scrollbar-gutter: stable;
+}
 body {
   margin: 0;
   font-family: 'DM Sans', sans-serif;
@@ -321,6 +325,12 @@ small,
   white-space: nowrap;
   color: light-dark(#b6c5ad, #b6c5ad);
   font-size: 12px;
+}
+.navitem.ai-off::after {
+  content: 'AI off';
+  margin-left: auto;
+  font-size: 11px;
+  opacity: 0.75;
 }
 .navitem.active {
   font-weight: 700;
@@ -1048,28 +1058,6 @@ small,
   padding: 3px;
   color: light-dark(#646f56, #bcc1b6);
 }
-.page-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 27px 0 20px;
-  border-top: 1px solid light-dark(#e7ebdf, #313b44);
-  border-color: light-dark(#d9ddce, #39434c);
-  font-size: 11px;
-  letter-spacing: 1px;
-  line-height: 1.7;
-  opacity: 0.8;
-  margin-top: 36px;
-  color: light-dark(#606c75, #babfc3);
-}
-.page-footer > span:first-child {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-}
-.page-footer > span:last-child > span {
-  margin: 0 7px;
-  color: light-dark(#636c56, #bdc2b8);
-}
 .content-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -1477,8 +1465,7 @@ main:focus {
   white-space: pre-wrap;
 }
 .live .side-note,
-.live .hero-footer,
-.live .page-footer {
+.live .hero-footer {
   display: none;
 }
 .live .response-grid p,
@@ -1647,15 +1634,6 @@ main:focus {
   .party-panel h3,
   .twist-panel h3 {
     font-size: 14px;
-  }
-  .page-footer {
-    display: block;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .page-footer > span {
-    display: block;
-    margin: 7px 0;
   }
   .modal-overlay {
     padding: 10px;
@@ -5741,9 +5719,6 @@ input:focus {
   main.fill-height > .page-heading {
     flex: none;
     margin-bottom: 18px;
-  }
-  main.fill-height > .page-footer {
-    display: none;
   }
   main.fill-height > .rules-library {
     flex: 1;

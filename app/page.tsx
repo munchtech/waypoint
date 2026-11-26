@@ -224,7 +224,7 @@ function HomeScreen() {
                 },
                 {
                   label: 'Switch theme',
-                  detail: themeLabel[theme.theme] + ' (follows Windows, light, dark)',
+                  detail: themeLabel[theme.theme] + ' (light or dark)',
                   run: theme.next,
                 },
                 {
@@ -333,13 +333,18 @@ function HomeScreen() {
                   <RefreshCw size={17} /> Restart to update
                 </button>
               )}
-              <button className="navitem" onClick={() => setModal('data')}>
+              <button
+                className={'navitem' + (ai ? '' : ' ai-off')}
+                aria-label={'AI & backups' + (ai ? '' : ' (AI off)')}
+                title={ai ? undefined : 'AI is off. Add a key in AI & backups to use it.'}
+                onClick={() => setModal('data')}
+              >
                 <Settings2 size={17} /> AI & backups
               </button>
               <button
                 className="navitem"
                 aria-label={themeLabel[theme.theme] + '. Switch theme'}
-                title="Switch between following Windows, light and dark"
+                title="Switch between light and dark"
                 onClick={theme.next}
               >
                 <SunMoon size={17} /> {themeLabel[theme.theme]}
@@ -373,7 +378,7 @@ function HomeScreen() {
               >
                 <ArrowLeft size={18} />
               </button>
-              <div className="breadcrumb">
+              <div className="breadcrumb sr-only">
                 {campaign.name}
                 <ChevronRight size={14} />
                 <span>{area.label}</span>
@@ -408,10 +413,6 @@ function HomeScreen() {
                 >
                   <Dices size={15} />
                   <span>Dice</span>
-                </button>
-                <button className="button" onClick={() => setModal('data')}>
-                  <span className={'dot ' + (!ai ? 'off' : '')} />
-                  AI · {ai ? 'Ready' : 'Not ready'}
                 </button>
                 <span className="save-status">
                   <Check size={13} />
@@ -549,12 +550,6 @@ function HomeScreen() {
               {view === 'Player site' && <PlayerSiteView />}
               {view === 'Player handouts' && <HandoutsView />}
               {view === 'Maps' && <MapsView />}
-              <footer className="page-footer">
-                <span>MADE FOR THE MOMENTS YOU DIDN’T PLAN.</span>
-                <span>
-                  Waypoint <span>✧</span> Keep the story moving.
-                </span>
-              </footer>
             </main>
           </div>
           <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">

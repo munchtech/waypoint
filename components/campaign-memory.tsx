@@ -246,10 +246,6 @@ export default function CampaignMemory({
           <section className="paper">
             <span className="eyebrow">FOLLOW THE CONSEQUENCES</span>
             <h2>Shape the next chapter.</h2>
-            <p className="muted">
-              Your confirmed history, wiki statuses and preferences travel with the next-session
-              request.
-            </p>
             <fieldset className="lever-group">
               <legend>Adjust the plan</legend>
               <div className="chips">
@@ -276,10 +272,6 @@ export default function CampaignMemory({
                   );
                 })}
               </div>
-              <small className="muted">
-                Tone options replace each other; the others combine. Locked facts and boundaries
-                always win.
-              </small>
             </fieldset>
             {(['duration', 'focus', 'spotlight', 'locked'] as const).map((key) => (
               <label key={key}>
@@ -371,7 +363,6 @@ export default function CampaignMemory({
               </>
             )}
             <h3>Threads worth picking up</h3>
-            <p className="muted">These unresolved or planned wiki entries are useful prep leads.</p>
             {m.pages
               .filter(
                 (p) => p.status === 'Unresolved' || p.status === 'Planned' || p.kind === 'Quest',
@@ -782,9 +773,6 @@ export default function CampaignMemory({
           <section className="paper">
             <span className="eyebrow">RECORD → REVIEW → REMEMBER</span>
             <h2>Source notes</h2>
-            <p className="muted">
-              Paste notes or a transcript. AI proposals require your review before joining the wiki.
-            </p>
             <label>
               Session
               <select value={noteSession} onChange={(e) => setNoteSession(e.target.value)}>

@@ -29,6 +29,18 @@ export default function CampaignHub({
     );
   const pages = m.pages;
   const pinned = pages.filter((p) => (m.pins || []).includes(p.id));
+  const stats = (
+    [
+      [pending, 'Awaiting review', 'Awaiting review', 'Discoveries'],
+      [campaign.events.length, 'Confirmed event', 'Confirmed events', 'Chronicle'],
+      [
+        pages.filter((p) => p.clock && p.clock.progress < 6).length,
+        'Active clock',
+        'Active clocks',
+        'Next session',
+      ],
+    ] as [number, string, string, string][]
+  ).filter(([total]) => total > 0);
   function togglePin(id: string) {
     update((c) => {
       const mem = memoryOf(c);
@@ -45,25 +57,18 @@ export default function CampaignHub({
   }
   return (
     <div className="campaign-hub">
-      <div className="hub-stats">
-        {[
-          [pages.length, 'Wiki page', 'Wiki pages', 'World wiki'],
-          [pending, 'Awaiting review', 'Awaiting review', 'Discoveries'],
-          [campaign.events.length, 'Confirmed event', 'Confirmed events', 'Chronicle'],
-          [
-            pages.filter((p) => p.clock && p.clock.progress < 6).length,
-            'Active clock',
-            'Active clocks',
-            'Next session',
-          ],
-        ].map(([total, one, many, view]) => (
-          <button className="paper" key={many} onClick={() => onNavigate(String(view))}>
-            <strong>{total}</strong>
-            <span>{total === 1 ? one : many}</span>
-            <ArrowRight size={16} />
-          </button>
-        ))}
-      </div>
+      {/* Counts that ask for something; the wiki count is already in the reader. */}
+      {stats.length > 0 && (
+        <div className="hub-stats">
+          {stats.map(([total, one, many, view]) => (
+            <button className="paper" key={many} onClick={() => onNavigate(String(view))}>
+              <strong>{total}</strong>
+              <span>{total === 1 ? one : many}</span>
+              <ArrowRight size={16} />
+            </button>
+          ))}
+        </div>
+      )}
       <CampaignReader
         initialHit={initialHit}
         onOpenHit={onOpenHit}
