@@ -49,6 +49,13 @@ const wikiKindOf = (k: string): WikiDraft['kind'] =>
         : k === 'Item'
           ? 'Thing'
           : 'Lore';
+// How a page connects to its related pages, keeping only pages still related and labels with words in them.
+const relationsFor = (page: Pick<WikiPage, 'relations'>, related: string[]) => {
+  const kept = Object.entries(page.relations || {})
+    .map(([id, label]) => [id, label.trim()] as const)
+    .filter(([id, label]) => label && related.includes(id));
+  return kept.length ? Object.fromEntries(kept) : undefined;
+};
 type Props = {
   campaign: Campaign;
   sessionId: string;
@@ -154,6 +161,7 @@ export default function CampaignMemory({
         ...draft,
         // Standing moves in the hub (Faction standing), so the saved page keeps its latest value, not the draft's copy.
         standing: old?.standing,
+        relations: relationsFor(draft, draft.related || []),
         title: draft.title.trim(),
         updated: new Date().toISOString(),
         history: old
@@ -630,12 +638,10 @@ export default function CampaignMemory({
                   <select
                     multiple
                     value={draft.related || []}
-                    onChange={(e) =>
-                      setDraft({
-                        ...draft,
-                        related: Array.from(e.target.selectedOptions).map((o) => o.value),
-                      })
-                    }
+                    onChange={(e) => {
+                      const related = Array.from(e.target.selectedOptions).map((o) => o.value);
+                      setDraft({ ...draft, related, relations: relationsFor(draft, related) });
+                    }}
                   >
                     {m.pages
                       .filter((p) => p.id !== draft.id)
@@ -647,6 +653,33 @@ export default function CampaignMemory({
                   </select>
                   <small>Hold Ctrl to select multiple related people, places or quests.</small>
                 </label>
+                {!!draft.related?.length && (
+                  <fieldset className="relation-labels">
+                    <legend>How they connect</legend>
+                    {draft.related.map((id) => {
+                      const other = m.pages.find((p) => p.id === id);
+                      return (
+                        other && (
+                          <label key={id}>
+                            {pageName(other)}
+                            <input
+                              maxLength={80}
+                              placeholder="e.g. owes money to"
+                              value={draft.relations?.[id] || ''}
+                              onChange={(e) =>
+                                setDraft({
+                                  ...draft,
+                                  relations: { ...draft.relations, [id]: e.target.value },
+                                })
+                              }
+                            />
+                          </label>
+                        )
+                      );
+                    })}
+                    <small>Optional. Shown on the relationship web in the campaign hub.</small>
+                  </fieldset>
+                )}
                 {(draft.kind === 'Quest' || draft.kind === 'Faction') && (
                   <>
                     <label>

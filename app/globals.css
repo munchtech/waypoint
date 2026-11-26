@@ -7657,6 +7657,143 @@ input:focus {
     display: none !important;
   }
 }
+/* The relationship web: pages around one page, coloured by kind, solid lines for related pages and dotted for mentions. */
+.relationship-web h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.web-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+.web-controls select {
+  max-width: 340px;
+}
+.relationship-web label.web-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+.web-toggle input {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+  accent-color: light-dark(#507546, #a2cd97);
+}
+.relationship-map.web-map {
+  max-height: 520px;
+  margin-top: 8px;
+}
+.web-map .link.set {
+  stroke: light-dark(#8fa77c, #6f8a62);
+  stroke-width: 1.6;
+}
+.web-map .link.named {
+  stroke: light-dark(#c9d3bd, #3f4c44);
+  stroke-dasharray: 2 4;
+}
+.web-map .edge-label {
+  font-size: 10px;
+  font-style: italic;
+  fill: light-dark(#4d5a47, #c3cebd);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 4px;
+}
+.web-map .web-node text {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 4px;
+}
+.web-map .web-node.hub text {
+  font-weight: 700;
+  font-size: 13px;
+}
+.web-map .web-node[role='button'] {
+  cursor: pointer;
+}
+.web-map .web-node[role='button']:hover circle,
+.web-map .web-node[role='button']:focus-visible circle {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.web-map .web-node[role='button']:focus {
+  outline: none;
+}
+.web-map .ring2 text {
+  font-size: 10px;
+  fill: light-dark(#5d6a57, #a9b6a3);
+}
+.web-node.kind-people circle {
+  fill: light-dark(#4f8a5c, #7fbf8c);
+}
+.web-node.kind-place circle {
+  fill: light-dark(#3d7a8a, #74b6c6);
+}
+.web-node.kind-faction circle {
+  fill: light-dark(#a8742c, #d7a45c);
+}
+.web-node.kind-other circle {
+  fill: light-dark(#8b8f86, #a3a89d);
+}
+.web-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 4px 0 10px;
+  padding: 0;
+  font-size: 12px;
+}
+.web-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.web-legend svg {
+  width: 10px;
+  height: 10px;
+}
+.connection-list small {
+  font-weight: 400;
+  opacity: 0.8;
+}
+/* In the wiki editor: how this page connects to each related page, one short line per page. */
+fieldset.relation-labels {
+  margin: 22px 0 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+fieldset.relation-labels legend {
+  padding: 0;
+  font-weight: 600;
+}
+fieldset.relation-labels label {
+  display: grid;
+  grid-template-columns: minmax(0, 13em) minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 12px;
+  margin-top: 8px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+fieldset.relation-labels input {
+  margin-top: 0;
+}
+@media (max-width: 520px) {
+  fieldset.relation-labels label {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 /* Faction standing: each faction's place from Enemies to Allied, the buttons that move it, and the last few reasons. */
 .faction-standing-panel h3 {
   display: flex;

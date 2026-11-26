@@ -8,6 +8,7 @@ import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { cellCreatures, creatureByName, statLine } from '../lib/combat';
 import { memoryOf, wikiPage } from '../lib/memory';
 import { shiftStanding, standingLabel, standingOf, standingText } from '../lib/standing';
+import { neighborhood, webEdges } from '../lib/relationship-web';
 import { pageName } from '../lib/page-name';
 import { searchCampaign } from '../lib/campaign-search';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
@@ -1525,6 +1526,50 @@ test('faction standing moves along its scale and logs why', () => {
   assert.ok(wikiPage.safeParse(page).success);
   assert.equal(standingOf({}).value, 0);
 });
+test('the relationship web joins related pages and pages named in the text', () => {
+  const base = memoryOf(installed).pages[0];
+  const page = (id: string, title: string, body: string, extra = {}) => ({
+    ...base,
+    id,
+    title,
+    aliases: '',
+    kind: 'NPC' as const,
+    body,
+    ...extra,
+  });
+  const pages = [
+    page('yara', 'Yara Vell', 'Yara keeps the ferry and owes Oskar Brine.', {
+      related: ['court'],
+      relations: { court: 'informs on' },
+    }),
+    page('oskar', 'Oskar Brine', 'A smuggler.'),
+    page('court', 'The Quiet Court', 'It watches the mere.', { kind: 'Faction' as const }),
+    page('mere', 'The Mute Mere', 'Cold water. The Quiet Court patrols it.', {
+      kind: 'Location' as const,
+    }),
+    page('lone', 'Lone Page', 'Nothing here.'),
+  ];
+  const edges = webEdges(pages, sharedIndex(pages));
+  const find = (x: string, y: string) =>
+    edges.find((e) => (e.a === x && e.b === y) || (e.a === y && e.b === x));
+  assert.deepEqual(
+    { set: find('yara', 'court')?.set, label: find('yara', 'court')?.label },
+    { set: true, label: 'informs on' },
+  );
+  assert.equal(find('yara', 'oskar')?.mentions, 1);
+  assert.equal(find('mere', 'court')?.set, false);
+  assert.equal(find('lone', 'yara'), undefined);
+  const web = neighborhood(edges, 'court');
+  // The related page set in the editor comes first; Oskar is one step further out, through Yara.
+  assert.deepEqual(web.ring1, ['yara', 'mere']);
+  assert.deepEqual(web.ring2, [{ id: 'oskar', parent: 'yara' }]);
+  assert.equal(web.links.length, 3);
+  assert.deepEqual(neighborhood(edges, 'court', { mentions: false }).ring1, ['yara']);
+  assert.equal(neighborhood(edges, 'lone').ring1.length, 0);
+  // How two pages connect saves with the page.
+  assert.ok(wikiPage.safeParse(pages[0]).success);
+});
+
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.
 if (process.env.WAYPOINT_SITE_OUT) {

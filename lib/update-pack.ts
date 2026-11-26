@@ -612,6 +612,7 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
     const old = pages.find((pg) => pg.id === x.page.id);
     const page: WikiPage = {
       related: old?.related,
+      relations: old?.relations,
       clock: old?.clock,
       standing: old?.standing,
       ...x.page,

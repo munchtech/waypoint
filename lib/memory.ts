@@ -30,6 +30,8 @@ const revision = z.object({
 });
 export const wikiPage = z.object({
   related: z.array(z.string()).optional(),
+  // How this page connects to each related page ("informs on", "owes money to"), shown on the relationship web.
+  relations: z.record(z.string(), z.string().max(80)).optional(),
   clock: z.object({ progress: z.number().min(0).max(6), stakes: z.string() }).optional(),
   // A faction's standing with the party, −3 (enemies) to +3 (allies), newest change first (lib/standing).
   standing: z
@@ -362,6 +364,7 @@ export function memoryContext(c: Campaign, partyOnly = false, query = '', limit 
       body: p.body.slice(0, 1800),
       source: p.sourceId,
       related: p.related || [],
+      relations: p.relations,
       clock: p.clock,
       standing: p.standing ? standingText(p.standing.value) : undefined,
     })),

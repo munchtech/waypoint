@@ -3,8 +3,8 @@ import CampaignReader from './campaign-reader';
 import CampaignBookPanel from './campaign-book';
 import RollTablesPanel from './roll-tables-panel';
 import FactionStandingPanel from './faction-standing';
-import { useState } from 'react';
-import { BookOpen, Pin, ArrowRight, Clock, GitBranch, FileText } from 'lucide-react';
+import { Pin, ArrowRight, Clock, FileText } from 'lucide-react';
+import RelationshipWeb from './relationship-web';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
 import { pageName } from '../lib/page-name';
@@ -21,19 +21,12 @@ export default function CampaignHub({
   update: (fn: (c: Campaign) => Campaign) => void;
   onNavigate: (view: string, sessionId?: string) => void;
 }) {
-  const [graphFocus, setGraphFocus] = useState('');
   const m = memoryOf(campaign),
     pending = m.notes.reduce(
       (sum, n) => sum + n.proposals.filter((p) => p.state === 'pending').length,
       0,
     );
-  const pages = m.pages,
-    focus = pages.find((p) => p.id === graphFocus) || pages[0];
-  const related = focus
-    ? pages
-        .filter((p) => (focus.related || []).includes(p.id) || (p.related || []).includes(focus.id))
-        .slice(0, 10)
-    : [];
+  const pages = m.pages;
   const pinned = pages.filter((p) => (m.pins || []).includes(p.id));
   function togglePin(id: string) {
     update((c) => {
@@ -144,90 +137,26 @@ export default function CampaignHub({
         </section>
         <section className="paper">
           <h3>
-            <GitBranch size={17} /> Connections in your world
+            <FileText size={17} /> Recent history
           </h3>
-          <p className="muted">
-            Links you create in the wiki. Choose a page to explore its neighbors.
-          </p>
-          <select
-            aria-label="Relationship focus"
-            value={focus?.id || ''}
-            onChange={(e) => setGraphFocus(e.target.value)}
-          >
-            {pages.map((p) => (
-              <option key={p.id} value={p.id}>
-                {pageName(p)}
-              </option>
+          {[...campaign.events]
+            .sort((a, b) => b.date.localeCompare(a.date))
+            .slice(0, 8)
+            .map((e) => (
+              <article className="memory-thread" key={e.id}>
+                <span className="eyebrow">
+                  {new Date(e.date).toLocaleDateString()} ·{' '}
+                  {campaign.sessions.find((s) => s.id === e.sessionId)?.title}
+                </span>
+                <p>{e.text}</p>
+              </article>
             ))}
-          </select>
-          {focus ? (
-            <>
-              <svg
-                className="relationship-map"
-                viewBox="0 0 500 340"
-                role="img"
-                aria-label={`Connections to ${pageName(focus)}`}
-              >
-                <circle className="ring" cx="250" cy="170" r="118" strokeDasharray="3 7" />
-                {related.map((p, i) => {
-                  const a = (2 * Math.PI * i) / related.length;
-                  const x = 250 + 175 * Math.cos(a),
-                    y = 170 + 125 * Math.sin(a);
-                  return (
-                    <g key={p.id}>
-                      <line className="link" x1="250" y1="170" x2={x} y2={y} />
-                      <circle className="node" cx={x} cy={y} r="9" />
-                      <text x={x} y={y + 25} textAnchor="middle">
-                        {pageName(p).slice(0, 20)}
-                      </text>
-                    </g>
-                  );
-                })}
-                <circle className="hub" cx="250" cy="170" r="42" />
-                <text className="hub-label" x="250" y="174" textAnchor="middle">
-                  {pageName(focus).slice(0, 17)}
-                </text>
-              </svg>
-              <div className="connection-list">
-                {related.map((p) => (
-                  <button className="button" key={p.id} onClick={() => setGraphFocus(p.id)}>
-                    <BookOpen size={13} />
-                    {pageName(p)}
-                  </button>
-                ))}
-              </div>
-              {!related.length && (
-                <p className="muted">Add related pages in the wiki editor to connect this page.</p>
-              )}
-            </>
-          ) : (
-            <div className="empty">
-              <GitBranch size={30} />
-              <p>Your relationship map will grow with the wiki.</p>
-            </div>
+          {!campaign.events.length && (
+            <p className="muted">Confirmed outcomes will appear here as you record them.</p>
           )}
         </section>
       </div>
-      <section className="paper">
-        <h3>
-          <FileText size={17} /> Recent history
-        </h3>
-        {[...campaign.events]
-          .sort((a, b) => b.date.localeCompare(a.date))
-          .slice(0, 8)
-          .map((e) => (
-            <article className="memory-thread" key={e.id}>
-              <span className="eyebrow">
-                {new Date(e.date).toLocaleDateString()} ·{' '}
-                {campaign.sessions.find((s) => s.id === e.sessionId)?.title}
-              </span>
-              <p>{e.text}</p>
-            </article>
-          ))}
-        {!campaign.events.length && (
-          <p className="muted">Confirmed outcomes will appear here as you record them.</p>
-        )}
-      </section>
+      <RelationshipWeb pages={pages} />
       <FactionStandingPanel campaign={campaign} update={update} />
       <RollTablesPanel campaign={campaign} />
       <CampaignBookPanel campaign={campaign} />
