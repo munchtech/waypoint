@@ -23,6 +23,7 @@ import {
   MessageCircleQuestion,
   SunMoon,
   RefreshCw,
+  Dices,
 } from 'lucide-react';
 import { useDesk, DeskContext } from './use-desk';
 import { SessionDeskView } from './views/session-desk';
@@ -211,6 +212,12 @@ function HomeScreen() {
                   run: openAsk,
                 },
                 {
+                  label: 'Dice tray',
+                  detail:
+                    'Private rolls: any die, a modifier, advantage, or a typed roll like 2d6+3',
+                  run: () => setModal('dice'),
+                },
+                {
                   label: 'AI & backups',
                   detail: 'Set your Claude key and model, and manage backups',
                   run: () => setModal('data'),
@@ -392,6 +399,15 @@ function HomeScreen() {
                 >
                   <MessageCircleQuestion size={15} />
                   <span>Ask</span>
+                </button>
+                <button
+                  className="button dice-launch"
+                  aria-label="Dice tray"
+                  title="Dice tray"
+                  onClick={() => setModal('dice')}
+                >
+                  <Dices size={15} />
+                  <span>Dice</span>
                 </button>
                 <button className="button" onClick={() => setModal('data')}>
                   <span className={'dot ' + (!ai ? 'off' : '')} />

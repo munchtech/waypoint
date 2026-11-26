@@ -1,4 +1,4 @@
-// Screen-reader announcements: table markers, notices and saves each reach a persistent live region.
+// Screen-reader announcements: dice rolls, table markers, notices and saves each reach a persistent live region.
 //   node_modules/electron/dist/electron.exe scripts/ui-announce.cjs
 const assert = require('node:assert/strict');
 const { openSession, doStep, run, sleep } = require('./ui-harness.cjs');
@@ -8,6 +8,58 @@ run(async () => {
     s.run(
       `[...document.querySelectorAll(${JSON.stringify(selector + '[role=status][aria-live=polite]')})].map(e=>e.textContent.trim()).filter(Boolean).join(' | ')`,
     );
+  // Dice: the roll is announced from a region that exists before the first roll; a typed roll is announced with its
+  // dice, a bad one is explained, and the rolls are still there when the tray opens again.
+  assert.equal(await doStep(s, ['click', 'Dice']), 'ok');
+  await sleep(500);
+  assert.equal(
+    await s.run("document.querySelectorAll('.dice-tools .sr-only[role=status]').length"),
+    1,
+    'Dice region must exist before the first roll',
+  );
+  const rollButton = '.dice-tools > .button.primary';
+  assert.equal(await s.clickSelector(rollButton), 'ok');
+  await sleep(200);
+  const roll = await live('.dice-tools .sr-only');
+  assert.match(roll, /^Rolled 1d20: \d+$/, 'Roll announcement');
+  const first = await s.run("document.querySelector('.dice-tools .sr-only').textContent");
+  assert.equal(await s.clickSelector(rollButton), 'ok');
+  await sleep(200);
+  assert.notEqual(
+    await s.run("document.querySelector('.dice-tools .sr-only').textContent"),
+    first,
+    'Second roll announced',
+  );
+  assert.equal(await s.setValue('.dice-typed input', '2d6+3'), 'ok');
+  assert.equal(await s.clickText('Roll it', { within: '.dice-tools' }), 'ok');
+  await sleep(200);
+  const typed = (await live('.dice-tools .sr-only')).match(
+    /^Rolled 2d6\+3: (\d+), dice (\d) and (\d)$/,
+  );
+  assert.ok(typed, 'Typed roll announcement');
+  assert.equal(Number(typed[1]), Number(typed[2]) + Number(typed[3]) + 3, 'Typed roll total');
+  assert.equal(await s.setValue('.dice-typed input', 'fireball'), 'ok');
+  assert.equal(await s.clickText('Roll it', { within: '.dice-tools' }), 'ok');
+  await sleep(150);
+  assert.ok(
+    await s.run(
+      "document.querySelector('.dice-problem')?.textContent.startsWith('Type a roll like')&&document.querySelector('.dice-typed input').getAttribute('aria-invalid')==='true'",
+    ),
+    'A bad typed roll is explained',
+  );
+  await s.key('Escape');
+  await sleep(300);
+  assert.equal(await doStep(s, ['click', 'Dice']), 'ok');
+  await sleep(400);
+  assert.equal(
+    await s.run(
+      "document.querySelector('.roll-result span').firstChild.textContent+'|'+document.querySelectorAll('.roll-history span').length",
+    ),
+    '2d6+3|2',
+    'Rolls are kept while Waypoint is open',
+  );
+  await s.key('Escape');
+  await sleep(300);
   // Table markers announce what was saved and removed.
   await doStep(s, ['click', 'At the table']);
   await sleep(300);
@@ -40,7 +92,7 @@ run(async () => {
   );
   assert(/All changes saved/.test(saved), 'Save announcement: ' + saved);
   console.log(
-    'Announcements passed: marker saved and removed, notices, and settled saves reach live regions; the toast is hidden from assistive tech.',
+    'Announcements passed: dice rolls (clicked and typed, kept between openings), marker saved and removed, notices, and settled saves reach live regions; the toast is hidden from assistive tech.',
   );
   s.close();
 });

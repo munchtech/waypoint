@@ -106,6 +106,7 @@ import {
   rowRange,
   tablesInText,
 } from '../lib/roll-tables';
+import { diceLabel, diceSpec, parseDice, randomDie, rollAnnouncement, rollDice } from '../lib/dice';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -1523,6 +1524,75 @@ test('die tables and die lists roll, with the dice in a row rolled too', () => {
   assert.equal(lootTable?.title, 'Loot');
   assert.equal(lootTable?.table.entries.length, 6);
 });
+test('the dice tray rolls fair dice, typed rolls and advantage on a single d20', () => {
+  // Typed rolls, with spaces, the unicode minus and d% for d100.
+  assert.deepEqual(parseDice('2d6+3'), {
+    spec: { count: 2, sides: 6, modifier: 3, mode: 'Normal' },
+  });
+  assert.deepEqual(parseDice(' D20 − 1  adv '), {
+    spec: { count: 1, sides: 20, modifier: -1, mode: 'Advantage' },
+  });
+  assert.deepEqual(parseDice('d%'), {
+    spec: { count: 1, sides: 100, modifier: 0, mode: 'Normal' },
+  });
+  assert.deepEqual(parseDice('1d20 disadvantage'), {
+    spec: { count: 1, sides: 20, modifier: 0, mode: 'Disadvantage' },
+  });
+  for (const [text, why] of [
+    ['', /Type a roll/],
+    ['fireball', /Type a roll/],
+    ['21d6', /1 to 20 dice/],
+    ['0d6', /1 to 20 dice/],
+    ['d1', /2 to 1000 sides/],
+    ['d20+101', /between −100 and \+100/],
+    ['2d20 adv', /single d20/],
+    ['d6 dis', /single d20/],
+  ] as const) {
+    const parsed = parseDice(text);
+    assert.ok('error' in parsed && why.test(parsed.error), text + ' is refused');
+  }
+  // The controls' spec: limits held, advantage only on a d20, and then on one die.
+  assert.deepEqual(diceSpec(40, 6, -400, 'Advantage'), {
+    count: 20,
+    sides: 6,
+    modifier: -100,
+    mode: 'Normal',
+  });
+  assert.deepEqual(diceSpec(3, 20, 2, 'Advantage'), {
+    count: 1,
+    sides: 20,
+    modifier: 2,
+    mode: 'Advantage',
+  });
+  assert.equal(diceLabel(diceSpec(3, 8, -2, 'Normal')), '3d8−2');
+  // Rolls: dice added, or the higher or lower of two d20s kept, then the modifier.
+  const faces =
+    (...v: number[]) =>
+    () =>
+      v.shift()!;
+  const sum = rollDice(diceSpec(3, 6, 2, 'Normal'), faces(1, 5, 6), 'a');
+  assert.deepEqual([sum.values, sum.kept, sum.total, sum.label], [[1, 5, 6], null, 14, '3d6+2']);
+  const adv = rollDice(diceSpec(1, 20, 5, 'Advantage'), faces(14, 9), 'b');
+  assert.deepEqual([adv.values, adv.kept, adv.total], [[14, 9], 14, 19]);
+  assert.equal(rollAnnouncement(adv), 'Rolled 1d20+5 · Advantage: 19, dice 14 and 9');
+  const dis = rollDice(diceSpec(1, 20, -1, 'Disadvantage'), faces(14, 9), 'c');
+  assert.deepEqual([dis.kept, dis.total], [9, 8]);
+  assert.equal(
+    rollAnnouncement(rollDice(diceSpec(1, 20, 0, 'Normal'), faces(7))),
+    'Rolled 1d20: 7',
+  );
+  // The real die stays on its faces and reaches every one of them.
+  for (const sides of [2, 6, 20, 100]) {
+    const seen = new Set<number>();
+    for (let i = 0; i < sides * 60; i++) {
+      const v = randomDie(sides);
+      assert.ok(Number.isInteger(v) && v >= 1 && v <= sides, `d${sides} rolled ${v}`);
+      seen.add(v);
+    }
+    assert.equal(seen.size, sides, `every face of a d${sides} comes up`);
+  }
+});
+
 test('faction standing moves along its scale and logs why', () => {
   assert.equal(standingLabel(0), 'Neutral');
   assert.equal(standingLabel(-3), 'Enemies');

@@ -526,6 +526,14 @@ const tourStates = [
     close: true,
   },
   {
+    name: 'modal-dice',
+    steps: [
+      ['click', 'Dice'],
+      ['wait', 450],
+    ],
+    close: true,
+  },
+  {
     name: 'modal-wrap-up',
     steps: [
       ['nav', 'Session desk'],

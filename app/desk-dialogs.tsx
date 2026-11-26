@@ -29,6 +29,7 @@ const RecapReview = lazy(() => import('../components/recap-review'));
 const AISettings = lazy(() => import('../components/ai-settings'));
 const RestorePoints = lazy(() => import('../components/restore-points'));
 const UpdateSettings = lazy(() => import('../components/update-settings'));
+const DiceTray = lazy(() => import('../components/dice-tray'));
 
 // The body of the open dialog, chosen by `modal`. The shell draws the overlay, the frame and the close button.
 export function DialogBody() {
@@ -640,6 +641,15 @@ export function DialogBody() {
               <UpdateSettings />
             </Suspense>
           )}
+        </>
+      )}
+      {modal === 'dice' && (
+        <>
+          <span className="eyebrow">ONLY YOU SEE THESE</span>
+          <h2 id="modal-title">Dice tray</h2>
+          <Suspense fallback={<ViewLoading />}>
+            <DiceTray />
+          </Suspense>
         </>
       )}
       {modal === 'delete-event' && (
