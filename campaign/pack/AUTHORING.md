@@ -1,12 +1,12 @@
 # Seventh Bell playbook — authoring guide
 
-**Revision 7 notes.** Sources keep the word "Tongue"; `terms.cjs` renames it to "Heart" (and Lines/Veils to Off-limits/Off-screen) in everything the tools build, and the update pack asks Waypoint to rename the DM's own text the same way. Keep writing "Tongue" in the sources so the anchors into the live campaign keep matching. Endings (`endings.cjs`) need `shrine=reached` and record their own `reached` state; `REVISION-7-BRIEF.md` has the rest. Run `tools/build-pack.cjs`, then `tools/build-manuscript.cjs` (the book's Part 13 is generated from the pack), then `tools/build-handouts.cjs`.
+**Revision 7 notes.** Sources keep the word "Tongue"; `terms.cjs` renames it to "Heart" (and Lines/Veils to Off-limits/Off-screen) in everything the tools build, and the update pack asks Waypoint to rename the DM's own text the same way. Keep writing "Tongue" in the sources so the anchors into the live campaign keep matching. Endings (`endings.cjs`) need `shrine=reached` and record their own `reached` state; `REVISION-7-BRIEF.md` has the rest. Run `tools/build-pack.cjs`, then `tools/build-handouts.cjs`.
 
 The playbook makes Waypoint *predictive*: for every session it says what the party is likely to do, how the DM responds, what rules apply (2024), and what that choice changes now and later. Waypoint tracks the world state (flags), hides plays that are no longer possible, ranks likely plays, and shows the ripple of a choice when the DM marks "the party did this."
 
 ## Sources (read before writing)
 - `../canon.md` — the canon (revision 7 adds Section 9: the level-3 table, timeline fixes, the endings). Revision 6 brought Forgotten Realms tie-in, the Stormwall and the Seam, Pellmoor Landing as a port, memory as currency, new NPCs, 2024 rules notes. **Wins over v5 where they disagree.**
-- `C:\Users\munch\Documents\Codex\2026-10-22\au\outputs\the-seventh-bell-v5.md` — the campaign manuscript (v5). Part 8 (sessions), Part 9 (player choices), Appendix A (creatures).
+- `C:\Users\munch\Documents\Codex\2026-10-22\au\outputs\the-seventh-bell-v5.md` — the campaign manuscript (v5), lost in November 2026. Part 8 (sessions), Part 9 (player choices), Appendix A (creatures).
 - `flags.json` — the world-state flags. Use **only** these flag ids and option ids.
 - `../ref/sessions.json` — session ids. Use these exact ids.
 - `../ref/xmm-bases.md` — 2024 Monster Manual base stat blocks available in Waypoint.

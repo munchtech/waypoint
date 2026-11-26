@@ -1,5 +1,5 @@
 // Revision 7 renames the bells' clappers from "Tongue" to "Heart" (DM's decision, 2026-10-31): easier to say at the table.
-// The sources keep "Tongue"; tools/build-pack.cjs and tools/build-manuscript.cjs apply this list to everything they write,
+// The sources keep "Tongue"; tools/build-pack.cjs applies this list to everything they write,
 // and the update pack carries it so Waypoint renames the DM's own wiki pages, session notes and cards (never the chronicle).
 // Ids are never renamed: live campaigns refer to plays and flags by id.
 const terms={

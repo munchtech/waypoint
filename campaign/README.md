@@ -1,6 +1,6 @@
 # The Seventh Bell: campaign sources
 
-Everything that builds the campaign content Waypoint ships: the Foresight playbook, the campaign book, the DM canon and the player handouts.
+Everything that builds the campaign content Waypoint ships: the Foresight playbook, the DM canon and the player handouts. The campaign book is made in the app (Campaign hub), from the installed campaign.
 
 | Folder | What it holds |
 |---|---|
@@ -19,12 +19,10 @@ Run from this folder, in order:
 node tools/validate-pack.cjs pack/act1.json pack/act2-3.json pack/act4a.json pack/act4b.json pack/act5.json pack/anytime.json pack/anytime-early.json
 node tools/build-handouts.cjs
 node tools/build-pack.cjs
-node tools/build-manuscript.cjs
 ```
 
 - `build-handouts` writes the two HTML handouts to `outputs/Player-Primer`, the map canvas page, and the player site's pages.
 - `build-pack` writes the update pack the app ships (`desktop/data/packs/seventh-bell-v7.json`) and a copy in `outputs`. It checks every edit anchor against a copy of the live campaign, which stays outside the repo. To try a revision without rebuilding the app, copy the pack into `%APPDATA%\Waypoint\packs`.
-- `build-manuscript` writes the campaign book to `outputs` (Part 13 is generated from the pack).
 
 Then build the app from the repo root (`node scripts/build-desktop.mjs`) and run `node scripts/verify.mjs`.
 
