@@ -1,10 +1,51 @@
 // Campaign data: the saved campaigns, the previous save, restore points, recordings, and opening the data folder.
-import { dialog, shell } from 'electron';
+import { app, dialog, shell } from 'electron';
 import fs from 'node:fs';
+import path from 'node:path';
 import { dataDir, state, type Route } from '../runtime';
+
+// The last campaign book saved, the only file the window may ask to open.
+let savedBook = '';
 
 export const campaignsRoute: Route = async (req) => {
   const { store, library } = state;
+  // The campaign book: the window lays the book out for print, then this prints it to a PDF and asks where to save it.
+  if (req.path === '/api/campaign-book' && req.method === 'POST') {
+    const win = state.win;
+    if (!win) throw new Error('The Waypoint window is not open.');
+    const { fileName } = JSON.parse(req.body || '{}') as { fileName?: unknown };
+    const name =
+      typeof fileName === 'string' && /^[\w.-]{1,100}\.pdf$/.test(fileName)
+        ? fileName
+        : 'campaign-book.pdf';
+    const pdf = await win.webContents.printToPDF({
+      pageSize: 'Letter',
+      printBackground: true,
+      margins: { top: 0.7, bottom: 0.8, left: 0.75, right: 0.75 },
+      displayHeaderFooter: true,
+      headerTemplate: '<span></span>',
+      footerTemplate:
+        '<div style="width:100%;text-align:center;font:8pt Georgia,serif;color:#777"><span class="pageNumber"></span></div>',
+      generateDocumentOutline: true,
+      generateTaggedPDF: true,
+    });
+    const result = await dialog.showSaveDialog(win, {
+      title: 'Save campaign book',
+      defaultPath: path.join(app.getPath('documents'), name),
+      filters: [{ name: 'PDF document', extensions: ['pdf'] }],
+    });
+    if (result.canceled || !result.filePath) return { status: 200, body: { saved: false } };
+    fs.writeFileSync(result.filePath, pdf);
+    savedBook = result.filePath;
+    return { status: 200, body: { saved: true, path: result.filePath } };
+  }
+  if (req.path === '/api/campaign-book/open' && req.method === 'POST') {
+    const { path: file } = JSON.parse(req.body || '{}') as { path?: unknown };
+    if (!savedBook || file !== savedBook || !fs.existsSync(savedBook))
+      return { status: 400, body: { error: 'That book is no longer where it was saved.' } };
+    const failed = await shell.openPath(savedBook);
+    return failed ? { status: 400, body: { error: failed } } : { status: 200, body: { ok: true } };
+  }
   if (req.path === '/api/open-data' && req.method === 'POST') {
     await shell.openPath(dataDir);
     return { status: 200, body: { ok: true } };

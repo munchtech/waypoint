@@ -61,6 +61,7 @@ import { influenceDc, intelligenceOf } from '../lib/influence';
 import { trackerStatus } from '../lib/trackers';
 import { atQuery, backlinks, creatureEncounters, linkOptions, sharedIndex } from '../lib/backlinks';
 import { splitMentions } from '../lib/wiki-mentions';
+import { bookContents, bookFileName, bookParts } from '../lib/campaign-book';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -1360,6 +1361,49 @@ test('a stat block lists the prepared fights it is in', () => {
   const block = pb.statblocks.find((b) => fight.creatures.some((c) => c.statblock === b.id))!;
   assert.ok(creatureEncounters(block.name, pb).some((e) => e.id === fight.id));
   assert.equal(creatureEncounters('No Such Creature', pb).length, 0);
+});
+test('the campaign book holds everything for the DM and only known pages for players', () => {
+  const dm = bookContents(installed, 'DM', [...bookParts]),
+    mem = memoryOf(installed);
+  assert.equal(dm.sessions.length, installed.sessions.length);
+  assert.equal(
+    dm.wiki.reduce((n, g) => n + g.pages.length, 0),
+    mem.pages.length,
+  );
+  assert.equal(dm.statblocks.length, pb.statblocks.length);
+  // Every encounter is printed once: with its session, or in the appendix.
+  const printed = dm.sessions.flatMap((s) => s.encounters).concat(dm.encounters);
+  assert.equal(printed.length, pb.encounters.length);
+  assert.equal(new Set(printed.map((e) => e.id)).size, pb.encounters.length);
+  assert.ok(dm.overview?.premise && dm.chapters.some((c) => c.id === 'sessions'));
+  // Players: one page they know, one still planned, the rest DM only.
+  const [known, planned] = mem.pages;
+  const shared: Campaign = {
+    ...installed,
+    memory: {
+      ...mem,
+      pages: mem.pages.map((p) =>
+        p === known
+          ? { ...p, visibility: 'Party knows', status: 'Confirmed' }
+          : p === planned
+            ? { ...p, visibility: 'Party knows', status: 'Planned' }
+            : { ...p, visibility: 'DM only' },
+      ),
+    },
+  };
+  const players = bookContents(shared, 'Players', [...bookParts]);
+  assert.deepEqual(
+    players.wiki.flatMap((g) => g.pages.map((p) => p.id)),
+    [known.id],
+  );
+  assert.equal(players.sessions.length + players.encounters.length + players.statblocks.length, 0);
+  assert.equal(players.cards.length, 0);
+  assert.equal(players.overview?.premise, '');
+  assert.equal(players.overview?.twist, '');
+  assert.ok(!players.chapters.some((c) => ['sessions', 'appendix', 'cards'].includes(c.id)));
+  assert.equal(bookContents(installed, 'DM', []).chapters.length, 0);
+  assert.equal(bookFileName('The Seventh Bell!', 'DM'), 'the-seventh-bell-dm-book.pdf');
+  assert.equal(bookFileName('***', 'Players'), 'campaign-players-guide.pdf');
 });
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

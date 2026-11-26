@@ -7567,6 +7567,280 @@ input:focus {
 .mentioned-in > .text-button {
   margin-top: 12px;
 }
+/* The campaign book: options in the hub, and the printed book itself, which only exists while it prints. */
+.campaign-book-panel h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.book-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 32px;
+  margin: 14px 0;
+}
+.book-options fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+.book-options legend {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.book-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+.book-options input {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+  accent-color: light-dark(#507546, #a2cd97);
+}
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.book-message {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 0;
+  overflow-wrap: anywhere;
+}
+.book-message .text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.campaign-book {
+  display: none;
+}
+@media print {
+  body.print-book {
+    background: #fff;
+  }
+  body.print-book > :not(.campaign-book) {
+    display: none !important;
+  }
+  body.print-book .campaign-book {
+    display: block;
+    color: #22201c;
+    font:
+      400 10.5pt/1.5 'Lora',
+      Georgia,
+      serif;
+  }
+  .campaign-book h1,
+  .campaign-book h2,
+  .campaign-book h3,
+  .campaign-book h4 {
+    font-family: 'Lora', Georgia, serif;
+    color: #5b2318;
+    line-height: 1.2;
+    break-after: avoid-page;
+  }
+  .campaign-book .book-chapter {
+    break-before: page;
+  }
+  .campaign-book .book-chapter > h1 {
+    font-size: 26pt;
+    margin: 0 0 14pt;
+    padding-bottom: 6pt;
+    border-bottom: 2pt solid #b3945c;
+  }
+  .campaign-book h2 {
+    font-size: 17pt;
+    margin: 18pt 0 6pt;
+    padding-bottom: 3pt;
+    border-bottom: 0.75pt solid #d6c7a6;
+  }
+  .campaign-book h3 {
+    font-size: 13pt;
+    margin: 14pt 0 4pt;
+  }
+  .campaign-book h4 {
+    font-size: 11pt;
+    margin: 10pt 0 2pt;
+  }
+  .campaign-book p,
+  .campaign-book li {
+    orphans: 3;
+    widows: 3;
+  }
+  .campaign-book p {
+    margin: 0 0 6pt;
+  }
+  .campaign-book .book-text {
+    font: inherit;
+    color: inherit;
+  }
+  .campaign-book .book-text > *,
+  .campaign-book .book-text details > * {
+    max-width: none;
+  }
+  .campaign-book .book-text h1,
+  .campaign-book .book-text h2 {
+    font-size: 14pt;
+    border: 0;
+  }
+  .campaign-book .book-text h3,
+  .campaign-book .book-text h4 {
+    font-size: 11.5pt;
+  }
+  .campaign-book .wiki-mention,
+  .campaign-book .go-link {
+    all: unset;
+    color: inherit;
+  }
+  .campaign-book .head-note,
+  .campaign-book .head-note-pop {
+    display: none;
+  }
+  .book-cover {
+    min-height: 8.8in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.6in;
+    border: 3pt double #b3945c;
+    break-after: page;
+  }
+  .campaign-book .book-cover h1 {
+    font-size: 40pt;
+    margin: 10pt 0;
+  }
+  .campaign-book .book-kicker {
+    font:
+      600 8.5pt 'DM Sans',
+      sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #826031;
+    margin: 0 0 2pt;
+  }
+  .campaign-book .book-tone {
+    font-style: italic;
+    font-size: 13pt;
+  }
+  .campaign-book .book-made {
+    margin-top: 36pt;
+    font-size: 9pt;
+    color: #6b655b;
+  }
+  .book-contents {
+    break-after: page;
+  }
+  .campaign-book .book-contents h2 {
+    font-size: 22pt;
+  }
+  .book-contents ol {
+    font-size: 13pt;
+    line-height: 2;
+  }
+  .book-session + .book-session,
+  .book-wiki-group + .book-wiki-group,
+  .book-handout + .book-handout {
+    break-before: page;
+  }
+  .campaign-book .book-lede {
+    font-style: italic;
+    font-size: 11.5pt;
+  }
+  .campaign-book .book-meta {
+    font:
+      8.5pt 'DM Sans',
+      sans-serif;
+    color: #6b655b;
+    letter-spacing: 0.02em;
+  }
+  .campaign-book .book-meta:empty {
+    display: none;
+  }
+  .book-sidebar {
+    margin: 10pt 0;
+    padding: 8pt 12pt;
+    background: #f3ecdc;
+    border-top: 2pt solid #b3945c;
+    border-bottom: 2pt solid #b3945c;
+    font:
+      9.5pt/1.45 'DM Sans',
+      sans-serif;
+    break-inside: avoid;
+  }
+  .book-sidebar ul {
+    margin: 4pt 0 0;
+    padding-left: 16pt;
+  }
+  .campaign-book blockquote {
+    margin: 8pt 0 10pt;
+    padding: 8pt 12pt;
+    background: #efe6d2;
+    border: 0;
+    border-left: 3pt solid #8a6a2f;
+    border-radius: 0;
+    font-style: italic;
+    break-inside: avoid;
+  }
+  .book-play {
+    margin-bottom: 8pt;
+    break-inside: avoid;
+  }
+  .book-encounter,
+  .book-statblock {
+    margin: 10pt 0;
+    padding: 6pt 12pt;
+    background: #f6f1e5;
+    border-top: 2.5pt solid #7a2e1d;
+    border-bottom: 2.5pt solid #7a2e1d;
+    font:
+      9.5pt/1.45 'DM Sans',
+      sans-serif;
+  }
+  .book-encounter {
+    break-inside: avoid;
+  }
+  .book-encounter ul {
+    margin: 2pt 0 6pt;
+    padding-left: 16pt;
+  }
+  .campaign-book table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6pt 0 10pt;
+    font:
+      9pt/1.4 'DM Sans',
+      sans-serif;
+  }
+  .campaign-book th {
+    background: #e9dfc8;
+    text-align: left;
+  }
+  .campaign-book th,
+  .campaign-book td {
+    padding: 3pt 6pt;
+    border-bottom: 0.5pt solid #d6c7a6;
+    vertical-align: top;
+  }
+  .campaign-book tr {
+    break-inside: avoid;
+  }
+}
 /* A heading and its "?" stay on one line. */
 .book-text th:has(.head-note) {
   white-space: nowrap;

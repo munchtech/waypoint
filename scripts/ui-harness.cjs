@@ -144,6 +144,23 @@ function installHandler() {
         ? { status: 200, body: state.snapshot }
         : { status: 400, body: { error: 'That restore point is no longer available.' } };
     if (r.path === '/api/restore-points/export') return { status: 200, body: { saved: false } };
+    // The campaign book prints the window the way the app does and saves the PDF in the temp folder, without asking.
+    if (r.path === '/api/campaign-book') {
+      const pdf = await e.sender.printToPDF({
+        pageSize: 'Letter',
+        printBackground: true,
+        margins: { top: 0.7, bottom: 0.8, left: 0.75, right: 0.75 },
+        displayHeaderFooter: true,
+        headerTemplate: '<span></span>',
+        footerTemplate:
+          '<div style="width:100%;text-align:center;font-size:8pt"><span class="pageNumber"></span></div>',
+        generateDocumentOutline: true,
+      });
+      const file = path.join(os.tmpdir(), 'waypoint-ui-book-' + process.pid + '.pdf');
+      fs.writeFileSync(file, pdf);
+      return { status: 200, body: { saved: true, path: file } };
+    }
+    if (r.path === '/api/campaign-book/open') return { status: 200, body: { ok: true } };
     // The player site: keep the written page in memory so a test can read what players would see.
     if (r.path === '/api/site/write') {
       state.siteHtml = JSON.parse(r.body).html;
