@@ -9,6 +9,7 @@ import {
 } from './playbook-schema';
 import { standingText } from './standing';
 import { campaignMap, MAP_LIMIT } from './maps';
+import { homebrewBlock, HOMEBREW_LIMIT } from './homebrew';
 
 export const pageKinds = [
   'NPC',
@@ -138,6 +139,8 @@ export const memorySchema = z.object({
   markers: z.array(tableMarker).optional(),
   // Map images with pins (lib/maps). Each map is a row of its own in the desktop store.
   maps: z.array(campaignMap).max(MAP_LIMIT).optional(),
+  // Homebrew creatures copied from the rules library (lib/homebrew), kept apart from the playbook's stat blocks.
+  homebrew: z.array(homebrewBlock).max(HOMEBREW_LIMIT).optional(),
   pages: z.array(wikiPage),
   notes: z.array(note),
   planner: z.object({

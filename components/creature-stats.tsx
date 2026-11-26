@@ -5,7 +5,7 @@ import BookText from './book-text';
 import RuleBody from './rule-body';
 import { appFetch, isDesktop } from '../lib/transport';
 import type { RuleEntry } from '../lib/rules';
-import type { Playbook } from '../lib/playbook';
+import { isHomebrew, type Bestiary } from '../lib/homebrew';
 import type { EncounterCreature } from '../lib/combat';
 import { influenceDc, intelligenceOf } from '../lib/influence';
 
@@ -40,7 +40,7 @@ export default function CreatureStats({
   onBrowse,
 }: {
   creature: EncounterCreature;
-  pb?: Playbook;
+  pb?: Bestiary;
   onBrowse?: (name: string) => void;
 }) {
   const custom = pb?.statblocks.find((block) => block.id === creature.statblock);
@@ -104,8 +104,17 @@ export default function CreatureStats({
       )}
       {custom && (
         <section className="campaign-statblock">
-          <span className="eyebrow">CAMPAIGN STAT BLOCK · CR {custom.cr}</span>
-          <BookText text={custom.body} />
+          {isHomebrew(custom) ? (
+            <>
+              <span className="eyebrow">HOMEBREW · CR {custom.cr}</span>
+              <RuleBody body={custom.body} />
+            </>
+          ) : (
+            <>
+              <span className="eyebrow">CAMPAIGN STAT BLOCK · CR {custom.cr}</span>
+              <BookText text={custom.body} />
+            </>
+          )}
         </section>
       )}
       {related.map((block) => (

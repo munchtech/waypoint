@@ -10,8 +10,18 @@ import {
   Shield,
   RefreshCw,
   X,
+  Copy,
 } from 'lucide-react';
 import RuleBody from './rule-body';
+import HomebrewEditor from './homebrew-editor';
+import {
+  HOMEBREW_LIMIT,
+  homebrewFrom,
+  homebrewReference,
+  withHomebrew,
+  withoutHomebrew,
+  type HomebrewBlock,
+} from '../lib/homebrew';
 import { appFetch, isDesktop } from '../lib/transport';
 import { count } from '../lib/plural';
 import { referenceOf, type RuleEntry, type RuleReference } from '../lib/rules';
@@ -52,6 +62,9 @@ export default function RulesLibrary({
   initialQuery,
   initialId,
   initialKind,
+  homebrew = [],
+  onHomebrew,
+  initialHomebrew,
 }: {
   initialQuery?: string;
   initialId?: string;
@@ -59,6 +72,11 @@ export default function RulesLibrary({
   pinned: RuleReference[];
   onPin: (entry: RuleReference) => void;
   onPrompt: (entry: RuleReference) => void;
+  // The campaign's homebrew creatures, and how to change them (with a notice to show, if any).
+  homebrew?: HomebrewBlock[];
+  onHomebrew?: (fn: (list: HomebrewBlock[]) => HomebrewBlock[], notice?: string) => void;
+  // A homebrew creature to open in the editor.
+  initialHomebrew?: string;
 }) {
   const [bookQuery, setBookQuery] = useState(''),
     [booksOpen, setBooksOpen] = useState(false);
@@ -72,7 +90,9 @@ export default function RulesLibrary({
     [entry, setEntry] = useState<RuleEntry | null>(null),
     [detailLoading, setDetailLoading] = useState(!!initialId),
     [importing, setImporting] = useState(false),
-    [message, setMessage] = useState('');
+    [message, setMessage] = useState(''),
+    [editing, setEditing] = useState(initialHomebrew || '');
+  const mine = homebrew.find((b) => b.id === editing);
   // A search is "loading" until a result is recorded for the exact filters on screen, so no state is reset when the filters change.
   const requestKey = JSON.stringify([query, kind, source, edition, offset, revision]);
   const [settled, setSettled] = useState({ key: '', error: '' }),
@@ -109,11 +129,37 @@ export default function RulesLibrary({
     if (resultsList.current) resultsList.current.scrollTop = 0;
   }, [results]);
   useEffect(() => {
-    if (entry && window.matchMedia('(max-width:899px)').matches) {
+    if ((entry || editing) && window.matchMedia('(max-width:899px)').matches) {
       detailPanel.current?.focus({ preventScroll: true });
       detailPanel.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
     }
-  }, [entry]);
+  }, [entry, editing]);
+  // Homebrew copies show above the library's results while the filters could include a creature.
+  const wanted = query.trim().toLowerCase(),
+    shownHomebrew =
+      (kind === 'All' || kind === 'Creature') && source === 'All'
+        ? homebrew.filter(
+            (b) =>
+              (edition === 'All' || b.edition === edition) &&
+              (!wanted || (b.name + ' ' + b.base).toLowerCase().includes(wanted)),
+          )
+        : [];
+  function editHomebrew(id: string) {
+    detailSequence.current.value++;
+    setDetailLoading(false);
+    setActionError(null);
+    setEditing(id);
+    if (detailPanel.current) detailPanel.current.scrollTop = 0;
+  }
+  function copyToHomebrew(from: RuleEntry) {
+    if (!onHomebrew) return;
+    const block = homebrewFrom(from, homebrew);
+    onHomebrew(
+      (list) => [...list, block].slice(0, HOMEBREW_LIMIT),
+      block.name + ' added to your homebrew. Rename it and change what you like.',
+    );
+    editHomebrew(block.id);
+  }
   useEffect(() => {
     mounted.current = true;
     const sequence = detailSequence.current;
@@ -172,6 +218,7 @@ export default function RulesLibrary({
     };
   }, [query, kind, source, edition, offset, requestKey]);
   async function open(id: string) {
+    setEditing('');
     const sequence = ++detailSequence.current.value;
     setDetailLoading(true);
     setEntry(null);
@@ -421,7 +468,32 @@ export default function RulesLibrary({
             </div>
           )}
           <div className="rules-list" ref={resultsList} onKeyDown={walkResults}>
-            {!loading && !error && !results.entries.length && (
+            {shownHomebrew.length > 0 && <p className="rules-group-label">Your homebrew</p>}
+            {shownHomebrew.map((b) => (
+              <button
+                className={'rule-result homebrew-result ' + (mine?.id === b.id ? 'selected' : '')}
+                aria-pressed={mine?.id === b.id}
+                key={b.id}
+                onClick={() => editHomebrew(b.id)}
+              >
+                <span>
+                  <small>
+                    <span>Homebrew</span>
+                    <span className="rule-edition">CR {b.cr || '?'}</span>
+                    <span>from {b.base}</span>
+                    {pinned.some((r) => r.id === b.id) && (
+                      <Pin size={11} aria-label="Pinned to this session" />
+                    )}
+                  </small>
+                  <strong>{b.name}</strong>
+                </span>
+                <ChevronRight size={16} />
+              </button>
+            ))}
+            {shownHomebrew.length > 0 && results.entries.length > 0 && (
+              <p className="rules-group-label">Library</p>
+            )}
+            {!loading && !error && !results.entries.length && !shownHomebrew.length && (
               <div className="empty">
                 <BookOpen size={30} />
                 <h3>No matching references.</h3>
@@ -434,8 +506,8 @@ export default function RulesLibrary({
             {results.entries.map((e) => (
               <button
                 disabled={loading}
-                className={'rule-result ' + (entry?.id === e.id ? 'selected' : '')}
-                aria-pressed={entry?.id === e.id}
+                className={'rule-result ' + (!mine && entry?.id === e.id ? 'selected' : '')}
+                aria-pressed={!mine && entry?.id === e.id}
                 key={e.id}
                 onClick={() => void open(e.id)}
               >
@@ -486,7 +558,30 @@ export default function RulesLibrary({
           aria-label="Reference details"
           aria-busy={detailLoading}
         >
-          {detailLoading ? (
+          {mine ? (
+            <HomebrewEditor
+              key={mine.id}
+              block={mine}
+              pinState={
+                pinned.some((r) => r.id === mine.id)
+                  ? 'pinned'
+                  : pinned.length >= 6
+                    ? 'full'
+                    : 'free'
+              }
+              onChange={(next) => onHomebrew?.((list) => withHomebrew(list, next))}
+              onRemove={() => {
+                onHomebrew?.(
+                  (list) => withoutHomebrew(list, mine.id),
+                  mine.name + ' removed from your homebrew.',
+                );
+                setEditing('');
+              }}
+              onPin={() => onPin(homebrewReference(mine))}
+              onPrompt={() => onPrompt(homebrewReference(mine))}
+              onOriginal={mine.from ? () => void open(mine.from!) : undefined}
+            />
+          ) : detailLoading ? (
             <p role="status">Opening reference…</p>
           ) : entry ? (
             <>
@@ -522,6 +617,19 @@ export default function RulesLibrary({
                 <button className="button" onClick={() => onPrompt(referenceOf(entry))}>
                   Use in a prompt
                 </button>
+                {entry.kind === 'Creature' && onHomebrew && (
+                  <button
+                    className="button"
+                    disabled={homebrew.length >= HOMEBREW_LIMIT}
+                    title="Copy this creature into the campaign to rename and reskin it"
+                    onClick={() => copyToHomebrew(entry)}
+                  >
+                    <Copy size={14} />
+                    {homebrew.length >= HOMEBREW_LIMIT
+                      ? HOMEBREW_LIMIT + ' homebrew creatures'
+                      : 'Make a homebrew copy'}
+                  </button>
+                )}
               </div>
               {entry.warnings.map((w) => (
                 <p className="rule-warning" key={w}>

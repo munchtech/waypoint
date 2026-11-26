@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowUpRight, Pin, X } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
+import { bestiaryOf } from '../lib/homebrew';
 import { pageName } from '../lib/page-name';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import BookText from './book-text';
@@ -28,7 +29,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
     creatureName = current.startsWith('creature:') ? current.slice(9) : '',
     page = creatureName ? undefined : memory.pages.find((page) => page.id === current);
   const creatureNames = useMemo(
-    () => memoryOf(campaign).playbook?.statblocks.map((b) => b.name),
+    () => bestiaryOf(memoryOf(campaign))?.statblocks.map((b) => b.name),
     [campaign],
   );
   useEffect(() => {
@@ -40,8 +41,9 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
       opener?.focus?.();
     };
   }, []);
-  const creatures = page ? pageCreatures(page, memory.playbook) : [],
-    fights = creatureName ? creatureEncounters(creatureName, memory.playbook) : [];
+  const bestiary = bestiaryOf(memory),
+    creatures = page ? pageCreatures(page, bestiary) : [],
+    fights = creatureName ? creatureEncounters(creatureName, bestiary) : [];
   const mentions = (
     <MentionedIn
       key={current}
@@ -113,8 +115,8 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
               </div>
               <section className="reference-combat" key={current}>
                 <CreatureStats
-                  creature={creatureByName(creatureName, memory.playbook)}
-                  pb={memory.playbook}
+                  creature={creatureByName(creatureName, bestiary)}
+                  pb={bestiary}
                   onBrowse={browse}
                 />
               </section>
@@ -168,7 +170,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                       <summary>
                         {creature.name} · CR {creature.cr}
                       </summary>
-                      <CreatureStats creature={creature} pb={memory.playbook} onBrowse={browse} />
+                      <CreatureStats creature={creature} pb={bestiary} onBrowse={browse} />
                     </details>
                   ))}
                 </section>

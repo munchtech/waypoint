@@ -88,13 +88,22 @@ export function ChronicleView() {
 
 // The rules library.
 export function RulesView() {
-  const { targetHit, setView, setNotice, campaign, session, updateSession, promptDraft } =
+  const { targetHit, setView, setNotice, campaign, session, updateSession, promptDraft, update } =
     useDeskContext();
   return (
     <Suspense fallback={<ViewLoading />}>
       <RulesLibrary
         key={campaign.id + session.id + (targetHit?.id || '')}
         initialKind={targetHit?.status === 'Creature lookup' ? 'Creature' : undefined}
+        initialHomebrew={targetHit?.kind === 'Creature' ? targetHit.id : undefined}
+        homebrew={memoryOf(campaign).homebrew}
+        onHomebrew={(fn, notice) => {
+          update((c) => {
+            const m = memoryOf(c);
+            return { ...c, memory: { ...m, homebrew: fn(m.homebrew || []) } };
+          });
+          if (notice) setNotice(notice);
+        }}
         initialQuery={targetHit?.kind === 'Rule' ? targetHit.title : undefined}
         initialId={targetHit?.kind === 'Rule' ? targetHit.id : undefined}
         pinned={session.ruleReferences || []}

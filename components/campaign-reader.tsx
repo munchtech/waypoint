@@ -9,6 +9,7 @@ import BookText from './book-text';
 import MentionedIn from './mentioned-in';
 import { creatureEncounters } from '../lib/backlinks';
 import { pinName, pinsForPage } from '../lib/maps';
+import { bestiaryOf } from '../lib/homebrew';
 // What the reader can show, as [value, label]. A wiki kind is added for each kind the campaign uses ("Wiki:NPC").
 const categories: [string, string][] = [
   ['All', 'Everything'],
@@ -157,7 +158,7 @@ export default function CampaignReader({
       hits.findIndex((h) => h.kind + ':' + h.id === selected),
     ),
     opened = hits[index],
-    fights = opened?.kind === 'Creature' ? creatureEncounters(opened.title, m.playbook) : [];
+    fights = opened?.kind === 'Creature' ? creatureEncounters(opened.title, bestiaryOf(m)) : [];
   function remember() {
     if (opened)
       setTrail((t) =>

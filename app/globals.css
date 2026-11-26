@@ -9256,3 +9256,55 @@ fieldset.relation-labels input {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Homebrew creatures in the rules library */
+.rules-group-label {
+  margin: 6px 6px 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: light-dark(#607152, #b2c6a2);
+}
+.homebrew-result {
+  box-shadow: inset 3px 0 light-dark(#c7a55a, #c7a55a80);
+}
+.homebrew-result.selected {
+  box-shadow: inset 3px 0 light-dark(#a8822f, #c7a55a);
+}
+.homebrew-editor {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.homebrew-editor h2,
+.homebrew-editor .rule-source,
+.homebrew-editor .rule-actions {
+  margin-bottom: 0;
+}
+.homebrew-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 90px;
+  gap: 10px;
+}
+.homebrew-editor label input,
+.homebrew-editor label textarea {
+  margin-top: 4px;
+}
+.homebrew-body textarea {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  line-height: 1.55;
+  resize: vertical;
+}
+.homebrew-editor > .tiny {
+  margin: -4px 0 0;
+}
+.homebrew-preview {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.homebrew-preview summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}

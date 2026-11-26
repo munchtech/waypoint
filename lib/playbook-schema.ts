@@ -71,7 +71,7 @@ const encounterSchema = z.object({
   scale: text(),
   when: z.array(condSchema).max(12).optional(),
 });
-const statblockSchema = z.object({
+export const statblockSchema = z.object({
   id: text(80),
   name: text(160),
   cr: text(8),

@@ -5,7 +5,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
-import { cellCreatures, creatureByName, statLine } from '../lib/combat';
+import { cellCreatures, creatureByName, pageCreatures, statLine } from '../lib/combat';
 import { memoryOf, wikiPage } from '../lib/memory';
 import { shiftStanding, standingLabel, standingOf, standingText } from '../lib/standing';
 import { neighborhood, webEdges } from '../lib/relationship-web';
@@ -31,6 +31,16 @@ import {
   withoutPin,
 } from '../lib/maps';
 import { searchCampaign } from '../lib/campaign-search';
+import {
+  bestiaryOf,
+  homebrewFrom,
+  homebrewReference,
+  HOMEBREW_BODY,
+  HOMEBREW_LIMIT,
+  withHomebrew,
+  withoutHomebrew,
+} from '../lib/homebrew';
+import { validRuleReferences, type RuleEntry } from '../lib/rules';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
 import {
   ringsBell,
@@ -1759,6 +1769,104 @@ test('map pins stay on the image, name their pages, and only shared pins reach p
   assert.equal(withMaps([m]), true);
   assert.equal(withMaps([{ ...m, image: 'data:image/svg+xml;base64,PHN2Zz4=' }]), false);
   assert.equal(withMaps([{ ...m, image: image + '"' }]), false);
+});
+
+test('a homebrew copy of a library creature is renamed, found by its own name only, and outlives update packs', () => {
+  const entry: RuleEntry = {
+    id: 'xmm-goblin-warrior',
+    name: 'Goblin Warrior',
+    kind: 'Creature',
+    source: 'XMM',
+    edition: '2024',
+    page: '172',
+    summary: 'Small fey (goblinoid) · CR 1/4',
+    body: 'Armor class\n15\n\nHit points\n10 (3d6)\n\nActions\nScimitar. Melee attack: +4 to hit.',
+    warnings: [],
+  };
+  const copy = homebrewFrom(entry, [], 'a1', '2026-11-26');
+  assert.deepEqual(
+    [copy.id, copy.name, copy.cr, copy.base, copy.from, copy.edition, copy.source],
+    ['hb-a1', 'Goblin Warrior (homebrew)', '1/4', 'Goblin Warrior', entry.id, '2024', 'XMM'],
+  );
+  assert.ok(copy.body.startsWith('Small fey (goblinoid) · CR 1/4\n\nArmor class\n15'));
+  assert.equal(homebrewFrom(entry, [copy], 'a2').name, 'Goblin Warrior (homebrew 2)');
+  const long = homebrewFrom(
+    { ...entry, body: ('Traits\n' + 'x'.repeat(900) + '\n\n').repeat(20) },
+    [],
+  );
+  assert.ok(long.body.length <= HOMEBREW_BODY);
+  assert.ok(/Open the original for the rest\.\]$/.test(long.body));
+
+  // Renamed, it is the campaign's stat block for that exact name, and never for a shorter or plainer one.
+  const reed = {
+    ...copy,
+    name: 'Reed Goblin Sneak',
+    body: 'Armor class\n16\n\nTraits\nReed-step.',
+  };
+  const mine = (list: unknown[], from: Campaign = installed) =>
+    ({ ...from, memory: { ...memoryOf(from), homebrew: list } }) as Campaign;
+  const bare = {
+    ...installed,
+    memory: { ...memoryOf(installed), playbook: undefined },
+  } as Campaign;
+  assert.equal(bestiaryOf(memoryOf(installed)), pb, 'No homebrew: the playbook itself');
+  const beasts = bestiaryOf(memoryOf(mine([reed])))!;
+  assert.equal(beasts.statblocks.length, pb.statblocks.length + 1);
+  assert.equal(creatureByName('Reed Goblin Sneak', beasts).statblock, 'hb-a1');
+  assert.equal(creatureByName('Reed Sneak', beasts).statblock, undefined);
+  assert.equal(creatureByName('Goblin Warrior', beasts).statblock, undefined);
+  const alone = bestiaryOf(memoryOf(mine([reed], bare)))!;
+  assert.deepEqual([alone.statblocks.length, alone.encounters.length], [1, 0]);
+  const page = wikiPage.parse({
+    id: 'p-reed',
+    title: 'Reed Goblin Sneak',
+    kind: 'NPC',
+    body: 'Lurks in the reeds.',
+    aliases: '',
+    status: 'Confirmed',
+    visibility: 'DM only',
+    sourceId: '',
+    quote: '',
+    updated: '2026-11-26',
+    history: [],
+  });
+  assert.equal(pageCreatures(page, alone)[0]?.statblock, 'hb-a1');
+
+  // Saved, searched, printed and pinned.
+  assert.equal(validateCampaign(mine([reed])), true);
+  assert.equal(validateCampaign(mine([{ ...reed, body: 'x'.repeat(HOMEBREW_BODY + 1) }])), false);
+  assert.equal(
+    validateCampaign(
+      mine(Array.from({ length: HOMEBREW_LIMIT + 1 }, (_, i) => ({ ...reed, id: 'hb-' + i }))),
+    ),
+    false,
+  );
+  const hit = searchCampaign(mine([reed]), 'reed goblin', 'Creature')[0];
+  assert.deepEqual(
+    [hit?.id, hit?.status],
+    ['hb-a1', 'Homebrew · built on Goblin Warrior · CR 1/4'],
+  );
+  assert.ok(
+    bookContents(mine([reed]), 'DM', [...bookParts]).statblocks.some((b) => b.id === 'hb-a1'),
+  );
+  const reference = homebrewReference(reed);
+  assert.deepEqual([reference.kind, reference.source], ['Creature', 'Homebrew']);
+  assert.ok(reference.body.startsWith('CR 1/4 · homebrew built on Goblin Warrior'));
+  assert.equal(validRuleReferences([reference]), true);
+
+  // Edits replace the copy in place; removing leaves the others.
+  assert.deepEqual(
+    withHomebrew([reed], copy).map((b) => b.name),
+    ['Goblin Warrior (homebrew)'],
+  );
+  const two = withHomebrew([reed], { ...copy, id: 'hb-a2' });
+  assert.deepEqual(
+    withoutHomebrew(two, 'hb-a1').map((b) => b.id),
+    ['hb-a2'],
+  );
+
+  // Applying the update pack again replaces the playbook and keeps the homebrew.
+  assert.deepEqual(memoryOf(applyUpdate(mine([reed]), pack, all)).homebrew, [reed]);
 });
 
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.

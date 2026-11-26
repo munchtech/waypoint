@@ -88,6 +88,7 @@ export function SessionDeskView() {
     coachPrompt,
     showReference,
     openWorkspace,
+    navigate,
     memory,
   } = useDeskContext();
   const { guide: guideText, book: planBook } = planParts(session.plan);
@@ -369,6 +370,17 @@ export function SessionDeskView() {
                     score: 0,
                   })
                 }
+                onEdit={(id) =>
+                  navigate('Rules library', {
+                    id,
+                    kind: 'Creature',
+                    title: '',
+                    body: '',
+                    status: 'Homebrew',
+                    date: '',
+                    score: 0,
+                  })
+                }
               />
             </Suspense>
           )}
@@ -381,7 +393,7 @@ export function SessionDeskView() {
                   {memory.pages.length > 0 && (
                     <p className="note-legend">
                       <span className="legend-page">Blue names</span> open a page.
-                      {(pb?.statblocks.length || 0) > 0 && (
+                      {(pb?.statblocks.length || 0) + (memory.homebrew?.length || 0) > 0 && (
                         <>
                           {' '}
                           <span className="legend-creature">Gold names</span> open a stat block.

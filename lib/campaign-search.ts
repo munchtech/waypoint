@@ -234,6 +234,14 @@ export function searchCampaign(c: Campaign, query: string, kind = 'All'): Search
       status: 'Campaign stat block · CR ' + block.cr,
       date: '',
     })),
+    ...(m.homebrew || []).map((block) => ({
+      id: block.id,
+      kind: 'Creature' as const,
+      title: block.name,
+      body: block.base + '\n' + block.body,
+      status: 'Homebrew · built on ' + block.base + ' · CR ' + block.cr,
+      date: block.updated,
+    })),
     ...(m.playbook?.encounters || []).map((encounter) => ({
       id: encounter.id,
       kind: 'Encounter' as const,

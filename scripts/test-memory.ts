@@ -565,6 +565,26 @@ recoveryStore.close();
   assert.equal(store.lastWrite, 1, 'Moving a pin rewrites its own map');
   assert.deepEqual(store.read(), edited);
   assert.deepEqual(store.search('harbour'), [], 'Maps are not in the search index');
+  // Homebrew creatures: a row each, so editing one stat block rewrites that creature alone.
+  const sneak = {
+    id: 'hb-sneak',
+    name: 'Reed Goblin Sneak',
+    base: 'Goblin Warrior',
+    cr: '1/4',
+    body: 'Armor class\n16',
+    from: 'xmm-goblin-warrior',
+    updated: '2026-11-26',
+  };
+  edited.campaigns[1].memory!.homebrew = [
+    sneak,
+    { ...sneak, id: 'hb-lurker', name: 'Reed Lurker' },
+  ];
+  store.save(edited);
+  assert.equal(store.lastWrite, 3, 'Two creature rows and the list that names them');
+  edited.campaigns[1].memory!.homebrew[1].cr = '1/2';
+  store.save(edited);
+  assert.equal(store.lastWrite, 1, 'Editing one homebrew creature rewrites its own row');
+  assert.deepEqual(store.read(), edited);
   // Full-text search: prefixes, every word, accents ignored, and other campaigns only when asked.
   const titles = (q: string, exclude?: string) =>
     store.search(q, { exclude }).map((h) => h.kind + ':' + h.id);

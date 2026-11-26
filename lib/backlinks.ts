@@ -1,5 +1,5 @@
 import type { SessionNote, WikiPage } from './memory';
-import type { Playbook } from './playbook';
+import type { Bestiary } from './homebrew';
 import { pageName } from './page-name';
 import { mentionIndex, splitMentions, titleNames } from './wiki-mentions';
 
@@ -97,7 +97,7 @@ export function backlinks(
 }
 
 // The prepared encounters a stat block fights in, by its block id or its plain name.
-export function creatureEncounters(name: string, pb?: Playbook) {
+export function creatureEncounters(name: string, pb?: Bestiary) {
   if (!pb) return [];
   const block = pb.statblocks.find((b) => b.name === name),
     key = name.toLocaleLowerCase();

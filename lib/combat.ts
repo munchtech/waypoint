@@ -1,5 +1,6 @@
 import type { Playbook, Encounter } from './playbook';
 import type { WikiPage } from './memory';
+import { isHomebrew, type Bestiary } from './homebrew';
 
 export type EncounterCreature = Encounter['creatures'][number];
 export function sessionEncounters(pb: Playbook | undefined, sessionId: string) {
@@ -22,14 +23,16 @@ const inOrder = (want: string[], words: string[]) => {
 };
 // The campaign's stat block a name points to: its exact name first, then (when only one block fits) the name without its
 // bracket or its epithet ("The Glass Sexton", "Keeper of the Seventh"), then a shortened name ("Captain Rook" for
-// Captain Dessa Rook). A one-word name only ever matches exactly, so "Mage" stays the library's Mage.
-function campaignBlock(clean: string, pb?: Playbook) {
+// Captain Dessa Rook). A one-word name only ever matches exactly, so "Mage" stays the library's Mage. A homebrew copy
+// matches only its exact name, so "Goblin (homebrew)" never takes the place of a plain Goblin.
+function campaignBlock(clean: string, pb?: Bestiary) {
   const want = normalized(clean),
-    blocks = pb?.statblocks || [],
+    all = pb?.statblocks || [],
+    blocks = all.filter((b) => !isHomebrew(b)),
     one = <T>(hits: T[]) => (hits.length === 1 ? hits[0] : undefined);
   if (!want) return undefined;
   return (
-    blocks.find((b) => normalized(b.name) === want) ||
+    all.find((b) => normalized(b.name) === want) ||
     one(
       blocks.filter((b) => {
         const bare = b.name.replace(/\s*\(.*$/, '');
@@ -43,7 +46,7 @@ function campaignBlock(clean: string, pb?: Playbook) {
 }
 // A creature named in text ("Druid", "Hushman Sergeant"): the campaign's own stat block when it has one, else the offline
 // library's creature of that name.
-export function creatureByName(name: string, pb?: Playbook, cr = ''): EncounterCreature {
+export function creatureByName(name: string, pb?: Bestiary, cr = ''): EncounterCreature {
   const clean = name.replace(/\s*\(.*$/, '').trim(),
     block = campaignBlock(clean, pb);
   return block
@@ -64,7 +67,7 @@ export function cellCreatures(text: string): { part: string; name?: string }[] {
 }
 // The book's NPC entries name their numbers in a line like "**2024 stat block:** Druid (CR 2), with reed-healing flavour"
 // or "**Stat-lite:** Use Scholar (CR 1) for talk". A flavoured name ("Commoner-clerk") falls back to its base creature.
-export function statLine(body: string, pb?: Playbook): EncounterCreature[] {
+export function statLine(body: string, pb?: Bestiary): EncounterCreature[] {
   const m = body.match(
     /(?:stat block|Stat-lite):?\*\*:?\s*(?:Use\s+)?([A-Z][\p{L}' -]*?)(?:\s+stats)?\s*(?:\(CR ([\d/]+)[^)]*\)|[.,;\n])/u,
   );
@@ -76,7 +79,7 @@ export function statLine(body: string, pb?: Playbook): EncounterCreature[] {
       : creatureByName(m[1].split('-')[0], pb, m[2] || ''),
   ];
 }
-export function pageCreatures(page: WikiPage, pb?: Playbook): EncounterCreature[] {
+export function pageCreatures(page: WikiPage, pb?: Bestiary): EncounterCreature[] {
   if (!pb) return statLine(page.body);
   const names = [page.title, ...page.aliases.split(/[,;\n]/)]
     .map(normalized)

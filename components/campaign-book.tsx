@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BookMarked, FileDown, FolderOpen } from 'lucide-react';
 import BookText from './book-text';
+import RuleBody from './rule-body';
+import { isHomebrew } from '../lib/homebrew';
 import InlineMarks from './inline-marks';
 import type { Campaign } from '../lib/campaign';
 import type { Encounter } from '../lib/playbook';
@@ -259,9 +261,9 @@ export function BookPages({ book }: { book: BookContents }) {
                   <h3>{s.name}</h3>
                   <p className="book-meta">
                     CR {s.cr}
-                    {s.base && ' · built on ' + s.base}
+                    {s.base && (isHomebrew(s) ? ' · homebrew built on ' : ' · built on ') + s.base}
                   </p>
-                  <BookText text={s.body} />
+                  {isHomebrew(s) ? <RuleBody body={s.body} /> : <BookText text={s.body} />}
                 </article>
               ))}
             </>

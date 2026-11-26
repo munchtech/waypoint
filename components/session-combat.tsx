@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { BookOpen, Swords } from 'lucide-react';
 import type { Campaign, Session } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
+import { bestiaryOf, isHomebrew } from '../lib/homebrew';
 import { partyLevels } from '../lib/playbook';
 import { sessionEncounters } from '../lib/combat';
 import { fightPlan } from '../lib/session-notes';
@@ -17,14 +18,18 @@ export default function SessionCombat({
   session,
   target,
   onBrowse,
+  onEdit,
 }: {
   campaign: Campaign;
   session: Session;
   target: SearchHit | null;
   onBrowse: (name?: string) => void;
+  // Opens a homebrew creature in the Rules library to edit.
+  onEdit?: (id: string) => void;
 }) {
   const memory = memoryOf(campaign),
     pb = memory.playbook,
+    bestiary = bestiaryOf(memory),
     encounters = sessionEncounters(pb, session.id);
   const [selected, setSelected] = useState(
     target?.kind === 'Encounter' ? target.id : encounters[0]?.id || '',
@@ -32,7 +37,7 @@ export default function SessionCombat({
   const encounter = encounters.find((encounter) => encounter.id === selected) || encounters[0];
   const block =
     target?.kind === 'Creature'
-      ? pb?.statblocks.find((block) => block.id === target.id)
+      ? bestiary?.statblocks.find((block) => block.id === target.id)
       : undefined;
   const brief = pb?.briefs.find((brief) => brief.sessionId === session.id),
     levels = partyLevels(memory.roster, brief);
@@ -79,9 +84,14 @@ export default function SessionCombat({
                   cr: block.cr,
                   count: 1,
                 }}
-                pb={pb}
+                pb={bestiary}
                 onBrowse={onBrowse}
               />
+              {isHomebrew(block) && onEdit && (
+                <button className="text-button" onClick={() => onEdit(block.id)}>
+                  Edit in the Rules library
+                </button>
+              )}
             </section>
           )}
           {encounters.length > 0 && (
@@ -123,9 +133,17 @@ export default function SessionCombat({
                     {reference.name} · {reference.edition}
                   </summary>
                   <RuleBody body={reference.body} />
-                  <button className="text-button" onClick={() => onBrowse(reference.name)}>
-                    Open full library entry
-                  </button>
+                  {reference.source === 'Homebrew' &&
+                  onEdit &&
+                  memory.homebrew?.some((b) => b.id === reference.id) ? (
+                    <button className="text-button" onClick={() => onEdit(reference.id)}>
+                      Edit in the Rules library
+                    </button>
+                  ) : (
+                    <button className="text-button" onClick={() => onBrowse(reference.name)}>
+                      Open full library entry
+                    </button>
+                  )}
                 </details>
               ))}
             </section>

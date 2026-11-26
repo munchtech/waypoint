@@ -111,8 +111,16 @@ function HomeScreen() {
     memory,
     reviewCount,
   } = desk;
-  const statblocks = memory.playbook?.statblocks;
-  const creatureNames = useMemo(() => statblocks?.map((b) => b.name), [statblocks]);
+  // Names that open a stat block: the playbook's and the homebrew copies'.
+  const statblocks = memory.playbook?.statblocks,
+    homebrew = memory.homebrew;
+  const creatureNames = useMemo(
+    () =>
+      statblocks || homebrew
+        ? [...(statblocks || []), ...(homebrew || [])].map((b) => b.name)
+        : undefined,
+    [statblocks, homebrew],
+  );
   const openAsk = () => {
     setError('');
     setModal('ask');

@@ -78,6 +78,7 @@ const steps = [
   ui('announce', 'ui-announce.cjs'),
   ui('player', 'ui-player.cjs'),
   ui('maps', 'ui-maps.cjs', ['--out', path.join(logs, 'maps')]),
+  ui('homebrew', 'ui-homebrew.cjs', ['--out', path.join(logs, 'homebrew')]),
   ui('restore points', 'ui-restore.cjs'),
   ui('foresight', 'ui-foresight.cjs', [
     '--fixture',

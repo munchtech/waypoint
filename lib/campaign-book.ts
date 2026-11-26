@@ -91,7 +91,7 @@ export function bookContents(c: Campaign, copy: BookCopy, parts: BookPart[]): Bo
         )
       : [],
     statblocks = want('appendix')
-      ? [...(pb?.statblocks || [])].sort((a, b) => byName(a.name, b.name))
+      ? [...(pb?.statblocks || []), ...(m.homebrew || [])].sort((a, b) => byName(a.name, b.name))
       : [];
   const cards = want('cards') ? c.cards : [],
     handouts = want('handouts') ? m.handouts || [] : [];
