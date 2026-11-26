@@ -1,4 +1,5 @@
 import BookText from '../../components/book-text';
+import MentionTextarea from '../../components/mention-textarea';
 import SessionRules from '../../components/session-rules';
 import MaterialBody from '../../components/material-body';
 import InlineMarks from '../../components/inline-marks';
@@ -574,7 +575,7 @@ export function SessionDeskView() {
               <label className="sr-only" htmlFor="quick-prompt">
                 What do you need right now?
               </label>
-              <textarea
+              <MentionTextarea
                 id="quick-prompt"
                 value={quick}
                 onChange={(e) => setQuick(e.target.value)}

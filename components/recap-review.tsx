@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { Sparkles, Check, ScrollText } from 'lucide-react';
 import { Session, Style, Event, styles } from '../lib/campaign';
 type DraftEvent = { text: string; style: Style; enjoyment: Event['enjoyment'] };
@@ -57,7 +58,7 @@ export default function RecapReview({
         <>
           <label>
             Your session recap
-            <textarea
+            <MentionTextarea
               rows={8}
               maxLength={30000}
               value={text}
@@ -94,7 +95,7 @@ export default function RecapReview({
                   />{' '}
                   Include this event
                 </label>
-                <textarea
+                <MentionTextarea
                   aria-label={'Event ' + (i + 1)}
                   value={e.text}
                   rows={3}

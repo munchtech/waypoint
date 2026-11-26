@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { asDraft, sendManyToWiki } from './player-site';
 import { dueAfter } from '../lib/player-site';
 import { count } from '../lib/plural';
@@ -156,7 +157,7 @@ export default function SessionWrapUp({
       </p>
       <label>
         DM reflections · what worked?
-        <textarea
+        <MentionTextarea
           maxLength={3000}
           rows={3}
           value={debrief.remember}
@@ -166,7 +167,7 @@ export default function SessionWrapUp({
       </label>
       <label>
         Open questions & unfinished business
-        <textarea
+        <MentionTextarea
           maxLength={3000}
           rows={3}
           value={debrief.openQuestions}
@@ -176,7 +177,7 @@ export default function SessionWrapUp({
       </label>
       <label>
         What would make the next session great?
-        <textarea
+        <MentionTextarea
           maxLength={3000}
           rows={3}
           value={debrief.nextFocus}

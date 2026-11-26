@@ -1,4 +1,5 @@
 import { ChevronRight, Plus } from 'lucide-react';
+import MentionTextarea from '../../components/mention-textarea';
 import { Session, uid } from '../../lib/campaign';
 import { useDeskContext } from '../use-desk';
 
@@ -21,7 +22,7 @@ export function CampaignOutlineView() {
         </label>
         <label>
           Premise
-          <textarea
+          <MentionTextarea
             value={campaign.premise}
             rows={4}
             onChange={(e) => update((c) => ({ ...c, premise: e.target.value }))}
@@ -29,7 +30,7 @@ export function CampaignOutlineView() {
         </label>
         <label>
           Campaign outline · editable draft
-          <textarea
+          <MentionTextarea
             className="outline-editor"
             value={campaign.arc}
             onChange={(e) => update((c) => ({ ...c, arc: e.target.value }))}

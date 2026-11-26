@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { styles, type Session, type Style, type Event } from '../lib/campaign';
 import BookText from './book-text';
 
@@ -194,7 +195,7 @@ export default function SessionEditor({
           ) : (
             <label>
               Planned session
-              <textarea
+              <MentionTextarea
                 rows={12}
                 maxLength={30000}
                 value={(value as SessionEdit).plan}
@@ -243,7 +244,7 @@ export default function SessionEditor({
           </label>
           <label>
             Confirmed event
-            <textarea
+            <MentionTextarea
               rows={6}
               maxLength={10000}
               value={(value as OutcomeEdit).text}

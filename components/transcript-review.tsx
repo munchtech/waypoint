@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { timestamp, transcriptText } from '../lib/transcript-import';
 import { transcriptSchema, type Transcript } from '../lib/transcript';
 const stamp = timestamp;
@@ -191,7 +192,7 @@ export default function TranscriptReview({
                   disabled={busy}
                   onChange={(e) => edit(s.index, 'speaker', e.target.value)}
                 />
-                <textarea
+                <MentionTextarea
                   aria-label={'Transcript at ' + stamp(s.start)}
                   rows={2}
                   maxLength={10000}

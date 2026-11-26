@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { Monitor, FileText, Plus, Check, Download } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf, handoutSchema, type Handout } from '../lib/memory';
@@ -183,7 +184,7 @@ export default function PlayerHandouts({
             </label>
             <label>
               Exact text to share
-              <textarea
+              <MentionTextarea
                 rows={16}
                 maxLength={30000}
                 value={draft.body}

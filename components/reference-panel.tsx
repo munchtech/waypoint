@@ -9,6 +9,8 @@ import BookText from './book-text';
 import CreatureStats from './creature-stats';
 import { creatureByName, pageCreatures } from '../lib/combat';
 import { CampaignLinks } from './campaign-links';
+import MentionedIn from './mentioned-in';
+import { creatureEncounters } from '../lib/backlinks';
 
 type Props = {
   campaign: Campaign;
@@ -38,7 +40,18 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
       opener?.focus?.();
     };
   }, []);
-  const creatures = page ? pageCreatures(page, memory.playbook) : [];
+  const creatures = page ? pageCreatures(page, memory.playbook) : [],
+    fights = creatureName ? creatureEncounters(creatureName, memory.playbook) : [];
+  const mentions = (
+    <MentionedIn
+      key={current}
+      target={current}
+      pages={memory.pages}
+      notes={memory.notes}
+      onOpenPage={(id) => setTrail((ids) => [...ids, id])}
+      onOpenNote={(id) => open('Journal', id)}
+    />
+  );
   const related = page
     ? memory.pages.filter((p) => page.related?.includes(p.id) || p.related?.includes(page.id))
     : [];
@@ -105,6 +118,22 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                   onBrowse={browse}
                 />
               </section>
+              {fights.length > 0 && (
+                <section className="reference-related">
+                  <h3>Fights in</h3>
+                  {fights.map((e) => (
+                    <button
+                      key={e.id}
+                      className="text-button"
+                      onClick={() => open('Encounter', e.id)}
+                    >
+                      {e.title}
+                      <ArrowUpRight size={13} />
+                    </button>
+                  ))}
+                </section>
+              )}
+              {mentions}
             </>
           ) : page ? (
             <>
@@ -159,6 +188,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                   ))}
                 </section>
               )}
+              {mentions}
               {page.sourceId && memory.notes.some((n) => n.id === page.sourceId) && (
                 <footer>
                   <button className="text-button" onClick={() => open('Journal', page.sourceId)}>

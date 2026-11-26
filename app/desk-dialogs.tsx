@@ -1,4 +1,5 @@
 import SessionEditor, { type SessionEdit, type OutcomeEdit } from '../components/session-editor';
+import MentionTextarea from '../components/mention-textarea';
 import SessionWrapUp from '../components/session-wrap-up';
 import MaterialBody from '../components/material-body';
 import InlineMarks from '../components/inline-marks';
@@ -106,7 +107,7 @@ export function DialogBody() {
           <h2 id="modal-title">Ask the campaign</h2>
           <label>
             Your question
-            <textarea
+            <MentionTextarea
               rows={3}
               maxLength={2000}
               value={askQuestion}

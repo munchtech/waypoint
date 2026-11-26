@@ -59,6 +59,8 @@ import {
 import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import { influenceDc, intelligenceOf } from '../lib/influence';
 import { trackerStatus } from '../lib/trackers';
+import { atQuery, backlinks, creatureEncounters, linkOptions, sharedIndex } from '../lib/backlinks';
+import { splitMentions } from '../lib/wiki-mentions';
 
 const pack = updatePackSchema.parse(packJson);
 let failures = 0;
@@ -319,7 +321,12 @@ if (backup) {
     const roads = ['16A', '16B', '17A', '17B', '18A', '18B', '19A', '19B'];
     for (const [i, s] of guided.entries()) {
       assert.equal(s.plan.split(guideHead).length, 2, s.title);
-      assert.match(s.plan, new RegExp('### Opening recap \\(Session ' + (roads[i - 12] ?? (i < 12 ? i + 4 : i)) + '\\)'));
+      assert.match(
+        s.plan,
+        new RegExp(
+          '### Opening recap \\(Session ' + (roads[i - 12] ?? (i < 12 ? i + 4 : i)) + '\\)',
+        ),
+      );
       assert.ok(bringBacks(s.plan).length >= 3, s.title);
       assert.ok(breakNote(s.plan).length > 20, s.title);
       assert.ok(timeline(s.plan).length >= 5, s.title);
@@ -1001,7 +1008,10 @@ test('a pack gives a page other names, and leaves names the DM changed alone', (
     }),
     named = (c: Campaign) => memoryOf(c).pages.find((p) => p.id === page.id)!.aliases,
     ids = (c: Campaign) => new Set(planUpdate(c, p2).map((p) => p.id));
-  assert.equal(planUpdate(installed, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'ready');
+  assert.equal(
+    planUpdate(installed, p2).find((p) => p.id === 'paliases:' + page.id)?.status,
+    'ready',
+  );
   const done = applyUpdate(installed, p2, ids(installed));
   assert.equal(named(done), 'Another Name');
   assert.equal(planUpdate(done, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'applied');
@@ -1009,10 +1019,15 @@ test('a pack gives a page other names, and leaves names the DM changed alone', (
     ...installed,
     memory: {
       ...memoryOf(installed),
-      pages: memoryOf(installed).pages.map((p) => (p.id === page.id ? { ...p, aliases: 'Mine' } : p)),
+      pages: memoryOf(installed).pages.map((p) =>
+        p.id === page.id ? { ...p, aliases: 'Mine' } : p,
+      ),
     },
   } as Campaign;
-  assert.equal(planUpdate(mine, p2).find((p) => p.id === 'paliases:' + page.id)?.status, 'conflict');
+  assert.equal(
+    planUpdate(mine, p2).find((p) => p.id === 'paliases:' + page.id)?.status,
+    'conflict',
+  );
   assert.equal(named(applyUpdate(mine, p2, ids(mine))), 'Mine');
 });
 test('a pack edit can build on its own earlier edit, and reinstalling changes nothing', () => {
@@ -1230,9 +1245,17 @@ test('a stat block cell opens the campaign block it means, by a short name or an
 if (backup)
   test('every stat block cell in the session plans opens a stat block', () => {
     const srd = JSON.parse(fs.readFileSync(path.resolve('desktop/data/srd-5etools.json'), 'utf8')),
-      plain = (t: string) => t.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim(),
+      plain = (t: string) =>
+        t
+          .toLowerCase()
+          .replace(/[^\p{L}\p{N}]+/gu, ' ')
+          .trim(),
       library = new Set((srd.monster as { name: string }[]).map((m) => plain(m.name))),
-      cells = (row: string) => row.replace(/^\s*\||\|\s*$/g, '').split('|').map((c) => c.trim()),
+      cells = (row: string) =>
+        row
+          .replace(/^\s*\||\|\s*$/g, '')
+          .split('|')
+          .map((c) => c.trim()),
       missing: string[] = [];
     for (const s of installed.sessions) {
       const lines = s.plan.split('\n');
@@ -1241,7 +1264,9 @@ if (backup)
         const at = cells(line).findIndex((h) => /^stat block/i.test(h.replace(/\*/g, '')));
         if (at < 0) return;
         for (let j = i + 2; /^\|/.test(lines[j] || ''); j++) {
-          const cell = (cells(lines[j])[at] || '').replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_]/g, '');
+          const cell = (cells(lines[j])[at] || '')
+            .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+            .replace(/[*_]/g, '');
           for (const { name } of cellCreatures(cell))
             if (name && !creatureByName(name, pb).statblock && !library.has(plain(name)))
               missing.push(s.title.slice(0, 12) + ': ' + name);
@@ -1277,6 +1302,64 @@ test('every numbered NPC has a look to read out and lines to say', () => {
     assert.match(x.body, /First look \(read aloud\)/, x.title);
     assert.match(x.body, /Things to say/, x.title);
   }
+});
+test('a page lists every other page that names it, with the words around the mention', () => {
+  const mem = memoryOf(installed),
+    index = sharedIndex(
+      mem.pages,
+      pb.statblocks.map((b) => b.name),
+    );
+  const sallow = mem.pages.find((x) => /^\d+\. MOTHER SALLOW/.test(x.title))!;
+  assert.ok(sallow, 'no Mother Sallow page');
+  const links = backlinks(sallow.id, mem.pages, mem.notes, index);
+  assert(links.length >= 3, 'found ' + links.length);
+  assert(!links.some((l) => l.id === sallow.id), 'a page lists itself');
+  for (const l of links) {
+    assert.ok(l.match && l.count >= 1, l.title);
+    const text =
+      l.kind === 'Wiki'
+        ? mem.pages.find((x) => x.id === l.id)?.body
+        : mem.notes.find((x) => x.id === l.id)?.text;
+    assert.ok(text?.includes(l.match), l.title + ' does not contain ' + l.match);
+  }
+  const note = {
+    id: 'n1',
+    title: 'Night four',
+    text: 'Ila argued with Mother Sallow.',
+    date: '2026-01-01',
+  };
+  const fromNote = backlinks(sallow.id, mem.pages, [note], index).find((l) => l.kind === 'Journal');
+  assert.equal(fromNote?.match, 'Mother Sallow');
+  assert.equal(fromNote?.before, 'Ila argued with ');
+  assert.equal(fromNote?.after, '.');
+  assert.deepEqual(sharedIndex(mem.pages, undefined), sharedIndex(mem.pages, undefined));
+});
+test('the @ picker offers names that link back to the page picked', () => {
+  const mem = memoryOf(installed),
+    creatures = pb.statblocks.map((b) => b.name),
+    index = sharedIndex(mem.pages, creatures);
+  const options = linkOptions('sall', mem.pages, index, creatures);
+  assert.ok(options.length, 'nothing offered');
+  for (const o of linkOptions('', mem.pages, index, creatures, 40).concat(options)) {
+    const parts = splitMentions('We met ' + o.name + ' at dawn.', index, new Set());
+    assert.equal(parts.find((p) => p.pageId)?.pageId, o.id, o.name + ' does not link back');
+  }
+  const block = creatures.find((name) =>
+    linkOptions(name, mem.pages, index, creatures).some((o) => o.id === 'creature:' + name),
+  );
+  assert.ok(block, 'no stat block offered');
+  assert.deepEqual(atQuery('Ask @Mot', 8), { start: 4, query: 'Mot' });
+  assert.deepEqual(atQuery('@', 1), { start: 0, query: '' });
+  assert.deepEqual(atQuery('(@Ila', 5), { start: 1, query: 'Ila' });
+  assert.equal(atQuery('mail a@b', 8), null);
+  assert.equal(atQuery('a @ b', 4), null);
+  assert.equal(atQuery('@one\ntwo', 8), null);
+});
+test('a stat block lists the prepared fights it is in', () => {
+  const fight = pb.encounters.find((e) => e.creatures.some((c) => c.statblock))!;
+  const block = pb.statblocks.find((b) => fight.creatures.some((c) => c.statblock === b.id))!;
+  assert.ok(creatureEncounters(block.name, pb).some((e) => e.id === fight.id));
+  assert.equal(creatureEncounters('No Such Creature', pb).length, 0);
 });
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

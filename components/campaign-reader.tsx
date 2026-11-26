@@ -1,10 +1,13 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import MentionTextarea from './mention-textarea';
 import { BookOpen, Search, ChevronLeft, ChevronRight, Pin } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf, pageKinds, type WikiPage } from '../lib/memory';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import { pageName } from '../lib/page-name';
 import BookText from './book-text';
+import MentionedIn from './mentioned-in';
+import { creatureEncounters } from '../lib/backlinks';
 // What the reader can show, as [value, label]. A wiki kind is added for each kind the campaign uses ("Wiki:NPC").
 const categories: [string, string][] = [
   ['All', 'Everything'],
@@ -151,7 +154,8 @@ export default function CampaignReader({
       0,
       hits.findIndex((h) => h.kind + ':' + h.id === selected),
     ),
-    opened = hits[index];
+    opened = hits[index],
+    fights = opened?.kind === 'Creature' ? creatureEncounters(opened.title, m.playbook) : [];
   function remember() {
     if (opened)
       setTrail((t) =>
@@ -167,6 +171,18 @@ export default function CampaignReader({
     setMessage('');
     requestAnimationFrame(() => {
       article.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
+      article.current?.focus({ preventScroll: true });
+    });
+  }
+  // Open another entry from a link on this one, clearing the search so it is in the list.
+  function jump(to: string, id: string) {
+    remember();
+    setQuery('');
+    setKind(to);
+    setSelected(to + ':' + id);
+    setMessage('');
+    requestAnimationFrame(() => {
+      article.current?.scrollIntoView({ block: 'start' });
       article.current?.focus({ preventScroll: true });
     });
   }
@@ -373,21 +389,32 @@ export default function CampaignReader({
                 <div className="reader-related">
                   <h3>Related pages</h3>
                   {related.map((p) => (
+                    <button className="text-button" key={p.id} onClick={() => jump('Wiki', p.id)}>
+                      {pageName(p)}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {(opened.kind === 'Wiki' || opened.kind === 'Creature') && (
+                <MentionedIn
+                  key={opened.kind + opened.id}
+                  target={opened.kind === 'Wiki' ? opened.id : 'creature:' + opened.title}
+                  pages={m.pages}
+                  notes={m.notes}
+                  onOpenPage={(id) => jump('Wiki', id)}
+                  onOpenNote={(id) => jump('Journal', id)}
+                />
+              )}
+              {fights.length > 0 && (
+                <div className="reader-related">
+                  <h3>Fights in</h3>
+                  {fights.map((e) => (
                     <button
                       className="text-button"
-                      key={p.id}
-                      onClick={() => {
-                        remember();
-                        setQuery('');
-                        setKind('Wiki');
-                        setSelected('Wiki:' + p.id);
-                        requestAnimationFrame(() => {
-                          article.current?.scrollIntoView({ block: 'start' });
-                          article.current?.focus({ preventScroll: true });
-                        });
-                      }}
+                      key={e.id}
+                      onClick={() => jump('Encounter', e.id)}
                     >
-                      {pageName(p)}
+                      {e.title}
                     </button>
                   ))}
                 </div>
@@ -480,7 +507,7 @@ export default function CampaignReader({
             </p>
             <label>
               Page text
-              <textarea
+              <MentionTextarea
                 autoFocus
                 rows={14}
                 value={draft.body}

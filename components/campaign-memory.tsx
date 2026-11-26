@@ -1,5 +1,7 @@
 'use client';
 import { searchCampaign, type SearchHit, playerFacts } from '../lib/campaign-search';
+import MentionTextarea from './mention-textarea';
+import MentionedIn from './mentioned-in';
 import BookText from './book-text';
 import { useWikiDraft } from './use-wiki-draft';
 import { isDesktop } from '../lib/transport';
@@ -270,7 +272,7 @@ export default function CampaignMemory({
                     locked: 'Facts or scenes to preserve',
                   }[key]
                 }
-                <textarea
+                <MentionTextarea
                   rows={key === 'locked' ? 4 : 2}
                   value={m.planner[key]}
                   maxLength={3000}
@@ -561,7 +563,7 @@ export default function CampaignMemory({
                 </label>
                 <label>
                   What is known?
-                  <textarea
+                  <MentionTextarea
                     rows={9}
                     maxLength={12000}
                     value={draft.body}
@@ -572,6 +574,18 @@ export default function CampaignMemory({
                   <summary>Preview formatting</summary>
                   <BookText text={draft.body} />
                 </details>
+                {m.pages.some((p) => p.id === draft.id) && (
+                  <MentionedIn
+                    key={draft.id}
+                    target={draft.id}
+                    pages={m.pages}
+                    notes={m.notes}
+                    onOpenPage={(id) => {
+                      const page = m.pages.find((p) => p.id === id);
+                      if (page) setDraft(structuredClone(page));
+                    }}
+                  />
+                )}
                 {draft.sourceId && (
                   <details>
                     <summary>
@@ -743,7 +757,7 @@ export default function CampaignMemory({
             </label>
             <label>
               Notes or transcript
-              <textarea
+              <MentionTextarea
                 rows={12}
                 value={text}
                 maxLength={30000}
