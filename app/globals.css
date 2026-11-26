@@ -1049,15 +1049,6 @@ small,
   display: block;
   margin-top: 10px;
 }
-.rail-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 11px;
-  padding: 3px;
-  color: light-dark(#646f56, #bcc1b6);
-}
 .content-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -1503,9 +1494,6 @@ main:focus {
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
-  .rail-footer {
-    display: none;
-  }
   .twist-panel {
     grid-column: 2;
     grid-row: 2;
@@ -1794,6 +1782,38 @@ main:focus {
   height: 15px;
   margin: 0;
   accent-color: light-dark(#507546, #a2cd97);
+}
+/* Plan next session: a tick beside each thread's title, and two lines of the thread. */
+.thread-pick .check-label {
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+.thread-pick .check-label input[type='checkbox'] {
+  flex: none;
+  margin-top: 3px;
+}
+.thread-pick small {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.thread-pick strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.thread-pick p {
+  margin: 6px 0 0 27px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .recap-event .two-cols {
   margin-top: 12px;
@@ -2910,9 +2930,6 @@ select:focus-visible {
   .improv-panel {
     grid-row: span 2;
   }
-  .rail-footer {
-    grid-column: 1/-1;
-  }
   .content-grid,
   .memory-columns {
     grid-template-columns: 1fr;
@@ -3495,6 +3512,9 @@ select:focus-visible {
     serif;
   margin-top: 4px;
   overflow-wrap: anywhere;
+}
+.recent-material-item svg {
+  flex: none;
 }
 .recent-material-item:hover {
   color: light-dark(#786041, #d9bd99);
@@ -7886,12 +7906,22 @@ fieldset.relation-labels input {
 .standing-log small {
   color: light-dark(#6b7a62, #9fb092);
 }
-/* The campaign book: options in the hub, and the printed book itself, which only exists while it prints. */
-.campaign-book-panel h3 {
+/* Share & export: the campaign book, Foundry VTT and the players' wiki, one at a time. */
+.share-export h3 {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+.share-export .tabs {
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  margin: 12px 0 16px;
+}
+.share-export .tabs button {
+  flex: none;
+}
+/* The campaign book: options in the hub, and the printed book itself, which only exists while it prints. */
 .book-options {
   display: flex;
   flex-wrap: wrap;
@@ -7953,9 +7983,6 @@ fieldset.relation-labels input {
   display: grid;
   gap: 6px;
   font-size: 13px;
-}
-.foundry-panel > .tiny {
-  margin: 12px 0 0;
 }
 .foundry-macro {
   margin-top: 10px;
@@ -9018,7 +9045,8 @@ fieldset.relation-labels input {
 .flow-actions {
   align-items: center;
 }
-.flow-actions > label.button {
+.flow-actions > label.button,
+.book-actions > label.button {
   margin: 0;
 }
 .history-results {

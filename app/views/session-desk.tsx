@@ -18,7 +18,6 @@ import { planParts, ruleUses, withFightRoster } from '../../lib/session-notes';
 import { jumpToHeading } from '../../lib/plan-jump';
 import { sessionEncounters } from '../../lib/combat';
 import {
-  BookOpen,
   Sparkles,
   ScrollText,
   ChevronRight,
@@ -28,7 +27,6 @@ import {
   Feather,
   X,
   RefreshCw,
-  Shield,
   Dices,
   CheckCircle2,
   Undo2,
@@ -93,6 +91,7 @@ export function SessionDeskView() {
   } = useDeskContext();
   const { guide: guideText, book: planBook } = planParts(session.plan);
   const pb = memory.playbook;
+  const pinnedPages = memory.pages.filter((page) => memory.pins?.includes(page.id)).slice(0, 8);
   const tabs = useRef<HTMLDivElement>(null);
   useDeskPlace(campaign.id, session.id, deskTab, targetHit, tabs);
   // The scene last jumped to, from the notes bar or the outline beside the notes.
@@ -639,13 +638,15 @@ export function SessionDeskView() {
               </div>
             </section>
           ) : null}
-          {campaign.cards.length > 0 && (
+          {(campaign.cards.length > 0 || pinnedPages.length > 0) && (
             <section className="recent-material">
               <div className="section-title">
                 <h3>Within reach</h3>
-                <button className="text-button" onClick={() => setView('Saved material')}>
-                  View all <ArrowUpRight size={13} />
-                </button>
+                {campaign.cards.length > 0 && (
+                  <button className="text-button" onClick={() => setView('Saved material')}>
+                    View all <ArrowUpRight size={13} />
+                  </button>
+                )}
               </div>
               {campaign.cards.slice(0, 3).map((card) => {
                 const live = trackerStatus(campaign, card);
@@ -669,32 +670,23 @@ export function SessionDeskView() {
                   </button>
                 );
               })}
-            </section>
-          )}
-          {(memory.pins || []).some((id) => memory.pages.some((page) => page.id === id)) && (
-            <section className="paper handy-references">
-              <h3>
-                <BookOpen size={16} />
-                Kept handy
-              </h3>
-              {memory.pages
-                .filter((page) => memory.pins?.includes(page.id))
-                .slice(0, 8)
-                .map((page) => (
-                  <button
-                    className="session-list-item"
-                    key={page.id}
-                    onClick={() => showReference(page.id)}
-                  >
-                    <span>
-                      <small>
-                        {page.kind} · {page.status}
-                      </small>
-                      <strong>{pageName(page)}</strong>
-                    </span>
-                    <ArrowUpRight size={14} />
-                  </button>
-                ))}
+              {pinnedPages.length > 0 && (
+                <div className="handy-references">
+                  {pinnedPages.map((page) => (
+                    <button
+                      className="recent-material-item"
+                      key={page.id}
+                      onClick={() => showReference(page.id)}
+                    >
+                      <span>
+                        <small>Kept handy · {page.kind}</small>
+                        <strong>{pageName(page)}</strong>
+                      </span>
+                      <ArrowUpRight size={14} />
+                    </button>
+                  ))}
+                </div>
+              )}
             </section>
           )}
           <SessionRules
@@ -707,9 +699,6 @@ export function SessionDeskView() {
             }
             onBrowse={() => setView('Rules library')}
           />
-          <div className="rail-footer">
-            <Shield size={13} /> Your world. Your final say.
-          </div>
         </aside>
       </div>
     </>

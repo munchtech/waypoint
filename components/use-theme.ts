@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { appFetch, isDesktop } from '../lib/transport';
 
-// The light or dark theme. Waypoint starts light and the sidebar button switches to dark and back. On the desktop the
+// The light or dark theme. Waypoint starts dark and the sidebar button switches to light and back. On the desktop the
 // main process saves the choice and drives prefers-color-scheme (and the window frame); data-theme pins the
 // stylesheet's color-scheme as well, so the choice also applies where nothing drives prefers-color-scheme.
 export type Theme = 'light' | 'dark';
@@ -16,9 +16,9 @@ function apply(theme: Theme) {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   useEffect(() => {
-    apply('light');
+    apply('dark');
     if (!isDesktop()) return;
     let live = true;
     appFetch('/api/appearance')

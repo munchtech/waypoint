@@ -16,6 +16,8 @@ let snapshot = JSON.parse(
 const fixturePages = snapshot.campaigns[0].memory.pages;
 fixturePages.find((p) => p.title.includes('1.4 Session Zero')).related = [fixturePages[0].id];
 ipcMain.handle('waypoint:request', (_e, r) => {
+  // The colour checks below are for the light theme.
+  if (r.path === '/api/appearance') return { status: 200, body: { theme: 'light' } };
   if (r.path === '/api/campaigns') {
     if (r.method === 'POST') snapshot = JSON.parse(r.body);
     return { status: 200, body: snapshot };

@@ -6,6 +6,13 @@ run(async () => {
   const s = await openSession({ fixture: 'seventh-bell' });
   for (let i = 0; i < 50 && !s.state.snapshot?.campaigns?.length; i++) await sleep(100);
   assert.equal(await doStep(s, ['nav', 'Campaign hub']), 'ok');
+  // Share & export shows one thing at a time; the Foundry export is its second tab.
+  for (
+    let i = 0;
+    i < 50 && (await s.clickText('Foundry VTT', { within: '.share-export' })) !== 'ok';
+    i++
+  )
+    await sleep(100);
   for (let i = 0; i < 50 && !(await s.run("!!document.querySelector('.foundry-panel')")); i++)
     await sleep(100);
   const panel = (js) => s.run(`(()=>{const p=document.querySelector('.foundry-panel');${js}})()`);
@@ -18,10 +25,7 @@ run(async () => {
       );
     await sleep(100);
   };
-  assert.equal(
-    await panel("return p.querySelector('h3').textContent.trim()"),
-    'Foundry VTT export',
-  );
+  assert.equal(await panel("return p.getAttribute('aria-label')"), 'Foundry VTT export');
   const all = await summary();
   assert(count(all) > 100, 'The whole campaign is counted: ' + all);
   await toggle(['Wiki pages']);

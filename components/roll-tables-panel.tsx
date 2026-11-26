@@ -31,9 +31,8 @@ export default function RollTablesPanel({ campaign }: { campaign: Campaign }) {
         <Dices size={18} /> Random tables
       </h3>
       <p className="muted">
-        Any table whose first column is a die (d6, d20, d100), and any numbered list after a line
-        like “Rumours (d6):”, can be rolled where it appears. They are all here too. Dice in a row,
-        like “3d6 × 10 gp”, roll with it. Make a loot table with New loot table in the World wiki.
+        Tables whose first column is a die, and numbered lists after a line like “Rumours (d6):”,
+        roll here and wherever they appear. Add one with New loot table in the World wiki.
       </p>
       {tables.length > 6 && (
         <input

@@ -25,6 +25,16 @@ import {
 import { appFetch, isDesktop } from '../lib/transport';
 import { count } from '../lib/plural';
 import { referenceOf, type RuleEntry, type RuleReference } from '../lib/rules';
+
+// The edition chosen last, so a table that plays 2024 rules does not see every 2014 entry beside it each visit.
+const editionKey = 'waypoint:rules-edition';
+function savedEdition() {
+  try {
+    return localStorage.getItem(editionKey) || 'All';
+  } catch {
+    return 'All';
+  }
+}
 type Results = {
   entries: RuleEntry[];
   total: number;
@@ -83,7 +93,7 @@ export default function RulesLibrary({
   const [query, setQuery] = useState(initialQuery || ''),
     [kind, setKind] = useState(initialKind || 'All'),
     [source, setSource] = useState('All'),
-    [edition, setEdition] = useState('All'),
+    [edition, setEdition] = useState(savedEdition),
     [offset, setOffset] = useState(0),
     [revision, setRevision] = useState(0);
   const [results, setResults] = useState<Results>(empty),
@@ -125,6 +135,13 @@ export default function RulesLibrary({
     setEdition('All');
     setOffset(0);
   };
+  useEffect(() => {
+    try {
+      localStorage.setItem(editionKey, edition);
+    } catch {
+      // Without storage the edition simply starts at All next time.
+    }
+  }, [edition]);
   useEffect(() => {
     if (resultsList.current) resultsList.current.scrollTop = 0;
   }, [results]);

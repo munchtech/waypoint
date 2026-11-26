@@ -1,5 +1,5 @@
 'use client';
-import { searchCampaign, type SearchHit, playerFacts } from '../lib/campaign-search';
+import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import MentionTextarea from './mention-textarea';
 import MentionedIn from './mentioned-in';
 import BookText from './book-text';
@@ -221,19 +221,6 @@ export default function CampaignMemory({
         : 'No proposals had a verifiable source quote. Your notes are saved; you can add wiki pages manually.',
     );
   }
-  function exportWiki() {
-    const pages = playerFacts(
-      campaign,
-      m.pages.map((p) => p.id),
-    );
-    const content = pages.map((p) => `# ${p.title}\n${p.status}\n\n${p.body}`).join('\n\n---\n\n');
-    const url = URL.createObjectURL(new Blob([content], { type: 'text/markdown' }));
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'waypoint-player-wiki.md';
-    a.click();
-    URL.revokeObjectURL(url);
-  }
   return (
     <div className="memory-workspace">
       {message && (
@@ -363,14 +350,13 @@ export default function CampaignMemory({
               </>
             )}
             <h3>Threads worth picking up</h3>
+            <p className="muted tiny">Tick the ones to prioritize in the next session.</p>
             {m.pages
               .filter(
                 (p) => p.status === 'Unresolved' || p.status === 'Planned' || p.kind === 'Quest',
               )
               .map((p) => (
-                <article className="memory-thread" key={p.id}>
-                  <span className="pill neutral">{p.status}</span>
-                  <h3>{p.title}</h3>
+                <article className="memory-thread thread-pick" key={p.id}>
                   <label className="check-label">
                     <input
                       type="checkbox"
@@ -386,10 +372,13 @@ export default function CampaignMemory({
                           },
                         }))
                       }
-                    />{' '}
-                    Prioritize in next session
+                    />
+                    <span>
+                      <small>{p.status}</small>
+                      <strong>{p.title}</strong>
+                    </span>
                   </label>
-                  <p>{plainPreview(p.body, 320)}</p>
+                  <p>{plainPreview(p.body, 240)}</p>
                   {p.clock && (
                     <div className="info-box">
                       Clock {p.clock.progress}/6 · {p.clock.stakes}
@@ -440,9 +429,6 @@ export default function CampaignMemory({
               <option value="campaign">Campaign order</option>
               <option value="title">Title order</option>
             </select>
-            <button className="button" onClick={exportWiki}>
-              Export party-known pages
-            </button>
             <button className="button" onClick={newLootTable}>
               <Dices size={16} /> New loot table
             </button>
@@ -473,9 +459,7 @@ export default function CampaignMemory({
                     </span>
                     <h3>{pageName(p)}</h3>
                     <p>{plainPreview(p.body, 220)}</p>
-                    <small>
-                      {p.visibility} · {p.sourceId ? 'Source linked' : 'DM written'}
-                    </small>
+                    {p.visibility === 'Party knows' && <small>Party knows</small>}
                   </button>
                 ))}
               {m.pages.length > 0 && !shownPages.length && (

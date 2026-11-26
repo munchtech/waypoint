@@ -4,11 +4,15 @@ import CampaignBookPanel from './campaign-book';
 import FoundryExportPanel from './foundry-export';
 import RollTablesPanel from './roll-tables-panel';
 import FactionStandingPanel from './faction-standing';
-import { Pin, ArrowRight, Clock, FileText } from 'lucide-react';
+import { useState } from 'react';
+import { Pin, ArrowRight, Clock, FileText, FileDown, Share2 } from 'lucide-react';
 import RelationshipWeb from './relationship-web';
 import type { Campaign } from '../lib/campaign';
 import { memoryOf } from '../lib/memory';
 import { pageName } from '../lib/page-name';
+import { playerFacts } from '../lib/campaign-search';
+
+const shareTabs = ['Campaign book', 'Foundry VTT', 'Players’ wiki'] as const;
 export default function CampaignHub({
   campaign,
   update,
@@ -28,6 +32,21 @@ export default function CampaignHub({
       0,
     );
   const pages = m.pages;
+  const [share, setShare] = useState<(typeof shareTabs)[number]>('Campaign book');
+  // The pages the party knows, as one Markdown file to share in a chat or a notes app.
+  function exportPlayerWiki() {
+    const known = playerFacts(
+      campaign,
+      pages.map((p) => p.id),
+    );
+    const content = known.map((p) => `# ${p.title}\n${p.status}\n\n${p.body}`).join('\n\n---\n\n');
+    const url = URL.createObjectURL(new Blob([content], { type: 'text/markdown' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'waypoint-player-wiki.md';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
   const pinned = pages.filter((p) => (m.pins || []).includes(p.id));
   const stats = (
     [
@@ -165,8 +184,37 @@ export default function CampaignHub({
       <RelationshipWeb pages={pages} />
       <FactionStandingPanel campaign={campaign} update={update} />
       <RollTablesPanel campaign={campaign} />
-      <CampaignBookPanel campaign={campaign} />
-      <FoundryExportPanel campaign={campaign} />
+      <section className="paper share-export">
+        <h3>
+          <Share2 size={17} /> Share & export
+        </h3>
+        <div className="tabs" aria-label="What to make">
+          {shareTabs.map((t) => (
+            <button
+              key={t}
+              className={share === t ? 'selected' : ''}
+              aria-pressed={share === t}
+              onClick={() => setShare(t)}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+        {share === 'Campaign book' && <CampaignBookPanel campaign={campaign} />}
+        {share === 'Foundry VTT' && <FoundryExportPanel campaign={campaign} />}
+        {share === 'Players’ wiki' && (
+          <section className="campaign-book-panel" aria-label="Players’ wiki">
+            <p className="muted">
+              The pages the party knows, as one Markdown file to share in a chat or a notes app.
+            </p>
+            <div className="book-actions">
+              <button className="button primary" onClick={exportPlayerWiki}>
+                <FileDown size={15} /> Download party-known pages
+              </button>
+            </div>
+          </section>
+        )}
+      </section>
     </div>
   );
 }

@@ -339,18 +339,13 @@ export default function Foresight({
       <div className="foresight">
         {offerBox}
         <section className="paper foresight-intro">
-          <span className="eyebrow">FORESIGHT</span>
-          <h2>If the party does this, you’ll know what to do.</h2>
+          <h2>No playbook yet</h2>
           <p className="muted">
-            Foresight keeps a playbook beside your campaign: the world’s state, the plays each
-            session is likely to bring, the 2024 rules involved, and what every choice changes
-            later. Install an update pack to begin, or keep using paths and the chronicle as before.
+            An update pack adds one: the plays each session is likely to bring, the rules they use
+            and what each choice changes later.
           </p>
-          <div className="modal-actions">{importer}</div>
+          <div className="book-actions">{importer}</div>
         </section>
-        <button className="button" onClick={() => onNavigate('Party & preferences')}>
-          Manage party & preferences
-        </button>
       </div>
     );
 

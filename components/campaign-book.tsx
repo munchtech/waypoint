@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { BookMarked, FileDown, FolderOpen } from 'lucide-react';
+import { FileDown, FolderOpen } from 'lucide-react';
 import BookText from './book-text';
 import RuleBody from './rule-body';
 import { isHomebrew } from '../lib/homebrew';
@@ -363,10 +363,7 @@ export default function CampaignBookPanel({ campaign }: { campaign: Campaign }) 
     }
   }
   return (
-    <section className="paper campaign-book-panel">
-      <h3>
-        <BookMarked size={17} /> Campaign book
-      </h3>
+    <section className="campaign-book-panel" aria-label="Campaign book">
       <p className="muted">
         Save the campaign as a PDF laid out like a published adventure. The players’ guide holds
         only pages the party knows and your handouts.

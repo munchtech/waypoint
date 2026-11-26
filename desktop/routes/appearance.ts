@@ -1,5 +1,5 @@
-// The light or dark theme. Waypoint starts light; choosing dark is saved in appearance.json as { mode }.
-// The older { theme } setting (which could follow Windows) is ignored, so everyone starts light once.
+// The light or dark theme. Waypoint starts dark; the chosen theme is saved in appearance.json as { mode }.
+// The older { theme } setting (which could follow Windows) is ignored, so everyone starts dark once unless they chose light.
 // Electron's nativeTheme drives prefers-color-scheme in every window and the window frame, so the stylesheet's
 // light-dark() colours follow it from the first paint.
 import { nativeTheme } from 'electron';
@@ -14,9 +14,9 @@ const isTheme = (t: unknown): t is Theme => t === 'light' || t === 'dark';
 export function savedTheme(): Theme {
   try {
     const { mode } = JSON.parse(fs.readFileSync(file, 'utf8')) as { mode?: unknown };
-    return isTheme(mode) ? mode : 'light';
+    return isTheme(mode) ? mode : 'dark';
   } catch {
-    return 'light';
+    return 'dark';
   }
 }
 

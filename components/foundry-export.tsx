@@ -1,6 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
-import { Castle, Copy, FileDown } from 'lucide-react';
+import { Copy, FileDown } from 'lucide-react';
 import type { Campaign } from '../lib/campaign';
 import { appFetch, isDesktop } from '../lib/transport';
 import {
@@ -55,14 +55,11 @@ export default function FoundryExportPanel({ campaign }: { campaign: Campaign })
     }
   }
   return (
-    <section className="paper campaign-book-panel foundry-panel">
-      <h3>
-        <Castle size={17} /> Foundry VTT export
-      </h3>
+    <section className="campaign-book-panel foundry-panel" aria-label="Foundry VTT export">
       <p className="muted">
-        Take the campaign to Foundry VTT: wiki pages and handouts become journal entries, with
-        players able to open only what the party knows and your handouts. Session plans and stat
-        blocks stay for the GM, and roll tables roll in Foundry.
+        Wiki pages and handouts become journal entries that players can open only when the party
+        knows them. Session plans stay with the GM, roll tables roll in Foundry, and creatures
+        become actors in a dnd5e world.
       </p>
       <div className="book-options">
         <fieldset>
@@ -123,10 +120,6 @@ export default function FoundryExportPanel({ campaign }: { campaign: Campaign })
           {message}
         </p>
       )}
-      <p className="tiny muted">
-        Creatures become actors in a dnd5e world; in other systems their stat blocks are journal
-        pages. Who can see each page follows its Party knows setting in Waypoint.
-      </p>
       <details className="foundry-macro">
         <summary>Show the import macro</summary>
         <textarea

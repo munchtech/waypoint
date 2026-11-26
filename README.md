@@ -93,7 +93,7 @@ Everything is stored in `%APPDATA%\Waypoint`:
 | `rules.sqlite` | The rules library, including imported collections. |
 | `recordings/` | Session audio and transcripts. |
 | `ai.json`, `ai-key.bin` | The chosen Claude model, and the encrypted Anthropic API key. |
-| `appearance.json` | The chosen theme, light (the default) or dark. |
+| `appearance.json` | The chosen theme, dark (the default) or light. |
 | `site.json` | The player site's location. |
 
 ## Licences
