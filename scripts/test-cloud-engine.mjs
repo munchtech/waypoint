@@ -10,6 +10,7 @@ import {
   explain,
   generateCloud,
   parseAnswer,
+  parseChanges,
   parseMaterial,
   readMessage,
   testKey,
@@ -214,8 +215,65 @@ await assert.rejects(
   assert.throws(() => parseMaterial('{"branches":[]}', 'path'), /no session paths/);
 }
 
+// Make changes: its own format and instructions; an attachment goes before the request as a document or image block,
+// and a request without one is sent exactly as before.
+{
+  const base = { mode: 'assist', prompt: 'Add the NPCs', context: { wiki: [] } };
+  const plain = buildRequest(DEFAULT_MODEL, base).params;
+  assert.deepEqual(Object.keys(plain.output_config.format.schema.properties), ['reply', 'changes']);
+  assert.match(plain.system[0].text, /nothing changes until they do/);
+  assert.equal(typeof plain.messages[0].content, 'string');
+  assert.equal(
+    plain.messages[0].content,
+    'TASK AND CAMPAIGN CONTEXT:\n' + JSON.stringify(buildRequest(DEFAULT_MODEL, base).data),
+  );
+  const withFile = (mediaType, data) =>
+    buildRequest(DEFAULT_MODEL, { ...base, attachment: { name: 'notes', mediaType, data } }).params
+      .messages[0].content;
+  const pdf = withFile('application/pdf', 'JVBE\nRi0x');
+  assert.equal(pdf.length, 2);
+  assert.deepEqual(pdf[0], {
+    type: 'document',
+    source: { type: 'base64', media_type: 'application/pdf', data: 'JVBERi0x' },
+    title: 'notes',
+  });
+  assert.equal(pdf[1].type, 'text');
+  assert.ok(pdf[1].text.includes('"attachmentName":"notes"') && !pdf[1].text.includes('JVBE'));
+  assert.deepEqual(withFile('text/plain', 'Yara lied.')[0].source, {
+    type: 'text',
+    media_type: 'text/plain',
+    data: 'Yara lied.',
+  });
+  assert.deepEqual(withFile('image/jpeg', '/9j/4AAQ')[0], {
+    type: 'image',
+    source: { type: 'base64', media_type: 'image/jpeg', data: '/9j/4AAQ' },
+  });
+  for (const bad of [
+    { name: 'x', mediaType: 'application/zip', data: 'UEsD' },
+    { name: 'x', mediaType: 'image/png', data: '' },
+  ])
+    assert.throws(() => buildRequest(DEFAULT_MODEL, { ...base, attachment: bad }));
+  const change = {
+    action: 'update',
+    title: ' Yara ',
+    kind: 'NPC',
+    body: 'b'.repeat(25000),
+    reason: 'She lied.',
+    quote: 'Yara lied.',
+  };
+  const parsed = parseChanges(
+    JSON.stringify({ reply: ' One change. ', changes: Array(15).fill(change) }),
+  );
+  assert.equal(parsed.reply, 'One change.');
+  assert.equal(parsed.changes.length, 12);
+  assert.equal(parsed.changes[0].title, 'Yara');
+  assert.equal(parsed.changes[0].body.length, 20000);
+  for (const bad of ['not json', '{"reply":"x"}', '{"reply":"x","changes":[{"action":"delete"}]}'])
+    assert.throws(() => parseChanges(bad), /readable changes/);
+}
+
 console.log(
-  'Passed: model and key validation, request shape, cached instructions, reply reading, refusal and cut-off handling, output parsing, ask answers, single paths, stopped generation.',
+  'Passed: model and key validation, request shape, cached instructions, reply reading, refusal and cut-off handling, output parsing, ask answers, single paths, proposed changes and attachments, stopped generation.',
 );
 
 if (process.argv.includes('--live')) {

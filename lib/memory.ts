@@ -318,7 +318,14 @@ export function acceptProposal(
     ),
   };
 }
-export function memoryContext(c: Campaign, partyOnly = false, query = '', limit = 40) {
+// bodyLimit: how much of each page's text is sent. A cut page is marked truncated, so Claude knows it saw only part.
+export function memoryContext(
+  c: Campaign,
+  partyOnly = false,
+  query = '',
+  limit = 40,
+  bodyLimit = 1800,
+) {
   const m = memoryOf(c);
   const words = (query.toLowerCase().match(/[\p{L}\p{N}]{4,}/gu) || []).slice(0, 150);
   const eligible = m.pages.filter((p) => !partyOnly || p.visibility === 'Party knows');
@@ -361,7 +368,8 @@ export function memoryContext(c: Campaign, partyOnly = false, query = '', limit 
       kind: p.kind,
       status: p.status,
       visibility: p.visibility,
-      body: p.body.slice(0, 1800),
+      body: p.body.slice(0, bodyLimit),
+      truncated: p.body.length > bodyLimit || undefined,
       source: p.sourceId,
       related: p.related || [],
       relations: p.relations,

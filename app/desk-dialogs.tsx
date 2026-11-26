@@ -3,7 +3,8 @@ import MentionTextarea from '../components/mention-textarea';
 import SessionWrapUp from '../components/session-wrap-up';
 import MaterialBody from '../components/material-body';
 import InlineMarks from '../components/inline-marks';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
+import AssistantPanel from '../components/assistant-panel';
 import RippleDialog from '../components/ripple-dialog';
 import { applyChanges } from '../lib/playbook';
 import { memoryOf } from '../lib/memory';
@@ -87,102 +88,149 @@ export function DialogBody() {
     setAskQuestion,
     askResult,
     ask,
+    assist,
+    setAssist,
+    proposeChanges,
     showReference,
     setSessionId,
     setLive,
     goTo,
   } = useDeskContext();
   const tracker = cardResult?.tracks ? trackerName(cardResult) : '';
+  // The Ask dialog answers a question or, on its second tab, proposes wiki changes for the DM to approve.
+  const [askMode, setAskMode] = useState<'ask' | 'assist'>('ask');
   return (
     <>
       {modal === 'ask' && (
-        <form
-          className="ask-dialog"
-          onSubmit={(e) => {
-            e.preventDefault();
-            void ask();
-          }}
-        >
-          <span className="eyebrow">ANSWERED FROM YOUR WIKI AND HISTORY</span>
+        <div className="ask-shell">
+          <span className="eyebrow">
+            {askMode === 'ask'
+              ? 'ANSWERED FROM YOUR WIKI AND HISTORY'
+              : 'NOTHING CHANGES UNTIL YOU APPROVE IT'}
+          </span>
           <h2 id="modal-title">Ask the campaign</h2>
-          <label>
-            Your question
-            <MentionTextarea
-              rows={3}
-              maxLength={2000}
-              value={askQuestion}
-              placeholder="Who knows where the bell was cast? What did we promise the ferryman?"
-              onChange={(e) => setAskQuestion(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-                  e.preventDefault();
-                  void ask();
-                }
-              }}
-            />
-          </label>
-          {!ai && (
-            <p className="tiny muted">
-              Asking uses Claude. Add your Anthropic API key in{' '}
-              <button type="button" className="text-button" onClick={() => setModal('data')}>
-                AI & backups
+          <div className="segmented ask-modes" role="group" aria-label="Ask or make changes">
+            {(
+              [
+                ['ask', 'Ask a question'],
+                ['assist', 'Make changes'],
+              ] as const
+            ).map(([id, label]) => (
+              <button
+                key={id}
+                type="button"
+                className={askMode === id ? 'selected' : ''}
+                aria-pressed={askMode === id}
+                onClick={() => setAskMode(id)}
+              >
+                {label}
               </button>
-              .
-            </p>
-          )}
-          {error && (
-            <p className="error-text" role="alert">
-              {error}
-            </p>
-          )}
-          <div className="modal-actions">
-            <button
-              className="button primary"
-              type="submit"
-              disabled={!!busy || !ai || !askQuestion.trim()}
-            >
-              <Sparkles size={14} /> {busy === 'ask' ? 'Asking…' : 'Ask'}
-            </button>
+            ))}
           </div>
-          {askResult && (
-            <section className="ask-answer" aria-label="Answer">
-              <span className="eyebrow">{askResult.question}</span>
-              <MaterialBody body={askResult.answer} />
-              {askResult.pages.length ? (
-                <>
-                  <h4>Pages used</h4>
-                  <ul className="ask-pages">
-                    {askResult.pages.map((page) => (
-                      <li key={page.id}>
-                        <button
-                          type="button"
-                          className="text-button"
-                          onClick={() => {
-                            setModal('');
-                            showReference(page.id);
-                          }}
-                        >
-                          <BookOpen size={13} />{' '}
-                          {pageName({
-                            kind: 'Lore' as const,
-                            ...memoryOf(campaign).pages.find((p) => p.id === page.id),
-                            title: page.title,
-                          })}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ) : (
-                <p className="tiny muted">No wiki page was used for this answer.</p>
+          {askMode === 'assist' ? (
+            <AssistantPanel
+              campaign={campaign}
+              update={update}
+              ai={ai}
+              busy={busy}
+              error={error}
+              state={assist}
+              setState={setAssist}
+              propose={proposeChanges}
+              onOpenPage={(id) => {
+                setModal('');
+                showReference(id);
+              }}
+              onSetup={() => setModal('data')}
+            />
+          ) : (
+            <form
+              className="ask-dialog"
+              onSubmit={(e) => {
+                e.preventDefault();
+                void ask();
+              }}
+            >
+              <label>
+                Your question
+                <MentionTextarea
+                  rows={3}
+                  maxLength={2000}
+                  value={askQuestion}
+                  placeholder="Who knows where the bell was cast? What did we promise the ferryman?"
+                  onChange={(e) => setAskQuestion(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                      e.preventDefault();
+                      void ask();
+                    }
+                  }}
+                />
+              </label>
+              {!ai && (
+                <p className="tiny muted">
+                  Asking uses Claude. Add your Anthropic API key in{' '}
+                  <button type="button" className="text-button" onClick={() => setModal('data')}>
+                    AI & backups
+                  </button>
+                  .
+                </p>
               )}
-              <p className="tiny muted">
-                Claude’s reading of your notes, not a new fact. Check the pages before relying on
-                it.
-              </p>
-            </section>
+              {error && (
+                <p className="error-text" role="alert">
+                  {error}
+                </p>
+              )}
+              <div className="modal-actions">
+                <button
+                  className="button primary"
+                  type="submit"
+                  disabled={!!busy || !ai || !askQuestion.trim()}
+                >
+                  <Sparkles size={14} /> {busy === 'ask' ? 'Asking…' : 'Ask'}
+                </button>
+              </div>
+              {askResult && (
+                <section className="ask-answer" aria-label="Answer">
+                  <span className="eyebrow">{askResult.question}</span>
+                  <MaterialBody body={askResult.answer} />
+                  {askResult.pages.length ? (
+                    <>
+                      <h4>Pages used</h4>
+                      <ul className="ask-pages">
+                        {askResult.pages.map((page) => (
+                          <li key={page.id}>
+                            <button
+                              type="button"
+                              className="text-button"
+                              onClick={() => {
+                                setModal('');
+                                showReference(page.id);
+                              }}
+                            >
+                              <BookOpen size={13} />{' '}
+                              {pageName({
+                                kind: 'Lore' as const,
+                                ...memoryOf(campaign).pages.find((p) => p.id === page.id),
+                                title: page.title,
+                              })}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <p className="tiny muted">No wiki page was used for this answer.</p>
+                  )}
+                  <p className="tiny muted">
+                    Claude’s reading of your notes, not a new fact. Check the pages before relying
+                    on it.
+                  </p>
+                </section>
+              )}
+            </form>
           )}
-        </form>
+        </div>
       )}
       {modal === 'ripple' && ripplePlay && memory.playbook && (
         <RippleDialog

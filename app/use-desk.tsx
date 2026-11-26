@@ -3,6 +3,8 @@ import { useSessionPrompt } from '../components/use-session-prompt';
 import { type OutcomeEdit } from '../components/session-editor';
 import { emptyHistory, type HistoryFilters } from '../components/campaign-history';
 import { generationContext } from '../lib/ai-context';
+import { proposalsFor, type AssistState } from '../lib/assistant';
+import type { AssistChange, Attachment } from '../lib/generation-contract';
 import { rememberItem } from '../lib/recent-items';
 import { searchCampaign, type SearchHit } from '../lib/campaign-search';
 import {
@@ -67,6 +69,8 @@ export function useDesk() {
   useEffect(() => window.waypoint?.onProgress?.(setProgress), []);
   const [askQuestion, setAskQuestion] = useState('');
   const [askResult, setAskResult] = useState<Answer | null>(null);
+  // Make changes: the latest proposals and the approved changes that can still be undone. Kept while the dialog is closed.
+  const [assist, setAssist] = useState<AssistState | null>(null);
   const [notice, setNotice] = useState('');
   const [error, setError] = useState('');
   const {
@@ -226,6 +230,7 @@ export function useDesk() {
     mode: string,
     prompt: string,
     extra: Record<string, unknown> = {},
+    options: { attachment?: Attachment; context?: Record<string, unknown> } = {},
   ): Promise<T | null> {
     if (requestLock.current) return null;
     requestLock.current = true;
@@ -248,7 +253,11 @@ export function useDesk() {
           prompt,
           kind,
           context:
-            mode === 'campaign' ? extra : generationContext(campaign, session, mode, prompt, extra),
+            options.context ||
+            (mode === 'campaign'
+              ? extra
+              : generationContext(campaign, session, mode, prompt, extra)),
+          attachment: options.attachment,
         }),
       });
       const data = (await r.json()) as T & { error?: string };
@@ -269,6 +278,39 @@ export function useDesk() {
     if (!question) return;
     const answer = await generate<Omit<Answer, 'question'>>('ask', question);
     if (answer) setAskResult({ question, answer: answer.answer, pages: answer.pages || [] });
+  }
+  // Make changes: Claude proposes wiki changes from the request and an optional attachment; none is applied until the
+  // DM approves it. Proposals are matched to the wiki as it was when the request was sent.
+  async function proposeChanges(request: string, attachment?: Attachment) {
+    const context = generationContext(
+      campaign,
+      session,
+      'assist',
+      request,
+      {},
+      attachment?.mediaType === 'text/plain' ? attachment.data : '',
+    );
+    const sent = new Set(
+      (context.wiki as { id: string; truncated?: boolean }[])
+        .filter((p) => !p.truncated)
+        .map((p) => p.id),
+    );
+    const reply = await generate<{ reply: string; changes: AssistChange[] }>(
+      'assist',
+      request,
+      {},
+      { attachment, context },
+    );
+    if (!reply) return;
+    const { proposals, left } = proposalsFor(reply.changes, memoryOf(campaign).pages, uid, sent);
+    setAssist((old) => ({
+      campaignId: campaign.id,
+      request,
+      reply: reply.reply,
+      proposals,
+      left,
+      undo: old?.campaignId === campaign.id ? old.undo : [],
+    }));
   }
   // One more path for the current session, different from the ones already there; the others are kept.
   async function addPath() {
@@ -783,6 +825,9 @@ export function useDesk() {
     askResult,
     setAskResult,
     ask,
+    assist,
+    setAssist,
+    proposeChanges,
     addPath,
     notice,
     setNotice,

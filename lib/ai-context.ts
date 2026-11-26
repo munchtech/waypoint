@@ -3,6 +3,7 @@
 // hundreds of unrelated events with every quick card.
 import type { Campaign, Session } from './campaign';
 import { relevance } from './campaign-search';
+import { ASSIST_BODY_LIMIT } from './assistant';
 import { memoryContext, memoryOf } from './memory';
 import { partySignals } from './party-signals';
 import { stateSummary } from './playbook';
@@ -22,6 +23,7 @@ const budgets: Record<string, Budget> = {
   ask: { events: 80, recent: 15, cards: 6, sessions: 20, pages: 30 },
   recap: { events: 40, recent: 20, cards: 0, sessions: 6, pages: 25 },
   memory: { events: 30, recent: 10, cards: 0, sessions: 4, pages: 40 },
+  assist: { events: 40, recent: 10, cards: 0, sessions: 6, pages: 16 },
 };
 const fallback = budgets.prepare;
 
@@ -58,6 +60,20 @@ function pickCards(cards: Campaign['cards'], query: string, total: number) {
   return [...new Set([...matching, ...cards])].slice(0, total);
 }
 
+// Make changes sends whole pages, so Claude can rewrite one without losing text, and names the pages it did not send,
+// so it never proposes a duplicate of one.
+function assistMemory(campaign: Campaign, query: string, pages: number) {
+  const context = memoryContext(campaign, false, query, pages, ASSIST_BODY_LIMIT);
+  const sent = new Set(context.wiki.map((p) => p.id));
+  return {
+    ...context,
+    otherPages: memoryOf(campaign)
+      .pages.filter((p) => !sent.has(p.id))
+      .slice(0, 400)
+      .map((p) => p.title),
+  };
+}
+
 // The context for every mode except campaign, which sends only the new campaign's own fields.
 export function generationContext(
   campaign: Campaign,
@@ -65,12 +81,17 @@ export function generationContext(
   mode: string,
   prompt: string,
   extra: Record<string, unknown> = {},
+  more = '', // other text whose words pick what is relevant, such as attached notes
 ) {
   const budget = budgets[mode] || fallback,
     memory = memoryOf(campaign);
-  const query = [prompt, memory.planner.focus, session.title, session.plan.slice(0, 4000)].join(
-    ' ',
-  );
+  const query = [
+    prompt,
+    memory.planner.focus,
+    session.title,
+    session.plan.slice(0, 4000),
+    more.slice(0, 20000),
+  ].join(' ');
   const events = pick(campaign.events, (e) => e.text, query, budget.events, budget.recent);
   const others = campaign.sessions.filter((s) => s.id !== session.id);
   const sessions = pick(
@@ -84,7 +105,7 @@ export function generationContext(
   // A new path only needs to know which intentions are already covered; ask may be about any path, so it keeps them.
   const { ruleReferences, branches, ...rest } = session;
   const currentSession =
-    mode === 'path'
+    mode === 'path' || mode === 'assist'
       ? rest
       : mode === 'improvise'
         ? { ...rest, branches: branches.map((b) => ({ title: b.title, style: b.style })) }
@@ -104,7 +125,9 @@ export function generationContext(
     ...(mode === 'path' ? { existingPaths: branches.slice(0, 80).map((b) => b.title) } : {}),
     confirmedEvents: events,
     playerSignals: partySignals(campaign),
-    ...memoryContext(campaign, false, query, budget.pages),
+    ...(mode === 'assist'
+      ? assistMemory(campaign, query, budget.pages)
+      : memoryContext(campaign, false, query, budget.pages)),
     rulesReferences: ruleReferences || [],
     worldState: memory.playbook ? stateSummary(memory.playbook) : undefined,
     savedDraftMaterial: cards,

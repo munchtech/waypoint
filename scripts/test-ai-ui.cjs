@@ -41,6 +41,8 @@ let ready = false,
   posts = 0,
   asks = [],
   releaseAsk = null,
+  assists = [],
+  releaseAssist = null,
   tests = 0,
   savedKey = '',
   model = 'claude-opus-5-5';
@@ -56,6 +58,36 @@ ipcMain.handle('waypoint:request', async (event, r) => {
       body: {
         answer: 'The ferryman takes a silver coin for each crossing.',
         pages: [{ id: 'ferry-page', title: 'The Ferryman' }],
+      },
+    };
+  }
+  // Make changes: one update and one new page, after the test lets the reply through.
+  if (r.path === '/api/generate' && r.method === 'POST' && JSON.parse(r.body).mode === 'assist') {
+    assists.push(JSON.parse(r.body));
+    event.sender.send('waypoint:progress', { label: 'Writing proposed change 1…' });
+    await new Promise((resolve) => (releaseAssist = resolve));
+    return {
+      status: 200,
+      body: {
+        reply: 'The ferryman charges more, and the dock gets a page.',
+        changes: [
+          {
+            action: 'update',
+            title: 'the ferryman',
+            kind: 'NPC',
+            body: 'Takes two silver coins for each crossing since the flood.',
+            reason: 'The notes say the price went up.',
+            quote: 'two silver now',
+          },
+          {
+            action: 'create',
+            title: 'The Flooded Dock',
+            kind: 'Location',
+            body: 'Half under water since the flood.',
+            reason: 'A new place in the notes.',
+            quote: '',
+          },
+        ],
       },
     };
   }
@@ -623,6 +655,95 @@ app.whenReady().then(async () => {
     assert.equal(posts, 0, 'Only the question was sent');
     console.log(
       'Ask the campaign passed: question sent with its matching page, progress shown, answer and page link opened.',
+    );
+
+    // Make changes: notes are attached and sent beside the request, nothing changes until a proposal is approved, and
+    // Undo puts the page back.
+    const ferry = () => snapshot.campaigns[0].memory.pages.find((p) => p.id === 'ferry-page');
+    const saved = async (test, what) => {
+      for (let i = 0; i < 80 && !test(); i++) await new Promise((r) => setTimeout(r, 100));
+      assert(test(), what);
+    };
+    await run(
+      'document.querySelector(\'.reference-dialog button[aria-label="Close reference"]\').click()',
+    );
+    await wait("!document.querySelector('.reference-dialog[open]')");
+    await run("document.querySelector('.ask-trigger').click()");
+    await wait("!!document.querySelector('.ask-modes')");
+    await run(
+      "[...document.querySelectorAll('.ask-modes button')].find(b=>b.textContent==='Make changes').click()",
+    );
+    await wait("!!document.querySelector('.assist-panel textarea')");
+    await run(
+      "(()=>{const i=document.querySelector('.assist-panel input[type=file]'),d=new DataTransfer();d.items.add(new File(['The ferryman wants two silver now.'],'notes.md'));i.files=d.files;i.dispatchEvent(new Event('change',{bubbles:true}))})()",
+    );
+    await wait("document.querySelector('.assist-file')?.textContent.includes('notes.md')");
+    await setInput('.assist-panel textarea', 'Update the ferryman from these notes.');
+    await run("document.querySelector('.assist-panel button[type=submit]').click()");
+    await wait(
+      "document.querySelector('.generating-progress')?.textContent==='Writing proposed change 1…'",
+    );
+    assert.equal(assists.length, 1);
+    assert.deepEqual(assists[0].attachment, {
+      name: 'notes.md',
+      mediaType: 'text/plain',
+      data: 'The ferryman wants two silver now.',
+    });
+    const sentPage = assists[0].context.wiki.find((p) => p.id === 'ferry-page');
+    assert.equal(
+      sentPage?.body,
+      'Takes a silver coin for each crossing.',
+      'The page is sent whole',
+    );
+    assert(Array.isArray(assists[0].context.otherPages), 'Pages not sent are named');
+    releaseAssist();
+    await wait("document.querySelectorAll('.assist-change').length===2");
+    assert(
+      await run(
+        "document.querySelector('.assist-change').textContent.startsWith('Update · NPC') && document.querySelectorAll('.assist-change')[1].textContent.startsWith('New page · Location')",
+      ),
+      'The update names the existing page and the new page is marked new',
+    );
+    assert.equal(
+      ferry().body,
+      'Takes a silver coin for each crossing.',
+      'Nothing changes before approval',
+    );
+    const approve = (n) =>
+      run(
+        `[...document.querySelectorAll('.assist-change')[${n}].querySelectorAll('button')].find(b=>b.textContent.includes('Approve')).click()`,
+      );
+    await approve(0);
+    await wait(
+      "document.querySelector('.assist-undo button')?.textContent.includes('The Ferryman')",
+    );
+    await saved(
+      () => ferry().body === 'Takes two silver coins for each crossing since the flood.',
+      'The approved update is saved',
+    );
+    assert.equal(ferry().history[0].body, 'Takes a silver coin for each crossing.');
+    await run("document.querySelector('.assist-undo button').click()");
+    await saved(
+      () => ferry().body === 'Takes a silver coin for each crossing.' && !ferry().history.length,
+      'Undo restores the page',
+    );
+    await wait(
+      "!document.querySelector('.assist-undo')&&!document.querySelector('.assist-change.applied')",
+    );
+    await approve(1);
+    await saved(
+      () =>
+        snapshot.campaigns[0].memory.pages.some(
+          (p) =>
+            p.title === 'The Flooded Dock' &&
+            p.status === 'Unresolved' &&
+            p.visibility === 'DM only',
+        ),
+      'The new page is saved as DM only and Unresolved',
+    );
+    assert.equal(posts, 0, 'Only the request was sent');
+    console.log(
+      'Make changes passed: notes attached and sent, pages sent whole, nothing changed before approval, approve saved, Undo restored, new page saved.',
     );
     console.log(
       'AI UI passed: no key disables generation, a rejected key is reported, a saved key is never shown again, connection test, model choice, prompt retained, key removal, generation guarded.',

@@ -13,6 +13,7 @@ import {
   validSettings,
   type Settings,
 } from '../cloud-engine';
+import { ATTACHMENT_MAX } from '../../lib/generation-contract';
 import { atomicWrite, dataDir, state, type Route } from '../runtime';
 
 const aiFile = path.join(dataDir, 'ai.json'),
@@ -93,7 +94,13 @@ export const aiRoute: Route = async (req) => {
   }
   if (req.path === '/api/generate' && req.method === 'POST') {
     if (controller) return { status: 409, body: { error: 'A generation is already running.' } };
-    if ((req.body?.length || 0) > 180000)
+    // An attached PDF or photo is counted on its own: the campaign context keeps its usual limit.
+    const request = JSON.parse(req.body || '{}');
+    const attached =
+      typeof request?.attachment?.data === 'string' ? request.attachment.data.length : 0;
+    if (attached > ATTACHMENT_MAX)
+      return { status: 413, body: { error: 'That attachment is too large. Attach up to 8 MB.' } };
+    if ((req.body?.length || 0) - attached > 180000)
       return { status: 413, body: { error: 'Shorten older campaign notes before generating.' } };
     const key = readKey();
     if (!key)
@@ -105,12 +112,8 @@ export const aiRoute: Route = async (req) => {
     const timer = setTimeout(() => controller?.abort(), 600000);
     try {
       // Progress goes to the app window as it streams; the finished result is still this request's reply.
-      const body = await generateCloud(
-        readAI(),
-        key,
-        JSON.parse(req.body || '{}'),
-        controller.signal,
-        (label) => state.win?.webContents.send('waypoint:progress', { label }),
+      const body = await generateCloud(readAI(), key, request, controller.signal, (label) =>
+        state.win?.webContents.send('waypoint:progress', { label }),
       );
       return { status: 200, body };
     } finally {

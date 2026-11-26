@@ -555,7 +555,9 @@ function HomeScreen() {
                       ? 'Finding another path…'
                       : busy === 'ask'
                         ? 'Looking through your campaign…'
-                        : 'Finding a spark…'}
+                        : busy === 'assist'
+                          ? 'Drafting changes for you to review…'
+                          : 'Finding a spark…'}
               <small className="generating-progress">
                 {progress || 'You can keep reading your notes.'}
               </small>

@@ -8502,6 +8502,97 @@ fieldset.relation-labels input {
 .generating-progress {
   overflow-wrap: anywhere;
 }
+/* Make changes: proposed wiki changes, each approved or skipped on its own, and Undo for the last one. */
+.ask-modes {
+  margin: 4px 0 16px;
+  max-width: 360px;
+}
+.ask-modes button {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+.assist-panel label {
+  display: grid;
+  gap: 6px;
+}
+.assist-panel textarea {
+  width: 100%;
+  resize: vertical;
+}
+.assist-attach {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 10px;
+}
+.assist-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+.assist-proposals {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid light-dark(#e1ddd2, #38414a);
+  overflow-wrap: anywhere;
+}
+.assist-reply {
+  margin: 0;
+}
+.assist-change {
+  padding: 12px 14px;
+  border: 1px solid light-dark(#e1ddd2, #38414a);
+  border-radius: 8px;
+  background: light-dark(#fffdf8, #1a2229);
+}
+.assist-change.applied {
+  border-color: light-dark(#9fb98a, #4f6a3e);
+}
+.assist-change.skipped {
+  border-style: dashed;
+}
+.assist-change h4 {
+  margin: 4px 0 6px;
+}
+.assist-reason {
+  margin: 0 0 8px;
+  font-style: italic;
+}
+.assist-change blockquote {
+  margin: 0 0 10px;
+  padding: 4px 0 4px 12px;
+  border-left: 3px solid light-dark(#c9c2b0, #4a5560);
+}
+.assist-change details {
+  margin-top: 8px;
+}
+.assist-change summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.assist-actions,
+.assist-undo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 10px;
+}
+.assist-undo {
+  margin-top: 16px;
+}
+.assist-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+}
 @media (max-width: 1100px) {
   .ask-trigger > span {
     display: none;

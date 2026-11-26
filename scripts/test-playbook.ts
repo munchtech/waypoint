@@ -9,6 +9,14 @@ import { cellCreatures, creatureByName, statLine } from '../lib/combat';
 import { memoryOf, wikiPage } from '../lib/memory';
 import { shiftStanding, standingLabel, standingOf, standingText } from '../lib/standing';
 import { neighborhood, webEdges } from '../lib/relationship-web';
+import {
+  ASSIST_BODY_LIMIT,
+  applyProposal,
+  attachmentType,
+  canUndo,
+  proposalsFor,
+  undoProposal,
+} from '../lib/assistant';
 import { pageName } from '../lib/page-name';
 import { searchCampaign } from '../lib/campaign-search';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
@@ -1568,6 +1576,116 @@ test('the relationship web joins related pages and pages named in the text', () 
   assert.equal(neighborhood(edges, 'lone').ring1.length, 0);
   // How two pages connect saves with the page.
   assert.ok(wikiPage.safeParse(pages[0]).success);
+});
+
+test('make changes proposes, applies and undoes wiki changes one at a time', () => {
+  const base = memoryOf(installed).pages[0];
+  const page = (id: string, title: string, body: string, extra = {}) => ({
+    ...base,
+    id,
+    title,
+    aliases: '',
+    kind: 'NPC' as const,
+    body,
+    history: [],
+    related: [],
+    ...extra,
+  });
+  const yara = page('yara', 'Yara Vell', 'Yara keeps the ferry.', { aliases: 'The Ferrywoman' });
+  const long = page('long', 'The Long Road', 'x'.repeat(ASSIST_BODY_LIMIT + 1), { kind: 'Lore' });
+  const unsent = page('unsent', 'Oskar Brine', 'A smuggler.');
+  const court = page('court', 'Court of Gulls', 'A thieves guild.', { kind: 'Faction' });
+  const c = {
+    ...installed,
+    memory: { ...memoryOf(installed), pages: [yara, long, unsent, court], pins: [] },
+  } as Campaign;
+  const change = (title: string, body: string, action: 'create' | 'update' = 'update') => ({
+    action,
+    title,
+    kind: 'Location' as const,
+    body,
+    reason: 'r',
+    quote: '',
+  });
+  let n = 0;
+  const { proposals, left } = proposalsFor(
+    [
+      change('the ferrywoman', 'Yara keeps the ferry. She betrayed the party.'),
+      change('Yara Vell', 'A second change to the same page.'),
+      change('Gull Harbour', 'A harbour.', 'create'),
+      change('Court of Gulls', 'A thieves guild that owns the docks.', 'create'),
+      change('The Long Road', 'Rewritten.'),
+      change('Oskar Brine', 'Rewritten.'),
+      change('Empty', '  '),
+    ],
+    memoryOf(c).pages,
+    () => 'p' + ++n,
+    new Set(['yara', 'long', 'court']),
+  );
+  // An alias finds the page; a second change to it is dropped; a taken name becomes an update; long and unsent pages are left out.
+  assert.deepEqual(
+    proposals.map((p) => [p.action, p.title, p.kind, p.pageId]),
+    [
+      ['update', 'Yara Vell', 'NPC', 'yara'],
+      ['create', 'Gull Harbour', 'Location', undefined],
+      ['update', 'Court of Gulls', 'Faction', 'court'],
+    ],
+  );
+  assert.equal(left, 2);
+  assert.equal(proposals[0].before, 'Yara keeps the ferry.');
+  // Approving an update keeps the old text in history; Undo brings it back while the page is untouched.
+  const first = applyProposal(c, proposals[0], '2026-11-26T10:00:00.000Z', 'new1');
+  const changed = memoryOf(first.campaign).pages.find((p) => p.id === 'yara')!;
+  assert.equal(changed.body, 'Yara keeps the ferry. She betrayed the party.');
+  assert.equal(changed.history[0].body, 'Yara keeps the ferry.');
+  assert.ok(wikiPage.safeParse(changed).success);
+  assert.ok(canUndo(first.campaign, first.undo));
+  assert.deepEqual(
+    memoryOf(undoProposal(first.campaign, first.undo)).pages.find((p) => p.id === 'yara'),
+    yara,
+  );
+  // A new page starts DM only and Unresolved; Undo removes it and its links and pins.
+  const second = applyProposal(first.campaign, proposals[1], '2026-11-26T10:01:00.000Z', 'new2');
+  const created = memoryOf(second.campaign).pages.find((p) => p.id === 'new2')!;
+  assert.deepEqual(
+    [created.title, created.status, created.visibility],
+    ['Gull Harbour', 'Unresolved', 'DM only'],
+  );
+  assert.ok(wikiPage.safeParse(created).success);
+  const linked = {
+    ...second.campaign,
+    memory: {
+      ...memoryOf(second.campaign),
+      pins: ['new2'],
+      pages: memoryOf(second.campaign).pages.map((p) =>
+        p.id === 'court' ? { ...p, related: ['new2'] } : p,
+      ),
+    },
+  };
+  const removed = memoryOf(undoProposal(linked, second.undo));
+  assert.equal(
+    removed.pages.some((p) => p.id === 'new2'),
+    false,
+  );
+  assert.deepEqual(removed.pins, []);
+  assert.deepEqual(removed.pages.find((p) => p.id === 'court')!.related, []);
+  // Once the DM edits the page, Undo is no longer offered and changes nothing.
+  const edited = {
+    ...first.campaign,
+    memory: {
+      ...memoryOf(first.campaign),
+      pages: memoryOf(first.campaign).pages.map((p) =>
+        p.id === 'yara' ? { ...p, body: 'Edited.', updated: '2026-11-26T11:00:00.000Z' } : p,
+      ),
+    },
+  };
+  assert.equal(canUndo(edited, first.undo), false);
+  assert.equal(undoProposal(edited, first.undo), edited);
+  // Only text, PDFs and the image types Claude reads can be attached; Markdown goes as text.
+  assert.equal(attachmentType('notes.md', ''), 'text/plain');
+  assert.equal(attachmentType('scan.pdf', 'application/pdf'), 'application/pdf');
+  assert.equal(attachmentType('photo.heic', 'image/heic'), null);
+  assert.equal(attachmentType('sheet.docx', 'application/msword'), null);
 });
 
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.

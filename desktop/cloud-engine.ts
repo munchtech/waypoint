@@ -4,7 +4,10 @@ import Anthropic from '@anthropic-ai/sdk';
 import {
   answerPacket,
   answerSchema,
+  assistPacket,
+  assistSchema,
   input,
+  type Attachment,
   instructionsFor,
   packet,
   progressOf,
@@ -145,6 +148,52 @@ export function parseAnswer(raw: string, wiki: unknown) {
   return { answer: parsed.data.answer.trim(), pages };
 }
 
+// Proposed wiki changes for Make changes. They are only proposals: the app matches them to the wiki and the DM
+// approves each one. Lengths are capped so a runaway reply cannot flood the review list.
+export function parseChanges(raw: string) {
+  const fail = () =>
+    new Error('Claude did not return readable changes. Nothing was changed. Try again.');
+  let value;
+  try {
+    value = JSON.parse(raw.trim());
+  } catch {
+    throw fail();
+  }
+  const parsed = assistPacket.safeParse(value);
+  if (!parsed.success) throw fail();
+  return {
+    reply: parsed.data.reply.trim().slice(0, 2000),
+    changes: parsed.data.changes.slice(0, 12).map((c) => ({
+      ...c,
+      title: c.title.trim().slice(0, 200),
+      body: c.body.trim().slice(0, 20000),
+      reason: c.reason.trim().slice(0, 400),
+      quote: c.quote.trim().slice(0, 800),
+    })),
+  };
+}
+
+// The attachment as Claude reads it: notes as a text document, a PDF as a document, a photo as an image.
+export function attachmentBlock(a: Attachment) {
+  if (a.mediaType === 'text/plain')
+    return {
+      type: 'document' as const,
+      source: { type: 'text' as const, media_type: 'text/plain' as const, data: a.data },
+      title: a.name,
+    };
+  const data = a.data.replace(/\s+/g, '');
+  if (a.mediaType === 'application/pdf')
+    return {
+      type: 'document' as const,
+      source: { type: 'base64' as const, media_type: 'application/pdf' as const, data },
+      title: a.name,
+    };
+  return {
+    type: 'image' as const,
+    source: { type: 'base64' as const, media_type: a.mediaType, data },
+  };
+}
+
 // Only the lists a mode fills are in its reply format, so a short request does not pay for empty fields.
 function formatFor(mode: string) {
   const only = (key: 'cards' | 'branches') => ({
@@ -159,7 +208,9 @@ function formatFor(mode: string) {
       ? only('branches')
       : mode === 'ask'
         ? answerSchema
-        : schema;
+        : mode === 'assist'
+          ? assistSchema
+          : schema;
 }
 
 // The whole request for one generation. The instructions are the stable part, so they carry the cache marker;
@@ -168,6 +219,11 @@ export function buildRequest(model: ModelId, request: unknown) {
   const data = input.parse(request);
   const format = formatFor(data.mode);
   const short = data.mode === 'ask';
+  // An attachment goes before the request as its own block; the text block names it but does not repeat it.
+  const { attachment, ...rest } = data;
+  const task =
+    'TASK AND CAMPAIGN CONTEXT:\n' +
+    JSON.stringify(attachment ? { ...rest, attachmentName: attachment.name } : rest);
   return {
     data,
     params: {
@@ -182,7 +238,12 @@ export function buildRequest(model: ModelId, request: unknown) {
         },
       ],
       messages: [
-        { role: 'user' as const, content: 'TASK AND CAMPAIGN CONTEXT:\n' + JSON.stringify(data) },
+        {
+          role: 'user' as const,
+          content: attachment
+            ? [attachmentBlock(attachment), { type: 'text' as const, text: task }]
+            : task,
+        },
       ],
       output_config: {
         effort: short ? ('low' as const) : ('medium' as const),
@@ -313,7 +374,9 @@ export async function generateCloud(
     const text = readMessage(message);
     return data.mode === 'ask'
       ? parseAnswer(text, data.context.wiki)
-      : parseMaterial(text, data.mode);
+      : data.mode === 'assist'
+        ? parseChanges(text)
+        : parseMaterial(text, data.mode);
   } catch (error) {
     throw new Error(explain(error));
   }
