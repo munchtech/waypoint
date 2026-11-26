@@ -613,6 +613,7 @@ export function applyUpdate(original: Campaign, p: UpdatePack, chosen: Set<strin
     const page: WikiPage = {
       related: old?.related,
       clock: old?.clock,
+      standing: old?.standing,
       ...x.page,
       sourceId: old?.sourceId || '',
       quote: old?.quote || '',

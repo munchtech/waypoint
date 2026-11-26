@@ -6,7 +6,8 @@ import assert from 'node:assert/strict';
 import { PackFolders } from '../desktop/packs';
 import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { cellCreatures, creatureByName, statLine } from '../lib/combat';
-import { memoryOf } from '../lib/memory';
+import { memoryOf, wikiPage } from '../lib/memory';
+import { shiftStanding, standingLabel, standingOf, standingText } from '../lib/standing';
 import { pageName } from '../lib/page-name';
 import { searchCampaign } from '../lib/campaign-search';
 import { applyUpdate, planUpdate, updatePackSchema } from '../lib/update-pack';
@@ -1490,6 +1491,39 @@ test('die tables and die lists roll, with the dice in a row rolled too', () => {
   // Its opening line does not end in a colon and there is no heading, so it takes the page's name.
   assert.equal(lootTable?.title, 'Loot');
   assert.equal(lootTable?.table.entries.length, 6);
+});
+test('faction standing moves along its scale and logs why', () => {
+  assert.equal(standingLabel(0), 'Neutral');
+  assert.equal(standingLabel(-3), 'Enemies');
+  assert.equal(standingLabel(9), 'Allied');
+  assert.equal(standingText(1), 'Friendly (+1)');
+  assert.equal(standingText(-2), 'Hostile (−2)');
+  const date = '2026-11-25T10:00:00.000Z';
+  let s = shiftStanding(
+    undefined,
+    { delta: 1, reason: '  They returned the bell ', sessionId: 's1' },
+    date,
+  );
+  assert.deepEqual(s, {
+    value: 1,
+    log: [{ delta: 1, value: 1, reason: 'They returned the bell', date, sessionId: 's1' }],
+  });
+  s = shiftStanding(s, { to: 3 }, date);
+  assert.equal(s.value, 3);
+  assert.equal(s.log[0].delta, 2);
+  // Already at the top: nothing moves, nothing is logged.
+  assert.equal(shiftStanding(s, { delta: 1 }, date), s);
+  s = shiftStanding(s, { delta: -9 }, date);
+  assert.equal(s.value, -3);
+  assert.equal(s.log[0].delta, -6);
+  for (let i = 0; i < 60; i++) s = shiftStanding(s, { delta: i % 2 ? -1 : 1 }, date);
+  assert.equal(s.log.length, 40);
+  // It saves with the page.
+  const c = structuredClone(installed);
+  const page = memoryOf(c).pages.find((p) => p.kind === 'Faction') || memoryOf(c).pages[0];
+  page.standing = shiftStanding(undefined, { delta: -1, reason: 'Spurned' }, date);
+  assert.ok(wikiPage.safeParse(page).success);
+  assert.equal(standingOf({}).value, 0);
 });
 // WAYPOINT_SITE_OUT=<file> also writes the player site from the installed campaign, as it should stand now.
 // Entries sent before their session was played are left out, so the file shows what the party should know right now.

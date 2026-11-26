@@ -7657,6 +7657,100 @@ input:focus {
     display: none !important;
   }
 }
+/* Faction standing: each faction's place from Enemies to Allied, the buttons that move it, and the last few reasons. */
+.faction-standing-panel h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.faction-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px 22px;
+}
+.faction {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 10px 0;
+  border-top: 1px solid light-dark(#e3e8dc, #2d363e);
+}
+.faction-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.standing-label {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+.standing-label.cold {
+  color: light-dark(#8a3b2e, #f0a597);
+}
+.standing-label.warm {
+  color: light-dark(#2f6b45, #9fd6ad);
+}
+.standing-label.even {
+  color: light-dark(#5d6a57, #a9b6a3);
+}
+.standing-scale {
+  display: flex;
+  gap: 4px;
+}
+.standing-scale i {
+  flex: 1;
+  height: 9px;
+  border-radius: 3px;
+  background: light-dark(#e6ecdc, #1e262d);
+}
+.standing-scale i.here.cold {
+  background: light-dark(#b0533f, #c66a55);
+}
+.standing-scale i.here.even {
+  background: light-dark(#7d8a76, #7d8a76);
+}
+.standing-scale i.here.warm {
+  background: light-dark(#3f8a58, #4f9a67);
+}
+.faction-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.faction-controls input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 5px 9px;
+  font-size: 13px;
+}
+.faction-controls .button {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  padding: 5px 8px;
+}
+.standing-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+  font-size: 12px;
+  color: light-dark(#4d5a47, #b9c5b3);
+}
+.standing-log b {
+  display: inline-block;
+  min-width: 18px;
+}
+.standing-log small {
+  color: light-dark(#6b7a62, #9fb092);
+}
 /* The campaign book: options in the hub, and the printed book itself, which only exists while it prints. */
 .campaign-book-panel h3 {
   display: flex;

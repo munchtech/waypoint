@@ -7,6 +7,7 @@ import {
   rosterSchema,
   wikiKinds,
 } from './playbook-schema';
+import { standingText } from './standing';
 
 export const pageKinds = [
   'NPC',
@@ -30,6 +31,23 @@ const revision = z.object({
 export const wikiPage = z.object({
   related: z.array(z.string()).optional(),
   clock: z.object({ progress: z.number().min(0).max(6), stakes: z.string() }).optional(),
+  // A faction's standing with the party, −3 (enemies) to +3 (allies), newest change first (lib/standing).
+  standing: z
+    .object({
+      value: z.number().int().min(-3).max(3),
+      log: z
+        .array(
+          z.object({
+            delta: z.number().int().min(-6).max(6),
+            value: z.number().int().min(-3).max(3),
+            reason: z.string().max(300),
+            date: z.string(),
+            sessionId: z.string().optional(),
+          }),
+        )
+        .max(40),
+    })
+    .optional(),
   id: z.string(),
   title: z.string().min(1),
   kind: z.enum(pageKinds),
@@ -345,6 +363,7 @@ export function memoryContext(c: Campaign, partyOnly = false, query = '', limit 
       source: p.sourceId,
       related: p.related || [],
       clock: p.clock,
+      standing: p.standing ? standingText(p.standing.value) : undefined,
     })),
     wikiSelection: {
       included: selected.length,

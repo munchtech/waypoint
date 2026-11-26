@@ -8,6 +8,7 @@ import { isDesktop } from '../lib/transport';
 import { plainPreview } from '../lib/plain-text';
 import { pageName } from '../lib/page-name';
 import { lootTemplate } from '../lib/roll-tables';
+import { standingText } from '../lib/standing';
 import { useEffect, useState } from 'react';
 import {
   BookOpen,
@@ -151,6 +152,8 @@ export default function CampaignMemory({
       const old = memory.pages.find((p) => p.id === draft.id);
       const page = {
         ...draft,
+        // Standing moves in the hub (Faction standing), so the saved page keeps its latest value, not the draft's copy.
+        standing: old?.standing,
         title: draft.title.trim(),
         updated: new Date().toISOString(),
         history: old
@@ -467,6 +470,7 @@ export default function CampaignMemory({
                   >
                     <span className="eyebrow">
                       {p.kind} · {p.status}
+                      {p.standing && ' · ' + standingText(p.standing.value)}
                     </span>
                     <h3>{pageName(p)}</h3>
                     <p>{plainPreview(p.body, 220)}</p>
