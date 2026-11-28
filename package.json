@@ -1,6 +1,6 @@
 {
   "name": "waypoint",
-  "version": "1.51.5",
+  "version": "1.51.6",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
