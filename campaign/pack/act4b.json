@@ -1735,6 +1735,151 @@
      ]
     }
    ]
+  },
+  {
+   "id": "s23-agents-in-the-column",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "They march inside Maudrin's column",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Court agents are not outside the Strike; they are part of it.",
+   "tells": "The party still works for the Court when the Court marches on the Tor.",
+   "readAloud": "Maudrin rides beside them under the grey banner. \"Stay close,\" she says. \"If this goes badly I want someone I trust near the Key.\"",
+   "response": "They are inside the column. They can open it for their allies, stand with Maudrin, or try to talk the column down. Reformers can ask the Wardens they have helped to stand aside: one squad for each reform won. Whatever they choose, tell the table it is their choice, and that every answer is a real story.",
+   "rules": "Opening the column: DC 14 Dexterity (Sleight of Hand), or DC 14 Charisma (Deception) to pass a false order. Success removes one Court squad from the Strike before initiative.",
+   "consequence": "The Strike is fought from inside. If they stand with her, Maudrin reaches the summit unhurt.",
+   "later": "S24: reformers with a full Reform clock get s24-reformed-court.",
+   "fallback": "If they can't decide, Maudrin keeps them close anyway. She trusts them.",
+   "keywords": "column, strike, inside, court agents, open the gate, wardens stand aside, march, maudrin, grey banner",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "agent",
+      "reformer"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s22-companies-and-the-chair",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The companies at the Tor argue about the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Every company that came to the Tor came for something, and the chair is the biggest something.",
+   "tells": "Three or more companies stand with the party, and the party backs a claimant.",
+   "readAloud": "Round the fires that night it isn't the battle they argue about. It's afterwards.",
+   "response": "Let each company's leader say who they want in the chair, and why. If the party's claimant can win the room, with a speech, a promise, or the claimant turning up in person, the companies back the claim together.",
+   "rules": "One speech: DC 14 Charisma (Persuasion); Advantage if the claimant speaks for themself.",
+   "consequence": "On a success the army behind the party backs their claimant.",
+   "later": "S28: s28-chair-seated.",
+   "fallback": "",
+   "keywords": "fires, companies, chair, claimant, speech, after the battle, army, who rules",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "open"
+     ]
+    },
+    {
+     "flag": "allies",
+     "min": 3
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-fleets",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Charter fleets send marines to the Tor",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "A Landing that holds under the party's Charter owes them.",
+   "tells": "The Seam is held when the party counts who comes.",
+   "readAloud": "They come up the Tor road in red coats and blue, out of step, singing a song nobody in Corvane knows.",
+   "response": "The Charter fleets send a company of marines. They have never seen a Hushman or a silence-stone and are badly frightened of both, which makes them brave in an odd way.",
+   "rules": "One ally company, like the others in the \"Who comes\" table.",
+   "consequence": "One more ally at the Strike.",
+   "later": "S28: the fleets' captains want a say when the chair is decided.",
+   "fallback": "",
+   "keywords": "fleets, marines, ally, sword coast, charter, red coats, who comes, foreign",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "held"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s23-fleet-marines",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Foreign marines march with the Court",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The Court bought soldiers at the Landing.",
+   "tells": "The Seam is lost when the Court marches.",
+   "readAloud": "Among the grey coats there are red ones, and a sergeant shouting orders in Common with a Waterdeep accent.",
+   "response": "Add a marine company to the Court's side. They are paid, not loyal: if the party shows them the Court lied to them, or simply pays more, they stop fighting.",
+   "rules": "Add six marines (Guards) and a marine captain (Veteran) to the Strike, and work out the new budget in Foresight. DC 15 Charisma (Persuasion or Intimidation) on the captain ends their part.",
+   "consequence": "The Strike is harder, unless the marines are turned.",
+   "later": "",
+   "fallback": "",
+   "keywords": "marines, foreign, waterdeep, mercenaries, court, strike, red coats, hired",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "lost"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s22-ally-sleepers",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The sleepers of the Sleeping Hall walk to the Tor",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Four hundred years of listeners, and the Hush has asked them to get up for its sworn.",
+   "tells": "The party is sworn to the Sleeping Hall when it counts who comes.",
+   "readAloud": "They come down the road in nightgowns and old-fashioned coats, barefoot, holding hands, perfectly calm. Brother Lull is at the back with the blankets.",
+   "response": "The sleepers do not fight. Hushmen near them grow drowsy, and the silence-stones go quiet in their company. They walk where they are asked and stand between the party and harm.",
+   "rules": "One ally company. Within 30 feet of the sleepers, a Hushman Warden's stone stops working.",
+   "consequence": "One more ally at the Strike, and a strange one.",
+   "later": "S27: if the lullaby is sung, they go home and wake.",
+   "fallback": "",
+   "keywords": "sleepers, sleeping hall, ally, walk, nightgowns, brother lull, who comes, barefoot",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
   }
  ],
  "briefs": [

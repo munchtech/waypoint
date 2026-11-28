@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.18) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.19) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -179,12 +179,13 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.18',
-  summary: `Revision 7.18 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.17 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.19',
+  summary: `Revision 7.19 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.18 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **Reshape the campaign (7.19).** Work for or reform the Court, back a claimant for the empty chair, open the Seam (the Far Shore ending), or swear to the Hush (the Dreamer's Sleep).
 - **Quick wins (7.18).** Faction clocks act at 6 (the Court's at 6, 12 and 18); a magic item per act and a gear shop; Act I debts return in Sessions 22 and 23; Isolde can come early in Session 12; the second Act IV bell is worse for the wait.
 - **Plain speech (7.17).** Guides, plays, the player wiki and handouts reworded to say each thing once, plainly; no rules change.
-- **Pop-outs (7.16).** Wiki pages for the seven bells, the four endings, the campaign's own words (Ringer, Tithe…), the Mere and seventeen people; names in plans open their pages; Encounter Lists match the Combat tab.
+- **Pop-outs (7.16).** Wiki pages for the seven bells, the endings, the campaign's own words (Ringer, Tithe…), the Mere and seventeen people; names in plans open their pages; Encounter Lists match the Combat tab.
 - **Run Acts II to V from the page (7.9 to 7.15).** Sessions 4 to 30 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
 - **Words ready for every NPC (7.12).** Each NPC page gains a first look to read aloud and lines to say, one of them for stuck players; the Old Shore and Strangers' Row gain read-aloud text.
 - **One story, one set of numbers (7.10, 7.11).** Plans match the play cards; Vaer's dawn lasts a year; the Toll, Bargain and Tithe cards show Waypoint's counts.
@@ -192,12 +193,12 @@ const result = {
 - **Know who is in the room (7.7).** Sessions 1 to 3 gain **Key people tonight**, **Places at a glance** and a d6 rumour table; session zero gains optional **Table jobs**.
 - **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll.
 - **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a table card; every "If they…" option is a button that opens its play; session zero becomes a full guide (World wiki → 1.4).
-- **Tongues are now Hearts.** The bells' clappers are called Hearts (Ossa's Heart, the Heart-Hound). One review item renames the word in your own wiki pages, session notes and saved cards too; your chronicle keeps its words.
+- **Tongues are now Hearts** (Ossa's Heart, the Heart-Hound). One review item renames the word in your wiki pages, notes and saved cards; the chronicle keeps its words.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for the level each chapter expects.
-- **The finale.** Acts IV and V have full sets of prepared plays, and every ending can be reached and recorded: the Hush Shrine, Oum's waking, and the table's own choice to stop resisting. A new stat block for Maudrin as Keeper of the Seventh (CR 12, legendary actions).
+- **The finale.** Acts IV and V have full sets of prepared plays, and every ending can be reached and recorded. Maudrin as Keeper of the Seventh (CR 12, legendary actions).
 - **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them, so Waypoint can bring them back in your prep brief.
-- **Fixes from a full audit:** timeline slips (the Stilled have been frozen since 2 SS), state that the fiction hadn't earned, 2024 rulings for the spells a level 3 to 11 party has, and stat block arithmetic.
-- **A player site.** The handouts, the painted map and a player wiki, written as one site.html you upload. Prepared player-safe wiki entries wait in Waypoint until you press **Send to wiki**; the wiki reads "Unlocks as you discover" until then.
+- **Fixes from a full audit:** timeline slips, unearned state, 2024 rulings for the party's spells, and stat block arithmetic.
+- **A player site.** The handouts, the painted map and a player wiki in one site.html you upload. Prepared wiki entries wait in Waypoint until you press **Send to wiki**.
 - **Corvane in the Realms,** as in revision 6: the Stormwall and the Seam, Pellmoor Landing as a port, memory as money.
 - **Foresight playbook.** ${playCount} prepared plays across ${sessionCount} chapters and ${anytime.length} anytime plays; ${flags.length} tracked world-state facts; ${briefOut.length} session prep briefs; ${encounters.length} encounters; ${statblocks.length} Corvane stat blocks built on the 2024 Monster Manual; and an ending forecast.
 
@@ -213,7 +214,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.18',
+    version: '7.19',
     flags,
     anytime,
     encounters,

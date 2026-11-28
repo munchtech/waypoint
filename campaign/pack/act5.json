@@ -702,7 +702,7 @@
    "why": "With Maudrin gone or beaten, the Court, the Dawn Order and the Ironhorn all move.",
    "tells": "Players ask what happens in Hallowmere.",
    "readAloud": "Hallowmere’s terraces are full of people looking up, waiting to be told who speaks for them now.",
-   "response": "Rook (if she won the duel and lives) leads a restored Dawn Order; Tristan Vesk wants the Chancellor's chair; Kessa, if alive, wants the Tithe-taxes ended on the steppe. The party's allies and promises decide who gets the party's backing. Close on: \"Who will rule the Ninefold Shore?\"",
+   "response": "Rook (if she won the duel and lives) leads a restored Dawn Order; Tristan Vesk wants the Chancellor's chair; Kessa, if alive, wants the Tithe-taxes ended on the steppe. The party's allies and promises decide who gets the party's backing. Close on: \"Who will rule the Ninefold Shore?\" If the party backs a claimant, run s28-chair-seated (Claim clock full) or s28-chair-contested instead.",
    "rules": "",
    "consequence": "The Ninefold Shore has new rulers, chosen with the party’s weight behind someone.",
    "later": "",
@@ -2418,6 +2418,347 @@
    "keywords": "stairs, ally, paid",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [],
+   "effects": []
+  },
+  {
+   "id": "s24-reformed-court",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Maudrin offers the Reformed Court",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "With the Reform clock full, the Court has already changed. Her Final Offer changes with it.",
+   "tells": "The Reform clock is full and Maudrin reaches the summit.",
+   "readAloud": "\"I have read every reform you made me sign,\" Maudrin says. \"I kept them all. So: no more Tithes, the jars go home, and I go down the stairs with you instead of sealing them. If it must be a name, let it be mine.\"",
+   "response": "This replaces the Empty Choir deal. She ends the Tithe for good, sends the jars home, and offers to go down with the party and be the Seventh's voice (s24-maudrin-as-voice), which counts for the Concord if all six bells are rung and the party holds the Key. Resistance does not end; they go down as allies. They can still refuse, and she won't fight them over it.",
+   "rules": "No roll. Insight shows she means it.",
+   "consequence": "The Tithe ends, the jars go home, and Maudrin goes to the Shrine as an ally.",
+   "later": "S25: she walks the Stairs with them. S28: a reformed Maudrin can keep the chair (any-back-reformed-maudrin).",
+   "fallback": "If the table distrusts her, she lets a party member carry the Key. She agrees at once.",
+   "keywords": "reformed court, final offer, maudrin, voice, tithe ends, jars home, ally, summit, alliance",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "reformer"
+     ]
+    },
+    {
+     "flag": "clock_reform",
+     "min": 6
+    },
+    {
+     "flag": "maudrin",
+     "in": [
+      "summit"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "jars",
+     "set": "returned"
+    },
+    {
+     "flag": "maudrin_favor",
+     "set": "repaid"
+    }
+   ]
+  },
+  {
+   "id": "s28-chair-seated",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "The shore seats their claimant",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The party built this claim over the campaign. Now it pays.",
+   "tells": "The Claim clock is full when the epilogue reaches the empty chair.",
+   "readAloud": "Nobody votes. They look at the chair, and then at your candidate, and somebody starts to clap.",
+   "response": "Run this instead of the open question in s28-who-rules. The claimant takes the chair, and each backer collects its promise in one line. Ask the claimant (or the player, if it is one of the party) for their first act. Then ask each player what their character does on the first day of the new rule.",
+   "rules": "",
+   "consequence": "The Ninefold Shore has the ruler the party chose.",
+   "later": "The epilogue says which promises were kept.",
+   "fallback": "If the claimant is dead, their strongest backer takes the chair in their name.",
+   "keywords": "chair, seated, ruler, crowned, new rule, epilogue, who rules, first act, coronation",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "open"
+     ]
+    },
+    {
+     "flag": "clock_claim",
+     "min": 6
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-chair-contested",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "The chair is still contested",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A claim that never won enough backers leaves the shore to decide.",
+   "tells": "The party backs a claimant, but the Claim clock is not full.",
+   "readAloud": "Three people are standing near the chair, and none of them is sitting down.",
+   "response": "Their claimant is one of the three; the strongest rivals are the others. Run s28-who-rules as a last argument on the terraces, where every backer the party won gets one line. If the party wins the room, their claimant sits. If not, the shore picks someone else, and the epilogue says who.",
+   "rules": "Group Charisma (Persuasion), DC 15, with Advantage if they won at least two backers.",
+   "consequence": "The chair is decided, for or against the party's claimant.",
+   "later": "",
+   "fallback": "",
+   "keywords": "chair, contested, argument, terraces, rivals, vote, who rules, epilogue",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "open"
+     ]
+    },
+    {
+     "flag": "clock_claim",
+     "max": 5
+    },
+    {
+     "flag": "resistance",
+     "in": [
+      "active"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s28-far-shore",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "The Far Shore",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "They chose the open sea. The epilogue happens on deck.",
+   "tells": "The party sailed out through the Seam.",
+   "readAloud": "Behind you the Stormwall closes like a curtain. Ahead there is nothing but grey water, and then, on the fortieth morning, a gull.",
+   "response": "Run the epilogue round at sea, then on a strange dock in Waterdeep or Baldur's Gate. Each player says what their character does with their first day in a world that has never heard of the bells, and what they miss. Then read one line for Corvane: who holds the Key, what the Court does, and the Hush, still humming. If Ila came, she asks her question one last time.",
+   "rules": "",
+   "consequence": "The campaign ends in the Realms.",
+   "later": "",
+   "fallback": "",
+   "keywords": "far shore, epilogue, sea, waterdeep, baldurs gate, new world, gull, leaving, ending",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "left"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s25-hear-the-hush",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "They come to hear the Hush",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Hush asks whether they are coming to hear it or to stop it. \"To hear it\" is an answer.",
+   "tells": "Someone answers the Hush: \"To hear it.\"",
+   "readAloud": "\"Oh,\" it says, in your own voice, and it sounds so glad. \"Nobody ever says that. Sit down. Let me tell you about it.\"",
+   "response": "The Hush tells them plainly what it is: Ysh's lullaby, singing Oum to sleep for four hundred years. It tells them what it wants: to be let sleep, and to let Oum sleep. Oum is tired. Oum likes this dream, and waking would end it. It asks them to promise nothing. If they want to keep the Dreamer's sleep, they can swear at the bell (s26-swear-to-the-hush).",
+   "rules": "No roll.",
+   "consequence": "The party is listening to the Hush. The Dreamer's Sleep can open at the bell.",
+   "later": "S26: s26-swear-to-the-hush.",
+   "fallback": "If only one person answers \"to hear it\", the Hush talks to them alone, and the others hear their own voice talking in the dark.",
+   "keywords": "hear it, hush, listen, lullaby, oum, stairs, what are you, sit down, to hear it",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "hush_side",
+     "set": "listening"
+    }
+   ]
+  },
+  {
+   "id": "s25-the-hush-knows-them",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "The Hush knows its sworn on the Stairs",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The Stairs ask everyone for memories. They are gentler with the Hush's own.",
+   "tells": "Sworn characters go down the Stairs of the Hush.",
+   "readAloud": "The first step says your name, the way it was said to you when you were small. \"There you are,\" it says. \"Come down.\"",
+   "response": "Sworn characters have Advantage on every check on the Stairs, and the memories they give come back to them at the bottom, folded like washing. The others still pay. The Hush asks the party what they will do at the bell, and it already knows that some of them aren't sure.",
+   "rules": "Advantage on Stairs checks for sworn characters.",
+   "consequence": "The descent is kinder to the sworn.",
+   "later": "S27: s27-sing-the-lullaby.",
+   "fallback": "",
+   "keywords": "stairs, sworn, hush, memories, descend, name, gentle, come down",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s26-swear-to-the-hush",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "They swear to keep the Dreamer's sleep",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Having heard the Hush, they can choose its side here, at the bell.",
+   "tells": "The party listened to the Hush on the Stairs and stands at Ysh.",
+   "readAloud": "The bell is silent and enormous, and the Hush is all around it like breath. \"You don't have to,\" it says. \"But if you would like to, I would like it too.\"",
+   "response": "The same oath as in the Sleeping Hall: \"I will keep the Dreamer's sleep.\" Ask each player separately; one is enough. If the Cult is still feeding the Hush, the Hush asks them to stop it first, and Mother Lumen, if she came down the Stairs, agrees at once.",
+   "rules": "No roll.",
+   "consequence": "The party is sworn. The Dreamer's Sleep opens if the feeding has stopped and they hold the Key.",
+   "later": "S27: s27-sing-the-lullaby.",
+   "fallback": "",
+   "keywords": "swear, oath, dreamer, hush, bell, ysh, keep it asleep, promise, sworn",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "listening"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "hush_side",
+     "set": "sworn"
+    }
+   ]
+  },
+  {
+   "id": "s26-break-the-oath",
+   "sessionId": "sb-2fce596a41a06436",
+   "title": "They break their oath to the Hush",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Sworn characters may still decide to strike, seal or ring for the Concord.",
+   "tells": "Sworn characters choose another ending at the bell.",
+   "readAloud": "\"That's all right,\" the Hush says. It says that to anything. It sounds a little sad.",
+   "response": "They can. The Hush does not fight. Tell the sworn player it is their choice and the Hush bears no grudge.",
+   "rules": "",
+   "consequence": "The oath is broken and the Dreamer's Sleep closes.",
+   "later": "",
+   "fallback": "",
+   "keywords": "break the oath, betray, hush, strike, seal, concord, sworn, change mind",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "hush_side",
+     "set": "broken"
+    }
+   ]
+  },
+  {
+   "id": "s27-sing-the-lullaby",
+   "sessionId": "sb-b2b43775bb66b9c5",
+   "title": "They sing the Dreamer's lullaby",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Sworn to the Hush, holding the Key, with the feeding stopped, they can choose the Dreamer's sleep for the Dreamer's sake.",
+   "tells": "The party is sworn, holds the Key, the Cult has stopped feeding, and Ysh is unstruck.",
+   "readAloud": "You lay the Key in the Hush the way you would lay a blanket on a sleeping child. It doesn't sink. It is taken. Then the Hush starts to sing, and it isn't tired at all, and you find you know the words.",
+   "response": "This is the Dreamer's Sleep ending. Ask the table first; it is their choice and nobody else's. Ysh is never struck, and the Key is gone into the Hush, so nobody can wake Oum again. The stolen dreams come home to everyone the Cult took them from, and the Sleeping Hall's sleepers wake and climb the Stairs. Then ask, in private: does anyone stay below to sing with the Hush? A sworn character, Mother Lumen, or nobody (the Hush will manage). Accept any answer, including no.",
+   "rules": "No roll. The singing takes as long as the table wants.",
+   "consequence": "Oum sleeps on, by choice. The dreams come home. What was rung stays rung, and nothing else is mended.",
+   "later": "S28: s28-dreamers-sleep.",
+   "fallback": "If anyone at the table is unsure, wait. Nothing at the bell is in a hurry.",
+   "keywords": "lullaby, sing, dreamers sleep, oum, keep it asleep, hush, key, ending, sworn, sleep",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    },
+    {
+     "flag": "key",
+     "in": [
+      "party"
+     ]
+    },
+    {
+     "flag": "cult",
+     "in": [
+      "ceased"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "lullaby",
+     "set": "sung"
+    },
+    {
+     "flag": "key",
+     "set": "spent"
+    },
+    {
+     "flag": "dreams",
+     "set": "returned"
+    }
+   ]
+  },
+  {
+   "id": "s28-dreamers-sleep",
+   "sessionId": "sb-5c4fc37d597122e9",
+   "title": "The Dreamer's Sleep",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "They kept the Dreamer's sleep. The epilogue is the morning after, which comes softly.",
+   "tells": "The lullaby was sung.",
+   "readAloud": "Everyone on the Ninefold Shore wakes that morning from the best dream of their life. Nobody can remember it, and nobody minds.",
+   "response": "Run the epilogue round. The sleepers of the Sleeping Hall go looking for families four hundred years gone; the Cult keeps the Hall as an inn for tired people. Each player says what their character dreams, now that dreams are back. Whoever stayed below to sing gets the last line: what Oum is dreaming tonight. The Court, the bells and the chair go on as the flags say. The world was kept, not mended.",
+   "rules": "",
+   "consequence": "The campaign ends with the world still dreaming.",
+   "later": "",
+   "fallback": "",
+   "keywords": "dreamers sleep, epilogue, morning, dreams, sleepers, inn, oum, lullaby, ending",
+   "when": [
+    {
+     "flag": "lullaby",
+     "in": [
+      "sung"
+     ]
+    }
+   ],
    "effects": []
   }
  ],

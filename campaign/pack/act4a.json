@@ -2427,6 +2427,72 @@
      "add": 2
     }
    ]
+  },
+  {
+   "id": "s17b-take-the-oath",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "They take the oath of the Sleeping Hall",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Cult is right about the danger. A party that agrees can join it, and change it from inside.",
+   "tells": "The party says the Cult has a point, or asks Mother Lumen how one joins.",
+   "readAloud": "Mother Lumen takes both your hands. \"We only promise one thing. Let it sleep. Not for us. For it. It's so tired, dear. Will you promise?\"",
+   "response": "The oath is one sentence: \"I will keep the Dreamer's sleep.\" Joining costs no dream (the rest is a separate offer), and anyone may say no. Sworn characters are welcome in the Sleeping Hall, hear the Hush in their dreams (any-hush-speaks), and can stop the feeding from inside (s17b-sworn-stop-the-feeding). Tell the table plainly that this is a real side to be on, with its own ending.",
+   "rules": "No roll. Lumen asks each person separately; one sworn character is enough for the party to count as sworn.",
+   "consequence": "The party is sworn to the Sleeping Hall. The Dreamer's Sleep ending can open.",
+   "later": "S22: s22-ally-sleepers. S25: s25-the-hush-knows-them. S27: s27-sing-the-lullaby.",
+   "fallback": "If they want to think it over, Lumen says the door is never locked. The oath can also be taken at the bell (s26-swear-to-the-hush).",
+   "keywords": "oath, join the cult, sleeping hall, mother lumen, hush cult, promise, swear, keep it asleep, join, dreamer",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "hush_side",
+     "set": "sworn"
+    }
+   ]
+  },
+  {
+   "id": "s17b-sworn-stop-the-feeding",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "Sworn, they stop the Cult feeding the Hush",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Cult listens to its own more readily than to strangers.",
+   "tells": "Sworn characters learn that the dreams are what is tiring the Hush.",
+   "readAloud": "Mother Lumen hears it from her own, kneeling at her own fire, and believes it at once. \"Oh,\" she says. \"Oh, we've been putting stones in its pockets.\"",
+   "response": "Like s17b-talk-cult, but from inside: no evidence needed, and Lumen gives her own dreams back first. The Cult stops feeding the Hush. The dreams it already took stay in the Hush until the end of the campaign.",
+   "rules": "No roll for sworn characters.",
+   "consequence": "The Cult stops feeding the Hush and follows the party's lead.",
+   "later": "S22: the Cult comes to the Tor (s22-ally-cult). The Dreamer's Sleep needs the feeding stopped.",
+   "fallback": "",
+   "keywords": "stop feeding, dreams, mother lumen, cult, stones in its pockets, sworn, from inside, persuade",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    },
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "cult",
+     "set": "ceased"
+    }
+   ]
   }
  ],
  "briefs": [

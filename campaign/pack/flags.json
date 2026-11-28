@@ -124,7 +124,7 @@
     "label": "Concord tuning complete"
    }
   ],
-  "help": "The Hush Shrine under Vael Tor. Every ending begins here."
+  "help": "The Hush Shrine under Vael Tor. Every ending but the Far Shore begins here."
  },
  {
   "id": "shrine",
@@ -141,7 +141,7 @@
     "label": "Reached by the party"
    }
   ],
-  "help": "Set when the party comes down the Stairs of the Hush (S25). Every ending needs someone at the shrine."
+  "help": "Set when the party comes down the Stairs of the Hush (S25). Every ending but the Far Shore needs someone at the shrine."
  },
  {
   "id": "oum",
@@ -1371,5 +1371,192 @@
    {"id": "destroyed", "label": "Smashed or burned"},
    {"id": "returned", "label": "Returned to their owners"}
   ]
+ },
+ {
+  "id": "court_path",
+  "group": "People",
+  "label": "Working for the Court",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "Not the Court's"
+   },
+   {
+    "id": "agent",
+    "label": "Court agents"
+   },
+   {
+    "id": "reformer",
+    "label": "Reforming the Court from inside"
+   },
+   {
+    "id": "turned",
+    "label": "Turned on the Court"
+   }
+  ],
+  "help": "Set when a party that owes Maudrin the Session 4 favor takes her commission (any-court-commission). Agents carry her writ; reformers have won at least one reform (the Reform clock); turned means they used the writ against her. While they work for her, tick the Court Clock only when they are caught working against the Court."
+ },
+ {
+  "id": "clock_reform",
+  "group": "Clocks",
+  "label": "Reform clock",
+  "initial": 0,
+  "max": 6,
+  "help": "One tick for each reform Court agents win from inside: a Tithe ended, a Ringer pardoned, jars sent home.",
+  "thresholds": [
+   {
+    "at": 3,
+    "text": "Maudrin asks them what they want the Court to be, and ends one Tithe everywhere."
+   },
+   {
+    "at": 6,
+    "text": "The Reformed Court: at the summit her Final Offer becomes an alliance, and she can be the Seventh's voice."
+   }
+  ]
+ },
+ {
+  "id": "chair",
+  "group": "People",
+  "label": "The empty chair",
+  "initial": "open",
+  "options": [
+   {
+    "id": "open",
+    "label": "No claimant backed"
+   },
+   {
+    "id": "rook",
+    "label": "Captain Rook"
+   },
+   {
+    "id": "tristan",
+    "label": "Tristan Vesk"
+   },
+   {
+    "id": "kessa",
+    "label": "Thane Kessa"
+   },
+   {
+    "id": "party",
+    "label": "One of the party"
+   },
+   {
+    "id": "bench",
+    "label": "The Blanks' bench"
+   },
+   {
+    "id": "maudrin",
+    "label": "Maudrin, reformed"
+   }
+  ],
+  "help": "The claimant the party backs to rule the Ninefold Shore after Maudrin. They may switch: take two ticks off the Claim clock when they do. Session 28 seats the claimant if the Claim clock is full."
+ },
+ {
+  "id": "clock_claim",
+  "group": "Clocks",
+  "label": "Claim clock",
+  "initial": 0,
+  "max": 6,
+  "help": "One tick for each faction or company that backs the party's claimant for a promise. A broken promise takes its tick back.",
+  "thresholds": [
+   {
+    "at": 3,
+    "text": "A rival strikes at the claimant: a scandal, a bribe or an attempt on their life."
+   },
+   {
+    "at": 6,
+    "text": "The shore will seat the claimant in Session 28 without a vote."
+   }
+  ]
+ },
+ {
+  "id": "seam",
+  "group": "Pellmoor and the Seam",
+  "label": "The Seam",
+  "initial": "narrow",
+  "options": [
+   {
+    "id": "narrow",
+    "label": "A pilots' channel"
+   },
+   {
+    "id": "wide",
+    "label": "Wide: the fleets are coming"
+   },
+   {
+    "id": "held",
+    "label": "Held under the Pellmoor Charter"
+   },
+   {
+    "id": "lost",
+    "label": "Lost to the fleets and the Court"
+   },
+   {
+    "id": "left",
+    "label": "The party sailed out for good"
+   }
+  ],
+  "help": "Widens once Thrane is rung (any-seam-widens). Then Pellmoor is a front: write the Charter, or the Seam clock runs to 6 and the Landing falls. Left is the Far Shore ending."
+ },
+ {
+  "id": "clock_seam",
+  "group": "Clocks",
+  "label": "Seam clock",
+  "initial": 0,
+  "max": 6,
+  "help": "One tick when the Seam widens, and one for each fleet that lands without a Charter. Once the Seam is held it stops.",
+  "thresholds": [
+   {
+    "at": 3,
+    "text": "The Court bargains with the fleets for marines."
+   },
+   {
+    "at": 6,
+    "text": "The Landing falls: foreign marines and the Court hold Pellmoor, and the Seam is lost."
+   }
+  ]
+ },
+ {
+  "id": "hush_side",
+  "group": "People",
+  "label": "The Hush's side",
+  "initial": "none",
+  "options": [
+   {
+    "id": "none",
+    "label": "Not sworn"
+   },
+   {
+    "id": "listening",
+    "label": "Listening to the Hush"
+   },
+   {
+    "id": "sworn",
+    "label": "Sworn to keep the Dreamer's sleep"
+   },
+   {
+    "id": "broken",
+    "label": "Broke the oath"
+   }
+  ],
+  "help": "Sworn with Mother Lumen in the Sleeping Hall (S17B), or at the bell after answering the Hush \"to hear it\" on the Stairs (S25, S26). Sworn opens the Dreamer's Sleep."
+ },
+ {
+  "id": "lullaby",
+  "group": "Bells",
+  "label": "The Dreamer's lullaby",
+  "initial": "unsung",
+  "options": [
+   {
+    "id": "unsung",
+    "label": "Not sung"
+   },
+   {
+    "id": "sung",
+    "label": "Sung: Oum sleeps on, by choice"
+   }
+  ],
+  "help": "Only the Dreamer's Sleep sets it (s27-sing-the-lullaby)."
  }
 ]

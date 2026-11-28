@@ -374,7 +374,7 @@
    "why": "In v6 there is a whole world beyond the Stormwall, and ships leave every week in season (Situation 17).",
    "tells": "Players ask about ships home, the Seam, or Faerûnian help.",
    "readAloud": "\"There is a world beyond the Stormwall, and ships sail to it from Pellmoor every week in season. Six weeks to the Sword Coast. Is that where you want to go?\"",
-   "response": "Let them if they insist. Leaving pauses the plot: advance the Court clock by two and the Ferry clock by one for each month away, and send news of what the Court did. A writ of departure is needed to board legally; Brannagh's pilots can arrange otherwise. They may bring Faerunian help back (Harpers, a Lords' Alliance envoy, a Dawn Mission delegation); it arrives as an Act IV ally (s22-ally-stormborn).",
+   "response": "Let them if they insist. Leaving pauses the plot: advance the Court clock by two and the Ferry clock by one for each month away, and send news of what the Court did. A writ of departure is needed to board legally; Brannagh's pilots can arrange otherwise. They may bring Faerunian help back (Harpers, a Lords' Alliance envoy, a Dawn Mission delegation); it arrives as an Act IV ally (s22-ally-stormborn). Once the Seam is wide (Thrane rung), leaving for good with whoever will come is the Far Shore ending: run any-sail-out.",
    "rules": "",
    "consequence": "The campaign pauses for weeks of travel.",
    "later": "Faerûnian allies join the S22 ally roster as the Stormborn. The Court's clocks will have moved.",
@@ -1563,6 +1563,794 @@
    "later": "What the Coster sells, it pays for with Tithed memories: buying from Venn funds the export trade (Landing Clock +1).",
    "fallback": "",
    "keywords": "buy, shop, gear, magic item, potion, weapon, armour, armor, smith, trade keeps, strangers' row"
+  },
+  {
+   "id": "any-court-commission",
+   "title": "Maudrin offers them a commission",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "A party that took her bargain is useful to her. She would rather employ them than watch them.",
+   "tells": "They owe Maudrin the Session 4 favor, and they meet her or one of her clerks, or ask what else she can offer.",
+   "readAloud": "\"You have done the Court a kindness, and I remember kindnesses. Carry my writ. Go where you were going anyway, and tell me what you find. The Court has more doors than you think, and some of them want opening from the inside.\"",
+   "response": "She offers a Chancellery commission: a writ that opens Court doors, the pension she already promised, and one condition, a report to her each month. It is a real job, and taking it is allowed; say so. If they accept they are Court agents: the errand, reform and turning plays open, and at the Strike they march inside her column. If they refuse, nothing is lost and the favor stands as it was.",
+   "rules": "The writ: Advantage on Charisma checks with Court officers, Hushmen and Reckoners while it is honoured. A Hushman Sergeant can ask to see it at any checkpoint.",
+   "consequence": "If they accept, they are Court agents. While they are, tick the Court Clock only when they are caught working against the Court.",
+   "later": "Every session: any-court-errand and any-reform-from-inside. S23: s23-agents-in-the-column. S24: with the Reform clock full, s24-reformed-court.",
+   "fallback": "If they want time, she says the offer stands until the next Tithe. Run it again whenever they say yes.",
+   "keywords": "commission, writ, court agent, work for the court, join the court, maudrin, chancellery, pension, spy, employ",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "owed",
+      "repaid"
+     ]
+    },
+    {
+     "flag": "court_path",
+     "in": [
+      "none"
+     ]
+    },
+    {
+     "flag": "court_eye",
+     "not": [
+      "enemy"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "court_path",
+     "set": "agent"
+    }
+   ]
+  },
+  {
+   "id": "any-court-errand",
+   "title": "Maudrin sends her agents on an errand",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Court agents get orders. The best orders point where the party was going anyway.",
+   "tells": "The party is working for the Court and a new session begins, or they report to her.",
+   "readAloud": "The letter comes under the grey seal, folded small: \"A Tongue is moving in the place you are going. Bring it to the Chancellery, or bring me the name of whoever has it. A Warden will meet you at the gate. Be kind to her; she is new.\"",
+   "response": "Pick the errand from what this session is already about: fetch the next Tongue for the Court, find a Ringer, or count a district's jars. A Warden minder goes with them (use Isolde if she is following them). They can do it, fudge it, or use the writ to do something kinder. Bending an order toward someone they protect is how reform starts: offer any-reform-from-inside.",
+   "rules": "A report that hides something: Charisma (Deception) against Maudrin's Insight (+7). A failure ticks the Court Clock, and she says, mildly, \"Try again.\"",
+   "consequence": "Doing it as asked keeps her trust. A Tongue they hand over goes to the Court: record it on that Tongue's flag.",
+   "later": "Each errand is a chance to reform (any-reform-from-inside) or to turn (any-turn-on-the-court).",
+   "fallback": "If the errand would break the session, make it small: a name, a count, a letter delivered.",
+   "keywords": "errand, orders, report, court agent, warden, minder, letter, grey seal, mission, assignment",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "agent",
+      "reformer"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-reform-from-inside",
+   "title": "They push a reform through the Court",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "From inside, a writ and a good argument can change a rule that a sword never could.",
+   "tells": "Court agents ask for something kinder than their orders, or argue with a Court officer.",
+   "readAloud": "\"It is not that I disagree,\" the Reckoner says, turning the writ over. \"It is that nobody has ever asked.\" He dips his pen.",
+   "response": "They pick one reform and argue for it with an officer who can sign it: end the Tithe in one district, pardon a Ringer under a Silence Warrant, send one village's jars home, give the Blanks a hearing, close a silence-stone pit, or open the Tithe-Ledger to the people named in it. Each reform won ticks the Reform clock. Show it in the world next session: a family with its memories back, a bell-house with its doors open.",
+   "rules": "DC 15 Charisma (Persuasion) with the officer; Advantage with evidence or the writ. A failure costs only time. A second failure on the same reform ticks the Court Clock: somebody noticed.",
+   "consequence": "One reform is real. The party is reforming the Court from inside.",
+   "later": "Reform clock 3: any-reform-maudrin-listens. Reform clock 6: s24-reformed-court at the summit.",
+   "fallback": "If they don't know what to ask for, a clerk asks them: \"Is there something you would change, if you could?\"",
+   "keywords": "reform, change the court, pardon, end the tithe, from inside, petition, writ, reckoner, law, jars home",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "agent",
+      "reformer"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "court_path",
+     "set": "reformer"
+    },
+    {
+     "flag": "clock_reform",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-reform-maudrin-listens",
+   "title": "Maudrin asks her agents what they want (Reform clock 3)",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Three reforms in, Maudrin has noticed, and she is curious rather than angry.",
+   "tells": "The Reform clock reaches 3.",
+   "readAloud": "She has tea brought, and does not drink it. \"Three times now you have made my Court kinder without asking me. I would like you to ask me. What do you want the Court to be?\"",
+   "response": "This is the real conversation with her. Let them argue for what the Court should become. She ends one Tithe everywhere (they name which), and she tells them the truth of the stones: the silence-stones and the Hushmen's gloves are tuned to the Key's hum, which is why she has never sealed it. She will not give up the Key, she says, but she might give up the Court. If they ask, she names the officer who argued hardest against their reforms: an enemy inside.",
+   "rules": "",
+   "consequence": "One Tithe ends everywhere. The party knows why she keeps the Key, and has a named enemy in the Court.",
+   "later": "S24: at Reform clock 6 she offers the Reformed Court (s24-reformed-court). The empty chair: they can back her (any-back-reformed-maudrin).",
+   "fallback": "If they will not talk to her, the ended Tithe arrives as a printed notice with no letter.",
+   "keywords": "maudrin, tea, reform, what do you want, tithe ends, stones, key hum, conversation, chancellor",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "reformer"
+     ]
+    },
+    {
+     "flag": "clock_reform",
+     "min": 3
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-court-agents-found-out",
+   "title": "A friend finds out they work for the Court",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Working for the Court costs trust with everyone the Court has hurt.",
+   "tells": "Court agents meet Ila, Rook, Kessa, the Blanks or anyone the Tithe has touched, with the writ on them.",
+   "readAloud": "Ila sees the grey seal on the writ before anyone can fold it away. \"Oh,\" she says. \"Oh, I see.\"",
+   "response": "Pick the friend this hurts most. Let them be angry, and let the party explain. A reform already won counts for a lot: with one, the friend listens; with none, the friend walks away until the party proves itself. Don't make it a check. Let the table talk.",
+   "rules": "",
+   "consequence": "If the friend walks away, their company won't come in S22 until the party mends it.",
+   "later": "S22: the friend's company comes only if things were mended.",
+   "fallback": "If they hide the writ well, someone else tells the friend.",
+   "keywords": "found out, writ, betrayal, trust, ila, rook, kessa, court agent, explain, grey seal",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "agent",
+      "reformer"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-turn-on-the-court",
+   "title": "They use the writ against the Court",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "A writ opens doors. Some of those doors have the Key behind them.",
+   "tells": "Court agents plan to steal from the palace, free prisoners or warn a Ringer.",
+   "readAloud": "The Warden at the door reads the writ twice, salutes, and stands aside. Behind her the corridor runs all the way to the Chancellery vault.",
+   "response": "The writ gets them into one place nobody else could reach: the palace vault, the Silence Warrant cells or the Tithe archive. Run it as a heist with the front door already open. Afterwards the writ is worthless and Maudrin knows. She is hurt more than angry: \"I would have given you more than that.\"",
+   "rules": "Getting in is free. Getting out with something: group Dexterity (Stealth), DC 15, or a fight with four Hushmen (CR 1/2) and a Hushman Warden (CR 4).",
+   "consequence": "The party has turned. The favor is broken, the Court Clock jumps, and the Reform clock stops.",
+   "later": "S23: Maudrin calls in nothing; she just fights. The Reformed Court offer is gone.",
+   "fallback": "If they are caught, they are arrested, not killed: run a rescue or a trial.",
+   "keywords": "turn, betray, heist, writ, vault, steal the key, free prisoners, double agent, inside job",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "agent",
+      "reformer"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "court_path",
+     "set": "turned"
+    },
+    {
+     "flag": "maudrin_favor",
+     "set": "broken"
+    },
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "any-chair-claimants",
+   "title": "Someone asks who sits when Maudrin falls",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Everyone in Hallowmere is already choosing a side for the day after.",
+   "tells": "From Act III, whenever the party talks about beating the Court, or a leader asks what comes after.",
+   "readAloud": "The old woman doesn't look up from her mending. \"Say you win. Say she falls. Who sits in the chair? Because somebody will, dearie, and it won't be nobody.\"",
+   "response": "Lay out the claimants. Captain Rook and a restored Dawn Order, if she lives. Tristan Vesk, who would do the drains. Thane Kessa, who wants the Tithe-tax off her grass. The Blanks, who ask \"Could it be a bench?\" One of the party, if anyone wants it. Maudrin herself, if the Court has been reformed. Let the party back one by running that claimant's play.",
+   "rules": "",
+   "consequence": "The empty chair is a goal now, not an epilogue question.",
+   "later": "Back a claimant, then win backers (any-claim-backers). S28: the Claim clock decides the chair.",
+   "fallback": "If nobody wants to choose yet, a claimant comes to them instead: Tristan, with an offer.",
+   "keywords": "chair, who rules, claimant, after maudrin, ninefold shore, ruler, throne, election, council, succession",
+   "when": [
+    {
+     "flag": "chair",
+     "in": [
+      "open"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-back-rook",
+   "title": "They back Captain Rook for the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "\"I am a soldier,\" Rook says. \"Soldiers are bad at chairs.\" She doesn't say no.",
+   "response": "Rook would rule through a restored Dawn Order: dawn patrols, open courts, no more Hushmen. Her weakness is that she trusts soldiers more than clerks, and Hallowmere runs on clerks. The Dawn Order is her first backer.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "rook, captain rook, dawn order, chair, claimant, back rook, soldier, rule",
+   "when": [
+    {
+     "flag": "rook",
+     "in": [
+      "alive"
+     ]
+    },
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    },
+    {
+     "flag": "chair",
+     "not": [
+      "rook"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "rook"
+    },
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-back-tristan",
+   "title": "They back Tristan Vesk for the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "\"I'd do the drains,\" Tristan says. \"Nobody ever does the drains.\"",
+   "response": "Tristan is the Court's own practical man. He would keep the Court and make it work: fewer Tithes, better roads, no great change. The Court's clerks back him already, which makes him the safest claimant and the one who changes least.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "tristan, tristan vesk, drains, chair, claimant, back tristan, court, clerk, practical",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "tristan"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "tristan"
+    },
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-back-kessa",
+   "title": "They back Thane Kessa for the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "\"End the Tithe-tax on my grass,\" Kessa says, \"and I will sit in any chair you like. I will not like it.\"",
+   "response": "Kessa would rule from the steppe, which Hallowmere will hate. The Ironhorn ride behind her. If she has not been eased, the party is choosing a short reign; say so.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "kessa, thane, ironhorn, steppe, chair, claimant, back kessa, grass, tithe-tax",
+   "when": [
+    {
+     "flag": "kessa",
+     "in": [
+      "alive",
+      "eased"
+     ]
+    },
+    {
+     "flag": "chair",
+     "not": [
+      "kessa"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "kessa"
+    },
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-back-a-party-member",
+   "title": "One of them stands for the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "Somebody in the crowd shouts a name. It's one of yours. Then somebody else shouts it too.",
+   "response": "Ask who wants it, and let the player say why. A party claimant starts with no faction behind them and needs the most backers of anyone, but changes the most: what that player promises is what the shore becomes. Talk with the player about what it means for their character to stay.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "stand for the chair, party ruler, rule, run for office, chair, claimant, crown, our own",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "party"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "party"
+    }
+   ]
+  },
+  {
+   "id": "any-back-the-bench",
+   "title": "They back the Blanks' bench",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "\"Could it be a bench?\" the Blank asks. \"A long one. Everyone gets a turn.\"",
+   "response": "A council of the shore instead of one ruler: a seat for each city and people, and the Blanks keep the minutes. It is the slowest claim to win, because every faction wants a seat and a seat is something to bargain over, and the hardest to corrupt afterwards.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "bench, council, blanks, everyone gets a turn, chair, claimant, assembly, parliament",
+   "when": [
+    {
+     "flag": "blanks",
+     "in": [
+      "yes"
+     ]
+    },
+    {
+     "flag": "chair",
+     "not": [
+      "bench"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "bench"
+    },
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-back-reformed-maudrin",
+   "title": "They back a reformed Maudrin for the chair",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
+   "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
+   "readAloud": "\"Keep me,\" Maudrin says, \"but keep me honest. That is what you have been doing anyway.\"",
+   "response": "A reformed Court under Maudrin: the Tithe gone, the Court's machinery kept. Its clerks and Wardens back her; nearly everyone else is horrified. It is a real choice, and the hardest to sell to the party's friends.",
+   "rules": "",
+   "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
+   "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
+   "fallback": "",
+   "keywords": "maudrin, reformed court, keep maudrin, chair, claimant, chancellor, honest",
+   "when": [
+    {
+     "flag": "court_path",
+     "in": [
+      "reformer"
+     ]
+    },
+    {
+     "flag": "clock_reform",
+     "min": 3
+    },
+    {
+     "flag": "chair",
+     "not": [
+      "maudrin"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "chair",
+     "set": "maudrin"
+    },
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-claim-backers",
+   "title": "They win a backer for their claimant",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "A claim is only as good as the people standing behind it.",
+   "tells": "The party has a claimant and meets a faction's leader, or asks who would back them.",
+   "readAloud": "\"Your candidate,\" the envoy says, folding her hands. \"And what do we get?\"",
+   "response": "Each faction backs the claimant for one promise. The Dawn Order: no more Hushmen. The Ironhorn Compact: the Tithe-tax off the steppe. The Bellwrights: the right to ring. The Ninefold Church: its charity-houses left alone. The Drowned Choir: the names sung at the shore. The Landing: the Charter kept. The Blanks: a seat. The Stilled: someone looking for a cure. The Court's clerks: their jobs. Each backer won ticks the Claim clock. A promise made must be kept later; breaking it loses the backer and ticks that faction's clock.",
+   "rules": "DC 15 Charisma (Persuasion) with the faction's leader. Advantage if the faction is already an ally, or the claimant is its own.",
+   "consequence": "One more faction backs the claim, and the party owes it a promise.",
+   "later": "Claim clock 3: any-claim-rival-moves. Claim clock 6: the shore will seat the claimant (s28-chair-seated).",
+   "fallback": "If no leader is near, a letter of support arrives instead, asking for the same promise.",
+   "keywords": "backer, support, faction, promise, endorsement, claim, vote, backing, alliance, envoy",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "open"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_claim",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-claim-rival-moves",
+   "title": "A rival strikes at their claimant (Claim clock 3)",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "A claim that is winning makes enemies.",
+   "tells": "The Claim clock reaches 3.",
+   "readAloud": "The broadsheet is everywhere by noon: your candidate's name in large letters, and under it a list of things they did. Some of it is even true.",
+   "response": "Pick the rival most threatened: Tristan and the Court's clerks, the Dawn Order, or Maudrin. They strike at the claimant, not the party: a scandal, a bribe to a backer, or an attempt on the claimant's life. The party can answer in a public debate on Hallowmere's terraces, with the truth, or with a scandal of their own.",
+   "rules": "A public answer: group Charisma (Persuasion), DC 15. Success keeps every backer; failure loses one (take a tick off the Claim clock). An attempt on the claimant's life: two Hushman Sergeants (CR 2), at night.",
+   "consequence": "The claim survives a real test, or loses a backer.",
+   "later": "S28: s28-chair-seated or s28-chair-contested.",
+   "fallback": "If the party is far away, the news reaches them with the claimant's own letter: \"I need you.\"",
+   "keywords": "rival, scandal, broadsheet, assassin, debate, smear, bribe, terraces, claim, attack",
+   "when": [
+    {
+     "flag": "chair",
+     "not": [
+      "open"
+     ]
+    },
+    {
+     "flag": "clock_claim",
+     "min": 3
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-seam-widens",
+   "title": "The Stormwall pulls back from the Seam",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Thrane's storms have gone home. The Wall is thinner, and the world on the far side can see in.",
+   "tells": "Thrane has been rung, and the party is near Pellmoor or hears news from the coast.",
+   "readAloud": "Brannagh Wick's letter is short: \"The Hem has pulled back a mile and a half. My pilots took a skiff through the Seam at noon, lad. There are sails on the far side. A lot of sails.\"",
+   "response": "The Seam is wide now, and the fleets of the Sword Coast are coming: a Waterdhavian merchant fleet, a Lords' Alliance squadron and a ring of Amnian traders, all within a month or two. Pellmoor's Landing (Brannagh's pilots, Sela Maunt's Reckoning House, Venn's Coster) will fight over who lets them in. From now on Pellmoor is a front of its own.",
+   "rules": "",
+   "consequence": "The Seam is wide, and the Seam clock starts. The Far Shore ending can open.",
+   "later": "any-fleet-arrives, any-pellmoor-charter, any-court-courts-the-fleets, any-sail-out.",
+   "fallback": "If the party is far from the coast, a Faerunian sailor in a tavern tells them, delighted.",
+   "keywords": "stormwall, seam, thrane, wider, sails, fleets, pellmoor, brannagh, hem, sword coast",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    },
+    {
+     "flag": "seam",
+     "in": [
+      "narrow"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "seam",
+     "set": "wide"
+    },
+    {
+     "flag": "clock_seam",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-fleet-arrives",
+   "title": "A Sword Coast fleet reaches Pellmoor",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Each fleet brings trade, soldiers and questions, and nobody has agreed the terms.",
+   "tells": "The Seam is wide and a session passes without a Charter.",
+   "readAloud": "Forty ships in the roads, and the Quays sinking under barrels. A captain in a plumed hat asks, loudly, who is in charge here.",
+   "response": "Pick a fleet. The Waterdhavian merchants want trade and storm-stones. The Lords' Alliance squadron wants a treaty and a fort. The Amnian traders want memory money, which they think is a joke until they see a Reckoner pay it. Each wants something from the party and offers something back: marines, coin, a ship. Every fleet that lands without a Charter ticks the Seam clock.",
+   "rules": "Talking a captain round: DC 15 Charisma (Persuasion). A captain lends twenty marines (Guards) for a promise.",
+   "consequence": "Another fleet in the roads. Pellmoor is more crowded and more dangerous.",
+   "later": "Seam clock 3: any-court-courts-the-fleets. Seam clock 6: any-landing-falls.",
+   "fallback": "If the party isn't in Pellmoor, Sela Maunt writes: \"Come quickly, or come to an occupied port.\"",
+   "keywords": "fleet, ships, sword coast, waterdeep, lords alliance, amn, marines, captain, pellmoor, landing",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "wide"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_seam",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-pellmoor-charter",
+   "title": "They write the Pellmoor Charter with the Landing",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Whoever sets the terms at the Landing decides what the world beyond the Wall means for Corvane.",
+   "tells": "The Seam is wide and the party brings Brannagh, Sela and Venn to one table.",
+   "readAloud": "Brannagh wants pilots' rights. Sela wants a Reckoning on every barrel. Venn wants everything else. \"Well,\" Brannagh says. \"Somebody start.\"",
+   "response": "Run a three-way negotiation. Each Landing faction wants one thing in the Charter and gives one thing for it. Brannagh's pilots: the right to refuse any ship (they give the party ships). Sela Maunt: memory money taxed like gold (she gives coin and records). Venn: a monopoly on storm-stones (he gives the marines he has already hired, and he will cheat). Under a Charter the fleets land under the Landing's law, not the Court's.",
+   "rules": "One Charisma (Persuasion) check for each faction, DC 15; two successes make the Charter. If Venn is exposed, Brannagh and Sela are enough.",
+   "consequence": "The Landing and the party hold the Seam. The Seam clock stops mattering.",
+   "later": "S22: the fleets send marines (s22-ally-fleets). The Far Shore stays open.",
+   "fallback": "If the talks fail, try again next session; each failure ticks the Seam clock.",
+   "keywords": "charter, pellmoor, landing, treaty, brannagh, sela, venn, terms, negotiate, harbour law",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "wide"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "seam",
+     "set": "held"
+    }
+   ]
+  },
+  {
+   "id": "any-court-courts-the-fleets",
+   "title": "The Court bargains with the fleets (Seam clock 3)",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "Maudrin sees what the party sees: marines for hire, if the price is right.",
+   "tells": "The Seam clock reaches 3 without a Charter.",
+   "readAloud": "The grey seal on the harbourmaster's door is new. Inside, a Court envoy is pouring wine for three foreign captains.",
+   "response": "The Court offers the fleets bronze and storm-stones for marines. Unless the party stops it, foreign marines march with the Court at the Strike. They can outbid the Court, show the captains how the Court lies, or take the envoy's ledger and sink the deal.",
+   "rules": "Showing the captains: DC 15 Charisma (Persuasion) with evidence. Taking the ledger: group Dexterity (Stealth), DC 15. Outbidding needs something the Court lacks: the Charter, or a Tongue.",
+   "consequence": "If the deal holds, the Court has foreign marines (s23-fleet-marines).",
+   "later": "S23: marines at the Strike. Seam clock 6: the Landing falls.",
+   "fallback": "",
+   "keywords": "court, envoy, fleets, marines, bronze, deal, captains, bribe, harbourmaster, wine",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "wide"
+     ]
+    },
+    {
+     "flag": "clock_seam",
+     "min": 3
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-landing-falls",
+   "title": "The Landing falls (Seam clock 6)",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Too many ships, no terms, and the Court's money pouring in: Pellmoor breaks.",
+   "tells": "The Seam clock reaches 6 without a Charter.",
+   "readAloud": "The Pilots' Hall is burning. Foreign marines hold the Quays, and the grey banner flies over the Reckoning House.",
+   "response": "The fleets and the Court take Pellmoor between them. Brannagh's pilots scatter, Sela is arrested, and Venn sells to whoever is winning. The Seam is lost: nobody leaves Corvane without the Court's leave. Get the party's friends out, then let them decide whether to take it back.",
+   "rules": "The escape: a chase through the Quays (three group checks, DC 14, any skill that fits), or a fight with six marines (Guards) and a Hushman Sergeant (CR 2).",
+   "consequence": "The Seam is lost, and the Far Shore is closed until it is retaken.",
+   "later": "any-retake-the-landing. S23: the marines march with the Court (s23-fleet-marines).",
+   "fallback": "If the party isn't there, refugees bring them the news.",
+   "keywords": "landing falls, pellmoor burns, marines, occupation, seam lost, pilots hall, escape, quays",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "wide"
+     ]
+    },
+    {
+     "flag": "clock_seam",
+     "min": 6
+    }
+   ],
+   "effects": [
+    {
+     "flag": "seam",
+     "set": "lost"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "any-retake-the-landing",
+   "title": "They retake the Landing",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The Quays can be taken back, with friends inside and the pilots on their side.",
+   "tells": "The Seam is lost and the party goes back to Pellmoor.",
+   "readAloud": "Brannagh is waiting in the reed-beds with eleven pilots and a rowing boat. \"The marines don't know the tide, lad,\" she says. \"We do.\"",
+   "response": "Run it as a raid on the turn of the tide: free Sela from the Reckoning House, take the Pilots' Hall, and watch the captains, who never liked the Court, change sides. Once they hold the Quays, the party writes the Charter on the spot.",
+   "rules": "The Pilots' Hall: six marines (Guards), a marine captain (Veteran) and a Hushman Warden (CR 4); work out the budget in Foresight. Brannagh's pilots give Advantage on every check at sea or on the tide.",
+   "consequence": "The Seam is held again, under the party's Charter.",
+   "later": "S22: the fleets send marines (s22-ally-fleets).",
+   "fallback": "If the raid fails, the pilots get the party out by sea. They can try again with more friends.",
+   "keywords": "retake, landing, raid, tide, brannagh, pilots, quays, liberate, sela, pilots hall",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "lost"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "seam",
+     "set": "held"
+    }
+   ]
+  },
+  {
+   "id": "any-sail-out",
+   "title": "They leave Corvane for good, with everyone who will come",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "The Seam is wide. They could simply go, and take the people they love with them.",
+   "tells": "The party talks about giving up on the bells, or asks Brannagh how many ships she can find.",
+   "readAloud": "\"Twenty ships,\" Brannagh says. \"Thirty if Venn lies about the cargo. Enough for everyone you can talk into it. You know what you'd be leaving, lad.\"",
+   "response": "This is the Far Shore ending, and it is allowed. Only the players choose it, never a clock or a lost fight. Make sure the table knows what stays behind: the bells, the Hush failing slowly, the Court, everyone who won't come. Then ask who comes: Ila? The Blanks? A whole street of Pellmoor? Each player names one person who comes and one who stays. Run the sailing as the last session: the Seam at night, the Stormwall on both sides, then the open sea.",
+   "rules": "No roll to leave. If the Court Clock is 12 or more, the Court blockades the Seam: a sea chase (three group checks, DC 15), with Advantage from Brannagh's pilots.",
+   "consequence": "The campaign ends at sea. Run the Far Shore epilogue (s28-far-shore).",
+   "later": "S28: s28-far-shore.",
+   "fallback": "If only some of the party want to go, don't use this play: use any-leave-corvane for those who go, and they can come back as Faerunian help.",
+   "keywords": "leave corvane, sail away, abandon, exodus, far shore, flee, new world, ships, emigrate, give up, escape",
+   "when": [
+    {
+     "flag": "seam",
+     "in": [
+      "wide",
+      "held"
+     ]
+    },
+    {
+     "flag": "ysh",
+     "in": [
+      "unstruck"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "seam",
+     "set": "left"
+    }
+   ]
+  },
+  {
+   "id": "any-hush-speaks",
+   "title": "The Hush speaks to its sworn in their dreams",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The Hush is lonely, and the people who listen are the only ones who ever have.",
+   "tells": "A sworn or listening character takes a Long Rest.",
+   "readAloud": "In the dream you are sitting on the Stairs, and someone with your own voice is sitting beside you. \"Can I show you something?\" it says. \"It's what it's dreaming tonight.\"",
+   "response": "The Hush shows the sleeper a piece of Oum's dream: the place the party is going, as Oum loves it. Use it to give one true clue for this session (where a Tongue is, what a person really wants, the way round a fight). Then let the Hush say one thing about Oum: it is tired, it has dreamed a long time, it is frightened of waking, it likes them. The Hush never asks for anything.",
+   "rules": "Once a session, to one character.",
+   "consequence": "One true clue, and a little more of why the Dreamer might be let sleep.",
+   "later": "S25: the Hush knows them on the Stairs.",
+   "fallback": "If the sleeper says no, the Hush says \"That's all right,\" and the dream is an ordinary one.",
+   "keywords": "dream, hush speaks, vision, oum, sworn, long rest, clue, lullaby, sleep, voice",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn",
+      "listening"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-hush-heretics",
+   "title": "The Church names the Hush's sworn heretics",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "The Ninefold Church has always called the Hush Cult heretics. Now the party is part of it.",
+   "tells": "Sworn characters are seen at a belfry or a charity-house, or a priest hears of the oath.",
+   "readAloud": "The notice on the belfry door has your names on it, under the words WHO WOULD LET THE WORLD SLEEP.",
+   "response": "The Church preaches against them. Its charity-houses close to them, bell-wardens refuse them help, and the faithful spit. The party can argue (the Hush is Ysh's own song, and the Church has been singing to it every dawn without knowing), lie low, or let it stand.",
+   "rules": "Arguing with a priest: DC 16 Charisma (Persuasion); Advantage with Edda Thorne's Notes.",
+   "consequence": "The Church Clock ticks, and the Church's doors stay closed to them until they mend it.",
+   "later": "",
+   "fallback": "",
+   "keywords": "heretics, church, ninefold church, notice, belfry, preach, sworn, hush cult, faithful",
+   "when": [
+    {
+     "flag": "hush_side",
+     "in": [
+      "sworn"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_church",
+     "add": 1
+    }
+   ]
   }
  ],
  "briefs": [],
