@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. Tonight is one room and one voice. The Glass Sexton is the boss of this act, and he doesn't want a fight. He wants somebody to listen. Most of the session is talking, and the danger is a slow one: after a while, nobody feels like saying anything.*
+*Read this once the day before. Tonight is one room and one voice. The Glass Sexton is the boss of this act, and he doesn't want a fight. He wants somebody to listen. Most of the session is talking, and the danger is a slow one: after a while, nobody feels like saying anything. Short on sessions? [Run Sessions 12 and 13 as one evening](play:s12-one-evening).*
 
 **Contents:** [Before you start](#before-you-start-session-12) · [Key people](#key-people-tonight-session-12) · [Opening recap](#opening-recap-session-12) · [Scene 1: The sermon in the trees](#scene-1-the-sermon-in-the-trees) · [Scene 2: The Chapel of Winter](#scene-2-the-chapel-of-winter) · [Scene 3: The Sexton's question](#scene-3-the-sextons-question) · [Scene 4: The people in the pews](#scene-4-the-people-in-the-pews) · [Scene 5: Will you listen?](#scene-5-will-you-listen) · [Fights](#running-the-fights-session-12) · [Pacing](#pacing-session-12) · [If you get stuck](#if-you-get-stuck-session-12) · [End of session](#end-of-session-12)
 

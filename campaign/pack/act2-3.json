@@ -4314,6 +4314,83 @@
    ]
   },
   {
+   "id": "s10-one-evening",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Run Sessions 10 and 11 as one evening",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Glassreach is six sessions in one region. The walk in and the first of the Stilled are one journey, and a table that is keen to meet the Sexton gets there an evening sooner.",
+   "tells": "You're short of sessions, the table is restless on the road, or they hurry past Yara's camp.",
+   "readAloud": "Yara looks at the sky, then at you. \"If you want to reach the chapel before the cold comes down, we walk tonight. All night.\"",
+   "response": "Run Session 10's arrival, Yara's camp and the Stilled child, and skip the frozen wagon and the reeve's icehouse (keep the icehouse for another evening, or drop it). At the first Long Rest, go straight into Session 11's walk through the glass: one winter-moment for the character who'll get the most from it, one Stilled adult to wake or slip past, and the Glass-Wolves only if they leave the path. Tick the Glassreach clock as usual. Keep Session 11's personal beat if someone is due one (Prep names them). The session numbers stay as they are: Session 12 comes next.",
+   "rules": "No level change. Level 6 still comes after Session 13, or at the end of the evening that runs Sessions 12 and 13 together.",
+   "consequence": "Glassreach takes one evening fewer. With Sessions 12 and 13 run together as well (s12-one-evening), Act III is four evenings instead of six.",
+   "later": "S12: s12-one-evening.",
+   "fallback": "If the evening runs long, stop at the edge of the chapel clearing and open next time with the sermon.",
+   "keywords": "pacing, merge, one evening, short on time, skip, sessions 10 and 11, glassreach, speed up, combine, road",
+   "effects": []
+  },
+  {
+   "id": "s10-leave-the-north",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "They turn south and leave Glassreach to the Court",
+   "style": "Roleplay",
+   "likelihood": "Wildcard",
+   "why": "Nothing makes them go into the glass. Only the Concord needs Hieme, and a table that would rather chase the storm bell or the dreams can go now. The campaign goes on without Act III, and the Court gets the winter bell instead.",
+   "tells": "The players balk at the cold, ask what happens if they don't go in, or want to go after Thrane or Mirel now.",
+   "readAloud": "Behind you the North Road runs back to the world. Ahead, the trees are glass to the horizon, and somewhere among them a voice is preaching to people who cannot leave. Yara Thenn shrugs. \"Plenty don't go in. Plenty of those live longer.\"",
+   "response": "Say it plainly: they can turn back. Sessions 10 to 15 are skipped and the party goes straight to Act IV. Isolde Drave (or Tristan Vesk, if Isolde is their prisoner or their informant) goes on into the glass without them, breaks the Sexton's shell, and carries the Frost Tongue and Imber Vesk back to Hallowmere. Hieme stays unrung, so the Concord is closed until they win the Tongue back (from Isolde, or at the Strike in Session 23) and go back north to ring it (any-go-back-north). Pick the road now with the Session 15 road cards: east to Brassfall (s15-road-brassfall) or to Vael Tor (s15-road-vael-tor). Yara sells them her map of the Ironhorn foothills for a keep.",
+   "rules": "Level them to 6 as they turn south. Act IV is written for level 7: run Session 16 (A or B) at level 6 with one creature fewer in each fight, and level them to 7 at its end. Add 1 to the Court Clock: the Court comes home with a Tongue and a prisoner.",
+   "consequence": "Act III is gone. The Court holds the Frost Tongue and the Sexton, the Stilled stay in the glass, and every ending but the Concord is still open.",
+   "later": "Act IV: the Long Cold creeps south (any-the-cold-comes-south). Session 15's thaw never happens: no Brightwater crew, no Stilled emissary. S23: s23-recover-hieme takes the Tongue back from the Court's column.",
+   "fallback": "If they can't decide, Yara says the glass will still be here next year. The bells may not.",
+   "keywords": "skip, turn back, leave, south, glassreach, act iii, act 3, skip act, sexton, hieme, pacing, change, road, isolde, short campaign",
+   "when": [
+    {
+     "flag": "skipped_north",
+     "in": [
+      "no"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "unrung"
+     ]
+    },
+    {
+     "flag": "t_hieme",
+     "in": [
+      "sexton"
+     ]
+    },
+    {
+     "flag": "act4",
+     "in": [
+      "none"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "skipped_north",
+     "set": "yes"
+    },
+    {
+     "flag": "t_hieme",
+     "set": "court"
+    },
+    {
+     "flag": "sexton",
+     "set": "court"
+    },
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
    "id": "s10-isolde-in-the-glass",
    "sessionId": "sb-578cbd5020d97b1f",
    "title": "Isolde, half frozen, on the path",

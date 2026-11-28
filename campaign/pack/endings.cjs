@@ -23,7 +23,8 @@ const concord=[
   {when:[r('t_hieme',['sexton'])],text:'In the Glass Sexton’s crown. Listen to his confession (S13) and he gives it; or end his winter-moment; or defeat his shell.'},
   {when:[r('t_hieme',['party'])],text:'Climb the Frost Spire and ring it (S14). Toll: a memory, at its weight.'},
   {when:[r('t_hieme',['bell'])],text:'Fitted at the Frost Spire.'},
-  {when:[r('t_hieme',['court'])],text:'Isolde took it for the Court (S15). Recover it from her, or at the Strike (S23).'}]),
+  {when:[r('t_hieme',['court'])],text:'Isolde took it for the Court (S15). Recover it from her, or at the Strike (S23).'},
+  {when:[r('skipped_north',['yes'])],text:'They turned south at Session 10. With the Tongue in hand, go back north and ring it from the Frost Spire (any-go-back-north).'}]),
  bell('thrane','Thrane (storm)',[
   {when:[r('t_thrane',['kessa'])],text:'In Kessa’s Tongue-Hall. Win the steppe contest and swear to return it (S17A or S20); or steal it (DC 15 Stealth past the riders); or Yenna Garrow smuggles it for a favor.'},
   {when:[r('t_thrane',['party'])],text:'Ring it at the Lightning Shafts in Brassfall (S19A or S21). Toll: a sense, at its weight (dulled for a year at the least). The Stormwall loosens.'},

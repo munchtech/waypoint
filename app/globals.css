@@ -9624,3 +9624,63 @@ fieldset.relation-labels input {
   flex: 1;
   max-width: none;
 }
+/* Personal threads on the roster (components/party-ledger.tsx) and the Prep reminder (components/threads-due.tsx). */
+.threads {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+.threads > h4 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+.thread {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid light-dark(#d6dfe2, #34434a);
+  border-radius: 8px;
+}
+.thread.due {
+  border-color: light-dark(#c08a2e, #d9a94f);
+}
+.thread-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+.thread-head small {
+  color: light-dark(#5c6f76, #a9b6bb);
+}
+.thread label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+.thread .beats {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+.thread .beats li .icon-button {
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.beat-form {
+  display: flex;
+  gap: 8px;
+}
+.beat-form input {
+  flex: 1;
+  min-width: 0;
+}
+.threads-due h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

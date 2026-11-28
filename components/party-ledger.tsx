@@ -1,9 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { Users, Plus, Trash2, ScrollText } from 'lucide-react';
+import { Users, Plus, Trash2, ScrollText, Sparkles } from 'lucide-react';
 import BookText from './book-text';
 import type { Campaign, Session } from '../lib/campaign';
 import { memoryOf, type Memory } from '../lib/memory';
+import { count } from '../lib/plural';
+import { THREAD_GAP, addBeat, removeBeat, setGoal, threadOf, threadStatus } from '../lib/threads';
 import {
   ledgerKinds,
   partyBudget,
@@ -34,7 +36,10 @@ export default function PartyLedger({
       what: '',
       bell: '',
     }),
-    [deal, setDeal] = useState({ with: '', terms: '' });
+    [deal, setDeal] = useState({ with: '', terms: '' }),
+    [beatText, setBeatText] = useState<Record<string, string>>({});
+  const named = roster.filter((r) => r.name.trim()),
+    threads = threadStatus(campaign, roster, session.id);
   const levels = roster.map((r) => r.level),
     [low, mod, high] = partyBudget(levels);
   const bells =
@@ -182,6 +187,96 @@ export default function PartyLedger({
         >
           Level everyone up
         </button>
+        {named.length > 0 && (
+          <div className="threads" id="personal-threads">
+            <h4>
+              <Sparkles size={14} />
+              Personal threads
+            </h4>
+            <p className="tiny muted">
+              What each character wants, or wants back, and the scenes that moved it. Aim for one beat
+              each per act; the Prep page names anyone who has gone {THREAD_GAP} played sessions
+              without one.
+            </p>
+            {threads.map((s) => {
+              const r = s.member,
+                beats = threadOf(r).beats;
+              return (
+                <div className={'thread' + (s.due ? ' due' : '')} key={r.id}>
+                  <div className="thread-head">
+                    <strong>{r.name}</strong>
+                    <small>
+                      {s.last
+                        ? 'Last beat ' +
+                          sessionLabel(campaign, s.last.sessionId) +
+                          (s.without ? ' · ' + count(s.without, 'session') + ' since' : '')
+                        : 'No beat yet'}
+                      {s.due ? ' · due' : ''}
+                    </small>
+                  </div>
+                  <label>
+                    Wants
+                    <input
+                      aria-label={'What ' + r.name + ' wants'}
+                      placeholder="What they want, or want back"
+                      value={threadOf(r).goal}
+                      maxLength={300}
+                      onChange={(e) =>
+                        setRoster((x) => x.map((y) => (y.id === r.id ? setGoal(y, e.target.value) : y)))
+                      }
+                    />
+                  </label>
+                  {beats.length > 0 && (
+                    <ol className="beats">
+                      {beats.map((b) => (
+                        <li key={b.id}>
+                          <span className="tag">{sessionLabel(campaign, b.sessionId)}</span> {b.text}
+                          <button
+                            className="icon-button"
+                            aria-label={'Remove beat: ' + b.text}
+                            onClick={() =>
+                              setRoster((x) => x.map((y) => (y.id === r.id ? removeBeat(y, b.id) : y)))
+                            }
+                          >
+                            <Trash2 size={12} />
+                          </button>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                  <form
+                    className="beat-form"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const text = beatText[r.id] || '';
+                      if (!text.trim()) return;
+                      setRoster((x) =>
+                        x.map((y) =>
+                          y.id === r.id
+                            ? addBeat(y, { text, sessionId: session.id }, new Date().toISOString())
+                            : y,
+                        ),
+                      );
+                      setBeatText({ ...beatText, [r.id]: '' });
+                    }}
+                  >
+                    <input
+                      aria-label={'New beat for ' + r.name}
+                      placeholder={'Tonight’s beat for ' + r.name}
+                      value={beatText[r.id] || ''}
+                      maxLength={300}
+                      onChange={(e) => setBeatText({ ...beatText, [r.id]: e.target.value })}
+                    />
+                    <button className="button small" disabled={!(beatText[r.id] || '').trim()}>
+                      <Plus size={13} />
+                      Add beat
+                    </button>
+                  </form>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
       <details className="paper" open={!!pb || ledger.length > 0 || bargains.length > 0}>
         <summary>Memory ledger & bargains</summary>

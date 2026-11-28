@@ -8,6 +8,8 @@ import { validateCampaign, demo, type Campaign } from '../lib/campaign';
 import { cellCreatures, creatureByName, pageCreatures, statLine } from '../lib/combat';
 import { memoryOf, wikiPage } from '../lib/memory';
 import { shiftStanding, standingLabel, standingOf, standingText } from '../lib/standing';
+import { addBeat, removeBeat, setGoal, threadOf, threadStatus, threadsDue } from '../lib/threads';
+import { rosterSchema } from '../lib/playbook-schema';
 import { neighborhood, webEdges } from '../lib/relationship-web';
 import {
   ASSIST_BODY_LIMIT,
@@ -300,7 +302,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.22');
+      assert.equal(pb7.version, '7.23');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -470,7 +472,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.22');
+    assert.equal(pb71.version, '7.23');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -1643,6 +1645,51 @@ test('faction standing moves along its scale and logs why', () => {
   page.standing = shiftStanding(undefined, { delta: -1, reason: 'Spurned' }, date);
   assert.ok(wikiPage.safeParse(page).success);
   assert.equal(standingOf({}).value, 0);
+});
+test('personal threads keep a goal and beats, and name characters who have gone five played sessions without one', () => {
+  const date = '2026-11-28T10:00:00.000Z';
+  const sessions = Array.from({ length: 9 }, (_, i) => ({ id: 's' + i, done: i < 7 }));
+  const base = { id: 'r1', name: 'Wren', player: 'Sam', level: 5, notes: '' };
+  assert.deepEqual(threadOf(base), { goal: '', beats: [] });
+  let w = setGoal(base, 'Her brother back from the Choir');
+  w = addBeat(w, { text: '  Heard his voice under the bell ', sessionId: 's1' }, date, 'b1');
+  assert.deepEqual(w.thread, {
+    goal: 'Her brother back from the Choir',
+    beats: [{ id: 'b1', text: 'Heard his voice under the bell', date, sessionId: 's1' }],
+  });
+  assert.equal(addBeat(w, { text: '   ' }, date), w);
+  const quiet = { ...base, id: 'r2', name: 'Osk' },
+    unnamed = { ...base, id: 'r3', name: ' ' },
+    roster = [w, quiet, unnamed],
+    campaign = { sessions } as unknown as Parameters<typeof threadStatus>[0];
+  // At s7: Wren's last beat was s1, then s2–s6 were played (5); Osk has had none since s0 (7).
+  let st = threadStatus(campaign, roster, 's7');
+  assert.equal(st.length, 2);
+  assert.deepEqual(
+    st.map((x) => [x.member.name, x.without, x.due]),
+    [
+      ['Wren', 5, true],
+      ['Osk', 7, true],
+    ],
+  );
+  // A beat tonight clears it; one from an unplayed later session doesn't count yet.
+  w = addBeat(w, { text: 'Found his name on the bell', sessionId: 's7' }, date, 'b2');
+  w = addBeat(w, { text: 'Not yet', sessionId: 's8' }, date, 'b3');
+  st = threadStatus(campaign, [w, quiet], 's7');
+  assert.equal(st[0].without, 0);
+  assert.equal(st[0].last?.id, 'b2');
+  assert.deepEqual(threadsDue(campaign, [w, quiet], 's7').map((x) => x.member.name), ['Osk']);
+  // Unplayed sessions (the road not taken) don't count toward the gap.
+  const skipped = sessions.map((x, i) => ({ ...x, done: i < 7 && i !== 3 && i !== 4 }));
+  assert.equal(threadStatus({ sessions: skipped } as typeof campaign, [setGoal(base, 'x')], 's7')[0].without, 5);
+  w = removeBeat(w, 'b3');
+  assert.equal(threadOf(w).beats.length, 2);
+  for (let i = 0; i < 20; i++) w = addBeat(w, { text: 'beat ' + i }, date, 'x' + i);
+  assert.equal(threadOf(w).beats.length, 12);
+  assert.equal(threadOf(w).beats[11].text, 'beat 19');
+  // It saves with the roster, and old rosters without threads still load.
+  assert.ok(rosterSchema.safeParse([w, quiet]).success);
+  assert.ok(rosterSchema.safeParse([base]).success);
 });
 test('the relationship web joins related pages and pages named in the text', () => {
   const base = memoryOf(installed).pages[0];

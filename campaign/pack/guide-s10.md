@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. Act III starts here: a forest of glass, a cold that waits, and people standing in it who have not moved for four hundred years. Tonight is mostly wonder and talk. There is one fight, and it only happens if they leave the path.*
+*Read this once the day before. Act III starts here: a forest of glass, a cold that waits, and people standing in it who have not moved for four hundred years. Tonight is mostly wonder and talk. There is one fight, and it only happens if they leave the path. Short on sessions? [Run Sessions 10 and 11 as one evening](play:s10-one-evening), and later [12 and 13](play:s12-one-evening). Or the party can [turn south](play:s10-leave-the-north) and leave Glassreach to the Court.*
 
 **Contents:** [Before you start](#before-you-start-session-10) · [Key people](#key-people-tonight-session-10) · [Opening recap](#opening-recap-session-10) · [Scene 1: The edge of the glass](#scene-1-the-edge-of-the-glass) · [Scene 2: Yara's camp](#scene-2-yaras-camp) · [Scene 3: Wyn and the sister](#scene-3-wyn-and-the-sister) · [Scene 4: The path in](#scene-4-the-path-in) · [Scene 5: The Stilled Clearing](#scene-5-the-stilled-clearing) · [Scene 6: The sailor in the sea-coat](#scene-6-the-sailor-in-the-sea-coat) · [Scene 7: The sermon at dusk](#scene-7-the-sermon-at-dusk) · [Fights](#running-the-fights-session-10) · [Pacing](#pacing-session-10) · [If you get stuck](#if-you-get-stuck-session-10) · [End of session](#end-of-session-10)
 

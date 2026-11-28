@@ -2383,15 +2383,80 @@
    "style": "Roleplay",
    "likelihood": "Likely",
    "why": "Every character came to Pellmoor with a road behind them, a thing lost and a person they knew. Once an act, the story should be about one of those.",
-   "tells": "A character hasn't had a scene of their own this act, or a player mentions their past.",
+   "tells": "A character hasn't had a scene of their own this act, Prep shows them under Their own story, or a player mentions their past.",
    "readAloud": "Someone at the edge of the firelight says your name. Not the one you use now: the one from before Pellmoor.",
-   "response": "Look up the character's session-zero answers in the Roster notes and pick one: the road they came by (someone from it turns up), the thing they lost (a lead to it), or the person they know in Pellmoor (that person needs them, or writes). Give it one scene of ten minutes and let the player steer. Each act from II on has a ready version: Session 8, Session 11, Session 20 and Session 24. In Act I, use this play.",
+   "response": "Look up the character's session-zero answers in the Roster notes and pick one: the road they came by (someone from it turns up), the thing they lost (a lead to it), or the person they know in Pellmoor (that person needs them, or writes). Give it one scene of ten minutes and let the player steer, then add it as a beat under Party & preferences → Roster → Personal threads (write what they want there too); Prep names anyone five played sessions without one. Each act from II on has a ready version: Session 8, Session 11, Session 20 and Session 24. In Act I, use this play.",
    "rules": "When the beat lands, that character gains Heroic Inspiration.",
    "consequence": "One character's story moved, and it's theirs.",
    "later": "Five beats per character across the campaign. The last pays off in the epilogue.",
    "fallback": "If a player has no answers, ask the three questions now, at the table, in a minute.",
    "keywords": "personal, backstory, session zero, character arc, beat, growth, lost thing, roster, spotlight, inspiration",
    "effects": []
+  },
+  {
+   "id": "any-the-cold-comes-south",
+   "title": "The Long Cold comes south (they skipped Glassreach)",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Nobody rang Hieme. The glass doesn't wait for the party to change its mind.",
+   "tells": "They turned south at Session 10 (s10-leave-the-north) and are on the road, above all in the high passes or north of Hallowmere.",
+   "readAloud": "Frost on the grass at midsummer, in the shape of ferns that never grew here. In the ditch by the road a fox stands perfectly still, in a coat of glass.",
+   "response": "Once an act, let the cold turn up where it shouldn't: a village well frozen solid (the folk pay 10 gp to have it thawed), a Stilled traveler at a crossroads who wakes if spoken to kindly (DC 13 Persuasion; they know a true rumor about the road ahead), or one night on the road that is Extreme Cold. It's a reminder, not a punishment: the bell is still there to ring (any-go-back-north).",
+   "rules": "Extreme Cold: for each hour without a warm cloak, a fire or Resistance to Cold damage, a creature makes a DC 10 Constitution saving throw or gains 1 Exhaustion level.",
+   "consequence": "The world shows them what skipping Glassreach cost.",
+   "later": "If they go back north, the glass has grown: the Glassreach clock starts at 1.",
+   "fallback": "If it falls flat, skip it. The Forecast still shows Hieme as unrung.",
+   "keywords": "cold, frost, glass, long cold, skipped, south, hieme, stilled, extreme cold, consequence, glassreach",
+   "when": [
+    {
+     "flag": "skipped_north",
+     "in": [
+      "yes"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-go-back-north",
+   "title": "They go back north to ring Hieme after all",
+   "style": "Exploration",
+   "likelihood": "Wildcard",
+   "why": "They skipped Glassreach, and now they want the Concord, or just want to finish what they left.",
+   "tells": "They hold the Frost Tongue again, or talk about the Frost Spire.",
+   "readAloud": "The North Road is quieter than you remember. The glass has come further down it, and the trees are taller. On the last waystation somebody has painted, in red: THE SPIRE IS STILL THERE.",
+   "response": "Glassreach is about two weeks from Hallowmere. Skip Sessions 10 to 13: Yara meets them at the edge of the glass and leads them straight to the Frost Spire. Run Session 14 as one evening (the climb, the inner stair, the Bell-Warden) and ring Hieme with s14-ring-hieme. They need the Frost Tongue first: Isolde keeps it in Hallowmere until the Strike, then it travels with the Court's column (s23-recover-hieme). The Sexton is the Court's prisoner, so the Spire has nobody to stop them but its guards.",
+   "rules": "Session 14 is written for level 6. At level 7 or more, add one Glass-Wolf to each fight and give the Bell-Warden 20 more Hit Points for each level above 6. Add 2 to the Court Clock for the time away, as Session 22's detour does.",
+   "consequence": "Hieme rings late. The thaw comes to Glassreach, and the Concord is open again.",
+   "later": "S27: the Concord needs every bell.",
+   "fallback": "If they can't spare a whole evening, run only the climb and the bell.",
+   "keywords": "go back, north, glassreach, frost spire, hieme, ring, detour, missed bell, skipped, concord, return",
+   "when": [
+    {
+     "flag": "skipped_north",
+     "in": [
+      "yes"
+     ]
+    },
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "unrung"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 2
+    }
+   ]
   },
   {
    "id": "any-win-back-the-lost-thing",

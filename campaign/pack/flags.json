@@ -1593,5 +1593,22 @@
    }
   ],
   "help": "Set when the party skips the second Act IV road and goes straight to the Strike (s20-march-short-handed). The Court is not ready, the second bell stays unrung, and the Concord needs it later."
+ },
+ {
+  "id": "skipped_north",
+  "group": "People",
+  "label": "Turned south before Glassreach",
+  "initial": "no",
+  "options": [
+   {
+    "id": "no",
+    "label": "Went into Glassreach"
+   },
+   {
+    "id": "yes",
+    "label": "Skipped Glassreach"
+   }
+  ],
+  "help": "Set when the party turns back at the edge of the glass (s10-leave-the-north). Sessions 10 to 15 are skipped, the Court takes the Frost Tongue and the Sexton, and Hieme stays unrung until they go back north (any-go-back-north)."
  }
 ]

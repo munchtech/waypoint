@@ -189,6 +189,22 @@ export const rosterSchema = z
       player: text(120),
       level: z.number().int().min(1).max(20),
       notes: text(600),
+      // The character's own story: what they want (or want back) and the scenes that moved it (lib/threads.ts).
+      thread: z
+        .object({
+          goal: text(300),
+          beats: z
+            .array(
+              z.object({
+                id: text(80),
+                text: text(300),
+                sessionId: text(80).optional(),
+                date: text(40),
+              }),
+            )
+            .max(12),
+        })
+        .optional(),
     }),
   )
   .max(12);

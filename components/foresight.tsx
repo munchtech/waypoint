@@ -42,6 +42,7 @@ import {
 import { dueAfter } from '../lib/player-site';
 import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
 import LastTime from './last-time';
+import ThreadsDue from './threads-due';
 import { guideSections } from '../lib/session-notes';
 import { sendToWiki } from './player-site';
 import {
@@ -357,6 +358,7 @@ export default function Foresight({
           <span className="eyebrow">PREP · SESSION {at}</span>
           <h2>{session.title}</h2>
           <LastTime campaign={campaign} session={session} notify={notify} fail={fail} />
+          <ThreadsDue campaign={campaign} session={session} />
           <h3>Your plan</h3>
           {scenes.length ? (
             <ol className="prep-scenes">
@@ -604,6 +606,7 @@ export default function Foresight({
               </p>
             )}
             <LastTime campaign={campaign} session={session} notify={notify} fail={fail} />
+            <ThreadsDue campaign={campaign} session={session} />
             {coming.length > 0 && (
               <div className="coming-back">
                 <h3>
