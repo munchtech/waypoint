@@ -1880,6 +1880,31 @@
      "add": 1
     }
    ]
+  },
+  {
+   "id": "s22-short-handed-strike",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Court isn't ready for them",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "They came early, and it shows.",
+   "tells": "They skipped the second road (s20-march-short-handed).",
+   "readAloud": "The Tor's new wall stops at waist height. Masons drop their trowels and run. Somewhere above, someone is ringing an alarm bell, badly.",
+   "response": "The Strike is against a half-built Court. Remove one squad from each Strike fight, and let one objective (a gate, a supply train) be won by walking in. Fewer companies come up the road: the road they skipped sends no one, so in \"Who comes\" that player brings someone from Act I or II instead.",
+   "rules": "",
+   "consequence": "The Strike is shorter and easier. The Concord still needs the unrung bell.",
+   "later": "Going back for the bell is Session 22's detour.",
+   "fallback": "",
+   "keywords": "strike, early, short-handed, court, unready, wall, fewer, companies, tor, skip",
+   "when": [
+    {
+     "flag": "short_handed",
+     "in": [
+      "yes"
+     ]
+    }
+   ],
+   "effects": []
   }
  ],
  "briefs": [

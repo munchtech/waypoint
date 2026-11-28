@@ -2760,6 +2760,23 @@
     }
    ],
    "effects": []
+  },
+  {
+   "id": "s24-personal-beat",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Personal beat (Act V): what they want back, at the end",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "This is the last conversation on open ground. Before anyone goes down the stairs, each character's own story deserves a word.",
+   "tells": "Before the fight, or before the stairs.",
+   "readAloud": "\"One more thing,\" Maudrin says, and opens a ledger at a page with your name on it. \"I know what you lost. The Court keeps records. I could give it back. I won't pretend I'm asking for nothing.\"",
+   "response": "For a character whose lost thing is still unfound, Maudrin knows where it is and offers it as part of her bargain. It's a real offer, and she keeps it if they accept. For a lost thing already won back, the beat is a goodbye: who do they want to see it before the stairs? Either way, ask each player what their character is going down the stairs for.",
+   "rules": "When the beat lands, that character gains Heroic Inspiration.",
+   "consequence": "One character's own story moved. Note it in their Roster notes: one beat per act.",
+   "later": "A lost thing glimpsed here can be won back: any-win-back-the-lost-thing.",
+   "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
+   "keywords": "maudrin, ledger, lost thing, bargain, personal, backstory, session zero, beat, growth, stairs",
+   "effects": []
   }
  ],
  "briefs": [

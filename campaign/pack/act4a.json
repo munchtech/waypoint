@@ -2493,6 +2493,218 @@
      "set": "ceased"
     }
    ]
+  },
+  {
+   "id": "s20-march-short-handed",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "They skip the second road and march on the Tor short-handed",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Only the Concord needs all six bells. A table that would rather strike now than chase the last bell can, and the Court won't be ready.",
+   "tells": "The players want to go straight to the Tor, or ask whether they have to go the other way.",
+   "readAloud": "Two roads out of camp. One goes back the way you didn't take, toward the bell you haven't rung. The other goes up, to the Tor, where the Court is still building its walls.",
+   "response": "Say it plainly: they can skip the second road and go straight to the Strike. It costs them the second bell: it stays unrung, so the Concord is closed unless they come back for it (Session 22's detour), its Tongue stays where it is, and that road's allies don't come. It buys them a Court that isn't ready. Level them to 8 as they set out, and run Session 22.",
+   "rules": "Take 3 off the Court Clock. At the Strike, remove one Court squad from each fight.",
+   "consequence": "They march short-handed. Every ending but the Concord is still open.",
+   "later": "S22: s22-short-handed-strike.",
+   "fallback": "If they can't decide, the second road takes one session, not two: run only its bell scene.",
+   "keywords": "skip, short-handed, march, tor, strike, pacing, second road, branch, hurry, bells",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A",
+      "B"
+     ]
+    },
+    {
+     "flag": "short_handed",
+     "in": [
+      "no"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "short_handed",
+     "set": "yes"
+    },
+    {
+     "flag": "clock_court",
+     "add": -3
+    }
+   ]
+  },
+  {
+   "id": "s17a-loud-route",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "The loud route: the grey riders hit the wedding camp",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Tonight is talk and games. If the table wants a fight, the Court has followed them here.",
+   "tells": "The table is restless, the games are over, or the Court Clock is 6 or more.",
+   "readAloud": "The fiddles stop. Over the music you hear hooves, a lot of them, and somebody in the camp shouts the word every Ironhorn child learns first: \"Grey!\"",
+   "response": "Court riders come for the Thane's Tongue at the edge of the firelight (enc-s17a-grey-riders). Fighting beside the Ironhorn is the quickest way into Kessa's trust: if they defend the camp, skip the champion's games, and she treats them as kin. If they hold back, the camp remembers that too.",
+   "rules": "Anyone who wants to fight mounted borrows an Ironhorn horse (Warhorse).",
+   "consequence": "Defending the camp counts as winning the games. If the riders reach the Thane's tent, tick the Court Clock.",
+   "later": "",
+   "fallback": "",
+   "keywords": "fight, raid, grey riders, court, ironhorn, camp, wedding, combat, horses, loud",
+   "effects": []
+  },
+  {
+   "id": "s18a-loud-route",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "The loud route: they force the forge",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Tonight is an argument. A party that would rather break in than be told has a real fight waiting, and the forge's treasure behind it.",
+   "tells": "They break into the Bellwrights' lower hall, refuse Corin's welcome, or go looking for the storm-stones.",
+   "readAloud": "Behind the last door, in the dark, two shapes as tall as bells stand in their moulds. Bronze faces, half finished. As the door bangs against the wall, both of them turn their heads.",
+   "response": "Run enc-s18a-forge-wakes. The lower hall holds the moulds and the storm-stones. If they win, they can take the stones, and anyone with smith's tools can make Storm-Set (see Rewards) in a day with a DC 15 check, without Corin's help. Corin's argument still happens afterwards, angrier.",
+   "rules": "",
+   "consequence": "They broke into the forge: tick the Bellwrights Clock, and Corin starts Wary.",
+   "later": "",
+   "fallback": "",
+   "keywords": "fight, forge, golems, bellwrights, storm-stones, loud, combat, break in, moulds, guards",
+   "effects": [
+    {
+     "flag": "clock_bellwrights",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s18b-loud-route",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "title": "The loud route: they force the top step",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "There's hardly any rolling tonight. If the table wants a fight, the Cult's sitters are on the top step, and they won't move for a threat.",
+   "tells": "The Cult is still feeding, its sitters hold the top step, and the party won't wait.",
+   "readAloud": "Six people in grey sit on the top step and the landing, eyes closed, humming. One of them opens her eyes. \"You can't go down,\" she says kindly. \"It's sleeping. Sit with us.\"",
+   "response": "The sitters let them pass if they sit and listen for a minute; no roll. If they won't, run enc-s18b-top-step. It's fought on the landing above step one, so nothing costs a step unless someone is shoved down; say so before the first roll. After it, the stairs work as written.",
+   "rules": "",
+   "consequence": "The Cult hears that the party fought on the Hush's stairs: tick the Hush Cult clock.",
+   "later": "",
+   "fallback": "",
+   "keywords": "fight, cult, sitters, top step, stairs, hush, loud, combat, force, landing",
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_hush",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s16a-treasure-garrows-pick",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "Treasure: Garrow's locker",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Garrow's crew left their pay in the changing-shed the day the lightning came, and Garrow left something better.",
+   "tells": "They search the changing-shed, or Garrow is at peace.",
+   "readAloud": "The lockers in the changing-shed still have names chalked on them. In Garrow's, under a pair of boots nobody has worn in thirty years, there's a pick with a head of blue-black stone that crackles when it's lifted.",
+   "response": "The lockers hold the crew's pay (600 gp in Brassfall scrip and silver) and a Potion of Resistance (Lightning) for each character. If they carried his lamp, Garrow gives them the pick himself; if not, the ghost swears at whoever takes it.",
+   "rules": "**Garrow's Pick** (rare, requires attunement): a Flame Tongue (a war pick, or any melee weapon at your table's choice) whose flame is lightning: the extra 2d6 damage is Lightning instead of Fire.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, pick, flame tongue, lightning, garrow, miners, lockers, reward",
+   "effects": []
+  },
+  {
+   "id": "s16b-treasure-sleepers-torc",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "Treasure: the sleepers' offerings",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "People leave gifts for the sleepers, for when they wake. Some of the sleepers never will.",
+   "tells": "The Sleepless are faced, or the keepers thank them.",
+   "readAloud": "Around each sleeper's cot people have left things for when they wake: bread gone to stone, letters, and on one sleeper who never woke, a torc of grey gold.",
+   "response": "The keepers give them what the dead sleepers were left: the torc, 300 gp in offerings and two Potions of Greater Healing. Taking from a living sleeper's cot is theft, and the keepers notice.",
+   "rules": "**Sleeper's Torc** (rare, requires attunement): an Amulet of Health (Constitution 19). While you wear it, the Hush never speaks in your dreams.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, torc, amulet of health, sleepers, offerings, hall, reward, potions",
+   "effects": []
+  },
+  {
+   "id": "s17b-treasure-lumens-crook",
+   "sessionId": "sb-93be53f2a6747fe1",
+   "title": "Treasure: a gift from Mother Lumen",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The Cult are the nicest people the party has met this month, and nice people give presents.",
+   "tells": "The party eats with the Cult, or leaves the Sleeping Hall.",
+   "readAloud": "Mother Lumen presses a staff into your hands, pale wood wound with grey ribbon. \"For the road,\" she says. \"For whoever you love most. Don't thank me. Sleep well.\"",
+   "response": "The gift comes whether or not they rest with the Cult, and it has no catch. Refusing it is rude, not dangerous. She adds a bag of dream-tea: three doses, and a Long Rest after one restores all Hit Point Dice.",
+   "rules": "**Lumen's Crook** (rare, requires attunement by a Bard, Cleric or Druid): a Staff of Healing. If nobody can attune to it, she gives a +2 weapon instead.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, gift, magic item, staff of healing, cult, mother lumen, crook, reward, tea, present",
+   "effects": []
+  },
+  {
+   "id": "s19a-treasure-war-chest",
+   "sessionId": "sb-ad6ec717a7e06917",
+   "title": "Treasure: the Court's war-chest",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The battle in the rain leaves the Court's baggage in the mud, and the Court pays its captains well.",
+   "tells": "The battle is over and they search the field.",
+   "readAloud": "When the rain stops, the Court's baggage wagons are still in the mud where their drivers left them. One is locked, and painted with the grey seal.",
+   "response": "The locked wagon holds the Court's pay-chest (900 gp), two Potions of Heroism, and the captain's own arms: choose a +2 weapon or +1 armour by who has the least.",
+   "rules": "Lock: DC 15 with thieves' tools, or DC 18 Strength. **Captain's Steel** (rare): a +2 Weapon, or +1 Armor. No attunement.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, +2 weapon, armor, war-chest, court, wagon, gold, reward",
+   "effects": []
+  },
+  {
+   "id": "s19b-treasure-bell-boots",
+   "sessionId": "sb-abff956ca382268b",
+   "title": "Treasure: what the grey riders dropped",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The riders who chased them off the hill left gear behind in the dark.",
+   "tells": "They get off the hill, and the riders are gone.",
+   "readAloud": "At the bottom of the hill a grey rider's horse stands alone, reins trailing. In the saddlebag: Court orders, a purse, and a pair of boots with spurs that are not spurs but small bronze bells.",
+   "response": "The saddlebag holds 500 gp, two Potions of Greater Healing, the boots, and Court orders naming where the Court will be strongest at the Strike (a free clue for Session 22).",
+   "rules": "**Rider's Bell-boots** (rare, requires attunement): Boots of Speed. The bells ring only when you want them to.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, boots of speed, grey riders, saddlebag, orders, gold, reward, horse",
+   "effects": []
+  },
+  {
+   "id": "s20-personal-beat",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "Personal beat (Act IV): someone from the road they came by",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The second road is fast, and full of strangers. One of them shouldn't be a stranger.",
+   "tells": "Any arrival tonight, or a crowd.",
+   "readAloud": "In the crowd at the crossroads there's a face from before Pellmoor, from the road you came in on. They know your name. Your real name.",
+   "response": "Use session zero's first question: how they arrived at Pellmoor. Someone from that road is here (the ship's mate, the caravan-master, the sibling who stayed) with a choice: help with something from the old life, or hear the truth about why the character left. A lost person can be found alive here.",
+   "rules": "When the beat lands, that character gains Heroic Inspiration.",
+   "consequence": "One character's own story moved. Note it in their Roster notes: one beat per act.",
+   "later": "A lost thing glimpsed here can be won back: any-win-back-the-lost-thing.",
+   "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
+   "keywords": "road, stranger, past, personal, backstory, session zero, beat, growth, family, arrival",
+   "effects": []
   }
  ],
  "briefs": [
@@ -2551,7 +2763,8 @@
    ],
    "encounters": [
     "enc-s17a-champion",
-    "enc-s17a-kessa-duel"
+    "enc-s17a-kessa-duel",
+    "enc-s17a-grey-riders"
    ],
    "rules": [
     "Help",
@@ -2593,7 +2806,8 @@
     "Written for four level-7 characters"
    ],
    "encounters": [
-    "enc-s18a-hounds"
+    "enc-s18a-hounds",
+    "enc-s18a-forge-wakes"
    ],
    "rules": [
     "Counterspell",
@@ -2610,7 +2824,9 @@
     "Run Corin's offer only if corin is unmet",
     "Write down any Stairs memories in the ledger"
    ],
-   "encounters": [],
+   "encounters": [
+    "enc-s18b-top-step"
+   ],
    "rules": [
     "Frightened",
     "Influence"
@@ -3055,6 +3271,91 @@
    "tactics": "The Wardens hold the road, the knights charge, and the Hushmen flank. They want the Ringer and the Tongue.",
    "exit": "They withdraw if three Wardens fall, or if the party surrenders a Tongue.",
    "scale": "Written for four level-8 characters. Remove a Warden and the knights for a lighter fight."
+  },
+  {
+   "id": "enc-s17a-grey-riders",
+   "sessionId": "sb-3b3f7af5135fd7d2",
+   "title": "The grey riders hit the wedding camp",
+   "creatures": [
+    {
+     "name": "Grey Rider",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 4
+    },
+    {
+     "name": "Warhorse",
+     "base": "Warhorse",
+     "cr": "1/2",
+     "count": 4
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 1
+    }
+   ],
+   "tactics": "They come at dusk through the cooking fires. Two riders keep the party busy while two make for the Thane's tent and the Tongue. The Warden dismounts and holds the tent door. Ironhorn riders fight beside the party, but they've been drinking.",
+   "exit": "The riders break when the Warden falls or two riders are down. If they get the Tongue they ride for the road; a party on horseback can catch them.",
+   "scale": "Written for four level-7 characters with the camp fighting beside them. Add two riders for a harder fight; the Warden and two riders is lighter."
+  },
+  {
+   "id": "enc-s18a-forge-wakes",
+   "sessionId": "sb-42bb15639f8889ad",
+   "title": "The forge's bell-guards wake",
+   "creatures": [
+    {
+     "name": "Bell-guard (Storm-stone Golem)",
+     "statblock": "sb_storm_golem",
+     "base": "Flesh Golem",
+     "cr": "5",
+     "count": 2
+    },
+    {
+     "name": "Tongue-Hound",
+     "statblock": "sb_tongue_hound",
+     "base": "Hell Hound",
+     "cr": "3",
+     "count": 2
+    }
+   ],
+   "tactics": "Two half-finished bell-guards stand in the lower hall. They wake when anyone forces a door, breaks a mould or strikes a Bellwright, and go for whoever is loudest. The hounds ring to wake them and herd intruders toward the furnace.",
+   "exit": "Anyone who says they have rung a bell can tell them to stop, and they stop. Corin's word ends it. They never follow out of the lower hall.",
+   "scale": "Written for four level-7 characters. One bell-guard for a lighter fight; add the furnace venting each round (DC 14 Dexterity, 3d6 Fire) for a harder one."
+  },
+  {
+   "id": "enc-s18b-top-step",
+   "sessionId": "sb-f0b728a69d395cb2",
+   "title": "The Cult's sitters on the top step",
+   "creatures": [
+    {
+     "name": "Hush Cultist",
+     "statblock": "sb_hush_cultist",
+     "base": "Cultist Fanatic",
+     "cr": "2",
+     "count": 4
+    },
+    {
+     "name": "Hush Cult Leader",
+     "statblock": "sb_hush_leader",
+     "base": "Mage",
+     "cr": "6",
+     "count": 1
+    }
+   ],
+   "tactics": "They won't strike first. They fight on the landing above step one, cast to put intruders to sleep, and never shove anyone down. The leader sings the lullaby: at the top of each round, everyone on the landing makes a DC 13 Wisdom save or is Frightened until the end of their next turn.",
+   "exit": "They yield the step when the leader is Bloodied, or when anyone sits down with them and listens for a minute. They never chase anyone down the stairs.",
+   "scale": "Written for four level-7 characters. Two cultists for a lighter fight; a Sleepless (Wraith) rising from below for a harder one.",
+   "when": [
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ]
   }
  ]
 }

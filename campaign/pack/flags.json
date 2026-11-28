@@ -1558,5 +1558,40 @@
    }
   ],
   "help": "Only the Dreamer's Sleep sets it (s27-sing-the-lullaby)."
+ },
+ {
+  "id": "clock_glass",
+  "group": "Clocks",
+  "label": "Glassreach clock (the Long Cold)",
+  "initial": 0,
+  "max": 6,
+  "help": "Ticks once on arriving in Glassreach (s10-the-long-cold), once for each Long Rest there, and once each time the party leaves the path or turns back. It is a reason to hurry, not a punishment.",
+  "thresholds": [
+   {
+    "at": 3,
+    "text": "The cold comes down: a Long Rest without fire or shelter needs DC 13 Constitution or 1 Exhaustion, and the sermon reaches the camp."
+   },
+   {
+    "at": 6,
+    "text": "The Court's envoy reaches the Chapel of Winter with a Hushman squad (s12-envoy-at-the-door)."
+   }
+  ]
+ },
+ {
+  "id": "short_handed",
+  "group": "People",
+  "label": "Marched on the Tor short-handed",
+  "initial": "no",
+  "options": [
+   {
+    "id": "no",
+    "label": "Played both roads"
+   },
+   {
+    "id": "yes",
+    "label": "Skipped the second road"
+   }
+  ],
+  "help": "Set when the party skips the second Act IV road and goes straight to the Strike (s20-march-short-handed). The Court is not ready, the second bell stays unrung, and the Concord needs it later."
  }
 ]

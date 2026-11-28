@@ -2351,6 +2351,239 @@
      "add": 1
     }
    ]
+  },
+  {
+   "id": "any-bellwright-charm",
+   "title": "Corin gives a Ringer a bell-charm",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Corin has spent three generations learning how to make a Toll wait. He can't make it smaller, but he shares the trick with people he trusts.",
+   "tells": "Corin is their ally and they meet him, or a Ringer is about to ring a bell with him there.",
+   "readAloud": "Corin turns a bronze bell no bigger than a thimble over in his fingers. It has no clapper. \"It won't make it cheaper,\" he says. \"Nothing does. It only lets you choose the hour.\"",
+   "response": "He gives one Ringer a bronze bell no bigger than a thimble, with no clapper: his Deferred Toll in a thing you can carry. Be clear about what it doesn't do: the Toll is never smaller and never avoided. If they refused Corin, the Bellwrights' apprentices make one in a week for a party the Bellwrights hold Trusted (faction standing).",
+   "rules": "**Bellwright's Charm** (rare, requires attunement): Resistance to Thunder damage. Once per dawn, when a bell you ring takes its Toll, you can let the Toll come an hour later, at a moment you choose within that hour; it is never less. As a Bonus Action, ring it to end the Charmed or Frightened condition on yourself or a creature within 30 feet; then not again until you finish a Short or Long Rest.",
+   "consequence": "One Ringer carries the charm.",
+   "later": "",
+   "fallback": "",
+   "keywords": "charm, bell-charm, corin, bellwrights, deferred toll, magic item, attunement, thunder, toll, hour",
+   "when": [
+    {
+     "flag": "corin",
+     "in": [
+      "ally",
+      "voice"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-personal-beat",
+   "title": "A personal beat from session zero (once per character per act)",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Every character came to Pellmoor with a road behind them, a thing lost and a person they knew. Once an act, the story should be about one of those.",
+   "tells": "A character hasn't had a scene of their own this act, or a player mentions their past.",
+   "readAloud": "Someone at the edge of the firelight says your name. Not the one you use now: the one from before Pellmoor.",
+   "response": "Look up the character's session-zero answers in the Roster notes and pick one: the road they came by (someone from it turns up), the thing they lost (a lead to it), or the person they know in Pellmoor (that person needs them, or writes). Give it one scene of ten minutes and let the player steer. Each act from II on has a ready version: Session 8, Session 11, Session 20 and Session 24. In Act I, use this play.",
+   "rules": "When the beat lands, that character gains Heroic Inspiration.",
+   "consequence": "One character's story moved, and it's theirs.",
+   "later": "Five beats per character across the campaign. The last pays off in the epilogue.",
+   "fallback": "If a player has no answers, ask the three questions now, at the table, in a minute.",
+   "keywords": "personal, backstory, session zero, character arc, beat, growth, lost thing, roster, spotlight, inspiration",
+   "effects": []
+  },
+  {
+   "id": "any-win-back-the-lost-thing",
+   "title": "They go after the thing they lost",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Session zero asked what each character had lost. A campaign that only takes more is missing half the story: let them win one thing back.",
+   "tells": "A character has a lead to their lost thing, or a player says they want to look for it.",
+   "readAloud": "It's there, after all this time. Not far, and not safe, but close enough to reach, if you're willing to go and get it.",
+   "response": "Run it as a small quest over a session or two, with three leads; any one is enough. **A Tithe jar:** if it's a memory, the Tithe-Ledger names its jar. While the jars are intact they can buy it, argue for it or steal it; if the jars went home, it comes back in a dream. **The Hush's dreams:** anything lost in sleep is somewhere in the Hush, and the Sleeping Hall's keepers can send them to look for one night; they come back with it, and the Hush learns their name. **A person:** lost people are alive somewhere on the Ninefold Shore more often than not, and a personal beat says where. Once it's back, it's theirs.",
+   "rules": "Give the character an Origin feat that fits what came back (Skilled for a skill, Healer for a mentor's craft, Lucky for a person, Alert for a memory), or the person as a named ally. Tolls are permanent, and nothing here undoes one: if a Toll took it, it stays gone. Give a Toll-mark instead (any-toll-mark).",
+   "consequence": "One character has won back what they lost, and grown.",
+   "later": "S24: Maudrin can offer any lost thing still unfound.",
+   "fallback": "If the quest would take over a session, make it one scene: the jar on a shelf, the face in a crowd.",
+   "keywords": "lost thing, win back, quest, tithe jar, dreams, hush, backstory, session zero, growth, feat",
+   "effects": []
+  },
+  {
+   "id": "any-toll-mark",
+   "title": "The Toll leaves a mark",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Toll is permanent, and it should be. But something grows in the space a Toll leaves, and the players should see it.",
+   "tells": "A Ringer has just paid a Toll, at the end of the ringing scene.",
+   "readAloud": "The Toll is paid, and it stays paid. But when you look into the water afterwards, there is something in your face that wasn't there before.",
+   "response": "The Toll stays paid. The Ringer also gets a Toll-mark, chosen with the player: a fleck of bronze in one eye, a note under the voice, a cold palm. The mark comes with one small boon that grows out of what was taken. A memory of someone: proficiency in Insight, because they read faces harder now. A Gift (Calla): one cantrip from any class's list. A dawn (Vaer): they always know the time and which way is east, and can't be Surprised at dawn. After Thrane: Resistance to Thunder damage. After Mirel: Advantage on saves against being Frightened. Or any skill or tool proficiency that fits.",
+   "rules": "One Toll-mark per Toll. A mark never gives back what was taken.",
+   "consequence": "The Ringer is changed, not only diminished. Read the marks with the Tolls in the epilogue.",
+   "later": "",
+   "fallback": "",
+   "keywords": "toll, toll-mark, mark, boon, ringer, cost, growth, bell, permanent, scar",
+   "effects": []
+  },
+  {
+   "id": "any-faction-standing",
+   "title": "Faction standing: what each tier gets them",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The party makes friends and enemies all campaign. Standing makes that pay a little, every session.",
+   "tells": "The party does a faction a real favour or crosses it, or asks a faction for help.",
+   "readAloud": "\"Word gets around,\" the innkeeper says, and sets down a second cup nobody ordered. \"Some people round here think well of you. Some don't.\"",
+   "response": "Each faction's standing is set in Waypoint (Faction standing, in the Campaign hub), from Enemies to Allied. Move it one step for a real favour or a real betrayal, never for a roll. **Enemies, Hostile:** they hunt or inform on the party; doors shut, prices double. **Wary:** no favours until they see proof. **Neutral:** business as usual. **Friendly:** one favour per act (a safe house, a guide, a message carried) and fair prices. **Trusted:** they lend a person for a session, sell uncommon items at book price, and share what they know, plus the faction's own perk (see Faction standing in the wiki). **Allied:** they stand with the party at the Strike.",
+   "rules": "Standing and the faction clocks are separate: the clock is what the faction does next; standing is how it feels about the party.",
+   "consequence": "Standing is visible, and it pays.",
+   "later": "S22: each Allied faction is a company that comes up the road; tick the Allies clock for it.",
+   "fallback": "",
+   "keywords": "faction, standing, reputation, allies, friendly, hostile, trusted, renown, favour, waypoint",
+   "effects": []
+  },
+  {
+   "id": "any-boon-vaer",
+   "title": "Vaer's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Vaer has been rung, and the party rests or returns to Hallowmere.",
+   "readAloud": "Far off, Vaer is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "Hallowmere's bell-houses open their doors: free lodging, and a safe house even under a Silence Warrant.",
+   "rules": "Dawn-charm: once per character, at the end of a Long Rest that ends at dawn, gain Heroic Inspiration and lose one Exhaustion level.",
+   "consequence": "The party has Vaer's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, vaer, dawn, hallowmere, safe house, charm, inspiration",
+   "when": [
+    {
+     "flag": "bell_vaer",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-boon-ossa",
+   "title": "Ossa's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Ossa has been rung, and the party rests or returns to Old Pellmoor.",
+   "readAloud": "Far off, Ossa is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "The ferry-folk of the Mere carry the party free, anywhere on the water.",
+   "rules": "Memory-charm: once per character, ask the bell about something the character saw or heard, and remember it exactly. You answer truthfully from what they perceived.",
+   "consequence": "The party has Ossa's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, ossa, memory, pellmoor, ferry, charm, remember",
+   "when": [
+    {
+     "flag": "bell_ossa",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-boon-calla",
+   "title": "Calla's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Calla has been rung, and the party rests or returns to Kell's Crossing.",
+   "readAloud": "Far off, Calla is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "Kell's Crossing feeds them: the party never runs short of rations on the road.",
+   "rules": "Harvest-charm: once per act, a Long Rest restores all of the party's Hit Point Dice.",
+   "consequence": "The party has Calla's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, calla, harvest, kell's crossing, food, rations, charm",
+   "when": [
+    {
+     "flag": "bell_calla",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-boon-hieme",
+   "title": "Hieme's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Hieme has been rung, and the party rests or returns to Glassreach.",
+   "readAloud": "Far off, Hieme is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "Glassreach's woken families remember them, and the Long Cold no longer touches the party.",
+   "rules": "Winter-charm: each character has Resistance to Cold damage.",
+   "consequence": "The party has Hieme's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, hieme, winter, glassreach, cold, resistance, charm",
+   "when": [
+    {
+     "flag": "bell_hieme",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-boon-thrane",
+   "title": "Thrane's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Thrane has been rung, and the party rests or returns to Brassfall.",
+   "readAloud": "Far off, Thrane is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "The Brassfall miners sell them storm-stones at cost, so Storm-Set costs nothing but the work.",
+   "rules": "Storm-charm: once per Long Rest, when a creature hits a character, that character can use a Reaction to deal 2d8 Lightning damage to it.",
+   "consequence": "The party has Thrane's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, thrane, storm, brassfall, lightning, miners, charm",
+   "when": [
+    {
+     "flag": "bell_thrane",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "any-boon-mirel",
+   "title": "Mirel's boon",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every bell rung gives a little back to the people who rang it: a small thing, set against the Toll.",
+   "tells": "Mirel has been rung, and the party rests or returns to Vael Tor.",
+   "readAloud": "Far off, Mirel is still ringing, so faintly that only the people who rang it can hear. It sounds like thanks.",
+   "response": "The sleepers of Vael Tor turn over, and some of them wake and come looking for the people who rang.",
+   "rules": "Dream-charm: once per act, each character wakes from a Long Rest with Heroic Inspiration, from a good dream. Characters who lost their dreams in the Sleeping Hall get it too: it's the bell's dream, not theirs.",
+   "consequence": "The party has Mirel's boon for the rest of the campaign.",
+   "later": "",
+   "fallback": "",
+   "keywords": "boon, reward, bell rung, mirel, dream, vael tor, sleep, inspiration, charm",
+   "when": [
+    {
+     "flag": "bell_mirel",
+     "in": [
+      "rung"
+     ]
+    }
+   ],
+   "effects": []
   }
  ],
  "briefs": [],

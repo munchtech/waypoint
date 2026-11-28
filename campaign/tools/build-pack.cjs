@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.19) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.20) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -179,11 +179,11 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.19',
-  summary: `Revision 7.19 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.18 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.20',
+  summary: `Revision 7.20 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.19 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **Reshape the campaign (7.19).** Work for or reform the Court, back a claimant for the empty chair, open the Seam (the Far Shore ending), or swear to the Hush (the Dreamer's Sleep).
-- **Quick wins (7.18).** Faction clocks act at 6 (the Court's at 6, 12 and 18); a magic item per act and a gear shop; Act I debts return in Sessions 22 and 23; Isolde can come early in Session 12; the second Act IV bell is worse for the wait.
+- **Pacing, treasure and growth (7.20).** A Glassreach clock and Act II choices that pay off in Glassreach; Sessions 12 and 13 in one evening; march on the Tor short-handed; a fight in each talking session; two Rare items each by level 9 and a bell-charm; a personal beat per character per act, lost things won back, Toll-marks, standing perks, bell boons.
+- **Reshape and quick wins (7.18, 7.19).** Work for or reform the Court, back a claimant, open the Seam or swear to the Hush; faction clocks act at 6; Act I debts return in Sessions 22 and 23.
 - **Plain speech (7.17).** Guides, plays, the player wiki and handouts reworded to say each thing once, plainly; no rules change.
 - **Pop-outs (7.16).** Wiki pages for the seven bells, the endings, the campaign's own words (Ringer, Tithe…), the Mere and seventeen people; names in plans open their pages; Encounter Lists match the Combat tab.
 - **Run Acts II to V from the page (7.9 to 7.15).** Sessions 4 to 30 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
@@ -214,7 +214,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.19',
+    version: '7.20',
     flags,
     anytime,
     encounters,

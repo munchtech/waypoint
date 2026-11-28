@@ -4290,6 +4290,325 @@
      "set": "following"
     }
    ]
+  },
+  {
+   "id": "s10-the-long-cold",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Start the Glassreach clock (the Long Cold)",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Glassreach is in no hurry, and that is the danger. The longer they stay, the colder it gets, and the Court is on the North Road behind them.",
+   "tells": "They enter Glassreach, camp in the glass, or leave the path.",
+   "readAloud": "The cold here doesn't bite. It waits. Your breath hangs in front of you and does not go away, and somewhere behind you, on the North Road, a horn sounds once.",
+   "response": "Start the Glassreach clock. Tick it once now, once for each Long Rest they take in Glassreach, and once each time they leave the path or turn back for something. Show it: a frost line creeping down the trees on your map is enough. At 3 the cold comes down (s11-the-cold-comes-down); at 6 the Court's envoy reaches the chapel (s12-envoy-at-the-door). It is a reason to keep moving, not a punishment. If they hurry, say so and let it show.",
+   "rules": "While the clock is 3 or more, a Long Rest in Glassreach without a fire or shelter needs a DC 13 Constitution save, or the character gains 1 Exhaustion level.",
+   "consequence": "The Glassreach clock is running.",
+   "later": "Glassreach clock 3: s11-the-cold-comes-down. Glassreach clock 6: s12-envoy-at-the-door.",
+   "fallback": "If the table dislikes timers, keep the clock behind the screen and only show the frost line.",
+   "keywords": "cold, clock, glassreach, winter, frost, timer, hurry, pressure, long cold, north road",
+   "effects": [
+    {
+     "flag": "clock_glass",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s10-isolde-in-the-glass",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Isolde, half frozen, on the path",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Isolde has followed them since Act II, and the glass forest is the first place she can't hide.",
+   "tells": "Isolde is following the party and they enter Glassreach.",
+   "readAloud": "Among the frozen people on the path there is one who is breathing. Her cloak is grey, and frost has stuck it to her shoulders. \"Don't,\" Isolde says, without turning. \"I'm not here to stop you. I'm here because I can't feel my hands.\"",
+   "response": "She lost her Hushmen in the glass and is half frozen. They can warm her and talk, leave her, or take her prisoner. Warmed, she trades: the Court's envoy is three days behind her, and the Court wants the Frost Heart, not the Sexton. If they leave her in the cold she makes it back to the envoy and tells him where they are: tick the Glassreach clock.",
+   "rules": "A DC 12 Wisdom (Medicine) check, or any healing, gets her walking.",
+   "consequence": "Mark Isolde captured if they take her; otherwise she is still following, and owes them her hands.",
+   "later": "S11: s11-isolde-knows, if she is their prisoner or their ally.",
+   "fallback": "If they ignore her, she follows at a distance and turns up at the chapel door in Session 12.",
+   "keywords": "isolde, court, grey cloak, following, frozen, warm, prisoner, envoy, hushmen, glass",
+   "when": [
+    {
+     "flag": "isolde",
+     "in": [
+      "following"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s10-rook-riders",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Rook's cache at the last waystation",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Rook won the oath-duel in Act II, and the Dawn Order pays its debts.",
+   "tells": "Rook won the duel and the party is on the North Road.",
+   "readAloud": "At the last waystation before the glass there is a lantern in the window, and under it a pack with a dawn-sun stitched on the flap. A note is pinned to it in square handwriting: \"You'll be cold. Don't be stupid. R.\"",
+   "response": "The cache holds furs, lamp-oil and a Dawn Order horn. Blown once in Glassreach, the horn brings two outriders within the hour: they lead the party back to the path (take one tick off the Glassreach clock) or carry a message to Rook.",
+   "rules": "With the furs, Constitution saves against the Long Cold have Advantage. The horn works once.",
+   "consequence": "The Dawn Order is still with them. Raise its standing one step in Waypoint if it isn't Friendly yet.",
+   "later": "",
+   "fallback": "",
+   "keywords": "rook, dawn order, cache, duel, furs, horn, outriders, waystation, north road, debt",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "rook"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s11-the-cold-comes-down",
+   "sessionId": "sb-0c7fc8fe12e71ad5",
+   "title": "The cold comes down (Glassreach clock 3)",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "They have taken their time, and the glass has noticed.",
+   "tells": "The Glassreach clock reaches 3.",
+   "readAloud": "The frost comes down the trees like a tide coming in. Where it passes, the birds stop in the air. Ahead, faint and far, a voice is preaching, and you can hear it now even when the wind is wrong.",
+   "response": "The Long Cold rule is live. The Sexton's sermon reaches their camp: each night one character dreams its first lines, so the players hear it before Session 12. Offer them ways to buy time: a fire of Hieme's ash, a night with a Stilled family they were kind to, or simply hurrying on.",
+   "rules": "",
+   "consequence": "The cold is a real cost now. Any more delay brings the Court.",
+   "later": "Glassreach clock 6: s12-envoy-at-the-door.",
+   "fallback": "If they're already hurrying, show the frost behind them and let them outrun it.",
+   "keywords": "cold, frost, exhaustion, sermon, clock, glassreach, camp, hurry, birds, winter",
+   "when": [
+    {
+     "flag": "clock_glass",
+     "min": 3
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s11-isolde-knows",
+   "sessionId": "sb-0c7fc8fe12e71ad5",
+   "title": "Isolde knows the name in the ledger",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Isolde has read the Court's file on the Quiet Night, and nobody has ever asked her about it.",
+   "tells": "Isolde is their prisoner or their ally, and they reach the frozen people or ask about the Sexton.",
+   "readAloud": "\"I know that name,\" Isolde says, looking at the frost on the chapel road. \"Imber Vesk. It's in the Chancellery's oldest ledger, under debts.\"",
+   "response": "She tells them three things: the Court has always known someone survived the Quiet Night; the Sexton's name is in its oldest ledger, and the Chancellor shares it (whether that means family, she doesn't know); and the Court's orders are to take the Frost Heart and leave the Sexton frozen. It's a clue toward Session 13, so give it freely. A prisoner trades it for better treatment; an ally just says it.",
+   "rules": "",
+   "consequence": "They go into Session 12 knowing the Court wants the Sexton left frozen.",
+   "later": "S12: how he reacts to \"Maudrin Vesk\" as the answer to his question matters more.",
+   "fallback": "If they don't ask, she says it anyway at the campfire, to nobody in particular.",
+   "keywords": "isolde, court, ledger, vesk, sexton, imber, quiet night, clue, prisoner, ally",
+   "when": [
+    {
+     "flag": "isolde",
+     "in": [
+      "captured",
+      "ally"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s11-haldric-collects",
+   "sessionId": "sb-0c7fc8fe12e71ad5",
+   "title": "Haldric sends for his favour",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Haldric won the oath-duel, and a knight's favour has to be collected somewhere.",
+   "tells": "Haldric won the duel in Session 6 and is still a knight.",
+   "readAloud": "A knight in Court colours waits at the edge of the glass, his horse blanketed against the cold. \"Ser Haldric sends his regards,\" he says, \"and asks you to keep your word. He has a small thing he needs carried.\"",
+   "response": "The favour comes due: carry a sealed letter to the Chapel of Winter and leave it on the pulpit. It is a Court order, signed by Maudrin, that the Sexton stay frozen. If he reads it, he stops listening to anyone for the rest of Session 12. They can carry it, open it, burn it, or refuse (the knight leaves, and Haldric is their enemy). Honouring the favour some other way is possible: a DC 15 Charisma (Persuasion) check with the knight, or a better gift for Haldric.",
+   "rules": "",
+   "consequence": "The duel matters. Kept, a Court knight stays friendly; broken, Haldric remembers at the Strike. Move the Court's standing in Waypoint either way.",
+   "later": "",
+   "fallback": "If the letter would derail Session 12, the knight only asks them to tell Haldric what they find.",
+   "keywords": "haldric, duel, favour, knight, letter, court, debt, sexton, chapel, oath",
+   "when": [
+    {
+     "flag": "duel",
+     "in": [
+      "haldric"
+     ]
+    },
+    {
+     "flag": "haldric",
+     "in": [
+      "knight"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s12-one-evening",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "Run Sessions 12 and 13 as one evening",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Glassreach is six sessions in one region. The sermon and the confession are one story, and they play well back to back.",
+   "tells": "You're short of sessions, the table is restless, or they agree to listen early.",
+   "readAloud": "He stops in the middle of a word. \"You listened,\" the Sexton says. \"Nobody listens. Then I will tell you the rest, now, while I can.\"",
+   "response": "Run Scenes 1 to 3 (the sermon, the chapel, his question), skip the pews, and go straight into Session 13's confession the moment they agree to listen. Keep the Frost Heart and Session 13's four outcomes; drop its travel. Award level 6 at the end of the evening. The session numbers stay as they are: Session 14 comes next.",
+   "rules": "",
+   "consequence": "Glassreach takes one evening fewer.",
+   "later": "",
+   "fallback": "If the evening runs long, stop at \"Will you listen to him?\" and finish next time.",
+   "keywords": "pacing, merge, one evening, short on time, skip, sessions 12 and 13, confession, sermon, speed up, combine",
+   "effects": []
+  },
+  {
+   "id": "s12-warrant-hobb",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "Hobb the carter reads the Warrant",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "There is a Silence Warrant on them, and Hobb has three sons and a winter to get through.",
+   "tells": "The party is under a Silence Warrant and they travel or talk with Hobb.",
+   "readAloud": "Hobb keeps looking at the folded paper in his coat, then at you, then at his sons. \"It says there's a reward,\" he says at last. \"I'm not saying I would. I'm saying it says.\"",
+   "response": "Hobb has a copy of the Warrant from the North Road waystation, and 200 gp is a winter's food. He hasn't decided. They can pay him, persuade him, threaten him (it works, and his sons never forget), or let him go and see. If he informs, the Court knows where they are: tick the Glassreach clock twice.",
+   "rules": "DC 13 Charisma (Persuasion), with Advantage if they helped his sons.",
+   "consequence": "The Warrant follows them into Glassreach. Hobb is a friend or an informer.",
+   "later": "If he informs, the envoy comes sooner (s12-envoy-at-the-door).",
+   "fallback": "",
+   "keywords": "warrant, silence warrant, hobb, carter, reward, bounty, informer, sons, bribe, court",
+   "when": [
+    {
+     "flag": "warrant",
+     "in": [
+      "yes"
+     ]
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s12-envoy-at-the-door",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "The Court's envoy at the chapel door (Glassreach clock 6)",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "They took too long, and the Court has caught up.",
+   "tells": "The Glassreach clock reaches 6.",
+   "readAloud": "Boots on the chapel steps. A Reckoner in a grey coat shakes the frost off his hat and holds up a writ. \"In the Chancellor's name, nobody touches the Heart. Hushmen, the door.\"",
+   "response": "The envoy reaches the Chapel of Winter with a Hushman squad (enc-s12-envoy). He wants the Frost Heart and the Sexton left frozen. The Sexton stops preaching and watches what the party does. They can fight, talk the envoy down, or ask the Sexton to go on, and turn his sermon on the Hushmen. If Isolde is still the Court's, she leads it; if she's their ally, she argues with the envoy for them.",
+   "rules": "The Sermon works on Hushmen too: Wisdom DC 15 or Charmed.",
+   "consequence": "The Court is in Glassreach. If the envoy escapes, tick the Court Clock.",
+   "later": "",
+   "fallback": "If a fight would swamp the session, the envoy posts a guard on the door and waits. They leave by the vestry, under the ice.",
+   "keywords": "court, envoy, hushmen, reckoner, chapel, fight, frost heart, clock, door, writ",
+   "when": [
+    {
+     "flag": "clock_glass",
+     "min": 6
+    }
+   ],
+   "effects": []
+  },
+  {
+   "id": "s12-loud-route",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "The loud route: they won't sit for the sermon",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Some tables won't sit through a sermon, and they don't have to. The fight is there, and it's honest.",
+   "tells": "They attack the Sexton, break the glass, or refuse to listen.",
+   "readAloud": "\"Do you wish me to go on?\" he asks. Somebody answers with a blade, and the glass in every window turns to look at you.",
+   "response": "Run the chapel fight (enc-s12-chapel). He asks his question before every round. If they win, the Sexton cracks and sinks through the floor, and Session 13 starts with a broken man under the ice instead of a talking one; all four of its outcomes still work. If they stop and listen at any point, he stops too.",
+   "rules": "As in Running the fights: 95 hit points, AC 15, Sermon DC 15. He never leaves the pulpit.",
+   "consequence": "The Sexton is broken but alive. He still confesses in Session 13, angrier.",
+   "later": "S13: start with him in the ice under the chapel.",
+   "fallback": "If they run, he doesn't follow.",
+   "keywords": "fight, attack, sexton, loud, combat, glass, stilled, chapel, refuse, boss",
+   "effects": []
+  },
+  {
+   "id": "s09-treasure-strongbox",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "Treasure: the Tithe-house strongbox",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "They've gone a long way on very little. Hallowmere's Tithe-house has been taking for years, and it kept the best of it.",
+   "tells": "They search the Tithe-house before they leave, or someone they freed comes to say goodbye.",
+   "readAloud": "Under the Reckoner's desk, a strongbox with three locks. Inside, on a bed of wedding-lace: coins, three stoppered bottles, and a plain bronze ring that's warm.",
+   "response": "The box holds 350 gp, three Potions of Healing and the Ringer's Band, which belonged to a Ringer the Court took. If the Tithe-house is closed to them, a freed family gives them the ring as thanks.",
+   "rules": "Locks: DC 15 with thieves' tools, or DC 18 Strength. **Ringer's Band** (rare, requires attunement): a Ring of Protection (+1 to AC and saving throws). While you wear it, you hear any bell rung within a mile.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "If they missed the box, it turns up in a Reckoner's saddlebags in Session 10.",
+   "keywords": "treasure, loot, magic item, ring, ring of protection, strongbox, gold, potions, reward, tithe-house",
+   "effects": []
+  },
+  {
+   "id": "s11-treasure-glass-cloak",
+   "sessionId": "sb-0c7fc8fe12e71ad5",
+   "title": "Treasure: what the frozen were carrying",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The frozen people of Glassreach have carried their belongings for four hundred years, and some of them would give anything to the people who woke them.",
+   "tells": "They wake someone gently, or search the abandoned waystation.",
+   "readAloud": "The frozen bell-ringer's cloak is glass all the way through, and it moves. When you lift it, it slides over your hands like water, and your hands seem to be a little to the left of where they are.",
+   "response": "A family they woke gives them the cloak; otherwise it's in the waystation. With it: two Potions of Greater Healing, a Spell Scroll of Lesser Restoration, and 120 gp in old coin (double that to a collector in Pellmoor).",
+   "rules": "**Glass-weave Cloak** (rare, requires attunement): a Cloak of Displacement. In Glassreach it also gives Advantage on saves against the cold.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, cloak, displacement, glass, frozen, potions, scroll, reward",
+   "effects": []
+  },
+  {
+   "id": "s13-treasure-reliquary",
+   "sessionId": "sb-f40bf272eb1b252f",
+   "title": "Treasure: the Sexton's reliquary",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Whatever they decide about Imber, the High Sexton's reliquary has waited under the pulpit for them.",
+   "tells": "His story is settled, or they search the pulpit.",
+   "readAloud": "Behind the pulpit, under four hundred years of frost: a reliquary of bell-bronze holding a hymnal, a pair of silver bracers and a slim baton wound with wire.",
+   "response": "Freed, Imber gives it; left frozen, he lets them take it; dead, it's under his pulpit. Choose one Rare item by who has none yet: the bracers for someone who fights without armour, the baton for a caster. Also 400 gp of silver plate, a Spell Scroll of Remove Curse and a Potion of Resistance (Cold).",
+   "rules": "**Sexton's Bracers** (rare, requires attunement): Bracers of Defense. Or **Choirmaster's Baton** (rare, requires attunement by a spellcaster): a Wand of the War Mage +2.",
+   "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
+   "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
+   "fallback": "",
+   "keywords": "treasure, loot, magic item, bracers, wand, reliquary, sexton, imber, reward, gold",
+   "effects": []
+  },
+  {
+   "id": "s08-personal-beat",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "Personal beat (Act II): the goodbye letters",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "Session 8 is for loose ends and goodbyes, which makes it the place for each character's Act II beat.",
+   "tells": "Any time tonight, especially around the letter.",
+   "readAloud": "The post-rider has more than one letter. \"This one's for you,\" he says, and hands it over. The handwriting is one you know.",
+   "response": "Each character gets a letter or a visitor from their session-zero answers: the person they know in Pellmoor writes (with news of the siege, if there was one), or someone from the road they came by finds them. One letter mentions the thing they lost: someone has seen it, or heard of it. Give each player a minute to read theirs out, or keep it private.",
+   "rules": "When the beat lands, that character gains Heroic Inspiration.",
+   "consequence": "One character's own story moved. Note it in their Roster notes: one beat per act.",
+   "later": "A lost thing glimpsed here can be won back: any-win-back-the-lost-thing.",
+   "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
+   "keywords": "letter, personal, backstory, session zero, goodbye, beat, growth, visitor, lead, pellmoor",
+   "effects": []
+  },
+  {
+   "id": "s11-personal-beat",
+   "sessionId": "sb-0c7fc8fe12e71ad5",
+   "title": "Personal beat (Act III): the glass shows what they lost",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The glass shows people the truth. Once, it should show each character something of their own.",
+   "tells": "They walk among the frozen, or someone stops to look into the glass.",
+   "readAloud": "In one pane of the frozen wood there's something that shouldn't be here: a thing you lost, years ago and far away, held in the glass like a fly in amber.",
+   "response": "The glass shows each character their lost thing (session zero, question 2) as it is now, somewhere in Corvane. It's a real lead: where it is, who has it, what it would take. For a person, a glimpse of them alive and older; for a memory, a Tithe jar with their name on it; for a skill, a stranger's hands doing it. Don't let them reach it here.",
+   "rules": "When the beat lands, that character gains Heroic Inspiration.",
+   "consequence": "One character's own story moved. Note it in their Roster notes: one beat per act.",
+   "later": "A lost thing glimpsed here can be won back: any-win-back-the-lost-thing.",
+   "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
+   "keywords": "glass, vision, lost thing, personal, backstory, session zero, beat, growth, lead, frozen",
+   "effects": []
   }
  ],
  "briefs": [
@@ -4524,7 +4843,9 @@
     "The stat block wins: frost-form 95 HP, broken-form 45 HP, Sermon DC 15, and peaceful melting needs 20 Fire or Lightning damage or a DC 15 Strength check"
    ],
    "encounters": [
-    "enc-s13-glass-sexton"
+    "enc-s13-glass-sexton",
+    "enc-s12-chapel",
+    "enc-s12-envoy"
    ],
    "rules": [
     "Charmed",
@@ -4988,6 +5309,67 @@
    "tactics": "Isolde talks first and fights only if attacked: one round of poisoned blades, then Cunning Action to Disengage and Dash. The Hushmen grapple to cover her withdrawal and fall back by twos.",
    "exit": "Isolde's retreat ends it once she is out of sight among the thawing trees. The Hushmen surrender if the Sergeant falls. Nobody pursues the party south.",
    "scale": "Written for four level-6 characters as a show of force, not a fair fight. If they fought their way out of Hallowmere (S9), add two Hushmen. For a night raid on her camp, add two more Sergeants. If Isolde is captured, Tristan Vesk comes with a smaller escort and no Cunning Action."
+  },
+  {
+   "id": "enc-s12-chapel",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "The Chapel of Winter, the loud way",
+   "creatures": [
+    {
+     "name": "The Glass Sexton (Imber Vesk)",
+     "statblock": "sb_glass_sexton",
+     "base": "Gargoyle + Priest",
+     "cr": "7",
+     "count": 1
+    },
+    {
+     "name": "Stilled Person",
+     "statblock": "sb_stilled",
+     "base": "Gargoyle",
+     "cr": "2",
+     "count": 3
+    }
+   ],
+   "tactics": "He never leaves the pulpit and asks \"Do you wish me to go on?\" before each round. His sermon is Wisdom DC 15 or Charmed. One Stilled wakes in round 2; two more wake if glass breaks in the back pews, and lash out at whoever is nearest.",
+   "exit": "Nobody attacks for a round, and he stops too. Leaving the chapel ends it; he never follows. An Influence action (DC 15) calms one Stilled, or he calls them to sit if asked.",
+   "scale": "Written for four level-5 characters. The Sexton alone is a lighter fight; all three Stilled from round 1 is harder."
+  },
+  {
+   "id": "enc-s12-envoy",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "The Court's envoy at the chapel door",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    },
+    {
+     "name": "Court Reckoner",
+     "statblock": "sb_court_agent",
+     "base": "Spy",
+     "cr": "2",
+     "count": 1
+    }
+   ],
+   "tactics": "The Hushmen hold the door and the aisle; the Warden goes for whoever has the Frost Heart. The Reckoner stays back reading the writ aloud and runs at the first wound. On any attack roll of 1 a pane breaks and a Stilled wakes; it attacks the nearest Hushman.",
+   "exit": "The Reckoner surrenders when the Warden falls. Asking the Sexton to go on turns his sermon on the Hushmen. Leaving by the vestry, under the ice, ends it.",
+   "scale": "Written for four level-5 characters. Add a Hushman Sergeant (Bandit Captain) for a harder fight; drop the Warden for a lighter one.",
+   "when": [
+    {
+     "flag": "clock_glass",
+     "min": 6
+    }
+   ]
   }
  ]
 }
