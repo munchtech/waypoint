@@ -227,7 +227,7 @@
 - **A sketch:** who drew it, or that nobody did. Yara will ask.
 
 **Rewards:**
-- **Hieme:** one more of the six for the Concord.
+- **Hieme:** one more of the six for the Concord. A splinter of the Spire's ice comes down with the Ringer and never melts: **Hieme's Shard** (rare, requires attunement). Its holder has Resistance to Cold damage, and once per dawn, when they fail a saving throw, they can take a Reaction to succeed instead; the shard frosts white until the next dawn.
 - **Glassreach:** beginning to thaw. The Stilled will wake over the coming weeks.
 - **Heroic Inspiration:** to the Ringer, and to whoever stayed below and kept the rope.
 

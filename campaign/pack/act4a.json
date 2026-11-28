@@ -2116,7 +2116,7 @@
    "why": "Corin's offer is made once, wherever they meet him.",
    "tells": "The party has not met Corin.",
    "readAloud": "“Ah, you have been to the mountains. Good.”",
-   "response": "As s18a-meet-corin: the Notes, the Concord, the honest warning about the name.",
+   "response": "As s18a-meet-corin: the Notes, the Concord, the honest warning about the name. If they carry a storm-stone, he sets it into a weapon or focus for them (Storm-Set, as in the S18A rewards).",
    "rules": "",
    "consequence": "The party has the Notes.",
    "later": "S22: s22-read-notes.",
@@ -2361,6 +2361,72 @@
    "sessionId": "sb-24c29d78b60ca13f",
    "when": [],
    "effects": []
+  },
+  {
+   "id": "s20-tor-cost-of-waiting",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "The Court reached the Tor first: the Cult has grown",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The party spent Act IV at Brassfall. The Court and the Cult didn't wait for them.",
+   "tells": "Act IV route is Brassfall first.",
+   "readAloud": "The village below the Tor is quiet in daylight. Every other house has its shutters closed, and behind them people are humming in their sleep.",
+   "response": "While the party was at Brassfall, the Court reached the Tor and the Cult recruited. Tick the Hush Clock up by 2. The Court has a post on the hill path, so one more Hushman Warden waits at the Sleeping Hall. Name one person the party would have met here; they are a sleeper now, and waking them is part of the price of the Tor.",
+   "rules": "Add one Hushman Warden (CR 4) to the Tor's Court fight (enc-s20-tor). Waking the sleeper works as in any-hush-moves.",
+   "consequence": "Vael Tor is worse for the wait: more sleepers, a Court post, and a louder lullaby.",
+   "later": "Hush Clock 6: the Cult takes a sleeper (any-hush-moves). S21: if Mirel rings, the sleepers in the Hall wake.",
+   "fallback": "",
+   "keywords": "vael tor second, cult grown, sleepers, court first, warden post, humming, cost of waiting",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "A"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_hush",
+     "add": 2
+    }
+   ]
+  },
+  {
+   "id": "s20-brassfall-cost-of-waiting",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "The Court reached Brassfall first: Kessa is worse",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The party went to the Tor first. Kessa's sickness and the Court both moved while they were away.",
+   "tells": "Act IV route is Vael Tor first, and Kessa is alive.",
+   "readAloud": "Kessa doesn't get up when you come in. He tries, and laughs at himself, and the laugh turns into a cough that goes on too long.",
+   "response": "Kessa can't leave his bed now, so Yenna speaks for the camp, and she is harder to bargain with. The Court reached Brassfall first and seized a bronze store, and the Compact blames everyone who isn't Ironhorn. Tick the Ironhorn Clock up by 2. Any oath with Kessa has to be sworn at his bedside, and soon.",
+   "rules": "Bargaining with Yenna: Influence check, DC 15.",
+   "consequence": "Brassfall is worse for the wait: Kessa is bedridden and the Compact is angry.",
+   "later": "S21: an oath not sworn here may come too late for Kessa. Ironhorn Clock 6: the Compact strikes (any-ironhorn-moves).",
+   "fallback": "",
+   "keywords": "brassfall second, kessa worse, sick, bedridden, yenna, court first, bronze store, cost of waiting",
+   "when": [
+    {
+     "flag": "act4",
+     "in": [
+      "B"
+     ]
+    },
+    {
+     "flag": "kessa",
+     "not": [
+      "dead"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "clock_ironhorn",
+     "add": 2
+    }
+   ]
   }
  ],
  "briefs": [

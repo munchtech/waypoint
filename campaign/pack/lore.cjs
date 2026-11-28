@@ -35,7 +35,7 @@ const fs=require('fs'),path=require('path');
 // each run of changed lines between one revision's text and the next becomes one more edit, applied after the guide.
 // Every revision a table may have installed is kept (guide-sN-7.1.md, guide-sN-7.2.md); guide-sN.md is the current text.
 const read=f=>fs.readFileSync(path.join(__dirname,f),'utf8').trim();
-const guideVersions=['7.1','7.2','7.3','7.4','7.16',''];
+const guideVersions=['7.1','7.2','7.3','7.4','7.16','7.17',''];
 // `unless`: once a session has the guide's heading, the guide is in, even after the link edits have reworded some of its lines.
 const guide=(n,find)=>({find,replace:find+'\n\n'+read('guide-s'+n+'-7.1.md'),unless:'## Running this session (new DM guide)',guide:true});
 const diff=(name,old,now)=>{const out=[];if(old.length!==now.length)throw new Error(name+': each revision must keep the first revision\'s line count');
@@ -73,8 +73,10 @@ const S4='sb-0408eb3a9ef383eb',S5='sb-879a0d8936c67231',S6='sb-173cd869f38cc637'
 // Revision 7.17 rewords the guides for plain speech: their 7.16 text is kept as guide-sN-7.16.md (Act I's too), and guides that
 // had not been reworded before are kept as first installed under their revision.
 const guideRevs={4:'7.9',5:'7.9',8:'7.9',10:'7.13',11:'7.13',12:'7.13',13:'7.13','16b':'7.14','18a':'7.14','19a':'7.14','19b':'7.14',20:'7.15',21:'7.15',22:'7.15',23:'7.15',24:'7.15',25:'7.15',26:'7.15',27:'7.15',6:'7.9',7:'7.9',9:'7.9',14:'7.13',15:'7.13','16a':'7.14','17a':'7.14','17b':'7.14','18b':'7.14',28:'7.15'};
+// Revision 7.18 adds a magic item to the Rewards of Sessions 2, 6, 14 and 18A and the Act I debts to Session 22's "Who comes";
+// those guides' 7.17 text is kept as guide-sN-7.17.md.
 const act2=(n,find)=>{const rev=guideRevs[n],file='guide-s'+n+'.md';
- return [{find,replace:find+'\n\n'+read(rev?'guide-s'+n+'-'+rev+'.md':file),unless:'## Running this session (new DM guide)',guide:true},...(rev?chainEdits('guide-s'+n,versions(file,[rev,...(fs.existsSync(path.join(__dirname,'guide-s'+n+'-7.16.md'))?['7.16']:[]),''])):[])]};
+ return [{find,replace:find+'\n\n'+read(rev?'guide-s'+n+'-'+rev+'.md':file),unless:'## Running this session (new DM guide)',guide:true},...(rev?chainEdits('guide-s'+n,versions(file,[rev,...['7.16','7.17'].filter(v=>fs.existsSync(path.join(__dirname,'guide-s'+n+'-'+v+'.md'))),''])):[])]};
 // Revision 7.10: the plans now match the play cards (vault lock 17, Tessa's forged order 16, Vaer theft 17) and Vaer's dawn lasts a year.
 const s5Lock={find:"- Entry requires a DC 15 Thieves' Tools check, or a bribe",replace:"- Entry requires a DC 17 Thieves' Tools check, or a bribe"};
 const s6Tessa={find:'A forged transfer order (DC 14 Deception)',replace:'A forged transfer order (DC 16 Deception)'};

@@ -240,7 +240,7 @@ Influence, Persuasion DC 15, and only with a real alternative: he'll agree not t
 
 **Rewards:**
 - **Edda Thorne's Notes,** if given, copied or taken.
-- **The Bellwrights,** if he's an ally: safe cellars, and Deferred Toll once a day.
+- **The Bellwrights,** if he's an ally: safe cellars, and Deferred Toll once a day. Corin also sets one storm-stone (from Session 16A) into a weapon or spellcasting focus: **Storm-Set** (rare, requires attunement). It gives +1 to attack and damage rolls (or, as a focus, to spell attack rolls and spell save DCs), and once per turn a hit with it deals an extra 1d6 Thunder damage.
 - **A small ordinary bell,** for anyone who cast one.
 - **Heroic Inspiration:** to whoever argued best, on either side.
 

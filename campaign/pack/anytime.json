@@ -1297,6 +1297,272 @@
      "add": 1
     }
    ]
+  },
+  {
+   "id": "any-court-moves-6",
+   "title": "The Quiet Court makes its move (Court Clock 6)",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "The Court has been watching the party for a while. At 6 it stops watching and acts.",
+   "tells": "The Court Clock reaches 6. Pick the move that hits what the party cares about most.",
+   "readAloud": "By morning there are Hushmen where there were none yesterday, and a fresh notice under the Court's grey seal. Someone you know is reading it with a hand over their mouth.",
+   "response": "Pick one and make it land this session: a checkpoint on the road the party uses most, a raised Tithe quota in a district where they have friends, or a Tithe raid on someone they protect. Name the place or the person. Give the party a way to answer it: get round the checkpoint, gild the quota, or reach the raid before the cart leaves. Whatever they leave alone stays done.",
+   "rules": "Checkpoint: DC 14 Charisma (Deception) with a writ, forged or real, or DC 15 Dexterity (Stealth) to go round. Raid: four Hushmen (CR 1/2) and a Hushman Sergeant (CR 2), who leave if they lose the cart.",
+   "consequence": "The Court now acts on what it knows. The move stays in place until the party undoes it.",
+   "later": "Court Clock 12: the Court sends Wardens (any-court-moves-12). Court Clock 18: the Tor road is shut (any-court-moves-18).",
+   "fallback": "If the party is out of the Court's reach, the move falls on the last place they stayed, and the news finds them.",
+   "keywords": "court clock, quiet court, checkpoint, quota, raid, tithe raid, hushmen, notice, crackdown",
+   "when": [
+    {
+     "flag": "clock_court",
+     "min": 6,
+     "max": 11
+    }
+   ]
+  },
+  {
+   "id": "any-court-moves-12",
+   "title": "The Court sends Wardens (Court Clock 12)",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "At 12 the Court treats the party as a threat, not a nuisance.",
+   "tells": "The Court Clock reaches 12.",
+   "readAloud": "The Hushmen at the gate have a new officer: a broad woman in half plate with a lead case on a chain at her chest. When she opens it, the street goes quiet.",
+   "response": "From now on, every Court patrol the party meets has a Hushman Warden with it. The Court also raids one named friend: Mother Sallow's hut, Wren's cellar, or whoever the party helped last. Run the raid as a rescue: the friend is gone at the end of round three unless someone stops the cart. A friend who is taken is held at the nearest Landing House and can be got back.",
+   "rules": "Add one Hushman Warden (CR 4) to every Court encounter and work out the new budget in Foresight. The Warden's stone stops spells in a 10-foot Emanation; it can be knocked off its chain (DC 15 Dexterity (Sleight of Hand)) or broken (AC 12, HP 10).",
+   "consequence": "Court fights are harder for the rest of the campaign, and someone the party cares about is in danger.",
+   "later": "S23: add one Hushman Warden to the Strike. Court Clock 18: the Tor road is shut (any-court-moves-18).",
+   "fallback": "If the fight goes badly, the Warden takes prisoners, not lives. Prisoners go to the Landing House and can be broken out.",
+   "keywords": "court clock 12, warden, silence-stone, raid, patrol, crackdown, friend taken",
+   "when": [
+    {
+     "flag": "clock_court",
+     "min": 12,
+     "max": 17
+    }
+   ]
+  },
+  {
+   "id": "any-court-moves-18",
+   "title": "The Court shuts the Tor road (Court Clock 18)",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "At 18 the Court stops chasing the party and holds the ground they need.",
+   "tells": "The Court Clock reaches 18.",
+   "readAloud": "The drovers coming down from the north all say the same thing: there's a gate across the Tor road now, timber and grey stone, and nobody goes up without a Court writ.",
+   "response": "A Court checkpoint closes the Tor road: a timber gate, a Warden, two Sergeants and eight Hushmen. The party can talk their way through with a writ, go round by the shepherds' track, or break the gate. Whichever they choose, the Court is ready for them at the Strike (S23).",
+   "rules": "Checkpoint fight: one Hushman Warden (CR 4), two Hushman Sergeants (CR 2) and eight Hushmen (CR 1/2). Talking through: DC 12 Charisma (Deception) with a true writ, DC 16 with a forged one. The shepherds' track: one DC 14 Wisdom (Survival) check for the group, and it adds a day.",
+   "consequence": "The road to the Tor is guarded, and the Strike is harder.",
+   "later": "S23: add two Hushman Wardens and four Hushmen to the Strike. Six allies (S22) still open the Tor road, as the allies clock says.",
+   "fallback": "If they're caught at the gate, the Warden sends them back to Hallowmere under guard. Getting free costs a day and a heavy bribe.",
+   "keywords": "court clock 18, tor road, checkpoint, gate, writ, road closed, shepherds track",
+   "when": [
+    {
+     "flag": "clock_court",
+     "min": 18
+    }
+   ]
+  },
+  {
+   "id": "any-church-moves",
+   "title": "The Ninefold Church shuts its doors (Church Clock 6)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Church has put up with the party's friends. At 6 it sides with the Court.",
+   "tells": "The Church Clock reaches 6.",
+   "readAloud": "The charity-house door is shut at noon. A clerk in Ninefold grey is pasting a list to it, and the names on the list are people who were seen with you.",
+   "response": "Pick one: a district's quota rises, collected through the Church's alms-rolls, or a charity-house turns away the party's friends. Name who goes hungry. A priest who disagrees (Brother Eld, if he lives) comes to the party quietly and asks for help: proof the quota is false, or food for the turned-away for a week.",
+   "rules": "Changing a senior priest's mind is an Influence check, DC 15; proof from the Tithe-Ledger makes it DC 10.",
+   "consequence": "The Church is no longer neutral, and the party's friends need somewhere else to eat and sleep.",
+   "later": "If the party does what the priest asks, the charity-house opens again; lower the Church Clock by 2.",
+   "fallback": "If the party has no friends in a Church district, the quota falls on the Old Shore.",
+   "keywords": "ninefold church, church clock, charity-house, alms, quota, brother eld, priest",
+   "when": [
+    {
+     "flag": "clock_church",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "id": "any-bellwrights-move",
+   "title": "The Bellwrights come out of hiding (Bellwrights Clock 6)",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Bellwrights have hidden for two hundred years. At 6 they can't stay hidden.",
+   "tells": "The Bellwrights Clock reaches 6.",
+   "readAloud": "Children are skipping in the square, and the rhyme they're chanting is about bells. Nobody taught it to them. A Hushman is writing it down.",
+   "response": "Pick one: a hidden workshop starts casting where the Court can hear it, or the Court finds a workshop and it has to be emptied tonight. Either way, a rhyme about the bells spreads among children, and the Court starts asking where they learned it. If it's an evacuation, the party can help move the moulds and the families before the Hushmen arrive.",
+   "rules": "Evacuation: three successes before three failures, DC 13 (Athletics to carry, Stealth to scout, Persuasion to calm the families). Each failure leaves a mould or a person behind.",
+   "consequence": "The Bellwrights are out in the open, and the Court is looking for them.",
+   "later": "Corin remembers who carried the moulds. S22: the Bellwrights as allies (s22-ally-bellwrights).",
+   "fallback": "If the party is nowhere near a workshop, the rhyme reaches them anyway, sung by a child in whatever town they're in.",
+   "keywords": "bellwrights, workshop, rhyme, children, moulds, evacuate, casting, corin, wren",
+   "when": [
+    {
+     "flag": "clock_bellwrights",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "id": "any-choir-moves",
+   "title": "The Drowned Choir calls for its names (Choir Clock 6)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Choir wants the drowned remembered. At 6 it stops waiting.",
+   "tells": "The Choir Clock reaches 6, and the Choir has not been released.",
+   "readAloud": "On every shore of the Mere there's the same thing at dawn: wet footprints coming up out of the water, and stopping.",
+   "response": "Pick one: the Choir demands that the drowned be named at a shore, by a night you set, or it comes for someone who sang the wrong names. Name the shore or the person. The party can stand on the shore and speak the names (Mother Sallow has the ledger), or get the singer away from the water before that night.",
+   "rules": "Speaking the names: DC 13 Intelligence (History), or no roll with Mother Sallow's ledger. Guarding the singer: two Drowned Singers (CR 1) come at night, and stop if the right names are sung.",
+   "consequence": "The Choir is honoured and quiet, or someone is lost to the Mere.",
+   "later": "Honoured: lower the Choir Clock to 3. S27: the Choir can still be released (s27-release-choir).",
+   "fallback": "If the party is far from the Mere, the demand comes in a dream to whoever answered the Cantor.",
+   "keywords": "drowned choir, choir clock, names, mere, singers, mother sallow, ledger, footprints",
+   "when": [
+    {
+     "flag": "clock_choir",
+     "min": 6
+    },
+    {
+     "flag": "choir",
+     "not": [
+      "released"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "any-dawn-moves",
+   "title": "The Dawn Order comes to a head (Dawn Clock 6)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Rook's knights have argued since the oath-duel. At 6 they settle it in public.",
+   "tells": "The Dawn Clock reaches 6, and Rook is alive.",
+   "readAloud": "There are knights in the square in full plate at the wrong hour, and half of them have painted over the sunburst on their shields.",
+   "response": "Pick one: Rook calls a public hearing and asks the party to speak, or the Order splits between Rook and the knights loyal to the Chancellor. At a hearing, what the party says decides how many knights follow Rook. If the Order splits, the loyal half joins the Court's patrols, and Rook's half needs somewhere to stay.",
+   "rules": "Speaking at the hearing: Influence check, DC 15; Haldric's payments as evidence make it DC 10.",
+   "consequence": "The Dawn Order stands behind Rook, splits, or goes over to the Court.",
+   "later": "S22: a Rook who won the hearing brings her knights (s22-ally-dawn-order). A split sends the loyal knights to the Court's side at the Strike.",
+   "fallback": "",
+   "keywords": "dawn order, dawn clock, rook, hearing, knights, split, haldric, sunburst",
+   "when": [
+    {
+     "flag": "clock_dawn",
+     "min": 6
+    },
+    {
+     "flag": "rook",
+     "in": [
+      "alive"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "any-ironhorn-moves",
+   "title": "The Ironhorn Compact strikes (Ironhorn Clock 6)",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The Compact has been patient with the Court for Kessa's sake. At 6 it stops.",
+   "tells": "The Ironhorn Clock reaches 6.",
+   "readAloud": "There's a wagon on its side across the Brass Road, and behind it a line of horned helmets. Someone shouts that the road is closed to anyone carrying Court bronze.",
+   "response": "Pick one: the Compact closes the Brass Road, or it raids a Court bronze store and the Court blames whoever was nearby. If the road is closed, the party can talk to the Compact's road-captain, prove they aren't Court, or go the long way round. If it's a raid, the party is close when it happens, and both sides want them to say what they saw.",
+   "rules": "Talking through: Influence check, DC 13, or DC 8 if Kessa's oath is sworn or kept. The long way adds two days, and the Tithe Clock ticks for each night in a Court town.",
+   "consequence": "The Brass Road is closed, or the Court and the Compact are a step nearer open war.",
+   "later": "At Brassfall the camp is on a war footing. S22: the Ironhorn come as allies only if the oath is kept (s22-ally-ironhorn).",
+   "fallback": "If the party is nowhere near the Brass Road, the news reaches them with a pedlar who lost his cart.",
+   "keywords": "ironhorn, compact, brass road, kessa, bronze, raid, road closed, horns",
+   "when": [
+    {
+     "flag": "clock_ironhorn",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "id": "any-hush-moves",
+   "title": "The Hush Cult takes a sleeper (Hush Clock 6)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Cult grows when people are tired. At 6 it takes someone the party knows.",
+   "tells": "The Hush Clock reaches 6, and the Cult is still feeding the Hush.",
+   "readAloud": "Someone you know didn't wake up this morning. They're breathing, and smiling, and humming, and they won't open their eyes.",
+   "response": "The Cult recruits a named sleeper: someone the party has met, who has stopped waking. Name them. The lullaby gets louder, and everyone who sleeps near the Tor hears it. The sleeper wakes if someone who loves them says the thing they most want to hear, or if the Cult lets them go.",
+   "rules": "Waking the sleeper: DC 14 Wisdom (Insight) to know what to say, then DC 14 Charisma (Persuasion), or no roll if the speaker is the person they most want to hear. While the lullaby is loud, a character who takes a Long Rest near the Tor makes a DC 12 Wisdom saving throw or regains no Hit Point Dice.",
+   "consequence": "Someone the party knows sleeps for the Cult, and the lullaby is louder.",
+   "later": "A sleeper who isn't woken is in the Sleeping Hall when the party next goes there, and the Cult offers them back in exchange for a hearing.",
+   "fallback": "If the party has no one near the Tor, the sleeper is a stranger who asked them the way earlier.",
+   "keywords": "hush cult, sleeper, lullaby, sleeping, won't wake, humming, recruit",
+   "when": [
+    {
+     "flag": "clock_hush",
+     "min": 6
+    },
+    {
+     "flag": "cult",
+     "in": [
+      "feeding"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "any-ferry-moves",
+   "title": "The Pilots' Hall takes a stand (Ferry Clock 6)",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "No ship crosses the drowned town without a ferry-folk pilot. At 6 Brannagh Wick uses that.",
+   "tells": "The Ferry Clock reaches 6.",
+   "readAloud": "The Pilots' Hall flag is flying upside down. Not one boat is moving on the Mere, and a Court ship sits at anchor with nowhere to go.",
+   "response": "Pick one: the Pilots' Hall stops a crossing, or Brannagh Wick refuses a ship the Court wants out. The Court sends Hushmen to the Hall to change her mind. The party can stand with the pilots, broker a deal, or slip across themselves while the Court is busy.",
+   "rules": "Standing the Hushmen down: Influence check, DC 15. Or fight four Hushmen (CR 1/2) and a Hushman Sergeant (CR 2), who leave if Brannagh says the pilots will strike for a month.",
+   "consequence": "The ferry-folk have shown they can stop the Court's ships, and the Court won't forget it.",
+   "later": "Pilots who were stood by remember it: S22's friends from over the sea get to the Tor more easily (s22-ally-stormborn).",
+   "fallback": "If the party is far from Pellmoor, they hear it from a sailor who can't get home.",
+   "keywords": "pilots' hall, ferry clock, brannagh wick, ferry-folk, crossing, strike, court ship",
+   "when": [
+    {
+     "flag": "clock_ferry",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "id": "any-landing-moves",
+   "title": "Pellmoor Landing changes hands (Landing Clock 6)",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Foreign money has been pouring into Pellmoor. At 6 it changes the town.",
+   "tells": "The Landing Clock reaches 6.",
+   "readAloud": "There are more masts in Pellmoor harbour than you've ever seen, and the slate at the Reckoning House says a keep is worth half what it was last week.",
+   "response": "Pick one: the Vennmark Coster wins a Court licence to export Tithed memories, a new fleet arrives from the Sword Coast, or a Zhentarim memory-smuggling ring is exposed and the Court blames the foreign quarter. Name who it hurts. The party can wreck the licence (Venn keeps the papers in his counting-house), meet the fleet's captain first, or get the smugglers' keeps back to their owners.",
+   "rules": "Venn's counting-house: DC 15 Dexterity (Thieves' Tools) or DC 15 Charisma (Deception). Whoever gives stolen keeps back to their owners earns Heroic Inspiration.",
+   "consequence": "Pellmoor is more foreign, more crowded or more dangerous, and memory is cheaper or dearer by the week.",
+   "later": "S22: a fleet captain met here can join the friends from over the sea (s22-ally-stormborn).",
+   "fallback": "If the party is far from Pellmoor, the change reaches them as a price: the exchange rate moves in every town.",
+   "keywords": "landing clock, vennmark, venn, export licence, fleet, zhentarim, smugglers, pellmoor, foreign",
+   "when": [
+    {
+     "flag": "clock_landing",
+     "min": 6
+    }
+   ]
+  },
+  {
+   "id": "any-buy-gear",
+   "title": "They trade keeps for gear or magic",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Players like to shop, and Corvane takes memory as money.",
+   "tells": "A player asks where to buy a weapon, armour, a potion or something magic.",
+   "readAloud": "The dwarf at the Strangers' Row smithy doesn't look up. \"Gold or keeps, I'm not fussy. Keeps I weigh myself.\"",
+   "response": "Ordinary gear is sold in Pellmoor and Hallowmere at the usual price, in gold or in keeps at the posted rate. Potions and common magic items are on Strangers' Row (the smithy, the Dawn Mission, the gnome clockmaker). Uncommon items have to be ordered through the Vennmark Coster or the Zhentarim and take a week. Rare items aren't for sale in Corvane; they come from the story.",
+   "rules": "Prices (2024): Potion of Healing 50 gp; common magic items 100 gp; uncommon 400 gp. A heartkeep is worth 25 to 100 gp by appraisal. The player always chooses the memory and writes it in the Memory ledger.",
+   "consequence": "The party is better equipped, and someone's past is a little lighter.",
+   "later": "What the Coster sells, it pays for with Tithed memories: buying from Venn funds the export trade (Landing Clock +1).",
+   "fallback": "",
+   "keywords": "buy, shop, gear, magic item, potion, weapon, armour, armor, smith, trade keeps, strangers' row"
   }
  ],
  "briefs": [],

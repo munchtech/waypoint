@@ -300,7 +300,7 @@ if (backup) {
       );
       const next = applyUpdate(c, pack, new Set(plan.map((p) => p.id)));
       const pb7 = memoryOf(next).playbook!;
-      assert.equal(pb7.version, '7.17');
+      assert.equal(pb7.version, '7.18');
       assert.equal(stateOf(pb7).quill, 'bribed');
       assert.equal(pb7.log.length, 1);
       assert.ok(next.sessions[0].plan.endsWith('DM NOTE: Ila likes the fighter.'));
@@ -470,7 +470,7 @@ if (backup) {
       );
     const next = applyUpdate(c, pack, new Set(ready));
     const pb71 = memoryOf(next).playbook!;
-    assert.equal(pb71.version, '7.17');
+    assert.equal(pb71.version, '7.18');
     assert.equal(stateOf(pb71).quill, 'bribed');
     assert.equal(pb71.log.length, log);
     assert.equal(sentEntries(next).length, sent);
@@ -828,7 +828,7 @@ test('effects resolve against the current state and clocks clamp', () => {
   const play = installed.sessions[0].branches.find((b) => b.id === 's01-attack-quill')!;
   const ch = resolveEffects(pb, play.effects);
   assert.ok(ch.some((c) => c.flag === 'clock_court' && c.to === 1));
-  const full = setFlag(pb, 'clock_court', 6, 'x');
+  const full = setFlag(pb, 'clock_court', 18, 'x');
   assert.ok(!resolveEffects(full, play.effects).some((c) => c.flag === 'clock_court'));
 });
 test('undo restores a flag unless it changed again', () => {

@@ -198,7 +198,7 @@ Read Wren's box from the plan above. Then stop talking.
 
 **Rewards:**
 - **Level:** **level 4** for everyone, after the city investigation.
-- **If Rook won:** Rook's writ (Dawn Order knights stand aside for its bearers, which matters at the chain-room in Session 9), Vaer's Heart within reach (Session 9), and 150 gp from the Order's own chest "for expenses."
+- **If Rook won:** Rook's writ (Dawn Order knights stand aside for its bearers, which matters at the chain-room in Session 9), Vaer's Heart within reach (Session 9), and 150 gp from the Order's own chest "for expenses." The writ is also a wondrous item (uncommon, requires attunement): once per dawn its bearer can cast *Command* from it (save DC 13), and the only word it says is "Halt."
 - **If Haldric won:** his favour, which is worth nothing in a week, and 200 gp in Court silver.
 - **If Tessa is out:** Wren's ally, and her Bellwright contacts all the way north.
 - **Heroic Inspiration:** to whoever asked the question that broke the hearing, and to anyone who was kind to Wren when they didn't have to be.

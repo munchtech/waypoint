@@ -1621,6 +1621,120 @@
      "set": "party"
     }
    ]
+  },
+  {
+   "id": "s22-venn-ships-for-court",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Venn's Coster supplies the Court's march",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "The party did business with Venn, or crossed him. Either way, he sells to anyone, and the Court pays well.",
+   "tells": "Venn did business with the party, or was exposed by them.",
+   "readAloud": "A string of carts with the Vennmark mark goes up the Tor road under Court escort. One crate has split, and what's inside is silence-stone, packed in straw.",
+   "response": "Venn is selling the Court silence-stones for the Strike. The party can wreck the carts on the road, buy him off, or let them go. If the carts arrive, every Warden at the Strike carries a spare stone. Venn doesn't think he has done anything wrong; it's trade.",
+   "rules": "Escort: two Hushman Sergeants (CR 2) and four Hushmen (CR 1/2). Buying him off: Influence check with 700 gp or keeps of that weight, DC 13, or DC 18 if they exposed him. Wrecking a cart: DC 14 Strength (Athletics), or set it alight.",
+   "consequence": "The Court's Wardens are better supplied at the Strike, or Venn's carts never arrive.",
+   "later": "S23: if the carts arrived, a Warden whose stone is knocked away puts on a spare on their next turn (one spare each).",
+   "fallback": "If they miss the carts, Venn writes afterwards to apologise, and offers a discount.",
+   "keywords": "venn, vennmark, carts, silence-stone, supplies, court march, trade, buy off",
+   "when": [
+    {
+     "flag": "venn",
+     "in": [
+      "dealt",
+      "exposed"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-choir",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The released Choir keeps its promise",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The party gave the drowned their rest, and the Cantor said she would come once.",
+   "tells": "The Drowned Choir was released.",
+   "readAloud": "There's a woman standing in the ditch by the road, up to her shins in rainwater, smiling. It's the Cantor, and she isn't wet.",
+   "response": "The Cantor comes once, as she promised, and walks with the party as far as the Tor. Her job: once during the Strike, when one of the party or their allies drops to 0 Hit Points, they drop to 1 instead, and hear the drowned singing their name. She asks for nothing. +1 on the allies clock.",
+   "rules": "Once at the Strike, a creature the party chooses that drops to 0 Hit Points drops to 1 instead.",
+   "consequence": "The drowned stand with the party.",
+   "later": "S23: the verse saves one life. S28: Mother Sallow sings the last verse with Ila.",
+   "fallback": "",
+   "keywords": "choir, cantor, released, drowned, verse, ally, sing",
+   "when": [
+    {
+     "flag": "choir",
+     "in": [
+      "released"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s22-ally-quill",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Tobias Quill changes sides",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Quill took the party's money once, and the Court never forgave him the quota. He has nowhere else to go.",
+   "tells": "Quill was bribed, or has turned.",
+   "readAloud": "A man in a mud-spattered grey coat is waiting by the road with his hands open. It takes you a moment to see it's Tobias Quill, without his badge.",
+   "response": "Quill was demoted over the quota, and he knows how the Court will march. He brings its order of march: the party chooses where the Strike starts, and the Court can't take them by surprise. He wants a pardon if they win, and his name left out of the story. +1 on the allies clock.",
+   "rules": "At the Strike the party chooses the ground and has Advantage on Initiative.",
+   "consequence": "Quill is the party's man now, for good or ill.",
+   "later": "S23: the party picks the ground. S28: what becomes of Quill is one line of the epilogue.",
+   "fallback": "If the party won't trust him, he hands over the order of march anyway, and leaves.",
+   "keywords": "quill, tobias quill, hushman, turncoat, defects, order of march, ally",
+   "when": [
+    {
+     "flag": "quill",
+     "in": [
+      "bribed",
+      "ally"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "quill",
+     "set": "ally"
+    },
+    {
+     "flag": "allies",
+     "add": 1
+    }
+   ]
+  },
+  {
+   "id": "s23-favor-refused",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Maudrin remembers they said no",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The party turned down her bargain early on. She kept the letter.",
+   "tells": "The party refused Maudrin's bargain.",
+   "readAloud": "\"You said no to me once. Politely, which I appreciated. I still have the letter.\"",
+   "response": "She makes no offer tonight; they turned down the last one. But she respects it, so she gives them fair warning and tells them when the Wardens will move. If they ask why, she says nobody has refused her in a very long time.",
+   "rules": "The party has Advantage on Initiative at the Strike.",
+   "consequence": "There is no bargain on the table. The fight is a fair one.",
+   "later": "S24: the Final Offer still comes, and she expects them to refuse it.",
+   "fallback": "",
+   "keywords": "refused, maudrin, bargain, letter, fair warning, no deal",
+   "when": [
+    {
+     "flag": "maudrin_favor",
+     "in": [
+      "refused"
+     ]
+    }
+   ]
   }
  ],
  "briefs": [

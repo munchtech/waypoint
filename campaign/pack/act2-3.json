@@ -4255,6 +4255,41 @@
     }
    ],
    "sessionId": "sb-897e70317077e42d"
+  },
+  {
+   "id": "s12-isolde-early",
+   "sessionId": "sb-8a9134f39dcce6b4",
+   "title": "Isolde arrives early",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The Court has been counting the party's marks. With the Court Clock at 6, Isolde doesn't wait for the thaw.",
+   "tells": "The Court Clock is 6 or more, and Isolde still works for the Court.",
+   "readAloud": "A sledge with grey pennants comes down the glass road behind you. The woman in furs on the back waves, as if you were expected.",
+   "response": "Isolde reaches Glassreach now instead of at the thaw (S15), with her escort. She wants Hieme's Tongue from the Sexton's crown, and Imber taken to Hallowmere. She gives the party until the end of the confession (S13) to bring her the Tongue; after that her Hushmen go into the chapel for it. Every hour spent listening to the Sexton now costs something.",
+   "rules": "Use Isolde's Escort from S15. She won't fight inside the chapel; the glass is too thin.",
+   "consequence": "The Sexton's story has a deadline, and the Court is in Glassreach early.",
+   "later": "S13: if they haven't brought her the Tongue by the end of the confession, her Hushmen force the chapel (run it like s15-attack-isolde). S15: she is already here, so skip her arrival.",
+   "fallback": "If the party keeps her talking, she waits; she would rather they did the hard part.",
+   "keywords": "isolde, envoy, early, court, sledge, deadline, frost tongue, hieme, imber",
+   "when": [
+    {
+     "flag": "clock_court",
+     "min": 6
+    },
+    {
+     "flag": "isolde",
+     "in": [
+      "city",
+      "following"
+     ]
+    }
+   ],
+   "effects": [
+    {
+     "flag": "isolde",
+     "set": "following"
+    }
+   ]
   }
  ],
  "briefs": [
@@ -4477,10 +4512,11 @@
   },
   {
    "sessionId": "sb-8a9134f39dcce6b4",
-   "pressure": "The sermon is louder each dusk, and travelers on the North Road have stopped speaking. The glass around the chapel is unstable. Isolde is close, though not close enough to matter this session. The Sexton's Sermon is DC 15; in the pews it is pressure, in a fight it is a Charmed condition.",
+   "pressure": "The sermon is louder each dusk, and travelers on the North Road have stopped speaking. The glass around the chapel is unstable. Isolde is close, though not close enough to matter this session, unless the Court Clock is 6 or more (s12-isolde-early). The Sexton's Sermon is DC 15; in the pews it is pressure, in a fight it is a Charmed condition.",
    "endOn": "Will you listen to him?",
    "npcs": "The Glass Sexton (Imber Vesk), Hobb the carter and his sons, Yara Thenn, Maren Talla",
    "checklist": [
+    "Short on time? Run Sessions 12 and 13 as one evening: the sermon, then straight into the confession if they listen",
     "Read the sermon slowly; out of combat it works on everyone in the chapel",
     "Decide how he reacts to 'Maudrin Vesk' as the answer to his question, and to a lie in place of it",
     "Mark the glass that cracks when he is argued with",

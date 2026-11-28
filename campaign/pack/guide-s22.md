@@ -184,7 +184,7 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 
 > **SAY:** "Word goes out along every road you have travelled, and some of the people you helped start walking toward the Tor."
 
-**How to run it.** Go round the table. Each player picks **one** company to meet, and they're the one who walks out to the road. Read the line. The player says one thing to them. They get a job. **Tick the clock.** Then the next player. Only run the ones that are true.
+**How to run it.** Go round the table. Each player picks **one** company to meet, and they're the one who walks out to the road. Read the line. The player says one thing to them. They get a job. **Tick the clock.** Then the next player. Only run the ones that are true. Debts from Act I come up the road too, when they're true: [Venn's carts for the Court](play:s22-venn-ships-for-court), [the released Choir](play:s22-ally-choir) and [Tobias Quill, out of uniform](play:s22-ally-quill).
 
 | Company | If… | Their job |
 |---|---|---|

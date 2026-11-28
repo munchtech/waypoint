@@ -1142,11 +1142,20 @@
   "group": "Clocks",
   "label": "Quiet Court",
   "initial": 0,
-  "max": 6,
+  "max": 18,
+  "help": "One tick each time the Court notices the party. Each step fires a play: a major move at 6, Wardens at 12, the Tor road shut at 18.",
   "thresholds": [
    {
     "at": 6,
     "text": "Major move: a named checkpoint, a raised district quota, or a Tithe raid on someone the party protects."
+   },
+   {
+    "at": 12,
+    "text": "Wardens: every Court patrol has a Hushman Warden, and the Court raids a named friend of the party."
+   },
+   {
+    "at": 18,
+    "text": "The Tor road is shut: a Court checkpoint on the road, and a bigger force at the Strike."
    }
   ]
  },

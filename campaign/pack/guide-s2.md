@@ -277,6 +277,6 @@ All of these are written for four level-3 characters. Foresight shows the diffic
 **Rewards:**
 - **Level:** none. They stay level 3.
 - **Coin:** Mother Sallow pays 15 gp in mixed Faerûnian coin, everything in her tea tin, for finding the ferry. A party that refuses it earns her respect for good.
-- **Treasure:** a net bag in the ferry's hold holds 1d4 + 1 memory-pearls: small glass spheres, each holding one preserved sensation (warm bread, rain on reed, a child's laugh). A Reckoner pays 10 gp each. Holding one and remembering it is free.
+- **Treasure:** a net bag in the ferry's hold holds 1d4 + 1 memory-pearls: small glass spheres, each holding one preserved sensation (warm bread, rain on reed, a child's laugh). A Reckoner pays 10 gp each. Holding one and remembering it is free. One of them is warm in the hand: a **Pearl of Power** (uncommon, requires attunement by a spellcaster). As a Magic action, its holder regains one expended spell slot of level 3 or lower; it works again at the next dawn. No Reckoner will buy it.
 - **Knowledge:** the hymn verse (Advantage on the next save against a Drowned Singer) and the release verse, if earned.
 - **Heroic Inspiration:** for raising the ferryman's oar, for a true answer to the Cantor, for talking Hadrik down with his own faith, for covering Mother Sallow.
