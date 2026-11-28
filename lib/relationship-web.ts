@@ -51,18 +51,20 @@ export function neighborhood(
     ring1 = lines.map((e) => otherEnd(e, focus)),
     shown = new Set([focus, ...ring1]),
     ring2: { id: string; parent: string }[] = [];
-  for (const parent of ring1) {
-    let added = 0;
-    for (const e of around(parent)) {
-      const id = otherEnd(e, parent);
-      if (shown.has(id)) continue;
-      if (added === perPage || ring2.length === far) break;
-      shown.add(id);
-      ring2.push({ id, parent });
-      lines.push(e);
-      added++;
+  // Ring 2 is dealt out a page at a time, one to each ring-1 page in turn, so the outer ring fills evenly all the way round.
+  const queues = ring1.map((parent) => ({ parent, next: around(parent) }));
+  for (let round = 0; round < perPage; round++)
+    for (const { parent, next } of queues) {
+      if (ring2.length === far) break;
+      for (let e = next.shift(); e; e = next.shift()) {
+        const id = otherEnd(e, parent);
+        if (shown.has(id)) continue;
+        shown.add(id);
+        ring2.push({ id, parent });
+        lines.push(e);
+        break;
+      }
     }
-  }
   return {
     ring1,
     ring2,

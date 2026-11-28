@@ -2319,37 +2319,6 @@ main:focus {
 .campaign-hub > .content-grid {
   margin-bottom: 24px;
 }
-.relationship-map {
-  width: 100%;
-  max-height: 340px;
-}
-.relationship-map text {
-  font:
-    11px 'DM Sans',
-    sans-serif;
-  fill: var(--ink);
-}
-.relationship-map .ring {
-  fill: none;
-  stroke: light-dark(#e3e9dc, #34413a);
-}
-.relationship-map .link {
-  stroke: light-dark(#b9c8a7, #4f6147);
-}
-.relationship-map .node {
-  fill: light-dark(#749764, #8fb27e);
-}
-.relationship-map .hub {
-  fill: #315a45;
-}
-.relationship-map .hub-label {
-  fill: #fff;
-}
-.connection-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
 .clock-segments {
   display: flex;
   gap: 5px;
@@ -7675,114 +7644,392 @@ input:focus {
     display: none !important;
   }
 }
-/* The relationship web: pages around one page, coloured by kind, solid lines for related pages and dotted for mentions. */
-.relationship-web h3 {
+/* The relationship web: pages around one page. Each kind of page has its own colour and icon; solid lines are related
+   pages set in the editor, dotted lines pages named in the text. */
+.relationship-web {
+  --k-people: light-dark(#3f7d4e, #86c793);
+  --k-place: light-dark(#2f6f82, #7cbfd0);
+  --k-faction: light-dark(#9a6824, #dcab63);
+  --k-other: light-dark(#7a6a8c, #b9a7cc);
+  --web-ground: light-dark(#f6f3ea, #141b21);
+}
+.relationship-web .k-people {
+  --k: var(--k-people);
+}
+.relationship-web .k-place {
+  --k: var(--k-place);
+}
+.relationship-web .k-faction {
+  --k: var(--k-faction);
+}
+.relationship-web .k-other {
+  --k: var(--k-other);
+}
+.relationship-web .k-named {
+  --k: var(--muted);
+}
+.web-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px 24px;
+}
+.web-head h3 {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin: 0 0 4px;
+}
+.web-head h3 svg {
+  color: var(--green);
+}
+.web-head p {
+  max-width: 62ch;
+  margin: 0;
+  font-size: 13px;
+}
+.web-trail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.web-trail .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+}
+.web-trail ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+}
+.web-trail li + li::before {
+  content: '›';
+  margin-right: 4px;
+}
+.web-trail li[aria-current] {
+  color: var(--ink);
+  font-weight: 600;
+}
+.web-trail .text-button {
+  padding: 0;
+  font-size: inherit;
 }
 .web-controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 18px;
+  gap: 10px 16px;
+  margin: 16px 0 0;
 }
 .web-controls select {
-  max-width: 340px;
+  max-width: 300px;
 }
-.relationship-web label.web-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  font-size: 13px;
-  font-weight: 500;
-}
-.web-toggle input {
-  flex: none;
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  padding: 0;
-  accent-color: light-dark(#507546, #a2cd97);
-}
-.relationship-map.web-map {
-  max-height: 520px;
-  margin-top: 8px;
-}
-.web-map .link.set {
-  stroke: light-dark(#8fa77c, #6f8a62);
-  stroke-width: 1.6;
-}
-.web-map .link.named {
-  stroke: light-dark(#c9d3bd, #3f4c44);
-  stroke-dasharray: 2 4;
-}
-.web-map .edge-label {
-  font-size: 10px;
-  font-style: italic;
-  fill: light-dark(#4d5a47, #c3cebd);
-  paint-order: stroke;
-  stroke: var(--paper);
-  stroke-width: 4px;
-}
-.web-map .web-node text {
-  paint-order: stroke;
-  stroke: var(--paper);
-  stroke-width: 4px;
-}
-.web-map .web-node.hub text {
-  font-weight: 700;
-  font-size: 13px;
-}
-.web-map .web-node[role='button'] {
-  cursor: pointer;
-}
-.web-map .web-node[role='button']:hover circle,
-.web-map .web-node[role='button']:focus-visible circle {
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-.web-map .web-node[role='button']:focus {
-  outline: none;
-}
-.web-map .ring2 text {
-  font-size: 10px;
-  fill: light-dark(#5d6a57, #a9b6a3);
-}
-.web-node.kind-people circle {
-  fill: light-dark(#4f8a5c, #7fbf8c);
-}
-.web-node.kind-place circle {
-  fill: light-dark(#3d7a8a, #74b6c6);
-}
-.web-node.kind-faction circle {
-  fill: light-dark(#a8742c, #d7a45c);
-}
-.web-node.kind-other circle {
-  fill: light-dark(#8b8f86, #a3a89d);
-}
-.web-legend {
-  list-style: none;
+.web-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 16px;
-  margin: 4px 0 10px;
-  padding: 0;
+  gap: 6px;
+}
+.web-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+.web-chip svg {
+  color: var(--k);
+  opacity: 0.55;
+}
+.web-chip.on {
+  border-color: color-mix(in srgb, var(--k) 55%, transparent);
+  background: color-mix(in srgb, var(--k) 12%, transparent);
+  color: var(--ink);
+}
+.web-chip.on svg {
+  opacity: 1;
+}
+.web-chip .count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--k) 18%, transparent);
+  font-size: 11px;
+  text-align: center;
+}
+.web-chip.k-named svg {
+  width: 18px;
+  height: 4px;
+  opacity: 1;
+}
+.web-chip.k-named line {
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 2 3;
+}
+.web-chip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.web-canvas {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--web-ground);
+  overflow: hidden;
+}
+.web-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+}
+.web-map text {
+  font-size: 12px;
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--web-ground);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.web-map .glow-in {
+  stop-color: color-mix(in srgb, var(--green) 10%, transparent);
+}
+.web-map .glow-out {
+  stop-color: transparent;
+}
+.web-map .guide {
+  fill: none;
+  stroke: var(--line);
+  stroke-dasharray: 1 6;
+  stroke-linecap: round;
+}
+.web-map .edge {
+  fill: none;
+  stroke: var(--k);
+  transition: opacity 0.15s;
+}
+.web-map .edge.set {
+  stroke-width: 1.8;
+  opacity: 0.65;
+}
+.web-map .edge.named {
+  stroke-width: 1.3;
+  stroke-dasharray: 2 4;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.web-map .edge-label {
+  font-size: 10.5px;
+  font-style: italic;
+  fill: var(--muted);
+}
+.web-map .dim {
+  opacity: 0.18;
+}
+.web-map .edge.dim {
+  opacity: 0.08;
+}
+.web-node {
+  transition: opacity 0.15s;
+}
+.web-node .dot {
+  fill: var(--k);
+  stroke: var(--web-ground);
+  stroke-width: 3;
+}
+.web-node .glyph {
+  color: light-dark(#fff, #10171c);
+  pointer-events: none;
+}
+.web-node.ring1 text {
+  font-weight: 600;
+}
+.web-node.ring2 text {
+  font-size: 11px;
+  fill: var(--muted);
+}
+.web-node .hit {
+  fill: transparent;
+}
+.web-node.hub .halo {
+  fill: color-mix(in srgb, var(--k) 14%, transparent);
+  stroke: color-mix(in srgb, var(--k) 40%, transparent);
+  stroke-dasharray: 3 5;
+}
+.web-node.hub .dot {
+  stroke-width: 4;
+  filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--k) 35%, transparent));
+}
+.web-node.hub .hub-name {
+  font-family: Lora, Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+.web-node.hub .hub-kind {
+  font-size: 11px;
+  fill: var(--muted);
+  letter-spacing: 0.04em;
+}
+.web-node[role='button'] {
+  cursor: pointer;
+}
+.web-node[role='button']:focus {
+  outline: none;
+}
+.web-node[role='button']:hover .dot,
+.web-node[role='button']:focus-visible .dot {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.web-node.ring1[role='button']:hover .dot,
+.web-node.ring1[role='button']:focus-visible .dot {
+  r: 19px;
+}
+.web-node[role='button']:hover text,
+.web-node[role='button']:focus-visible text {
+  fill: var(--ink);
+  text-decoration: underline;
+}
+.web-note {
+  margin: 8px 2px 0;
   font-size: 12px;
 }
-.web-legend li {
-  display: flex;
+.web-details {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 18px;
+  margin-top: 16px;
+}
+.web-focus {
+  align-self: start;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--k);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.web-focus h4 {
+  margin: 6px 0 8px;
+  font-family: Lora, Georgia, serif;
+  font-size: 19px;
+}
+.web-focus p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.web-focus .button {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
 }
-.web-legend svg {
-  width: 10px;
-  height: 10px;
+.web-kind {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--k);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.connection-list small {
-  font-weight: 400;
-  opacity: 0.8;
+.web-status {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.web-links {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.web-links h5 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.web-links h5 svg {
+  color: var(--k);
+}
+.web-links h5 .count {
+  color: var(--ink);
+}
+.web-links ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 2px 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.web-link {
+  display: grid;
+  width: 100%;
+  padding: 6px 10px;
+  border: 0;
+  border-left: 2px solid color-mix(in srgb, var(--k) 45%, transparent);
+  border-radius: 0 8px 8px 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.web-link:hover,
+.web-link:focus-visible {
+  border-left-color: var(--k);
+  background: color-mix(in srgb, var(--k) 10%, transparent);
+}
+.web-link .name {
+  font-size: 13px;
+  font-weight: 600;
+}
+.web-link small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.relationship-web .empty svg {
+  color: var(--muted);
+}
+@media (max-width: 1000px) {
+  .web-details {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .web-chip,
+  .web-map .edge,
+  .web-node {
+    transition: none;
+  }
 }
 /* In the wiki editor: how this page connects to each related page, one short line per page. */
 fieldset.relation-labels {

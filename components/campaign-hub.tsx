@@ -181,7 +181,7 @@ export default function CampaignHub({
           )}
         </section>
       </div>
-      <RelationshipWeb pages={pages} />
+      <RelationshipWeb pages={pages} onOpenPage={onOpenHit} />
       <FactionStandingPanel campaign={campaign} update={update} />
       <RollTablesPanel campaign={campaign} />
       <section className="paper share-export">

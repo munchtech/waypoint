@@ -98,7 +98,8 @@ export default function PlayCard({
             {label || (play.origin === 'playbook' ? 'Playbook' : 'Path')}
             <i /> {play.style}
           </span>
-          <strong>{play.title}</strong>
+          {/* Imported choices are often written lower case ("hand over the tongue"); show them as titles. */}
+          <strong>{play.title.charAt(0).toUpperCase() + play.title.slice(1)}</strong>
           {!open && play.response && (
             <span className="play-preview">{plainPreview(play.response, 150)}</span>
           )}

@@ -37,5 +37,5 @@ export function plainPreview(markdown: string, limit = 160) {
   if (text.length <= limit) return text;
   const cut = text.slice(0, limit),
     space = cut.lastIndexOf(' ');
-  return (space > limit * 0.6 ? cut.slice(0, space) : cut).replace(/[\s,;:·-]+$/, '') + '…';
+  return (space > limit * 0.6 ? cut.slice(0, space) : cut).replace(/[\s,;:·.!?-]+$/, '') + '…';
 }

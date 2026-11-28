@@ -178,15 +178,16 @@ export default function PartyLedger({
             2024 XP budget for this party: Low {low} · Moderate {mod} · High {high}.
           </p>
         )}
-        <button
-          className="text-button"
-          disabled={!roster.length}
-          onClick={() =>
-            setRoster((x) => x.map((y) => ({ ...y, level: Math.min(20, y.level + 1) })))
-          }
-        >
-          Level everyone up
-        </button>
+        {roster.length > 0 && (
+          <button
+            className="text-button"
+            onClick={() =>
+              setRoster((x) => x.map((y) => ({ ...y, level: Math.min(20, y.level + 1) })))
+            }
+          >
+            Level everyone up
+          </button>
+        )}
         {named.length > 0 && (
           <div className="threads" id="personal-threads">
             <h4>
@@ -194,9 +195,9 @@ export default function PartyLedger({
               Personal threads
             </h4>
             <p className="tiny muted">
-              What each character wants, or wants back, and the scenes that moved it. Aim for one beat
-              each per act; the Prep page names anyone who has gone {THREAD_GAP} played sessions
-              without one.
+              What each character wants, or wants back, and the scenes that moved it. Aim for one
+              beat each per act; the Prep page names anyone who has gone {THREAD_GAP} played
+              sessions without one.
             </p>
             {threads.map((s) => {
               const r = s.member,
@@ -222,7 +223,9 @@ export default function PartyLedger({
                       value={threadOf(r).goal}
                       maxLength={300}
                       onChange={(e) =>
-                        setRoster((x) => x.map((y) => (y.id === r.id ? setGoal(y, e.target.value) : y)))
+                        setRoster((x) =>
+                          x.map((y) => (y.id === r.id ? setGoal(y, e.target.value) : y)),
+                        )
                       }
                     />
                   </label>
@@ -230,12 +233,15 @@ export default function PartyLedger({
                     <ol className="beats">
                       {beats.map((b) => (
                         <li key={b.id}>
-                          <span className="tag">{sessionLabel(campaign, b.sessionId)}</span> {b.text}
+                          <span className="tag">{sessionLabel(campaign, b.sessionId)}</span>{' '}
+                          {b.text}
                           <button
                             className="icon-button"
                             aria-label={'Remove beat: ' + b.text}
                             onClick={() =>
-                              setRoster((x) => x.map((y) => (y.id === r.id ? removeBeat(y, b.id) : y)))
+                              setRoster((x) =>
+                                x.map((y) => (y.id === r.id ? removeBeat(y, b.id) : y)),
+                              )
                             }
                           >
                             <Trash2 size={12} />

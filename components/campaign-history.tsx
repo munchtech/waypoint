@@ -101,8 +101,8 @@ export default function CampaignHistory({
         </div>
         <div className="history-results">
           <p role="status">
-            {events.length} of {count(campaign.events.length, 'confirmed event')} · newest recorded
-            first
+            {campaign.events.length > 0 &&
+              `${events.length} of ${count(campaign.events.length, 'confirmed event')} · newest recorded first`}
           </p>
           {filtered && (
             <button className="text-button" onClick={() => onFilters({ ...emptyHistory })}>
@@ -114,7 +114,7 @@ export default function CampaignHistory({
       {!campaign.events.length ? (
         <div className="empty">
           <ScrollText size={34} />
-          <h3>No confirmed events yet.</h3>
+          <h3>No confirmed events yet</h3>
           <p>
             Record what actually happened during play. Paths you prepared but didn’t play aren’t
             added.
