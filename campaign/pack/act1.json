@@ -803,7 +803,7 @@
    "rules": "",
    "consequence": "The party knows the Tongue belongs to the Mere and that the ferry-folk carry a debt.",
    "later": "S3: Mother Sallow's ledger explains the debt (Tam stole it back from the Court in 392 SS, and the Choir asked for it). She can rebuild the release verse from the ledger (s03-sallow-rebuilds-verse).",
-   "fallback": "",
+   "fallback": "If nobody asks, the bundle hums louder whenever the Cantor sings, and she looks straight at it.",
    "keywords": "tongue, ask, cantor, bell, owe, debt, ferry-folk",
    "scene": "Scene 5: Down to the bell"
   },
@@ -895,7 +895,7 @@
    "rules": "Influence, Charisma (Persuasion) DC 15; automatic success if Ila vouches for them or they filled the quota.",
    "consequence": "One more source on Tam's death.",
    "later": "S3: with any second source (Eld's patrol entry, the Cantor, a Mere Memory of Tam) the Court's responsibility is established. Brannagh can also delay any ship from leaving the Mere (s03-delay-heron): no pilot, no departure.",
-   "fallback": "",
+   "fallback": "If Brannagh won't talk, Ila tells them where her father used to tie up his boat.",
    "keywords": "brannagh, pilots hall, pilot, tam, harrow, father, boat, how he died, investigate",
    "scene": "Scene 2: The Pilots' Hall"
   },
@@ -963,7 +963,7 @@
    "rules": "",
    "consequence": "Eld is gone. One family is warned in time.",
    "later": "S4: Eld is not at the Assembly; use an unnamed Court chaplain. S9: he can be found at Kell's Crossing, in the ash, if the party goes there (s09-ring-calla).",
-   "fallback": "",
+   "fallback": "If Eld won't stop talking, he hands over the page mid-sentence and asks them to read the name he underlined.",
    "keywords": "confront, eld, private, page, absolution, forgive, leave",
    "when": [
     {
@@ -994,7 +994,7 @@
    "rules": "",
    "consequence": "Eld is in Hallowmere, humiliated and useful to the Court.",
    "later": "S4: Eld is at the Assembly as a Court chaplain and will not meet their eyes. The Court learns what the party knows about the page.",
-   "fallback": "",
+   "fallback": "If the crowd scene drags, Mother Sallow turns her back on Eld, and the village follows her.",
    "keywords": "expose, public, accuse, shame, eld, village, crowd, justice",
    "when": [
     {
@@ -1025,7 +1025,7 @@
    "rules": "",
    "consequence": "The party has a source inside the Church, and Eld travels to Hallowmere.",
    "later": "S4: Eld meets their eyes at the Assembly and slips them a note about Haldric's armory (s04-eld-at-assembly). S6: he can testify at the oath-duel if protected.",
-   "fallback": "",
+   "fallback": "If the talk drags, Eld shows them the Court's letter and asks whether he should go.",
    "keywords": "forgive, absolve, mercy, eld, informant, redemption, spare",
    "when": [
     {
@@ -1056,7 +1056,7 @@
    "rules": "",
    "consequence": "Ila's trust is earned or lost here.",
    "later": "S3: she argues for returning the Tongue to the Mere. Taking her along keeps her close and in danger (s03-take-ila-along); hiding her with the Pilots' Hall keeps her safe (s03-hide-ila). If the party does neither and the Tongue goes to the Court, she is arrested (s03-ila-arrested).",
-   "fallback": "",
+   "fallback": "If nobody knows what to say, Ila asks them straight out whether the list means her.",
    "keywords": "ila, comfort, truth, list, name, cry, tell her, father",
    "scene": "Scene 3: Ila's name"
   },
@@ -1238,7 +1238,7 @@
    "rules": "",
    "consequence": "The party is on the road to Hallowmere with Ossa's Tongue.",
    "later": "S4: the Gate Clerk already has their names (+2 to Persuasion DCs). Maudrin's bargain targets the Tongue they carry. Concord: Ossa still needs a return to the Mere (the Tidewarden ferries the Ringer once they hold it again).",
-   "fallback": "",
+   "fallback": "If the plan stalls, Brannagh says her boat leaves at first light, with them or without them.",
    "keywords": "hallowmere, capital, carry, take it, dawn order, bellwrights, travel, leave pellmoor, road",
    "when": [
     {
@@ -1306,7 +1306,7 @@
    "rules": "",
    "consequence": "The Court holds the Tongue and wants Ila.",
    "later": "S4: Maudrin is delighted and offers Ila's Tithe-exemption instead of a bargain (s04-exemption-releases-ila if she was taken, s04-exemption-for-ila if not). If Ila is taken, she is held in the Hall of Tithes (rescue alongside Tessa in S6). Concord: Ossa needs the Tongue recovered (s04-ask-ossa-back).",
-   "fallback": "",
+   "fallback": "If the table doesn't react to the order, Ila sees the grey seal on it and goes white.",
    "keywords": "give, maudrin, court, chancellor, sell to the court, reward, surrender",
    "when": [
     {
@@ -1413,7 +1413,7 @@
    "rules": "",
    "consequence": "The party is expected at the Quiet Assembly.",
    "later": "S4: the gate accepts the letter as a writ. Maudrin has read Quill's report and knows their faces.",
-   "fallback": "",
+   "fallback": "If the table keeps doubting it, the Court's rider waits at the door for an answer and won't leave without one.",
    "keywords": "invitation, letter, assembly, accept, go, hallowmere, writ, chancellor",
    "effects": [
     {
@@ -1440,7 +1440,7 @@
    "rules": "",
    "consequence": "The Court takes note of the refusal.",
    "later": "S4: start with Rook's or Wren's request instead of the Assembly; Maudrin's bargain comes later, by letter. The Court's clock ticks.",
-   "fallback": "",
+   "fallback": "If the table is unsure what comes next, Rook's rider arrives the next evening with a request for help.",
    "keywords": "refuse, burn, decline, ignore, trap, invitation, letter, no",
    "effects": [
     {
@@ -2305,7 +2305,7 @@
    "rules": "Lock: thieves' tools DC 13, or Annet's key. Needle: Investigation DC 13 to spot; DC 11 Constitution save or 1d10 Poison and Poisoned for 1 hour. **Annet's Diving Hood** (uncommon): a Cap of Water Breathing. While wearing it underwater, you can take a Magic action to make a bubble of air round your head and breathe normally; it lasts until you take the hood off or end it with another Magic action.",
    "consequence": "Someone can breathe underwater, which matters under the Mere.",
    "later": "Session 2: down to the bell, the hood's wearer needs no Athletics checks for breath. See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody searches, a loose board under the cot creaks when someone sits on it.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, cap of water breathing, diving hood, sea-chest, potions, pearl, gold, reward",
    "effects": []
   },
@@ -2341,7 +2341,7 @@
    "rules": "**Venn's Plum Bag** (uncommon): a Bag of Holding. It holds up to 500 pounds, not exceeding 64 cubic feet, and always weighs 5 pounds. Retrieving an item from it is a Utilize action.",
    "consequence": "They carry more, and Mother Sallow is theirs.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody finds the bottle, Davin's name on the label catches the lamplight as they leave.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, bag of holding, plum bag, strongroom, potions, gold, davin sallow, reward",
    "effects": []
   }
@@ -2354,14 +2354,12 @@
    "npcs": "Ila Harrow, Mother Sallow, Hushman Tobias Quill, Dorra Pell, Pilot-Mistress Brannagh Wick, Reckoner Sela Maunt, Master Orsolo Venn, Sister Aurelie Dawnmantle, a Harper with a lute",
    "checklist": [
     "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
-    "Decide how each character arrives: by ship through the Seam, by the Mere road, or already living in Pellmoor. Ask each player whether the character grew up under the Court (it matters at S5)",
+    "Decide how each character arrives: by ship through the Seam, by the Mere road, or already living in Pellmoor. Ask each player whether the character grew up under the Court (it matters at S5), and for one thing their character has lost: note it for the Toll and memory ledger",
     "Have the Reckoning House slate ready: 1 keep = 1 gp 2 sp, motes 1 sp, heartkeeps by appraisal",
     "Know Quill's one question: 'Where did the child's coat go?'",
-    "Prepare Mother Sallow's response hymn as a two-line call and answer you can sing or speak",
-    "Ask each player for one thing their character has lost; note it for the Toll and memory ledger",
+    "Make two props: Mother Sallow's response hymn as a two-line call and answer you can sing or speak, and the Heart, something heavy wrapped in old cloth with a phone on vibrate inside (or hum one low note while Ila holds it)",
     "Written for four level-3 characters, who have subclasses and 2nd-level spells: have the any-l3 rulings plays open (Hold Person, Suggestion, Detect Thoughts, Locate Object, Misty Step)",
-    "Strangers' Row is where Aurelie, the Harpers and a forger are introduced: set aurelie, stormborn and writ from those plays",
-    "Make the Heart prop: something heavy wrapped in old cloth, with a phone on vibrate inside it (or hum one low note while Ila holds it)"
+    "Strangers' Row is where Aurelie, the Harpers and a forger are introduced: set aurelie, stormborn and writ from those plays"
    ],
    "encounters": [
     "enc-s01-quill-patrol",
@@ -2389,12 +2387,11 @@
    "checklist": [
     "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
     "Mere Memory table (v5 Part 11.4) at hand; decide whether one failed save becomes Tam's last night (a clue)",
-    "2024 Suffocation and Frigid Water if anyone dives; the belfry top is about 40 feet down",
+    "2024 Suffocation and Frigid Water if anyone dives; the belfry top is about 40 feet down. Write each character's breath on a card in rounds: (1 + Constitution modifier) x 10, minimum 5",
     "Eel thefts: the player picks the lost minor memory; it returns after a long rest",
     "Decide how the Cantor reacts to a true answer, and whether she teaches the release verse (only for a sincere memory of a dead person)",
     "Check ila: if the raid took her, the Mere road cart is the rescue (s02-intercept-ila-cart)",
-    "S1 to S5 are level 3; the party reaches level 4 after the Hallowmere investigation (S6). Do not hand out levels in the Mere",
-    "Write each character's breath on a card in rounds: (1 + Constitution modifier) x 10, minimum 5"
+    "S1 to S5 are level 3; the party reaches level 4 after the Hallowmere investigation (S6). Do not hand out levels in the Mere"
    ],
    "encounters": [
     "enc-s02-memory-eels",
@@ -2417,14 +2414,11 @@
    "npcs": "Mother Sallow, Brother Eld, Ila Harrow, Master Orsolo Venn, Pilot-Mistress Brannagh Wick, the Cantor, the Tidewarden",
    "checklist": [
     "Read 'Running this session (new DM guide)' near the end of this session's plan: every scene with read-aloud, each person's voice, the fights turn by turn, pacing and names",
-    "Eld's papers: the missing page, the matching Court forms, and the patrol entry recording Tam's interrogation",
-    "Warn of Ossa's Toll before any ringing: 'Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid. If you say no, nothing rings and nothing is taken.' Ila may not be the Ringer",
+    "Write the props: the missing page (Ila Harrow last), the matching Court forms, the patrol entry recording Tam's interrogation, and the Chancellor's letter with a grey seal, which doubles as a writ of passage",
+    "Put Ossa's Toll warning on a card and read it word for word before any ringing: 'Ossa will take a memory of the dead from you, and it will be heavy. You won't know which until it's paid. If you say no, nothing rings and nothing is taken.' Ila may not be the Ringer. Decide privately which memory of the dead the Ringer would lose (from session zero's 'what I lost')",
     "Venn's offer: 600 gp now; the Gilded Heron sails in three days (s03-heron-sails runs that clock out)",
-    "Write the Chancellor's letter as a prop; it doubles as a writ of passage",
     "Check ila: free, hidden, travelling or arrested decides which of the Ila plays show tonight",
-    "The party is still level 3 here; level 4 comes after S6",
-    "Write the props: the missing page (Ila Harrow last), the Court forms, the patrol entry on Tam, and the Chancellor's letter with a grey seal",
-    "Put the Toll warning on a card and read it word for word; decide privately which memory of the dead the Ringer would lose (from session zero's 'what I lost')"
+    "The party is still level 3 here; level 4 comes after S6"
    ],
    "encounters": [
     "enc-s03-gilded-heron",

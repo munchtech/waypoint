@@ -29,7 +29,7 @@
    "rules": "",
    "consequence": "The race to the Tor begins; the Key is on her chain.",
    "later": "S23: the Strike at the foot of the Tor. The palace vault is empty; going back to Hallowmere for the Key finds only Ansel and the Tithe-Ledger.",
-   "fallback": "",
+   "fallback": "If the table doesn't react, a rider passes them on the road at a gallop, shouting that the Court is on the march.",
    "keywords": "maudrin, march, army, leaves hallowmere, scout, news, key on a chain",
    "when": [
     {
@@ -69,7 +69,7 @@
    "rules": "",
    "consequence": "The Key travels with Maudrin.",
    "later": "S23: the chain route (any-steal-key-chain) and the summit (S24).",
-   "fallback": "",
+   "fallback": "If anyone still plans for the palace, a contact in Hallowmere sends word that the vault guards have been sent home.",
    "keywords": "key, vault, palace, chain, maudrin, carried",
    "when": [
     {
@@ -106,7 +106,7 @@
    "rules": "Ally actions: Rook's knights take one Hushman off the line; Yenna's riders cut the retreat; the Cantor's hymn gives Advantage on saves against Frightened; the Stilled stand as living walls; the Blanks break the line by numbers; the Stormborn's ship guns or Harper sabotage remove one Warden.",
    "consequence": "The party knows exactly who stands with it.",
    "later": "S23 and S24: each ally's objective changes the encounter; at 3 allies the party picks which flank to hold; at 6 the Court cannot hold the Tor road and Maudrin must come in person.",
-   "fallback": "",
+   "fallback": "If the list stalls, go round the table once: each player names one person who owes them, and that's who comes.",
    "keywords": "allies, gather, call in, help, army, friends, ironhorn, dawn order, stilled, blanks, choir, harpers"
   },
   {
@@ -122,7 +122,7 @@
    "rules": "",
    "consequence": "Kessa fights for the party, or for a good death, not for a cure.",
    "later": "S28: Kessa's last storm if the table wants it (s28-kessa-storm).",
-   "fallback": "",
+   "fallback": "If nobody can say it, Kessa reads it in their faces and says it for them.",
    "keywords": "kessa, cure, sickness, lightning, key, truth, thane, dying",
    "when": [
     {
@@ -147,7 +147,7 @@
    "rules": "",
    "consequence": "A willing Ringer is on the table that is not a PC.",
    "later": "S26: if the party refuses him, he may still try to reach the bell (s26-corin-cracks-the-lullaby). S27: the Concord with Corin as the Seventh's voice (s27-corin-voice).",
-   "fallback": "",
+   "fallback": "If the argument goes round, Corin says he'll stand at the bell either way and they can decide at the summit.",
    "keywords": "corin, strike, ring the seventh, bellwright, argue, wake oum",
    "when": [
     {
@@ -247,7 +247,7 @@
    "rules": "Old Patient is a Stone Golem; the Wardens use the Hushman Warden, each with a Warden's Stone (a 10-foot Emanation where spells can't be cast). A Moderate encounter for four level 9 characters; much less if the golem sits down.",
    "consequence": "The stock is theirs to spoil or steal: twelve Warden's Stones. Flood them, soak them at the cutters' troughs (a minute each), smash them (AC 12, 10 HP each) or carry them off (20 pounds a case).",
    "later": "S23: if the stock is spoiled or stolen, the Wardens' stones reach only 5 feet at the Strike.",
-   "fallback": "",
+   "fallback": "If the fight stalls, Old Patient stops mid-swing, looks at the cases, and sits down to guard them instead.",
    "keywords": "old patient, golem, stone golem, wardens, warden's stones, cutting floor, boss, quarry, quiet quarry, stones, sabotage",
    "effects": []
   },
@@ -264,7 +264,7 @@
    "rules": "Turning the wheel: a DC 15 Strength (Athletics) check, or two people and ten minutes. Soaked silence-stone is just stone for a month.",
    "consequence": "The Court's fresh stones are spoiled, and the cutters lose a week's work (Dagny doesn't mind).",
    "later": "S23: the Wardens' stones reach only 5 feet.",
-   "fallback": "",
+   "fallback": "If they can't work the wheel, Dagny turns it for them and says she's wanted to for years.",
    "keywords": "sluice, flood, water, pump-room, wheel, wet, dull, silence-stone, sabotage, quiet quarry",
    "effects": []
   },
@@ -277,11 +277,11 @@
    "why": "The quarry-master who ran this hill before the Court came hid from them for a year, in the one place no spell could find him.",
    "tells": "Dagny tells them, or they search the cutting floor's back wall (Investigation DC 16).",
    "readAloud": "Behind the slab, a little chamber of black, glassy stone, so pure it hurts your ears. A stool, a candle stub, and a tin box with a dead man's initials scratched in the lid.",
-   "response": "An Amulet of Proof against Detection and Location, three garnets (100 gp each) and two Potions of Greater Healing.",
+   "response": "An Amulet of Proof against Detection and Location, three garnets (100 gp each) and two Potions of Greater Healing. The amulet needs attunement and hides its wearer from divination magic, the Court's scrying included. If Dagny showed them the seam, one garnet is hers, and she takes it.",
    "rules": "**Amulet of Proof against Detection and Location** (uncommon, requires attunement): while you wear it, you can't be targeted by Divination spells or perceived through magical scrying sensors unless you allow it. **Potion of Greater Healing** (uncommon): regain 4d4 + 4 Hit Points.",
    "consequence": "One character the Court can't scry, all the way to the Tor.",
    "later": "Next treasure: the Court's trunks in Session 23. See Treasure in the wiki.",
-   "fallback": "",
+   "fallback": "If nobody searches the back wall, Dagny taps it with her pick on the way out and says the old seam is behind it.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, amulet, amulet of proof against detection and location, garnets, gems, potion of greater healing, mother seam, reward, quiet quarry",
    "effects": []
   },
@@ -298,7 +298,7 @@
    "rules": "",
    "consequence": "The favor is called in.",
    "later": "S23: the answer decides the flag. S24: kept means she reaches the summit unhurt.",
-   "fallback": "",
+   "fallback": "If the table freezes, Maudrin gives them until the count of ten, and says she'll take silence as a no.",
    "keywords": "favor, maudrin, bargain, owe, called in, stand aside, go",
    "when": [
     {
@@ -392,7 +392,7 @@
    "rules": "Haldric and the Dawn Order Knights lose their next turns.",
    "consequence": "The Strike turns in the party's favour.",
    "later": "S24: Haldric may be turned by the truth of his parentage (s24-haldric-truth).",
-   "fallback": "",
+   "fallback": "If the table doesn't press it, Haldric's knights lower their spears on their own and wait for an order that doesn't come.",
    "keywords": "haldric, hesitate, key, line breaks, knights, court",
    "when": [
     {
@@ -422,7 +422,7 @@
    "rules": "",
    "consequence": "A Tongue for a child, or a fight for him.",
    "later": "S28–30: Jonah remembers his mother's face if she is found.",
-   "fallback": "",
+   "fallback": "If the standoff stalls, the Hushman holding Jonah lets go of his hand and steps back: he never wanted this job.",
    "keywords": "jonah, hostage, child, wooden bird, ilam, rescue, trade",
    "when": [
     {
@@ -452,7 +452,7 @@
    "rules": "Child-peril: Jonah is never harmed on-screen; offer a retreat if the table is uncomfortable.",
    "consequence": "The Strike is smaller; a family is whole.",
    "later": "S29: Ilam stays with his son.",
-   "fallback": "",
+   "fallback": "If the table forgets the south, a runner reaches them mid-fight: Ilam is holding, and the road behind them is clear.",
    "keywords": "ilam, jonah, road, father, son, ally, hold",
    "when": [
     {
@@ -475,7 +475,7 @@
    "rules": "Insight DC 15 (Isolde or Ansel); Detect Thoughts on Maudrin: \"keep it as it is.\"",
    "consequence": "The table has a reason for her march.",
    "later": "S24: she negotiates a seal. S26: her last offer.",
-   "fallback": "",
+   "fallback": "If no one asks, a captured Hushman says it without being asked: she has to be at the Tor, or the stones go quiet.",
    "keywords": "maudrin, why, motive, key, silence stones, march",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [],
@@ -493,7 +493,7 @@
    "rules": "",
    "consequence": "The Court marches.",
    "later": "S23: the Strike, with the party holding the Key. Haldric hesitates if he sees it (s23-haldric-hesitates).",
-   "fallback": "",
+   "fallback": "If the table doesn't notice, they see her column's dust on the road behind them the next morning.",
    "keywords": "maudrin, march, retake, key, party holds",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -529,7 +529,7 @@
    "rules": "",
    "consequence": "The Court marches under a new Chancellor.",
    "later": "S23: the Strike with Tristan (enc-s23-strike-tristan). S24: no Maudrin at the summit; Tristan or Haldric hold the stones.",
-   "fallback": "",
+   "fallback": "If the table expects Maudrin, a herald rides ahead of the column and names the new Chancellor.",
    "keywords": "tristan, chancellor, march, maudrin dead",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -565,7 +565,7 @@
    "rules": "",
    "consequence": "The Dawn Order stands with the party.",
    "later": "S23: Rook holds the ridge. S28: Rook leads a restored Order.",
-   "fallback": "",
+   "fallback": "If Rook's role is unclear, she asks the party which ridge to hold and goes there.",
    "keywords": "rook, dawn order, ally, knights",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -601,7 +601,7 @@
    "rules": "",
    "consequence": "The Ironhorn stand with the party.",
    "later": "S23: the retreat is cut. S28: Kessa's last storm.",
-   "fallback": "",
+   "fallback": "If the table forgets them, Kessa's horn sounds from behind the Court's line at the worst moment for the Hushmen.",
    "keywords": "ironhorn, kessa, ally, riders",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -638,7 +638,7 @@
    "rules": "",
    "consequence": "Yenna's riders stand with the party.",
    "later": "S23: the retreat is cut. S28: the lamp is set on her tent.",
-   "fallback": "",
+   "fallback": "If the table forgets them, Yenna's riders come over the rise and close the road behind the Hushmen.",
    "keywords": "yenna, riders, ally, lamp",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -674,7 +674,7 @@
    "rules": "",
    "consequence": "The Bellwrights stand with the party.",
    "later": "S23 and S24: the hounds screen casters.",
-   "fallback": "",
+   "fallback": "If the hounds' job is unclear, they find the casters on their own and stand around them, ringing.",
    "keywords": "corin, bellwrights, hounds, ally",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -704,7 +704,7 @@
    "rules": "",
    "consequence": "The Choir sings with the party.",
    "later": "S24: the hymn at the summit (Advantage on Wisdom saves against Frightened).",
-   "fallback": "",
+   "fallback": "If nobody thinks of the vial, it starts to hum in its owner's pack when fear first comes over the summit.",
    "keywords": "cantor, choir, hymn, vial, ally",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -734,7 +734,7 @@
    "rules": "",
    "consequence": "The Stilled stand with the party.",
    "later": "S23: a flank is walled.",
-   "fallback": "",
+   "fallback": "If the table forgets them, the Stilled are already standing on the open flank when the Court's horses arrive.",
    "keywords": "stilled, glass, ally, walls",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -764,7 +764,7 @@
    "rules": "",
    "consequence": "The Blanks stand with the party.",
    "later": "S23: the line breaks. S28: their jars (s28-return-jars).",
-   "fallback": "",
+   "fallback": "If the table forgets them, the Blanks walk into the road in front of the Hushmen and stand there.",
    "keywords": "blanks, ally, march, crowd",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -794,7 +794,7 @@
    "rules": "",
    "consequence": "Ilam stands with the party.",
    "later": "S23: the south is held. S28: Ilam stays with his son.",
-   "fallback": "",
+   "fallback": "If the table forgets the south, a runner reaches them mid-fight: Ilam is holding, and the road behind them is clear.",
    "keywords": "ilam, jonah, ally, south road",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -824,7 +824,7 @@
    "rules": "",
    "consequence": "Faerunian friends stand with the party.",
    "later": "S23: one Warden's stone is disabled, or a healer helps.",
-   "fallback": "",
+   "fallback": "If nobody calls on them, a Harper slips into camp the night before and asks which stone to shut.",
    "keywords": "stormborn, harpers, aurelie, dawn mission, crew, ally",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -856,7 +856,7 @@
    "rules": "",
    "consequence": "The Cult stands with the party.",
    "later": "S25: no Sleepless on the stairs while they hum.",
-   "fallback": "",
+   "fallback": "If the table forgets them, the Cult starts humming as the Sleepless rise, and the shapes fall apart.",
    "keywords": "cult, hush, ally, hum",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -886,7 +886,7 @@
    "rules": "Influence (Persuasion) DC 15.",
    "consequence": "Corin is an ally.",
    "later": "S27: s27-corin-voice becomes possible.",
-   "fallback": "",
+   "fallback": "If the roll fails, Corin still comes to the Tor alone, and asks to stand at the back.",
    "keywords": "corin, round, ally, truth",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -917,7 +917,7 @@
    "rules": "Scrying (5th level): Wisdom save against the target's save.",
    "consequence": "The party knows the column's size.",
    "later": "S23: the party has the Strike's numbers.",
-   "fallback": "",
+   "fallback": "If the spell fails, a scout counts the column's fires from a hilltop and brings back the same numbers.",
    "keywords": "scrying, spy, watch, column",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [],
@@ -935,7 +935,7 @@
    "rules": "",
    "consequence": "Isolde turns informant.",
    "later": "S28: she sells the Court's last secrets or is arrested.",
-   "fallback": "",
+   "fallback": "If Isolde won't decide, she asks for one night, and in the morning the Frost Tongue is on their doorstep.",
    "keywords": "isolde, tell, truth, informant",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -963,11 +963,11 @@
    "why": "Rook won the duel and holds the armory.",
    "tells": "Rook arrives with her knights.",
    "readAloud": "Rook unwraps a bundle of oilcloth. “These were never the Order's to keep.”",
-   "response": "Rook hands over the Tongues held in the armory.",
+   "response": "Rook hands over the Tongues held in the armory. Each is wrapped in a Dawn Order cloak. Set each one to With the party in World state.",
    "rules": "",
    "consequence": "The party holds the Tongue.",
    "later": "S26: the bell can be rung.",
-   "fallback": "",
+   "fallback": "If the hand-over gets lost in the march, Rook's squire brings the wrapped Tongues to the party's tent that night.",
    "keywords": "rook, tongue, armory, return",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
@@ -1003,7 +1003,7 @@
    "rules": "",
    "consequence": "The bell is rung; Maudrin is ahead.",
    "later": "S23: the Strike happens at the stones or on the road home.",
-   "fallback": "",
+   "fallback": "If the table can't decide, say both numbers out loud: the days to the bell and back, and the days until the Strike.",
    "keywords": "detour, missed bell, return, ossa, calla",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [],
@@ -1026,7 +1026,7 @@
    "rules": "",
    "consequence": "The favor is repaid.",
    "later": "S24: she reaches the summit unhurt with all her forces.",
-   "fallback": "",
+   "fallback": "If the table argues afterwards, Maudrin's column passes them in silence, and one knight salutes.",
    "keywords": "favor, kept, stand aside, repay",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1067,8 +1067,8 @@
    "rules": "",
    "consequence": "The favor is broken; the Strike begins.",
    "later": "S24: she offers no more bargains.",
-   "fallback": "",
-   "keywords": "favor, broken, refuse",
+   "fallback": "If the table hesitates, Maudrin draws first and says she expected nothing better.",
+   "keywords": "favor, broken, refuse, draw weapons, attack maudrin, no deal, break word, fight",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1097,7 +1097,7 @@
    "rules": "",
    "consequence": "The party marches with the Court.",
    "later": "S24: s24-for-the-court (enc-s24-for-the-court). S26: help seal the stairs.",
-   "fallback": "",
+   "fallback": "If the march drags, cut to the Tor: the column reaches the foot of it at dusk.",
    "keywords": "join, court, march, side with maudrin",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1136,7 +1136,7 @@
    "rules": "",
    "consequence": "The Court holds the Key and the Tongues.",
    "later": "S27: the Empty Choir (s27-empty-choir).",
-   "fallback": "",
+   "fallback": "If the table falls quiet, Maudrin holds out her gloved hand and waits for the Ringer to take it.",
    "keywords": "surrender, tithe, ringer, accept",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1172,7 +1172,7 @@
    "rules": "",
    "consequence": "The party escapes.",
    "later": "S24: the Court is ahead.",
-   "fallback": "",
+   "fallback": "If the plan stalls, Yenna's riders make a noise on the far side of the camp and the guards run toward it.",
    "keywords": "escape, refuse, captivity, flee",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [],
@@ -1190,8 +1190,8 @@
    "rules": "Non-lethal: declare it when the melee attack drops her to 0 HP.",
    "consequence": "Maudrin is a prisoner; the party holds the Key.",
    "later": "S24: s24-remnant. S28: her fate.",
-   "fallback": "",
-   "keywords": "capture, maudrin, strike",
+   "fallback": "If the fight drags, Maudrin's captain throws down his sword, and the column follows him.",
+   "keywords": "capture, maudrin, strike, take her alive, prisoner, manacles, surrender, key case",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1225,8 +1225,8 @@
    "rules": "",
    "consequence": "Maudrin is dead.",
    "later": "S24: s24-remnant. S28: Tristan.",
-   "fallback": "",
-   "keywords": "kill, maudrin, strike",
+   "fallback": "If the table doesn't know what comes next, Haldric kneels by her body and asks for an hour to bury her.",
+   "keywords": "kill, maudrin, strike, finish her, death, key, chancellor dies, no mercy",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1260,8 +1260,8 @@
    "rules": "",
    "consequence": "The Ironhorn intervene.",
    "later": "S24: Kessa survives or not.",
-   "fallback": "",
-   "keywords": "kessa, intercept, ironhorn",
+   "fallback": "If the fight drags, Kessa takes one hit too many and yields early, laughing.",
+   "keywords": "kessa, intercept, ironhorn, thane, thrane's tongue, kept tongue, riders, oath broken",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1292,8 +1292,8 @@
    "rules": "",
    "consequence": "Haldric is neutral.",
    "later": "S24: he does not fight at the summit.",
-   "fallback": "",
-   "keywords": "bribe, haldric, neutral",
+   "fallback": "If the haggling stalls, Haldric names his own price and says it's not open to argument.",
+   "keywords": "bribe, haldric, neutral, pay off, coin, dawn order, stand down, knights, buy him",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1317,8 +1317,8 @@
    "rules": "",
    "consequence": "The knights hesitate.",
    "later": "S24: Haldric may be turned.",
-   "fallback": "",
-   "keywords": "imber, witness, testimony",
+   "fallback": "If Imber can't find the words, he takes off his Sexton's chain and holds it up, and that is enough.",
+   "keywords": "imber, witness, testimony, sexton, speech, dawn order, knights hesitate, truth",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1342,7 +1342,7 @@
    "rules": "",
    "consequence": "Mirel's Tongue is in the Court's custody.",
    "later": "S23: recover it.",
-   "fallback": "",
+   "fallback": "If the table doesn't notice, the empty cloth where the Tongue was is still warm when they come back.",
    "keywords": "steal, mule, mirel, raid",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1378,7 +1378,7 @@
    "rules": "",
    "consequence": "A character is out.",
    "later": "See any-pc-dies.",
-   "fallback": "",
+   "fallback": "If the table panics, an ally reaches the fallen character first and drags them clear of the line.",
    "keywords": "death, revive, fall, drop, strike",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [],
@@ -1396,8 +1396,8 @@
    "rules": "",
    "consequence": "The allies act.",
    "later": "S24: the same allies hold the stones.",
-   "fallback": "",
-   "keywords": "allies, objectives, strike",
+   "fallback": "If the table forgets an ally, that ally's leader sends a runner to ask where they're wanted.",
+   "keywords": "allies, objectives, strike, hold the flank, cut the retreat, break the line, companies, who comes",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1419,8 +1419,8 @@
    "rules": "",
    "consequence": "The Court's reinforcement does not arrive.",
    "later": "S24: Maudrin has fewer Hushmen.",
-   "fallback": "",
-   "keywords": "coalition, six allies, strike",
+   "fallback": "If the table doesn't notice, a Hushman scout comes back down the road with his hands up.",
+   "keywords": "coalition, six allies, strike, allies clock, full clock, no reinforcements, court column, road",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1438,12 +1438,12 @@
    "why": "Maudrin is dead; her cousin leads.",
    "tells": "The Court marches under Tristan.",
    "readAloud": "The man in grey speaks softly. “I regret this.”",
-   "response": "Tristan wants the Tongues and the Ringer; he surrenders if the Key is taken.",
+   "response": "Tristan wants the Tongues and the Ringer; he surrenders if the Key is taken. Run the Strike fights as for Maudrin's column, but Tristan stays behind his line and fights only if he is cornered.",
    "rules": "",
    "consequence": "The column is broken.",
    "later": "S24: the remnants.",
-   "fallback": "",
-   "keywords": "tristan, strike, court",
+   "fallback": "If the fight drags, Tristan calls for terms as soon as the Key's case is threatened.",
+   "keywords": "tristan, strike, court, new chancellor, vesk, column, key case, surrender",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
     {
@@ -1478,7 +1478,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds Vaer's Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, vaer, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1515,7 +1515,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds Ossa's Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, ossa, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1552,7 +1552,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds Calla's Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, calla, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1589,7 +1589,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds the Frost Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, hieme, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1626,7 +1626,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds Thrane's Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, thrane, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1663,7 +1663,7 @@
    "rules": "Search action (Wisdom (Perception) DC 12) finds it in the baggage; Maudrin's wagons are not hidden.",
    "consequence": "The party holds Mirel's Tongue again.",
    "later": "The Forecast shows the bell as reachable again.",
-   "fallback": "",
+   "fallback": "If nobody searches the baggage, a freed carter points them to the wagon with the wrapped bundles.",
    "keywords": "recover, tongue, baggage, mirel, strike, court",
    "sessionId": "sb-007cc9c6ed7fecff",
    "when": [
@@ -1696,12 +1696,12 @@
    "why": "She turned, and the Frost Tongue is the price.",
    "tells": "Isolde is an informant.",
    "readAloud": "Isolde hands over a velvet bundle, as if it were a gift to a lover. “You did not hear it from me.”",
-   "response": "She returns the Frost Tongue she took at S15.",
+   "response": "She returns the Frost Tongue she took at S15. It is still cold enough to frost the cloth it's wrapped in. Set it to With the party in World state.",
    "rules": "",
    "consequence": "The party holds the Frost Tongue.",
    "later": "The bell can be rung.",
-   "fallback": "",
-   "keywords": "isolde, frost tongue, return",
+   "fallback": "If they don't meet, Isolde leaves the Tongue with a sentry and a note in her own hand.",
+   "keywords": "isolde, frost tongue, return, informant, hieme, gives back, bring tongue, turned",
    "sessionId": "sb-742e25b3e3af8fbf",
    "when": [
     {
@@ -1762,7 +1762,7 @@
    "rules": "Once at the Strike, a creature the party chooses that drops to 0 Hit Points drops to 1 instead.",
    "consequence": "The drowned stand with the party.",
    "later": "S23: the verse saves one life. S28: Mother Sallow sings the last verse with Ila.",
-   "fallback": "",
+   "fallback": "If the table forgets her, the Cantor's promise keeps itself: the first one to drop hears singing and stays at 1.",
    "keywords": "choir, cantor, released, drowned, verse, ally, sing",
    "when": [
     {
@@ -1827,7 +1827,7 @@
    "rules": "The party has Advantage on Initiative at the Strike.",
    "consequence": "There is no bargain on the table. The fight is a fair one.",
    "later": "S24: the Final Offer still comes, and she expects them to refuse it.",
-   "fallback": "",
+   "fallback": "If the table expects a fight at once, Maudrin's warning comes by messenger, with the hour the Wardens will move.",
    "keywords": "refused, maudrin, bargain, letter, fair warning, no deal",
    "when": [
     {
@@ -1877,7 +1877,7 @@
    "rules": "One speech: DC 14 Charisma (Persuasion); Advantage if the claimant speaks for themself.",
    "consequence": "On a success the army behind the party backs their claimant.",
    "later": "S28: s28-chair-seated.",
-   "fallback": "",
+   "fallback": "If the speeches drag, the leaders vote by show of hands, and the party's claimant needs one more voice.",
    "keywords": "fires, companies, chair, claimant, speech, after the battle, army, who rules",
    "when": [
     {
@@ -1911,7 +1911,7 @@
    "rules": "One ally company, like the others in the \"Who comes\" table.",
    "consequence": "One more ally at the Strike.",
    "later": "S28: the fleets' captains want a say when the chair is decided.",
-   "fallback": "",
+   "fallback": "If the table forgets them, the marines arrive late, out of breath, and ask who they should be afraid of.",
    "keywords": "fleets, marines, ally, sword coast, charter, red coats, who comes, foreign",
    "when": [
     {
@@ -1941,7 +1941,7 @@
    "rules": "Add six marines (Guards) and a marine captain (Veteran) to the Strike, and work out the new budget in Foresight. DC 15 Charisma (Persuasion or Intimidation) on the captain ends their part.",
    "consequence": "The Strike is harder, unless the marines are turned.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table doesn't try to turn them, the marines' sergeant shouts across the field, asking what the Court is paying.",
    "keywords": "marines, foreign, waterdeep, mercenaries, court, strike, red coats, hired",
    "when": [
     {
@@ -1966,7 +1966,7 @@
    "rules": "One ally company. Within 30 feet of the sleepers, a Hushman Warden's stone stops working.",
    "consequence": "One more ally at the Strike, and a strange one.",
    "later": "S27: if the lullaby is sung, they go home and wake.",
-   "fallback": "",
+   "fallback": "If the table forgets them, the sleepers are already standing between the party and the Hushmen when the fight starts.",
    "keywords": "sleepers, sleeping hall, ally, walk, nightgowns, brother lull, who comes, barefoot",
    "when": [
     {
@@ -1996,7 +1996,7 @@
    "rules": "",
    "consequence": "The Strike is shorter and easier. The Concord still needs the unrung bell.",
    "later": "Going back for the bell is Session 22's detour.",
-   "fallback": "",
+   "fallback": "If the table wonders why it's easy, a prisoner says the Court expected them by the other road.",
    "keywords": "strike, early, short-handed, court, unready, wall, fewer, companies, tor, skip",
    "when": [
     {
@@ -2017,7 +2017,7 @@
    "why": "Nine wagons and nobody guarding them. The Court carried its best things in lead, so nothing would hum on the road.",
    "tells": "The Strike is over and they open the wagons.",
    "readAloud": "The last trunk is heavier than the rest. Under the lead lid, wrapped in grey felt: a round shield of dull black stone, two bottles that glow faintly red, and a purse that has not been opened since Hallowmere.",
-   "response": "The trunk holds 1,200 gp, two Potions of Superior Healing and the Silent Shield, cut from the same stone as the Wardens, from the Quiet Quarry.",
+   "response": "The trunk holds 1,200 gp, two Potions of Superior Healing and the Silent Shield, cut from the same stone as the Wardens, from the Quiet Quarry. It is a Spellguard Shield: Advantage on saves against spells, and spell attacks against its bearer have Disadvantage.",
    "rules": "**The Silent Shield** (very rare, requires attunement): a Spellguard Shield. While you hold it, you have Advantage on saving throws against spells and other magical effects, and spell attacks have Disadvantage against you. It doesn't hum.",
    "consequence": "One character has a Very Rare item. Act V adds three, about one for most of the party by level 11: see Treasure in the wiki.",
    "later": "Next treasure: the bell-chest at the top of the Tor (Session 24), then what the stairs kept (Session 25).",

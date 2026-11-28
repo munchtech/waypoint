@@ -75,7 +75,7 @@ Must parse as strict JSON (no comments, no trailing commas). Use straight double
 }
 ```
 - Use the **stat block ids and CRs below** for Corvane creatures. For ordinary people, use the 2024 base directly (e.g. `{"name":"Dawn Order Knight","base":"Knight","cr":"3","count":2}`, no `statblock`).
-- Waypoint calculates difficulty with the 2024 XP budget per character. The table is **four players starting at level 3**; levels by session are `3,3,3,3,3,4,4,4,4,5,5,5,5,6,6,7,7,7,7,7,7,7,7,8,8,9,9,10,11,11,11,11`. Write counts for four characters at that level ("Written for four level-N characters"), say how to scale, and never write Easy/Medium/Hard/Deadly labels: Waypoint computes the band and suggests retuning.
+- Waypoint calculates difficulty with the 2024 XP budget per character. The table is **four players starting at level 3**; levels by session are `3,3,3,3,3,3,4,4,4,5,5,5,5,6,6,7,7,7,7,7,7,7,7,8,8,9,9,10,11,11,11,11`. Write counts for four characters at that level ("Written for four level-N characters"), say how to scale, and never write Easy/Medium/Hard/Deadly labels: Waypoint computes the band and suggests retuning.
 - Every encounter must have a non-lethal exit. Telegraph danger a round early. (v5's low-level safeguards were for a level-1 start; this table starts at level 3.)
 
 ## Fixed stat block ids (2024 conversions; the CR is fixed)

@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.24) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.25) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -179,17 +179,17 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.24',
-  summary: `Revision 7.24 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.23 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.25',
+  summary: `Revision 7.25 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.24 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
-- **Audit fixes (7.24).** A High option for each big dungeon's last fight, three Very Rare items in Act V, and corrected scales, briefs and names.
+- **Polish and audit fixes (7.24, 7.25).** Every play has an If it stalls line; read-alouds and epilogues filled in; a High option for each big dungeon's last fight; three Very Rare items in Act V.
 - **Shapes and threads (7.23).** Skip Glassreach, or run Sessions 10 and 11 in one evening; a Shapes of the campaign page; personal threads on the Roster; Prep names who is due a beat.
 - **Dungeons, roads and markets (7.21 to 7.23).** Seven side dungeons and big dungeons in Sessions 8, 14 and 22; road tables, random magic, wayshrines, a peddler, puzzles and every trader's stock.
 - **Pacing, treasure and growth (7.20).** A Glassreach clock and Act II choices that pay off in Glassreach; Sessions 12 and 13 in one evening; march on the Tor short-handed; a fight in each talking session; two Rare items each by level 9 and a bell-charm; a personal beat per character per act, lost things won back, Toll-marks, standing perks, bell boons.
 - **Reshape and quick wins (7.18, 7.19).** Work for or reform the Court, back a claimant, open the Seam or swear to the Hush; faction clocks act at 6; Act I debts return in Sessions 22 and 23.
 - **Plain speech (7.12, 7.17).** Guides, plays, wiki and handouts say each thing once, plainly; each NPC page gains a first look and lines to say.
 - **Pop-outs (7.16).** Wiki pages for the seven bells, the endings, the campaign's own words (Ringer, Tithe…), the Mere and seventeen people; names in plans open their pages; Encounter Lists match the Combat tab.
-- **Run Acts II to V from the page (7.9 to 7.15).** Sessions 4 to 30 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
+- **Run Acts II to V from the page (7.9 to 7.15).** Sessions 4 to 30 gain the full new-DM guide and table card; their plans match the play cards.
 - **Silly and serious (7.8).** **Bring it back** lines for jokes that run on, **Where to break**, recaps that name what was lost, session zero's **Silly and serious**, and an **Epilogue round**.
 - **Know who is in the room (7.7).** Sessions 1 to 3 gain **Key people tonight**, **Places at a glance** and a d6 rumour table; session zero gains optional **Table jobs**.
 - **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season.
@@ -215,7 +215,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.24',
+    version: '7.25',
     flags,
     anytime,
     encounters,

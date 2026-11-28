@@ -51,7 +51,7 @@
    "rules": "DC 17 Dexterity (Sleight of Hand), or win a grapple and use a Utilize action to take it. Legendary Resistance does not apply to ability checks.",
    "consequence": "The party holds the Key at the top of the stairs.",
    "later": "S26 runs the party-holds-the-Key version. Forecast: Concord, Second Dawn and the Unbound all depend only on the party.",
-   "fallback": "",
+   "fallback": "If the grab fails twice, the chain snaps on its own when Maudrin turns too fast, and the case skids across the stone.",
    "keywords": "take the key, steal, grab, case, chain, sleight of hand, summit",
    "when": [
     {
@@ -106,7 +106,7 @@
    "rules": "Non-lethal: declare when the melee attack drops her to 0 HP.",
    "consequence": "Maudrin is a prisoner; the Court is leaderless.",
    "later": "S28: her fate is the party's to decide: trial, exile, or Tithe by her own office (s28-maudrin-trial, s28-maudrin-exile). Tristan Vesk moves to fill her chair (s28-tristan-chair).",
-   "fallback": "",
+   "fallback": "If the binding drags, Maudrin holds out her own wrists and tells them where the silence-stone cuffs are kept.",
    "keywords": "capture, knock out, non-lethal, prisoner, arrest maudrin, spare",
    "effects": [
     {
@@ -141,7 +141,7 @@
    "rules": "",
    "consequence": "The Chancellor is dead; the Key is free.",
    "later": "S28: Tristan Vesk becomes Chancellor and wants the Key (s28-tristan-chair). Haldric finds the letters in her case (s24-letters-in-the-case).",
-   "fallback": "",
+   "fallback": "If the table goes quiet afterwards, her Hushmen kneel one by one and wait to be told what to do.",
    "keywords": "kill maudrin, death, execute, finish her, dead",
    "effects": [
     {
@@ -176,7 +176,7 @@
    "rules": "Evidence makes it automatic; without it, Influence (Persuasion) DC 18 (his Intelligence is 12; use the higher of 15 and his Intelligence, with Disadvantage because it is his mother).",
    "consequence": "Haldric and any knights loyal to him leave the fight.",
    "later": "S28: Haldric chooses his own fate (s28-haldric-rook).",
-   "fallback": "",
+   "fallback": "If the evidence isn't convincing, Maudrin's silence is: Haldric looks at her, she doesn't deny it, and he lowers his sword.",
    "keywords": "haldric, son, mother, maudrin, truth, reveal, parentage",
    "when": [
     {
@@ -223,7 +223,7 @@
    "rules": "Three DC 15 Strength (Athletics) checks to climb; a failure is a slip: 2024 Falling, 1d6 Bludgeoning per 10 feet fallen (decide the distance before rolling, usually 20 feet). A slip never stops the descent.",
    "consequence": "The party reaches the bell with every memory intact.",
    "later": "S26 as normal. The chute is known after this: S27 uses the same route to get an injured Ringer out.",
-   "fallback": "",
+   "fallback": "If nobody thinks of the chute, Corin, the Notes or the cold draught from a grate in the summit floor points them to it.",
    "keywords": "another way, avoid stairs, foundry, chute, climb, fly, dimension door, shortcut",
    "effects": [
     {
@@ -245,7 +245,7 @@
    "rules": "",
    "consequence": "The party knows who is with them all the way down.",
    "later": "S28: an ally who paid the stairs carries it in their epilogue (s28-stairs-payers).",
-   "fallback": "",
+   "fallback": "If the choosing drags, each ally gives one line, staying or going, and the descent begins.",
    "keywords": "allies, refuse, stay behind, ila, ilam, rook, yenna, go down, companions"
   },
   {
@@ -291,7 +291,7 @@
    "rules": "",
    "consequence": "Ysh is struck. Oum wakes.",
    "later": "S27: the Unbound (s27-oum-answers, s27-oum-remake, s27-oum-unmake). Dreams return (s27-dreams-return).",
-   "fallback": "",
+   "fallback": "If the table freezes after the sound, Oum's eye turns toward the party and waits for someone to speak.",
    "keywords": "strike, maudrin strikes, bell rings, oum wakes, unbound",
    "when": [
     {
@@ -449,7 +449,7 @@
    "rules": "Record all six Tolls for the striker (Memory, Year, Sense, Name, Fear, Gift).",
    "consequence": "Oum wakes. The world is remade from its best memories, or unmade into light.",
    "later": "Remake or Unmake follows (s27-oum-remake, s27-oum-unmake). Dreams return.",
-   "fallback": "",
+   "fallback": "If the talk with Oum stalls, Oum repeats its last question, slowly, and waits as long as it takes.",
    "keywords": "strike, ring the seventh, unbound, oum, wake, remake, unmake, ring ysh",
    "when": [
     {
@@ -493,7 +493,7 @@
    "rules": "Protect the minute: if a fight is still on, it's an action each round for 10 rounds by one character.",
    "consequence": "Partial restoration. Oum sleeps on.",
    "later": "S28 epilogues name only what was earned. Dreams return (s27-dreams-return).",
-   "fallback": "",
+   "fallback": "If the minute is interrupted, start the count again: the recess holds whatever was already done.",
    "keywords": "seal, second dawn, recess, lock the key, stabilise, no toll",
    "when": [
     {
@@ -582,7 +582,7 @@
    "rules": "",
    "consequence": "The Concord waits for someone willing, or doesn't happen.",
    "later": "S27: the Second Dawn, a postponement, or a willing NPC (s27-corin-voice, s27-maudrin-voice).",
-   "fallback": "",
+   "fallback": "If the table is unsure what comes next, list the other courses out loud and let them sit with it; nobody is pressed.",
    "keywords": "refuse, great toll, no, decline, ringer, sacrifice, won't"
   },
   {
@@ -598,7 +598,7 @@
    "rules": "",
    "consequence": "The Drowned Choir is released.",
    "later": "S28: Mother Sallow sings the last verse with Ila on the ferry-dock.",
-   "fallback": "",
+   "fallback": "If nobody remembers the verse, Mother Sallow sends it later, rebuilt from the ledger, and it can be sung at Pellmoor.",
    "keywords": "verse, cantor, choir, release, sing, ondra, drowned",
    "when": [
     {
@@ -639,7 +639,7 @@
    "rules": "",
    "consequence": "Act I's threads close.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the scenes drag, Ila closes the ledger and asks the closing question herself.",
    "keywords": "pellmoor, return, ila, mother sallow, epilogue, ledger, home",
    "when": [
     {
@@ -669,7 +669,7 @@
    "rules": "",
    "consequence": "Corvane joins the Forgotten Realms in earnest.",
    "later": "A hook for a next campaign: the Realms come to Corvane, and not all of them are friendly.",
-   "fallback": "",
+   "fallback": "If the players don't have an answer, a ship's bell rings in the harbour and the first ship sails out past the old wall.",
    "keywords": "stormwall, open, sea, ships, faerun, world, future, trade",
    "when": [
     {
@@ -706,7 +706,7 @@
    "rules": "",
    "consequence": "The Ninefold Shore has new rulers, chosen with the party’s weight behind someone.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table can't agree, the claimants ask for one word of support each, and whoever gets the most goes forward.",
    "keywords": "rule, court, chancellor, tristan, rook, kessa, hallowmere, future, government",
    "when": [
     {
@@ -736,7 +736,7 @@
    "rules": "",
    "consequence": "The Tithe is undone, one jar at a time.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the returns drag, cover them in one line each and end on Mother Sallow opening hers.",
    "keywords": "jars, tithe, return memories, blanks, vault, restore, bet, lysse, jonah",
    "when": [
     {
@@ -785,7 +785,7 @@
    "rules": "",
    "consequence": "The party has proof of Haldric's parentage and a clue to her motive.",
    "later": "S24: s24-haldric-truth. S28: s28-haldric-rook.",
-   "fallback": "",
+   "fallback": "If nobody opens the case, the letters spill out when the Key is lifted, and one has Haldric's name on it.",
    "keywords": "letters, case, haldric, lining, proof",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -810,7 +810,7 @@
    "rules": "",
    "consequence": "Maudrin holds the Key by the party's choice.",
    "later": "S26: s26-stop-the-strike, s26-walk-away, or help her seal (s26-help-seal).",
-   "fallback": "",
+   "fallback": "If the table hesitates, Maudrin holds out her gloved hand and says she won't take it by force.",
    "keywords": "give key, hand over, trust, maudrin, seal",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -846,7 +846,7 @@
    "rules": "",
    "consequence": "The Court holds the Key; the resistance ends.",
    "later": "S27: the Empty Choir (s27-empty-choir).",
-   "fallback": "",
+   "fallback": "If the table can't agree, ask each player for a yes or no; anything short of agreement and the fight goes on.",
    "keywords": "deal, final offer, maudrin, surrender, empty choir",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -880,7 +880,7 @@
    "rules": "",
    "consequence": "The Concord has a willing Ringer.",
    "later": "S27: s27-maudrin-voice.",
-   "fallback": "",
+   "fallback": "If the table can't decide, Maudrin says she will wait at the bell, and they can tell her there.",
    "keywords": "maudrin, penance, voice, great toll",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -906,8 +906,8 @@
    "rules": "",
    "consequence": "Haldric is dead.",
    "later": "S28: no Haldric; Rook or the Order choose a captain.",
-   "fallback": "",
-   "keywords": "kill haldric, knight, death",
+   "fallback": "If the table goes quiet afterwards, his knights pick up his body and carry it down the hill.",
+   "keywords": "kill haldric, knight, death, finish him, dawn order, summit, no mercy, knights flee",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
     {
@@ -937,7 +937,7 @@
    "rules": "",
    "consequence": "Corin is in the fight.",
    "later": "S26: Corin may race the party to the bell (s26-corin-cracks-the-lullaby).",
-   "fallback": "",
+   "fallback": "If the three-way fight stalls, Corin shouts a question at the party: which of them is paying the Great Toll?",
    "keywords": "corin, enemy, summit, hounds",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -962,8 +962,8 @@
    "rules": "",
    "consequence": "Corin is dead.",
    "later": "S28: no Corin in the epilogue; his workshop is shuttered.",
-   "fallback": "",
-   "keywords": "kill corin, death, summit",
+   "fallback": "If the table goes quiet afterwards, the hounds lie down beside Corin's body and won't move.",
+   "keywords": "kill corin, death, summit, finish him, bellwright, notes, hounds, bloodied",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
     {
@@ -1000,7 +1000,7 @@
    "rules": "",
    "consequence": "The allies act.",
    "later": "S25: allies who go down the stairs pay.",
-   "fallback": "",
+   "fallback": "If the table forgets an ally, that ally's leader shouts across the summit to ask which stone to hold.",
    "keywords": "allies, stones, summit, hold",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -1023,7 +1023,7 @@
    "rules": "",
    "consequence": "The Court holds the summit.",
    "later": "S26: help Maudrin seal (s26-help-seal). S27: the Empty Choir.",
-   "fallback": "",
+   "fallback": "If the fight stalls, Corin calls a truce and asks Maudrin whether she knows what sealing costs.",
    "keywords": "for the court, side, join, summit",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -1054,7 +1054,7 @@
    "rules": "",
    "consequence": "The Court's remnant is broken or yields.",
    "later": "S25: the stairs. S28: Tristan's chair.",
-   "fallback": "",
+   "fallback": "If the fight drags, Tristan raises a white cloth and asks for terms.",
    "keywords": "remnant, tristan, wardens, summit",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -1080,7 +1080,7 @@
    "rules": "",
    "consequence": "She is ahead of the party.",
    "later": "S25: the stairs. S26: she is at the bell.",
-   "fallback": "",
+   "fallback": "If the table doesn't follow, they hear the first stones of the seal grinding into place below.",
    "keywords": "flee, retreat, stairs, maudrin",
    "sessionId": "sb-dce15a8ce35d16ab",
    "when": [
@@ -1111,7 +1111,7 @@
    "rules": "",
    "consequence": "The shrine is reached.",
    "later": "S26: the Seventh Bell.",
-   "fallback": "",
+   "fallback": "If the table doesn't know where to go, the Hush says each character's name in their own voice and the bell hums.",
    "keywords": "bottom, shrine, bell, arrive",
    "sessionId": "sb-8272ccffe0002037",
    "when": [
@@ -1141,7 +1141,7 @@
    "rules": "Teleport (7th): Viewed Once = Off Target risk; Dimension Door (4th): a visualised spot.",
    "consequence": "The party reaches the shrine.",
    "later": "S26: as normal.",
-   "fallback": "",
+   "fallback": "If the spell fails, the caster lands at the top of the stairs with the party, unharmed, and the price is still there.",
    "keywords": "teleport, dimension door, shrine, skip, stairs",
    "sessionId": "sb-8272ccffe0002037",
    "when": [],
@@ -1164,7 +1164,7 @@
    "rules": "",
    "consequence": "The sealers are broken or the party turns back.",
    "later": "S26: the bell.",
-   "fallback": "",
+   "fallback": "If the fight stalls, the sealers' captain asks what the party would do with the Key, and listens.",
    "keywords": "sealers, stairs, wardens, court",
    "sessionId": "sb-8272ccffe0002037",
    "when": [
@@ -1189,8 +1189,8 @@
    "rules": "",
    "consequence": "The Sleepless are dealt with or avoided.",
    "later": "S27: they gather again during the sealing minute.",
-   "fallback": "",
-   "keywords": "sleepless, stairs, mirel unrung",
+   "fallback": "If the fight drags, the Sleepless thin out on their own as the party gets closer to the bell.",
+   "keywords": "sleepless, stairs, mirel unrung, mist, fear, sleepers, hum, descent, cult",
    "sessionId": "sb-8272ccffe0002037",
    "when": [
     {
@@ -1214,7 +1214,7 @@
    "rules": "",
    "consequence": "The party chooses another way.",
    "later": "S26: the chute or a delay.",
-   "fallback": "",
+   "fallback": "If the table is stuck, Corin or the Notes points them to the foundry chute.",
    "keywords": "turn back, refuse, stairs, hesitate",
    "sessionId": "sb-8272ccffe0002037",
    "when": [],
@@ -1232,7 +1232,7 @@
    "rules": "Study, Intelligence (Investigation) DC 13.",
    "consequence": "A glimpse of a lost memory.",
    "later": "S28: Jonah's mother (s28-return-jars).",
-   "fallback": "",
+   "fallback": "If the roll fails, one carving is so worn that a hand on it is enough: it is a woman's face, and Jonah has her eyes.",
    "keywords": "steps, carvings, memory, read",
    "sessionId": "sb-8272ccffe0002037",
    "when": [],
@@ -1250,7 +1250,7 @@
    "rules": "DC 17 as above. Counterspell can't stop the strike: it is not a spell. Initiative; her strike is her action on her turn.",
    "consequence": "The party holds the Key at the bell.",
    "later": "S26 continues with the party's choice (s26-the-choice).",
-   "fallback": "",
+   "fallback": "If every attempt fails, Maudrin hesitates one heartbeat at the bell, and the nearest character gets one more try.",
    "keywords": "take key, grapple, disarm, bell, maudrin",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1286,7 +1286,7 @@
    "rules": "Influence (Persuasion) DC 20 (her Intelligence 20); she offers terms for the Court's survival.",
    "consequence": "A truce at the bell, on terms.",
    "later": "S27: whatever the table decides.",
-   "fallback": "",
+   "fallback": "If the talk goes round, Maudrin sets the Key down on the stone between them and steps back one pace.",
    "keywords": "parley, talk, maudrin, bell, terms",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1312,8 +1312,8 @@
    "rules": "",
    "consequence": "Maudrin is dead and the Key is free.",
    "later": "S27: the party's choice. S28: Tristan Vesk.",
-   "fallback": "",
-   "keywords": "kill maudrin, bell, death",
+   "fallback": "If the table goes quiet afterwards, the Key hums in her open hand, waiting to be picked up.",
+   "keywords": "kill maudrin, bell, death, ysh, finish her, key falls, no mercy, shrine",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
     {
@@ -1352,7 +1352,7 @@
    "rules": "",
    "consequence": "The Court secures the Key and the stairs.",
    "later": "S27: the Empty Choir (s27-empty-choir).",
-   "fallback": "",
+   "fallback": "If the table isn't sure, ask each player whether their character steps back; anything short of all of them and the fight goes on.",
    "keywords": "walk away, retreat, surrender, empty choir",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1392,7 +1392,7 @@
    "rules": "",
    "consequence": "The Court seals the shrine with the party's help.",
    "later": "S27: the Empty Choir.",
-   "fallback": "",
+   "fallback": "If the sealing drags, cut to the last stone dropping into place, and Maudrin thanking them by name.",
    "keywords": "help seal, side with maudrin, court, stairs",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1435,7 +1435,7 @@
    "rules": "",
    "consequence": "The Court holds the Key; resistance continues.",
    "later": "S27: a rescue or theft chapter (s27-rescue-chapter).",
-   "fallback": "",
+   "fallback": "If the table can't decide, the Hushmen at the back of her column slow down, close enough to follow.",
    "keywords": "leave, retreat, key, court, maudrin",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1471,7 +1471,7 @@
    "rules": "",
    "consequence": "A vision, an invitation.",
    "later": "S27: the future depends on the Key.",
-   "fallback": "",
+   "fallback": "If the player has no answer, the figure turns its empty hands palm up and waits.",
    "keywords": "winter moment, figure, vision, empty hands",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1496,7 +1496,7 @@
    "rules": "",
    "consequence": "A race.",
    "later": "S26: s26-corin-cracks-the-lullaby, or he yields.",
-   "fallback": "",
+   "fallback": "If the race is close, Corin stumbles on the last step, and anyone who reaches him gets one chance to stop him.",
    "keywords": "corin, race, key, bell",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1522,7 +1522,7 @@
    "rules": "",
    "consequence": "Ysh is struck; Oum wakes.",
    "later": "S27: the Unbound (s27-oum-answers).",
-   "fallback": "",
+   "fallback": "If the table freezes after the sound, Oum's eye turns toward the party and waits for someone to speak.",
    "keywords": "corin, early, crack, wake, ysh",
    "sessionId": "sb-2fce596a41a06436",
    "when": [
@@ -1570,7 +1570,7 @@
    "rules": "",
    "consequence": "A character is out.",
    "later": "S27: a replacement Ringer may step in.",
-   "fallback": "",
+   "fallback": "If the table panics, an ally reaches the fallen character first and drags them away from the bell.",
    "keywords": "dead, fall, ringer, revive",
    "sessionId": "sb-2fce596a41a06436",
    "when": [],
@@ -1588,7 +1588,7 @@
    "rules": "",
    "consequence": "The table has the choice.",
    "later": "S27: s27-oum-remake or s27-oum-unmake.",
-   "fallback": "",
+   "fallback": "If the table discussion stalls, Oum asks each player one direct question in turn, and waits for every answer.",
    "keywords": "oum, answer, dream, wake, question",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1619,7 +1619,7 @@
    "rules": "",
    "consequence": "The world is remade.",
    "later": "S28: rebuild scenes around what the players preserved (s28-remake-rebuild).",
-   "fallback": "",
+   "fallback": "If a player can't name something, ask what their character would miss most, and that is what survives.",
    "keywords": "remake, rebuild, survive, oum",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1655,7 +1655,7 @@
    "rules": "",
    "consequence": "The dream ends.",
    "later": "S28: one last night of farewells (s28-last-night). No years-later scenes.",
-   "fallback": "",
+   "fallback": "If anyone hesitates even a little, it is Remake: say so gently and move on to naming what survives.",
    "keywords": "unmake, end, light, farewell, oum",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1691,7 +1691,7 @@
    "rules": "",
    "consequence": "Dreams return.",
    "later": "S28.",
-   "fallback": "",
+   "fallback": "If the table doesn't notice, a sleeper in the Sleeping Hall wakes up laughing at something she dreamed.",
    "keywords": "dreams, return, hush, cult",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1729,7 +1729,7 @@
    "rules": "",
    "consequence": "The Concord with Corin as voice.",
    "later": "S28: nobody remembers Corin, but the workshop rings (s28-corin-epilogue).",
-   "fallback": "",
+   "fallback": "If the table can't decide, Corin asks them to say no out loud if they mean it, and takes silence as a maybe, not a yes.",
    "keywords": "corin, voice, great toll, concord",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1823,7 +1823,7 @@
    "rules": "",
    "consequence": "The Concord with Maudrin as voice.",
    "later": "S28: the Court has no head (s28-tristan-chair).",
-   "fallback": "",
+   "fallback": "If the table can't decide, Maudrin says she will wait at the bell, and they can tell her there.",
    "keywords": "maudrin, voice, penance, concord",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1918,8 +1918,8 @@
    "rules": "",
    "consequence": "Nothing transfers; the rite can start again.",
    "later": "See any-pc-dies.",
-   "fallback": "",
-   "keywords": "ringer dies, rite, interrupt",
+   "fallback": "If the table doesn't know what comes next, the bell goes quiet, and the rite is there to start again when they're ready.",
+   "keywords": "ringer dies, rite, interrupt, drops at bell, 0 hp, revivify, great toll, nothing transfers",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [],
    "effects": []
@@ -1936,7 +1936,7 @@
    "rules": "",
    "consequence": "The ringing is cancelled.",
    "later": "S27: the Second Dawn or postponement.",
-   "fallback": "",
+   "fallback": "If the table is unsure what comes next, list the other courses out loud and let them sit with it; nobody is pressed.",
    "keywords": "refuse, toll, mid-rite, cancel",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1961,7 +1961,7 @@
    "rules": "",
    "consequence": "The decision waits.",
    "later": "S27: they can return.",
-   "fallback": "",
+   "fallback": "If the table wants something to do next, the Hush grows loud enough that someone in town comes asking about it.",
    "keywords": "postpone, wait, leave, break",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -1992,7 +1992,7 @@
    "rules": "",
    "consequence": "A new chapter.",
    "later": "When it succeeds: the Concord, the Second Dawn and the Unbound reopen.",
-   "fallback": "",
+   "fallback": "If the plan stalls, Ansel turns up with a floor plan and a list of guards he has bribed.",
    "keywords": "rescue, heist, theft, key, court",
    "sessionId": "sb-b2b43775bb66b9c5",
    "when": [
@@ -2023,8 +2023,8 @@
    "rules": "",
    "consequence": "The last night.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "last night, unmake, farewell",
+   "fallback": "If a player can't think who to say goodbye to, ask who their character would want to see one more time.",
+   "keywords": "last night, unmake, farewell, goodbye, epilogue, ending, dream ends, final scene",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2048,8 +2048,8 @@
    "rules": "",
    "consequence": "A new world.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "remake, rebuild, preserved",
+   "fallback": "If a player has no scene in mind, start one with the thing they saved, in the hands of someone they love.",
+   "keywords": "remake, rebuild, preserved, what survived, new world, epilogue, ending, oum",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2073,8 +2073,8 @@
    "rules": "",
    "consequence": "The Court rules.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "court, rules, empty choir",
+   "fallback": "If the ending feels flat, close on Ila writing one more name in the secret ledger.",
+   "keywords": "court, rules, empty choir, court wins, tithe continues, ila, ledger, epilogue, ending",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2104,7 +2104,7 @@
    "rules": "",
    "consequence": "The Landing changes.",
    "later": "A hook for the next campaign.",
-   "fallback": "",
+   "fallback": "If the scene drags, end it on the first foreign pilot asking for directions at the Pilots' Hall.",
    "keywords": "landing, fleets, pellmoor, thrane",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
@@ -2131,12 +2131,12 @@
    "why": "The jars were burned.",
    "tells": "Hallowmere burned.",
    "readAloud": "A grey vault of broken glass.",
-   "response": "The memories scattered; only a Remake can mend them.",
+   "response": "The memories scattered; only a Remake can mend them. If the dream is remade, a player may name one of the scattered memories as the thing that survives.",
    "rules": "",
    "consequence": "The jars are gone.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "jars, destroyed, burned",
+   "fallback": "If the table wants hope, someone sweeps up a shard that still hums faintly, and keeps it.",
+   "keywords": "jars, destroyed, burned, smashed, fire, hallowmere burned, tithe jars, memories lost",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2160,8 +2160,8 @@
    "rules": "",
    "consequence": "A decision.",
    "later": "s28-maudrin-exile.",
-   "fallback": "",
-   "keywords": "maudrin, trial",
+   "fallback": "If the table can't agree, Maudrin chooses for them and asks for exile.",
+   "keywords": "maudrin, trial, captured, judge, sentence, punishment, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2181,12 +2181,12 @@
    "why": "She is sent away.",
    "tells": "She is captured.",
    "readAloud": "A ship at the Pellmouth.",
-   "response": "She sails.",
+   "response": "She sails, alone or with the few Hushmen who still follow her. Ask the table where the ship is bound, and whether anyone goes down to the quay to watch it leave.",
    "rules": "",
    "consequence": "Maudrin is exiled.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "exile, maudrin",
+   "fallback": "If the scene drags, close on her ship's lantern going out past the old Stormwall.",
+   "keywords": "exile, maudrin, banish, ship, sails away, captured, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2211,12 +2211,12 @@
    "why": "With Maudrin gone, the Chancellor's chair is empty.",
    "tells": "Maudrin is gone.",
    "readAloud": "Tristan Vesk sits in the chair a little too carefully.",
-   "response": "He bargains with whoever holds the Key.",
+   "response": "He bargains with whoever holds the Key. He keeps the Court running and changes as little as he can. Ask the party what he offers them, and whether they take it.",
    "rules": "",
    "consequence": "Tristan rules.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "tristan, chancellor",
+   "fallback": "If the table doesn't care, Tristan's first decree is read in the market and nobody listens.",
+   "keywords": "tristan, chancellor, vesk, rules, court, new chancellor, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2239,12 +2239,12 @@
    "why": "Kessa wants to die in weather.",
    "tells": "Kessa lives.",
    "readAloud": "He rides out into the rain.",
-   "response": "If the table wants it, Kessa dies in the open air in a storm, his clans around him.",
+   "response": "If the table wants it, Kessa dies in the open air in a storm, his clans around him. Yenna is at his side. If the table would rather he lived, he does, and says so loudly.",
    "rules": "",
    "consequence": "Kessa dies.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "kessa, storm",
+   "fallback": "If the table doesn't want his death, Kessa lives to see the storm pass, and says that was close.",
+   "keywords": "kessa, storm, thane, ironhorn, dies, death, open air, yenna, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2276,12 +2276,12 @@
    "why": "The lamp reached Yenna.",
    "tells": "Yenna has the lamp.",
    "readAloud": "The lamp hangs on a pole outside her tent, and she laughs.",
-   "response": "Garrow's laugh is heard once more.",
+   "response": "Garrow's laugh is heard once more, from the lamp on Yenna's tent. Then the blue flame goes still, and she lets it burn out.",
    "rules": "",
    "consequence": "Garrow's laugh.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "yenna, lamp, garrow",
+   "fallback": "If the scene is too quiet, Yenna laughs back.",
+   "keywords": "yenna, lamp, garrow, tent, ghost, laugh, ironhorn, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2301,12 +2301,12 @@
    "why": "Corin finds peace, or not.",
    "tells": "Corin lives.",
    "readAloud": "The workshop is quiet.",
-   "response": "Corin finds peace.",
+   "response": "Corin finds peace. Ask the table what he does with the Notes now: burns them, keeps them, or gives them to an apprentice.",
    "rules": "",
    "consequence": "Corin is at rest.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "corin",
+   "fallback": "If the table wants more, Corin rings a small hand-bell at his workshop door, just to hear it.",
+   "keywords": "corin, bellwright, peace, notes, workshop, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2331,8 +2331,8 @@
    "rules": "",
    "consequence": "A family.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "ilam, jonah",
+   "fallback": "If the scene drags, close on Jonah asking his father what his mother sounded like.",
+   "keywords": "ilam, jonah, father, son, family, mother's face, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2352,12 +2352,12 @@
    "why": "The Dawn Order chooses.",
    "tells": "Haldric lives.",
    "readAloud": "The Order's hall is full.",
-   "response": "Haldric reads Maudrin's letters; Rook leads a restored Order, or is exiled if she lost.",
+   "response": "Haldric reads Maudrin's letters; Rook leads a restored Order, or is exiled if she lost. If Haldric knows she was his mother, ask his friends at the table what he does with the letters.",
    "rules": "",
    "consequence": "The Order has a captain.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "haldric, rook, order",
+   "fallback": "If the scene drags, close on Haldric folding the letters away and asking Rook for a posting.",
+   "keywords": "haldric, rook, order, dawn order, letters, captain, knights, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2379,12 +2379,12 @@
    "why": "Calla rang, Nessa remembers.",
    "tells": "Calla has rung.",
    "readAloud": "A woman at the ferry-dock stops, mid-step.",
-   "response": "Ila meets her mother, Nessa.",
+   "response": "Ila meets her mother, Nessa Harrow, at Kell's Crossing. Let it be short and awkward, and let Ila decide whether to stay.",
    "rules": "",
    "consequence": "A reunion.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "ila, nessa, mother",
+   "fallback": "If nobody knows what to say, Nessa says Ila's name, and Ila corrects her pronunciation.",
+   "keywords": "ila, nessa, mother, kell's crossing, reunion, harrow, calla, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [
     {
@@ -2410,12 +2410,12 @@
    "why": "Allies who went down carry it.",
    "tells": "Allies paid.",
    "readAloud": "Ilam says nothing about a morning he cannot remember.",
-   "response": "Each ally who paid the stairs names one thing they cannot quite remember.",
+   "response": "Each ally who paid the stairs names one thing they cannot quite remember. Don't fill in the gap for them: the not quite remembering is the point.",
    "rules": "",
    "consequence": "The stairs remembered.",
    "later": "The end.",
-   "fallback": "",
-   "keywords": "stairs, ally, paid",
+   "fallback": "If an ally's player can't think of anything, the ally can't remember the name of the song they used to hum.",
+   "keywords": "stairs, ally, paid, stairs price, memories, allies, forgot, epilogue",
    "sessionId": "sb-5c4fc37d597122e9",
    "when": [],
    "effects": []
@@ -2512,7 +2512,7 @@
    "rules": "Group Charisma (Persuasion), DC 15, with Advantage if they won at least two backers.",
    "consequence": "The chair is decided, for or against the party's claimant.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the argument goes round, the shore's elders call for a show of hands on the terraces.",
    "keywords": "chair, contested, argument, terraces, rivals, vote, who rules, epilogue",
    "when": [
     {
@@ -2547,7 +2547,7 @@
    "rules": "",
    "consequence": "The campaign ends in the Realms.",
    "later": "",
-   "fallback": "",
+   "fallback": "If a player has nothing for the first day, ask what their character eats first, and where.",
    "keywords": "far shore, epilogue, sea, waterdeep, baldurs gate, new world, gull, leaving, ending",
    "when": [
     {
@@ -2602,7 +2602,7 @@
    "rules": "Advantage on Stairs checks for sworn characters.",
    "consequence": "The descent is kinder to the sworn.",
    "later": "S27: s27-sing-the-lullaby.",
-   "fallback": "",
+   "fallback": "If the table doesn't answer the Hush, it answers for them: some of them aren't sure, and that is all right.",
    "keywords": "stairs, sworn, hush, memories, descend, name, gentle, come down",
    "when": [
     {
@@ -2627,7 +2627,7 @@
    "rules": "No roll.",
    "consequence": "The party is sworn. The Dreamer's Sleep opens if the feeding has stopped and they hold the Key.",
    "later": "S27: s27-sing-the-lullaby.",
-   "fallback": "",
+   "fallback": "If nobody speaks the oath, the Hush hums the first line of the lullaby, and waits.",
    "keywords": "swear, oath, dreamer, hush, bell, ysh, keep it asleep, promise, sworn",
    "when": [
     {
@@ -2663,7 +2663,7 @@
    "rules": "",
    "consequence": "The oath is broken and the Dreamer's Sleep closes.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the sworn player hesitates, the Hush speaks in their own voice and says it bears no grudge.",
    "keywords": "break the oath, betray, hush, strike, seal, concord, sworn, change mind",
    "when": [
     {
@@ -2749,7 +2749,7 @@
    "rules": "",
    "consequence": "The campaign ends with the world still dreaming.",
    "later": "",
-   "fallback": "",
+   "fallback": "If a player has no dream to describe, ask what their character smelled the night before the campaign began.",
    "keywords": "dreamers sleep, epilogue, morning, dreams, sleepers, inn, oum, lullaby, ending",
    "when": [
     {

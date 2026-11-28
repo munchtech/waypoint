@@ -551,7 +551,7 @@ for (const [id,title,aliases,lines] of [
  ['v7-bell-thrane','THRANE, THE BELL OF STORMS',"Thrane, Thrane's Heart, Lightning Shafts",[
   '**Thrane is the bell of storm, courage and war.** It hangs in the Lightning Shafts at Brassfall.',
   '- **While it is silent:** no storm has crossed the mountains since the Quiet Night. The storms went out to sea instead, and became the Stormwall.',
-  '- **Its Heart:** Thrane\'s Heart, in the Heart-Hall of the Ironhorn camp. Thane Oru Kessa holds it, and its dead lightning is killing her.',
+  '- **Its Heart:** Thrane\'s Heart, in the Heart-Hall of the Ironhorn camp. Thane Oru Kessa holds it, and its dead lightning is killing him.',
   '- **The Toll:** a sense. '+weight,
   '- **When it can ring:** Session 19A, or as the second bell in Session 21.',
   '- **What ringing does:** storms return, storm-stones blaze and metal hums. The Stormwall loosens. Kessa\'s sickness eases and the Ironhorn celebrate. The Court sends a strike force, and Maudrin moves.']],

@@ -168,7 +168,7 @@
    "rules": "Record every deal in the Bargain log (Campaign → Party & preferences).",
    "consequence": "A deal exists with the main antagonist, with teeth.",
    "later": "She calls in favors at the worst moment: S23 at the latest (s23-favor-called). A broken deal makes her personal (s23-favor-broken).",
-   "fallback": "",
+   "fallback": "If the haggling goes round, Maudrin names her terms once more and says the offer ends when she stands up.",
    "keywords": "deal, bargain, negotiate, maudrin, offer, trade, favor"
   },
   {
@@ -234,7 +234,7 @@
    "rules": "",
    "consequence": "The party works for the Court, with the Court's protection.",
    "later": "Endings shift: the Empty Choir becomes their victory unless they turn. The Bellwrights and the Choir become enemies. S23: s23-march-with-maudrin. S24: s24-deal-with-maudrin. S26: s26-help-seal. S27: s27-empty-choir.",
-   "fallback": "",
+   "fallback": "If the table hesitates, a Court clerk brings the first list of names to the party's door the next morning.",
    "keywords": "join court, quiet court, hushman, become hushmen, serve maudrin, work for the court",
    "effects": [
     {
@@ -255,7 +255,7 @@
    "rules": "Tool proficiency with Smith's Tools or Tinker's Tools helps; use 2024 crafting rules for ordinary bells.",
    "consequence": "The party has an underground network, and the Court's hatred.",
    "later": "Corin treats them as kin when they meet (S18A or S20). Wren's betrayals now endanger them directly (S6).",
-   "fallback": "",
+   "fallback": "If the learning drags, the apprentice rings the small bell first and asks the party what it cost them to watch.",
    "keywords": "bellwright, join, bell-making, craft bell, tonework, apprentice"
   },
   {
@@ -270,7 +270,7 @@
    "rules": "Influence works if they can understand you; their attitude is set by what they want, not by charm.",
    "consequence": "A strange ally, or a strange debt.",
    "later": "Record the bargain; these debts come due in Act V.",
-   "fallback": "",
+   "fallback": "If the talk stalls, the other side names its price first, plainly, and waits.",
    "keywords": "talk, negotiate, choir, stilled, sleepless, hush, bargain, dead, dream"
   },
   {
@@ -285,7 +285,7 @@
    "rules": "",
    "consequence": "Hallowmere burns; the Tithe Clock jumps to 12.",
    "later": "Acts IV and V become more dangerous and the ending darker. The Court raises the Silence in every street. S28: the jars are gone; only a Remake mends them (s28-jars-destroyed).",
-   "fallback": "",
+   "fallback": "If the table hesitates at the edge, a Blank asks them quietly whether the fire will hurt the people inside.",
    "keywords": "burn, fire, archive, hall of tithes, destroy, arson, smash jars",
    "effects": [
     {
@@ -318,7 +318,7 @@
    "rules": "",
    "consequence": "The conflict is settled by agreement, at the table or in the fiction.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the argument at the table heats up, pause the game and settle it out of character before going on.",
    "keywords": "betray, pvp, each other, steal from party, secret, conflict"
   },
   {
@@ -333,7 +333,7 @@
    "rules": "World state: Tithe Clock +1 per night (use the stepper).",
    "consequence": "Time passes; the Court tightens.",
    "later": "Thresholds trigger once per cycle; a week outside Court cities resets the clock but deployed checkpoints stay.",
-   "fallback": "",
+   "fallback": "If the downtime drags, cover the nights in one line each and stop on the first night the Tithe Clock ticks.",
    "keywords": "rest, downtime, long rest, wait, days, shop, heal, hallowmere"
   },
   {
@@ -348,7 +348,7 @@
    "rules": "Commune, Augury and Divination work by 2024 rules; Oum is not a god the Faerûnian powers will speak for.",
    "consequence": "A true, partial answer, paid for with a memory or a sacrifice.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the question is vague, the answer is vaguer: ask the player to put it in one sentence before you answer.",
    "keywords": "talk to bell, pray, god, commune, augury, divination, oum, dreamer, silence, question"
   },
   {
@@ -363,7 +363,7 @@
    "rules": "Memory money table rules apply (Campaign → Party & preferences, under the Memory ledger).",
    "consequence": "Something real is bought with something personal, and recorded.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the price is unclear, have the NPC or spirit name it out loud before the player agrees.",
    "keywords": "memory as payment, toll for, spend memory, buy with memory, offer a memory"
   },
   {
@@ -393,7 +393,7 @@
    "rules": "",
    "consequence": "The party learns Oum cannot be fought, only answered.",
    "later": "",
-   "fallback": "",
+   "fallback": "If they attack anyway, the first blow passes through the dream-image, and the mountains in it sigh.",
    "keywords": "dragon, fight god, oum, monster, boss, kill the dreamer"
   },
   {
@@ -402,13 +402,13 @@
    "style": "Roleplay",
    "likelihood": "Likely",
    "why": "Every campaign deals with it (Situation 19).",
-   "tells": "",
-   "readAloud": "",
+   "tells": "A player can't come to a session, leaves the group, or loses their character.",
+   "readAloud": "Your friend is with you, a step behind, keeping watch the way they always do.",
    "response": "Follow the table's agreed rules. A new character arrives in Pellmoor on the next ship, or in Hallowmere, with a personal hook (v5 7.7). An absent player's character is a loyal companion who doesn't spend their resources, accept bargains or take personal losses, or stays safely off-screen by agreement.",
    "rules": "No Toll, stairs cost or memory payment is ever taken from an absent player's character.",
    "consequence": "Every player keeps their character and their choices.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table is unsure what the absent character does, they stay close and quiet, and do nothing that costs them anything.",
    "keywords": "absent, missing player, character death, new character, leave game"
   },
   {
@@ -423,7 +423,7 @@
    "rules": "",
    "consequence": "A clear next step, earned through clues rather than handed out.",
    "later": "",
-   "fallback": "",
+   "fallback": "If even the direct request doesn't land, ask the players what their characters want most, and put it on the next road.",
    "keywords": "lost, stuck, confused, what next, where to go, no idea"
   },
   {
@@ -438,7 +438,7 @@
    "rules": "",
    "consequence": "The party holds Calla's Tongue.",
    "later": "Calla is one of the six for the Concord.",
-   "fallback": "",
+   "fallback": "If the plan stalls, Bet sends word that the carts leave at dawn, with or without instructions.",
    "keywords": "calla, tongue, vault, hallowmere, go back, return, harvest",
    "when": [
     {
@@ -471,7 +471,7 @@
    "rules": "Modify Memory (2024): Wisdom save; the target has the Charmed condition while you work; the time window depends on spell level.",
    "consequence": "Ordinary memories bend; the Tithe, the trade and the Tolls do not.",
    "later": "Planting false memories in Blanks is exactly what the Court would do. If the party does it, the Choir and the Bellwrights notice.",
-   "fallback": "",
+   "fallback": "If the table argues the ruling, show them the jar, the vial or the bell: that's where the memory is, and magic can't reach it.",
    "keywords": "modify memory, restore memory, erase memory, spell, bard, cleric, wizard, forget"
   },
   {
@@ -481,12 +481,12 @@
    "likelihood": "Possible",
    "why": "Players reach for Greater Restoration, Remove Curse or Heal on memory loss.",
    "tells": "A cleric offers to cure a Blank, or end a Sense Toll early.",
-   "readAloud": "",
+   "readAloud": "The healing light goes in warm, and comes back out with nothing in its hands.",
    "response": "Rulings: Greater Restoration, Heal and Remove Curse don't restore Tithed or traded memories (those are elsewhere, in glass). A Toll can't be ended early by any magic: the bell holds it until it ends. Remove Curse or Greater Restoration does return an eel-stolen memory at once. Lesser Restoration ends Blinded, Deafened, Paralyzed or Poisoned (and a disease); it does not end Frightened. Use Calm Emotions for a fear in the moment, Heroes' Feast against fear for a day. A dream lost to the Hush Cult returns only when the Hush is struck, sealed or tuned.",
    "rules": "Lesser and Greater Restoration, Remove Curse and Heal work by 2024 rules except as ruled here.",
    "consequence": "The table learns which losses magic can mend and which only a jar, a vial or the Remake can.",
    "later": "The cure for a Blank is finding their jars, or the Remake.",
-   "fallback": "",
+   "fallback": "If the table argues the ruling, show them the jar, the vial or the bell: that's where the loss is, and magic can't reach it.",
    "keywords": "greater restoration, remove curse, heal, cure, blank, toll, eel, restore, lesser restoration"
   },
   {
@@ -501,7 +501,7 @@
    "rules": "Speak with Dead (2024): five questions; the corpse knows only what it knew in life. Ask Ila or Mother Sallow first; doing it without asking angers the ferry-folk.",
    "consequence": "A clear source on Tam's death.",
    "later": "Counts as one of the sources on Tam's death; any two establish the Court's responsibility.",
-   "fallback": "",
+   "fallback": "If the questions run out before the answers do, Tam asks one of his own: who wrote his name in the ledger.",
    "keywords": "speak with dead, tam, corpse, body, cleric, question the dead, father"
   },
   {
@@ -511,12 +511,12 @@
    "likelihood": "Possible",
    "why": "Investigative parties reach for truth magic in a story built on lies.",
    "tells": "A caster prepares Zone of Truth before the oath-duel or an interrogation.",
-   "readAloud": "",
+   "readAloud": "The spell hums in the quiet room, and every lie in it gets a little heavier to say.",
    "response": "The firm rulings for levels 3 to 6 are in the early play on truth and minds (the oath-duel's herald fields, Maudrin's dais, Haldric's shield). Later in the campaign the same rules hold: Zone of Truth works as written (Charisma save; a creature may refuse to answer, which is itself telling), and Haldric and Maudrin, who know the spell, refuse. Detect Thoughts on a Tithed person finds blank patches where things were taken; on Maudrin with the Key it finds one repeating thought: “keep it as it is.”",
    "rules": "Zone of Truth: Charisma save; creatures can evade or refuse to answer. Detect Thoughts: Wisdom save to probe deeper.",
    "consequence": "Truth magic gets answers outside the hearing, and pointed refusals from the people who know the spell.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the interrogation stalls, the subject's refusals tell the story: name what they won't say, and move on.",
    "keywords": "zone of truth, detect thoughts, lie, truth, read mind, interrogate, spell"
   },
   {
@@ -526,12 +526,12 @@
    "likelihood": "Possible",
    "why": "Casters want to know how their magic interacts with the Court's stones.",
    "tells": "A caster tries to dispel a checkpoint stone, or casts Silence around a Hushman.",
-   "readAloud": "",
+   "readAloud": "The magic slides off the grey stone like rain off a roof. The stone goes on humming at you.",
    "response": "Silence-stones aren't spells. Dispel Magic and Counterspell don't affect them; break one (AC 12, 10 HP) or carry it off. The spell Silence is a different thing: Corvanese find it eerie and holy, and Hushmen are amused. A bell rung inside a Silence spell still rings and still takes its Toll; its tone travels through the world, not the air. Silence does stop a Tongue-Hound's ring.",
    "rules": "House rule (v5 2.6): a fixed stone suppresses spells in a 10-foot radius; a glove suppresses only its own strike.",
    "consequence": "Casters know stones must be broken or carried, not dispelled.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table argues the ruling, a Hushman laughs and taps the stone: it isn't a spell, so smash it or carry it.",
    "keywords": "silence, silence-stone, dispel magic, counterspell, stone, checkpoint, suppress, antimagic"
   },
   {
@@ -541,12 +541,12 @@
    "likelihood": "Possible",
    "why": "A Stormborn caster with Sending can reach home.",
    "tells": "A player asks whether Sending works from Corvane.",
-   "readAloud": "",
+   "readAloud": "Your words go out over the water. Under the answer, very faint, something is ringing.",
    "response": "It works: Corvane is on the same plane as the Sword Coast. The recipient hears a faint ringing under the words. Help sent in reply takes weeks to arrive by sea; magical travel needs a destination the caster knows, and Corvane has no permanent teleportation circles.",
    "rules": "Sending (2024): 25 words each way.",
    "consequence": "Faerûn knows what the party knows.",
    "later": "A reply can become a Stormborn ally for S22, or a complication if the Lords' Alliance decides the Seam is worth controlling.",
-   "fallback": "",
+   "fallback": "If the table expects help soon, the reply comes back with a ringing under it: a ship is weeks away.",
    "keywords": "sending, message, home, faerun, contact, harpers, teleport, scroll"
   },
   {
@@ -561,7 +561,7 @@
    "rules": "Underwater combat (2024): melee attackers without a Swim Speed have Disadvantage unless using a dagger, javelin, shortsword, spear or trident.",
    "consequence": "Old Pellmoor becomes a place the party can explore.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the dive drags, a drowned house groans and starts to fall, and they have one round to swim clear.",
    "keywords": "water breathing, dive, underwater, old pellmoor, drowned town, swim, explore"
   },
   {
@@ -576,7 +576,7 @@
    "rules": "Rates at Pellmoor: mote about 1 sp; keep about 1 gp 2 sp; heartkeep 25–100 gp by appraisal. A Reckoner buying memories for gold takes a 10 percent fee.",
    "consequence": "The character has paid in the local way.",
    "later": "Patterns of what a character sells say a lot about them; use the ledger as a spotlight prompt.",
-   "fallback": "",
+   "fallback": "If the player can't choose a memory, offer two small ones and let them pick.",
    "keywords": "pay with memory, memory money, keep, mote, buy, sell memory, reckoner, price, coin"
   },
   {
@@ -591,7 +591,7 @@
    "rules": "No mechanical penalty. The DM may award Heroic Inspiration if the money is used for someone in need.",
    "consequence": "Real money, and a real change in the character.",
    "later": "Venn's Coster pays more and ships it abroad, and then it is gone for good. A heartkeep on Sela's shelf can be bought back.",
-   "fallback": "",
+   "fallback": "If the player hesitates, Sela offers to hold it on her Lost Shelf for a month before the sale is final.",
    "keywords": "heartkeep, sell big memory, defining memory, desperate, money, sela, lost shelf"
   },
   {
@@ -601,12 +601,12 @@
    "likelihood": "Possible",
    "why": "Someone (a PC, Mother Sallow, Lysse, a Blank) wants something back.",
    "tells": "A player asks where sold or Tithed memories go.",
-   "readAloud": "",
+   "readAloud": "Somewhere on the Shore, in a jar or a vial, a piece of somebody is waiting on a shelf.",
    "response": "Traded keeps: find who holds the vial (Sela's Lost Shelf, a collector, a Coster crate) and buy it; the owner opens it and the memory returns whole. Tithed memories: they're jars in the Tithe-Ledger Room in Hallowmere; only theft or a Court bargain gets them. Tolls: never.",
    "rules": "Finding a sold keep: a Reckoner's records (DC 13 Intelligence (Investigation), or Sela's help) say who bought it.",
    "consequence": "The party knows where each kind of lost memory went and what getting it back would take.",
    "later": "Mother Sallow's wedding memory is a Tithe jar in the Hallowmere vault (S5). Lysse's missing memories are filed under other names there.",
-   "fallback": "",
+   "fallback": "If the search stalls, Sela checks her Lost Shelf and names who bought it.",
    "keywords": "buy back, recover memory, get memory back, jar, tithe jar, lost shelf, restore"
   },
   {
@@ -621,7 +621,7 @@
    "rules": "Once, a character who witnesses a Knowing has Advantage on one ability check that knowledge plainly helps.",
    "consequence": "A stranger’s memory, and possibly a clue, at the cost of fading it.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the memory gives nothing useful, it gives a feeling the stranger had, and the feeling points somewhere.",
    "keywords": "open keep, witness, stranger's memory, knowing, vial, clue, evidence"
   },
   {
@@ -636,7 +636,7 @@
    "rules": "Influence (Persuasion or Deception) DC 15 to get an officer to look away; automatic with Quill if he's bribed.",
    "consequence": "A neighbour keeps their memory; the party owes or is owed.",
    "later": "Repeated gilding advances the Court clock and raises Pellmoor's quota. The ferry-folk remember who paid.",
-   "fallback": "",
+   "fallback": "If the officer can't decide, he pockets the coin and writes nothing down, this time.",
    "keywords": "gild, gilding, pay tithe in gold, gold for tithe, cover tithe, bribe officer",
    "effects": [
     {
@@ -652,12 +652,12 @@
    "likelihood": "Wildcard",
    "why": "Rogues will try to counterfeit the local money.",
    "tells": "A player asks how keeps are stamped, or whether you can fake a memory.",
-   "readAloud": "",
+   "readAloud": "The wax takes the stamp well enough. The vial under it is clear, and hums at nothing.",
    "response": "A forged keep is a real vial with a false or empty memory and a copied wax stamp. It passes in a busy market and fails in front of a Reckoner, whose fork rings in the wrong note. Forgery is a Court crime; the Landing's merchants take it personally.",
    "rules": "Making one: DC 15 Dexterity (Forgery Kit). Passing it: Charisma (Deception) against a merchant's Passive Insight; a Reckoner detects it automatically unless bribed.",
    "consequence": "Easy money, and enemies in the Tally.",
    "later": "Venn's Coster hires investigators; the Landing clock advances.",
-   "fallback": "",
+   "fallback": "If the forgery plan stalls, a Coster clerk offers to sell them a copied stamp, at a price that should worry them.",
    "keywords": "forge, forgery, fake keep, counterfeit, fake memory, scam",
    "effects": [
     {
@@ -673,12 +673,12 @@
    "likelihood": "Wildcard",
    "why": "A player wonders if they could rip a secret out of an NPC.",
    "tells": "A player asks how drawing works, intending to use it on a prisoner.",
-   "readAloud": "",
+   "readAloud": "The vial stays cold and empty. The memory will not go where it is not given.",
    "response": "Drawing needs a Reckoner's fork, a Mere-glass vial, training and consent; without consent the memory won't seal. Only Court Tithe-collectors and leeches force it, using tools and methods that are the Court's darkest secret. A PC cannot do it on the fly. If the table wants this thread, it is a villain's method, not a player tool.",
    "rules": "",
    "consequence": "The table knows forced drawing is the Court’s secret, not a player tool.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the player pushes, the memory won't seal: say so, and say the Court knows how to make it.",
    "keywords": "leech, steal memory, force, take memory, interrogate, without consent"
   },
   {
@@ -693,7 +693,7 @@
    "rules": "Influence: Venn is Indifferent; Hostile once humiliated in public. Evidence grants Advantage.",
    "consequence": "Venn becomes an enemy or an unwilling source.",
    "later": "A recovered crate holds Blanks' memories. Return them and the Blanks can join the S22 allies (s22-ally-blanks). The Landing clock moves.",
-   "fallback": "",
+   "fallback": "If Venn stonewalls, he says one thing more than he means to: the name of the ship.",
    "keywords": "venn, confront, coster, export, memory trade, crates, athkatla, merchant",
    "when": [
     {
@@ -728,7 +728,7 @@
    "rules": "",
    "consequence": "A Faerûnian contact network.",
    "later": "Harper help can become the Stormborn ally at S22. A Zhentarim debt comes due in Act III.",
-   "fallback": "",
+   "fallback": "If the meeting stalls, the Harper asks one question about the Tithe-Ledger and offers one favour for the answer.",
    "keywords": "harpers, zhentarim, lords alliance, faerunian help, spies, writ forgery, contact"
   },
   {
@@ -743,8 +743,8 @@
    "rules": "",
    "consequence": "The Court hunts the party.",
    "later": "S23: the Strike is harder.",
-   "fallback": "",
-   "keywords": "kill maudrin, fail, assassination",
+   "fallback": "If the escape stalls, a door is left unlocked by someone who doesn't love the Court.",
+   "keywords": "kill maudrin, fail, assassination, botched, caught, escape, failed attempt, court hunts",
    "when": [
     {
      "flag": "maudrin",
@@ -776,7 +776,7 @@
    "rules": "",
    "consequence": "A deal with a new Court head.",
    "later": "S22: s22-tristan-takes-the-march.",
-   "fallback": "",
+   "fallback": "If the bargaining stalls, Tristan sets out what he can't give, which tells them what he can.",
    "keywords": "tristan, chancellor, deal, key",
    "when": [
     {
@@ -806,7 +806,7 @@
    "rules": "Scrying (5th): Wisdom save modified by familiarity. A silence-stone cloth blocks it entirely.",
    "consequence": "A view of the column, a face, a place.",
    "later": "S22: the column (s22-scry-the-column).",
-   "fallback": "",
+   "fallback": "If the spell fails, the caster still hears the Hush say their name, faintly, from somewhere below.",
    "keywords": "scrying, spy, watch, divination",
    "when": [],
    "effects": []
@@ -823,7 +823,7 @@
    "rules": "Teleport (7th), Dimension Door (4th), Gate (9th).",
    "consequence": "Travel has rules.",
    "later": "S25: the stairs.",
-   "fallback": "",
+   "fallback": "If the table argues the rules, the caster feels the silence-stones push back before the spell is cast.",
    "keywords": "teleport, gate, dimension door, travel",
    "when": [],
    "effects": []
@@ -840,7 +840,7 @@
    "rules": "Plane Shift (7th), Banishment (4th).",
    "consequence": "The party leaves and returns later.",
    "later": "Anytime: the Court's clocks have moved.",
-   "fallback": "",
+   "fallback": "If the table is unsure, tell them plainly what stays behind and what comes with them before they cast it.",
    "keywords": "plane shift, astral, leave, escape",
    "when": [],
    "effects": []
@@ -857,7 +857,7 @@
    "rules": "Wish (9th). Stress: Strength drops, 33% to lose the spell forever (2024).",
    "consequence": "A wish is a spell.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the list grows long, ask the caster for the one wish that matters most and rule on that.",
    "keywords": "wish, limited, jar, toll",
    "when": [],
    "effects": []
@@ -874,7 +874,7 @@
    "rules": "Revivify (3rd), Raise Dead (5th), Resurrection (7th).",
    "consequence": "The party's dead have a way back.",
    "later": "See any-pc-dies.",
-   "fallback": "",
+   "fallback": "If the table wants it now, Sister Aurelie's mission is a day away, and she will come.",
    "keywords": "revivify, raise dead, resurrection, death, revive",
    "when": [],
    "effects": []
@@ -891,7 +891,7 @@
    "rules": "",
    "consequence": "A character is dead or revived.",
    "later": "S23, S24, S26, S27: s23-pc-drops, s26-help-ringer-falls, s27-ringer-dies-at-rite.",
-   "fallback": "",
+   "fallback": "If the table is shaken, pause and ask the player what they want next: a revival, or a new character.",
    "keywords": "death, die, dead, pc, revive",
    "when": [],
    "effects": []
@@ -908,7 +908,7 @@
    "rules": "",
    "consequence": "The ringing is cancelled, or the Toll stands.",
    "later": "Anytime: another Ringer, a delay, a revival.",
-   "fallback": "",
+   "fallback": "If the table is unsure whether the bell was struck, the Ringer's player decides, and the table agrees.",
    "keywords": "ringer dies, toll, bell, mid-ringing",
    "when": [],
    "effects": []
@@ -925,7 +925,7 @@
    "rules": "",
    "consequence": "The ringing is cancelled.",
    "later": "The Forecast shows what it costs the Concord.",
-   "fallback": "",
+   "fallback": "If the table is unsure, list the other courses out loud and let them sit with it; nobody is pressed.",
    "keywords": "refuse toll, cancel, bell, mid-rite",
    "when": [],
    "effects": []
@@ -942,7 +942,7 @@
    "rules": "Dream (5th).",
    "consequence": "A conversation with the Hush.",
    "later": "S18B: the Hush's answer.",
-   "fallback": "",
+   "fallback": "If the dreamer has no question, the Hush asks them one instead.",
    "keywords": "dream, hush, sending, contact",
    "when": [],
    "effects": []
@@ -959,7 +959,7 @@
    "rules": "Command (1st, 2024 options), Geas (5th), Dominate Person or Monster, Hold Monster (5th), Banishment (4th).",
    "consequence": "The party learns Maudrin cannot be spelled into line.",
    "later": "S24: s24-negotiate.",
-   "fallback": "",
+   "fallback": "If the caster keeps trying, Maudrin smiles and asks whether they'd like to try something that works.",
    "keywords": "geas, dominate, hold, command, banishment, control",
    "when": [],
    "effects": []
@@ -976,7 +976,7 @@
    "rules": "DC 13 Wisdom save at step 20, once per character.",
    "consequence": "The price is clear before the first step.",
    "later": "S18B and S25.",
-   "fallback": "",
+   "fallback": "If the table argues the count, read the step number aloud as they walk and tick the memories off together.",
    "keywords": "stairs, price, memory, steps, save",
    "when": [],
    "effects": []
@@ -993,7 +993,7 @@
    "rules": "",
    "consequence": "A clear rule.",
    "later": "S25: the stairs.",
-   "fallback": "",
+   "fallback": "If the table is unsure, the mist answers it: it drifts off the Tor and doesn't come back.",
    "keywords": "sleepless, mirel, mist, dissolve",
    "when": [],
    "effects": []
@@ -1010,8 +1010,8 @@
    "rules": "",
    "consequence": "Parallel scenes.",
    "later": "See s16a-split-the-party.",
-   "fallback": "",
-   "keywords": "split, separate, parallel",
+   "fallback": "If the cutting drags, end each group's scene on a question and switch.",
+   "keywords": "split, separate, parallel, we'll meet you there, split up, two groups, separate ways",
    "when": [],
    "effects": []
   },
@@ -1027,7 +1027,7 @@
    "rules": "",
    "consequence": "The party holds Ossa's Tongue.",
    "later": "Ossa is one of the six.",
-   "fallback": "",
+   "fallback": "If the favor talk stalls, Brannagh names it herself: a word in the right ear about Venn.",
    "keywords": "venn, heron, ossa, pilots",
    "when": [
     {
@@ -1064,7 +1064,7 @@
    "rules": "",
    "consequence": "The party holds Ossa's Tongue.",
    "later": "Ossa is one of the six.",
-   "fallback": "",
+   "fallback": "If the table forgets it, the Tongue washes up at the ferry landing, wrapped in weed.",
    "keywords": "ossa, abroad, lost, wreck",
    "when": [
     {
@@ -1098,7 +1098,7 @@
    "rules": "",
    "consequence": "The party holds Calla's Tongue.",
    "later": "Calla is one of the six.",
-   "fallback": "",
+   "fallback": "If the table forgets to ask, Ansel sends a note: he knows where it is, and he'd like a favor.",
    "keywords": "ansel, calla, court, moved",
    "when": [
     {
@@ -1129,12 +1129,12 @@
    "why": "The Court took it.",
    "tells": "Ansel is an ally.",
    "readAloud": "Ansel unfolds a map. “The armory. Third door.”",
-   "response": "Ansel can fetch it for a favor.",
+   "response": "Ansel can fetch it for a favor. No roll; it takes three days.",
    "rules": "",
    "consequence": "The party holds Vaer's Tongue.",
    "later": "Vaer is one of the six.",
-   "fallback": "",
-   "keywords": "ansel, vaer, court",
+   "fallback": "If the table forgets to ask, Ansel sends a note: he knows where it is, and he'd like a favor.",
+   "keywords": "ansel, vaer, court, fetch, favor, vault steward, find tongue, hallowmere",
    "when": [
     {
      "flag": "t_vaer",
@@ -1168,8 +1168,8 @@
    "rules": "",
    "consequence": "The party holds the Frost Tongue.",
    "later": "Hieme is one of the six.",
-   "fallback": "",
-   "keywords": "frost tongue, hieme, sexton",
+   "fallback": "If nobody picks it up, it rolls across the ice to the nearest character's boot.",
+   "keywords": "frost tongue, hieme, sexton, crown, winter-moment, ice, take tongue, imber",
    "when": [
     {
      "flag": "t_hieme",
@@ -1204,8 +1204,8 @@
    "rules": "",
    "consequence": "Money, and the Court's eye.",
    "later": "S28: the Landing.",
-   "fallback": "",
-   "keywords": "storm-stone, sell, pellmoor",
+   "fallback": "If no buyer comes forward, a Coster clerk offers 600 gp and no questions.",
+   "keywords": "storm-stone, sell, pellmoor, price, 800 gp, coster, buyer, money, landing",
    "when": [],
    "effects": [
     {
@@ -1226,7 +1226,7 @@
    "rules": "",
    "consequence": "The party holds Calla's Tongue.",
    "later": "Calla is one of the six.",
-   "fallback": "",
+   "fallback": "If the plan stalls, Wren goes anyway, and sends word from the first safe house.",
    "keywords": "wren, calla, route, bellwright",
    "when": [
     {
@@ -1444,7 +1444,7 @@
    "rules": "Speaking at the hearing: Influence check, DC 15; Haldric's payments as evidence make it DC 10.",
    "consequence": "The Dawn Order stands behind Rook, splits, or goes over to the Court.",
    "later": "S22: a Rook who won the hearing brings her knights (s22-ally-dawn-order). A split sends the loyal knights to the Court's side at the Strike.",
-   "fallback": "",
+   "fallback": "If the table can't pick, Rook picks: she calls the hearing for tomorrow at dawn.",
    "keywords": "dawn order, dawn clock, rook, hearing, knights, split, haldric, sunburst",
    "when": [
     {
@@ -1561,7 +1561,7 @@
    "rules": "Prices (2024): Potion of Healing 50 gp; common magic items 100 gp; uncommon 400 gp; potions and scrolls half that. Persuasion DC 15 takes a tenth off, DC 20 a fifth. A heartkeep is worth 25 to 100 gp by appraisal. The player always chooses the memory and writes it in the Memory ledger.",
    "consequence": "The party is better equipped, and someone's past is a little lighter.",
    "later": "What the Coster sells, it pays for with Tithed memories: buying from Venn funds the export trade (Landing Clock +1).",
-   "fallback": "",
+   "fallback": "If the haggling drags, the trader names a final price and starts packing up.",
    "keywords": "buy, shop, gear, magic item, potion, weapon, armour, armor, smith, trade keeps, strangers' row, shopkeeper, merchant, trader, haggle, sell, stock, inventory, prices"
   },
   {
@@ -1764,7 +1764,7 @@
    "why": "Everyone in Hallowmere is already choosing a side for the day after.",
    "tells": "From Act III, whenever the party talks about beating the Court, or a leader asks what comes after.",
    "readAloud": "The old woman doesn't look up from her mending. \"Say you win. Say she falls. Who sits in the chair? Because somebody will, dearie, and it won't be nobody.\"",
-   "response": "Lay out the claimants. Captain Rook and a restored Dawn Order, if she lives. Tristan Vesk, who would do the drains. Thane Kessa, who wants the Tithe-tax off her grass. The Blanks, who ask \"Could it be a bench?\" One of the party, if anyone wants it. Maudrin herself, if the Court has been reformed. Let the party back one by running that claimant's play.",
+   "response": "Lay out the claimants. Captain Rook and a restored Dawn Order, if she lives. Tristan Vesk, who would do the drains. Thane Kessa, who wants the Tithe-tax off his grass. The Blanks, who ask \"Could it be a bench?\" One of the party, if anyone wants it. Maudrin herself, if the Court has been reformed. Let the party back one by running that claimant's play.",
    "rules": "",
    "consequence": "The empty chair is a goal now, not an epilogue question.",
    "later": "Back a claimant, then win backers (any-claim-backers). S28: the Claim clock decides the chair.",
@@ -1792,7 +1792,7 @@
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If the table can't decide, Rook asks for their answer by the end of the session.",
    "keywords": "rook, captain rook, dawn order, chair, claimant, back rook, soldier, rule",
    "when": [
     {
@@ -1837,7 +1837,7 @@
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If the table can't decide, Tristan asks for their answer by the end of the session.",
    "keywords": "tristan, tristan vesk, drains, chair, claimant, back tristan, court, clerk, practical",
    "when": [
     {
@@ -1866,11 +1866,11 @@
    "why": "The chair after Maudrin is a goal the party can work toward. This claimant is one choice.",
    "tells": "The party talks about who should rule after the Court, or this claimant asks for their support.",
    "readAloud": "\"End the Tithe-tax on my grass,\" Kessa says, \"and I will sit in any chair you like. I will not like it.\"",
-   "response": "Kessa would rule from the steppe, which Hallowmere will hate. The Ironhorn ride behind her. If she has not been eased, the party is choosing a short reign; say so.",
+   "response": "Kessa would rule from the steppe, which Hallowmere will hate. The Ironhorn ride behind him. If he has not been eased, the party is choosing a short reign; say so.",
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If the table can't decide, Kessa asks for their answer by the end of the session.",
    "keywords": "kessa, thane, ironhorn, steppe, chair, claimant, back kessa, grass, tithe-tax",
    "when": [
     {
@@ -1910,7 +1910,7 @@
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If nobody volunteers, ask each player whether their character would sit in the chair if asked.",
    "keywords": "stand for the chair, party ruler, rule, run for office, chair, claimant, crown, our own",
    "when": [
     {
@@ -1939,7 +1939,7 @@
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If the table can't decide, the Blanks ask for their answer by the end of the session.",
    "keywords": "bench, council, blanks, everyone gets a turn, chair, claimant, assembly, parliament",
    "when": [
     {
@@ -1978,7 +1978,7 @@
    "rules": "",
    "consequence": "The party backs this claimant. They can change their mind later, at a cost.",
    "later": "Win backers (any-claim-backers). S28: s28-chair-seated if the Claim clock is full, s28-chair-contested if not.",
-   "fallback": "",
+   "fallback": "If the table can't decide, Maudrin asks for their answer by the end of the session.",
    "keywords": "maudrin, reformed court, keep maudrin, chair, claimant, chancellor, honest",
    "when": [
     {
@@ -2175,7 +2175,7 @@
    "rules": "Showing the captains: DC 15 Charisma (Persuasion) with evidence. Taking the ledger: group Dexterity (Stealth), DC 15. Outbidding needs something the Court lacks: the Charter, or a Tongue.",
    "consequence": "If the deal holds, the Court has foreign marines (s23-fleet-marines).",
    "later": "S23: marines at the Strike. Seam clock 6: the Landing falls.",
-   "fallback": "",
+   "fallback": "If the table doesn't act, a pilot from the harbour tells them the envoy sails at the next tide.",
    "keywords": "court, envoy, fleets, marines, bronze, deal, captains, bribe, harbourmaster, wine",
    "when": [
     {
@@ -2335,7 +2335,7 @@
    "rules": "Arguing with a priest: DC 16 Charisma (Persuasion); Advantage with Edda Thorne's Notes.",
    "consequence": "The Church Clock ticks, and the Church's doors stay closed to them until they mend it.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table doesn't answer the Church, a charity-house door shuts in their faces, and the story spreads.",
    "keywords": "heretics, church, ninefold church, notice, belfry, preach, sworn, hush cult, faithful",
    "when": [
     {
@@ -2364,7 +2364,7 @@
    "rules": "**Bellwright's Charm** (rare, requires attunement): Resistance to Thunder damage. Once per dawn, when a bell you ring takes its Toll, you can let the Toll come an hour later, at a moment you choose within that hour; it is never less. As a Bonus Action, ring it to end the Charmed or Frightened condition on yourself or a creature within 30 feet; then not again until you finish a Short or Long Rest.",
    "consequence": "One Ringer carries the charm.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the Ringer forgets the charm, it rings faintly in their pocket when they lift the Tongue.",
    "keywords": "charm, bell-charm, corin, bellwrights, deferred toll, magic item, attunement, thunder, toll, hour",
    "when": [
     {
@@ -2486,7 +2486,7 @@
    "rules": "One Toll-mark per Toll. A mark never gives back what was taken.",
    "consequence": "The Ringer is changed, not only diminished. Read the marks with the Tolls in the epilogue.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the player can't choose a mark, offer two and let them pick.",
    "keywords": "toll, toll-mark, mark, boon, ringer, cost, growth, bell, permanent, scar",
    "effects": []
   },
@@ -2502,7 +2502,7 @@
    "rules": "Standing and the faction clocks are separate: the clock is what the faction does next; standing is how it feels about the party.",
    "consequence": "Standing is visible, and it pays.",
    "later": "S22: each Allied faction is a company that comes up the road; tick the Allies clock for it.",
-   "fallback": "",
+   "fallback": "If the table asks why a door is shut, tell them the standing and what would move it.",
    "keywords": "faction, standing, reputation, allies, friendly, hostile, trusted, renown, favour, waypoint",
    "effects": []
   },
@@ -2518,7 +2518,7 @@
    "rules": "Dawn-charm: once per character, at the end of a Long Rest that ends at dawn, gain Heroic Inspiration and lose one Exhaustion level.",
    "consequence": "The party has Vaer's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, a bell-house keeper waves them in from the street.",
    "keywords": "boon, reward, bell rung, vaer, dawn, hallowmere, safe house, charm, inspiration",
    "when": [
     {
@@ -2542,7 +2542,7 @@
    "rules": "Memory-charm: once per character, ask the bell about something the character saw or heard, and remember it exactly. You answer truthfully from what they perceived.",
    "consequence": "The party has Ossa's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, a ferry pulls up at the bank and the ferryman won't take coin.",
    "keywords": "boon, reward, bell rung, ossa, memory, pellmoor, ferry, charm, remember",
    "when": [
     {
@@ -2566,7 +2566,7 @@
    "rules": "Harvest-charm: once per act, a Long Rest restores all of the party's Hit Point Dice.",
    "consequence": "The party has Calla's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, a farmer from Kell's Crossing waves them down with a basket.",
    "keywords": "boon, reward, bell rung, calla, harvest, kell's crossing, food, rations, charm",
    "when": [
     {
@@ -2590,7 +2590,7 @@
    "rules": "Winter-charm: each character has Resistance to Cold damage.",
    "consequence": "The party has Hieme's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, the next cold night passes them by, and they notice.",
    "keywords": "boon, reward, bell rung, hieme, winter, glassreach, cold, resistance, charm",
    "when": [
     {
@@ -2614,7 +2614,7 @@
    "rules": "Storm-charm: once per Long Rest, when a creature hits a character, that character can use a Reaction to deal 2d8 Lightning damage to it.",
    "consequence": "The party has Thrane's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, a miner hands over a storm-stone without being asked.",
    "keywords": "boon, reward, bell rung, thrane, storm, brassfall, lightning, miners, charm",
    "when": [
     {
@@ -2638,7 +2638,7 @@
    "rules": "Dream-charm: once per act, each character wakes from a Long Rest with Heroic Inspiration, from a good dream. Characters who lost their dreams in the Sleeping Hall get it too: it's the bell's dream, not theirs.",
    "consequence": "The party has Mirel's boon for the rest of the campaign.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table forgets the boon, a stranger at the inn says she woke up last week and has been looking for them.",
    "keywords": "boon, reward, bell rung, mirel, dream, vael tor, sleep, inspiration, charm",
    "when": [
     {
@@ -2662,7 +2662,7 @@
    "rules": "Once per day of travel, or once per long stretch of road; skip it if the session is already full. Pick rather than roll when you know what the table needs. Cross off what you've used, except the wayshrine and the peddler, who turn up anywhere. Fights have numbers for four characters and can usually be talked out of.",
    "consequence": "The world feels bigger, and they come away with a friend, a rumour, a find or a scar.",
    "later": "People they meet on the road come back: write down who they met. After a big event, let the next road roll carry the news.",
-   "fallback": "",
+   "fallback": "If the roll gives nothing, describe the weather and the next milestone, and move on.",
    "keywords": "road, travel, journey, random encounter, encounter table, random encounters, wandering, overland, camp, campfire, d12, surprise, what happens on the road, between sessions, quiet day"
   },
   {
@@ -2677,7 +2677,7 @@
    "rules": "Anyone who leaves something they'll miss gains Heroic Inspiration, once per act per character. Rob a shrine without leaving anything and nothing happens, except that the next shrine they come to is empty.",
    "consequence": "A small find, and a sense that Corvane is older than the Court.",
    "later": "Shrines remember. A party that's been generous finds the next dish full.",
-   "fallback": "",
+   "fallback": "If nobody leaves anything, the dish is empty, and stays empty.",
    "keywords": "wayshrine, shrine, wall-shrine, bell, offering, dish, leave something, take something, heroic inspiration, saint, find, trinket, road"
   },
   {
@@ -2692,7 +2692,7 @@
    "rules": "Haggling with her doesn't work; being polite to Patience does (she knocks a tenth off). Oddity 20 is a roll on the Random magic table.",
    "consequence": "They have the thing they need, an oddity, and one true rumour.",
    "later": "At the last meeting of the campaign she gives the bell from Patience's collar to whoever has been kindest to the mule.",
-   "fallback": "",
+   "fallback": "If the shopping drags, Patience the mule starts walking, and Gammer Tansy goes with her.",
    "keywords": "gammer tansy, peddler, pedlar, mule, patience, trader, merchant, shop, oddities, trinkets, rumour, rumor, buy, sell, road"
   },
   {
@@ -2707,7 +2707,7 @@
    "rules": "Never block the main road. Give the clue freely; the roll is for understanding it. The hint ladder: after five minutes, a DC 12 check for a nudge; after ten, the world gives the answer. Brute force always works, at a cost you state first. A clever answer gets Heroic Inspiration.",
    "consequence": "They get through, and whoever cracked it has a story to tell.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the table is stuck for long, the puzzle offers a clue in the room: a scratch, a draught, a worn spot.",
    "keywords": "puzzle, puzzles, riddle, riddles, stuck, hint, clue, lock, code, cipher, door, combination, brain teaser"
   },
   {
@@ -2722,7 +2722,7 @@
    "rules": "Mostly common items and potions. A 20 is a d6 of uncommon ones; allow it once per act at most, and reroll after that.",
    "consequence": "They have something odd and useful, and a story about where it came from.",
    "later": "",
-   "fallback": "",
+   "fallback": "If the roll gives nothing they can use, give them the story of where it came from, and a rumour with it.",
    "keywords": "random magic item, magic item, random loot, loot, treasure, find, search, wonder, wonders, trinket, places of wonder, d20"
   }
  ],

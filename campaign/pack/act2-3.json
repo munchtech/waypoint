@@ -2829,7 +2829,7 @@
    "readAloud": "Ansel's spectacles fall and he does not pick them up. 'I wanted a cat and a coast,' he says. 'That is all I ever wanted.'",
    "response": "Ask once: 'You mean to kill him?' A downed Ansel can be bound; Wren Caddock will find out and take it hard. If he dies, the vault has no keeper, the Hushmen close it for a week, and Wren stops trusting the party. Ansel's Ledger copy and his knowledge of Maudrin's routes (Act IV) are gone. No resurrection.",
    "consequence": "Ansel is dead. The Court closes the vault.",
-   "keywords": "kill ansel, murder, vault steward",
+   "keywords": "kill ansel, murder, vault steward, blade, service passage, stab, ansel dies",
    "when": [
     {
      "flag": "ansel",
@@ -3412,7 +3412,7 @@
    "rules": "The First Tallyman is a Ghost; the two Hollowed, people tithed down to nothing, are Specters. The half of the hall by the shelf door is lined with silence-stone: no spells there, for either side. A Moderate encounter for four level 4 characters. He never leaves the works.",
    "consequence": "Past him, the back shelves. If he fell, the scale tips empty and the works go quiet.",
    "later": "If he stood aside, he is still at the scale whenever anyone comes back, and lets them pass.",
-   "fallback": "",
+   "fallback": "If the fight stalls, the Tallyman stops to write in his ledger, and a character close enough can read his name on the cover.",
    "keywords": "first tallyman, tallyman, ghost, specters, hollowed, weighing room, scale, boss, tithe-works, wystan pellow, name",
    "effects": []
   },
@@ -3425,11 +3425,11 @@
    "why": "The porters skimmed a little from everyone who came through, and hid it where nobody looks: in the crate for jars nobody wanted.",
    "tells": "They search the bottling room (Investigation DC 14), or Nell tells them.",
    "readAloud": "Behind the racks, under a tarpaulin, a crate stencilled RETURNS. No jars in it. Instead: a pair of thin grey gloves, a purse that clinks, and two small red bottles packed in straw.",
-   "response": "Gloves of Thievery, 50 gp and two Potions of Healing.",
+   "response": "Gloves of Thievery, 50 gp and two Potions of Healing. Give the gloves to whoever opens locks or lifts purses: they're invisible while worn and add +5 to Sleight of Hand and to picking locks.",
    "rules": "**Gloves of Thievery** (uncommon): these gloves are invisible while worn, and while wearing them you have a +5 bonus to Dexterity (Sleight of Hand) checks and to Dexterity checks made to pick locks. **Potion of Healing** (common): regain 2d4 + 2 Hit Points.",
    "consequence": "Somebody's hands get very quiet.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody searches the bottling room, Nell mentions the RETURNS crate on the way out.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, gloves of thievery, gloves, returns crate, porters, potion of healing, gold, reward, tithe-works",
    "effects": []
   },
@@ -3484,7 +3484,7 @@
    "readAloud": "A second clapper hangs beside Vaer's, grey and cold and water-stained. When you lift it, it hums once, very low.",
    "response": "No further roll if the grille is already open. Ossa's Tongue goes into the pack with Vaer's. The Court knows both are gone by the second hour.",
    "consequence": "Ossa's Tongue is with the party.",
-   "keywords": "ossa armory, take both, steal tongue",
+   "keywords": "ossa armory, take both, steal tongue, second peg, both tongues, rook's armory, grab it",
    "when": [
     {
      "flag": "t_ossa",
@@ -3632,7 +3632,7 @@
    "readAloud": "They take her at the last of the light, still singing. She does not resist. The hymn stops in the middle of a line.",
    "response": "Aurelie is held in Vaer's Belfry as a Charter-breaker, unharmed. She will be freed by Rook's word, a rescue (s09-free-aurelie), or after a night's pressure from the Dawn Mission. The Court offers to trade her for the Ringer.",
    "consequence": "Aurelie is under arrest.",
-   "keywords": "aurelie arrested, dusk, belfry",
+   "keywords": "aurelie arrested, dusk, belfry, hushmen, terraces, singing, arrest, dawn mission",
    "when": [
     {
      "flag": "bell_vaer",
@@ -3844,7 +3844,7 @@
    "readAloud": "The carriage stops in the dark. Isolde's glass falls and does not break in the mud. 'Oh, you clever people,' she says.",
    "response": "Isolde fights one round then tries to Disengage into the trees. If she is grappled or dropped, she is captured. She will talk about her son, the Ironhorn sales and the Court's plan if treated kindly, and spit if not. Her Hushmen surrender when she is down. The Court sends Tristan Vesk in her place.",
    "consequence": "Isolde is captured. Tristan Vesk will come north in S15.",
-   "keywords": "capture isolde, ambush carriage, grapple",
+   "keywords": "capture isolde, ambush carriage, grapple, north road, carriage, double back, prisoner, take her alive",
    "when": [
     {
      "flag": "isolde",
@@ -4225,7 +4225,7 @@
    "readAloud": "Isolde's gloves hit the snow. She does not scream. 'Oh, you wonderful, wonderful people,' she says, and her eyes are on the road.",
    "response": "A successful grapple or dropping her before her second turn captures her. Her Hushmen surrender at once. She will talk about her son, the Ironhorn sales and the Court's plans if treated kindly. The Court sends Tristan Vesk next (s15-tristan-envoy).",
    "consequence": "Isolde is captured.",
-   "keywords": "capture isolde, grapple, knocked out",
+   "keywords": "capture isolde, grapple, knocked out, thaw, glassreach, prisoner, take her alive, manacles",
    "when": [
     {
      "flag": "isolde",
@@ -4263,7 +4263,7 @@
    "readAloud": "'For his safety,' Isolde says, taking the Sexton's arm. 'And for the Chancellor's. She will want to meet her ancestor.'",
    "response": "Isolde takes Imber under Hushman escort. In Hallowmere, Maudrin silences him in the palace and the party loses a witness. If Imber was frozen, her Hushmen carry him out in his block of ice, melting it with a lamp.",
    "consequence": "Imber is in Court hands.",
-   "keywords": "isolde takes imber, court custody, vesk",
+   "keywords": "isolde takes imber, court custody, vesk, sexton, borrowed cloak, chapel, hallowmere, prisoner",
    "when": [
     {
      "flag": "sexton",
@@ -4535,7 +4535,7 @@
    "rules": "With the furs, Constitution saves against the Long Cold have Advantage. The horn works once.",
    "consequence": "The Dawn Order is still with them. Raise its standing one step in Waypoint if it isn't Friendly yet.",
    "later": "",
-   "fallback": "",
+   "fallback": "If nobody blows the horn, the outriders find them anyway on the third day.",
    "keywords": "rook, dawn order, cache, duel, furs, horn, outriders, waystation, north road, debt",
    "when": [
     {
@@ -4657,7 +4657,7 @@
    "rules": "DC 13 Charisma (Persuasion), with Advantage if they helped his sons.",
    "consequence": "The Warrant follows them into Glassreach. Hobb is a friend or an informer.",
    "later": "If he informs, the envoy comes sooner (s12-envoy-at-the-door).",
-   "fallback": "",
+   "fallback": "If the table can't decide, Hobb decides for himself, and they find out which way at the next waystation.",
    "keywords": "warrant, silence warrant, hobb, carter, reward, bounty, informer, sons, bribe, court",
    "when": [
     {
@@ -4739,7 +4739,7 @@
    "rules": "**Glass-weave Cloak** (rare, requires attunement): a Cloak of Displacement. In Glassreach it also gives Advantage on saves against the cold.",
    "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
    "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
-   "fallback": "",
+   "fallback": "If nobody searches, a child they woke tugs at a sleeve and points to the waystation's back room.",
    "keywords": "treasure, loot, magic item, cloak, displacement, glass, frozen, potions, scroll, reward",
    "effects": []
   },
@@ -4756,7 +4756,7 @@
    "rules": "**Sexton's Bracers** (rare, requires attunement): Bracers of Defense. Or **Choirmaster's Baton** (rare, requires attunement by a spellcaster): a Wand of the War Mage +2.",
    "consequence": "One more character has a Rare item. Treasure runs to about two Rare items each by level 9: see Treasure in the wiki.",
    "later": "Next treasure: Session 9, 11, 13, then 16A, 19A or 16B, 17B, 19B, and the bell-charm.",
-   "fallback": "",
+   "fallback": "If nobody thinks to search, the pulpit's carved panel is loose, and it rattles in the cold wind.",
    "keywords": "treasure, loot, magic item, bracers, wand, reliquary, sexton, imber, reward, gold",
    "effects": []
   },
@@ -4824,7 +4824,7 @@
    "rules": "**Ashdown's Grey Hat** (uncommon, requires attunement): a Hat of Disguise. While wearing it, you can cast Disguise Self; the spell ends if the hat is removed.",
    "consequence": "One character can be anyone, which in Hallowmere is worth more than gold.",
    "later": "Session 9: the hat or a sealed writ is an answer to getting out. See Side dungeons in the wiki.",
-   "fallback": "",
+   "fallback": "If nobody finds the key, the inkwell's closed eye is painted, and it doesn't match the others.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, hat of disguise, grey hat, floor safe, scroll, disguise self, reward",
    "effects": []
   },
@@ -4858,7 +4858,7 @@
    "rules": "**Morrow's Edge** (uncommon): a +1 Longsword, +1 to attack and damage rolls. Swap it for whatever +1 weapon your party will use. Spending the Court silver in Hallowmere gets noticed.",
    "consequence": "A character carries a Dawn Order knight's sword, and every Dawn Order knight who sees it knows whose it was.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody lifts the sword, it slips a little in the tomb when they pass, as if it wants to come.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, +1 longsword, morrow's edge, sword, tomb, silver, potions, reward",
    "effects": []
   },
@@ -4892,7 +4892,7 @@
    "rules": "**The Lamplighter's Cloak** (uncommon, requires attunement): a Cloak of Protection, +1 to Armor Class and saving throws.",
    "consequence": "A character is a little harder to hurt, and carries someone's forgotten name.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody searches the ash pit, a Blank stands beside it and won't move until someone looks.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, cloak of protection, cloak, ash pit, strongbox, potion, gold, reward",
    "effects": []
   },
@@ -4926,7 +4926,7 @@
    "rules": "**Senn's Running Boots** (uncommon, requires attunement): Boots of Striding and Springing. Your Speed becomes 30 feet if it's lower and isn't reduced by encumbrance or armor, and you can jump three times the normal distance.",
    "consequence": "Someone runs faster, which matters on the North Road.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody finds the brick, Aldo Penn taps it with a walking stick on the way out.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, boots of striding and springing, boots, chimney, cache, gold, potions, reward",
    "effects": []
   },
@@ -4960,7 +4960,7 @@
    "rules": "**The Merchant's Ring** (uncommon, requires attunement): a Ring of Warmth. You have Resistance to Cold damage, and you and your gear are unharmed by temperatures as low as −50 degrees Fahrenheit. In Glassreach its wearer succeeds on every Extreme Cold save.",
    "consequence": "One character stops shivering, and Corran Vell has something of his own.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody finds the trapdoor, Ketter tells them, if they're kind to him.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, ring of warmth, ring, hoard, seal, corran vell, old coin, gold, potions, reward",
    "effects": []
   },
@@ -4994,7 +4994,7 @@
    "rules": "Silence stops the echo. Glass-Wolves burst when they drop (DC 12 Dexterity save, 1d6 Slashing within 5 feet) and are Vulnerable to Thunder; Thunder in the icicle gallery brings down the ceiling on anything chasing them.",
    "consequence": "The pack is awake, and the foot of the Spire won't be quiet on the way down.",
    "later": "Session 15: the wolves that survived are waiting at the foot when the thaw starts.",
-   "fallback": "",
+   "fallback": "If the fight on the stair stalls, the third wolf to shatter breaks the pack, and the rest go back down.",
    "keywords": "echo stair, echo, noise, glass-wolves, wolves, pack, frost spire, fight, combat",
    "effects": []
   },
@@ -5011,7 +5011,7 @@
    "rules": "Influence DC 15 as an action calms one Stilled (Advantage for reading its ribbon); Performance DC 13 to sing the hymn (Advantage if someone heard Imber hum). Frost-motes are Ice Mephits.",
    "consequence": "Calmed, the choir is quiet when Hieme rings; woken in a fight, they remember who hurt them.",
    "later": "Session 15: the choir wakes in the thaw, and sings at whoever helped them.",
-   "fallback": "",
+   "fallback": "If nobody knows the hymn, the frozen singers' mouths are open on the same note: hum it, and it calms them.",
    "keywords": "choir, choir loft, hymn, stilled, frost-motes, ice mephits, frost spire, sing",
    "effects": []
   },
@@ -5028,7 +5028,7 @@
    "rules": "The Bell-Warden is a Flesh Golem with Cold in place of Lightning: Cold damage heals it. Hollow Wardens are Animated Armor. A Low encounter for four level 6 characters, harder in the cold.",
    "consequence": "Past the Warden, the crown. If it fell, its blue light goes out, and something in the Spire's heart goes quiet.",
    "later": "Session 15: a Warden that stood aside is still standing there when the thaw comes, waiting for a new master.",
-   "fallback": "",
+   "fallback": "If the fight stalls, the Warden pauses, as if listening for words it was told to wait for.",
    "keywords": "bell-warden, warden, golem, guardian, ringing room, hollow wardens, armor, frost spire, boss, heart",
    "effects": []
   },
@@ -5045,7 +5045,7 @@
    "rules": "Thawing the oil: any fire, ten minutes. Blowing it out takes an action; the warmth lasts an hour.",
    "consequence": "A warm rest halfway up, at the price of being seen.",
    "later": "Session 15: Isolde knows which way they'll come down.",
-   "fallback": "",
+   "fallback": "If the table doesn't think of the lamp, a character's numb hand brushes the oil, and it is softer than it should be.",
    "keywords": "lamp-room, lamp, rest, warm, short rest, isolde, frost spire, window",
    "effects": []
   },
@@ -5058,11 +5058,11 @@
    "why": "The masons who cut Imber's secret stair left in a hurry, or didn't leave at all.",
    "tells": "They search the masons' gallery, or Tilsa the mason tells them where the foreman kept his things.",
    "readAloud": "The chest comes open with a crack like a bone. Inside, wrapped in a mason's apron: a pair of fur-lined boots, a purse of square old coins, and a stoppered flask that's warm to the touch.",
-   "response": "Boots of the Winterlands, 80 gp in old coin and a Potion of Fire Breath.",
+   "response": "Boots of the Winterlands, 80 gp in old coin and a Potion of Fire Breath. The boots need attunement: Resistance to Cold, and ice and snow are never Difficult Terrain for the wearer, which matters for the rest of the Spire and the road home.",
    "rules": "Frozen shut: fire for ten minutes, or a DC 14 Strength check. **Boots of the Winterlands** (uncommon, requires attunement): Resistance to Cold damage, you ignore Difficult Terrain created by ice or snow, and you can tolerate temperatures as low as −50 degrees Fahrenheit without extra protection. **Potion of Fire Breath** (uncommon): for an hour, a Bonus Action exhales fire at a target within 30 feet (DC 13 Dexterity save, 4d6 Fire, half on a success), up to three times.",
    "consequence": "One character walks the glass as if it were a summer road.",
    "later": "See Side dungeons in the wiki for the rest.",
-   "fallback": "",
+   "fallback": "If nobody searches the gallery, Tilsa says the foreman always kept his things under the bench.",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, boots of the winterlands, boots, chest, masons, potion of fire breath, gold, reward, frost spire",
    "effects": []
   },
@@ -5147,8 +5147,7 @@
     "Check Brother Eld: fled or forgiven puts him at the masque; gone or dead means an unnamed Court chaplain",
     "Check each Stormborn character's writ (invited, true, forged, none) and whether Aurelie was met on Strangers' Row",
     "Seed two secrets lightly: Maudrin calls Haldric 'dear' once and corrects herself to 'Ser'; Isolde wears a locket with a boy's portrait and closes it when asked",
-    "Give the Blank clerk and Sergeant Cole voices; the clerk will not take gold",
-    "Prepare Maudrin's three lines: the welcome, the bargain, and 'Then the Assembly will go on without you'",
+    "Give the Blank clerk and Sergeant Cole voices (the clerk will not take gold), and prepare Maudrin's three lines: the welcome, the bargain, and 'Then the Assembly will go on without you'",
     "Written for four level-3 characters: Comprehend Languages is the only translation magic they have; Tongues, Dispel Magic and Counterspell are NPC-only until level 5"
    ],
    "encounters": [
