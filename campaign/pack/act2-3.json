@@ -4620,11 +4620,11 @@
    "tells": "They ask about papers, a family asks why their cousins were arrested with perfect writs, or they start planning how to leave Hallowmere.",
    "readAloud": "A narrow shop on Vellum Lane that smells of glue and new leather. Prayer-books stand in rows, every one bound in white. An apprentice with ink to his elbows is pretending to sweep, and watching the bookcase behind you.",
    "response": "Run it from The Inkwell in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms under a bindery: the shop with a secret bookcase door, a press-room with a slick black floor, a passage with a grille trap, Ashdown's study with a hidden key in a false inkwell, and a culvert out. About 45 minutes, any night in Hallowmere. Tobin the apprentice hates his master and will help for 10 gp or a kind word.",
-   "rules": "Bookcase: Investigation DC 13. Black floor: Perception DC 12 to see the dry path; off it, Difficult Terrain and DC 12 Acrobatics to Dash. Grille: Investigation DC 14 to see which handle; AC 19, 30 HP, DC 17 Athletics to lift. Inkwell: Investigation DC 15. Fight: Quen Ashdown (Spy), three Toughs and a Hushman, a Low encounter for four level 3 characters.",
+   "rules": "Bookcase: Investigation DC 13. Black floor: Perception DC 12 to see the dry path; off it, Difficult Terrain and DC 12 Acrobatics to Dash. Grille: Investigation DC 14 to see which handle; AC 19, 30 HP, DC 17 Athletics to lift. Inkwell: Investigation DC 15. Fight: Quen Ashdown (Spy), three Toughs and a Hushman, a Low encounter for four level 3 characters. Puzzle (7.22): The floor safe has a five-letter dial, and the word, QUIET, is on the sign over the door. A wrong word ruins the scroll.",
    "consequence": "Forty families' names are in their hands, and with Ashdown's seal they can make real-looking gate writs.",
    "later": "Session 9: a sealed writ passes one checkpoint without a roll, or gives Advantage on a check to bluff the Gate Sweep. Session 7: Bet, Aurelie or Rook has heard who burned the blue ledger.",
    "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
-   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, inkwell, forger, forgery, bindery, papers, writ, ashdown, informant, hallowmere",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, inkwell, forger, forgery, bindery, papers, writ, ashdown, informant, hallowmere, puzzle, riddle",
    "effects": []
   },
   {
@@ -4654,11 +4654,11 @@
    "tells": "Rook asks for proof, Wren says where she took Haldric's messages, or a squire mentions Ser Bran's nightly trips to the crypt.",
    "readAloud": "The chapel faces east. The altar is a single block of white stone carved with a rising sun, and a squire is asleep in the front pew with his sword across his knees. The sun on the altar has been turned so often its edges are worn smooth.",
    "response": "Run it from The Dawn undercroft in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms under the chapterhouse: the chapel and its turning sun, a hall of oath-stones that thrusts spears at anyone who treads on the wrong word, the knights' tombs with Morrow's Edge on a trapped rest, the reliquary where Ser Bran guards Haldric's silver, and a bone stair to the river. About 45 minutes. Ser Bran would rather talk than fight, and yields at Bloodied.",
-   "rules": "Altar: Religion or History DC 12. Oath-stones: walk on Dawn, Truth, Mercy and Shield; any other stone, DC 13 Dexterity save or 2d8 Piercing. Sword-rest: Investigation DC 13; DC 12 Sleight of Hand, or DC 12 Dexterity save and 1d10 Bludgeoning. Ser Bran: Influence DC 15 (Advantage with the Ledger or Ansel's copy) to stand aside. Fight: a Knight and two Guards, between Low and Moderate for four level 3 characters.",
+   "rules": "Altar: Religion or History DC 12. Oath-stones: walk on Dawn, Truth, Mercy and Shield; any other stone, DC 13 Dexterity save or 2d8 Piercing. Sword-rest: Investigation DC 13; DC 12 Sleight of Hand, or DC 12 Dexterity save and 1d10 Bludgeoning. Ser Bran: Influence DC 15 (Advantage with the Ledger or Ansel's copy) to stand aside. Fight: a Knight and two Guards, between Low and Moderate for four level 3 characters. Puzzle (7.22): Morrow's riddle at his tomb (an oath, a promise or your word) opens a niche with a Spell Scroll of Lesser Restoration and a letter that helps at the oath-duel.",
    "consequence": "They have the Court's silver and the Chancellor's letter as evidence for the duel, and perhaps Ser Bran as a witness.",
    "later": "Scene 2: the letter, the silver and Ser Bran are evidence for Rook. Session 9: if Haldric won anyway, he knows exactly who robbed him.",
    "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
-   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, undercroft, crypt, tomb, dawn order, haldric, rook, ser bran, silver, evidence, duel, oath-stones",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, undercroft, crypt, tomb, dawn order, haldric, rook, ser bran, silver, evidence, duel, oath-stones, puzzle, riddle",
    "effects": []
   },
   {
@@ -4688,11 +4688,11 @@
    "tells": "A man with a lantern on a pole gathers Blanks from the crowd, Bet mentions people vanishing \"with the lamp-men\", or they're looking for somewhere to hide the family.",
    "readAloud": "A Ninefold bathhouse, boarded up for fifty years. A lantern burns on its roof, hooded on three sides, and someone behind it is watching the street. A little line of Blanks shuffles toward the side door, holding hands, and the door opens for them.",
    "response": "Run it from The Lamplighters' cistern in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Six rooms: a lookout on the roof, a changing hall of sleeping Blanks who believe in their captors, a plunge pool with a false floor, the furnace room with the ledger and a strongbox in the ash, Corvin Hale's steam vault with scalding pipes, and a drain stair under the Hall of Tithes' steps. About an hour. Turning the Blanks takes the fight out of the gang.",
-   "rules": "Lookout: Stealth against passive Perception 15. Blanks: Influence DC 13, automatic with the ledger. False floor: Perception DC 14; DC 13 Dexterity save or fall 15 feet (1d6 Bludgeoning + 1d6 Slashing). Ash pit: Investigation DC 14. Steam: on initiative 20, a 15-foot line, DC 12 Dexterity save, 2d6 Fire. Fight: Corvin Hale (Tough Boss), three Bandits and a Scout, between Low and Moderate for four level 4 characters.",
+   "rules": "Lookout: Stealth against passive Perception 15. Blanks: Influence DC 13, automatic with the ledger. False floor: Perception DC 14; DC 13 Dexterity save or fall 15 feet (1d6 Bludgeoning + 1d6 Slashing). Ash pit: Investigation DC 14. Steam: on initiative 20, a 15-foot line, DC 12 Dexterity save, 2d6 Fire. Fight: Corvin Hale (Tough Boss), three Bandits and a Scout, between Low and Moderate for four level 4 characters. Puzzle (7.22): The changing-hall mosaic gives the setting for three sluice wheels by the furnace (blue cold, yellow warm, red hot); a wrong setting scalds for 2d6 Fire.",
    "consequence": "Twelve Blanks are free, the ledger proves the Tithe-house buys people, and the cistern is a hiding place the Hushmen walk over every day.",
    "later": "Scene 3: the cistern is a roof for the night as safe as Bet's cellar. Session 9: the Blanks they freed can be the friends who get them out.",
    "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
-   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, lamplighters, cistern, bathhouse, blanks, gang, corvin hale, hiding place, roof for the night, steam",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, lamplighters, cistern, bathhouse, blanks, gang, corvin hale, hiding place, roof for the night, steam, puzzle, riddle",
    "effects": []
   },
   {
@@ -4722,11 +4722,11 @@
    "tells": "A farmer at the Crossing mentions the Grey Coats, they meet a family with nothing left, or something of theirs goes missing in the night.",
    "readAloud": "Six brick kilns stand in a ring on the grey plain like a giant's beehives. Five are cold. Smoke rises from the sixth, and from a gap in its dome somebody is watching the road you came in on.",
    "response": "Run it from The kilns at Kell's Crossing in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Six areas: the kiln-yard with a lookout on the dome, a cold kiln with an ash-pit trap, crawling flue tunnels with a bone-rattle alarm, the store kiln full of stolen things and a chained cooper, Morra Senn's fire kiln with its open furnace, and her chimney cache. About 45 minutes. If tonight is full, run it at the start of Session 10.",
-   "rules": "Ash muffles walking (Advantage on Stealth); running raises a visible cloud. Ash pit: Perception DC 13; DC 13 Dexterity save or fall in, 1d6, Blinded and Poisoned. Flues: Difficult Terrain, no Dash; DC 12 Survival to find the way. Bone-rattle: Perception DC 13. Kiln mouth: shoved in, 2d6 Fire. Chimney cache: Perception DC 15. Fight: Morra Senn (Warrior Veteran), four Bandits and two Scouts, a Low encounter for four level 4 characters.",
+   "rules": "Ash muffles walking (Advantage on Stealth); running raises a visible cloud. Ash pit: Perception DC 13; DC 13 Dexterity save or fall in, 1d6, Blinded and Poisoned. Flues: Difficult Terrain, no Dash; DC 12 Survival to find the way. Bone-rattle: Perception DC 13. Kiln mouth: shoved in, 2d6 Fire. Chimney cache: Perception DC 15. Fight: Morra Senn (Warrior Veteran), four Bandits and two Scouts, a Low encounter for four level 4 characters. Puzzle (7.22): The burners' box in the kiln-yard opens to six marks in firing order (hare, crow, oak, wheel, fish, moon); a wrong order is a DC 12 Constitution save or Blinded.",
    "consequence": "The families get their things back, Kell's Crossing has reason to love them, and the Court's badge means a little less on this road.",
    "later": "Session 10: if Senn got away, Isolde knows which way they went. Kell's Crossing feeds the party for as long as they stay.",
    "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
-   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, kilns, kell's crossing, grey coats, morra senn, bandits, bailiffs, refugees, nessa harrow, ash",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, kilns, kell's crossing, grey coats, morra senn, bandits, bailiffs, refugees, nessa harrow, ash, puzzle, riddle",
    "effects": []
   },
   {
@@ -4881,6 +4881,74 @@
    "fallback": "",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, boots of the winterlands, boots, chest, masons, potion of fire breath, gold, reward, frost spire",
    "effects": []
+  },
+  {
+   "id": "s04-road-hallowmere",
+   "sessionId": "sb-0408eb3a9ef383eb",
+   "title": "They take the road to Hallowmere",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Pellmoor to Hallowmere is two days on the coast road, and a road is where Corvane gets to surprise people. Players who travel should meet someone.",
+   "tells": "They leave Pellmoor on foot or by cart, before the Gate Office (Scene 1), or ask how long the road is.",
+   "readAloud": "A chain is stretched across the road between two posts, and a hut has been built beside it out of an upturned boat. Four Hushmen lean on their spears. 'Road-tithe,' says the sergeant. 'Five gold each, or one memory. Your choice. We're not unreasonable.'",
+   "response": "Run The chain across the road (The coast road, entry 3). They aren't Hushmen: they're bandits in stolen coats, led by \"Sergeant\" Rusk, and the peddler they robbed this morning, Gammer Tansy, is tied up in the hut. They can pay, bluff, call them out, or fight. Freed, Gammer Tansy gives each of them an oddity from her mule. Or roll a d12 on The coast road for something else, or for the second day; On the road in the wiki says when to roll.",
+   "rules": "Insight DC 13 (or anyone who has met a real Hushman): the buttons are bone and the spears are fish-gigs. Deception DC 13 to pass as Court. Called out in front of the peddler, two of them throw their coats down and run. Fight: Rusk (Bandit Captain) and three Bandits, a little under Low for four level 3 characters: *The chain across the road* in the Combat tab.",
+   "consequence": "They come to the Gate Office with a story, 30 gp, perhaps a real Hushman's coat (Advantage on Deception to pass as a Hushman at a distance), and a friend in Gammer Tansy.",
+   "later": "Gammer Tansy turns up again on any road (Random magic and wonders), and she remembers them. The Hushman's coat is useful anywhere in Hallowmere.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, coast road, bandits, highwaymen, robbers, chain, road-tithe, fake hushmen, rusk, peddler, gammer tansy, hallowmere",
+   "effects": []
+  },
+  {
+   "id": "s05-road-streets",
+   "sessionId": "sb-879a0d8936c67231",
+   "title": "They cross the Grey City at night",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Hallowmere at night is the Court's city with the lamps out. Getting across it should feel like a risk, and sometimes like a wonder.",
+   "tells": "They go out after dark, take a short cut down a side lane, or ask the quickest way to the Library or Vellum Lane.",
+   "readAloud": "Tallow Lane is narrow and dark, and the lamps have been put out. Halfway down, someone steps out of a doorway ahead. Behind you, somebody else does the same.",
+   "response": "Run Knives in Tallow Lane (Hallowmere's streets, entry 4): the Tallow Boys, cutpurses who think the party looks rich and lost. A show of strength or magic (Intimidation DC 13) sends them running before it starts. Or roll a d12 on Hallowmere's streets for something stranger: a silent procession, a book-burning, a speaking skull, a duel at dawn.",
+   "rules": "Fight: Silk Annie (Spy), the two Tallow brothers (Toughs) and four Bandits, a little under Low for four level 3 characters: *Knives in Tallow Lane* in the Combat tab. They run when Annie drops or two of them do.",
+   "consequence": "15 gp, a set of thieves' tools, and Annie's map of the city's back ways: with it, the party never needs a check to cross Hallowmere unseen at night.",
+   "later": "Session 6 and any night in the Grey City: the back ways. The Tallow Boys, beaten fairly, sell them rumours afterwards.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, streets, night, city, cutpurses, gang, thieves, ambush, mugging, tallow lane, tallow boys, silk annie, hallowmere, back ways",
+   "effects": []
+  },
+  {
+   "id": "s09-road-north",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "They take the North Road",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The road north is where the Court's reach thins and its bounty-riders work. A warrant with their faces on it makes the Court feel close, even out here.",
+   "tells": "Between the carriage (Scene 3) and Kell's Crossing (Scene 4), or any day they're out on the ash plain.",
+   "readAloud": "Riders on the ridge: eight of them, in grey coats, with a man in a wide hat at the front. He takes a paper out of his coat, looks at it, looks at you, and folds it away. 'Afternoon,' he calls. 'I think you're worth a good deal of money.'",
+   "response": "Run The bounty-riders (The North Road, entry 3). Kettle Marr has a Court warrant and the party's descriptions, five Hushmen (one a sergeant) and two trackers. They can fight, buy him off (he's paid by the head, so a better offer works), or lose them in the ash. Or roll a d12 on The North Road for something quieter: families going north, a scarecrow field, a falling star.",
+   "rules": "Influence DC 15, or DC 12 with 100 gp, turns Marr. A DC 14 group Survival check loses them in the ash. Fight: Kettle Marr (Warrior Veteran), a Hushman sergeant, four Hushmen and two trackers (Scouts), a little under Low for four level 5 characters: *The bounty-riders* in the Combat tab.",
+   "consequence": "Marr's purse (40 gp), the warrant (it lists what the Court knows about each of them, which is worth reading), and eight horses.",
+   "later": "Let Marr go and he turns up in Act IV with a new warrant, or with a job.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, north road, bounty, bounty hunter, warrant, riders, horses, hushmen, kettle marr, ash plain, chase, wanted",
+   "effects": []
+  },
+  {
+   "id": "s10-road-glass",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "They find a frozen wagon at the edge of the glass",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Glassreach froze in a moment, and the road shows it. A find with no fight at all makes the world feel bigger than the plot.",
+   "tells": "On the way to the edge of the glass (Scene 1), or any day on the glass.",
+   "readAloud": "At the edge of the glass a merchant's wagon has stopped in the middle of the road, its two horses frozen mid-stride and its driver frozen with the whip raised. Glass has grown over all of them like frost. The back of the wagon has not been touched.",
+   "response": "The North Road, entry 7. The driver, Jem Sorrel, is Stilled, not dead. The back of the wagon can be reached with no check. Cutting the rest of the cargo out of the glass takes glass-cutting tools or a DC 13 Strength (Athletics) check, and a failure is loud.",
+   "rules": "A loud failure brings a Glass-Wolf in 1d4 rounds; it goes away if it's hit once. Jem's strongbox: 3d10 gp, four warm cloaks (10 gp each), a cask of brandy, and one roll on the Random magic table (Random magic and wonders).",
+   "consequence": "Warm cloaks matter on the glass. Whatever they take or leave, Jem's eyes are open.",
+   "later": "If the thaw comes, Jem wakes, and he remembers the faces of whoever left his strongbox alone, or didn't.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, glass, frozen, wagon, find, loot, treasure, random magic item, stilled, jem sorrel, warm cloaks, glassreach, strongbox",
+   "effects": []
   }
  ],
  "briefs": [
@@ -4902,7 +4970,8 @@
    "encounters": [
     "enc-s04-gate-hushmen",
     "enc-s04-haldric-escort",
-    "enc-s04-siege-patrol"
+    "enc-s04-siege-patrol",
+    "enc-s04-road-chain"
    ],
    "rules": [
     "Influence",
@@ -4932,7 +5001,8 @@
    "encounters": [
     "enc-s05-vault-alarm",
     "enc-s05-librarian",
-    "enc-s05-inkwell"
+    "enc-s05-inkwell",
+    "enc-s05-tallow-lane"
    ],
    "rules": [
     "Study",
@@ -5044,7 +5114,8 @@
    "encounters": [
     "enc-s09-chain-room",
     "enc-s09-gate-sweep",
-    "enc-s09-kilns"
+    "enc-s09-kilns",
+    "enc-s09-road-bounty"
    ],
    "rules": [
     "Hide",
@@ -5842,6 +5913,92 @@
    "tactics": "The Hollow Wardens hold the foot of the last stair with their poles; the Bell-Warden walks straight at whoever is nearest the stair. Cold damage heals it. Fire makes it hesitate, as a Flesh Golem's aversion does.",
    "exit": "It stands down at once for Hieme's Heart, or Imber's words, \"Let me go on\". It doesn't follow anyone down the stair.",
    "scale": "Low for four level 6 characters, harder in the cold. Three characters: two Hollow Wardens. Five: six, and 30 more HP for the Warden."
+  },
+  {
+   "id": "enc-s04-road-chain",
+   "sessionId": "sb-0408eb3a9ef383eb",
+   "title": "The chain across the road",
+   "creatures": [
+    {
+     "name": "\"Sergeant\" Rusk",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "False Hushman",
+     "base": "Bandit",
+     "cr": "1/8",
+     "count": 3
+    }
+   ],
+   "tactics": "They'd rather scare than fight. Two hold the chain and one stands back with a crossbow; Rusk stays by the hut, where the peddler is, and threatens her if it turns. In the first round one of them lets the chain go slack and whips it up again: whoever is nearest makes a DC 12 Dexterity saving throw or falls Prone.",
+   "exit": "Called out as fakes in front of the peddler, two of the three throw their coats down and run before it starts. Otherwise they run when Rusk is Bloodied, and Rusk gives up at a few Hit Points and offers the sack in the hut.",
+   "scale": "A little under Low for four level 3 characters. Three characters: two false Hushmen. Five: five, and 15 more HP for Rusk. If they paid, there's no fight, and the peddler is still tied up in the hut."
+  },
+  {
+   "id": "enc-s05-tallow-lane",
+   "sessionId": "sb-879a0d8936c67231",
+   "title": "Knives in Tallow Lane",
+   "creatures": [
+    {
+     "name": "Silk Annie",
+     "base": "Spy",
+     "cr": "1",
+     "count": 1
+    },
+    {
+     "name": "Tallow brother",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 2
+    },
+    {
+     "name": "Tallow Boy",
+     "base": "Bandit",
+     "cr": "1/8",
+     "count": 4
+    }
+   ],
+   "tactics": "Two Tallow Boys step out ahead and two behind, boxing the party in the lane. The brothers come out of a doorway when someone is busy. Annie stays on the steps above, uses her Cunning Action to hide in the dark, and goes for whoever has the fattest purse.",
+   "exit": "A show of strength or magic before it starts (Intimidation DC 13) sends them running. Once it's begun, they run when Annie drops or two of them do. Annie, cornered, trades her map of the back ways for her freedom.",
+   "scale": "A little under Low for four level 3 characters. Three characters: two Tallow Boys. Five: six, and a third brother. The lamps are out: bring a light, or fight in the dark."
+  },
+  {
+   "id": "enc-s09-road-bounty",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "The bounty-riders",
+   "creatures": [
+    {
+     "name": "Kettle Marr",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Hushman sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 4
+    },
+    {
+     "name": "Tracker",
+     "base": "Scout",
+     "cr": "1/2",
+     "count": 2
+    }
+   ],
+   "tactics": "They fight mounted at first, riding round the party to box them in, and the trackers hang back and shoot. Marr wants them alive (the warrant pays more for that), so the Hushmen go for whoever looks weakest and try to Grapple. Marr stays in the saddle and calls terms every round.",
+   "exit": "Marr is paid by the head, not to die: he calls it off when two Hushmen drop or he's Bloodied, and takes a better offer at any point (Influence DC 15, or DC 12 with 100 gp). The Hushmen follow the sergeant, and the sergeant follows Marr. A DC 14 group Survival check loses them in the ash.",
+   "scale": "A little under Low for four level 5 characters. At level 4, leave out the sergeant and two Hushmen. Three characters: three Hushmen. Five: six Hushmen."
   }
  ]
 }

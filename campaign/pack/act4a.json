@@ -2705,6 +2705,57 @@
    "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
    "keywords": "road, stranger, past, personal, backstory, session zero, beat, growth, family, arrival",
    "effects": []
+  },
+  {
+   "id": "s16a-road-east",
+   "sessionId": "sb-65a7d51b78a8d14d",
+   "title": "They find a lightning tree on the Brass Road",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The steppe is storm country. Lightning that has nowhere to go ends up in trees and carts and people, and the Ironhorn know what it's worth.",
+   "tells": "On the Brass Road (Scene 1), or any day on the steppe.",
+   "readAloud": "A lone oak stands on the hillside, split down the middle by lightning, years ago. It's still crackling. Blue light crawls up and down the wound, and every hair on your arms stands up when you come near.",
+   "response": "The Brass Road and the steppe, entry 1. A storm-stone has grown in the heart of the tree. Cutting it out takes a DC 14 Strength check with an axe or a pick, and each attempt hurts. If they'd rather meet people, run entry 2, the bronze carts, with a storm coming. Or roll a d12 on The Brass Road and the steppe.",
+   "rules": "Each attempt, the cutter makes a DC 14 Dexterity saving throw: 2d10 Lightning damage, half on a success. Gloves of anything but metal give Advantage. The storm-stone is worth 100 gp in Brassfall or to the Ironhorn, or Tavi Ondrel the storm-smith binds it into a Javelin of Lightning (uncommon) for 100 gp and the stone (Shops of the Brass Road).",
+   "consequence": "They have a storm-stone, or a javelin, and word goes round Brassfall that strangers cut one out alive.",
+   "later": "A Javelin of Lightning is a good answer to anything big on the Tor (Session 16B) and after.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, brass road, steppe, lightning, storm, storm-stone, tree, oak, javelin of lightning, find, bronze carts, ironhorn",
+   "effects": []
+  },
+  {
+   "id": "s16b-road-tor",
+   "sessionId": "sb-4a1554713c1ac7c1",
+   "title": "They pass a village that has fallen asleep",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Hush is reaching further than it used to. A village asleep at supper says so better than any lore.",
+   "tells": "On the way to the Tor, before the hill that breathes (Scene 1).",
+   "readAloud": "The village is quiet. Smoke from the chimneys, a cart in the lane, chickens in the road, and nobody moving. Through a window, you see a family at their table, asleep in their chairs, smiling.",
+   "response": "The Brass Road and the steppe, entry 4. The village fell asleep at supper two days ago, and everyone in it is dreaming the same dream: a room full of beds. Anything loud wakes one villager for a minute; a Lesser Restoration wakes one for good. The child Tam wakes first and is very cross.",
+   "rules": "Tam tells them what the village was dreaming, which is the Sleeping Hall, exactly. Anyone who listens has Advantage on the first check to find their way inside.",
+   "consequence": "They know what the Sleeping Hall looks like before they're in it. If they wake everyone, the village takes them in for as long as they need.",
+   "later": "Session 16B: when they see the hall, it's the one in Tam's dream, bed for bed.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, village, sleeping, asleep, dream, dreaming, hush, tor, sleeping hall, tam, oddity, lesser restoration, mystery",
+   "effects": []
+  },
+  {
+   "id": "s20-road-plain",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "They meet deserters on the plain",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "By Act IV the Court's soldiers are tired, hungry and a long way from home. Not every grey coat on the road wants a fight.",
+   "tells": "Crossing the plain (Scene 1), or any day on the steppe in Act IV.",
+   "readAloud": "Ten soldiers in Court grey are sitting round a fire that's mostly smoke. Their banner is wrapped round a stick, and one of them is cooking a crow. When they see you, the sergeant gets up slowly and puts his hand on his sword.",
+   "response": "The Brass Road and the steppe, entry 10. Court soldiers who've had enough. Their warden, Corran Holloway, wants to get his people home, and he'll fight if he thinks the party were sent to bring them back. They can talk, fight, or slip by. One of the ten isn't a deserter: he's a Court agent riding with them to report where they go, and Holloway doesn't know.",
+   "rules": "Influence DC 13; show them food or the party's own trouble with the Court, and it's DC 10. A DC 14 group Stealth check slips by. Insight DC 15 picks out the agent. Fight: Holloway (Hushman Warden), two sergeants, six Hushmen and the agent, well under Low for four level 8 characters: *The deserters* in the Combat tab.",
+   "consequence": "Fed and pointed home, they give up everything they won't need: 50 gp, two Potions of Greater Healing, and the Court's camp passwords for the month.",
+   "later": "Session 22: if the party need people, Holloway brings six of them back. If the agent got away, the Court knows which way the party went.",
+   "fallback": "Only a possibility. If they go straight on, nothing in the story is lost.",
+   "keywords": "road, travel, journey, random encounter, encounter table, plain, steppe, deserters, soldiers, court, hushmen, corran holloway, parley, talk, food, passwords, spy, recruit, allies",
+   "effects": []
   }
  ],
  "briefs": [
@@ -2885,7 +2936,8 @@
    ],
    "encounters": [
     "enc-s20-brassfall",
-    "enc-s20-tor"
+    "enc-s20-tor",
+    "enc-s20-road-deserters"
    ],
    "rules": [
     "Influence",
@@ -3356,6 +3408,44 @@
      ]
     }
    ]
+  },
+  {
+   "id": "enc-s20-road-deserters",
+   "sessionId": "sb-5a3ec12d1d59e95c",
+   "title": "The deserters",
+   "creatures": [
+    {
+     "name": "Corran Holloway",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 1
+    },
+    {
+     "name": "Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 2
+    },
+    {
+     "name": "Deserter",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 6
+    },
+    {
+     "name": "The tenth man, a Court agent",
+     "statblock": "sb_court_agent",
+     "base": "Spy",
+     "cr": "1",
+     "count": 1
+    }
+   ],
+   "tactics": "They're tired and hungry and fight like it: the deserters stay together round Holloway and back toward the rocks rather than chase. The Court agent is the dangerous one. He stays at the back, waits for a gap, and goes for whoever is doing the talking.",
+   "exit": "Influence DC 13 (DC 10 with food, or if the party show their own trouble with the Court) stops it before or during the fight, and Holloway takes the chance gladly. The deserters throw down their swords when Holloway is Bloodied. The agent runs for his horse the moment he's found out (Insight DC 15 picks him out of the ten).",
+   "scale": "Well under Low for four level 8 characters: it's meant to be talked out of. Three characters: four deserters. Five: eight deserters and a third sergeant."
   }
  ]
 }
