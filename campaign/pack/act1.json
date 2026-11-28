@@ -2272,6 +2272,78 @@
    ],
    "sessionId": "sb-4296a01bb560bd61",
    "scene": "Scene 6: Ossa's bell"
+  },
+  {
+   "id": "s01-side-undertow",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "Side dungeon: the Undertow's cellar",
+   "scene": "Scene 3: The port",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Players love a door that goes down. Pellmoor is built on a drowned town, and the thieves who use its attics know who's been buying stolen memories.",
+   "tells": "A purse is lifted near Coyle's Chandlery, someone mentions Venn's missing jars, or Ila says she saw Quill go in there after dark.",
+   "readAloud": "The thief ducks into a chandlery, and when you follow there's nobody inside but an old man mending a net. He doesn't look up. Behind him a coil of anchor chain sits on the floorboards in a perfect circle, and the boards round it are scratched.",
+   "response": "Run it from The Undertow's cellar in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Six rooms down a ladder into the attic of a house that drowned in 14 SS: a sawn rung, a net-weight tripwire, a jar room full of stolen memories, and Brine Annet's office with a needle-trapped sea-chest. About 45 minutes. Pim Coyle at the counter can be paid or charmed for the password (\"Tide's out\"), which gets them as far as Annet's door without a fight. The crew are thieves: they give up or run before they die.",
+   "rules": "Trapdoor: Perception DC 13. Sawn rung: DC 12 Dexterity save or fall 10 feet (1d6). Net-weights: Perception DC 13 to spot; DC 12 Dexterity save or 2d6 Bludgeoning and Restrained. Needle lock: Investigation DC 13; DC 11 Constitution save or 1d10 Poison and Poisoned. Fight: Brine Annet (Bandit Captain) and four Bandits, a Low encounter for four level 3 characters.",
+   "consequence": "They can prove Quill buys stolen memories, and thirty jars can go home to the Old Shore or back to Venn.",
+   "later": "Scene 4: the tally book is leverage over Quill. Session 3: Annet, if she got away, comes back with a grudge or a deal, and the book points at Venn's bond-house. Session 2: the diving hood helps anyone swimming down to the bell.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, undertow, chandlery, thieves, criminals, quill, jars, memories, drowned house, brine annet",
+   "effects": []
+  },
+  {
+   "id": "s01-treasure-annet-chest",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "Treasure: Brine Annet's sea-chest",
+   "scene": "Scene 3: The port",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Undertow have been robbing the Quays for a year, and Annet keeps the best of it close.",
+   "tells": "They open Annet's sea-chest, or search the jar room.",
+   "readAloud": "The chest is full of the sea: a coil of tarred line, a whetstone, a purse that clinks, two corked vials of something red, and an oilskin hood that's still wet inside, though it has sat in a dry chest all day.",
+   "response": "35 gp, two Potions of Healing and Annet's Diving Hood. Under the cot in the jar room (Investigation DC 14): 40 gp and a grey Mere pearl worth 50 gp. The tally book and the thirty jars are the other prizes: see The Undertow's cellar in the wiki.",
+   "rules": "Lock: thieves' tools DC 13, or Annet's key. Needle: Investigation DC 13 to spot; DC 11 Constitution save or 1d10 Poison and Poisoned for 1 hour. **Annet's Diving Hood** (uncommon): a Cap of Water Breathing. While wearing it underwater, you can take a Magic action to make a bubble of air round your head and breathe normally; it lasts until you take the hood off or end it with another Magic action.",
+   "consequence": "Someone can breathe underwater, which matters under the Mere.",
+   "later": "Session 2: down to the bell, the hood's wearer needs no Athletics checks for breath. See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, cap of water breathing, diving hood, sea-chest, potions, pearl, gold, reward",
+   "effects": []
+  },
+  {
+   "id": "s03-side-bond-house",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "Side dungeon: the Vennmark bond-house",
+   "scene": "Scene 5: What to do with the Heart",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Venn's polite note makes him interesting, and his cellar is where Pellmoor's memories wait to be shipped. If they sold him the Heart, it's there too.",
+   "tells": "They answer Venn's note, want the Heart back, follow Annet's tally book, or Mother Sallow asks about a bottle with her Davin's name on it.",
+   "readAloud": "Every wall of Venn's counting-house is covered with clocks. Brass, walnut, enamel, a hundred faces, every hand moving, and not one of them makes a sound. Behind the counter, a door stands half open on a stair going down.",
+   "response": "Run it from The Vennmark bond-house in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms: the silent-clock counting-house, a stair with a speaking-tube and a cask trap, two hundred bottled memories (one of them Davin Sallow's), a cabinet of curiosities with a Mimic in it, and a strongroom with a needle lock. About 45 minutes. By day Venn shows them round and makes his offer; by night a watchman, his mastiff and two hired Toughs keep it. Venn never calls the Hushmen.",
+   "rules": "Speaking-tube: Perception DC 12; DC 13 group Stealth to go down unheard. Cask: Perception DC 13; DC 13 Dexterity save or 2d6 Bludgeoning and Prone. Mimic: Investigation DC 15 to see it's alive. Strongroom needle: Investigation DC 15; DC 13 Constitution save or 2d10 Poison and Poisoned. Fight: a Mimic, two Toughs, a Guard and a Mastiff, between Low and Moderate for four level 3 characters.",
+   "consequence": "They know what Pellmoor sells to the world, and who buys it. They may have the Heart back, and Mother Sallow may have her Davin.",
+   "later": "Morning: Venn sends a note, \"A pity. I would have paid.\" Session 4: if they took back a Heart he'd paid for, his Toughs watched the Old Shore until they left.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, venn, bond-house, warehouse, memories, bottles, mimic, strongroom, heart, mother sallow, davin",
+   "effects": []
+  },
+  {
+   "id": "s03-treasure-plum-bag",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "Treasure: Venn's strongroom",
+   "scene": "Scene 5: What to do with the Heart",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Venn buys the best of everything and keeps it under a clock.",
+   "tells": "They open the strongroom, or Venn gives up its key.",
+   "readAloud": "The iron door swings open on a room no bigger than a wardrobe. On the shelves: a purse of Amnian coin, two small bottles, a ledger, and a bag of plum velvet, embroidered with a clock, that's far too light for what's inside it.",
+   "response": "150 gp, a Potion of Climbing, a Potion of Healing, the shipping book and Venn's Plum Bag. The Heart, if they sold it, in a velvet case. On the lowest rack outside: Davin Sallow's bottle (Investigation DC 12). Taken to Mother Sallow, she watches it once, alone; afterwards she trusts them completely, and each character who brought it gains Heroic Inspiration.",
+   "rules": "**Venn's Plum Bag** (uncommon): a Bag of Holding. It holds up to 500 pounds, not exceeding 64 cubic feet, and always weighs 5 pounds. Retrieving an item from it is a Utilize action.",
+   "consequence": "They carry more, and Mother Sallow is theirs.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, bag of holding, plum bag, strongroom, potions, gold, davin sallow, reward",
+   "effects": []
   }
  ],
  "briefs": [
@@ -2293,7 +2365,8 @@
    ],
    "encounters": [
     "enc-s01-quill-patrol",
-    "enc-s01-night-raid"
+    "enc-s01-night-raid",
+    "enc-s01-undertow"
    ],
    "rules": [
     "Influence",
@@ -2354,7 +2427,8 @@
    ],
    "encounters": [
     "enc-s03-gilded-heron",
-    "enc-s03-belfry-guard"
+    "enc-s03-belfry-guard",
+    "enc-s03-bond-house"
    ],
    "rules": [
     "Study",
@@ -2548,6 +2622,62 @@
    "tactics": "They keep the cart between themselves and the party, grapple anyone who reaches the tailboard, and shout for the next checkpoint. They do not drive the cart on while it is under attack.",
    "exit": "The Sergeant yields the cart when two Hushmen drop or the ferry-folk driver unhitches. A downed PC is bound and left at the ford.",
    "scale": "Written for four level-3 characters (Low). Three PCs: drop one Hushman. Five PCs: add a Hushman. Ila stays in the cart."
+  },
+  {
+   "id": "enc-s01-undertow",
+   "sessionId": "sb-ce895de5912506a9",
+   "title": "The Undertow's cellar",
+   "creatures": [
+    {
+     "name": "Brine Annet",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Undertow thief",
+     "base": "Bandit",
+     "cr": "1/8",
+     "count": 4
+    }
+   ],
+   "tactics": "Annet shoots from behind her hatch-desk while two thieves hold the doorway and two come round through the jar room. They fight dirty: a thief who isn't attacked that round throws a lamp to make a patch of burning oil (5 feet, 1d6 Fire to anyone who ends a turn in it). Annet targets whoever is carrying the tally book.",
+   "exit": "The thieves give up when two of them drop. At Bloodied Annet offers the tally book, the jars and the name of Quill's go-between for a way out; refused, she drops through the floor hatch into the flooded stair and swims for the old dock.",
+   "scale": "A Low encounter for four level 3 characters. Three characters: two thieves. Five: six thieves and 15 more HP for Annet. If they came with the password, the thieves aren't armed in the first round."
+  },
+  {
+   "id": "enc-s03-bond-house",
+   "sessionId": "sb-4296a01bb560bd61",
+   "title": "The Vennmark bond-house",
+   "creatures": [
+    {
+     "name": "The sea-chest",
+     "base": "Mimic",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hired Tough",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 2
+    },
+    {
+     "name": "Watchman Dunstan",
+     "base": "Guard",
+     "cr": "1/8",
+     "count": 1
+    },
+    {
+     "name": "Pudding, the mastiff",
+     "base": "Mastiff",
+     "cr": "1/8",
+     "count": 1
+    }
+   ],
+   "tactics": "The Mimic waits until someone touches it or stands next to it, then grabs. Dunstan comes down the stair with a lantern and Pudding, the two Toughs behind him; they try to pin the party between the stair and the cabinet so the Mimic can do the work. Pudding goes for whoever smells of ham.",
+   "exit": "The Toughs leave when one drops; they're paid for the night, not for dying. Dunstan surrenders when alone. Pudding can be bought with food. The Mimic doesn't leave the cabinet and stops for a ham.",
+   "scale": "Between Low and Moderate for four level 3 characters. Three characters: one Tough. Five: three Toughs. By day, no fight: Venn shows them round."
   }
  ]
 }

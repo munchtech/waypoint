@@ -4609,6 +4609,278 @@
    "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
    "keywords": "glass, vision, lost thing, personal, backstory, session zero, beat, growth, lead, frozen",
    "effects": []
+  },
+  {
+   "id": "s05-side-inkwell",
+   "sessionId": "sb-879a0d8936c67231",
+   "title": "Side dungeon: the Inkwell",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Every closed city has someone who forges the way out. In Hallowmere he also sells his customers to the Court.",
+   "tells": "They ask about papers, a family asks why their cousins were arrested with perfect writs, or they start planning how to leave Hallowmere.",
+   "readAloud": "A narrow shop on Vellum Lane that smells of glue and new leather. Prayer-books stand in rows, every one bound in white. An apprentice with ink to his elbows is pretending to sweep, and watching the bookcase behind you.",
+   "response": "Run it from The Inkwell in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms under a bindery: the shop with a secret bookcase door, a press-room with a slick black floor, a passage with a grille trap, Ashdown's study with a hidden key in a false inkwell, and a culvert out. About 45 minutes, any night in Hallowmere. Tobin the apprentice hates his master and will help for 10 gp or a kind word.",
+   "rules": "Bookcase: Investigation DC 13. Black floor: Perception DC 12 to see the dry path; off it, Difficult Terrain and DC 12 Acrobatics to Dash. Grille: Investigation DC 14 to see which handle; AC 19, 30 HP, DC 17 Athletics to lift. Inkwell: Investigation DC 15. Fight: Quen Ashdown (Spy), three Toughs and a Hushman, a Low encounter for four level 3 characters.",
+   "consequence": "Forty families' names are in their hands, and with Ashdown's seal they can make real-looking gate writs.",
+   "later": "Session 9: a sealed writ passes one checkpoint without a roll, or gives Advantage on a check to bluff the Gate Sweep. Session 7: Bet, Aurelie or Rook has heard who burned the blue ledger.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, inkwell, forger, forgery, bindery, papers, writ, ashdown, informant, hallowmere",
+   "effects": []
+  },
+  {
+   "id": "s05-treasure-grey-hat",
+   "sessionId": "sb-879a0d8936c67231",
+   "title": "Treasure: Ashdown's floor safe",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "A man who has worn a hundred faces keeps the one that works.",
+   "tells": "They find the key in the closed-eye inkwell, or make Ashdown open the safe.",
+   "readAloud": "Under the rug, a square of iron set into the floor. Inside: a purse, a rolled scroll tied with grey ribbon, and a soft grey felt hat that, when you look at it straight, seems to be a slightly different hat.",
+   "response": "60 gp, a Spell Scroll of Disguise Self and Ashdown's Grey Hat. On the desk: the blue ledger and Ashdown's seal, which turns the blank writs in the press-room into convincing ones.",
+   "rules": "**Ashdown's Grey Hat** (uncommon, requires attunement): a Hat of Disguise. While wearing it, you can cast Disguise Self; the spell ends if the hat is removed.",
+   "consequence": "One character can be anyone, which in Hallowmere is worth more than gold.",
+   "later": "Session 9: the hat or a sealed writ is an answer to getting out. See Side dungeons in the wiki.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, hat of disguise, grey hat, floor safe, scroll, disguise self, reward",
+   "effects": []
+  },
+  {
+   "id": "s06-side-undercroft",
+   "sessionId": "sb-173cd869f38cc637",
+   "title": "Side dungeon: the Dawn undercroft",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Rook needs proof, and Haldric has to keep the Court's silver somewhere. He keeps it with the dead.",
+   "tells": "Rook asks for proof, Wren says where she took Haldric's messages, or a squire mentions Ser Bran's nightly trips to the crypt.",
+   "readAloud": "The chapel faces east. The altar is a single block of white stone carved with a rising sun, and a squire is asleep in the front pew with his sword across his knees. The sun on the altar has been turned so often its edges are worn smooth.",
+   "response": "Run it from The Dawn undercroft in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms under the chapterhouse: the chapel and its turning sun, a hall of oath-stones that thrusts spears at anyone who treads on the wrong word, the knights' tombs with Morrow's Edge on a trapped rest, the reliquary where Ser Bran guards Haldric's silver, and a bone stair to the river. About 45 minutes. Ser Bran would rather talk than fight, and yields at Bloodied.",
+   "rules": "Altar: Religion or History DC 12. Oath-stones: walk on Dawn, Truth, Mercy and Shield; any other stone, DC 13 Dexterity save or 2d8 Piercing. Sword-rest: Investigation DC 13; DC 12 Sleight of Hand, or DC 12 Dexterity save and 1d10 Bludgeoning. Ser Bran: Influence DC 15 (Advantage with the Ledger or Ansel's copy) to stand aside. Fight: a Knight and two Guards, between Low and Moderate for four level 3 characters.",
+   "consequence": "They have the Court's silver and the Chancellor's letter as evidence for the duel, and perhaps Ser Bran as a witness.",
+   "later": "Scene 2: the letter, the silver and Ser Bran are evidence for Rook. Session 9: if Haldric won anyway, he knows exactly who robbed him.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, undercroft, crypt, tomb, dawn order, haldric, rook, ser bran, silver, evidence, duel, oath-stones",
+   "effects": []
+  },
+  {
+   "id": "s06-treasure-morrows-edge",
+   "sessionId": "sb-173cd869f38cc637",
+   "title": "Treasure: Morrow's Edge",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The Order buried its best knight with his sword, and he'd rather it was used.",
+   "tells": "They lift the sword from Ser Aldous Morrow's tomb, or search the tombs.",
+   "readAloud": "The sword comes up off the stone knight's chest without a sound. It's lighter than it looks, and the blade is etched along its length with a line of tiny rising suns, each one a little higher than the last.",
+   "response": "Morrow's Edge, and two Potions of Healing in a dead knight's satchel by the next tomb. In the reliquary: 300 gp in Court silver and the Chancellor's letter. Rook, told later: \"Morrow would rather it fought Haldric than rusted. Keep it.\"",
+   "rules": "**Morrow's Edge** (uncommon): a +1 Longsword, +1 to attack and damage rolls. Swap it for whatever +1 weapon your party will use. Spending the Court silver in Hallowmere gets noticed.",
+   "consequence": "A character carries a Dawn Order knight's sword, and every Dawn Order knight who sees it knows whose it was.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, +1 longsword, morrow's edge, sword, tomb, silver, potions, reward",
+   "effects": []
+  },
+  {
+   "id": "s07-side-cistern",
+   "sessionId": "sb-159e9351d101d536",
+   "title": "Side dungeon: the Lamplighters' cistern",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Where there are Blanks there's someone selling them. Clearing the gang also gives the Bray family a roof for the night.",
+   "tells": "A man with a lantern on a pole gathers Blanks from the crowd, Bet mentions people vanishing \"with the lamp-men\", or they're looking for somewhere to hide the family.",
+   "readAloud": "A Ninefold bathhouse, boarded up for fifty years. A lantern burns on its roof, hooded on three sides, and someone behind it is watching the street. A little line of Blanks shuffles toward the side door, holding hands, and the door opens for them.",
+   "response": "Run it from The Lamplighters' cistern in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Six rooms: a lookout on the roof, a changing hall of sleeping Blanks who believe in their captors, a plunge pool with a false floor, the furnace room with the ledger and a strongbox in the ash, Corvin Hale's steam vault with scalding pipes, and a drain stair under the Hall of Tithes' steps. About an hour. Turning the Blanks takes the fight out of the gang.",
+   "rules": "Lookout: Stealth against passive Perception 15. Blanks: Influence DC 13, automatic with the ledger. False floor: Perception DC 14; DC 13 Dexterity save or fall 15 feet (1d6 Bludgeoning + 1d6 Slashing). Ash pit: Investigation DC 14. Steam: on initiative 20, a 15-foot line, DC 12 Dexterity save, 2d6 Fire. Fight: Corvin Hale (Tough Boss), three Bandits and a Scout, between Low and Moderate for four level 4 characters.",
+   "consequence": "Twelve Blanks are free, the ledger proves the Tithe-house buys people, and the cistern is a hiding place the Hushmen walk over every day.",
+   "later": "Scene 3: the cistern is a roof for the night as safe as Bet's cellar. Session 9: the Blanks they freed can be the friends who get them out.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, lamplighters, cistern, bathhouse, blanks, gang, corvin hale, hiding place, roof for the night, steam",
+   "effects": []
+  },
+  {
+   "id": "s07-treasure-lamplighter-cloak",
+   "sessionId": "sb-159e9351d101d536",
+   "title": "Treasure: the Lamplighters' ash pit",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Hale takes everything the Blanks had, and buries the best of it where nobody will look.",
+   "tells": "They search the furnace room, or a Blank tells them Hale \"plants things in the ashes\".",
+   "readAloud": "Under the raked ash, a strongbox, warm as a loaf. Inside: a purse, a bottle that glows faintly red, and a good wool cloak with a silver clasp. Sewn inside the collar, in faded thread, is a name nobody here remembers.",
+   "response": "90 gp, a Potion of Greater Healing and the Lamplighter's Cloak; 25 gp more in the cash box. The name in the collar might belong to one of the twelve Blanks: if they ask, one of them touches it and cries without knowing why.",
+   "rules": "**The Lamplighter's Cloak** (uncommon, requires attunement): a Cloak of Protection, +1 to Armor Class and saving throws.",
+   "consequence": "A character is a little harder to hurt, and carries someone's forgotten name.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, cloak of protection, cloak, ash pit, strongbox, potion, gold, reward",
+   "effects": []
+  },
+  {
+   "id": "s09-side-kilns",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "Side dungeon: the kilns at Kell's Crossing",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The first families out of Hallowmere are being robbed by people wearing the Court's badge, and Kell's Crossing can't stop them.",
+   "tells": "A farmer at the Crossing mentions the Grey Coats, they meet a family with nothing left, or something of theirs goes missing in the night.",
+   "readAloud": "Six brick kilns stand in a ring on the grey plain like a giant's beehives. Five are cold. Smoke rises from the sixth, and from a gap in its dome somebody is watching the road you came in on.",
+   "response": "Run it from The kilns at Kell's Crossing in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Six areas: the kiln-yard with a lookout on the dome, a cold kiln with an ash-pit trap, crawling flue tunnels with a bone-rattle alarm, the store kiln full of stolen things and a chained cooper, Morra Senn's fire kiln with its open furnace, and her chimney cache. About 45 minutes. If tonight is full, run it at the start of Session 10.",
+   "rules": "Ash muffles walking (Advantage on Stealth); running raises a visible cloud. Ash pit: Perception DC 13; DC 13 Dexterity save or fall in, 1d6, Blinded and Poisoned. Flues: Difficult Terrain, no Dash; DC 12 Survival to find the way. Bone-rattle: Perception DC 13. Kiln mouth: shoved in, 2d6 Fire. Chimney cache: Perception DC 15. Fight: Morra Senn (Warrior Veteran), four Bandits and two Scouts, a Low encounter for four level 4 characters.",
+   "consequence": "The families get their things back, Kell's Crossing has reason to love them, and the Court's badge means a little less on this road.",
+   "later": "Session 10: if Senn got away, Isolde knows which way they went. Kell's Crossing feeds the party for as long as they stay.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, kilns, kell's crossing, grey coats, morra senn, bandits, bailiffs, refugees, nessa harrow, ash",
+   "effects": []
+  },
+  {
+   "id": "s09-treasure-senns-boots",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "Treasure: Senn's chimney cache",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Senn keeps what's worth most where the smoke hides it.",
+   "tells": "They search the fire kiln, or Aldo Penn tells them about the odd brick.",
+   "readAloud": "The odd brick slides out, black with soot. Behind it is a hollow in the chimney, and in the hollow a purse, a folded list, and a pair of grey boots with springy soles, far too fine for a bailiff.",
+   "response": "120 gp, the list of everyone the Grey Coats robbed, and Senn's Running Boots. Two Potions of Healing on the cookpot shelf. Everything in the store kiln goes back to the families.",
+   "rules": "**Senn's Running Boots** (uncommon, requires attunement): Boots of Striding and Springing. Your Speed becomes 30 feet if it's lower and isn't reduced by encumbrance or armor, and you can jump three times the normal distance.",
+   "consequence": "Someone runs faster, which matters on the North Road.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, boots of striding and springing, boots, chimney, cache, gold, potions, reward",
+   "effects": []
+  },
+  {
+   "id": "s10-side-icehouse",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Side dungeon: the reeve's icehouse",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The glass froze everyone where they stood, including the criminals. Five wreckers are still in the cellar where they were dividing their last haul.",
+   "tells": "Yara warns them off the reeve's house, they see wolf prints going into a cellar, or Corran Vell asks about the wreckers.",
+   "readAloud": "The house is glass to the eaves. Through the window you can see a table laid for supper four hundred years ago: bread, a jug, a candle whose flame has frozen into a little yellow tear. Beside the house, steps go down into the ground, and from below, very faint, comes a sound like coins being counted.",
+   "response": "Run it from The reeve's icehouse in the wiki (every room keyed, with what to say, the traps and the treasure). Side dungeons in the wiki lists them all. Five rooms: the reeve's frozen house, an iced stair, an ice-cellar with two old wreckers' traps and four frost-motes, the counting room where five Stilled wreckers sit frozen mid-argument, and their hoard under the table. About 45 minutes. Warmth wakes the wreckers gently and they can be talked round; fire, broken glass or a fight next door wakes them angry.",
+   "rules": "Stair: DC 12 Acrobatics or slide down (1d6). Spring-crossbow: Perception DC 14; +5 to hit, 1d10 + 2 Piercing. Gin-trap: Perception DC 13; DC 13 Dexterity save or 2d6 Piercing and Restrained. Stilled: Influence DC 15 calms one. Hoard: Investigation DC 14. Fight: three Stilled and four Ice Mephits, a little under Low for four level 5 characters; two Glass-Wolves join if it's loud.",
+   "consequence": "They have the wreckers' haul, a ring that keeps out the cold, and a seal that belongs to Corran Vell.",
+   "later": "Session 11: wreckers woken roughly stand among the Stilled in the ambush, and remember the party. Wreckers woken gently go to Yara's camp.",
+   "fallback": "Only a possibility. If they never go, nothing in the story is lost.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, icehouse, reeve, wreckers, stilled, frozen, ice-cellar, corran vell, ketter mawl, glassreach",
+   "effects": []
+  },
+  {
+   "id": "s10-treasure-merchants-ring",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "Treasure: the wreckers' hoard",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The wreckers' last haul has waited four hundred years for someone to count it.",
+   "tells": "They find the trapdoor under the barrel-head, or Ketter tells them.",
+   "readAloud": "The ice comes away from the hoard in a single cracked lid. Inside, packed in frozen sailcloth: old square coins, two stoppered bottles, a brass seal with a ship under three stars, and a plain gold ring with a drop of water on it that hasn't frozen.",
+   "response": "220 gp in old coin (double to a collector in Pellmoor), two Potions of Healing, the merchant's seal and the Merchant's Ring. The seal matches the badge on Corran Vell's sea-coat: given to him, it's the first thing in four hundred years that's been his, and each character who gives it gains Heroic Inspiration.",
+   "rules": "**The Merchant's Ring** (uncommon, requires attunement): a Ring of Warmth. You have Resistance to Cold damage, and you and your gear are unharmed by temperatures as low as −50 degrees Fahrenheit. In Glassreach its wearer succeeds on every Extreme Cold save.",
+   "consequence": "One character stops shivering, and Corran Vell has something of his own.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, ring of warmth, ring, hoard, seal, corran vell, old coin, gold, potions, reward",
+   "effects": []
+  },
+  {
+   "id": "s14-inner-stair",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "The Sexton's door: the dungeon inside the Spire",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Imber had the stair cut, and he never told anyone there were two of them. The second climbs inside the ice. It's the session's big dungeon and the main way up.",
+   "tells": "They reach the foot of the Spire. The door is in plain sight on the north face, and Imber, Yara's map or Maren point them to it.",
+   "readAloud": "Behind the sleeping wolves, at the very foot of the north face, the ice is thinner. Under it, plain as a face under water, is a bronze door twice the height of a man, with the nine-bell sign of the Ninefold Church cast in its centre.",
+   "response": "This is the way up. Run the climb from The Frost Spire, area by area in the wiki, in place of Scene 2's three checks. Ten areas inside the ice: the door, a vestibule of frozen petitions over thin ice, the masons' gallery and its hoist, the echo stair, the lamp-room window onto the red-ribbon man, the choir loft, the icicle gallery, the frozen bell-rope, the Bell-Warden in the ringing room, and the last stair to the crown. The short way (1, 2, 5, 8, 9, 10) takes about 45 minutes; the long way about 1 hour 15. Break in the lamp-room. The window at 60 feet and a crack at 100 feet join the inner and outer stairs.",
+   "rules": "Finding it: no roll. Opening it: ten minutes of chipping (DC 14 group Stealth or the wolves wake) or fire, Thunder (wakes the pack), or hum the Spire's note into it (Performance DC 13). Extreme Cold, the Stilled rules and the pack's hearing all still apply. Thin floor: Perception DC 12; DC 13 Dexterity save or fall into freezing water.",
+   "consequence": "They climb inside the Spire: no falls from the open face, more rooms, up to three fights, and Boots of the Winterlands.",
+   "later": "Session 15: whatever they woke inside wakes with the thaw. Tilsa the mason goes to Yara's camp. If they lit the lamp, Isolde knows which way they came down.",
+   "fallback": "If they'd rather climb the open face, run Scene 2 as written. The lamp-room window at 60 feet still lets them into the dungeon halfway up.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, frost spire, inner stair, sexton's door, bronze door, climb, ice, masons, petitions, imber",
+   "effects": []
+  },
+  {
+   "id": "s14-echo-stair",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "They make noise on the echo stair",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "The inner stair carries sound like a speaking-tube, straight down and out of the Sexton's door.",
+   "tells": "Someone shouts, casts a spell aloud, falls, or fights between 40 and 60 feet, or the group fails the DC 12 Stealth check.",
+   "readAloud": "Your voice comes back from below, once, twice, fainter each time. Then, from far beneath, something answers: a howl, and the sound of glass claws on ice.",
+   "response": "The Glass-Wolves wake and come in through the Sexton's door 6 rounds later, one or two abreast up the spiral. They can't go past 60 feet and stop at the lamp-room door, howling. Run The echo stair in the Combat tab. As on the outer stair, they break off after three shatter.",
+   "rules": "Silence stops the echo. Glass-Wolves burst when they drop (DC 12 Dexterity save, 1d6 Slashing within 5 feet) and are Vulnerable to Thunder; Thunder in the icicle gallery brings down the ceiling on anything chasing them.",
+   "consequence": "The pack is awake, and the foot of the Spire won't be quiet on the way down.",
+   "later": "Session 15: the wolves that survived are waiting at the foot when the thaw starts.",
+   "fallback": "",
+   "keywords": "echo stair, echo, noise, glass-wolves, wolves, pack, frost spire, fight, combat",
+   "effects": []
+  },
+  {
+   "id": "s14-choir-loft",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "They pass the frozen choir",
+   "style": "Roleplay",
+   "likelihood": "Likely",
+   "why": "The Sexton's choir was singing when the winter came, and four of them are close to waking.",
+   "tells": "They take the long way up from the lamp-room.",
+   "readAloud": "The stair opens into a tall gallery with tiers of seats cut into the ice, and on the seats, the choir: thirty people in white robes, mouths open, frozen in the middle of a hymn. Small cold lights drift among them like sparks that have forgotten to fall.",
+   "response": "Most of the choir are frozen deep. Four in the front row wake Stilled and frightened at noise within 10 feet or breaking glass. Singing the hymn they're stuck in calms all four at once; they sit down and close their mouths, and one of them whispers \"thank you\". The four frost-motes start a fight if anyone lights a torch: The choir loft in the Combat tab.",
+   "rules": "Influence DC 15 as an action calms one Stilled (Advantage for reading its ribbon); Performance DC 13 to sing the hymn (Advantage if someone heard Imber hum). Frost-motes are Ice Mephits.",
+   "consequence": "Calmed, the choir is quiet when Hieme rings; woken in a fight, they remember who hurt them.",
+   "later": "Session 15: the choir wakes in the thaw, and sings at whoever helped them.",
+   "fallback": "",
+   "keywords": "choir, choir loft, hymn, stilled, frost-motes, ice mephits, frost spire, sing",
+   "effects": []
+  },
+  {
+   "id": "s14-bell-warden",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "The Bell-Warden bars the last stair",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Imber had a guardian made to keep the crown. It still waits for its master's word.",
+   "tells": "They reach the ringing room at 140 feet, by the stair or the rope.",
+   "readAloud": "The giant of ice and bronze turns its head toward you with a sound like a frozen lake cracking. The blue light in its chest brightens. It holds out one hand, palm up, and waits.",
+   "response": "If a character holds up Hieme's Heart, or says Imber's words from the vestibule, \"Let me go on\", the Warden lowers its hand and steps aside, and the four Hollow Wardens with it. Otherwise it attacks anyone who goes for the last stair: The Bell-Warden in the Combat tab. Past it, sixty feet of open stair to the crown and Scene 3.",
+   "rules": "The Bell-Warden is a Flesh Golem with Cold in place of Lightning: Cold damage heals it. Hollow Wardens are Animated Armor. A Low encounter for four level 6 characters, harder in the cold.",
+   "consequence": "Past the Warden, the crown. If it fell, its blue light goes out, and something in the Spire's heart goes quiet.",
+   "later": "Session 15: a Warden that stood aside is still standing there when the thaw comes, waiting for a new master.",
+   "fallback": "",
+   "keywords": "bell-warden, warden, golem, guardian, ringing room, hollow wardens, armor, frost spire, boss, heart",
+   "effects": []
+  },
+  {
+   "id": "s14-lamp-room",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "They light the lamp in the lamp-room",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Halfway up the Spire, a warm room is worth a great deal. So is not being seen.",
+   "tells": "They thaw the great lamp's oil at 60 feet.",
+   "readAloud": "The oil catches with a soft cough, and warm gold light fills the little room, then the ice around it, then, as far as you can tell, the whole Spire. For a moment you can see the forest from inside a lantern.",
+   "response": "The room is warm. A Short Rest here needs no cold save, and nobody makes the hourly cold save while they stay. But the light shines through the ice for miles, and Isolde sees it.",
+   "rules": "Thawing the oil: any fire, ten minutes. Blowing it out takes an action; the warmth lasts an hour.",
+   "consequence": "A warm rest halfway up, at the price of being seen.",
+   "later": "Session 15: Isolde knows which way they'll come down.",
+   "fallback": "",
+   "keywords": "lamp-room, lamp, rest, warm, short rest, isolde, frost spire, window",
+   "effects": []
+  },
+  {
+   "id": "s14-treasure-masons",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "Treasure: the masons' chest",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The masons who cut Imber's secret stair left in a hurry, or didn't leave at all.",
+   "tells": "They search the masons' gallery, or Tilsa the mason tells them where the foreman kept his things.",
+   "readAloud": "The chest comes open with a crack like a bone. Inside, wrapped in a mason's apron: a pair of fur-lined boots, a purse of square old coins, and a stoppered flask that's warm to the touch.",
+   "response": "Boots of the Winterlands, 80 gp in old coin and a Potion of Fire Breath.",
+   "rules": "Frozen shut: fire for ten minutes, or a DC 14 Strength check. **Boots of the Winterlands** (uncommon, requires attunement): Resistance to Cold damage, you ignore Difficult Terrain created by ice or snow, and you can tolerate temperatures as low as −50 degrees Fahrenheit without extra protection. **Potion of Fire Breath** (uncommon): for an hour, a Bonus Action exhales fire at a target within 30 feet (DC 13 Dexterity save, 4d6 Fire, half on a success), up to three times.",
+   "consequence": "One character walks the glass as if it were a summer road.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, boots of the winterlands, boots, chest, masons, potion of fire breath, gold, reward, frost spire",
+   "effects": []
   }
  ],
  "briefs": [
@@ -4659,7 +4931,8 @@
    ],
    "encounters": [
     "enc-s05-vault-alarm",
-    "enc-s05-librarian"
+    "enc-s05-librarian",
+    "enc-s05-inkwell"
    ],
    "rules": [
     "Study",
@@ -4689,7 +4962,8 @@
    ],
    "encounters": [
     "enc-s06-tessa-guards",
-    "enc-s06-dawn-steps"
+    "enc-s06-dawn-steps",
+    "enc-s06-undercroft"
    ],
    "rules": [
     "Influence",
@@ -4715,7 +4989,8 @@
     "The default Hushmen Line is two Sergeants and eight Hushmen for four level-4 characters; use Gaunt and six if the table is happy to play it lighter"
    ],
    "encounters": [
-    "enc-s07-hushmen-line"
+    "enc-s07-hushmen-line",
+    "enc-s07-cistern"
    ],
    "rules": [
     "Influence",
@@ -4768,7 +5043,8 @@
    ],
    "encounters": [
     "enc-s09-chain-room",
-    "enc-s09-gate-sweep"
+    "enc-s09-gate-sweep",
+    "enc-s09-kilns"
    ],
    "rules": [
     "Hide",
@@ -4793,7 +5069,8 @@
     "Every Stilled has been frozen since 2 SS, four hundred and ten years. Only the Sexton's winter-moment is 32 SS, three hundred and eighty"
    ],
    "encounters": [
-    "enc-s10-off-the-path"
+    "enc-s10-off-the-path",
+    "enc-s10-icehouse"
    ],
    "rules": [
     "Extreme Cold",
@@ -4894,7 +5171,10 @@
     "Level 6 if not already"
    ],
    "encounters": [
-    "enc-s14-spire-guards"
+    "enc-s14-spire-guards",
+    "enc-s14-echo-pack",
+    "enc-s14-choir-loft",
+    "enc-s14-bell-warden"
    ],
    "rules": [
     "Extreme Cold",
@@ -5370,6 +5650,198 @@
      "min": 6
     }
    ]
+  },
+  {
+   "id": "enc-s05-inkwell",
+   "sessionId": "sb-879a0d8936c67231",
+   "title": "The Inkwell",
+   "creatures": [
+    {
+     "name": "Quen Ashdown",
+     "base": "Spy",
+     "cr": "1",
+     "count": 1
+    },
+    {
+     "name": "Forger",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 3
+    },
+    {
+     "name": "Hushman Garrick, off duty",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 1
+    }
+   ],
+   "tactics": "The forgers fight on the dry path in the press-room and try to knock intruders onto the black floor. Garrick blocks the study door and shouts for the watch, which never comes. Ashdown stays out of reach, uses his Cunning Action to hide among the drying writs, and goes for the culvert.",
+   "exit": "Ashdown runs for the culvert the moment it turns. The forgers give up when he goes. Garrick, alone, says he was never here and leaves, if they let him.",
+   "scale": "A Low encounter for four level 3 characters. Three characters: two forgers. Five: four forgers and a second Hushman. If Tobin warned them about the floor, the party knows the dry path."
+  },
+  {
+   "id": "enc-s06-undercroft",
+   "sessionId": "sb-173cd869f38cc637",
+   "title": "The Dawn undercroft",
+   "creatures": [
+    {
+     "name": "Ser Bran Hollis",
+     "base": "Knight",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Dawn Order guard",
+     "base": "Guard",
+     "cr": "1/8",
+     "count": 2
+    }
+   ],
+   "tactics": "Ser Bran stands in front of the chests and lets them come to him; the guards hold the door. He uses Parry, fights fair and won't strike anyone who's down.",
+   "exit": "He yields when Bloodied, and the guards with him. Talked round (Influence DC 15, Advantage with the Ledger or Ansel's copy), he stands aside before it starts.",
+   "scale": "Between Low and Moderate for four level 3 characters. Three characters: one guard. Five: a second knight, Ser Ivo, who follows Bran's lead."
+  },
+  {
+   "id": "enc-s07-cistern",
+   "sessionId": "sb-159e9351d101d536",
+   "title": "The Lamplighters' cistern",
+   "creatures": [
+    {
+     "name": "Corvin Hale",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 1
+    },
+    {
+     "name": "Lamplighter",
+     "base": "Bandit",
+     "cr": "1/8",
+     "count": 3
+    },
+    {
+     "name": "Tamsin, the lookout",
+     "base": "Scout",
+     "cr": "1/2",
+     "count": 1
+    }
+   ],
+   "tactics": "Hale talks first, then fights from the far side of the steam. The Lamplighters open the valves (a jet each round on initiative 20) and try to drive the party into the line. Tamsin shoots from the doorway.",
+   "exit": "Hale gives up if the Blanks turn on him or when he's Bloodied and alone. The Lamplighters run up the drain stair when Hale falls.",
+   "scale": "Between Low and Moderate for four level 4 characters. Three characters: two Lamplighters. Five: five Lamplighters. Shutting the master valve ends the steam."
+  },
+  {
+   "id": "enc-s09-kilns",
+   "sessionId": "sb-3b8d18ebd647c28a",
+   "title": "The Grey Coats' kilns",
+   "creatures": [
+    {
+     "name": "Morra Senn",
+     "base": "Warrior Veteran",
+     "cr": "3",
+     "count": 1
+    },
+    {
+     "name": "Grey Coat",
+     "base": "Bandit",
+     "cr": "1/8",
+     "count": 4
+    },
+    {
+     "name": "Grey Coat lookout",
+     "base": "Scout",
+     "cr": "1/2",
+     "count": 2
+    }
+   ],
+   "tactics": "One lookout shoots from the dome, the other from the flue mouths. The Grey Coats come out of the flues behind the party. Senn holds the kiln mouth and tries to Shove someone into the coals.",
+   "exit": "The Grey Coats run when Senn is Bloodied. Senn runs if they show her the Court has no hold on them; otherwise she yields at a few HP, badge in hand.",
+   "scale": "A Low encounter for four level 4 characters. Three characters: one lookout. Five, or at level 5: six Grey Coats and a third lookout."
+  },
+  {
+   "id": "enc-s10-icehouse",
+   "sessionId": "sb-578cbd5020d97b1f",
+   "title": "The reeve's icehouse",
+   "creatures": [
+    {
+     "name": "Stilled wrecker",
+     "statblock": "sb_stilled",
+     "base": "Gargoyle",
+     "cr": "2",
+     "count": 3
+    },
+    {
+     "name": "Frost-mote",
+     "base": "Ice Mephit",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "The frost-motes go for anything warm and break glass on purpose. The three wreckers fight in the narrow aisles between the ice-blocks; a wrecker's hit means a DC 12 Strength save or be shoved into a block (Prone).",
+   "exit": "Influence DC 15 as an action calms a wrecker mid-fight. The frost-motes scatter when two burst. If the fight is loud, two Glass-Wolves arrive in round 4; they break off when one shatters.",
+   "scale": "A little under Low for four level 5 characters, Low with the wolves. Three characters: two wreckers. Five: four wreckers."
+  },
+  {
+   "id": "enc-s14-echo-pack",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "The echo stair",
+   "creatures": [
+    {
+     "name": "Glass-Wolf",
+     "statblock": "sb_glass_wolf",
+     "base": "Dire Wolf",
+     "cr": "1",
+     "count": 6
+    }
+   ],
+   "tactics": "They come up the spiral one or two abreast, so only two can reach the party at once. They go for whoever is lowest on the stair, and try to knock them down it (Prone, and the next wolf gets Advantage).",
+   "exit": "They can't pass 60 feet, and stop at the lamp-room door. They break off after three shatter.",
+   "scale": "Low for four level 6 characters at most, but on a stair. Three characters: four wolves. Five: eight."
+  },
+  {
+   "id": "enc-s14-choir-loft",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "The choir loft",
+   "creatures": [
+    {
+     "name": "Stilled chorister",
+     "statblock": "sb_stilled",
+     "base": "Gargoyle",
+     "cr": "2",
+     "count": 4
+    },
+    {
+     "name": "Frost-mote",
+     "base": "Ice Mephit",
+     "cr": "1/2",
+     "count": 4
+    }
+   ],
+   "tactics": "The frost-motes start it, breathing frost across the stair and shattering the glass near the front row. The choristers wake frightened and grab at anyone near; a hit means a DC 12 Strength save or be pulled into the tiers (Prone).",
+   "exit": "Singing the hymn (Performance DC 13) calms all four choristers at once; Influence DC 15 calms one. The frost-motes flee when two burst.",
+   "scale": "A little under Low for four level 6 characters. Three characters: three choristers. Five: six choristers."
+  },
+  {
+   "id": "enc-s14-bell-warden",
+   "sessionId": "sb-7b8acacf7aaa51b8",
+   "title": "The Bell-Warden",
+   "creatures": [
+    {
+     "name": "The Bell-Warden",
+     "base": "Flesh Golem",
+     "cr": "5",
+     "count": 1
+    },
+    {
+     "name": "Hollow Warden",
+     "base": "Animated Armor",
+     "cr": "1",
+     "count": 4
+    }
+   ],
+   "tactics": "The Hollow Wardens hold the foot of the last stair with their poles; the Bell-Warden walks straight at whoever is nearest the stair. Cold damage heals it. Fire makes it hesitate, as a Flesh Golem's aversion does.",
+   "exit": "It stands down at once for Hieme's Heart, or Imber's words, \"Let me go on\". It doesn't follow anyone down the stair.",
+   "scale": "Low for four level 6 characters, harder in the cold. Three characters: two Hollow Wardens. Five: six, and 30 more HP for the Warden."
   }
  ]
 }
