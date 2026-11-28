@@ -161,7 +161,7 @@ Read Ilam's box from the plan above, if the party is close enough to hear.
 2. **The line steps forward.** One pace. Then ask, "What do you do?"
 3. **A Blank asks for a promise.** "Will you help us?" If they say yes, they've promised.
 
-**Names in the crowd** (cross one off when you use it): Hob Fennick, old Mother Ware, Cass Tolley, Lem Ashby, a girl called Pip who doesn't know her last name, Nell Hooper.
+**Names in the crowd** (cross one off when you use it): Hob Fennick, old Mother Ware, Cass Tolley, Lem Ashby, a girl called Pip who doesn't know her last name, Della Hooper.
 
 ### End of session 7
 

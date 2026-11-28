@@ -3439,13 +3439,13 @@
      "name": "The tenth man, a Court agent",
      "statblock": "sb_court_agent",
      "base": "Spy",
-     "cr": "1",
+     "cr": "2",
      "count": 1
     }
    ],
    "tactics": "They're tired and hungry and fight like it: the deserters stay together round Holloway and back toward the rocks rather than chase. The Court agent is the dangerous one. He stays at the back, waits for a gap, and goes for whoever is doing the talking.",
    "exit": "Influence DC 13 (DC 10 with food, or if the party show their own trouble with the Court) stops it before or during the fight, and Holloway takes the chance gladly. The deserters throw down their swords when Holloway is Bloodied. The agent runs for his horse the moment he's found out (Insight DC 15 picks him out of the ten).",
-   "scale": "Well under Low for four level 8 characters: it's meant to be talked out of. Three characters: four deserters. Five: eight deserters and a third sergeant."
+   "scale": "Under Low for four level 8 characters (3,050 XP): it's meant to be talked out of. Three characters: four deserters. Five: eight deserters and a third sergeant."
   }
  ]
 }

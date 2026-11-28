@@ -306,7 +306,7 @@ Let each of them answer. It isn't a test. "That's all right," it says, to anythi
 - **Friends who stayed,** and where they're standing.
 
 **Rewards:**
-- **The bottom of the stairs.**
+- **The bottom of the stairs,** and [what the stairs kept](play:s25-treasure-what-the-stairs-kept).
 - **A face for Jonah,** if somebody read the step.
 - **A clear way out:** the casting-pit. They'll want it.
 - **Heroic Inspiration:** to everyone who wrote something on a card.

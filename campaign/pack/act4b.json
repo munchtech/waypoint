@@ -167,7 +167,7 @@
    "why": "Proactive parties strike first, on ground they choose.",
    "tells": "Players ask Ansel Quay or a scout for her route.",
    "readAloud": "From the ridge you can see the column coming: grey horses, grey gloves, and one rider in dove-grey at the centre.",
-   "response": "Ansel knows the routes Maudrin's Hushmen take from the palace to the Tor. A good ambush gives the party Surprise and a chosen battlefield; the vanguard (not Maudrin) is hit first. Run the Strike's lead column there instead, then Maudrin arrives at the Tor.",
+   "response": "Ansel knows the routes Maudrin's Hushmen take from the palace to the Tor (if he's dead, his route-book does). A good ambush gives the party Surprise and a chosen battlefield; the vanguard (not Maudrin) is hit first. Run the Strike's lead column there instead, then Maudrin arrives at the Tor.",
    "rules": "Surprise (2024): surprised creatures have Disadvantage on their Initiative rolls. Group Stealth: DC 14 against the column's Passive Perception.",
    "consequence": "The Strike happens on the party's terms.",
    "later": "S23 as normal, with terrain and surprise in the party's favour: Maudrin's remaining column is smaller, and she will not underestimate them again.",
@@ -280,7 +280,7 @@
    "response": "An Amulet of Proof against Detection and Location, three garnets (100 gp each) and two Potions of Greater Healing.",
    "rules": "**Amulet of Proof against Detection and Location** (uncommon, requires attunement): while you wear it, you can't be targeted by Divination spells or perceived through magical scrying sensors unless you allow it. **Potion of Greater Healing** (uncommon): regain 4d4 + 4 Hit Points.",
    "consequence": "One character the Court can't scry, all the way to the Tor.",
-   "later": "See Side dungeons in the wiki for the rest.",
+   "later": "Next treasure: the Court's trunks in Session 23. See Treasure in the wiki.",
    "fallback": "",
    "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, amulet, amulet of proof against detection and location, garnets, gems, potion of greater healing, mother seam, reward, quiet quarry",
    "effects": []
@@ -2007,6 +2007,23 @@
     }
    ],
    "effects": []
+  },
+  {
+   "id": "s23-treasure-court-trunks",
+   "sessionId": "sb-007cc9c6ed7fecff",
+   "title": "Treasure: the Court's lead-lined trunks",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Nine wagons and nobody guarding them. The Court carried its best things in lead, so nothing would hum on the road.",
+   "tells": "The Strike is over and they open the wagons.",
+   "readAloud": "The last trunk is heavier than the rest. Under the lead lid, wrapped in grey felt: a round shield of dull black stone, two bottles that glow faintly red, and a purse that has not been opened since Hallowmere.",
+   "response": "The trunk holds 1,200 gp, two Potions of Superior Healing and the Silent Shield, cut from the same stone as the Wardens, from the Quiet Quarry.",
+   "rules": "**The Silent Shield** (very rare, requires attunement): a Spellguard Shield. While you hold it, you have Advantage on saving throws against spells and other magical effects, and spell attacks have Disadvantage against you. It doesn't hum.",
+   "consequence": "One character has a Very Rare item. Act V adds three, about one for most of the party by level 11: see Treasure in the wiki.",
+   "later": "Next treasure: the bell-chest at the top of the Tor (Session 24), then what the stairs kept (Session 25).",
+   "fallback": "If they never reach the wagons, Ilam (or whoever held the south road) brings the shield to them before Session 24.",
+   "keywords": "treasure, loot, magic item, shield, spellguard shield, very rare, wagons, trunks, gold, potions, reward, strike",
+   "effects": []
   }
  ],
  "briefs": [
@@ -2014,7 +2031,7 @@
    "sessionId": "sb-742e25b3e3af8fbf",
    "pressure": "Maudrin leaves Hallowmere within a day of the second Act IV ringing, with Hushmen and Dawn Order knights, the Key in a silence-stone case on her chain. She goes now because each bell rung shifts the world's key: the Key's hum from the palace no longer holds the lullaby, and she must carry it to the Tor. If she is dead, Tristan Vesk marches. If the party holds the Key, she marches to retake it. Session 22 begins at dusk.",
    "endOn": "Who will you bring to the Tor?",
-   "npcs": "Corin Aldeth, the Librarian of the Sealed Book, Thane Oru Kessa, Yenna Garrow, Captain Dessa Rook, Ilam Bray, Ansel Quay, Isolde Drave, Tristan Vesk",
+   "npcs": "Corin Aldeth, the Librarian of the Sealed Book, Thane Oru Kessa, Yenna Garrow, Captain Dessa Rook, Ilam Bray, Ansel Quay, Isolde Drave, Tristan Vesk, Dagny Thurl and Old Patient (the Quiet Quarry)",
    "checklist": [
     "Check World state for which allies are available (Rook's duel, Kessa, Ossa rung, Glassreach trust, Blanks, Ilam, Stormborn contacts, the Cult)",
     "Have Edda's Quiet Night page ready to read aloud",
@@ -2176,7 +2193,7 @@
    ],
    "tactics": "Old Patient walks at whoever is nearest the lead cases. The Wardens keep their stones' Emanations over the party's casters and their mauls on whoever goes for the cases.",
    "exit": "Old Patient sits down for the cutters' \"rest\" sign. The Wardens fall back to the overseers' house when one falls, and wait for the column.",
-   "scale": "8100 XP: Moderate for four level 9 characters, much less if the golem sits down. Three characters: one Warden. Five: four Wardens."
+   "scale": "8100 XP: Moderate for four level 9 characters, much less if the golem sits down. Three characters: one Warden. Five: four Wardens. Harder (High, 11,400 XP): if they're still fighting when the column comes in at dusk, three more Wardens arrive with the first wagons."
   },
   {
    "id": "enc-s23-strike",

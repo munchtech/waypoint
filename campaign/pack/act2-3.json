@@ -2821,7 +2821,7 @@
    "likelihood": "Wildcard",
    "tells": "A player corners Ansel in the service passage with a blade.",
    "rules": "Ansel is a Commoner-grade clerk. Intimidation does not require death.",
-   "later": "S6: Wren breaks with the party. S7: Ilam's key still opens the service passage if the party goes back. Act IV: Maudrin's routes must come from somewhere else (Isolde, Edda's Notes).",
+   "later": "S6: Wren breaks with the party. S7: Ilam's key still opens the service passage if the party goes back. S22: Maudrin's routes come from his route-book instead, found in the steward's room (s22-ambush, s22-quiet-quarry).",
    "fallback": "If the player wavers, Ansel agrees to everything and walks out.",
    "id": "s05-kill-ansel",
    "title": "They kill Ansel Quay",
@@ -5260,7 +5260,7 @@
    "sessionId": "sb-e6aca23e4a267d72",
    "pressure": "Isolde has orders to follow the party if they leave the city. Court agents want the letter and its courier. The Sexton's sermon is spreading along the North Road. Each night they stay, the Tithe Clock ticks.",
    "endOn": "What does I.V. want from you?",
-   "npcs": "Edrin Moss, Lady Isolde Drave, Chancellor Maudrin Vesk (by message), Wyn Talla (by report), Lysse Carrow",
+   "npcs": "Edrin Moss, Lady Isolde Drave, Chancellor Maudrin Vesk (by message), Wyn Talla (by report), Lysse Carrow, Nell Quell and the First Tallyman (the Tithe-works)",
    "checklist": [
     "Make the letter a prop: blue wax, one sentence, signed I.V.",
     "Read Maudrin's last word through Isolde exactly as written",
@@ -5419,7 +5419,7 @@
    "sessionId": "sb-7b8acacf7aaa51b8",
    "pressure": "Isolde is a day from the Spire with Hushmen. The Glass-Wolf pack guards the base, and Stilled watch from the ice stairs. Extreme Cold is constant, and climbing exhausted is dangerous.",
    "endOn": "What did the Frost Spire cost the thaw?",
-   "npcs": "Yara Thenn, Imber Vesk (if freed), the Stilled on the ice stairs, Lady Isolde Drave (arriving)",
+   "npcs": "Yara Thenn, Imber Vesk (if freed), the Stilled on the ice stairs, Lady Isolde Drave (arriving), the Bell-Warden (the top of the Frost Spire)",
    "checklist": [
     "Warn of Hieme's Toll before ringing: a memory, at its weight; you choose which; refusal means no ringing",
     "Note each character's Exhaustion before the climb: -2 per level on every Athletics check",
@@ -5601,7 +5601,7 @@
    ],
    "tactics": "One blocks the door while the other runs for the alarm bell at the stair-head. They grapple and shout; they do not hurt a child.",
    "exit": "Stop the runner within two rounds and there is no alarm. Once the bell rings, a Hushman Sergeant and two more Hushmen arrive in three rounds and the party should already be in the lanes; pursuit ends at Bet's bakery door, which the Hushmen never search.",
-   "scale": "200 XP: well under Low for level 3–4, on purpose; this is a stealth scene. If the alarm sounds, add the Sergeant and two Hushmen (850 total, Moderate at level 3)."
+   "scale": "200 XP: well under Low for level 3–4, on purpose; this is a stealth scene. If the alarm sounds, add the Sergeant and two Hushmen (850 total, just under Moderate at level 3)."
   },
   {
    "id": "enc-s06-dawn-steps",
@@ -5624,7 +5624,7 @@
    ],
    "tactics": "The knights flank and fight to disarm and arrest, using Parry. Haldric hangs back behind his shield and calls out to the crowd. Rook interposes on round 2 and will not fight her own knights.",
    "exit": "Standing down ends it at once; Haldric accepts surrender in front of the crowd because it makes him look merciful. Anyone dropped wakes in the Belfry cells. Rook's word gets them out after a day.",
-   "scale": "Written for four level-4 characters. For a harder brawl add a second knight. For three PCs, Haldric alone. Don't scale beyond that: the Steps are crowded and the knights fight to disarm."
+   "scale": "Four level 3 characters (as Session 6 runs): Rook steps in on round 1, not round 2. At level 4, as written. For a harder brawl add a second knight. For three PCs, Haldric alone. Don't scale beyond that: the Steps are crowded and the knights fight to disarm."
   },
   {
    "id": "enc-s07-hushmen-line",
@@ -5742,7 +5742,7 @@
    ],
    "tactics": "The Hollowed drift at whoever carries a jar. The Tallyman stays by the scale and tries to possess the strongest of them, to carry the jars back to the shelves himself. By the shelf door the hall is silence-stone: no spells there, for either side.",
    "exit": "He stands down for his own name, read back to him from the day-book: \"Wystan Pellow, First Tallyman.\" He never leaves the works or follows anyone up the lift.",
-   "scale": "1500 XP: Moderate for four level 4 characters. Three characters: one Hollowed. Five: four."
+   "scale": "1500 XP: Moderate for four level 4 characters. Three characters: one Hollowed. Five: four. Harder (High, 2,100 XP): if Nell rang the bell-pull, three more Hollowed rise from the racks."
   },
   {
    "id": "enc-s09-chain-room",
@@ -6117,7 +6117,7 @@
    ],
    "tactics": "They come up the spiral one or two abreast, so only two can reach the party at once. They go for whoever is lowest on the stair, and try to knock them down it (Prone, and the next wolf gets Advantage).",
    "exit": "They can't pass 60 feet, and stop at the lamp-room door. They break off after three shatter.",
-   "scale": "Low for four level 6 characters at most, but on a stair. Three characters: four wolves. Five: eight."
+   "scale": "Well under Low for four level 6 characters (1,200 XP), but on a stair. Three characters: four wolves. Five: eight."
   },
   {
    "id": "enc-s14-choir-loft",
@@ -6162,7 +6162,7 @@
    ],
    "tactics": "The Hollow Wardens hold the foot of the last stair with their poles; the Bell-Warden walks straight at whoever is nearest the stair. Cold damage heals it. Fire makes it hesitate, as a Flesh Golem's aversion does.",
    "exit": "It stands down at once for Hieme's Heart, or Imber's words, \"Let me go on\". It doesn't follow anyone down the stair.",
-   "scale": "Low for four level 6 characters, harder in the cold. Three characters: two Hollow Wardens. Five: six, and 30 more HP for the Warden."
+   "scale": "Low for four level 6 characters (2,600 XP), harder in the cold. Three characters: two Hollow Wardens. Five: six, and 30 more HP for the Warden. Harder (High, 5,800 XP): run the Bell-Warden as a Clay Golem."
   },
   {
    "id": "enc-s04-road-chain",
@@ -6248,7 +6248,7 @@
    ],
    "tactics": "They fight mounted at first, riding round the party to box them in, and the trackers hang back and shoot. Marr wants them alive (the warrant pays more for that), so the Hushmen go for whoever looks weakest and try to Grapple. Marr stays in the saddle and calls terms every round.",
    "exit": "Marr is paid by the head, not to die: he calls it off when two Hushmen drop or he's Bloodied, and takes a better offer at any point (Influence DC 15, or DC 12 with 100 gp). The Hushmen follow the sergeant, and the sergeant follows Marr. A DC 14 group Survival check loses them in the ash.",
-   "scale": "A little under Low for four level 5 characters. At level 4, leave out the sergeant and two Hushmen. Three characters: three Hushmen. Five: six Hushmen."
+   "scale": "Moderate for four level 4 characters (1,750 XP). For a Low fight, leave out the sergeant and two Hushmen (1,100 XP). Three characters: three Hushmen. Five: six Hushmen."
   }
  ]
 }

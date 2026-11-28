@@ -2398,7 +2398,8 @@
    ],
    "encounters": [
     "enc-s02-memory-eels",
-    "enc-s02-drowned-singer"
+    "enc-s02-drowned-singer",
+    "enc-s02-mere-road-cart"
    ],
    "rules": [
     "Suffocation",
@@ -2643,7 +2644,7 @@
    ],
    "tactics": "Annet shoots from behind her hatch-desk while two thieves hold the doorway and two come round through the jar room. They fight dirty: a thief who isn't attacked that round throws a lamp to make a patch of burning oil (5 feet, 1d6 Fire to anyone who ends a turn in it). Annet targets whoever is carrying the tally book.",
    "exit": "The thieves give up when two of them drop. At Bloodied Annet offers the tally book, the jars and the name of Quill's go-between for a way out; refused, she drops through the floor hatch into the flooded stair and swims for the old dock.",
-   "scale": "A Low encounter for four level 3 characters. Three characters: two thieves. Five: six thieves and 15 more HP for Annet. If they came with the password, the thieves aren't armed in the first round."
+   "scale": "A little under Low for four level 3 characters (550 XP). Three characters: two thieves. Five: six thieves and 15 more HP for Annet. If they came with the password, the thieves aren't armed in the first round."
   },
   {
    "id": "enc-s03-bond-house",

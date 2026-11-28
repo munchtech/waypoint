@@ -1,4 +1,4 @@
-// Assembles the Seventh Bell update pack (revision 7.23) from the authored files and checks every edit anchor against the live campaign.
+// Assembles the Seventh Bell update pack (revision 7.24) from the authored files and checks every edit anchor against the live campaign.
 // node tools/build-pack.cjs  →  waypoint/desktop/data/packs/seventh-bell-v7.json and outputs/The-Seventh-Bell-v7.waypoint-pack.json
 const fs = require('fs'),
   path = require('path');
@@ -32,7 +32,7 @@ for (const f of files) {
 // Expected party level at the start of each chapter (v5 milestones), in session order.
 // The table starts at level 3 with four players (DM, 2026-10-31): early chapters use max(3, the v5 milestone).
 const levels = [
-  3, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11, 11,
+  3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 10, 11, 11, 11,
   11,
 ];
 const problems = [];
@@ -179,9 +179,10 @@ const result = {
   kind: 'waypoint-update-pack',
   version: 1,
   id: 'seventh-bell-v7',
-  title: 'The Seventh Bell · revision 7.23',
-  summary: `Revision 7.23 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.22 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
+  title: 'The Seventh Bell · revision 7.24',
+  summary: `Revision 7.24 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.23 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
+- **Audit fixes (7.24).** A High option for each big dungeon's last fight, three Very Rare items in Act V, and corrected scales, briefs and names.
 - **Shapes and threads (7.23).** Skip Glassreach, or run Sessions 10 and 11 in one evening; a Shapes of the campaign page; personal threads on the Roster; Prep names who is due a beat.
 - **Dungeons, roads and markets (7.21 to 7.23).** Seven side dungeons and big dungeons in Sessions 8, 14 and 22; road tables, random magic, wayshrines, a peddler, puzzles and every trader's stock.
 - **Pacing, treasure and growth (7.20).** A Glassreach clock and Act II choices that pay off in Glassreach; Sessions 12 and 13 in one evening; march on the Tor short-handed; a fight in each talking session; two Rare items each by level 9 and a bell-charm; a personal beat per character per act, lost things won back, Toll-marks, standing perks, bell boons.
@@ -191,15 +192,15 @@ const result = {
 - **Run Acts II to V from the page (7.9 to 7.15).** Sessions 4 to 30 gain the full new-DM guide and table card; their plans match the play cards, and calming a Stilled is DC 15.
 - **Silly and serious (7.8).** **Bring it back** lines for jokes that run on, **Where to break**, recaps that name what was lost, session zero's **Silly and serious**, and an **Epilogue round**.
 - **Know who is in the room (7.7).** Sessions 1 to 3 gain **Key people tonight**, **Places at a glance** and a d6 rumour table; session zero gains optional **Table jobs**.
-- **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season. World wiki → 2.7 The Toll.
-- **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a table card; every "If they…" option is a button that opens its play; session zero becomes a full guide (World wiki → 1.4).
-- **Tongues are now Hearts** (Ossa's Heart, the Heart-Hound). One review item renames the word in your wiki pages, notes and saved cards; the chronicle keeps its words.
+- **Tolls that cost (7.5).** Before a ringing the DM warns of the kind and the weight, never exactly what. Tolls last and escalate: Heavy, then Grievous, then Ruinous. Vaer's dawn lasts a year, Calla's harvest a season.
+- **Run Act I from the page (7.1 to 7.6).** Sessions 1 to 3 each gain **Running this session (new DM guide)** and a table card; every "If they…" option is a button that opens its play; session zero becomes a full guide.
+- **Tongues are now Hearts** (Ossa's Heart, the Heart-Hound). One review item renames the word in your wiki pages, notes and saved cards.
 - **Built for your table: four characters starting at level 3.** Every encounter is rebudgeted with the 2024 XP rules for the level each chapter expects.
 - **The finale.** Acts IV and V have full sets of prepared plays, and every ending can be reached and recorded. Maudrin as Keeper of the Seventh (CR 12, legendary actions).
-- **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them, so Waypoint can bring them back in your prep brief.
-- **Fixes from a full audit:** timeline, state, 2024 spell rulings and stat block arithmetic.
+- **Nothing gets stranded.** Every place a Tongue, the Key or a person can end up has a play that moves it on, and "Down the line" notes point at the sessions that deliver them.
+- **Fixes from a full audit:** timeline, state, spell rulings and stat blocks.
 - **A player site.** The handouts, the painted map and a player wiki in one site.html you upload. Prepared wiki entries wait in Waypoint until you press **Send to wiki**.
-- **Corvane in the Realms,** as in revision 6: the Stormwall and the Seam, Pellmoor Landing as a port, memory as money.
+- **Corvane in the Realms,** as in revision 6: the Stormwall and the Seam, memory as money.
 - **Foresight playbook.** ${playCount} prepared plays across ${sessionCount} chapters and ${anytime.length} anytime plays; ${flags.length} tracked world-state facts; ${briefOut.length} session prep briefs; ${encounters.length} encounters; ${statblocks.length} Corvane stat blocks built on the 2024 Monster Manual; and an ending forecast.
 
 Your notes, chronicle and any world state you have recorded are kept. Replaced wiki text moves to each page's revision history.`,
@@ -214,7 +215,7 @@ Your notes, chronicle and any world state you have recorded are kept. Replaced w
   playbook: {
     id: 'seventh-bell',
     title: 'The Seventh Bell playbook',
-    version: '7.23',
+    version: '7.24',
     flags,
     anytime,
     encounters,

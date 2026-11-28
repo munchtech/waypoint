@@ -224,7 +224,7 @@ Ask each player what's hanging on their nail. Write it down.
 
 **If the players all want to say yes:** let them. It's a real choice with a real price, and they'll be glad of the rest. The dreams come back in every ending but the Empty Choir.
 
-**Names for Cultists** (cross one off when you use it): Sister Doze, Brother Linen, Old Nan Feather, Goodman Hush, Maud Candle, Tibb, Ansel Drift.
+**Names for Cultists** (cross one off when you use it): Sister Doze, Brother Linen, Old Nan Feather, Goodman Hush, Maud Candle, Tibb, Ambry Drift.
 
 ### End of session 17B
 

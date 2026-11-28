@@ -380,7 +380,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 - **Level 10** for everyone.
 
 **Rewards:**
-- **Every Heart in the wagons.**
+- **Every Heart in the wagons,** and [the Court's lead-lined trunks](play:s23-treasure-court-trunks).
 - **Perhaps the Key.**
 - **The road up.**
 - **Heroic Inspiration:** to whoever listened to her all the way to the end.

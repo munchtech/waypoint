@@ -2777,6 +2777,40 @@
    "fallback": "If a player has no session-zero answers, ask the three questions now, in a minute.",
    "keywords": "maudrin, ledger, lost thing, bargain, personal, backstory, session zero, beat, growth, stairs",
    "effects": []
+  },
+  {
+   "id": "s24-treasure-bell-chest",
+   "sessionId": "sb-dce15a8ce35d16ab",
+   "title": "Treasure: the first Ringers' bell-chest",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The first Ringers met at the top of the Tor, and they left something for whoever came after them.",
+   "tells": "The summit is settled, or they search the ring of stones while they wait for it.",
+   "readAloud": "At the foot of the tallest stone, half under the turf, an iron chest marked with seven small bells. As the one who rang last comes close, the marks hum, and the lid lifts a finger-width on its own.",
+   "response": "The chest opens for anyone who has rung a bell. Inside: a staff of dark bronze with a bell-mouth for a head, and a grey mantle with every Ringer's name stitched inside it, the newest stitches still bright. The last name has room after it.",
+   "rules": "**The Storm-bell Staff** (very rare, requires attunement by a spellcaster): a Staff of Thunder and Lightning. **The Ringers' Mantle** (rare, requires attunement): a Mantle of Spell Resistance (Advantage on saving throws against spells).",
+   "consequence": "Two more characters have something from the first Ringers. If someone stitches their own name in, the mantle remembers it.",
+   "later": "Next treasure: what the stairs kept (Session 25).",
+   "fallback": "If they never search the stones, Corin finds the chest the morning after and brings it to them.",
+   "keywords": "treasure, loot, magic item, staff, staff of thunder and lightning, mantle of spell resistance, very rare, bell-chest, ringers, top of the tor, summit",
+   "effects": []
+  },
+  {
+   "id": "s25-treasure-what-the-stairs-kept",
+   "sessionId": "sb-8272ccffe0002037",
+   "title": "Treasure: what the stairs kept",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The Hush keeps everything it takes. At the bottom of the stairs, a little of it can be taken back.",
+   "tells": "They reach the bottom of the stairs, or someone looks back at the last step.",
+   "readAloud": "On the last step lies a pebble no bigger than a thumbnail, smooth as a river stone. When you pick it up, it rises out of your palm and begins to circle your head, slowly, like something trying to remember where it lives.",
+   "response": "It is a memory the stairs took and never used. Whoever carries it remembers better: the pebble keeps what they would have lost.",
+   "rules": "**The Stair-stone** (very rare, requires attunement): an Ioun Stone of Insight (your Wisdom score increases by 2, to a maximum of 22). It can be snatched from the air: AC 24, 10 HP.",
+   "consequence": "Most of the party now has a Very Rare item. That is the campaign's last treasure: the rest is what they do with it.",
+   "later": "S26: the Stair-stone stops circling when the Seventh Bell rings, for one breath, then goes on.",
+   "fallback": "If nobody looks, it follows them up out of the casting-pit and waits by the fire.",
+   "keywords": "treasure, loot, magic item, ioun stone, ioun stone of insight, very rare, stairs, bottom of the stairs, memory, reward",
+   "effects": []
   }
  ],
  "briefs": [

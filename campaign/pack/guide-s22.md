@@ -43,7 +43,7 @@
 
 | Who | What they are | Stat block | Where | Starts | Influence | Secret |
 |---|---|---|---|---|---|---|
-| **Ansel Quay** | Maudrin's steward | Commoner | Comes up the road on a mule | Ashamed | None needed | Has the routes of every column for thirty years in his head. |
+| **Ansel Quay** | Maudrin's steward | Commoner | Comes up the road on a mule | Ashamed | None needed | Has the routes of every column for thirty-eight years in his head. |
 | **Corin Aldeth** | Bellwright | Corin Aldeth | Their fire, or a milestone | Depends | DC 15 if they fought him | If they let him, he'd pay it himself. |
 | **The Librarian** | A book that reads | None | The courier's hands | Glad | It trades | It's had Edda's page all along. It wanted to be asked. |
 | **Thane Oru Kessa** | If he lives | Thane Oru Kessa | Wherever he's found | Hopeful | None needed | He's already half guessed about the Key. |

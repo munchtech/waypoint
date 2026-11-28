@@ -353,7 +353,7 @@ Read out half a line of one, if they open it. *"You came fourth in the tilting t
 - **Level 11** for everyone.
 
 **Rewards:**
-- **The top of the Tor.**
+- **The top of the Tor,** and [the first Ringers' bell-chest](play:s24-treasure-bell-chest).
 - **The letters,** if they've got them.
 - **Perhaps the Key.**
 - **Heroic Inspiration:** to whoever answered her question honestly.

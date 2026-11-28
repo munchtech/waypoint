@@ -222,7 +222,7 @@ Both fights are written for four level-3 characters. Foresight shows the 2024 di
 3. **Ask a player a question.** "What did you lose, that you'd want back?" "Who does Ila remind you of?" Then let them act on the answer.
 
 **Names for Pellmoor** (cross one off when you use it):
-- **Ferry-folk:** Hob Ashcombe, Merrit Fenn, Tilly Crane, Old Joss Weir, Corran Pike, Nell Dabber, Bram Sedge, Ottilie Rushford, Kit Reedby, Hesper Lowe.
+- **Ferry-folk:** Hob Ashcombe, Merrit Fenn, Tilly Crane, Old Joss Weir, Corran Pike, Hetty Dabber, Bram Sedge, Ottilie Rushford, Kit Reedby, Hesper Lowe.
 - **Hushmen:** Hushman Aldous Grey, Hushman Cobb Stillwell, Hushman Edric Lusk, Hushman Mara Hollin, Hushman Dunstan Pale, Hushman Ivo Thorley.
 - **Sailors:** Jory Tallow (Baldurian bosun), Imra al-Senna (Calishite navigator), Fen Corlis (Waterdhavian deckhand), Hilda Stonebuckle (dwarf carpenter from Mirabar), Pimbly Nackle (Lantanese gnome tinker).
 - **Merchants:** Aubric Delamere (Waterdhavian factor, Corvane Venture), Tesra Velarion (Amnian clerk, Vennmark Coster), Bruna Hardshale (Mirabar dwarf, wants bronze), Ulm Teasel (Corvanese chandler), Smiling Dace (Zhentarim fence on Strangers' Row).
