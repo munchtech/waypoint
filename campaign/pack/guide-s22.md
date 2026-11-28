@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. Two halves. In the first, they find out what all of it has been about. In the second, everyone they've ever been kind to comes up the road. It's the session that pays them back, so let each arrival have its own minute.*
+*Read this once the day before. Two halves. In the first, they find out what all of it has been about. In the second, everyone they've ever been kind to comes up the road. It's the session that pays them back, so let each arrival have its own minute. Its big dungeon is [the Quiet Quarry](play:s22-quiet-quarry), where the Wardens' stones are cut.*
 
 **Contents:** [Before you start](#before-you-start-session-22) · [Key people](#key-people-tonight-session-22) · [Opening recap](#opening-recap-session-22) · [Scene 1: Edda's page](#scene-1-eddas-page) · [Scene 2: The people who should know](#scene-2-the-people-who-should-know) · [Scene 3: The column](#scene-3-the-column) · [Scene 4: Who comes](#scene-4-who-comes) · [Scene 5: The ridge](#scene-5-the-ridge) · [Fights](#running-the-fights-session-22) · [Pacing](#pacing-session-22) · [If you get stuck](#if-you-get-stuck-session-22) · [End of session](#end-of-session-22)
 
@@ -28,7 +28,7 @@
 - **Edda's page,** copied out on old-looking paper. Give it to a player to read.
 - **An ally card for each company that's coming:** a name, one line, one objective. Blank ones too.
 - **The allies clock,** six segments, drawn big.
-- **Tokens or minis,** only if they'll ambush: four Wardens; two Sergeants; three Knights; eight Hushmen.
+- **Tokens or minis,** only if they'll ambush: four Wardens; two Sergeants; three Knights; eight Hushmen. For the Quiet Quarry: four Wardens, a Sergeant, six Hushmen, a Court agent, two Xorns and a Stone Golem (Old Patient).
 - **A map** of the road, with Hallowmere at the bottom, the Tor at the top, and days marked along it.
 
 **Rules you'll use tonight, in plain words (D&D 2024):**
@@ -151,7 +151,7 @@
 
 (If Rook won the duel, only Haldric's own few knights ride with the Court, or none.)
 
-**Then Ansel.** Stooped, ink-stained cuffs, spectacles he wipes when he's nervous. *Lines:* "I counted that shelf every morning for thirty-eight years. I've just dusted it. There's nothing on it." · "I thought if I kept the books straight, it'd be all right. I'm so sorry." · "Ask me about roads. I do know about roads." (If he's dead, Linnet brings his route-book.)
+**Then Ansel.** Stooped, ink-stained cuffs, spectacles he wipes when he's nervous. *Lines:* "I counted that shelf every morning for thirty-eight years. I've just dusted it. There's nothing on it." · "I thought if I kept the books straight, it'd be all right. I'm so sorry." · "Ask me about roads. I do know about roads." · "There's a goat-path to the quarry. The column always stops there." (If he's dead, Linnet brings his route-book.)
 
 [If they ask about the vault:](play:s22-key-leaves-vault)
 
@@ -237,12 +237,12 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 
 ### Scene 5: The ridge
 
-**Where and why.** The next morning, above the road. One decision: hit the column here, go back for a bell, or go on to the Tor.
+**Where and why.** The next morning, above the road. One decision: hit the column here, get ahead of it to the Quiet Quarry, go back for a bell, or go on to the Tor.
 
 > **SAY:** "From the ridge you can see the column coming: grey horses, grey gloves, and one rider in dove-grey at the centre."
 
 **If they…**
-- **[Ambush it:](play:s22-ambush)** Ansel knows exactly where the road narrows. Group Stealth, DC 14. Run the fight below. It's the vanguard, not her. Whatever they break here won't be at the Strike.
+- **[Ambush it:](play:s22-ambush)** Ansel knows exactly where the road narrows. Group Stealth, DC 14. Run the fight below. It's the vanguard, not her. Whatever they break here won't be at the Strike. Or **[get ahead of it to the Quiet Quarry](play:s22-quiet-quarry)** by Ansel's goat-path, and spoil the Wardens' fresh stones before the column comes in at dusk. It's one or the other.
 - **[Go back for a missed bell:](play:s22-detour-for-a-missed-bell)** you can. Three to six days; Maudrin gets to the Tor first; the Court Clock goes up 2. Say it before they choose.
 
 > **SAY:** "The map shows Pellmoor six days south and the Tor two days north. The scout says Maudrin is coming now."
@@ -284,12 +284,12 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 | 0:40 to 1:05 | Scene 2: the people who should know |
 | 1:05 to 1:25 | Scene 3: the column |
 | 1:25 to 2:25 | Scene 4: who comes |
-| 2:25 to 3:05 | Scene 5: the ridge, and the ambush if they want it |
+| 2:25 to 3:05 | Scene 5: the ridge, and the ambush or the Quiet Quarry's short way if they want one |
 | 3:05 to 3:15 | The question |
 
 - **Where to break:** when Linnet says "several somebodies".
-- **Running long:** no ambush. They watch the column go by, and that's enough.
-- **Running short:** soup. Put two allies next to each other who've never met, and let the players listen. (Tolla and a Stilled. Rook and Isolde. Corin and the Librarian.)
+- **Running long:** no ambush. They watch the column go by, and that's enough. Or open Session 23 with the Quiet Quarry.
+- **Running short:** the long way through the Quiet Quarry, or soup. Put two allies next to each other who've never met, and let the players listen. (Tolla and a Stilled. Rook and Isolde. Corin and the Librarian.)
 - **If you need to stop early:** stop with the barn full.
 
 ### If you get stuck (Session 22)
@@ -310,10 +310,10 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 **The closing question:** "Who will you bring to the Tor?" Then: "Let's each say one thing we'll remember."
 
 **Record in Waypoint:**
-- **Plays that happened:** Edda's page, whoever was told, whoever came, the ambush or the detour.
+- **Plays that happened:** Edda's page, whoever was told, whoever came, the ambush, the Quiet Quarry or the detour.
 - **World-state facts to check:** the Key, Maudrin, Isolde, Corin, Kessa, the Hearts that came back, the allies clock, the Court Clock.
 - **Each ally's objective,** on a card. You'll use every one next session.
-- **What the ambush broke,** if it broke anything.
+- **What the ambush or the quarry broke,** if anything. A spoiled or stolen stock means the Wardens' stones reach only 5 feet at the Strike.
 
 **Rewards:**
 - **The truth.** Every ending's an informed choice now.
@@ -336,4 +336,4 @@ Insight DC 15 off him or Isolde, or let a player guess: the Key's hum used to ho
 
 **Allies:** one company per player; one line, one job, **+1 on the clock** (3: pick a flank; 6: Maudrin must come herself). Objectives, never kills. No children.
 
-**Ridge:** ambush (group Stealth DC 14; Surprise = Disadvantage on Initiative; five rounds; four Wardens, two Sergeants, three Knights, eight Hushmen), detour (3–6 days, Court +2), or on to the Tor. **Break** at "several somebodies".
+**Ridge:** ambush (group Stealth DC 14; Surprise = Disadvantage on Initiative; five rounds; four Wardens, two Sergeants, three Knights, eight Hushmen), detour (3–6 days, Court +2), the Quiet Quarry (Ansel's goat-path; Old Patient sits down for the cutters' "rest" sign; wet stone goes dull), or on to the Tor. **Break** at "several somebodies".

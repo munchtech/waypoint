@@ -120,7 +120,7 @@ Read Ilam's box from the plan above, if the party is close enough to hear.
 
 **If they…**
 - **[Hide Jonah](play:s07-hide-jonah)** (and the family): Bet's cellar, Rook's hall, Aurelie's mission, or the party's own room. One night in the city: +1 on the Tithe Clock.
-- **Plan to get the jar:** Ilam's key opens the vault's service passage. That's [a second vault visit](play:s09-second-vault-visit), in Session 9.
+- **Plan to get the jar:** Ilam's key opens the vault's service passage, through the old works under the palace. That's [the Tithe-works](play:s08-tithe-works), Session 8's big dungeon, or [a quick second vault visit](play:s09-second-vault-visit) in Session 9.
 
 **Let them talk.** This scene is the family in a cellar, and the party deciding what they owe them. Give Jonah one line to each character: a question only a child would ask.
 

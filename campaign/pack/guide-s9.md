@@ -122,7 +122,7 @@
 - **[Are spotted by the Warrant:](play:s09-warrant-arrest)** run it as a chase. Hushmen grapple for the Ringer and the Heart. The Dawn Order stands aside if Rook won and joins in if she lost. Hide in a crowd (Group Stealth DC 15), leave by the drains, or fight (the Gate Sweep, scaled down). If it turns grim, Rook rides across the terraces with six knights.
 - **Aurelie,** if she sang on the terraces: hustle her out in Bet's cart, the Mission cellar or Rook's barracks (Deception or Group Stealth DC 15). If they're slow, [the Hushmen take her at dusk](play:s09-aurelie-arrested-at-dusk), unharmed, and the Court offers to trade her for the Ringer. [Freeing her](play:s09-free-aurelie): Rook's word, a forged release (Deception DC 15), or the drains; Tithe Clock +1.
 - **Jonah and Ilam,** if still apart: [Ilam comes to Bet's door](play:s09-jonah-bakery) with his gloves off. Or [they fetch Jonah from the Hall](play:s09-free-jonah): a forged transfer (Deception or Forgery Kit DC 16) or Ilam's key, Stealth DC 15; Tithe Clock +1. Jonah is never shown in danger.
-- **[Go back for the jars](play:s09-second-vault-visit)** with Ilam's key: no roll at the door; Hushmen pass every ten minutes (Stealth DC 15 to wait in the shadows); Tithe Clock +1. Mara Bray's jar can leave in a satchel; only she can open it.
+- **[Go back for the jars](play:s09-second-vault-visit)** with Ilam's key, if they skipped [the Tithe-works](play:s08-tithe-works) in Session 8: no roll at the door; Hushmen pass every ten minutes (Stealth DC 15 to wait in the shadows); Tithe Clock +1. Mara Bray's jar can leave in a satchel; only she can open it.
 
 **Bring it back.** The gate bell clangs once for a shift change, and every Hushman on the road turns to look at it. Ask: "Who moves now?"
 

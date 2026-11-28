@@ -3349,6 +3349,113 @@
    "sessionId": "sb-e6aca23e4a267d72"
   },
   {
+   "id": "s08-tithe-works",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The Tithe-works: the dungeon under the palace",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "The jars from Session 5 are still on the vault's shelves, and tonight is the party's last night in the city. The service passage runs to the vault through the old works where the tithes were drawn and bottled. It's the session's big dungeon.",
+   "tells": "They have Ilam's key, ask about Mara's or Bet's jar, or want one more job in Hallowmere before they go. Ilam or Ansel points them to the kitchen-yard door.",
+   "readAloud": "Behind the palace kitchens, past the bins and a sleeping cat, a low iron door is set into the wall under the service wing. Cut into the lintel above it, nearly worn away: TITHE-WORKS. RECEIVING.",
+   "response": "Run it from The Tithe-works, area by area in the wiki, at dusk, after Isolde's carriage leaves and before the goodbyes. Nine areas: the service door, the tally-room and its night tallyman, the patrol corridor and its listening-pipes, the porters' bothy, the drawing-cistern, the bottling room and its funnel, the cold store, the First Tallyman in the weighing room, and the vault's back shelves. The short way (1, 2, the porters' lift, 8, 9) takes about 45 minutes; the long way about 1 hour 15. Break in the bothy. The jars they bring out are handed over in Scene 3.",
+   "rules": "Getting in: Ilam's key and the Hushman roster, no roll; or Ansel, if he's alive and Friendly; or Thieves' Tools DC 17; or the coal chute (group Stealth DC 14 across the yard, then a DC 12 Athletics or Acrobatics check). Hushmen pass every ten minutes (Stealth DC 15, Advantage with the roster). Every spell hums within 30 feet, and the listening-pipes carry it. No spells on the back shelves.",
+   "consequence": "They walk out with the jars, and maybe more: up to three fights, a trap that takes memories, and Gloves of Thievery.",
+   "later": "Scene 3: Bet, Mara and Ilam open their jars (s08-bring-the-jars-home). S9: no need for the second vault visit. S28: Mother Sallow's jar, if they brought it out (s28-return-jars).",
+   "fallback": "If they'd rather not go under the palace tonight, the second vault visit in Session 9 still works (s09-second-vault-visit), or the jars wait for Session 28.",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, tithe-works, tithe works, jars, vault, service passage, ilam's key, back shelves, palace, under the palace, memories, bet, mara",
+   "effects": []
+  },
+  {
+   "id": "s08-night-tallyman",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "Nell Quell, the night tallyman, and her bell-pull",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "Somebody keeps the books at night. Nell is nineteen, honest, and frightened of everyone above and below her.",
+   "tells": "They reach the tally-room (area 2 of the Tithe-works).",
+   "readAloud": "The young woman at the high desk looks up, sees you, and very slowly puts down her pen. Her other hand is already on the bell-pull. \"You're not on my roster,\" she whispers.",
+   "response": "Influence DC 13 keeps her hand off the bell-pull: Advantage if Ilam vouches for them, if they show her the roster, or for a small Gift. Friendly, she tells them about the funnel in the bottling room, the eels, the porters' RETURNS crate, and that the First Tallyman \"only wants to be remembered right\". She works the porters' lift for them. On a failure, or if they threaten her, she pulls it: the patrol comes in 4 rounds.",
+   "rules": "Influence DC 13 (Indifferent). The day-books: Investigation DC 12 for the shelf numbers and, on the first page, the First Tallyman's name (Wystan Pellow). Intimidation works, but she pulls the bell the moment they turn their backs.",
+   "consequence": "A friend in the works, or the patrol on their heels.",
+   "later": "Friendly, Nell says nothing at the morning tally: the Court learns the jars are gone, but not who took them.",
+   "fallback": "If they've no patience for talk, she's a frightened girl: she runs for the lift rather than fight.",
+   "keywords": "tallyman, night tallyman, nell, nell quell, bell-pull, alarm, day-books, tally-room, tithe-works, influence, lift",
+   "effects": []
+  },
+  {
+   "id": "s08-drawing-cistern",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The memory-eels of the drawing-cistern",
+   "style": "Combat",
+   "likelihood": "Possible",
+   "why": "Four hundred years of tithe dregs drained into this water, and something learned to live on them.",
+   "tells": "They take the long way, reach the cistern (area 5), and someone touches the water or slips.",
+   "readAloud": "The black water bulges. A pale head the length of your arm rises beside the ledge, and for a moment you smell your mother's kitchen. Then it opens its mouth.",
+   "response": "Six memory-eels: The drawing-cistern in the Combat tab. They come up only for someone touching the water or in it, and slide back under if everyone on the ledge keeps still for a round.",
+   "rules": "Memory-eel bite: DC 10 Wisdom saving throw or lose a minor memory until a Long Rest. The ledge: running, fighting or being hit on it means a DC 12 Dexterity saving throw or falling in. The eels have Advantage on attacks against anyone in the water.",
+   "consequence": "A scuffle on a ledge, and somebody forgets the name of their first dog until morning.",
+   "later": "",
+   "fallback": "If the fight drags, the eels lose interest in anyone who climbs out.",
+   "keywords": "eels, memory-eels, memory eel, cistern, drawing-cistern, water, ledge, tithe-works, fight",
+   "effects": []
+  },
+  {
+   "id": "s08-first-tallyman",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The First Tallyman weighs what they carry",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "Wystan Pellow weighed the first tithes ever taken, and when he died nobody told him to stop.",
+   "tells": "They reach the weighing room (area 8), by the long way or the lift.",
+   "readAloud": "The pale man by the great scale turns a page of his ledger. \"Name,\" he says, without looking up. \"And what are you carrying out?\"",
+   "response": "If a character reads his name back to him from the day-book (\"Wystan Pellow, First Tallyman\"), he closes the ledger, says \"Weighed true,\" and stands aside, and the Hollowed with him. If they answer honestly and carry nothing yet, he lets them through to the shelves, and stops them on the way back. Otherwise he attacks anyone who carries a jar past the scale: The First Tallyman in the Combat tab.",
+   "rules": "The First Tallyman is a Ghost; the two Hollowed, people tithed down to nothing, are Specters. The half of the hall by the shelf door is lined with silence-stone: no spells there, for either side. A Moderate encounter for four level 4 characters. He never leaves the works.",
+   "consequence": "Past him, the back shelves. If he fell, the scale tips empty and the works go quiet.",
+   "later": "If he stood aside, he is still at the scale whenever anyone comes back, and lets them pass.",
+   "fallback": "",
+   "keywords": "first tallyman, tallyman, ghost, specters, hollowed, weighing room, scale, boss, tithe-works, wystan pellow, name",
+   "effects": []
+  },
+  {
+   "id": "s08-treasure-returns",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "Treasure: the porters' RETURNS crate",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The porters skimmed a little from everyone who came through, and hid it where nobody looks: in the crate for jars nobody wanted.",
+   "tells": "They search the bottling room (Investigation DC 14), or Nell tells them.",
+   "readAloud": "Behind the racks, under a tarpaulin, a crate stencilled RETURNS. No jars in it. Instead: a pair of thin grey gloves, a purse that clinks, and two small red bottles packed in straw.",
+   "response": "Gloves of Thievery, 50 gp and two Potions of Healing.",
+   "rules": "**Gloves of Thievery** (uncommon): these gloves are invisible while worn, and while wearing them you have a +5 bonus to Dexterity (Sleight of Hand) checks and to Dexterity checks made to pick locks. **Potion of Healing** (common): regain 2d4 + 2 Hit Points.",
+   "consequence": "Somebody's hands get very quiet.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, gloves of thievery, gloves, returns crate, porters, potion of healing, gold, reward, tithe-works",
+   "effects": []
+  },
+  {
+   "id": "s08-bring-the-jars-home",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "They bring the jars home for the goodbyes",
+   "style": "Mischief",
+   "likelihood": "Likely",
+   "why": "The point of the night: Bet, Mara and Ilam get back what the Court took.",
+   "tells": "They come out of the Tithe-works with one or more jars.",
+   "readAloud": "Bet turns the jar in her floury hands. Her own name, in a stranger's writing. She opens it, and for a long moment she doesn't breathe. Then she laughs, and cries, and says, \"Oh. Oh, that's why.\"",
+   "response": "In Scene 3, each jar goes to its owner, and only its owner can open it. Bet opens hers and knows why she cries when people leave. Mara opens hers and knows Jonah. Ilam opens his and says his son's name for the first time in years: give Jonah the line back. Ansel's morning tally finds the gaps, and the Court knows the vault was entered from below.",
+   "rules": "Only a jar's owner can open it; witnessing another's fades it. Calla's Heart, if they took it from the back shelves, is recorded with s05-take-calla.",
+   "consequence": "Three people get themselves back. The Court knows someone came in through the works.",
+   "later": "S9: no need for the second vault visit (s09-second-vault-visit). S28: Mother Sallow's jar, if they brought it out (s28-return-jars).",
+   "fallback": "If nobody brought a jar out, Bet still cries when they leave, and still doesn't know why.",
+   "keywords": "jars, memories, bet, mara, ilam, jonah, goodbye, goodbyes, return, tithe-works, vault, family",
+   "effects": [
+    {
+     "flag": "clock_court",
+     "add": 1
+    }
+   ]
+  },
+  {
    "style": "Roleplay",
    "likelihood": "Possible",
    "tells": "A player offers a drink and a fee, or notices Edrin's frost-burn.",
@@ -3663,7 +3770,7 @@
   {
    "style": "Mischief",
    "likelihood": "Possible",
-   "tells": "A player asks Ilam about the service passage, or asks where Mara Bray's jar is.",
+   "tells": "A player asks Ilam about the service passage, or asks where Mara Bray's jar is, and they didn't go through the Tithe-works in Session 8.",
    "rules": "No roll for entry with the key. Witnessing another's jar fades it. Hushmen pass every ten minutes (Stealth DC 15 to wait in shadow). One night: Tithe Clock +1.",
    "later": "S9: Mara can open her own jar and know Jonah. S28: Mother Sallow opens her wedding-day jar.",
    "fallback": "If the key fails, Ansel (if he is alive) unlocks the door.",
@@ -3671,7 +3778,7 @@
    "title": "A second visit to the vault with Ilam's key",
    "why": "Ilam's service-passage key makes a second visit easy, and there are jars to bring out.",
    "readAloud": "The service passage smells of old brick. At the end, the vault door stands ajar and a single lamp burns on the newest shelf.",
-   "response": "With Ilam's key and the Hushman roster, the party reaches the vault shelves without the front-door alarm. Mara Bray's jar (BRAY, M. 408 SS) can leave in a satchel; only she can open it. Bet's jar, Mother Sallow's and any others the party left behind can go too. Ansel's morning tally finds the gaps.",
+   "response": "If they skipped the Tithe-works in Session 8 (s08-tithe-works), this is the quick way in. With Ilam's key and the Hushman roster, the party reaches the vault shelves without the front-door alarm. Mara Bray's jar (BRAY, M. 408 SS) can leave in a satchel; only she can open it. Bet's jar, Mother Sallow's and any others the party left behind can go too. Ansel's morning tally finds the gaps.",
    "consequence": "The jars are out. The Court knows the vault was entered.",
    "keywords": "second vault, mara jar, ilam key, service passage",
    "when": [
@@ -5163,7 +5270,10 @@
     "Written for four level-4 characters: Detect Thoughts, Suggestion and Hold Person are all in play for the courier scene; rule them from any-l3-truth-and-minds"
    ],
    "encounters": [
-    "enc-s08-courier-snatch"
+    "enc-s08-courier-snatch",
+    "enc-s08-tithe-patrol",
+    "enc-s08-drawing-cistern",
+    "enc-s08-first-tallyman"
    ],
    "rules": [
     "Study",
@@ -5570,6 +5680,69 @@
    "tactics": "Two Hushmen grab Edrin while the third blocks the alley; the agent goes for the letter and uses Cunning Action to Disengage and run with it.",
    "exit": "Once the party intervenes hard, the Hushmen let go of Edrin and fall back; the agent drops the letter if Bloodied. Nobody here wants a death in the street.",
    "scale": "750 XP: under Low for four level-4 PCs; it is a scuffle. Add a Hushman Sergeant (1200, Low) for a real fight. For three PCs, the agent and two Hushmen."
+  },
+  {
+   "id": "enc-s08-tithe-patrol",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The Tithe-works patrol",
+   "creatures": [
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 3
+    }
+   ],
+   "tactics": "The Sergeant blocks the corridor, two Hushmen close in, and the third runs for the stair and the bell.",
+   "exit": "They fall back up the stair once the Sergeant is Bloodied. If the runner got away, the works fill with Hushmen in ten minutes: time to grab what they came for and go.",
+   "scale": "750 XP: under Low for four level 4 characters; it is a patrol. Three characters: the Sergeant and two Hushmen. Five: five Hushmen."
+  },
+  {
+   "id": "enc-s08-drawing-cistern",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The drawing-cistern",
+   "creatures": [
+    {
+     "name": "Memory-eel",
+     "statblock": "sb_memory_eel",
+     "base": "Constrictor Snake",
+     "cr": "1/4",
+     "count": 6
+    }
+   ],
+   "tactics": "They come up beside whoever is in or touching the water, bite, and pull. Anyone fighting on the ledge risks falling in.",
+   "exit": "They slide back under if everyone on the ledge keeps still for a round, and lose interest in anyone who climbs out.",
+   "scale": "300 XP: well under Low for four level 4 characters; the danger is the ledge and the memories. Three characters: four eels. Five: eight."
+  },
+  {
+   "id": "enc-s08-first-tallyman",
+   "sessionId": "sb-e6aca23e4a267d72",
+   "title": "The First Tallyman",
+   "creatures": [
+    {
+     "name": "The First Tallyman",
+     "base": "Ghost",
+     "cr": "4",
+     "count": 1
+    },
+    {
+     "name": "Hollowed",
+     "base": "Specter",
+     "cr": "1",
+     "count": 2
+    }
+   ],
+   "tactics": "The Hollowed drift at whoever carries a jar. The Tallyman stays by the scale and tries to possess the strongest of them, to carry the jars back to the shelves himself. By the shelf door the hall is silence-stone: no spells there, for either side.",
+   "exit": "He stands down for his own name, read back to him from the day-book: \"Wystan Pellow, First Tallyman.\" He never leaves the works or follows anyone up the lift.",
+   "scale": "1500 XP: Moderate for four level 4 characters. Three characters: one Hollowed. Five: four."
   },
   {
    "id": "enc-s09-chain-room",

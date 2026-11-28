@@ -171,7 +171,7 @@
    "rules": "Surprise (2024): surprised creatures have Disadvantage on their Initiative rolls. Group Stealth: DC 14 against the column's Passive Perception.",
    "consequence": "The Strike happens on the party's terms.",
    "later": "S23 as normal, with terrain and surprise in the party's favour: Maudrin's remaining column is smaller, and she will not underestimate them again.",
-   "fallback": "",
+   "fallback": "If they'd rather hurt the column without meeting it, get ahead of it to the Quiet Quarry (s22-quiet-quarry).",
    "keywords": "ambush, road, column, attack first, ansel, route, surprise",
    "when": [
     {
@@ -182,6 +182,108 @@
      ]
     }
    ]
+  },
+  {
+   "id": "s22-quiet-quarry",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Quiet Quarry: spoil the Wardens' stones",
+   "style": "Exploration",
+   "likelihood": "Likely",
+   "why": "Every silence-stone the Court carries is cut from one hill on the Tor road, and the column stops there for fresh ones. It's the session's big dungeon, and the Court's weak point.",
+   "tells": "They ask Ansel (or his route-book) where the column stops, or want to hurt the Court before the Strike without fighting the whole vanguard.",
+   "readAloud": "Ansel's finger runs up the map and stops on a hill north of the ridge. \"The quarry. The column always stops there. The Wardens' stones go dull on the road, you see, so they take on fresh ones. There's a goat-path. I used to count the carts.\"",
+   "response": "Run it from The Quiet Quarry, area by area in the wiki, in place of the ambush. Nine areas: the rim, the cutters' terraces and their foreman, the overseers' house and the quarry guard, the bucket-crane, the dead galleries where no spell works, the pump-room and its sluice, Old Patient and the fresh stones on the cutting floor, the hidden Mother Seam, and the spoil chute down to the road. The short way (1, 4, 7, 9) takes about 45 minutes; the long way about 1 hour 15 to 1 hour 30. Break in the pump-room. They arrive by noon; the column arrives at dusk.",
+   "rules": "Ansel's goat-path: no roll (his route-book, if he's dead). The ambush or the quarry, not both: the column can't be hit in two places on one day. Raw silence-stone: no spells and no sound beyond 10 feet in the dead galleries. Soaked silence-stone goes dull for a month.",
+   "consequence": "If they spoil or steal the fresh stones, the Wardens march to the Strike on dull ones: their Emanations reach only 5 feet. Up to three fights, and an Amulet of Proof against Detection and Location.",
+   "later": "S23: the Wardens' stones reach only 5 feet if the stock was spoiled or stolen.",
+   "fallback": "If they'd rather fight on open ground, the ambush on the road is still there (s22-ambush).",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, quiet quarry, quarry, silence-stone, warden's stones, wardens, goat-path, ansel, column, sabotage, spoil, stones",
+   "effects": []
+  },
+  {
+   "id": "s22-quarry-cutters",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Dagny Thurl and the silent cutters",
+   "style": "Roleplay",
+   "likelihood": "Possible",
+   "why": "The cutters are Blanks, sent where nothing they hear matters. Their foreman isn't, and she hates where her stone goes.",
+   "tells": "They take the cutters' stair down the terraces (area 2), or someone signs back.",
+   "readAloud": "The foreman wipes her hands on her smock and looks you over. Then, slowly, she makes a sign, palm down and then a closed fist, and points at the grey giant sitting on the floor below.",
+   "response": "Dagny is Friendly if they're kind to her cutters, Influence DC 15 otherwise. She tells them the guard's shifts, the chalk marks in the dead galleries and the sluice in the pump-room, and, once Friendly, the Mother Seam. She teaches them the sign for \"rest\", which Old Patient obeys. If the Blanks are the party's allies, some cutters know their faces; they won't fight, but they'll raise dust to cover the bucket-crane (Advantage on the group Stealth check).",
+   "rules": "Influence DC 15 (Indifferent). The sign: palm down, then a closed fist. Talk with the cutters is by sign: no check to be understood, and no lying either.",
+   "consequence": "A guide through the quarry, the golem's word, and the cutters' cover.",
+   "later": "S23: if they ask her, Dagny watches the Strike from the road, to see what her stone does.",
+   "fallback": "If nobody talks to her, the sign can still be worked out by watching the cutters (Insight DC 15).",
+   "keywords": "cutters, blanks, foreman, dagny, dagny thurl, sign, hand-sign, rest, quarry, quiet quarry, ally",
+   "effects": []
+  },
+  {
+   "id": "s22-quarry-xorns",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Xorns in the dead galleries",
+   "style": "Mischief",
+   "likelihood": "Possible",
+   "why": "Two Xorns found a hill full of stone nobody else can work, and silver in every Hushman's purse.",
+   "tells": "They take the long way through the dead galleries (area 5).",
+   "readAloud": "In perfect silence the gallery wall bulges, and a squat, three-armed thing pushes its way out of the stone. Its wide mouth opens. Then it leans close to your belt pouch, and sniffs.",
+   "response": "They're hungry, not cruel. 25 gp in silver, or a gem, for each, and they sink back into the stone and leave the party alone; Friendly, they point out the deadfall. Draw steel on them, or refuse, and they take what they smell: The Xorns in the Combat tab. Nobody can cast a spell in the galleries, on either side.",
+   "rules": "Raw silence-stone: no spells, no sound beyond 10 feet. The deadfall: Perception DC 15 spots the chalk warning; DC 15 Dexterity saving throw, 4d10 Bludgeoning damage, half on a success.",
+   "consequence": "A toll paid, or a fight in the deaf dark.",
+   "later": "",
+   "fallback": "If the fight goes badly for them, the Xorns sink into the wall with whatever they grabbed.",
+   "keywords": "xorn, xorns, dead galleries, galleries, silence-stone, toll, silver, gems, deadfall, trap, quiet quarry",
+   "effects": []
+  },
+  {
+   "id": "s22-old-patient",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Old Patient and the Wardens guard the fresh stones",
+   "style": "Combat",
+   "likelihood": "Likely",
+   "why": "The first cutters carved a golem to haul their blocks. The Court kept it, and taught it to guard them.",
+   "tells": "They reach the cutting floor (area 7), by the bucket-crane or the galleries.",
+   "readAloud": "The grey giant by the lead cases lifts its head, slowly, like an old man who has heard his name. Dust runs off its shoulders. The two Wardens beside it reach for their mauls.",
+   "response": "If a character makes the cutters' \"rest\" sign (palm down, then a closed fist), Old Patient sits back down and stays down. The Wardens fight anyway: Old Patient in the Combat tab, without the golem. Otherwise both: Old Patient walks at whoever is nearest the cases. Flooding the floor from the pump-room mid-fight soaks the stock, and any Warden knocked Prone in the water soaks his own stone.",
+   "rules": "Old Patient is a Stone Golem; the Wardens use the Hushman Warden, each with a Warden's Stone (a 10-foot Emanation where spells can't be cast). A Moderate encounter for four level 9 characters; much less if the golem sits down.",
+   "consequence": "The stock is theirs to spoil or steal: twelve Warden's Stones. Flood them, soak them at the cutters' troughs (a minute each), smash them (AC 12, 10 HP each) or carry them off (20 pounds a case).",
+   "later": "S23: if the stock is spoiled or stolen, the Wardens' stones reach only 5 feet at the Strike.",
+   "fallback": "",
+   "keywords": "old patient, golem, stone golem, wardens, warden's stones, cutting floor, boss, quarry, quiet quarry, stones, sabotage",
+   "effects": []
+  },
+  {
+   "id": "s22-quarry-sluice",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "They open the sluice and flood the cutting floor",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "Silence-stone only drinks sound while it's dry, and the quarry's old drainage cistern sits right above the floor.",
+   "tells": "They reach the pump-room (area 6), or Dagny tells them about the wheel.",
+   "readAloud": "The wheel groans, then gives. Somewhere below, a sound like a held breath let go, and a grey wave runs out across the cutting floor between the blocks.",
+   "response": "The floor floods knee-deep in 2 rounds: Difficult Terrain for everyone, and every silence-stone in the water goes dull for a month. That spoils the fresh stock in its open cases, and any Warden knocked Prone in it soaks his own stone. The guard hears the water: if nobody has dealt with them, they come in 5 rounds.",
+   "rules": "Turning the wheel: a DC 15 Strength (Athletics) check, or two people and ten minutes. Soaked silence-stone is just stone for a month.",
+   "consequence": "The Court's fresh stones are spoiled, and the cutters lose a week's work (Dagny doesn't mind).",
+   "later": "S23: the Wardens' stones reach only 5 feet.",
+   "fallback": "",
+   "keywords": "sluice, flood, water, pump-room, wheel, wet, dull, silence-stone, sabotage, quiet quarry",
+   "effects": []
+  },
+  {
+   "id": "s22-quarry-treasure",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Treasure: the Mother Seam",
+   "style": "Exploration",
+   "likelihood": "Possible",
+   "why": "The quarry-master who ran this hill before the Court came hid from them for a year, in the one place no spell could find him.",
+   "tells": "Dagny tells them, or they search the cutting floor's back wall (Investigation DC 16).",
+   "readAloud": "Behind the slab, a little chamber of black, glassy stone, so pure it hurts your ears. A stool, a candle stub, and a tin box with a dead man's initials scratched in the lid.",
+   "response": "An Amulet of Proof against Detection and Location, three garnets (100 gp each) and two Potions of Greater Healing.",
+   "rules": "**Amulet of Proof against Detection and Location** (uncommon, requires attunement): while you wear it, you can't be targeted by Divination spells or perceived through magical scrying sensors unless you allow it. **Potion of Greater Healing** (uncommon): regain 4d4 + 4 Hit Points.",
+   "consequence": "One character the Court can't scry, all the way to the Tor.",
+   "later": "See Side dungeons in the wiki for the rest.",
+   "fallback": "",
+   "keywords": "dungeon, side dungeon, crawl, cellar, basement, hideout, traps, trap, treasure, hidden, loot, amulet, amulet of proof against detection and location, garnets, gems, potion of greater healing, mother seam, reward, quiet quarry",
+   "effects": []
   },
   {
    "id": "s23-favor-called",
@@ -1921,7 +2023,10 @@
     "Tongues still held by the Court get recovered at the Strike"
    ],
    "encounters": [
-    "enc-s22-ambush"
+    "enc-s22-ambush",
+    "enc-s22-quarry-guard",
+    "enc-s22-xorns",
+    "enc-s22-old-patient"
    ],
    "rules": [
     "Study",
@@ -1995,6 +2100,83 @@
    "tactics": "The Wardens hold the road, the knights charge, and the Hushmen flank; the party has Surprise if the ambush is good.",
    "exit": "They withdraw if three Wardens fall or the party holds the Key.",
    "scale": "Written for four level-9 characters. Remove a Warden and the knights for a lighter fight."
+  },
+  {
+   "id": "enc-s22-quarry-guard",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The quarry guard",
+   "creatures": [
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 2
+    },
+    {
+     "name": "Hushman Sergeant",
+     "statblock": "sb_hushman_sergeant",
+     "base": "Bandit Captain",
+     "cr": "2",
+     "count": 1
+    },
+    {
+     "name": "Hushman",
+     "statblock": "sb_hushman",
+     "base": "Tough",
+     "cr": "1/2",
+     "count": 6
+    },
+    {
+     "name": "Court agent",
+     "statblock": "sb_court_agent",
+     "base": "Spy",
+     "cr": "2",
+     "count": 1
+    }
+   ],
+   "tactics": "The Wardens hold the door with their stones up, the Hushmen come out round both sides, and the agent runs for the road to warn the column.",
+   "exit": "Once both Wardens fall, or the agent gets away, the rest bar the house and wait for the column. Nobody here dies for a quarry.",
+   "scale": "3700 XP: under Low for four level 9 characters; it is a guardhouse, not a battle. Three characters: one Warden. Five: three Wardens."
+  },
+  {
+   "id": "enc-s22-xorns",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "The Xorns",
+   "creatures": [
+    {
+     "name": "Xorn",
+     "base": "Xorn",
+     "cr": "5",
+     "count": 2
+    }
+   ],
+   "tactics": "They come up through the floor behind whoever carries the most silver, grab, and sink again. In the galleries nobody can cast a spell, on either side, and nothing is heard beyond 10 feet.",
+   "exit": "Either one sinks into the stone when Bloodied, with whatever it grabbed. 25 gp in silver or a gem each ends the fight at once.",
+   "scale": "3600 XP: under Low for four level 9 characters; it is a toll, not a battle. Three characters: one Xorn. Five: three."
+  },
+  {
+   "id": "enc-s22-old-patient",
+   "sessionId": "sb-742e25b3e3af8fbf",
+   "title": "Old Patient",
+   "creatures": [
+    {
+     "name": "Old Patient",
+     "base": "Stone Golem",
+     "cr": "10",
+     "count": 1
+    },
+    {
+     "name": "Hushman Warden",
+     "statblock": "sb_hushman_warden",
+     "base": "Tough Boss",
+     "cr": "4",
+     "count": 2
+    }
+   ],
+   "tactics": "Old Patient walks at whoever is nearest the lead cases. The Wardens keep their stones' Emanations over the party's casters and their mauls on whoever goes for the cases.",
+   "exit": "Old Patient sits down for the cutters' \"rest\" sign. The Wardens fall back to the overseers' house when one falls, and wait for the column.",
+   "scale": "8100 XP: Moderate for four level 9 characters, much less if the golem sits down. Three characters: one Warden. Five: four Wardens."
   },
   {
    "id": "enc-s23-strike",

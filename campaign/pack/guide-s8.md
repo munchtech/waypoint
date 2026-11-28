@@ -1,6 +1,6 @@
 ## Running this session (new DM guide)
 
-*Read this once the day before. Tonight is short and quiet: a letter, a courier the Court wants, and a message from the Chancellor. It's the session where loose ends get tied, so give every character a goodbye. If it runs short, run it together with Session 9.*
+*Read this once the day before. Tonight is short and quiet: a letter, a courier the Court wants, and a message from the Chancellor. It's the session where loose ends get tied, so give every character a goodbye. If it runs short, run it together with Session 9. Its big dungeon is [the Tithe-works](play:s08-tithe-works), under the palace, for the jars from Session 5.*
 
 **Contents:** [Before you start](#before-you-start-session-8) · [Key people](#key-people-tonight-session-8) · [Opening recap](#opening-recap-session-8) · [Scene 1: The letter](#scene-1-the-letter) · [Scene 2: Maudrin's last word](#scene-2-maudrins-last-word) · [Scene 3: Goodbyes](#scene-3-goodbyes) · [Fights](#running-the-fights-session-8) · [Pacing](#pacing-session-8) · [If you get stuck](#if-you-get-stuck-session-8) · [End of session](#end-of-session-8)
 
@@ -23,8 +23,8 @@
 - End on: "What does I.V. want from you?"
 
 **Prepare:**
-- **Tokens or minis:** the four characters; Edrin Moss (the courier); a Court agent and three Hushmen; Lady Isolde.
-- **Maps:** the inn steps and an alley beside them, for the snatch. Nothing else needs a map.
+- **Tokens or minis:** the four characters; Edrin Moss (the courier); a Court agent and three Hushmen; Lady Isolde. For the Tithe-works: Nell Quell, a Hushman Sergeant and three Hushmen, six memory-eels, the First Tallyman (a Ghost) and two Hollowed (Specters).
+- **Maps:** the inn steps and an alley beside them, for the snatch. For the Tithe-works, sketch the nine areas from the wiki (The Tithe-works, area by area).
 - **Props:**
   - *The letter:* one line, in a shaking hand, sealed in blue wax (a blue crayon blob will do). Hand it over.
   - *Maudrin's message:* the box is in the plan above. Isolde reads it from a grey card.
@@ -102,18 +102,18 @@ Read Maudrin's message from the plan above. Isolde reads it from a grey card, th
 
 **Bring it back.** The carriage horse stamps and blows. Isolde glances at the sky. "I have somewhere to be. So do you."
 
-**How it ends.** The carriage leaves. They have a night to say their goodbyes.
+**How it ends.** The carriage leaves. They have a night to say their goodbyes, and at dusk Ilam's key opens a door under the palace: [the Tithe-works](play:s08-tithe-works), if they want the jars before they go.
 
 ### Scene 3: Goodbyes
 
 **Where and why.** Their last evening in Hallowmere: Bet's bakery, Rook's hall, the Archive, a cellar.
 
 **Run it as a round.** Go round the table. Each player picks one person in the city their character wants to see before they go, and you play that person for a minute or two. Start with whoever has had the least spotlight tonight. Suggestions:
-- **Bet:** bread for the road, and she cries when they leave, and doesn't know why.
+- **Bet:** bread for the road, and she cries when they leave, and doesn't know why. If they [bring her jar out](play:s08-bring-the-jars-home), she opens it, and knows.
 - **Rook** (if she won): "We'll keep the dawn as long as we can. Ring it if you can."
 - **Lysse:** a copy of the diary entry, in her own hand, "in case."
 - **Wren** (if she's out): Bellwright names in the north who'll take them in.
-- **Jonah:** a question. "Will you come back?"
+- **Jonah:** a question. "Will you come back?" If Ilam's jar came out of the Tithe-works, he opens it here and says his son's name.
 - **Aurelie:** a blessing for the road. "When the sun comes back."
 
 **If they…** [leave tonight](play:s08-leave-tonight): Group Stealth DC 15 at the north gate, with Advantage. Then Session 9 begins on the road, and Scene 1 of it (Vaer) only runs if they came back for it.
@@ -140,12 +140,12 @@ Read Maudrin's message from the plan above. Isolde reads it from a grey card, th
 | 0:00 to 0:10 | Recap; check the four facts |
 | 0:10 to 1:00 | Scene 1: the letter, and the snatch |
 | 1:00 to 1:45 | Scene 2: Isolde and Maudrin's last word |
-| 1:45 to 2:30 | Scene 3: goodbyes |
-| 2:30 to 3:30 | Session 9 begins (Vaer, or the gate) |
+| 1:45 to 2:45 | The Tithe-works, the short way, if they go for the jars (if not, Scene 3 and Session 9 as before) |
+| 2:45 to 3:30 | Scene 3: goodbyes, and the jars handed over |
 
-- **Where to break:** after Isolde's carriage leaves, before the goodbyes.
-- **Running long:** cut the goodbyes to three people, and open Session 9 with the rest.
-- **Running short:** go straight on into Session 9. The pacing above assumes you will.
+- **Where to break:** after Isolde's carriage leaves, before the goodbyes, or in the Tithe-works' porters' bothy (area 4).
+- **Running long:** take the Tithe-works' short way (areas 1, 2, the porters' lift, 8 and 9), cut the goodbyes to three people, and open Session 9 with the rest.
+- **Running short:** take the long way through the Tithe-works, then go straight on into Session 9.
 - **If you need to stop early:** stop when the carriage leaves, on the closing question.
 
 ### If you get stuck (Session 8)
@@ -162,19 +162,19 @@ Read Maudrin's message from the plan above. Isolde reads it from a grey card, th
 **The closing question:** "What does I.V. want from you?" Then: "Let's each say one thing we'll remember."
 
 **Record in Waypoint:**
-- **Plays that happened:** the courier play, the Isolde play, and whether they left tonight.
-- **World-state facts to check:** Lady Isolde, the Glass Sexton (still frozen), the Tithe Clock.
+- **Plays that happened:** the courier play, the Isolde play, the Tithe-works and whose jars came out, and whether they left tonight.
+- **World-state facts to check:** Lady Isolde, the Glass Sexton (still frozen), the Tithe Clock, the Court Clock, and Calla's Heart if they took it from the back shelves.
 - **Bargain log:** any deal with Isolde, and what it protects.
 
 **Rewards:**
 - **Level:** none. They stay level 4.
-- **The letter**, and a starting point in Glassreach.
+- **The letter**, and a starting point in Glassreach. From the Tithe-works: Gloves of Thievery, 50 gp, two Potions of Healing, and the jars.
 - **Gifts from the goodbyes:** Bet's bread for the road, Lysse's copy of the entry, and Wren's names in the north.
 - **Heroic Inspiration:** to each player whose goodbye made the table go quiet.
 
 ## Table card
 
-**Session 8 · The Glass Letter** · four characters, level 4 · end on **"What does I.V. want from you?"** · first, check Isolde, the diary and the Tithe Clock
+**Session 8 · The Glass Letter** · four characters, level 4 · end on **"What does I.V. want from you?"** · first, check Isolde, the diary and the Tithe Clock · big dungeon: the Tithe-works (wiki)
 
 | Who | Voice and habit | Wants | First words |
 |---|---|---|---|
@@ -186,4 +186,4 @@ Read Maudrin's message from the plan above. Isolde reads it from a grey card, th
 
 **Isolde:** Insight DC 15 (she's going north too); Influence DC 15 for when. Turn her only with a real offer or leverage (her son; the Compact trade). **Snatch:** they let go once the party intervenes; the agent drops the letter when Bloodied.
 
-**Goodbyes:** one person each, least-spotlit player first. **Break** after the carriage leaves. Short night? Run straight into Session 9.
+**Goodbyes:** one person each, least-spotlit player first. **Break** after the carriage leaves. **Tithe-works:** Ilam's key, no roll; Nell's bell-pull (Influence DC 13); the funnel (Wisdom DC 13); the First Tallyman stands down for his own name, Wystan Pellow (the day-book). Short night? Run straight into Session 9.

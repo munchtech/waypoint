@@ -183,7 +183,7 @@ const result = {
   summary: `Revision 7.23 of The Seventh Bell, for Waypoint 1.48. It installs over revisions 7.22 to 7, revision 6 or the original campaign, and keeps your world state, notes and the wiki entries you have sent.
 
 - **Shapes and threads (7.23).** Skip Glassreach, or run Sessions 10 and 11 in one evening; a Shapes of the campaign page; personal threads on the Roster; Prep names who is due a beat.
-- **Dungeons, roads and markets (7.21, 7.22).** Seven side dungeons and the Frost Spire as Session 14's dungeon; road tables, random magic, wayshrines, a peddler, puzzles and every trader's stock.
+- **Dungeons, roads and markets (7.21 to 7.23).** Seven side dungeons and big dungeons in Sessions 8, 14 and 22; road tables, random magic, wayshrines, a peddler, puzzles and every trader's stock.
 - **Pacing, treasure and growth (7.20).** A Glassreach clock and Act II choices that pay off in Glassreach; Sessions 12 and 13 in one evening; march on the Tor short-handed; a fight in each talking session; two Rare items each by level 9 and a bell-charm; a personal beat per character per act, lost things won back, Toll-marks, standing perks, bell boons.
 - **Reshape and quick wins (7.18, 7.19).** Work for or reform the Court, back a claimant, open the Seam or swear to the Hush; faction clocks act at 6; Act I debts return in Sessions 22 and 23.
 - **Plain speech (7.12, 7.17).** Guides, plays, wiki and handouts say each thing once, plainly; each NPC page gains a first look and lines to say.

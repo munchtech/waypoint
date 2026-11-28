@@ -14,7 +14,7 @@
 - **The Key.** With her, on the chain. Or with the party; then Haldric hesitates.
 - **Maudrin's bargain** (the favour from Session 4). Owed, repaid, broken or refused. If it's **owed,** tonight's when she calls it in.
 - **Jonah.** In custody: she's brought him. Safe, with Ilam an ally: Ilam's on the south road.
-- **Also:** the oath to Kessa (if it's broken, he's coming too); whether Imber's been freed; which Hearts the Court's got; the allies clock; what they broke in the ambush.
+- **Also:** the oath to Kessa (if it's broken, he's coming too); whether Imber's been freed; which Hearts the Court's got; the allies clock; what they broke in the ambush or at the Quiet Quarry.
 
 **What this session is about.** Being offered a way out by someone who means it. Then, a battle where the friends they've made matter.
 
@@ -300,7 +300,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 
 #### The Strike (Haldric still commands)
 
-*Maudrin, Haldric, two Knights, three Wardens, two Sergeants, four Hushmen. Take off whatever the ambush broke.*
+*Maudrin, Haldric, two Knights, three Wardens, two Sergeants, four Hushmen. Take off whatever the ambush broke. Stock spoiled at the Quiet Quarry: the Wardens' stones reach only 5 feet.*
 
 - **Setup:** the Court at the bottom of the road, in a line sixty feet wide. Maudrin behind it on her horse. The party thirty to sixty feet up the slope. Hushmen mounted at both ends.
 - **What happens:** Round one: Silence on the biggest caster; the Wardens walk up the hill. Round two: the Hushmen come round the ends. Haldric calls out the strongest fighter by name and won't be drawn off.
@@ -312,7 +312,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 
 #### The Strike (Rook won the duel)
 
-*Maudrin, four Wardens, three Sergeants, eight Hushmen. No knights on their side. Rook's are on the ridge.*
+*Maudrin, four Wardens, three Sergeants, eight Hushmen. No knights on their side. Rook's are on the ridge. Stock spoiled at the Quiet Quarry: the Wardens' stones reach only 5 feet.*
 
 - **Setup:** the same, but the Wardens make a ring round Maudrin, stones showing. There's no casting at her from close in until one's shut.
 - **What happens:** the Hushmen go for the casters, two to each. The Sergeants call it.
@@ -321,7 +321,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 
 #### The Strike (Tristan's column)
 
-*Only if Maudrin's dead. Tristan (AC 14, HP 38), Haldric, two Knights, six Wardens, three Sergeants, ten Hushmen.*
+*Only if Maudrin's dead. Tristan (AC 14, HP 38), Haldric, two Knights, six Wardens, three Sergeants, ten Hushmen. Stock spoiled at the Quiet Quarry: the Wardens' stones reach only 5 feet.*
 
 - **Setup:** he's right at the back by the wagons, writing. The Wardens come on in twos.
 - **What happens:** he sends them forward in pairs and doesn't come himself. He's counting.
@@ -387,7 +387,7 @@ She goes up. Nobody can catch her: she steps from one place to another, and then
 
 ## Table card
 
-**Session 23 · The Strike** · four characters, level 9 (10 after) · end on **"Who goes up first?"** · first, check the duel, Maudrin, the Key, the favour, Jonah and Ilam, Kessa's oath, Imber, Hearts the Court holds, the allies clock, what the ambush broke
+**Session 23 · The Strike** · four characters, level 9 (10 after) · end on **"Who goes up first?"** · first, check the duel, Maudrin, the Key, the favour, Jonah and Ilam, Kessa's oath, Imber, Hearts the Court holds, the allies clock, what the ambush or the quarry broke
 
 | Who | Voice and habit | Wants | First words |
 |---|---|---|---|
