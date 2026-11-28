@@ -26,6 +26,21 @@ const categories: [string, string][] = [
   ['Encounter', 'Encounters'],
   ['Rule', 'Rules'],
 ];
+// Where "open" takes each kind of page (useDesk's openWorkspace), so the button says so.
+const openLabel: Partial<Record<string, string>> = {
+  Wiki: 'Open in the wiki editor',
+  Journal: 'Open the note',
+  Handout: 'Open the handout',
+  Map: 'Open the map',
+  Character: 'Open in Party',
+  Rule: 'Open in the rules',
+  Material: 'Open the idea',
+  Creature: 'Open in Combat',
+  Encounter: 'Open in Combat',
+  Event: 'Open in the table log',
+  Play: 'Open in Paths',
+  Session: 'Open the session notes',
+};
 function stored(key: string) {
   try {
     return JSON.parse(localStorage.getItem(key) || 'null');
@@ -237,7 +252,7 @@ export default function CampaignReader({
           <span className="eyebrow">CAMPAIGN REFERENCE</span>
           <h2>
             <BookOpen size={23} />
-            Your campaign, chapter by chapter.
+            Read the campaign
           </h2>
         </div>
         <button className="button" aria-pressed={focus} onClick={() => setFocus(!focus)}>
@@ -346,7 +361,7 @@ export default function CampaignReader({
               <div className="reader-actions">
                 {onOpenHit && (
                   <button className="button primary" onClick={() => onOpenHit(opened)}>
-                    Open in workspace
+                    {openLabel[opened.kind] || 'Open on the session desk'}
                   </button>
                 )}
                 {trail.length > 0 && (

@@ -194,7 +194,7 @@ run(async (args) => {
   await shot('09c-sent');
   await nav('Session desk');
   // The guide in the session notes: a play link opens that play's card in place, ready to record.
-  await s.clickText('Session notes');
+  await s.clickText('Notes');
   await s.settle(600);
   check(
     'the session notes have play links',
@@ -281,7 +281,7 @@ run(async (args) => {
   const scene = await s.run('window.scrollY');
   await s.clickText('Combat', { within: '.desk-main .tabs' });
   await s.settle(1200);
-  await s.clickText('Session notes', { within: '.desk-main .tabs' });
+  await s.clickText('Notes', { within: '.desk-main .tabs' });
   await s.settle(1200);
   check(
     'changing tab and back keeps your place in the notes',
@@ -307,7 +307,7 @@ run(async (args) => {
   await shot('09f-live-rail');
   await s.clickText('Exit live mode');
   await s.settle(400);
-  await s.clickText('Possibilities');
+  await s.clickText('Paths');
   await s.settle(400);
   check(
     'Possibilities are grouped by the guide scenes',

@@ -9365,3 +9365,262 @@ fieldset.relation-labels input {
   font-weight: 600;
   font-size: 12px;
 }
+
+/* The Session area's guide: Prep → Run → Wrap up → Next, each with where it stands. */
+/* Its own row under the title and session picker, so every step's status reads in full. */
+.workspace-header > .session-guide {
+  order: 4;
+  flex: 1 1 100%;
+  min-width: 0;
+}
+.workspace-header:has(> .session-guide) > .workspace-context {
+  order: 1;
+}
+.session-guide ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.session-guide li {
+  min-width: 0;
+  position: relative;
+}
+.session-guide li + li::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  width: 6px;
+  height: 1px;
+  background: light-dark(#c9cfc5, #3b454e);
+}
+.session-guide button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 9px 13px;
+  border: 1px solid light-dark(#d6d9d0, #34404a);
+  border-radius: 10px;
+  background: light-dark(#fffdf8, #141c22);
+  color: light-dark(#2f454c, #c9d3d6);
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+.session-guide button:hover {
+  background: light-dark(#eef2ec, #18222a);
+  border-color: light-dark(#b9c5bd, #4a5862);
+}
+.session-guide .guide-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid light-dark(#b9c5bd, #4a5862);
+  color: light-dark(#435961, #b5c2c6);
+}
+.session-guide .guide-text {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+.session-guide .guide-text strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+.session-guide .guide-text small {
+  font-size: 11.5px;
+  color: light-dark(#5a6e74, #9fb0b5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.session-guide button.done .guide-mark {
+  background: light-dark(#dcebe2, #1d3a33);
+  border-color: light-dark(#8fbca3, #3f7a66);
+  color: light-dark(#1f6a48, #9fe0bf);
+}
+.session-guide button.up-next {
+  border-color: light-dark(#c08a2c, #d7a64a);
+  box-shadow: 0 0 0 1px light-dark(#c08a2c40, #d7a64a40);
+}
+.session-guide .guide-next {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: light-dark(#8a5a12, #d7a64a);
+  color: light-dark(#fff, #1a1206);
+}
+.session-guide button.selected {
+  background: light-dark(#245c60, #245c60);
+  border-color: light-dark(#245c60, #9cd5d9);
+  color: #fff;
+  box-shadow: 0 2px 5px light-dark(#183f4414, #00000032);
+}
+.session-guide button.selected .guide-text small {
+  color: light-dark(#d7ecec, #d7ecec);
+}
+.session-guide button.selected .guide-mark {
+  border-color: #ffffff80;
+  color: #fff;
+  background: #ffffff1a;
+}
+@media (max-width: 900px) {
+  .session-guide ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .session-guide li + li::before {
+    display: none;
+  }
+}
+
+/* "Last time" on the desk: open before play starts, one line once the table is under way. */
+.last-time-card {
+  margin: 14px 0 4px;
+  border: 1px solid light-dark(#cddcd6, #3b444d);
+  border-radius: 12px;
+  background: light-dark(#f7faf7, #10171d);
+}
+.last-time-card > summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  list-style-position: inside;
+}
+.last-time-card > summary .eyebrow {
+  margin: 0;
+}
+.last-time-card > summary strong {
+  font-size: 14px;
+}
+.last-time-card > summary small {
+  color: light-dark(#5a6e74, #9fb0b5);
+  font-size: 12px;
+}
+.last-time-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 0 16px 14px;
+}
+.last-time-body > .recap-draft {
+  margin: 0;
+}
+
+/* Prep without a playbook: last time, the plan's scenes, then run it. */
+.prep-page h2 {
+  margin: 4px 0 8px;
+}
+.prep-page > h3 {
+  margin: 22px 0 6px;
+  font-size: 15px;
+}
+.prep-scenes {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.foresight-intro h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+/* Quick help: one slim row at the top of the desk's side panel; it opens the next-move coach and the idea maker. */
+.quick-help-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid light-dark(#d9cfae, #4a4430);
+  border-radius: 12px;
+  background: light-dark(#fbf6e6, #1b1a12);
+  color: light-dark(#5b4410, #e8d39a);
+  text-align: left;
+  cursor: pointer;
+}
+.quick-help-toggle:hover {
+  background: light-dark(#f6edd0, #222016);
+}
+.quick-help-toggle > span {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.3;
+}
+.quick-help-toggle strong {
+  font-size: 14px;
+}
+.quick-help-toggle small {
+  font-size: 12px;
+  color: light-dark(#6d5a2c, #c7b88c);
+}
+.quick-help-chevron {
+  flex: none;
+  transition: transform 0.15s ease;
+}
+.quick-help.open .quick-help-chevron {
+  transform: rotate(90deg);
+}
+.right-rail > .table-coach {
+  margin: 0;
+}
+
+/* The Next page when the following session is already written (a campaign pack writes them all). */
+.next-written {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0 18px;
+  padding: 12px 14px;
+  border: 1px solid light-dark(#b9d3cf, #33545a);
+  border-radius: 12px;
+  background: light-dark(#eef6f4, #12201f);
+}
+.next-written > span {
+  display: grid;
+  gap: 2px;
+}
+.next-written small {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: light-dark(#3d6a6d, #9cd5d9);
+}
+.next-written strong {
+  font-size: 15px;
+}
+
+/* Campaign history: one full-width search line above the filters, not a box around a half-width field. */
+.history-controls .search-row {
+  margin: 0;
+  padding: 0 0 0 4px;
+  gap: 10px;
+  border: 0;
+  background: none;
+}
+.history-controls .search-row input {
+  flex: 1;
+  max-width: none;
+}

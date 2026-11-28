@@ -658,7 +658,7 @@ export default function RulesLibrary({
           ) : (
             <div className="rules-placeholder">
               <BookOpen size={35} />
-              <h3>Find it. Read it. Keep it close.</h3>
+              <h3>Pick a rule to read</h3>
               <p>
                 Select a reference to view its rules and source. Pinning adds a snapshot to the
                 current session without creating a campaign event. Pin up to six references to

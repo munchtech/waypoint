@@ -161,7 +161,7 @@ export default function QuickNavigation({
             !!hit && !pinned.some((p) => p.id === hit.id && p.kind === hit.kind),
         );
       return [
-        ...pinned.slice(0, 6).map((hit) => asAction(hit, 'Kept handy')),
+        ...pinned.slice(0, 6).map((hit) => asAction(hit, 'Pinned')),
         ...visited.map((hit) => asAction(hit, 'Recent · ' + (hit.pageKind || hit.kind))),
         ...destinations,
       ];

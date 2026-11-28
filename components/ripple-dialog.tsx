@@ -45,7 +45,7 @@ export default function RippleDialog({
         campaign.sessions[i].title.replace(/^Sessions? [\dA-Z–\- to]+:\s*/, '');
   return (
     <>
-      <span className="eyebrow">THE PARTY DID THIS</span>
+      <span className="eyebrow">RECORD WHAT HAPPENED</span>
       <h2 id="modal-title">{play.title}</h2>
       {blocked.length > 0 && (
         <p className="play-blocked">

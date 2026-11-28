@@ -36,7 +36,7 @@ export default function RecapReview({
   return (
     <>
       <span className="eyebrow">CATCH UP AFTER THE GAME</span>
-      <h2 id="modal-title">Turn your recap into memory.</h2>
+      <h2 id="modal-title">Add a recap</h2>
       <p>
         Paste what happened. Review the extracted facts before they become part of your campaign.
       </p>

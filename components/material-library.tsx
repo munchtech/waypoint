@@ -115,9 +115,7 @@ export default function MaterialLibrary({
       {!found.length && (
         <div className="paper empty library-empty">
           <Sparkles size={30} />
-          <h3>
-            {cards.length ? 'No ideas match those filters.' : 'Keep a little magic in reserve.'}
-          </h3>
+          <h3>{cards.length ? 'No ideas match those filters.' : 'No saved ideas yet'}</h3>
           <p>
             {cards.length
               ? 'Try another word or show every type of material. Your saved ideas are still here.'

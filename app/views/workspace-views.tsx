@@ -78,7 +78,7 @@ export function ChronicleView() {
       onSession={(id) => {
         setHistoryReturn(true);
         setSessionId(id);
-        setTab('At the table');
+        setTab('Table log');
         setView('Session desk');
         window.scrollTo({ top: 0 });
       }}
@@ -163,9 +163,14 @@ export function MemoryView({ view }: { view: 'Session journal' | 'World wiki' | 
     nextSession,
     navigate,
     openWorkspace,
+    setSessionId,
   } = useDeskContext();
   return (
     <CampaignMemory
+      onOpenSession={(id) => {
+        setSessionId(id);
+        setView('Foresight');
+      }}
       key={campaign.id + view + (targetHit?.id || '')}
       campaign={campaign}
       sessionId={session.id}
@@ -208,10 +213,18 @@ export function ForesightView() {
     played,
     pinRule,
     openWorkspace,
+    setPlanTitle,
+    setDraft,
+    setModal,
   } = useDeskContext();
   return (
     <Suspense fallback={<ViewLoading />}>
       <Foresight
+        onEditPlan={() => {
+          setPlanTitle(session.title);
+          setDraft(session.plan);
+          setModal('plan');
+        }}
         tabRequest={foresightTab}
         onPaths={(id) => {
           const hit = id
@@ -220,7 +233,7 @@ export function ForesightView() {
           if (hit) openWorkspace(hit);
           else {
             setView('Session desk');
-            setTab('Possibilities');
+            setTab('Paths');
             setExpanded(null);
           }
         }}

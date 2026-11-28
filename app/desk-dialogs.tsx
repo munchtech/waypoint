@@ -343,9 +343,11 @@ export function DialogBody() {
       )}
       {modal === 'new' && (
         <>
-          <span className="eyebrow">A NEW WORLD AWAITS</span>
+          <span className="eyebrow">NEW CAMPAIGN</span>
           <h2 id="modal-title">Start a campaign</h2>
-          <p>Bring a seed of an idea. Get a flexible campaign arc and a playable first session.</p>
+          <p>
+            Describe your idea. Waypoint drafts a campaign outline and a first session you can run.
+          </p>
           <label>
             Campaign name
             <input
@@ -553,7 +555,7 @@ export function DialogBody() {
       )}
       {modal === 'data' && (
         <>
-          <span className="eyebrow">YOUR STORIES, IN YOUR HANDS</span>
+          <span className="eyebrow">SETTINGS</span>
           <h2 id="modal-title">AI & backups</h2>
           {isDesktop() && (
             <Suspense fallback={<ViewLoading />}>

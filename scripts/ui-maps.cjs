@@ -49,7 +49,7 @@ run(async (args) => {
     const page = campaign().memory.pages.find((p) => p.kind === 'NPC');
     assert(page, 'The fixture has an NPC page');
     await go('Maps');
-    await wait("document.querySelector('.maps-empty h2')?.textContent==='Pin the world in place.'");
+    await wait("document.querySelector('.maps-empty h2')?.textContent==='Add your first map'");
     await noOverflow('on the empty page');
     await shot('maps-empty-1420');
 

@@ -77,6 +77,8 @@ type Props = {
   seedPage?: WikiPage | null;
   onSeedUsed?: () => void;
   onSendToWiki?: (draft: WikiDraft) => void;
+  // Opens a later session that is already written (a campaign pack writes them all), instead of drafting one.
+  onOpenSession?: (id: string) => void;
 };
 export default function CampaignMemory({
   campaign,
@@ -92,6 +94,7 @@ export default function CampaignMemory({
   seedPage,
   onSeedUsed,
   onSendToWiki,
+  onOpenSession,
 }: Props) {
   const {
     draft,
@@ -100,6 +103,8 @@ export default function CampaignMemory({
     failure: draftFailure,
     recovered,
   } = useWikiDraft(campaign, initialId);
+  const at = campaign.sessions.findIndex((s) => s.id === sessionId),
+    after = at >= 0 ? campaign.sessions[at + 1] : undefined;
   const m = memoryOf(campaign),
     [order, setOrder] = useState('campaign'),
     [pageKind, setPageKind] = useState(''),
@@ -217,8 +222,8 @@ export default function CampaignMemory({
     }));
     setMessage(
       proposals.length
-        ? 'Review each source quote before adding it to the wiki.'
-        : 'No proposals had a verifiable source quote. Your notes are saved; you can add wiki pages manually.',
+        ? 'Check each find against its quote from your notes before it goes in the wiki.'
+        : 'Nothing found could be matched to a quote in your notes. Your notes are saved; add wiki pages by hand if you like.',
     );
   }
   return (
@@ -231,10 +236,26 @@ export default function CampaignMemory({
       {section === 'Next session' ? (
         <div className="content-grid">
           <section className="paper">
-            <span className="eyebrow">FOLLOW THE CONSEQUENCES</span>
-            <h2>Shape the next chapter.</h2>
+            <span className="eyebrow">PLAN SESSION {at + 2}</span>
+            <h2>What happens next?</h2>
+            {after && onOpenSession ? (
+              <div className="next-written">
+                <span>
+                  <small>Already written</small>
+                  <strong>{after.title}</strong>
+                </span>
+                <button className="button primary" onClick={() => onOpenSession(after.id)}>
+                  Open its prep <ArrowRight size={15} />
+                </button>
+              </div>
+            ) : (
+              <p className="muted">
+                Pick what you want more of and fill in what matters. Waypoint drafts the session
+                from what actually happened at your table.
+              </p>
+            )}
             <fieldset className="lever-group">
-              <legend>Adjust the plan</legend>
+              <legend>More of this next time</legend>
               <div className="chips">
                 {plannerLevers.map((l) => {
                   const on = (m.planner.levers || []).includes(l.id);
@@ -264,10 +285,10 @@ export default function CampaignMemory({
               <label key={key}>
                 {
                   {
-                    duration: 'Session length',
-                    focus: 'What should this session lean into?',
-                    spotlight: 'Character or backstory to spotlight',
-                    locked: 'Facts or scenes to preserve',
+                    duration: 'How long is the session?',
+                    focus: 'What should it focus on?',
+                    spotlight: 'Whose character gets the spotlight?',
+                    locked: 'What must stay true (facts and scenes to keep)',
                   }[key]
                 }
                 <MentionTextarea
@@ -285,7 +306,9 @@ export default function CampaignMemory({
             ))}
             <div className="flow-actions">
               <button className="button primary" disabled={busy} onClick={next}>
-                <Sparkles size={16} /> Draft next session <ArrowRight size={16} />
+                <Sparkles size={16} />{' '}
+                {after ? 'Draft a new session at the end' : 'Draft the next session'}{' '}
+                <ArrowRight size={16} />
               </button>
             </div>
           </section>
@@ -301,7 +324,7 @@ export default function CampaignMemory({
               .map((s) => (
                 <div className="planner-debrief" key={s.id}>
                   <span className="eyebrow">
-                    SESSION REFLECTIONS · {s.done ? 'COMPLETED' : 'IN PROGRESS'}
+                    YOUR WRAP-UP NOTES{s.done ? '' : ' · NOT FINISHED'}
                   </span>
                   <h3>{s.title}</h3>
                   {s.debrief!.remember && (
@@ -326,10 +349,10 @@ export default function CampaignMemory({
               ))}
             {openMarkers.length > 0 && (
               <>
-                <h3>Open from play</h3>
+                <h3>Follow-ups from the table</h3>
                 <p className="muted">
-                  Promises and follow-ups you marked at the table. Keep them in the plan or dismiss
-                  them once they are handled.
+                  Promises and follow-ups you marked during play. Dismiss each one once it’s
+                  handled.
                 </p>
                 {openMarkers.map((k) => (
                   <article className="memory-thread" key={k.id}>
@@ -349,8 +372,8 @@ export default function CampaignMemory({
                 ))}
               </>
             )}
-            <h3>Threads worth picking up</h3>
-            <p className="muted tiny">Tick the ones to prioritize in the next session.</p>
+            <h3>Loose threads</h3>
+            <p className="muted tiny">Tick the ones you want in the next session.</p>
             {m.pages
               .filter(
                 (p) => p.status === 'Unresolved' || p.status === 'Planned' || p.kind === 'Quest',
@@ -387,13 +410,11 @@ export default function CampaignMemory({
                 </article>
               ))}
             {!m.pages.length && (
-              <p>
-                Add reviewed discoveries and open questions to your wiki to make this list grow.
-              </p>
+              <p>Unfinished quests and open questions in your wiki show up here.</p>
             )}
             <div className="info-box">
-              <Lock size={16} /> Suggestions remain drafts. Preparing a session never changes
-              confirmed history.
+              <Lock size={16} /> A drafted session is only a plan. It never changes what already
+              happened in your campaign.
             </div>
           </section>
         </div>
@@ -479,10 +500,10 @@ export default function CampaignMemory({
               {!m.pages.length && (
                 <div className="paper empty">
                   <BookOpen size={30} />
-                  <h3>Your world, remembered.</h3>
+                  <h3>No wiki pages yet</h3>
                   <p>
-                    Add a page or review discoveries from your session journal. Rumors and plans
-                    stay distinct from confirmed facts.
+                    Add a page or review discoveries from your session journal. Rumors and plans are
+                    kept apart from confirmed facts.
                   </p>
                   <button className="button" onClick={newPage}>
                     Create your first page
@@ -755,8 +776,12 @@ export default function CampaignMemory({
       ) : (
         <div className="content-grid">
           <section className="paper">
-            <span className="eyebrow">RECORD → REVIEW → REMEMBER</span>
-            <h2>Source notes</h2>
+            <span className="eyebrow">AFTER THE GAME</span>
+            <h2>Session notes</h2>
+            <p className="muted">
+              Paste or type what happened. Waypoint finds the people, places and promises in it for
+              you to check before anything goes in your wiki.
+            </p>
             <label>
               Session
               <select value={noteSession} onChange={(e) => setNoteSession(e.target.value)}>
@@ -768,7 +793,7 @@ export default function CampaignMemory({
               </select>
             </label>
             <label>
-              Note title
+              Title
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -776,7 +801,7 @@ export default function CampaignMemory({
               />
             </label>
             <label>
-              Notes or transcript
+              What happened (your notes or a transcript)
               <MentionTextarea
                 rows={12}
                 value={text}
@@ -787,7 +812,7 @@ export default function CampaignMemory({
             </label>
             <div className="flow-actions">
               <label className="button">
-                Import text / Markdown / VTT
+                Import a file (.txt, .md, .vtt)
                 <input
                   type="file"
                   accept=".txt,.md,.vtt,.srt"
@@ -835,10 +860,12 @@ export default function CampaignMemory({
                   setSelected(id);
                   setTitle('');
                   setText('');
-                  setMessage('Source notes saved. Select Extract wiki proposals when ready.');
+                  setMessage(
+                    'Notes saved. Use “Find what’s new” when you want Waypoint to read them.',
+                  );
                 }}
               >
-                <FileText size={15} /> Save source notes
+                <FileText size={15} /> Save notes
               </button>
             </div>
             <div className="journal-list">
@@ -867,11 +894,11 @@ export default function CampaignMemory({
                   <h3>{source.title}</h3>
                   <button className="button" disabled={busy} onClick={() => extract(source.id)}>
                     <Sparkles size={15} />
-                    {busy ? 'Working…' : 'Extract wiki proposals'}
+                    {busy ? 'Working…' : 'Find what’s new'}
                   </button>
                 </div>
                 <details>
-                  <summary>Read original source</summary>
+                  <summary>Read the full notes</summary>
                   {source.recordingId && isDesktop() && (
                     <>
                       <p className="tiny muted">
@@ -893,17 +920,17 @@ export default function CampaignMemory({
                       setTitle(source.title + ' (corrected)');
                       setNoteSession(source.sessionId);
                       setMessage(
-                        'Edit the copied text on the left and save it as a new source. Existing evidence is preserved.',
+                        'Fix the copy on the left and save it as a new note. The original stays as it was.',
                       );
                     }}
                   >
-                    Copy to editor for corrections
+                    Copy into the editor to fix
                   </button>
                   <p className="prose">{source.text}</p>
                 </details>
                 {source.summary && (
                   <>
-                    <span className="eyebrow">AI RECAP · REVIEW FOR ACCURACY</span>
+                    <span className="eyebrow">AI SUMMARY · CHECK IT AGAINST YOUR NOTES</span>
                     <p className="prose">{source.summary}</p>
                   </>
                 )}
@@ -987,8 +1014,11 @@ export default function CampaignMemory({
             ) : (
               <div className="empty">
                 <BookOpen size={30} />
-                <h3>Open a source note</h3>
-                <p>Save or select notes, extract discoveries, then open Review discoveries.</p>
+                <h3>Pick a note</h3>
+                <p>
+                  Save your notes from the game, or pick one from the list. “Find what’s new” then
+                  pulls out what to check.
+                </p>
               </div>
             )}
           </section>

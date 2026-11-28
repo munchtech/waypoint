@@ -151,7 +151,7 @@ export default function ReferencePanel({ campaign, pageId, onClose, onOpen, onPi
                     onClick={() => onPin(page.id)}
                   >
                     <Pin size={14} />
-                    {memory.pins?.includes(page.id) ? 'Kept handy' : 'Keep handy'}
+                    {memory.pins?.includes(page.id) ? 'Pinned' : 'Pin'}
                   </button>
                   <button className="button" onClick={() => open('Wiki', page.id)}>
                     Open wiki editor

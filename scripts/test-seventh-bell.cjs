@@ -296,7 +296,7 @@ app.whenReady().then(async () => {
       (await win.webContents.capturePage()).toPNG(),
     );
     await run(
-      "[...document.querySelectorAll('button')].find(b=>b.textContent==='Session notes').click()",
+      "[...document.querySelectorAll('.desk-main .tabs button')].find(b=>b.textContent==='Notes').click()",
     );
     await wait("!!document.querySelector('.desk-main .book-text')");
     for (const width of [900, 1420]) {

@@ -1,6 +1,6 @@
 // Screenshot tour: walks every screen and the main dialogs, saving one PNG per state.
 //   node_modules/electron/dist/electron.exe scripts/ui-tour.cjs --out shots/after [--width 1420] [--height 940]
-//     [--fixture demo|seventh-bell|<file>] [--only <name fragment>] [--compare shots/before]
+//     [--fixture demo|seventh-bell|<file>] [--theme light|dark] [--only <name fragment>] [--compare shots/before]
 // With --compare, each PNG is compared pixel for pixel with the same name in the other folder.
 const fs = require('node:fs'),
   path = require('node:path');
@@ -17,6 +17,7 @@ run(async (args) => {
     width,
     height,
     fixture,
+    theme: args.theme === 'dark' ? 'dark' : 'light',
     build: args.build ? path.resolve(args.build) : undefined,
   });
   let different = 0,

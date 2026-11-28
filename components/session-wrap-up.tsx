@@ -99,7 +99,7 @@ export default function SessionWrapUp({
   }
   return (
     <section className="session-wrap-up">
-      <span className="eyebrow">CLOSE THE CHAPTER</span>
+      <span className="eyebrow">WRAP UP</span>
       <h2 id="modal-title">What changes next?</h2>
       <p>
         Review the choices that happened, note the loose ends, and give your next session a
@@ -116,10 +116,8 @@ export default function SessionWrapUp({
           <strong>{loved}</strong> loved
         </span>
         <span>
-          <strong>{events.filter((e) => e.enjoyment === 'Less of this').length}</strong> course{' '}
-          {events.filter((e) => e.enjoyment === 'Less of this').length === 1
-            ? 'correction'
-            : 'corrections'}
+          <strong>{events.filter((e) => e.enjoyment === 'Less of this').length}</strong> less of
+          this
         </span>
       </div>
       <h3>The choices you recorded</h3>

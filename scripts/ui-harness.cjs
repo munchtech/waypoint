@@ -347,6 +347,11 @@ async function doStep(s, step) {
     const first = await s.clickText(route[0], { within: '.sidebar' });
     if (first !== 'ok') return first;
     await s.settle(100);
+    // The Session area's guide steps carry their name in <strong> beside a status line.
+    if (route[0] === 'Session')
+      return s.run(
+        `(()=>{const b=[...document.querySelectorAll('.session-guide button')].find(b=>b.querySelector('strong')?.textContent===${JSON.stringify(route[1])});if(!b)return 'MISSING:'+${JSON.stringify(route[1])};b.click();return 'ok'})()`,
+      );
     return s.clickText(route[1], { within: '.workspace-tabs' });
   }
   if (kind === 'click') return s.clickText(arg, extra);
@@ -411,14 +416,14 @@ const tourStates = [
   {
     name: 'desk-session-notes',
     steps: [
-      ['click', 'Session notes'],
+      ['click', 'Notes'],
       ['wait', 250],
     ],
   },
   {
     name: 'desk-at-the-table',
     steps: [
-      ['click', 'At the table'],
+      ['click', 'Table log'],
       ['wait', 250],
     ],
   },
@@ -432,7 +437,7 @@ const tourStates = [
   {
     name: 'desk-live-mode',
     steps: [
-      ['click', 'Possibilities'],
+      ['click', 'Paths'],
       ['click', 'Live mode'],
       ['wait', 300],
     ],
@@ -440,10 +445,10 @@ const tourStates = [
   {
     name: 'desk-live-table-tab',
     steps: [
-      ['click', 'At the table'],
+      ['click', 'Table log'],
       ['wait', 250],
       ['click', 'Exit live mode'],
-      ['click', 'Possibilities'],
+      ['click', 'Paths'],
       ['wait', 250],
     ],
   },

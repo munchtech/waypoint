@@ -48,7 +48,7 @@ export default function RelationshipWeb({ pages }: { pages: WikiPage[] }) {
         </h3>
         <div className="empty">
           <GitBranch size={30} />
-          <p>Your relationship web will grow with the wiki.</p>
+          <p>Links between wiki pages show up here.</p>
         </div>
       </section>
     );

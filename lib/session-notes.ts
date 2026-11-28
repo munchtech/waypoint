@@ -191,3 +191,6 @@ export function guideSections(plan: string) {
     .map((m) => m[2].trim())
     .filter((t) => !/^Running this session/.test(t));
 }
+// Older imports wrote a note to the DM into the session summary; the banner leaves it out.
+export const importNote = (summary: string) =>
+  /^Unplayed source plan\b|do not treat planned scenes as history/i.test(summary);

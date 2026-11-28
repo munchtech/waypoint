@@ -61,7 +61,7 @@ run(async () => {
   await s.key('Escape');
   await sleep(300);
   // Table markers announce what was saved and removed.
-  await doStep(s, ['click', 'At the table']);
+  await doStep(s, ['click', 'Table log']);
   await sleep(300);
   await doStep(s, ['click', 'Promise']);
   await sleep(200);

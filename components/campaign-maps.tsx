@@ -265,7 +265,7 @@ export default function CampaignMaps({
     return (
       <section className="paper maps-empty">
         <span className="eyebrow">MAPS</span>
-        <h2>Pin the world in place.</h2>
+        <h2>Add your first map</h2>
         <p className="muted">
           Add a map image (PNG, JPEG or WebP), then pin places, people and secrets on it. A pin can
           open its wiki page, and you choose which pins the players see.

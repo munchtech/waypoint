@@ -54,11 +54,11 @@ export function PartyView() {
               onChange={(e) => update((c) => ({ ...c, boundaries: e.target.value }))}
             />
           </label>
-          <p className="tiny muted">These instructions travel with every generation request.</p>
+          <p className="tiny muted">Sent with every AI request.</p>
         </section>
         <section className="paper">
           <h3>What your table enjoys</h3>
-          <p className="muted">Your explicit preferences guide generation. Update these anytime.</p>
+          <p className="muted">The AI follows these when it writes. Change them any time.</p>
           {styles.map((s) => (
             <label className="range-label" key={s}>
               <span>
@@ -105,7 +105,7 @@ export function PartyView() {
                 ? 'Keep new material straightforward.'
                 : campaign.twist === 'Subtle'
                   ? 'Plant clues. Let the reveal feel earned.'
-                  : 'Bigger reversals, grounded in your story.'}
+                  : 'Bigger twists that still fit what has happened.'}
             </small>
           </section>
           <div className="info-box">

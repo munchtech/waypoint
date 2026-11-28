@@ -196,7 +196,7 @@ app.whenReady().then(async () => {
     );
     await wait("!document.querySelector('.modal')");
     assert.equal(snapshot.campaigns[0].sessions[0].plan, draft);
-    await click('Session notes');
+    await click('Notes');
     await wait("!!document.querySelector('.desk-main .book-text table')");
     await openPlan();
     assert(

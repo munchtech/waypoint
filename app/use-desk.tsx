@@ -44,6 +44,14 @@ import { useCampaignStore } from './use-campaign-store';
 
 // The desk controller: what the shell, the views and the dialogs share — navigation, the open dialog, drafts, and the
 // actions that generate, record and import. The campaigns themselves live in the campaign store.
+// The desk's tabs were renamed; a tab saved under its old name opens under the new one.
+const oldTabs: Record<string, string> = {
+  'Session notes': 'Notes',
+  Possibilities: 'Paths',
+  'At the table': 'Table log',
+  'Quick help': '',
+};
+export const deskTabName = (t: string) => (t in oldTabs ? oldTabs[t] : t);
 export function useDesk() {
   const [targetHit, setTargetHit] = useState<SearchHit | null>(null);
   const setView = (next: View) => navigate(next);
@@ -102,16 +110,20 @@ export function useDesk() {
   }, [view]);
   const [tab, setTabState] = useState(() => {
     try {
-      return localStorage.getItem('waypoint-desk-tab') || '';
+      return deskTabName(localStorage.getItem('waypoint-desk-tab') || '');
     } catch {
       return '';
     }
   });
+  // Quick help lives in the desk's side panel, open or folded, whichever tab is showing.
+  const [helpOpen, setHelpOpen] = useState(false);
   // The desk remembers the tab you last used (per computer); with none saved, a session that has a guide opens on its notes.
   const setTab = (t: string) => {
-    setTabState(t);
+    if (t === 'Quick help') return setHelpOpen(true);
+    const name = deskTabName(t);
+    setTabState(name);
     try {
-      localStorage.setItem('waypoint-desk-tab', t);
+      localStorage.setItem('waypoint-desk-tab', name);
     } catch {}
   };
   const [expanded, setExpanded] = useState<string | null>('b1');
@@ -160,7 +172,15 @@ export function useDesk() {
     });
   }, [navigationRevision, campaign.id]);
   const pinnedCard = campaign.cards.find((card) => card.id === session.pinnedCardId);
-  const promptDraft = useSessionPrompt(campaign.id, session.id);
+  const sessionPrompt = useSessionPrompt(campaign.id, session.id);
+  // A prompt written from elsewhere (a rule, a coach tip) opens Quick help so the DM sees it.
+  const promptDraft = {
+    ...sessionPrompt,
+    replace: (...args: Parameters<typeof sessionPrompt.replace>) => {
+      sessionPrompt.replace(...args);
+      setHelpOpen(true);
+    },
+  };
   const { quick, kind, setQuick, setKind } = promptDraft;
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -371,7 +391,7 @@ export function useDesk() {
       update((c) => ({ ...c, sessions: [...c.sessions, s] }));
       setSessionId(s.id);
       setView('Session desk');
-      setTab('Possibilities');
+      setTab('Paths');
       setNotice('Next session drafted from your campaign history.');
     }
   }
@@ -420,9 +440,9 @@ export function useDesk() {
     if (!newName.trim() || !newPremise.trim()) return;
     const s: Session = {
       id: uid(),
-      title: 'The first chapter',
+      title: 'Session 1',
       plan: '',
-      summary: 'An unwritten adventure awaits.',
+      summary: '',
       branches: [],
       source: 'DM written',
       done: false,
@@ -458,8 +478,7 @@ export function useDesk() {
     setModal('outcome');
   }
   // A prepared play with tracked effects or later consequences opens the ripple review first; others go straight to the outcome editor.
-  const deskTab =
-      tab || (session.plan.includes('## Running this session') ? 'Session notes' : 'Possibilities'),
+  const deskTab = tab || (session.plan.includes('## Running this session') ? 'Notes' : 'Paths'),
     deskCard = tableCard(session.plan);
   // A play a session plan links to (`play:<id>`) opens in place in the notes. Ids may have been renamed with the DM's text (Tongue → Heart).
   const planPlays = {
@@ -709,10 +728,10 @@ export function useDesk() {
         ['Creature', 'Encounter'].includes(hit.kind)
           ? 'Combat'
           : hit.kind === 'Play'
-            ? 'Possibilities'
+            ? 'Paths'
             : hit.kind === 'Event'
-              ? 'At the table'
-              : 'Session notes',
+              ? 'Table log'
+              : 'Notes',
       );
       if (hit.kind === 'Play') setExpanded(hit.id);
     }
@@ -740,9 +759,9 @@ export function useDesk() {
         label: 'Session',
         icon: BookOpen,
         views: [
-          { view: 'Session desk', label: 'Current session' },
-          { view: 'Foresight', label: 'Playbook' },
-          { view: 'Next session', label: 'Plan next session' },
+          { view: 'Session desk', label: 'Run' },
+          { view: 'Foresight', label: 'Prep' },
+          { view: 'Next session', label: 'Next' },
         ],
       },
       {
@@ -762,7 +781,7 @@ export function useDesk() {
         views: [
           { view: 'Session journal', label: 'Notes & recordings' },
           { view: 'Discoveries', label: 'Review discoveries' },
-          { view: 'Chronicle', label: 'Confirmed history' },
+          { view: 'Chronicle', label: 'Campaign history' },
         ],
       },
       {
@@ -866,6 +885,8 @@ export function useDesk() {
     tab,
     setTabState,
     setTab,
+    helpOpen,
+    setHelpOpen,
     expanded,
     setExpanded,
     draft,

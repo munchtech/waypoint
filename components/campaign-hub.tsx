@@ -100,9 +100,9 @@ export default function CampaignHub({
       <div className="content-grid">
         <section className="paper">
           <h3>
-            <Pin size={17} /> At a glance
+            <Pin size={17} /> Pinned
           </h3>
-          <p className="muted">Keep the people and facts you need during play close by.</p>
+          <p className="muted">Pin the people and facts you want handy during play.</p>
           {pinned.map((p) => (
             <article key={p.id} className="memory-thread">
               <div className="section-title">

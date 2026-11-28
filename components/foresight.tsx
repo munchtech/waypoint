@@ -20,6 +20,8 @@ import {
   CornerDownRight,
   Globe,
   Send,
+  Feather,
+  ArrowRight,
 } from 'lucide-react';
 import PlayCard from './play-card';
 import BookText from './book-text';
@@ -38,7 +40,9 @@ import {
   type UpdatePack,
 } from '../lib/update-pack';
 import { dueAfter } from '../lib/player-site';
-import { carryOver, lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
+import { lastWeLeftOff, recapEmpty, recapText } from '../lib/recap';
+import LastTime from './last-time';
+import { guideSections } from '../lib/session-notes';
 import { sendToWiki } from './player-site';
 import {
   clockAlerts,
@@ -73,6 +77,8 @@ type Props = {
   notify: (m: string) => void;
   fail: (m: string) => void;
   onPaths: (id?: string) => void;
+  // Opens the session plan editor; the Prep page without a playbook works from the plan.
+  onEditPlan?: () => void;
   tabRequest?: { tab: string; n: number } | null;
 };
 const general = [
@@ -222,6 +228,7 @@ export default function Foresight({
   notify,
   fail,
   onPaths,
+  onEditPlan,
   tabRequest,
 }: Props) {
   // A `go:world-state` link in session notes opens Foresight on that tab (the app remounts Foresight for each request).
@@ -334,20 +341,61 @@ export default function Foresight({
       </button>
     </div>
   );
-  if (!pb)
+  if (!pb) {
+    // Without a playbook, Prep works from the DM's own plan: last time, the scenes, then run it.
+    const guide = guideSections(session.plan),
+      scenes = guide.length
+        ? guide
+        : [...session.plan.matchAll(/^(?:#{2,3} (.+)|\*\*(Scene \d+[^*]*?)\.?\*\*)\s*$/gm)]
+            .map((m) => (m[1] || m[2]).trim())
+            .slice(0, 12),
+      at = campaign.sessions.findIndex((x) => x.id === session.id) + 1;
     return (
       <div className="foresight">
         {offerBox}
+        <section className="paper prep-page">
+          <span className="eyebrow">PREP · SESSION {at}</span>
+          <h2>{session.title}</h2>
+          <LastTime campaign={campaign} session={session} notify={notify} fail={fail} />
+          <h3>Your plan</h3>
+          {scenes.length ? (
+            <ol className="prep-scenes">
+              {scenes.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ol>
+          ) : session.plan.trim() ? (
+            <p className="muted">
+              Your plan has no scene headings yet. Add a few to jump between them at the table.
+            </p>
+          ) : (
+            <p className="muted">
+              No plan yet. Jot down the opening scene, two or three things that could happen, and
+              how you might end.
+            </p>
+          )}
+          <div className="flow-actions">
+            {onEditPlan && (
+              <button className="button" onClick={onEditPlan}>
+                <Feather size={15} /> {session.plan.trim() ? 'Edit session plan' : 'Write the plan'}
+              </button>
+            )}
+            <button className="button primary" onClick={() => onNavigate('Session desk')}>
+              Run the session <ArrowRight size={15} />
+            </button>
+          </div>
+        </section>
         <section className="paper foresight-intro">
-          <h2>No playbook yet</h2>
+          <h3>Using a published adventure?</h3>
           <p className="muted">
-            An update pack adds one: the plays each session is likely to bring, the rules they use
-            and what each choice changes later.
+            Add its update pack to get a prep brief for every session: the plays it is likely to
+            bring, the rules they use and what each choice changes later.
           </p>
           <div className="book-actions">{importer}</div>
         </section>
       </div>
     );
+  }
 
   const s = stateOf(pb),
     brief = pb.briefs.find((b) => b.sessionId === session.id),
@@ -394,9 +442,6 @@ export default function Foresight({
   // A spoken recap to open the session with, drafted from what the table recorded last time (lib/recap.ts).
   const recap = prev ? lastWeLeftOff(campaign, prev.id) : null,
     recapShown = recap && !recapEmpty(recap) ? recap : null;
-  // The DM's own notes from the last wrap-up and the follow-ups marked at the table (not read aloud).
-  const carried = prev ? carryOver(campaign, prev.id) : null,
-    carriedShown = carried && (carried.notes.length || carried.followUps.length) ? carried : null;
   const toggleCheck = (n: number) =>
     mutatePb((p) => ({
       ...p,
@@ -558,73 +603,7 @@ export default function Foresight({
                   .join(' · ')}
               </p>
             )}
-            {recapShown && (
-              <div className="recap-draft">
-                <div className="section-title">
-                  <h3>Last we left off</h3>
-                  <button
-                    className="text-button no-print"
-                    onClick={() => {
-                      void navigator.clipboard.writeText(recapText(recapShown)).then(
-                        () => notify('Recap copied as text.'),
-                        () => fail('Clipboard unavailable.'),
-                      );
-                    }}
-                  >
-                    <Copy size={13} />
-                    Copy
-                  </button>
-                </div>
-                <p className="tiny muted">
-                  A draft from what you recorded last session. Open with it in your own words, name
-                  what was lost plainly, then hand the scene to a player.
-                </p>
-                {(
-                  [
-                    ['What happened', recapShown.happened],
-                    ['What it cost', recapShown.lost],
-                    ['Still owed', recapShown.owed],
-                  ] as const
-                ).map(
-                  ([title, list]) =>
-                    list.length > 0 && (
-                      <div key={title}>
-                        <h4>{title}</h4>
-                        <ul>
-                          {list.map((t) => (
-                            <li key={t}>{t}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ),
-                )}
-              </div>
-            )}
-            {carriedShown && (
-              <div className="recap-draft carry-over">
-                <h3>For you from last time</h3>
-                <p className="tiny muted">
-                  Your wrap-up notes and the follow-ups you marked at the table. Not for reading
-                  aloud. Dismiss a follow-up in Plan next session once it’s handled.
-                </p>
-                {carriedShown.notes.map(([title, text]) => (
-                  <div key={title}>
-                    <h4>{title}</h4>
-                    <p>{text}</p>
-                  </div>
-                ))}
-                {carriedShown.followUps.length > 0 && (
-                  <div>
-                    <h4>Follow up</h4>
-                    <ul>
-                      {carriedShown.followUps.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            )}
+            <LastTime campaign={campaign} session={session} notify={notify} fail={fail} />
             {coming.length > 0 && (
               <div className="coming-back">
                 <h3>

@@ -186,7 +186,7 @@ export default function PartyLedger({
       <details className="paper" open={!!pb || ledger.length > 0 || bargains.length > 0}>
         <summary>Memory ledger & bargains</summary>
         <section id="memory-ledger" className="ledger-anchor" tabIndex={-1}>
-          <span className="eyebrow">TOLLS, TITHES AND TRADES</span>
+          <span className="eyebrow">WHAT THE PARTY OWES</span>
           <h3>
             <ScrollText size={16} />
             Memory ledger
@@ -324,7 +324,7 @@ export default function PartyLedger({
           ))}
         </section>
         <section id="bargains" className="paper ledger-anchor" tabIndex={-1}>
-          <span className="eyebrow">PROMISES WITH TEETH</span>
+          <span className="eyebrow">DEALS THE PARTY MADE</span>
           <h3>Bargain log</h3>
           <div className="ledger-form">
             <label>

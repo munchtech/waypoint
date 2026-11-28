@@ -10,11 +10,12 @@ import TableMarkers from '../../components/table-markers';
 import LiveLookup from '../../components/live-lookup';
 import NotesBar from '../../components/notes-bar';
 import PlanOutline from '../../components/plan-outline';
+import LastTime from '../../components/last-time';
 import { draftPage, memoryOf } from '../../lib/memory';
 import { pageName } from '../../lib/page-name';
 import { isDesktop } from '../../lib/transport';
 import { trackerStatus } from '../../lib/trackers';
-import { planParts, ruleUses, withFightRoster } from '../../lib/session-notes';
+import { importNote, planParts, ruleUses, withFightRoster } from '../../lib/session-notes';
 import { jumpToHeading } from '../../lib/plan-jump';
 import { sessionEncounters } from '../../lib/combat';
 import {
@@ -88,10 +89,18 @@ export function SessionDeskView() {
     openWorkspace,
     navigate,
     memory,
+    setNotice,
+    setError,
+    helpOpen,
+    setHelpOpen,
   } = useDeskContext();
+  // Anything recorded tonight: until then the desk opens on last time's recap.
+  const tonight =
+    campaign.events.some((e) => e.sessionId === session.id) ||
+    (memory.markers || []).some((k) => k.sessionId === session.id);
   const { guide: guideText, book: planBook } = planParts(session.plan);
   const pb = memory.playbook;
-  const pinnedPages = memory.pages.filter((page) => memory.pins?.includes(page.id)).slice(0, 8);
+  const pinnedPages = memory.pages.filter((page) => memory.pins?.includes(page.id)).slice(0, 5);
   const tabs = useRef<HTMLDivElement>(null);
   useDeskPlace(campaign.id, session.id, deskTab, targetHit, tabs);
   // The scene last jumped to, from the notes bar or the outline beside the notes.
@@ -131,13 +140,26 @@ export function SessionDeskView() {
             <div className="hero-content">
               <div className="hero-label">
                 <span className="pill">SESSION {campaign.sessions.indexOf(session) + 1}</span>
-                <span>{session.done ? 'Completed' : 'On your horizon'}</span>
+                <span>{session.done ? 'Completed' : 'Up next'}</span>
               </div>
               <h2>{session.title}</h2>
-              <p title={session.summary}>{session.summary}</p>
+              {session.summary && !importNote(session.summary) && (
+                <p title={session.summary}>{session.summary}</p>
+              )}
             </div>
             <div className="session-toolbar">
               <div className="session-end-actions">
+                <button
+                  className="text-button edit-plan"
+                  onClick={() => {
+                    setPlanTitle(session.title);
+                    setDraft(session.plan);
+                    setModal('plan');
+                  }}
+                >
+                  <Feather size={14} />
+                  Edit session plan
+                </button>
                 <button className="text-button" onClick={() => record()}>
                   <Plus size={14} />
                   Record what happened
@@ -195,8 +217,16 @@ export function SessionDeskView() {
             </div>
           </div>
 
+          <LastTime
+            card
+            open={!tonight}
+            campaign={campaign}
+            session={session}
+            notify={setNotice}
+            fail={setError}
+          />
           <div className="tabs" ref={tabs}>
-            {['Session notes', 'Possibilities', 'Combat', 'At the table', 'Quick help'].map((t) => (
+            {['Notes', 'Paths', 'Combat', 'Table log'].map((t) => (
               <button
                 className={deskTab === t ? 'selected' : ''}
                 aria-pressed={deskTab === t}
@@ -204,7 +234,7 @@ export function SessionDeskView() {
                 onClick={() => setTab(t)}
               >
                 {t}
-                {t === 'Possibilities' && <span>{session.branches.length}</span>}
+                {t === 'Paths' && <span>{session.branches.length}</span>}
               </button>
             ))}
           </div>
@@ -213,7 +243,7 @@ export function SessionDeskView() {
               <summary>Pinned reference · {pinnedCard.title}</summary>
               <div className="section-title">
                 <div>
-                  <span className="eyebrow">ON YOUR DESK · SUGGESTED MATERIAL</span>
+                  <span className="eyebrow">PINNED IDEA</span>
                   <h3>{pinnedCard.title}</h3>
                 </div>
                 <button
@@ -269,12 +299,12 @@ export function SessionDeskView() {
               compact
             />
           )}
-          {deskTab === 'Possibilities' && (
+          {deskTab === 'Paths' && (
             <>
               {campaign.events.some((e) => e.sessionId === session.id) && (
                 <div className="choice-follow-through">
                   <div>
-                    <span className="eyebrow">THE STORY HAS MOVED</span>
+                    <span className="eyebrow">THIS SESSION SO FAR</span>
                     <strong>
                       {count(
                         campaign.events.filter((e) => e.sessionId === session.id).length,
@@ -288,7 +318,7 @@ export function SessionDeskView() {
                     </p>
                   </div>
                   <div>
-                    <button className="text-button" onClick={() => setTab('At the table')}>
+                    <button className="text-button" onClick={() => setTab('Table log')}>
                       Review choices <ArrowUpRight size={14} />
                     </button>
                   </div>
@@ -296,7 +326,7 @@ export function SessionDeskView() {
               )}
               <div className="section-title">
                 <div>
-                  <h3>The paths they might take</h3>
+                  <h3>What the players might do</h3>
                 </div>
                 <div className="path-actions">
                   {memory.playbook && (
@@ -382,8 +412,7 @@ export function SessionDeskView() {
               />
             </Suspense>
           )}
-          {deskTab === 'Quick help' && <TableCoach campaign={campaign} onPrompt={coachPrompt} />}
-          {deskTab === 'Session notes' && (
+          {deskTab === 'Notes' && (
             <section className="paper">
               <div className="section-title">
                 <div>
@@ -445,7 +474,7 @@ export function SessionDeskView() {
               </p>
             </section>
           )}
-          {deskTab === 'At the table' && !live && (
+          {deskTab === 'Table log' && !live && (
             <TableMarkers
               campaign={campaign}
               sessionId={session.id}
@@ -456,7 +485,7 @@ export function SessionDeskView() {
               }}
             />
           )}
-          {deskTab === 'At the table' && (
+          {deskTab === 'Table log' && (
             <section className="paper">
               <div className="section-title">
                 <h3>What’s happened this session</h3>
@@ -492,7 +521,7 @@ export function SessionDeskView() {
               ) : (
                 <div className="empty">
                   <ScrollText />
-                  <h3>The page is yours.</h3>
+                  <h3>Nothing recorded yet</h3>
                   <p>Record a choice from a path card, or add something unexpected.</p>
                 </div>
               )}
@@ -500,24 +529,37 @@ export function SessionDeskView() {
                 <button className="button" onClick={() => setView('Discoveries')}>
                   Review discoveries <ArrowRight size={15} />
                 </button>
-                <button className="button primary" onClick={() => setView('Next session')}>
-                  Plan next session <ArrowRight size={15} />
+                <button className="button primary" onClick={() => setModal('wrap')}>
+                  {session.done ? 'Review the wrap-up' : 'Wrap up session'} <ArrowRight size={15} />
                 </button>
               </div>
             </section>
           )}
         </section>
         <aside className="right-rail">
-          {deskTab === 'Session notes' && <PlanOutline plan={session.plan} onJump={jump} />}
+          <section className={'quick-help' + (helpOpen ? ' open' : '')}>
+            <button
+              className="quick-help-toggle"
+              aria-expanded={helpOpen}
+              onClick={() => setHelpOpen(!helpOpen)}
+            >
+              <Sparkles size={16} />
+              <span>
+                <strong>Quick help</strong>
+                <small>The players did something you didn’t plan for?</small>
+              </span>
+              <ChevronRight size={16} className="quick-help-chevron" />
+            </button>
+          </section>
+          {helpOpen && <TableCoach campaign={campaign} onPrompt={coachPrompt} />}
+          {deskTab === 'Notes' && <PlanOutline plan={session.plan} onJump={jump} />}
           {live && deskCard && (
             <section className="paper rail-card" aria-label="Table card">
               <BookText text={deskCard} />
             </section>
           )}
-          {deskTab === 'Quick help' ? (
-            <section
-              className={'improv-panel ' + (deskTab === 'Quick help' ? '' : 'improv-collapsed')}
-            >
+          {helpOpen ? (
+            <section className="improv-panel">
               <div className="section-title">
                 <h3>
                   <Sparkles size={18} />
@@ -620,7 +662,7 @@ export function SessionDeskView() {
               >
                 <Sparkles size={15} />
                 {busy === 'improvise'
-                  ? 'Finding your spark…'
+                  ? 'Writing…'
                   : isDesktop() && !ai
                     ? 'Add an API key first'
                     : `Generate ${kind === 'NPC' ? 'NPC' : kind.toLowerCase()}`}
@@ -641,7 +683,7 @@ export function SessionDeskView() {
           {(campaign.cards.length > 0 || pinnedPages.length > 0) && (
             <section className="recent-material">
               <div className="section-title">
-                <h3>Within reach</h3>
+                <h3>Pinned and nearby</h3>
                 {campaign.cards.length > 0 && (
                   <button className="text-button" onClick={() => setView('Saved material')}>
                     View all <ArrowUpRight size={13} />
@@ -679,7 +721,7 @@ export function SessionDeskView() {
                       onClick={() => showReference(page.id)}
                     >
                       <span>
-                        <small>Kept handy · {page.kind}</small>
+                        <small>Pinned · {page.kind}</small>
                         <strong>{pageName(page)}</strong>
                       </span>
                       <ArrowUpRight size={14} />

@@ -42,16 +42,18 @@ import {
   MapsView,
 } from './views/workspace-views';
 import { DialogBody } from './desk-dialogs';
+import SessionGuide from './session-guide';
 import { useTheme, themeLabel } from '../components/use-theme';
 import { useUpdate } from '../components/use-update';
 
 // The session desk's tabs, as Ctrl K lists them.
+// [what Ctrl K shows, the desk tab it opens, what it holds]
 const deskTabs = [
-  ['Session notes', 'The plan for this session, scene by scene'],
-  ['Possibilities', 'The paths the players might take'],
-  ['Combat', 'This session’s fights, round by round, with stat blocks'],
-  ['At the table', 'Markers and what has happened this session'],
-  ['Quick help', 'An answer for what the players just did, or a new idea'],
+  ['Session notes', 'Notes', 'The plan for this session, scene by scene'],
+  ['Paths', 'Paths', 'The paths the players might take'],
+  ['Combat', 'Combat', 'This session’s fights, round by round, with stat blocks'],
+  ['Table log', 'Table log', 'Markers and what has happened this session'],
+  ['Quick help', 'Quick help', 'An answer for what the players just did, or a new idea'],
 ];
 // The shell: the sidebar, top bar, section tabs and dialog frame around the current view.
 function HomeScreen() {
@@ -68,7 +70,6 @@ function HomeScreen() {
     setCommandOpen,
     recordingActive,
     setRecordingActive,
-    setPlanTitle,
     view,
     ai,
     busy,
@@ -92,7 +93,6 @@ function HomeScreen() {
     setLive,
     setExpanded,
     setTab,
-    setDraft,
     fileRef,
     modalRef,
     closeDialog,
@@ -194,12 +194,12 @@ function HomeScreen() {
                     detail: 'Session notes · ' + session.title,
                     run: () => {
                       setView('Session desk');
-                      setTab('Session notes');
+                      setTab('Notes');
                       jumpToHeading(s);
                     },
                   })),
-                ...deskTabs.map(([tab, detail]) => ({
-                  label: tab,
+                ...deskTabs.map(([label, tab, detail]) => ({
+                  label,
                   detail,
                   run: () => {
                     setView('Session desk');
@@ -271,8 +271,8 @@ function HomeScreen() {
               </select>
               <span className="tiny">
                 <span className="dot" /> {campaign.sessions.length} session
-                {campaign.sessions.length !== 1 ? 's' : ''} ·{' '}
-                {campaign.id === 'demo' ? 'Example campaign' : 'Your story'}
+                {campaign.sessions.length !== 1 ? 's' : ''}
+                {campaign.id === 'demo' ? ' · Example campaign' : ''}
               </span>
             </div>
             <nav aria-label="Main navigation">
@@ -352,7 +352,7 @@ function HomeScreen() {
               <div className="dm-avatar">
                 <span>DM</span>
                 <div>
-                  Your storyteller’s desk
+                  Dungeon Master
                   <small>
                     {saving
                       ? 'Saving…'
@@ -446,18 +446,7 @@ function HomeScreen() {
                   <div>
                     <h1>{area.label}</h1>
                   </div>
-                  {view === 'Session desk' ? (
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        setPlanTitle(session.title);
-                        setDraft(session.plan);
-                        setModal('plan');
-                      }}
-                    >
-                      <Feather size={15} /> Edit session plan
-                    </button>
-                  ) : view === 'Chronicle' ? (
+                  {view === 'Chronicle' ? (
                     <div className="heading-actions">
                       <button
                         className="button"
@@ -474,21 +463,25 @@ function HomeScreen() {
                     </div>
                   ) : null}
                 </div>
-                <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
-                  {area.views.map((item) => (
-                    <button
-                      key={item.view}
-                      className={view === item.view ? 'selected' : ''}
-                      aria-current={view === item.view ? 'page' : undefined}
-                      onClick={() => setView(item.view)}
-                    >
-                      {item.label}
-                      {item.view === 'Discoveries' && reviewCount > 0 && (
-                        <span className="nav-count">{reviewCount}</span>
-                      )}
-                    </button>
-                  ))}
-                </nav>
+                {area.label === 'Session' ? (
+                  <SessionGuide />
+                ) : (
+                  <nav className="workspace-tabs" aria-label={area.label + ' sections'}>
+                    {area.views.map((item) => (
+                      <button
+                        key={item.view}
+                        className={view === item.view ? 'selected' : ''}
+                        aria-current={view === item.view ? 'page' : undefined}
+                        onClick={() => setView(item.view)}
+                      >
+                        {item.label}
+                        {item.view === 'Discoveries' && reviewCount > 0 && (
+                          <span className="nav-count">{reviewCount}</span>
+                        )}
+                      </button>
+                    ))}
+                  </nav>
+                )}
                 <div className="workspace-context">
                   {[
                     'Session desk',
@@ -568,18 +561,18 @@ function HomeScreen() {
             <div className="generating" role="status">
               <Sparkles className="spin" size={17} />{' '}
               {busy === 'campaign'
-                ? 'Building your world…'
+                ? 'Writing your campaign…'
                 : busy === 'next'
-                  ? 'Following the threads of your story…'
+                  ? 'Writing the next session…'
                   : busy === 'prepare'
-                    ? 'Preparing the possibilities…'
+                    ? 'Writing paths for this session…'
                     : busy === 'path'
                       ? 'Finding another path…'
                       : busy === 'ask'
                         ? 'Looking through your campaign…'
                         : busy === 'assist'
                           ? 'Drafting changes for you to review…'
-                          : 'Finding a spark…'}
+                          : 'Writing…'}
               <small className="generating-progress">
                 {progress || 'You can keep reading your notes.'}
               </small>

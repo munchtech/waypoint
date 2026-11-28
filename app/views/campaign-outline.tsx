@@ -10,7 +10,7 @@ export function CampaignOutlineView() {
   return (
     <div className="content-grid">
       <section className="paper">
-        <span className="eyebrow">THE BIG PICTURE</span>
+        <span className="eyebrow">CAMPAIGN OUTLINE</span>
         <h2>{campaign.name}</h2>
         <label>
           Campaign name
@@ -67,7 +67,7 @@ export function CampaignOutlineView() {
               id: uid(),
               title: `Session ${campaign.sessions.length + 1}`,
               plan: '',
-              summary: 'Your next adventure starts here.',
+              summary: '',
               branches: [],
               source: 'DM written',
               done: false,

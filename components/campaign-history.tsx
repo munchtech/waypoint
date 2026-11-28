@@ -115,7 +115,10 @@ export default function CampaignHistory({
         <div className="empty">
           <ScrollText size={34} />
           <h3>No confirmed events yet.</h3>
-          <p>Record what actually happened during play. Prepared paths stay possibilities.</p>
+          <p>
+            Record what actually happened during play. Paths you prepared but didn’t play aren’t
+            added.
+          </p>
           <button className="button primary" onClick={onRecord}>
             Record your first event
           </button>

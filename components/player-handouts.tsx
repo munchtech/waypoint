@@ -99,8 +99,8 @@ export default function PlayerHandouts({
   return (
     <div className="content-grid handout-workspace">
       <section className="paper">
-        <span className="eyebrow">ONLY WHAT YOU CHOOSE TO REVEAL</span>
-        <h2>Your shared story.</h2>
+        <span className="eyebrow">WHAT THE PLAYERS SEE</span>
+        <h2>Player handouts</h2>
         <p className="muted">
           Build a recap from party-known wiki pages, or write a handout. Review the exact text
           before showing it.
@@ -242,7 +242,7 @@ export default function PlayerHandouts({
         ) : (
           <div className="empty">
             <Monitor size={34} />
-            <h3>A separate window for the table.</h3>
+            <h3>Show handouts on a second screen</h3>
             <p>
               Only the handout title and text are sent to this window. It has no campaign navigation
               or DM data.

@@ -17,9 +17,9 @@ export default function TableCoach({
     <section className="table-coach">
       <div className="section-title">
         <div>
-          <span className="eyebrow">WHEN THE PLAN MEETS THE PARTY</span>
+          <span className="eyebrow">WHEN PLAYERS GO OFF THE PLAN</span>
           <h3>
-            <Compass size={18} /> Your next move
+            <Compass size={18} /> What to do now
           </h3>
         </div>
         <span className="coach-offline">Always available</span>

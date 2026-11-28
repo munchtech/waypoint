@@ -171,7 +171,7 @@ run(async (args) => {
     await s.settle(100);
     await search('Welcome to Moonwatch');
     await result('Welcome to Moonwatch');
-    await click('Open in workspace');
+    await click('Open the handout');
     assert.equal(
       await s.run("document.querySelector('.handout-workspace input:not([type=checkbox])').value"),
       'Welcome to Moonwatch',
@@ -186,9 +186,9 @@ run(async (args) => {
       'Passed global alias, roster, handout, event, and offline-rule search with exact destinations.',
     );
     await nav('Session desk');
-    await click('At the table');
-    await click('Plan next session');
-    assert.match(await text('.workspace-tabs .selected'), /Plan next session/);
+    await click('Table log');
+    await nav('Next session');
+    assert.match(await text('.session-guide .selected strong'), /^Next$/);
     assert.equal(
       s.state.snapshot.campaigns[0].sessions.length,
       1,
@@ -199,15 +199,15 @@ run(async (args) => {
     await s.shot(path.join(out, 'party-workspace.png'));
     console.log('Passed shared party home and outcome → next-session planner handoff.');
     await nav('Session desk');
-    await click('Session notes');
+    await click('Notes');
     assert.equal(await s.clickSelector('.desk-main .wiki-mention'), 'ok');
     await s.settle(200);
     assert.equal(await text('.reference-heading h2'), 'Silver Observatory');
     await s.shot(path.join(out, 'context-reference.png'));
-    await click('Keep handy');
+    await click('Pin');
     await s.key('Escape');
     await s.settle(100);
-    assert.match(await text('.desk-main .tabs .selected'), /Session notes/);
+    assert.match(await text('.desk-main .tabs .selected'), /Notes/);
     assert.match(await text('.handy-references'), /Silver Observatory/);
     await s.run('window.scrollTo(0,300)');
     await s.settle(100);
@@ -222,7 +222,7 @@ run(async (args) => {
     await s.settle(100);
     assert.equal(await s.clickSelector('.workspace-back'), 'ok');
     await s.settle(200);
-    assert.match(await text('.desk-main .tabs .selected'), /Session notes/);
+    assert.match(await text('.desk-main .tabs .selected'), /Notes/);
     assert(
       Math.abs((await s.run('window.scrollY')) - previousScroll) <= 5,
       'Back restores the prior scroll position',
@@ -246,7 +246,7 @@ run(async (args) => {
     await s.settle(100);
     await s.key('K', ['control']);
     await s.settle(150);
-    assert.match(await text('.command-results'), /Kept handy/i);
+    assert.match(await text('.command-results'), /Pinned/i);
     await s.key('Escape');
     await s.settle(100);
     await nav('Saved material');
@@ -258,7 +258,7 @@ run(async (args) => {
     );
     await s.resize(900, 760);
     await nav('Session desk');
-    await click('Session notes');
+    await click('Notes');
     assert.equal(await s.clickSelector('.desk-main .wiki-mention'), 'ok');
     await s.settle(150);
     assert(

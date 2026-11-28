@@ -189,8 +189,16 @@ app.whenReady().then(async () => {
   };
   const go = require('./ui-nav.cjs').navigator(run, wait),
     deskTabs = "[...document.querySelectorAll('.desk-main>.tabs button')]";
-  // The desk's panels sit under its tabs: the idea panel and the coach under Quick help, the prepared paths under Possibilities.
+  // The prepared paths sit under the desk's Paths tab; the idea panel and the coach open from Quick help, the side panel's folding row.
   const tab = async (name) => {
+    if (name === 'Quick help') {
+      await wait("!!document.querySelector('.quick-help-toggle')");
+      await run("document.querySelector('.quick-help-toggle[aria-expanded=false]')?.click()");
+      await wait(
+        "document.querySelector('.quick-help-toggle')?.getAttribute('aria-expanded')==='true'",
+      );
+      return;
+    }
     await wait("!!document.querySelector('.desk-main>.tabs')");
     await run(`${deskTabs}.find(b=>b.textContent.startsWith(${JSON.stringify(name)})).click()`);
     await wait(
@@ -285,7 +293,7 @@ app.whenReady().then(async () => {
     await wait("document.querySelector('.engine-start')!==null");
     assert(await run(generateOff));
     // Asking to generate without a key opens the settings and sends nothing.
-    await tab('Possibilities');
+    await tab('Paths');
     await run(
       "[...document.querySelectorAll('button')].find(b=>b.textContent.includes('Prepare paths')).click()",
     );
@@ -382,7 +390,7 @@ app.whenReady().then(async () => {
       date: new Date().toISOString(),
     });
     await reload();
-    await tab('Possibilities');
+    await tab('Paths');
     await wait(
       "document.querySelector('.choice-follow-through strong')?.textContent.startsWith('1 choice')",
     );
@@ -409,7 +417,7 @@ app.whenReady().then(async () => {
       'Wrap-up passed: enjoyment correction, persistent notes, session completion, planner carry-forward and no automatic AI or invented events.',
     );
 
-    await tab('Possibilities');
+    await tab('Paths');
     await run("document.querySelector('.branch-bottom .button:not(.quick-record)').click()");
     await wait("document.querySelector('#modal-title')?.textContent==='What actually happened?'");
     assert.equal(
